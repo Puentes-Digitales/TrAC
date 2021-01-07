@@ -129,6 +129,7 @@ mutation searchStudent($student_id: String, $program_id: String) {
       active
     }
     admission {
+      active
       type_admission
       initial_test
       final_test
@@ -167,6 +168,7 @@ query studentsList($program_id: String!) {
       explanation
     }
     admission {
+      active
       type_admission
       initial_test
       final_test

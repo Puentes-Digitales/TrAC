@@ -4,6 +4,7 @@
 # -----------------------------------------------
 
 type Admission {
+  active: Boolean!
   final_test: Float
   initial_test: Float!
   type_admission: String!
