@@ -162,6 +162,7 @@ const migration = async () => {
           email: "admin@admin.dev",
           config: {
             ...baseUserConfig,
+            SHOW_COMPLEMENTARY: true,
             SHOW_DROPOUT: true,
             SHOW_STUDENT_LIST: true,
             FOREPLAN: true,
@@ -455,6 +456,7 @@ const migration = async () => {
       if (!exists) {
         await dbData.schema.createTable(STUDENT_ADMISSION_TABLE, (table) => {
           table.text("student_id").notNullable().primary();
+          table.boolean("active").notNullable().defaultTo(true);
           table.text("type_admission").notNullable();
           table.float("initial_test", 4).notNullable();
           table.float("final_test", 4);

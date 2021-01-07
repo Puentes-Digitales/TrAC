@@ -208,6 +208,14 @@ export const Users: FC<{
               </Table.HeaderCell>
               <Table.HeaderCell
                 sorted={
+                  column === "config.SHOW_COMPLEMENTARY" ? direction : undefined
+                }
+                onClick={handleSort("config.SHOW_COMPLEMENTARY")}
+              >
+                show_complementary
+              </Table.HeaderCell>
+              <Table.HeaderCell
+                sorted={
                   column === "config.SHOW_DROPOUT" ? direction : undefined
                 }
                 onClick={handleSort("config.SHOW_DROPOUT")}
@@ -300,6 +308,16 @@ export const Users: FC<{
                             ) : (
                               "-"
                             )}
+                          </Table.Cell>
+                          <Table.Cell onClick={configOnClick} width={1}>
+                            <Icon
+                              circular
+                              name={
+                                configObj?.SHOW_COMPLEMENTARY
+                                  ? "check circle outline"
+                                  : "times circle outline"
+                              }
+                            />
                           </Table.Cell>
                           <Table.Cell onClick={configOnClick} width={1}>
                             <Icon

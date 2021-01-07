@@ -1,5 +1,6 @@
 export const baseUserConfig = {
   SHOW_DROPOUT: false,
+  SHOW_COMPLEMENTARY: false,
   SHOW_STUDENT_LIST: false,
   FOREPLAN: false,
   FOREPLAN_ADVICES_COMPARE_BY_PERFORMANCE: false,

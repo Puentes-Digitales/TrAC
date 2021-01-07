@@ -194,6 +194,7 @@ export const StudentEmployedTable = () =>
 // --------------------------------------------------------------------------
 export interface IStudentAdmission {
   student_id: string;
+  active: boolean;
   type_admission: string;
   initial_test: number;
   final_test?: number;
