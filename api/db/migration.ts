@@ -162,6 +162,7 @@ const migration = async () => {
           email: "admin@admin.dev",
           config: {
             ...baseUserConfig,
+            SHOW_COMPLEMENTARY: true,
             SHOW_DROPOUT: true,
             SHOW_STUDENT_LIST: true,
             FOREPLAN: true,

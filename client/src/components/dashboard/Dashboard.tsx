@@ -456,7 +456,8 @@ export function Dashboard() {
             accuracy={studentData.dropout.model_accuracy}
           />
         );
-
+      }
+      if (user?.config?.SHOW_COMPLEMENTARY) {
         ComplementaryInfoComponent = (
           <ComplementaryInfo
             type_admission={studentData.admission.type_admission}
