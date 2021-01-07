@@ -1,0 +1,28 @@
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "preset-react": {
+          "runtime": "automatic",
+          "importSource": "@emotion/react"
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "@emotion/babel-plugin",
+    "lodash",
+    ["date-fns"],
+    ["babel-plugin-graphql-tag"],
+    [
+      "import",
+      {
+        "libraryName": "validator",
+        "libraryDirectory": "lib",
+        "camel2DashComponentName": false
+      },
+      "validator"
+    ]
+  ]
+}

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test <AdmissionDropout /> Test Snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-xtzu7m"
+  >
+    <div
+      class="css-2tg663"
+    >
+      <div
+        class="chakra-stack unselectable css-11nyuxh"
+      >
+        <p
+          class="chakra-text verticalText css-1qj2vkl"
+        >
+          Información Complementaria
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

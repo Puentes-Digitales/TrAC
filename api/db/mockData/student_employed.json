@@ -1,0 +1,26 @@
+[
+  {
+    "student_id": "238de40ae2a0e9f417c495e913d56773",
+    "employed": true,
+    "educational_system": "Sistema educacional estado unidense",
+    "institution": "Facultad de agronomía UACH",
+    "months_to_first_job": 12,
+    "description": ""
+  },
+  {
+    "student_id": "6fdb8a7f5bbaf0c68dbca0f5462e866a",
+    "employed": true,
+    "educational_system": "Sistema educacional chileno",
+    "institution": "Escuela 1",
+    "months_to_first_job": 8,
+    "description": ""
+  },
+  {
+    "student_id": "e078c7de4d67798a915801ba7e2539fb",
+    "employed": false,
+    "educational_system": "",
+    "institution": "",
+    "months_to_first_job": 3,
+    "description": ""
+  }
+]

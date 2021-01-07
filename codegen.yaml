@@ -1,0 +1,21 @@
+schema: schema.gql
+documents: client/src/graphql/*.gql
+generates:
+  client/src/graphql/index.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withHOC: false
+      withHooks: true
+      withComponent: false
+      skipTypename: true
+      reactApolloVersion: 3
+      scalars:
+        DateTime: string
+        EmailAddress: string
+        JSONObject: Record<string,any>
+hooks:
+  afterAllFileWrite:
+    - pnpx pretty-quick
