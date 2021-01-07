@@ -38,7 +38,7 @@ export const ComplementaryInfo: FC<{
 
     useEffect(() => {
       setTrackingData({
-        showingPrediction: show,
+        showingComplementaryInformation: show,
       });
     }, [show]);
 
@@ -60,8 +60,8 @@ export const ComplementaryInfo: FC<{
 
             track({
               action: "click",
-              effect: show ? "close-employed" : "open-employed",
-              target: "employed",
+              effect: show ? "close-complementaryInfo" : "open-complementaryInfo",
+              target: "complementaryInfo",
             });
           }}
           color={COMPLEMENTARY_INFORMATION_TEXT_COLOR}
@@ -94,28 +94,44 @@ export const ComplementaryInfo: FC<{
                     opacity: 0,
                   }}
                 >
-                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                  <Text 
+                    width="290px" 
+                    pl={5} 
+                    pb={0} 
+                    mb={0} 
+                    fontFamily="Lato"
+                    >
                     {COMPLEMENTARY_INFORMATION_TYPE_ADMISSION} {type_admission}
                   </Text>
 
-                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                  <Text 
+                    width="290px" 
+                    pl={5} 
+                    pb={0} 
+                    mb={0} 
+                    fontFamily="Lato"
+                    >
                     {COMPLEMENTARY_INFORMATION_INITIAL_TEST} {initial_test}
                   </Text>
-                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                  <Text 
+                    width="290px" 
+                    pl={5} 
+                    pb={0} 
+                    mb={0} 
+                    fontFamily="Lato"
+                    >
                     {COMPLEMENTARY_INFORMATION_FINAL_TEST} {final_test}
                   </Text>
-
                   <Text
                     width="290px"
                     pl={5}
                     pb={0}
                     mb={0}
-                    fontWeight="bold"
                     fontFamily="Lato"
                   >
                     {COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM}
                   </Text>
-                  <Text fontSize="1.2em" ml={5} mb={2} fontFamily="Lato">
+                  <Text  ml={5} mb={1.2} fontFamily="Lato">
                     {educational_system}
                   </Text>
                   <Text
@@ -123,12 +139,11 @@ export const ComplementaryInfo: FC<{
                     pl={5}
                     pb={0}
                     mb={0}
-                    fontWeight="bold"
                     fontFamily="Lato"
                   >
                     {COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION}
                   </Text>
-                  <Text fontSize="1.2em" ml={5} mb={2} fontFamily="Lato">
+                  <Text  ml={5} mb={0} fontFamily="Lato">
                     {institution}
                   </Text>
                   <Text
@@ -136,13 +151,16 @@ export const ComplementaryInfo: FC<{
                     pl={5}
                     pb={0}
                     mb={0}
-                    fontWeight="bold"
                     fontFamily="Lato"
                   >
                     {COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS}
                   </Text>
-                  <Text fontSize="1.2em" ml={5} mb={2} fontFamily="Lato">
-                    {months_to_first_job}
+                  <Text 
+                    ml={5} 
+                    mb={0} 
+                    fontFamily="Lato"
+                    >
+                      {months_to_first_job}
                   </Text>
                 </motion.div>
               )}
