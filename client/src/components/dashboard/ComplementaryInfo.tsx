@@ -38,7 +38,7 @@ export const ComplementaryInfo: FC<{
 
     useEffect(() => {
       setTrackingData({
-        showingPrediction: show,
+        showingComplementaryInformation: show,
       });
     }, [show]);
 
@@ -60,8 +60,8 @@ export const ComplementaryInfo: FC<{
 
             track({
               action: "click",
-              effect: show ? "close-employed" : "open-employed",
-              target: "employed",
+              effect: show ? "close-complementaryInfo" : "open-complementaryInfo",
+              target: "complementaryInfo",
             });
           }}
           color={COMPLEMENTARY_INFORMATION_TEXT_COLOR}
@@ -70,7 +70,7 @@ export const ComplementaryInfo: FC<{
         >
           <Stack className="unselectable" isInline pt={10} pb={10}>
             <Text
-              minWidth="55px"
+              minWidth="90px"
               height="120px"
               m={0}
               ml={4}
@@ -78,7 +78,7 @@ export const ComplementaryInfo: FC<{
               fontWeight="bold"
               fontFamily="Lato"
               className="verticalText"
-              fontSize="1.2em"
+              fontSize="1.1em"
             >
               {COMPLEMENTARY_INFORMATION}
             </Text>
@@ -94,55 +94,60 @@ export const ComplementaryInfo: FC<{
                     opacity: 0,
                   }}
                 >
-                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                  <Text 
+                    width="290px" 
+                    pl={5} 
+                    pb={0} 
+                    mb={0} 
+                    fontFamily="Lato"
+                    >
                     {COMPLEMENTARY_INFORMATION_TYPE_ADMISSION} {type_admission}
                   </Text>
 
-                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                  <Text 
+                    width="290px" 
+                    pl={5} 
+                    pb={0} 
+                    mb={0} 
+                    fontFamily="Lato"
+                    >
                     {COMPLEMENTARY_INFORMATION_INITIAL_TEST} {initial_test}
                   </Text>
-                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                  <Text 
+                    width="290px" 
+                    pl={5} 
+                    pb={0} 
+                    mb={0} 
+                    fontFamily="Lato"
+                    >
                     {COMPLEMENTARY_INFORMATION_FINAL_TEST} {final_test}
                   </Text>
-
+                  <Text
+                    width="320px"
+                    pl={5}
+                    pb={0}
+                    mb={0}
+                    fontFamily="Lato"
+                  >
+                    {COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM} {educational_system}
+                  </Text>       
+                  <Text
+                    width="350px"
+                    pl={5}
+                    pb={0}
+                    mb={0}
+                    fontFamily="Lato"
+                  >
+                    {COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION} {institution}
+                  </Text>       
                   <Text
                     width="290px"
                     pl={5}
                     pb={0}
                     mb={0}
-                    fontWeight="bold"
                     fontFamily="Lato"
                   >
-                    {COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM}
-                  </Text>
-                  <Text fontSize="1.2em" ml={5} mb={2} fontFamily="Lato">
-                    {educational_system}
-                  </Text>
-                  <Text
-                    width="290px"
-                    pl={5}
-                    pb={0}
-                    mb={0}
-                    fontWeight="bold"
-                    fontFamily="Lato"
-                  >
-                    {COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION}
-                  </Text>
-                  <Text fontSize="1.2em" ml={5} mb={2} fontFamily="Lato">
-                    {institution}
-                  </Text>
-                  <Text
-                    width="290px"
-                    pl={5}
-                    pb={0}
-                    mb={0}
-                    fontWeight="bold"
-                    fontFamily="Lato"
-                  >
-                    {COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS}
-                  </Text>
-                  <Text fontSize="1.2em" ml={5} mb={2} fontFamily="Lato">
-                    {months_to_first_job}
+                    {COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS} {months_to_first_job}
                   </Text>
                 </motion.div>
               )}
