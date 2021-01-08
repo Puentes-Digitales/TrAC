@@ -122,7 +122,7 @@ export const ComplementaryInfo: FC<{
                   )}
 
                   {institution && (
-                    <Text width="350px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text data-testid="inst" width="350px" pl={5} pb={0} mb={0} fontFamily="Lato">
                       {COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION}{" "}
                       {institution}
                     </Text>

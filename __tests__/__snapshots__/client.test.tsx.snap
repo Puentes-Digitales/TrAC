@@ -81,6 +81,7 @@ Object {
               </p>
               <p
                 class="chakra-text css-8ofoln"
+                data-testid="inst"
               >
                 Nombre de institución:
                  
@@ -148,6 +149,7 @@ Object {
             </p>
             <p
               class="chakra-text css-8ofoln"
+              data-testid="inst"
             >
               Nombre de institución:
                

@@ -231,11 +231,11 @@ test("test null props complementary component", () => {
   const type_admission = null;
   const initial_test = null;
   const final_test = null;
-  const educational_system = null;
+  const educational_system = "Publico";
   const institution = null;
   const months_to_first_job = null;
 
-  const { getByText, getByTestId } = render(
+  const { getByText, getByTestId,queryAllByText } = render(
     <ComplementaryInfo
       type_admission={type_admission}
       initial_test={initial_test}
@@ -245,15 +245,16 @@ test("test null props complementary component", () => {
       months_to_first_job={months_to_first_job}
     />
   );
+  
   fireEvent.click(getByTestId("BoxContainer"));
-  expect(getByText("Sistema educacional: ".trim())).toBeInTheDocument();
-  expect(getByText("Sistema educacional: ".trim())).toBeInTheDocument();
-  expect(getByText("Sistema educacional: ".trim())).toBeInTheDocument();
-  expect(getByText("Sistema educacional: ".trim())).toBeInTheDocument();
-  expect(getByText("Nombre de institución: ".trim())).toBeInTheDocument();
-  expect(
-    getByText("Meses hasta encontrar trabajo: ".trim())
-  ).toBeInTheDocument();
+  const inst_value = queryAllByText('Tipo de ingreso:')
+  expect(inst_value).toHaveLength(0)
+  const education_system_value= queryAllByText("Sistema educacional: Publico".trim())
+  expect(education_system_value).toHaveLength(1)
+
+
+  
+
 });
 
 export {};
