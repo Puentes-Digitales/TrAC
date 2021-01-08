@@ -60,13 +60,16 @@ export const ComplementaryInfo: FC<{
 
             track({
               action: "click",
-              effect: show ? "close-complementaryInfo" : "open-complementaryInfo",
+              effect: show
+                ? "close-complementaryInfo"
+                : "open-complementaryInfo",
               target: "complementaryInfo",
             });
           }}
           color={COMPLEMENTARY_INFORMATION_TEXT_COLOR}
           cursor="pointer"
           transition="box-shadow 0.4s ease-in-out"
+          data-testid="BoxContainer"
         >
           <Stack className="unselectable" isInline pt={10} pb={10}>
             <Text
@@ -94,60 +97,27 @@ export const ComplementaryInfo: FC<{
                     opacity: 0,
                   }}
                 >
-                  <Text 
-                    width="290px" 
-                    pl={5} 
-                    pb={0} 
-                    mb={0} 
-                    fontFamily="Lato"
-                    >
+                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
                     {COMPLEMENTARY_INFORMATION_TYPE_ADMISSION} {type_admission}
                   </Text>
 
-                  <Text 
-                    width="290px" 
-                    pl={5} 
-                    pb={0} 
-                    mb={0} 
-                    fontFamily="Lato"
-                    >
+                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
                     {COMPLEMENTARY_INFORMATION_INITIAL_TEST} {initial_test}
                   </Text>
-                  <Text 
-                    width="290px" 
-                    pl={5} 
-                    pb={0} 
-                    mb={0} 
-                    fontFamily="Lato"
-                    >
+                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
                     {COMPLEMENTARY_INFORMATION_FINAL_TEST} {final_test}
                   </Text>
-                  <Text
-                    width="320px"
-                    pl={5}
-                    pb={0}
-                    mb={0}
-                    fontFamily="Lato"
-                  >
-                    {COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM} {educational_system}
-                  </Text>       
-                  <Text
-                    width="350px"
-                    pl={5}
-                    pb={0}
-                    mb={0}
-                    fontFamily="Lato"
-                  >
-                    {COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION} {institution}
-                  </Text>       
-                  <Text
-                    width="290px"
-                    pl={5}
-                    pb={0}
-                    mb={0}
-                    fontFamily="Lato"
-                  >
-                    {COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS} {months_to_first_job}
+                  <Text width="320px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    {COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM}{" "}
+                    {educational_system}
+                  </Text>
+                  <Text width="350px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    {COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION}{" "}
+                    {institution}
+                  </Text>
+                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    {COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS}{" "}
+                    {months_to_first_job}
                   </Text>
                 </motion.div>
               )}

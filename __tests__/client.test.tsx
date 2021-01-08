@@ -4,7 +4,13 @@ import React from "react";
 import waitForExpect from "wait-for-expect";
 
 import { MockedProvider } from "@apollo/react-testing";
-import { act, cleanup, render, screen } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  render,
+  screen,
+  fireEvent,
+} from "@testing-library/react";
 
 import { UserType } from "../client/constants";
 import { baseConfig } from "../client/constants/baseConfig";
@@ -17,7 +23,7 @@ import {
 import AdminPage from "../client/src/pages/admin";
 import LoginPage from "../client/src/pages/login";
 import UnlockPage from "../client/src/pages/unlock/[email]/[unlockKey]";
-import AdmissionDropout from "../client/src/components/dashboard/AdmissionDropout";
+import ComplementaryInfo from "../client/src/components/dashboard/ComplementaryInfo";
 Object.defineProperty(window, "matchMedia", {
   writable: true,
   value: jest.fn().mockImplementation((query) => ({
@@ -180,22 +186,45 @@ describe("admin", () => {
 
 describe("Test <AdmissionDropout />", () => {
   test("Test Snapshot", () => {
-    const { asFragment } = render(
-      <AdmissionDropout
+    const tree = render(
+      <ComplementaryInfo
         type_admission="PSU"
         initial_test={10}
         final_test={20}
+        educational_system="Publico"
+        institution="Escuela"
+        months_to_first_job={6}
       />
     );
-    expect(asFragment()).toMatchSnapshot();
+    fireEvent.click(screen.getByTestId("BoxContainer"));
+    expect(tree).toMatchSnapshot();
   });
 });
 
-test("has correct input value", () => {
-  const { getByText } = render(
-    <AdmissionDropout type_admission="PSU" initial_test={10} final_test={20} />
+test("test props en <AdmissionDropout />", () => {
+  const type_admission = "PSU";
+  const initial_test = 10;
+  const final_test = 20;
+  const educational_system = "Publico";
+  const institution = "Escuela";
+  const months_to_first_job = 6;
+
+  const { getByText, getByTestId } = render(
+    <ComplementaryInfo
+      type_admission={type_admission}
+      initial_test={initial_test}
+      final_test={final_test}
+      educational_system={educational_system}
+      institution={institution}
+      months_to_first_job={months_to_first_job}
+    />
   );
-  expect(getByText("Información Complementaria")).toBeInTheDocument();
+  fireEvent.click(getByTestId("BoxContainer"));
+  expect(getByText("Tipo de ingreso: PSU".trim())).toBeInTheDocument();
+  expect(getByText("Sistema educacional: Publico".trim())).toBeInTheDocument();
+  expect(
+    getByText("Evaluación nacional diagnostica: 20".trim())
+  ).toBeInTheDocument();
 });
 
 export {};
