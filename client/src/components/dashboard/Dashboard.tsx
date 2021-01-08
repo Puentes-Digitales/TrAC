@@ -61,6 +61,7 @@ import { SearchBar } from "./SearchBar";
 import { SemestersList } from "./SemestersList";
 import { TakenSemesterBox } from "./TakenSemesterBox";
 import { TimeLine } from "./Timeline/Timeline";
+import { ProgressStudent } from "./ProgressStudent";
 
 export function Dashboard() {
   const mock = useIsMockActive();
@@ -727,6 +728,7 @@ export function Dashboard() {
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
           {ComplementaryInfoComponent}
+          <ProgressStudent total_asignature={50} approved={20} />
           <Box>{TimeLineComponent}</Box>
           {DropoutComponent}
           {user?.config.FOREPLAN && <ForeplanSummary />}
