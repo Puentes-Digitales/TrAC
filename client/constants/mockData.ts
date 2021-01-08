@@ -5920,7 +5920,7 @@ const data: {
       admission: {
         type_admission: "PSU",
         initial_test: 10,
-        final_test: 20,
+        final_test: null,
       },
       employed: {
         employed: true,

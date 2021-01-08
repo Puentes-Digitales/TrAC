@@ -458,7 +458,7 @@ export function Dashboard() {
           />
         );
       }
-      if (user?.config?.SHOW_COMPLEMENTARY) {
+      if (user?.config?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION) {
         ComplementaryInfoComponent = (
           <ComplementaryInfo
             type_admission={studentData.admission.type_admission}
@@ -728,7 +728,7 @@ export function Dashboard() {
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
           {ComplementaryInfoComponent}
-          <ProgressStudent total_asignature={50} approved={20} />
+      
           <Box>{TimeLineComponent}</Box>
           {DropoutComponent}
           {user?.config.FOREPLAN && <ForeplanSummary />}

@@ -38,7 +38,7 @@ export const ComplementaryInfo: FC<{
 
     useEffect(() => {
       setTrackingData({
-        showingComplementaryInformation: show,
+        showingStudentComplementaryInformation: show,
       });
     }, [show]);
 
@@ -59,9 +59,9 @@ export const ComplementaryInfo: FC<{
             track({
               action: "click",
               effect: show
-                ? "close-complementaryInfo"
-                : "open-complementaryInfo",
-              target: "complementaryInfo",
+                ? "close-studentComplementaryInfo"
+                : "open-studentComplementaryInfo",
+              target: "studentComplementaryInfo",
             });
           }}
           color={COMPLEMENTARY_INFORMATION_TEXT_COLOR}
@@ -95,28 +95,45 @@ export const ComplementaryInfo: FC<{
                     opacity: 0,
                   }}
                 >
-                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
-                    {COMPLEMENTARY_INFORMATION_TYPE_ADMISSION} {type_admission}
-                  </Text>
+                  {type_admission && (
+                    <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                      {COMPLEMENTARY_INFORMATION_TYPE_ADMISSION}{" "}
+                      {type_admission}
+                    </Text>
+                  )}
 
-                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
-                    {COMPLEMENTARY_INFORMATION_INITIAL_TEST} {initial_test}
-                  </Text>
-                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
-                    {COMPLEMENTARY_INFORMATION_FINAL_TEST} {final_test}
-                  </Text>
-                  <Text width="320px" pl={5} pb={0} mb={0} fontFamily="Lato">
-                    {COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM}{" "}
-                    {educational_system}
-                  </Text>
-                  <Text width="350px" pl={5} pb={0} mb={0} fontFamily="Lato">
-                    {COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION}{" "}
-                    {institution}
-                  </Text>
-                  <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
-                    {COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS}{" "}
-                    {months_to_first_job}
-                  </Text>
+                  {initial_test && (
+                    <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                      {COMPLEMENTARY_INFORMATION_INITIAL_TEST} {initial_test}
+                    </Text>
+                  )}
+
+                  {final_test && (
+                    <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                      {COMPLEMENTARY_INFORMATION_FINAL_TEST} {final_test}
+                    </Text>
+                  )}
+
+                  {educational_system && (
+                    <Text width="320px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                      {COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM}{" "}
+                      {educational_system}
+                    </Text>
+                  )}
+
+                  {institution && (
+                    <Text width="350px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                      {COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION}{" "}
+                      {institution}
+                    </Text>
+                  )}
+
+                  {months_to_first_job && (
+                    <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                      {COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS}{" "}
+                      {months_to_first_job}
+                    </Text>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
