@@ -457,7 +457,7 @@ export function Dashboard() {
           />
         );
       }
-      if (user?.config?.SHOW_COMPLEMENTARY) {
+      if (studentData.admission?.active && user?.config?.SHOW_COMPLEMENTARY) {
         ComplementaryInfoComponent = (
           <ComplementaryInfo
             type_admission={studentData.admission.type_admission}
