@@ -61,6 +61,7 @@ import { SearchBar } from "./SearchBar";
 import { SemestersList } from "./SemestersList";
 import { TakenSemesterBox } from "./TakenSemesterBox";
 import { TimeLine } from "./Timeline/Timeline";
+import { ProgressStudent } from "./ProgressStudent";
 
 export function Dashboard() {
   const mock = useIsMockActive();
@@ -457,7 +458,7 @@ export function Dashboard() {
           />
         );
       }
-      if (studentData.admission?.active && user?.config?.SHOW_COMPLEMENTARY) {
+      if (user?.config?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION) {
         ComplementaryInfoComponent = (
           <ComplementaryInfo
             type_admission={studentData.admission.type_admission}
@@ -727,6 +728,7 @@ export function Dashboard() {
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
           {ComplementaryInfoComponent}
+
           <Box>{TimeLineComponent}</Box>
           {DropoutComponent}
           {user?.config.FOREPLAN && <ForeplanSummary />}

@@ -162,7 +162,7 @@ const migration = async () => {
           email: "admin@admin.dev",
           config: {
             ...baseUserConfig,
-            SHOW_COMPLEMENTARY: true,
+            SHOW_STUDENT_COMPLEMENTARY_INFORMATION: true,
             SHOW_DROPOUT: true,
             SHOW_STUDENT_LIST: true,
             FOREPLAN: true,
@@ -458,7 +458,7 @@ const migration = async () => {
           table.text("student_id").notNullable().primary();
           table.boolean("active").notNullable().defaultTo(true);
           table.text("type_admission").notNullable();
-          table.float("initial_test", 4).notNullable();
+          table.float("initial_test", 4);
           table.float("final_test", 4);
         });
         await StudentAdmissionTable().insert(

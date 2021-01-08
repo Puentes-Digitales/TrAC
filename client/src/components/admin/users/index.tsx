@@ -208,11 +208,15 @@ export const Users: FC<{
               </Table.HeaderCell>
               <Table.HeaderCell
                 sorted={
-                  column === "config.SHOW_COMPLEMENTARY" ? direction : undefined
+                  column === "config.SHOW_STUDENT_COMPLEMENTARY_INFORMATION"
+                    ? direction
+                    : undefined
                 }
-                onClick={handleSort("config.SHOW_COMPLEMENTARY")}
+                onClick={handleSort(
+                  "config.SHOW_STUDENT_COMPLEMENTARY_INFORMATION"
+                )}
               >
-                show_complementary
+                show_student_complementary_information
               </Table.HeaderCell>
               <Table.HeaderCell
                 sorted={
@@ -313,7 +317,7 @@ export const Users: FC<{
                             <Icon
                               circular
                               name={
-                                configObj?.SHOW_COMPLEMENTARY
+                                configObj?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION
                                   ? "check circle outline"
                                   : "times circle outline"
                               }
