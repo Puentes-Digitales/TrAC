@@ -39,28 +39,20 @@ Object {
         <div
           class="css-qfh9pt"
           data-testid="BoxContainer"
-          label="caja"
         >
           <div
             class="chakra-stack unselectable css-11nyuxh"
           >
-            <p>
-              test
-            </p>
             <p
               class="chakra-text verticalText css-z8wucs"
             >
               Información Complementaria
-            </p>
-            <p>
-              test2
             </p>
             <div
               style="opacity: 0;"
             >
               <p
                 class="chakra-text css-3sxhk6"
-                data-testid="textoadmin"
               >
                 Tipo de ingreso: 
                  
@@ -114,28 +106,20 @@ Object {
       <div
         class="css-qfh9pt"
         data-testid="BoxContainer"
-        label="caja"
       >
         <div
           class="chakra-stack unselectable css-11nyuxh"
         >
-          <p>
-            test
-          </p>
           <p
             class="chakra-text verticalText css-z8wucs"
           >
             Información Complementaria
-          </p>
-          <p>
-            test2
           </p>
           <div
             style="opacity: 0;"
           >
             <p
               class="chakra-text css-3sxhk6"
-              data-testid="textoadmin"
             >
               Tipo de ingreso: 
                
