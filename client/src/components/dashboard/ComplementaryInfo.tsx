@@ -42,8 +42,6 @@ export const ComplementaryInfo: FC<{
       });
     }, [show]);
 
-    if (institution == null) return null;
-
     return (
       <Flex alignItems="center" ml="1em">
         <Flex

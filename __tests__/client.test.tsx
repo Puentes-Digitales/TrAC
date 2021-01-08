@@ -227,4 +227,33 @@ test("test props en <AdmissionDropout />", () => {
   ).toBeInTheDocument();
 });
 
+test("test null props complementary component", () => {
+  const type_admission = null;
+  const initial_test = null;
+  const final_test = null;
+  const educational_system = null;
+  const institution = null;
+  const months_to_first_job = null;
+
+  const { getByText, getByTestId } = render(
+    <ComplementaryInfo
+      type_admission={type_admission}
+      initial_test={initial_test}
+      final_test={final_test}
+      educational_system={educational_system}
+      institution={institution}
+      months_to_first_job={months_to_first_job}
+    />
+  );
+  fireEvent.click(getByTestId("BoxContainer"));
+  expect(getByText("Sistema educacional: ".trim())).toBeInTheDocument();
+  expect(getByText("Sistema educacional: ".trim())).toBeInTheDocument();
+  expect(getByText("Sistema educacional: ".trim())).toBeInTheDocument();
+  expect(getByText("Sistema educacional: ".trim())).toBeInTheDocument();
+  expect(getByText("Nombre de institución: ".trim())).toBeInTheDocument();
+  expect(
+    getByText("Meses hasta encontrar trabajo: ".trim())
+  ).toBeInTheDocument();
+});
+
 export {};
