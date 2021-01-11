@@ -26,7 +26,7 @@ export type Scalars = {
 export type Admission = {
   active: Scalars["Boolean"];
   final_test?: Maybe<Scalars["Float"]>;
-  initial_test: Scalars["Float"];
+  initial_test?: Maybe<Scalars["Float"]>;
   type_admission: Scalars["String"];
 };
 

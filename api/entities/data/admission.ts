@@ -8,7 +8,7 @@ export class Admission {
   @Field()
   type_admission: string;
 
-  @Field()
+  @Field({ nullable: true })
   initial_test: number;
 
   @Field({ nullable: true })
