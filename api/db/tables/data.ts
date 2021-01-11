@@ -58,8 +58,12 @@ export interface IProgram {
   tags: string;
   active: boolean;
   last_gpa: number;
-  bachelor_star: number;
+  cycle_bachelor_name: string;
+  cycle_licentiate_name: string;
+  bachelor_start: number;
   bachelor_end: number;
+  licentiate_start: number;
+  licentiate_end: number;
 }
 
 export const PROGRAM_TABLE = "program";
@@ -149,6 +153,10 @@ export interface IStudentProgram {
   last_term: number;
   n_courses: number;
   n_passed_courses: number;
+  n_courses_bachelor: number;
+  n_passed_courses_bachelor: number;
+  n_courses_licentiate: number;
+  n_passed_courses_licentiate: number;
   completion: number;
 }
 

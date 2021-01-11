@@ -6,8 +6,12 @@
     "tags": "",
     "active": true,
     "last_gpa": 4.49,
-    "bachelor_star":0,
-    "bachelor_end":4
+    "cycle_bachelor_name": "Bachillerato en ciencias agrarias",
+    "cycle_licentiate_name": "Licenciatura en ciencias agrarias",
+    "bachelor_start": 0,
+    "bachelor_end": 4,
+    "licentiate_start": 5,
+    "licentiate_end": 6
   },
   {
     "id": 1708,
@@ -16,7 +20,11 @@
     "tags": "",
     "active": true,
     "last_gpa": 4.31,
-    "bachelor_star":0,
-    "bachelor_end":4
+    "cycle_bachelor_name": "Bachillerato en ciencias de la ingeniería",
+    "cycle_licentiate_name": "Licenciatura en ingeniería informática",
+    "bachelor_start": 0,
+    "bachelor_end": 4,
+    "licentiate_start": 5,
+    "licentiate_end": 6
   }
 ]

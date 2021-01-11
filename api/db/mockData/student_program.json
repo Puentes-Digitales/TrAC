@@ -8,6 +8,10 @@
     "last_term": 20191,
     "n_courses": 101,
     "n_passed_courses": 54,
+    "n_courses_bachelor": 27,
+    "n_passed_courses_bachelor": 4,
+    "n_courses_licentiate": 27,
+    "n_passed_courses_licentiate": 4,
     "completion": 0.53
   },
   {
@@ -19,6 +23,10 @@
     "last_term": 20191,
     "n_courses": 69,
     "n_passed_courses": 50,
+    "n_courses_bachelor": 31,
+    "n_passed_courses_bachelor": 15,
+    "n_courses_licentiate": 32,
+    "n_passed_courses_licentiate": 15,
     "completion": 0.72
   },
   {
@@ -30,6 +38,10 @@
     "last_term": 20191,
     "n_courses": 62,
     "n_passed_courses": 24,
+    "n_courses_bachelor": 30,
+    "n_passed_courses_bachelor": 12,
+    "n_courses_licentiate": 40,
+    "n_passed_courses_licentiate": 17,
     "completion": 0.39
   }
 ]

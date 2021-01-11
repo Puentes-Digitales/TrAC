@@ -5,9 +5,9 @@ import { Flex, Stack, Text } from "@chakra-ui/react";
 import { ConfigContext } from "../../context/Config";
 
 export const ProgressStudent: FC<{
-  total_asignature?: number;
-  approved?: number;
-}> = memo(({ total_asignature, approved }) => {
+  n_course_bachiller?: number;
+  n_course_approved_bachiller?: number;
+}> = memo(({ n_course_bachiller, n_course_approved_bachiller }) => {
   const {
     PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR,
     PROGRESS_STUDENT_INFORMATION_TEXT_COLOR,
@@ -43,8 +43,8 @@ export const ProgressStudent: FC<{
                 indicating={true}
                 color="blue"
                 progress="value"
-                value={approved}
-                total={total_asignature}
+                value={n_course_approved_bachiller}
+                total={n_course_bachiller}
               />
             </Text>
             <Text fontSize="1.2em" ml={5} mb={2} fontFamily="Lato">
@@ -56,9 +56,9 @@ export const ProgressStudent: FC<{
                 success={true}
                 indicating={false}
                 progress="value"
-                value={approved}
+                value={n_course_approved_bachiller}
                 t
-                otal={total_asignature}
+                otal={n_course_bachiller}
               />
             </Text>
           </div>
