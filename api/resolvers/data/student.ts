@@ -191,6 +191,18 @@ export class StudentResolver {
   }
 
   @FieldResolver()
+  async student_cycle(
+    @Root() { id }: PartialStudent
+  ): Promise<StudentCycle | undefined> {
+    assertIsDefined(
+      id,
+      `student id needs to be available for Student field resolvers`
+    );
+
+    return await StudentCycleDataLoader.load(id);
+  }
+
+  @FieldResolver()
   async terms(
     @Root() { id, programs }: PartialStudent
   ): Promise<PartialTerm[]> {
