@@ -58,6 +58,8 @@ export interface IProgram {
   tags: string;
   active: boolean;
   last_gpa: number;
+  bachelor_star: number;
+  bachelor_end: number;
 }
 
 export const PROGRAM_TABLE = "program";

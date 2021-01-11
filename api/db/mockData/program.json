@@ -5,7 +5,9 @@
     "desc": "",
     "tags": "",
     "active": true,
-    "last_gpa": 4.49
+    "last_gpa": 4.49,
+    "bachelor_star":0,
+    "bachelor_end":4
   },
   {
     "id": 1708,
@@ -13,6 +15,8 @@
     "desc": "",
     "tags": "",
     "active": true,
-    "last_gpa": 4.31
+    "last_gpa": 4.31,
+    "bachelor_star":0,
+    "bachelor_end":4
   }
 ]

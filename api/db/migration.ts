@@ -277,6 +277,8 @@ const migration = async () => {
         table.text("tags").notNullable();
         table.boolean("active").notNullable().defaultTo(true);
         table.float("last_gpa", 4).notNullable().defaultTo(0);
+        table.integer("bachelor_star",2).notNullable();
+        table.integer("bachelor_end",2).notNullable();
       });
       await ProgramTable().insert(
         (await import("./mockData/program.json")).default.map(
