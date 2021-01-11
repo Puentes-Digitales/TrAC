@@ -22,6 +22,7 @@ import {
   StudentAdmissionDataLoader,
   StudentDropoutDataLoader,
   StudentEmployedDataLoader,
+  StudentCycleDataLoader,
   StudentLastProgramDataLoader,
   StudentListDataLoader,
   StudentProgramsDataLoader,
@@ -41,6 +42,7 @@ import type { Admission } from "../../entities/data/admission";
 import type { Employed } from "../../entities/data/employed";
 import type { PartialProgram } from "./program";
 import type { PartialTerm } from "./term";
+import type { StudentCycle } from "../../entities/data/studentcycle";
 
 export type PartialStudent = Pick<Student, "id" | "name" | "state"> & {
   programs?: PartialProgram[];
@@ -223,6 +225,7 @@ export class StudentResolver {
 
     return await StudentDropoutDataLoader.load(id);
   }
+
   @FieldResolver()
   async admission(
     @Root() { id }: PartialStudent
