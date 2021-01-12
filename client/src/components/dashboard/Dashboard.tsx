@@ -381,12 +381,14 @@ export function Dashboard() {
     SemestersComponent,
     DropoutComponent,
     ComplementaryInfoComponent,
+    ProgressStudentComponent,
   } = useMemo(() => {
     let TimeLineComponent: JSX.Element | null = null;
     let DropoutComponent: JSX.Element | null = null;
     let TakenSemestersComponent: JSX.Element | null = null;
     let SemestersComponent: JSX.Element | null = null;
     let ComplementaryInfoComponent: JSX.Element | null = null;
+    let ProgressStudentComponent: JSX.Element | null = null;
 
     const studentData = mock
       ? mockData?.default.searchStudentData.student
@@ -459,9 +461,7 @@ export function Dashboard() {
         );
       }
       if (
-        studentData.admission?.active &&
-        user?.config?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION
-      ) {
+        studentData.admission?.active && user?.config?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION) {
         ComplementaryInfoComponent = (
           <ComplementaryInfo
             type_admission={studentData.admission.type_admission}
@@ -470,6 +470,20 @@ export function Dashboard() {
             educational_system={studentData.employed.educational_system}
             institution={studentData.employed.institution}
             months_to_first_job={studentData.employed.months_to_first_job}
+          />
+        );
+      }
+      if (user?.config?.SHOW_STUDENT_CYCLE) {
+        ProgressStudentComponent = (
+          <ProgressStudent
+            n_course_bachiller={studentData.student_cycle.n_courses_bachelor}
+            n_course_approved_bachiller={
+              studentData.student_cycle.n_passed_courses_bachelor
+            }
+            n_course_licentiate={studentData.student_cycle.n_courses_licentiate}
+            n_course_approved_licentiate={
+              studentData.student_cycle.n_passed_courses_licentiate
+            }
           />
         );
       }
@@ -574,6 +588,7 @@ export function Dashboard() {
       TakenSemestersComponent,
       SemestersComponent,
       ComplementaryInfoComponent,
+      ProgressStudentComponent,
     };
   }, [searchStudentData, searchProgramData, chosenCurriculum, mock, mockData]);
 
@@ -731,7 +746,7 @@ export function Dashboard() {
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
           {ComplementaryInfoComponent}
-
+          {ProgressStudentComponent}
           <Box>{TimeLineComponent}</Box>
           {DropoutComponent}
           {user?.config.FOREPLAN && <ForeplanSummary />}

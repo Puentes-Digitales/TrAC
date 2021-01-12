@@ -48,7 +48,7 @@ export type Course = {
   credits: Array<Credit>;
   flow: Array<Course>;
   historicalDistribution: Array<DistributionValue>;
-  /** Course-Semester-Curriculum-Program ID  */
+  /** Course-Semester-Curriculum-Program ID */
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
@@ -361,7 +361,15 @@ export type Student = {
   progress: Scalars["Float"];
   start_year: Scalars["Int"];
   state: Scalars["String"];
+  student_cycle: StudentCycle;
   terms: Array<Term>;
+};
+
+export type StudentCycle = {
+  n_courses_bachelor: Scalars["Float"];
+  n_courses_licentiate: Scalars["Float"];
+  n_passed_courses_bachelor: Scalars["Float"];
+  n_passed_courses_licentiate: Scalars["Float"];
 };
 
 export type TakenCourse = {
@@ -711,6 +719,13 @@ export type SearchStudentMutation = {
         | "institution"
         | "educational_system"
         | "months_to_first_job"
+      >;
+      student_cycle: Pick<
+        StudentCycle,
+        | "n_courses_bachelor"
+        | "n_passed_courses_bachelor"
+        | "n_courses_licentiate"
+        | "n_passed_courses_licentiate"
       >;
     }
   >;
@@ -2056,6 +2071,12 @@ export const SearchStudentDocument = gql`
         institution
         educational_system
         months_to_first_job
+      }
+      student_cycle {
+        n_courses_bachelor
+        n_passed_courses_bachelor
+        n_courses_licentiate
+        n_passed_courses_licentiate
       }
     }
   }

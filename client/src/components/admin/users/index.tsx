@@ -226,6 +226,15 @@ export const Users: FC<{
               >
                 show_dropout
               </Table.HeaderCell>
+
+              <Table.HeaderCell
+                sorted={
+                  column === "config.SHOW_STUDENT_CYCLE" ? direction : undefined
+                }
+                onClick={handleSort("config.SHOW_STUDENT_CYCLE")}
+              >
+                show_student_cycle
+              </Table.HeaderCell>
               <Table.HeaderCell
                 sorted={
                   column === "config.SHOW_STUDENT_LIST" ? direction : undefined
@@ -328,6 +337,16 @@ export const Users: FC<{
                               circular
                               name={
                                 configObj?.SHOW_DROPOUT
+                                  ? "check circle outline"
+                                  : "times circle outline"
+                              }
+                            />
+                          </Table.Cell>
+                          <Table.Cell onClick={configOnClick} width={1}>
+                            <Icon
+                              circular
+                              name={
+                                configObj?.SHOW_STUDENT_CYCLE
                                   ? "check circle outline"
                                   : "times circle outline"
                               }

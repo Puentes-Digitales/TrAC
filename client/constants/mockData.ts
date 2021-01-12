@@ -5921,12 +5921,19 @@ const data: {
         type_admission: "PSU",
         initial_test: 10,
         final_test: null,
+        active:true
       },
       employed: {
         employed: true,
         educational_system: "Sistema educacional chileno",
         institution: "Liceo Recto Armando Robles",
         months_to_first_job: 15,
+      },
+      student_cycle: {
+        n_courses_bachelor: 24,
+        n_courses_licentiate: 25,
+        n_passed_courses_bachelor: 20,
+        n_passed_courses_licentiate: 1,
       },
     },
   },

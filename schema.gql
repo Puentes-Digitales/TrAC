@@ -29,7 +29,9 @@ type Course {
   flow: [Course!]!
   historicalDistribution: [DistributionValue!]!
 
-  """Course-Semester-Curriculum-Program ID """
+  """
+  Course-Semester-Curriculum-Program ID
+  """
   id: Int!
   mention: String!
   name: String!
@@ -116,7 +118,9 @@ input FeedbackQuestionOptionInput {
   value: Int!
 }
 
-"""Type of question in a feedback form"""
+"""
+Type of question in a feedback form
+"""
 enum FeedbackQuestionType {
   MultipleAnswer
   OpenText
@@ -138,7 +142,10 @@ type IndirectTakeCourse {
 """
 The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
-scalar JSONObject @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+scalar JSONObject
+  @specifiedBy(
+    url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf"
+  )
 
 type LockedUserResult {
   mailResult: JSONObject!
@@ -157,19 +164,29 @@ type Mutation {
   directTakeCourses(program_id: String, student_id: String): [Course!]!
   editConfig(name: String!, value: String!): JSONObject!
   feedbackResultsCsv: String!
-  indirectTakeCourses(program_id: String, student_id: String): [IndirectTakeCourse!]!
+  indirectTakeCourses(
+    program_id: String
+    student_id: String
+  ): [IndirectTakeCourse!]!
   lockMailUser(email: EmailAddress!): LockedUserResult!
   login(email: EmailAddress!, password: String!): AuthResult!
   logout: Boolean!
   mailAllLockedUsers: [JSONObject!]!
-  performanceLoadAdvices(program_id: String, student_id: String): [PerformanceByLoad!]!
+  performanceLoadAdvices(
+    program_id: String
+    student_id: String
+  ): [PerformanceByLoad!]!
   program(id: String, student_id: String): Program!
   resetDataLoadersCache: Int!
   resetPersistence(user: String!): Int!
   setPersistenceValue(data: JSONObject!, key: String!): Persistence!
   student(program_id: String, student_id: String): Student
   track(data: String!, datetime_client: DateTime!): Boolean!
-  unlock(email: EmailAddress!, password: String!, unlockKey: String!): AuthResult!
+  unlock(
+    email: EmailAddress!
+    password: String!
+    unlockKey: String!
+  ): AuthResult!
   updateUserPrograms(userPrograms: UpdateUserPrograms!): [User!]!
   upsertUsers(users: [UpsertedUser!]!): [User!]!
 }
@@ -188,7 +205,9 @@ type PerformanceByLoad {
   upperBoundary: Float!
 }
 
-"""Unit used to distinguish load in the foreplan"""
+"""
+Unit used to distinguish load in the foreplan
+"""
 enum PerformanceLoadUnit {
   Credits
 }
@@ -232,7 +251,9 @@ type Semester {
   id: Int!
 }
 
-"""Possible states of a taken course"""
+"""
+Possible states of a taken course
+"""
 enum StateCourse {
   Canceled
   Current
@@ -253,7 +274,15 @@ type Student {
   progress: Float!
   start_year: Int!
   state: String!
+  student_cycle: StudentCycle!
   terms: [Term!]!
+}
+
+type StudentCycle {
+  n_courses_bachelor: Float!
+  n_courses_licentiate: Float!
+  n_passed_courses_bachelor: Float!
+  n_passed_courses_licentiate: Float!
 }
 
 type TakenCourse {
@@ -282,7 +311,9 @@ type Term {
   year: Int!
 }
 
-"""Possible states of a term, first semester, second semester or anual"""
+"""
+Possible states of a term, first semester, second semester or anual
+"""
 enum TermType {
   Anual
   First
@@ -334,7 +365,9 @@ input UserProgram {
   program: String!
 }
 
-"""Possible options of an user type"""
+"""
+Possible options of an user type
+"""
 enum UserType {
   Director
   Student

@@ -193,7 +193,7 @@ export class StudentResolver {
   }
 
   @FieldResolver()
-  async cycleprogress(
+  async student_cycle(
     @Root() { id }: PartialStudent
   ): Promise<StudentCycle | undefined> {
     assertIsDefined(
