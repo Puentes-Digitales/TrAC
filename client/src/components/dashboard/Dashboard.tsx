@@ -461,9 +461,7 @@ export function Dashboard() {
         );
       }
       if (
-        studentData.admission?.active &&
-        user?.config?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION
-      ) {
+        studentData.admission?.active && user?.config?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION) {
         ComplementaryInfoComponent = (
           <ComplementaryInfo
             type_admission={studentData.admission.type_admission}
@@ -475,18 +473,20 @@ export function Dashboard() {
           />
         );
       }
-      ProgressStudentComponent = (
-        <ProgressStudent
-          n_course_bachiller={studentData.student_cycle.n_courses_bachelor}
-          n_course_approved_bachiller={
-            studentData.student_cycle.n_passed_courses_bachelor
-          }
-          n_course_licentiate={studentData.student_cycle.n_courses_licentiate}
-          n_course_approved_licentiate={
-            studentData.student_cycle.n_passed_courses_licentiate
-          }
-        />
-      );
+      if (user?.config?.SHOW_STUDENT_CYCLE) {
+        ProgressStudentComponent = (
+          <ProgressStudent
+            n_course_bachiller={studentData.student_cycle.n_courses_bachelor}
+            n_course_approved_bachiller={
+              studentData.student_cycle.n_passed_courses_bachelor
+            }
+            n_course_licentiate={studentData.student_cycle.n_courses_licentiate}
+            n_course_approved_licentiate={
+              studentData.student_cycle.n_passed_courses_licentiate
+            }
+          />
+        );
+      }
     }
     if (programData) {
       const curriculums =

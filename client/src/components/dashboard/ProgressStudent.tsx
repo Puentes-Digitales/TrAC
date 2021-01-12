@@ -21,6 +21,8 @@ export const ProgressStudent: FC<{
       PROGRESS_STUDENT_INFORMATION_TEXT_COLOR,
     } = useContext(ConfigContext);
 
+
+    
     return (
       <Flex alignItems="center" ml="1em">
         <Flex

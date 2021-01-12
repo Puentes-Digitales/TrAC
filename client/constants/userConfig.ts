@@ -1,4 +1,5 @@
 export const baseUserConfig = {
+  SHOW_STUDENT_CYCLE: false,
   SHOW_DROPOUT: false,
   SHOW_STUDENT_COMPLEMENTARY_INFORMATION: false,
   SHOW_STUDENT_LIST: false,

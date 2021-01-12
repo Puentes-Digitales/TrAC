@@ -11,7 +11,7 @@
     "bachelor_start": 0,
     "bachelor_end": 4,
     "licentiate_start": 5,
-    "licentiate_end": 6
+    "licentiate_end": 8
   },
   {
     "id": 1708,
@@ -25,6 +25,6 @@
     "bachelor_start": 0,
     "bachelor_end": 4,
     "licentiate_start": 5,
-    "licentiate_end": 6
+    "licentiate_end": 8
   }
 ]
