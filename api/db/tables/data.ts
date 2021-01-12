@@ -216,11 +216,17 @@ export const StudentAdmissionTable = () =>
   dbData<IStudentAdmission>(STUDENT_ADMISSION_TABLE);
 // -------------------------------------------------------------------------------------
 export interface IStudentDiagnosticTest {
+  id: number;
+  year: number;
+  term: number;
   student_id: string;
-  active: boolean;
-  type_admission: string;
-  initial_test: number;
-  final_test?: number;
+  course_taken: string;
+  registration: string;
+  state: string;
+  grade: number;
+  p_group: number;
+  comments: string;
+  duplicates: number;
 }
 
 export const STUDENT_DIAGNOSTIC_TEST_TABLE = "student_diagnostic_test";
