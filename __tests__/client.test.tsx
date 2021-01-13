@@ -223,7 +223,7 @@ test("test props en <AdmissionDropout />", () => {
   expect(getByText("Tipo de ingreso: PSU".trim())).toBeInTheDocument();
   expect(getByText("Sistema educacional: Publico".trim())).toBeInTheDocument();
   expect(
-    getByText("Evaluación nacional diagnostica: 20".trim())
+    getByText("Evaluación nacional diagnóstica: 20".trim())
   ).toBeInTheDocument();
 });
 
