@@ -112,7 +112,7 @@ export const TakenSemesterBox: FC<{
           <Box>
             <Badge
               bg={badgeBgColor}
-              borderRadius="5px"
+              borderRadius="4px"
               fontSize="0.5em"
               {...badgeProps}
             >
