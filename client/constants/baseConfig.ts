@@ -25,7 +25,7 @@ export const baseConfig = {
   COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM: "Sistema educacional:",
   COMPLEMENTARY_INFORMATION: "Información Complementaria",
   COMPLEMENTARY_INFORMATION_TYPE_ADMISSION: "Tipo de ingreso: ",
-  COMPLEMENTARY_INFORMATION_INITIAL_TEST: "Evaluacion inicial diagnóstica: ",
+  COMPLEMENTARY_INFORMATION_INITIAL_TEST: "Evaluación inicial diagnóstica: ",
   COMPLEMENTARY_INFORMATION_FINAL_TEST: "Evaluación nacional diagnóstica: ",
   COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION: "Nombre de institución:",
   COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS: "Meses hasta encontrar trabajo:",
