@@ -2,15 +2,6 @@ import { Field, Int, ObjectType } from "type-graphql";
 
 import { BandColor, DistributionValue } from "./distribution";
 
-@ObjectType()
-class Credit {
-  @Field()
-  label: string;
-
-  @Field(() => Int)
-  value: number;
-}
-
 @ObjectType({ simpleResolvers: true })
 export class DiagnosticTest {
   // program_structure => id
@@ -26,10 +17,6 @@ export class DiagnosticTest {
   // diagnostic_test => name
   @Field()
   name: string;
-
-  // program_structure => credits | creditsSCT
-  @Field(() => [Credit])
-  credits: Credit[];
 
   // program_structure => mention
   @Field()

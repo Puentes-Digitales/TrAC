@@ -46,6 +46,14 @@ export enum StateCourse {
   Pending = "Pending",
 }
 
+export enum StateDiagnosticTest {
+  Passed = "Passed",
+  Failed = "Failed",
+  Current = "Current",
+  Canceled = "Canceled",
+  Pending = "Pending",
+}
+
 export enum UserType {
   Director = "Director",
   Student = "Student",
@@ -95,6 +103,30 @@ export const defaultStateCourse = (type?: string): StateCourse => {
       return StateCourse.Pending;
     default:
       return StateCourse.Pending;
+  }
+};
+
+export const defaultStateDiagnosticTest = (
+  type?: string
+): StateDiagnosticTest => {
+  switch (type) {
+    case StateDiagnosticTest.Passed:
+    case "A":
+      return StateDiagnosticTest.Passed;
+    case StateDiagnosticTest.Failed:
+    case "R":
+      return StateDiagnosticTest.Failed;
+    case StateDiagnosticTest.Current:
+    case "C":
+      return StateDiagnosticTest.Current;
+    case StateDiagnosticTest.Canceled:
+    case "N":
+      return StateDiagnosticTest.Canceled;
+    case StateDiagnosticTest.Pending:
+    case "P":
+      return StateDiagnosticTest.Pending;
+    default:
+      return StateDiagnosticTest.Pending;
   }
 };
 

@@ -9,7 +9,7 @@ import {
   StudentDiagnosticTestTable,
 } from "../db/tables";
 
-export const StudentCourseDataLoader = new DataLoader(
+export const StudentDiagnosticTestDataLoader = new DataLoader(
   async (ids: readonly number[]) => {
     const dataDict: Dictionary<IStudentDiagnosticTest | undefined> = keyBy(
       await StudentDiagnosticTestTable().select("*").whereIn("id", ids),

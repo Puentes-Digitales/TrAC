@@ -1,5 +1,5 @@
 import DataLoader from "dataloader";
-import { Dictionary, groupBy, keyBy, trim } from "lodash";
+import { Dictionary, groupBy, keyBy } from "lodash";
 import { LRUMap } from "lru_map";
 
 import {
@@ -62,7 +62,7 @@ export const DiagnosticTestAndStructureDataLoader = new DataLoader(
 export const DiagnosticTestStatsDataLoader = new DataLoader(
   async (codes: readonly string[]) => {
     const groupedData = groupBy(
-      await DiagnosticTestTable()
+      await DiagnosticTestStatsTable()
         .select("*")
         .whereIn("diagnostic_test_taken", codes),
       "diagnostic_test_taken"

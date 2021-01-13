@@ -65,6 +65,16 @@ export type Curriculum = {
   semesters: Array<Semester>;
 };
 
+export type DiagnosticTest = {
+  bandColors: Array<BandColor>;
+  code: Scalars["String"];
+  historicalDistribution: Array<DistributionValue>;
+  /** DiagnosticTest-Semester-Curriculum-Program ID */
+  id: Scalars["Int"];
+  mention: Scalars["String"];
+  name: Scalars["String"];
+};
+
 export type DistributionValue = {
   label: Scalars["String"];
   value: Scalars["Int"];
@@ -337,6 +347,7 @@ export type QueryUserPersistencesArgs = {
 
 export type Semester = {
   courses: Array<Course>;
+  diagnostictests: Array<DiagnosticTest>;
   id: Scalars["Int"];
 };
 
@@ -385,6 +396,18 @@ export type TakenCourse = {
   state: StateCourse;
 };
 
+export type TakenDiagnosticTest = {
+  bandColors: Array<BandColor>;
+  code: Scalars["String"];
+  currentDistribution: Array<DistributionValue>;
+  grade: Scalars["Float"];
+  id: Scalars["Int"];
+  name: Scalars["String"];
+  parallelGroup: Scalars["Int"];
+  registration: Scalars["String"];
+  state: StateCourse;
+};
+
 export type Term = {
   comments: Scalars["String"];
   cumulated_grade: Scalars["Float"];
@@ -394,6 +417,7 @@ export type Term = {
   situation: Scalars["String"];
   student_id: Scalars["String"];
   takenCourses: Array<TakenCourse>;
+  takenDiagnosticTests: Array<TakenDiagnosticTest>;
   term: TermType;
   year: Scalars["Int"];
 };

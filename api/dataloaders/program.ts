@@ -121,6 +121,10 @@ export const CurriculumsDataLoader = new DataLoader(
                     id: number /* Course-semester-curriculum id (program_structure => id) */;
                     code: string /* Course id (program_structure => course_id) */;
                   }[];
+                  diagnostictests: {
+                    id: number /* Course-semester-curriculum id (program_structure => id) */;
+                    code: string /* Course id (program_structure => course_id) */;
+                  }[];
                 }
               >;
             }
@@ -133,6 +137,7 @@ export const CurriculumsDataLoader = new DataLoader(
                 [semester]: {
                   id: semester,
                   courses: [],
+                  diagnostictests: [],
                 },
               },
             },
@@ -142,18 +147,26 @@ export const CurriculumsDataLoader = new DataLoader(
             id,
             code: course_id,
           });
+          acum[curriculum].semesters[semester].diagnostictests.push({
+            id,
+            code: course_id,
+          });
+
           return acum;
         }, {});
 
         return Object.values(curriculums).map(({ id, semesters }) => {
           return {
             id,
-            semesters: Object.values(semesters).map(({ id, courses }) => {
-              return {
-                id,
-                courses,
-              };
-            }),
+            semesters: Object.values(semesters).map(
+              ({ id, courses, diagnostictests }) => {
+                return {
+                  id,
+                  courses,
+                  diagnostictests,
+                };
+              }
+            ),
           };
         });
       })

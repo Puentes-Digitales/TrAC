@@ -13,9 +13,9 @@ export class Semester {
   @Field(() => [Course])
   courses: Course[];
 
-  // program_structure => course_id
+  // program_structure => Diagnostic_test_id
   @Field(() => [DiagnosticTest])
-  disnostictests: DiagnosticTest[];
+  diagnostictests: DiagnosticTest[];
 }
 
 @ObjectType({ simpleResolvers: true })
