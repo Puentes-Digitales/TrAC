@@ -484,7 +484,7 @@ const migration = async () => {
       }
     });
 
-  const studentTest = dbData.schema
+  const studentDiagnosticTest = dbData.schema
     .hasTable(STUDENT_DIAGNOSTIC_TEST_TABLE)
     .then(async (exists) => {
       if (!exists) {
@@ -495,7 +495,7 @@ const migration = async () => {
             table.integer("year").notNullable();
             table.integer("term").notNullable();
             table.text("student_id").notNullable();
-            table.text("course_taken").notNullable();
+            table.text("diagnostic_test_taken").notNullable();
             table.text("registration").notNullable();
             table.text("state").notNullable();
             table.float("grade", 4).notNullable();
@@ -824,6 +824,9 @@ const migration = async () => {
     programStructure,
     student,
     studentAdmission,
+    studentDiagnosticTest,
+    diagnosticTest,
+    diagnosticTestStats,
     studentCourse,
     studentDropout,
     studentEmployed,

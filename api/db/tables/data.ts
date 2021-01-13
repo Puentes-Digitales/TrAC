@@ -220,7 +220,7 @@ export interface IStudentDiagnosticTest {
   year: number;
   term: number;
   student_id: string;
-  course_taken: string;
+  diagnostic_test_taken: string;
   registration: string;
   state: string;
   grade: number;
@@ -251,7 +251,7 @@ export const DiagnosticTestTable = () =>
   dbData<IDiagnosticTest>(DIAGNOSTIC_TEST_TABLE);
 // -------------------------------------------------------------------------------------
 export interface IDiagnosticTestStats {
-  test_taken: string;
+  diagnostic_test_taken: string;
   year: number;
   term: number;
   p_group: number;
