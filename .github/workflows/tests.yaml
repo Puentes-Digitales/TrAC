@@ -1,0 +1,23 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ["14", "12"]
+    name: Node ${{ matrix.node }} test
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install -g pnpm
+      - run: pnpm i --frozen-lockfile
+        env:
+          NODE_ENV: test
+      - run: pnpm build
+      - run: pnpm test
