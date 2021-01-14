@@ -58,12 +58,6 @@ export interface IProgram {
   tags: string;
   active: boolean;
   last_gpa: number;
-  cycle_bachelor_name: string;
-  cycle_licentiate_name: string;
-  bachelor_start: number;
-  bachelor_end: number;
-  licentiate_start: number;
-  licentiate_end: number;
 }
 
 export const PROGRAM_TABLE = "program";
@@ -91,6 +85,29 @@ export const PROGRAM_STRUCTURE_TABLE = "program_structure";
 
 export const ProgramStructureTable = () =>
   dbData<IProgramStructure>(PROGRAM_STRUCTURE_TABLE);
+
+// -------------------------------------------------------------------------------------
+
+export interface IExternalEvaluationStructure {
+  id: number;
+  program_id: string;
+  year: string;
+  semester: number;
+  external_evaluation_id: string;
+  credits: number;
+  requisites: string;
+  mention: string;
+  evaluation_cat: string;
+  mode: string;
+  credits_sct: number;
+  tags: string;
+}
+
+export const EXTERNAL_EVALUATION_STRUCTURE_TABLE =
+  "external_evaluation_structure";
+
+export const ExternalEvaluationStructureTable = () =>
+  dbData<IExternalEvaluationStructure>(EXTERNAL_EVALUATION_STRUCTURE_TABLE);
 
 // -------------------------------------------------------------------------------------
 
@@ -153,10 +170,6 @@ export interface IStudentProgram {
   last_term: number;
   n_courses: number;
   n_passed_courses: number;
-  n_courses_bachelor: number;
-  n_passed_courses_bachelor: number;
-  n_courses_licentiate: number;
-  n_passed_courses_licentiate: number;
   completion: number;
 }
 
@@ -215,12 +228,12 @@ export const STUDENT_ADMISSION_TABLE = "student_admission";
 export const StudentAdmissionTable = () =>
   dbData<IStudentAdmission>(STUDENT_ADMISSION_TABLE);
 // -------------------------------------------------------------------------------------
-export interface IStudentDiagnosticTest {
+export interface IStudentExternalEvaluation {
   id: number;
   year: number;
   term: number;
   student_id: string;
-  diagnostic_test_taken: string;
+  external_evaluation_taken: string;
   registration: string;
   state: string;
   grade: number;
@@ -229,12 +242,12 @@ export interface IStudentDiagnosticTest {
   duplicates: number;
 }
 
-export const STUDENT_DIAGNOSTIC_TEST_TABLE = "student_diagnostic_test";
+export const STUDENT_EXTERNAL_EVALUATION_TABLE = "student_external_evaluation";
 
-export const StudentDiagnosticTestTable = () =>
-  dbData<IStudentDiagnosticTest>(STUDENT_DIAGNOSTIC_TEST_TABLE);
+export const StudentExternalEvaluationTable = () =>
+  dbData<IStudentExternalEvaluation>(STUDENT_EXTERNAL_EVALUATION_TABLE);
 // -------------------------------------------------------------------------------------
-export interface IDiagnosticTest {
+export interface IExternalEvaluation {
   id: string;
   name: string;
   description: string;
@@ -245,13 +258,13 @@ export interface IDiagnosticTest {
   grade_pass_min: number;
 }
 
-export const DIAGNOSTIC_TEST_TABLE = "diagnostic_test";
+export const EXTERNAL_EVALUATION_TABLE = "external_evaluation";
 
-export const DiagnosticTestTable = () =>
-  dbData<IDiagnosticTest>(DIAGNOSTIC_TEST_TABLE);
+export const ExternalEvaluationTable = () =>
+  dbData<IExternalEvaluation>(EXTERNAL_EVALUATION_TABLE);
 // -------------------------------------------------------------------------------------
-export interface IDiagnosticTestStats {
-  diagnostic_test_taken: string;
+export interface IExternalEvaluationStats {
+  external_evaluation_taken: string;
   year: number;
   term: number;
   p_group: number;
@@ -267,10 +280,10 @@ export interface IDiagnosticTestStats {
   color_bands: string;
 }
 
-export const DIAGNOSTIC_TEST_STATS_TABLE = "diagnostic_test_stats";
+export const EXTERNAL_EVALUATION_STATS_TABLE = "external_evaluation_stats";
 
-export const DiagnosticTestStatsTable = () =>
-  dbData<IDiagnosticTestStats>(DIAGNOSTIC_TEST_STATS_TABLE);
+export const ExternalEvaluationStatsTable = () =>
+  dbData<IExternalEvaluationStats>(EXTERNAL_EVALUATION_STATS_TABLE);
 // -------------------------------------------------------------------------------------
 
 export interface IPerformanceByLoad {

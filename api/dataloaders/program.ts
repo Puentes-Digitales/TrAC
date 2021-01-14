@@ -5,6 +5,7 @@ import { LRUMap } from "lru_map";
 import {
   IProgram,
   ProgramStructureTable,
+  ExternalEvaluationStructureTable,
   ProgramTable,
   StudentProgramTable,
 } from "../db/tables";
@@ -121,10 +122,6 @@ export const CurriculumsDataLoader = new DataLoader(
                     id: number /* Course-semester-curriculum id (program_structure => id) */;
                     code: string /* Course id (program_structure => course_id) */;
                   }[];
-                  diagnostictests: {
-                    id: number /* Course-semester-curriculum id (program_structure => id) */;
-                    code: string /* Course id (program_structure => course_id) */;
-                  }[];
                 }
               >;
             }
@@ -137,17 +134,12 @@ export const CurriculumsDataLoader = new DataLoader(
                 [semester]: {
                   id: semester,
                   courses: [],
-                  diagnostictests: [],
                 },
               },
             },
           });
 
           acum[curriculum].semesters[semester].courses.push({
-            id,
-            code: course_id,
-          });
-          acum[curriculum].semesters[semester].diagnostictests.push({
             id,
             code: course_id,
           });
@@ -158,15 +150,12 @@ export const CurriculumsDataLoader = new DataLoader(
         return Object.values(curriculums).map(({ id, semesters }) => {
           return {
             id,
-            semesters: Object.values(semesters).map(
-              ({ id, courses, diagnostictests }) => {
-                return {
-                  id,
-                  courses,
-                  diagnostictests,
-                };
-              }
-            ),
+            semesters: Object.values(semesters).map(({ id, courses }) => {
+              return {
+                id,
+                courses,
+              };
+            }),
           };
         });
       })

@@ -69,13 +69,15 @@ const migration = async () => {
     PerformanceByLoadTable,
     PERSISTENCE_TABLE,
     PROGRAM_STRUCTURE_TABLE,
+    EXTERNAL_EVALUATION_STRUCTURE_TABLE,
     PROGRAM_TABLE,
     ProgramStructureTable,
+    ExternalEvaluationStructureTable,
     ProgramTable,
     STUDENT_ADMISSION_TABLE,
-    STUDENT_DIAGNOSTIC_TEST_TABLE,
-    DIAGNOSTIC_TEST_TABLE,
-    DIAGNOSTIC_TEST_STATS_TABLE,
+    STUDENT_EXTERNAL_EVALUATION_TABLE,
+    EXTERNAL_EVALUATION_TABLE,
+    EXTERNAL_EVALUATION_STATS_TABLE,
     STUDENT_CLUSTER_TABLE,
     STUDENT_COURSE_TABLE,
     STUDENT_DROPOUT_TABLE,
@@ -84,9 +86,9 @@ const migration = async () => {
     STUDENT_TABLE,
     STUDENT_TERM_TABLE,
     StudentAdmissionTable,
-    StudentDiagnosticTestTable,
-    DiagnosticTestTable,
-    DiagnosticTestStatsTable,
+    StudentExternalEvaluationTable,
+    ExternalEvaluationTable,
+    ExternalEvaluationStatsTable,
     StudentClusterTable,
     StudentCourseTable,
     StudentDropoutTable,
@@ -284,12 +286,6 @@ const migration = async () => {
         table.text("tags").notNullable();
         table.boolean("active").notNullable().defaultTo(true);
         table.float("last_gpa", 4).notNullable().defaultTo(0);
-        table.text("cycle_bachelor_name").notNullable();
-        table.text("cycle_licentiate_name").notNullable();
-        table.integer("bachelor_start", 2).notNullable();
-        table.integer("bachelor_end", 2).notNullable();
-        table.integer("licentiate_start", 2).notNullable();
-        table.integer("licentiate_end", 2).notNullable();
       });
       await ProgramTable().insert(
         (await import("./mockData/program.json")).default.map(
@@ -332,6 +328,41 @@ const migration = async () => {
               };
             }
           )
+        );
+      }
+    });
+
+  const externalEvaluationStructure = dbData.schema
+    .hasTable(EXTERNAL_EVALUATION_STRUCTURE_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(
+          EXTERNAL_EVALUATION_STRUCTURE_TABLE,
+          (table) => {
+            table.integer("id", 8).notNullable().primary();
+            table.text("program_id").notNullable();
+            table.text("year").notNullable();
+            table.integer("semester", 4).notNullable();
+            table.text("external_evaluation_id").notNullable();
+            table.float("credits", 8).notNullable();
+            table.text("requisites").defaultTo("").notNullable();
+            table.text("mention").defaultTo("").notNullable();
+            table.text("evaluation_cat").defaultTo("").notNullable();
+            table.text("mode").defaultTo("semestral").notNullable();
+            table.float("credits_sct", 8).notNullable();
+            table.text("tags").notNullable().defaultTo("");
+          }
+        );
+        await ExternalEvaluationStructureTable().insert(
+          (
+            await import("./mockData/external_evaluation_structure.json")
+          ).default.map(({ program_id, year, ...rest }) => {
+            return {
+              ...rest,
+              program_id: program_id.toString(),
+              year: year.toString(),
+            };
+          })
         );
       }
     });
@@ -414,10 +445,6 @@ const migration = async () => {
           table.integer("last_term", 4).notNullable();
           table.integer("n_courses", 8).notNullable();
           table.integer("n_passed_courses", 8).notNullable();
-          table.integer("n_courses_bachelor", 8).notNullable();
-          table.integer("n_passed_courses_bachelor", 8).notNullable();
-          table.integer("n_courses_licentiate", 8).notNullable();
-          table.integer("n_passed_courses_licentiate", 8).notNullable();
           table.float("completion", 4).notNullable();
         });
         await StudentProgramTable().insert(
@@ -484,18 +511,18 @@ const migration = async () => {
       }
     });
 
-  const studentDiagnosticTest = dbData.schema
-    .hasTable(STUDENT_DIAGNOSTIC_TEST_TABLE)
+  const studentExternalEvaluation = dbData.schema
+    .hasTable(STUDENT_EXTERNAL_EVALUATION_TABLE)
     .then(async (exists) => {
       if (!exists) {
         await dbData.schema.createTable(
-          STUDENT_DIAGNOSTIC_TEST_TABLE,
+          STUDENT_EXTERNAL_EVALUATION_TABLE,
           (table) => {
             table.text("id").notNullable().primary();
             table.integer("year").notNullable();
             table.integer("term").notNullable();
             table.text("student_id").notNullable();
-            table.text("diagnostic_test_taken").notNullable();
+            table.text("external_evaluation_taken").notNullable();
             table.text("registration").notNullable();
             table.text("state").notNullable();
             table.float("grade", 4).notNullable();
@@ -504,17 +531,17 @@ const migration = async () => {
             table.integer("duplicates").notNullable();
           }
         );
-        await StudentDiagnosticTestTable().insert(
-          (await import("./mockData/student_diagnostic_test.json")).default
+        await StudentExternalEvaluationTable().insert(
+          (await import("./mockData/student_external_evaluation.json")).default
         );
       }
     });
 
-  const diagnosticTest = dbData.schema
-    .hasTable(DIAGNOSTIC_TEST_TABLE)
+  const externalEvaluation = dbData.schema
+    .hasTable(EXTERNAL_EVALUATION_TABLE)
     .then(async (exists) => {
       if (!exists) {
-        await dbData.schema.createTable(DIAGNOSTIC_TEST_TABLE, (table) => {
+        await dbData.schema.createTable(EXTERNAL_EVALUATION_TABLE, (table) => {
           table.text("id").notNullable().primary();
           table.text("name").notNullable();
           table.text("description").notNullable();
@@ -524,20 +551,20 @@ const migration = async () => {
           table.integer("grade_max").notNullable();
           table.integer("grade_pass_min").notNullable();
         });
-        await DiagnosticTestTable().insert(
-          (await import("./mockData/diagnostic_test.json")).default
+        await ExternalEvaluationTable().insert(
+          (await import("./mockData/external_evaluation.json")).default
         );
       }
     });
 
-  const diagnosticTestStats = dbData.schema
-    .hasTable(DIAGNOSTIC_TEST_STATS_TABLE)
+  const externalEvaluationStats = dbData.schema
+    .hasTable(EXTERNAL_EVALUATION_STATS_TABLE)
     .then(async (exists) => {
       if (!exists) {
         await dbData.schema.createTable(
-          DIAGNOSTIC_TEST_STATS_TABLE,
+          EXTERNAL_EVALUATION_STATS_TABLE,
           (table) => {
-            table.text("test_taken").notNullable();
+            table.text("external_evaluation_taken").notNullable();
             table.integer("year", 4).notNullable();
             table.integer("term", 4).notNullable();
             table.integer("p_group", 2).notNullable();
@@ -554,8 +581,8 @@ const migration = async () => {
             table.text("color_bands").notNullable();
           }
         );
-        await DiagnosticTestStatsTable().insert(
-          (await import("./mockData/diagnostic_test_stats.json")).default
+        await ExternalEvaluationStatsTable().insert(
+          (await import("./mockData/external_evaluation_stats.json")).default
         );
       }
     });
@@ -822,11 +849,12 @@ const migration = async () => {
     param,
     program,
     programStructure,
+    externalEvaluationStructure,
     student,
     studentAdmission,
-    studentDiagnosticTest,
-    diagnosticTest,
-    diagnosticTestStats,
+    studentExternalEvaluation,
+    externalEvaluation,
+    externalEvaluationStats,
     studentCourse,
     studentDropout,
     studentEmployed,
