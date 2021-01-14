@@ -52,7 +52,7 @@ import { ToggleDarkMode } from "../DarkMode";
 import {
   Dropout,
   ForeplanModeSwitch,
-  ForeplanSummary,
+  // ForeplanSummary,
   ComplementaryInfo,
 } from "../DynamicComponents";
 import { Feedback } from "../feedback";
@@ -441,13 +441,14 @@ export function Dashboard() {
           {studentData.terms
             .slice()
             .reverse()
-            .map(({ term, year, comments }, key) => {
+            // .map(({ term, year, comments }, key) => {
+            .map(({ term, year }, key) => {
               return (
                 <TakenSemesterBox
                   key={key}
                   term={term}
                   year={year}
-                  comments={comments}
+                  comments={"comments test"}
                 />
               );
             })}
