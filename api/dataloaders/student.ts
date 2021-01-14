@@ -16,7 +16,6 @@ import {
   StudentProgramTable,
   StudentTable,
   StudentTermTable,
-  IStudentProgram,
 } from "../db/tables";
 import { TermDataLoader } from "./term";
 
@@ -27,21 +26,6 @@ export const StudentDataLoader = new DataLoader(
       "id"
     );
 
-    return student_ids.map((id) => {
-      return dataDict[id];
-    });
-  },
-  {
-    cacheMap: new LRUMap(1000),
-  }
-);
-
-export const StudentCycleDataLoader = new DataLoader(
-  async (student_ids: readonly string[]) => {
-    const dataDict: Dictionary<IStudentProgram | undefined> = keyBy(
-      await StudentProgramTable().whereIn("student_id", student_ids),
-      "student_id"
-    );
     return student_ids.map((id) => {
       return dataDict[id];
     });

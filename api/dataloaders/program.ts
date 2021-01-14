@@ -5,7 +5,7 @@ import { LRUMap } from "lru_map";
 import {
   IProgram,
   ProgramStructureTable,
-  ExternalEvaluationStructureTable,
+  // ExternalEvaluationStructureTable,
   ProgramTable,
   StudentProgramTable,
 } from "../db/tables";

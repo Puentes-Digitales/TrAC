@@ -22,7 +22,6 @@ import {
   StudentAdmissionDataLoader,
   StudentDropoutDataLoader,
   StudentEmployedDataLoader,
-  StudentCycleDataLoader,
   StudentLastProgramDataLoader,
   StudentListDataLoader,
   StudentProgramsDataLoader,
@@ -42,7 +41,6 @@ import type { Admission } from "../../entities/data/admission";
 import type { Employed } from "../../entities/data/employed";
 import type { PartialProgram } from "./program";
 import type { PartialTerm } from "./term";
-import type { StudentCycle } from "../../entities/data/studentcycle";
 
 export type PartialStudent = Pick<Student, "id" | "name" | "state"> & {
   programs?: PartialProgram[];
@@ -190,18 +188,6 @@ export class StudentResolver {
     @Root() { id }: PartialStudent
   ): Promise<$PropertyType<Student, "progress">> {
     return (await StudentLastProgramDataLoader.load(id))?.completion ?? -1;
-  }
-
-  @FieldResolver()
-  async student_cycle(
-    @Root() { id }: PartialStudent
-  ): Promise<StudentCycle | undefined> {
-    assertIsDefined(
-      id,
-      `student id needs to be available for Student field resolvers`
-    );
-
-    return await StudentCycleDataLoader.load(id);
   }
 
   @FieldResolver()

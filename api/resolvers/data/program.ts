@@ -38,7 +38,7 @@ import type {
   IfImplements,
 } from "../../../interfaces/utils";
 import type { PartialCourse } from "./course";
-import type { PartialExternalEvaluation } from "./externalEvaluation";
+// import type { PartialExternalEvaluation } from "./externalEvaluation";
 
 export type PartialProgram = Pick<Program, "id">;
 
@@ -253,7 +253,6 @@ export class ProgramResolver {
         semesters: {
           id: number;
           courses: PartialCourse[];
-          externalsvaluations: PartialExternalEvaluation[];
         }[];
       }[],
       $PropertyType<Program, "curriculums">
