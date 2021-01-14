@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from "type-graphql";
 
 import { Course } from "./course";
+import { DiagnosticTest } from "./diagnosticTest";
 
 @ObjectType({ simpleResolvers: true })
 export class Semester {
@@ -11,7 +12,12 @@ export class Semester {
   // program_structure => course_id
   @Field(() => [Course])
   courses: Course[];
+
+  // program_structure => Diagnostic_test_id
+  @Field(() => [DiagnosticTest])
+  diagnostictests: DiagnosticTest[];
 }
+
 @ObjectType({ simpleResolvers: true })
 export class Curriculum {
   // program_structure => curriculum

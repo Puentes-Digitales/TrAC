@@ -53,6 +53,19 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 """
 scalar DateTime
 
+type DiagnosticTest {
+  bandColors: [BandColor!]!
+  code: String!
+  historicalDistribution: [DistributionValue!]!
+
+  """
+  DiagnosticTest-Semester-Curriculum-Program ID
+  """
+  id: Int!
+  mention: String!
+  name: String!
+}
+
 type DistributionValue {
   label: String!
   value: Int!
@@ -248,6 +261,7 @@ type Query {
 
 type Semester {
   courses: [Course!]!
+  diagnostictests: [DiagnosticTest!]!
   id: Int!
 }
 
@@ -298,6 +312,18 @@ type TakenCourse {
   state: StateCourse!
 }
 
+type TakenDiagnosticTest {
+  bandColors: [BandColor!]!
+  code: String!
+  currentDistribution: [DistributionValue!]!
+  grade: Float!
+  id: Int!
+  name: String!
+  parallelGroup: Int!
+  registration: String!
+  state: StateCourse!
+}
+
 type Term {
   comments: String!
   cumulated_grade: Float!
@@ -307,6 +333,7 @@ type Term {
   situation: String!
   student_id: String!
   takenCourses: [TakenCourse!]!
+  takenDiagnosticTests: [TakenDiagnosticTest!]!
   term: TermType!
   year: Int!
 }

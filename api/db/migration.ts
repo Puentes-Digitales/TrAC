@@ -73,6 +73,9 @@ const migration = async () => {
     ProgramStructureTable,
     ProgramTable,
     STUDENT_ADMISSION_TABLE,
+    STUDENT_DIAGNOSTIC_TEST_TABLE,
+    DIAGNOSTIC_TEST_TABLE,
+    DIAGNOSTIC_TEST_STATS_TABLE,
     STUDENT_CLUSTER_TABLE,
     STUDENT_COURSE_TABLE,
     STUDENT_DROPOUT_TABLE,
@@ -81,6 +84,9 @@ const migration = async () => {
     STUDENT_TABLE,
     STUDENT_TERM_TABLE,
     StudentAdmissionTable,
+    StudentDiagnosticTestTable,
+    DiagnosticTestTable,
+    DiagnosticTestStatsTable,
     StudentClusterTable,
     StudentCourseTable,
     StudentDropoutTable,
@@ -478,6 +484,82 @@ const migration = async () => {
       }
     });
 
+  const studentDiagnosticTest = dbData.schema
+    .hasTable(STUDENT_DIAGNOSTIC_TEST_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(
+          STUDENT_DIAGNOSTIC_TEST_TABLE,
+          (table) => {
+            table.text("id").notNullable().primary();
+            table.integer("year").notNullable();
+            table.integer("term").notNullable();
+            table.text("student_id").notNullable();
+            table.text("diagnostic_test_taken").notNullable();
+            table.text("registration").notNullable();
+            table.text("state").notNullable();
+            table.float("grade", 4).notNullable();
+            table.integer("p_group").notNullable();
+            table.text("comments");
+            table.integer("duplicates").notNullable();
+          }
+        );
+        await StudentDiagnosticTestTable().insert(
+          (await import("./mockData/student_diagnostic_test.json")).default
+        );
+      }
+    });
+
+  const diagnosticTest = dbData.schema
+    .hasTable(DIAGNOSTIC_TEST_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(DIAGNOSTIC_TEST_TABLE, (table) => {
+          table.text("id").notNullable().primary();
+          table.text("name").notNullable();
+          table.text("description").notNullable();
+          table.text("tags").notNullable();
+          table.text("grading").notNullable();
+          table.integer("grade_min").notNullable();
+          table.integer("grade_max").notNullable();
+          table.integer("grade_pass_min").notNullable();
+        });
+        await DiagnosticTestTable().insert(
+          (await import("./mockData/diagnostic_test.json")).default
+        );
+      }
+    });
+
+  const diagnosticTestStats = dbData.schema
+    .hasTable(DIAGNOSTIC_TEST_STATS_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(
+          DIAGNOSTIC_TEST_STATS_TABLE,
+          (table) => {
+            table.text("test_taken").notNullable();
+            table.integer("year", 4).notNullable();
+            table.integer("term", 4).notNullable();
+            table.integer("p_group", 2).notNullable();
+            table.integer("n_total", 8).notNullable();
+            table.integer("n_finished", 8).notNullable();
+            table.integer("n_pass", 8).notNullable();
+            table.integer("n_fail", 8).notNullable();
+            table.integer("n_drop", 8).notNullable();
+            table.text("histogram").notNullable();
+            table.float("avg_grade").notNullable();
+            table.integer("n_grades", 4).notNullable();
+            table.integer("id", 8).primary().notNullable();
+            table.text("histogram_labels").notNullable();
+            table.text("color_bands").notNullable();
+          }
+        );
+        await DiagnosticTestStatsTable().insert(
+          (await import("./mockData/diagnostic_test_stats.json")).default
+        );
+      }
+    });
+
   const studentEmployed = dbData.schema
     .hasTable(STUDENT_EMPLOYED_TABLE)
     .then(async (exists) => {
@@ -742,6 +824,9 @@ const migration = async () => {
     programStructure,
     student,
     studentAdmission,
+    studentDiagnosticTest,
+    diagnosticTest,
+    diagnosticTestStats,
     studentCourse,
     studentDropout,
     studentEmployed,

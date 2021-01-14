@@ -215,6 +215,63 @@ export const STUDENT_ADMISSION_TABLE = "student_admission";
 export const StudentAdmissionTable = () =>
   dbData<IStudentAdmission>(STUDENT_ADMISSION_TABLE);
 // -------------------------------------------------------------------------------------
+export interface IStudentDiagnosticTest {
+  id: number;
+  year: number;
+  term: number;
+  student_id: string;
+  diagnostic_test_taken: string;
+  registration: string;
+  state: string;
+  grade: number;
+  p_group: number;
+  comments: string;
+  duplicates: number;
+}
+
+export const STUDENT_DIAGNOSTIC_TEST_TABLE = "student_diagnostic_test";
+
+export const StudentDiagnosticTestTable = () =>
+  dbData<IStudentDiagnosticTest>(STUDENT_DIAGNOSTIC_TEST_TABLE);
+// -------------------------------------------------------------------------------------
+export interface IDiagnosticTest {
+  id: string;
+  name: string;
+  description: string;
+  tags: string;
+  grading: string;
+  grade_min: number;
+  grade_max: number;
+  grade_pass_min: number;
+}
+
+export const DIAGNOSTIC_TEST_TABLE = "diagnostic_test";
+
+export const DiagnosticTestTable = () =>
+  dbData<IDiagnosticTest>(DIAGNOSTIC_TEST_TABLE);
+// -------------------------------------------------------------------------------------
+export interface IDiagnosticTestStats {
+  diagnostic_test_taken: string;
+  year: number;
+  term: number;
+  p_group: number;
+  n_total: number;
+  n_finished: number;
+  n_pass: number;
+  n_fail: number;
+  n_drop: number;
+  histogram: string;
+  avg_grade: number;
+  id: number;
+  histogram_labels: string;
+  color_bands: string;
+}
+
+export const DIAGNOSTIC_TEST_STATS_TABLE = "diagnostic_test_stats";
+
+export const DiagnosticTestStatsTable = () =>
+  dbData<IDiagnosticTestStats>(DIAGNOSTIC_TEST_STATS_TABLE);
+// -------------------------------------------------------------------------------------
 
 export interface IPerformanceByLoad {
   id: number;

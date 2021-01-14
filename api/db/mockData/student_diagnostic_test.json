@@ -1,0 +1,41 @@
+[
+  {
+    "id": 4563741,
+    "year": 2015,
+    "term": 1,
+    "student_id": "6fdb8a7f5bbaf0c68dbca0f5462e866a",
+    "diagnostic_test_taken": "EID-15",
+    "registration": "CURSADA",
+    "state": "A",
+    "grade": 4.4,
+    "p_group": 1,
+    "comments": "1708,2015",
+    "duplicates": 1
+  },
+  {
+    "id": 4563742,
+    "year": 2017,
+    "term": 2,
+    "student_id": "6fdb8a7f5bbaf0c68dbca0f5462e866a",
+    "diagnostic_test_taken": "END-15",
+    "registration": "CURSADA",
+    "state": "A",
+    "grade": 5.4,
+    "p_group": 1,
+    "comments": "1708,2015",
+    "duplicates": 1
+  },
+  {
+    "id": 4563751,
+    "year": 2017,
+    "term": 1,
+    "student_id": "e078c7de4d67798a915801ba7e2539fb",
+    "diagnostic_test_taken": "EID-17",
+    "registration": "CURSADA",
+    "state": "A",
+    "grade": 6.8,
+    "p_group": 1,
+    "comments": "1708,2017",
+    "duplicates": 1
+  }
+]
