@@ -367,20 +367,16 @@ export type Student = {
   employed: Employed;
   id: Scalars["ID"];
   mention: Scalars["String"];
+  n_courses_bachelor: Scalars["Float"];
+  n_courses_licentiate: Scalars["Float"];
+  n_passed_courses_bachelor: Scalars["Float"];
+  n_passed_courses_licentiate: Scalars["Float"];
   name: Scalars["String"];
   programs: Array<Program>;
   progress: Scalars["Float"];
   start_year: Scalars["Int"];
   state: Scalars["String"];
-  student_cycle: StudentCycle;
   terms: Array<Term>;
-};
-
-export type StudentCycle = {
-  n_courses_bachelor: Scalars["Float"];
-  n_courses_licentiate: Scalars["Float"];
-  n_passed_courses_bachelor: Scalars["Float"];
-  n_passed_courses_licentiate: Scalars["Float"];
 };
 
 export type TakenCourse = {
@@ -696,7 +692,17 @@ export type SearchStudentMutationVariables = Exact<{
 
 export type SearchStudentMutation = {
   student?: Maybe<
-    Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
+    Pick<
+      Student,
+      | "id"
+      | "curriculums"
+      | "start_year"
+      | "n_courses_bachelor"
+      | "n_passed_courses_bachelor"
+      | "n_courses_licentiate"
+      | "n_passed_courses_licentiate"
+      | "mention"
+    > & {
       programs: Array<Pick<Program, "id" | "name">>;
       terms: Array<
         Pick<
@@ -743,13 +749,6 @@ export type SearchStudentMutation = {
         | "institution"
         | "educational_system"
         | "months_to_first_job"
-      >;
-      student_cycle: Pick<
-        StudentCycle,
-        | "n_courses_bachelor"
-        | "n_passed_courses_bachelor"
-        | "n_courses_licentiate"
-        | "n_passed_courses_licentiate"
       >;
     }
   >;
@@ -2049,6 +2048,10 @@ export const SearchStudentDocument = gql`
       }
       curriculums
       start_year
+      n_courses_bachelor
+      n_passed_courses_bachelor
+      n_courses_licentiate
+      n_passed_courses_licentiate
       mention
       terms {
         id
@@ -2095,12 +2098,6 @@ export const SearchStudentDocument = gql`
         institution
         educational_system
         months_to_first_job
-      }
-      student_cycle {
-        n_courses_bachelor
-        n_passed_courses_bachelor
-        n_courses_licentiate
-        n_passed_courses_licentiate
       }
     }
   }

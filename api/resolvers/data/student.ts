@@ -28,6 +28,14 @@ import {
   StudentTermsDataLoader,
   StudentViaProgramsDataLoader,
 } from "../../dataloaders/student";
+
+import { AllCoursesOfProgramCurriculumDataLoader } from "../../dataloaders/foreplan";
+import {
+  StudentBachillerCourseDataLoader,
+  StudentBachillerApprovedCourseDataLoader,
+  StudentLicentiateApprovedCourseDataLoader,
+  StudentLicentiateCourseDataLoader,
+} from "../../dataloaders/studentCycle";
 import { StudentProgramTable, UserProgramsTable } from "../../db/tables";
 import { Student } from "../../entities/data/student";
 import { anonService } from "../../services/anonymization";
@@ -44,6 +52,8 @@ import type { PartialTerm } from "./term";
 
 export type PartialStudent = Pick<Student, "id" | "name" | "state"> & {
   programs?: PartialProgram[];
+  curriculums?: string;
+  program?: string;
 };
 @Resolver(() => Student)
 export class StudentResolver {
@@ -58,12 +68,34 @@ export class StudentResolver {
   ): Promise<PartialStudent | null> {
     assertIsDefined(user, `Error on authorization context`);
 
+    const hola = await StudentBachillerCourseDataLoader.load({
+      program_id: "1708",
+      curriculum: "2017",
+    });
+
+    console.log(
+      await StudentBachillerApprovedCourseDataLoader.load({
+        program_id: "1708",
+        curriculum: "2015",
+        student_id: "6fdb8a7f5bbaf0c68dbca0f5462e866a",
+      })
+    );
+
+    console.log(hola[0]["count"]);
+
     if (defaultUserType(user.type) === UserType.Student) {
       const student_id = await anonService.getAnonymousIdOrGetItBack(
         user.student_id
       );
 
       const studentData = await StudentViaProgramsDataLoader.load(student_id);
+      console.log(
+        "hola2",
+        await AllCoursesOfProgramCurriculumDataLoader.load({
+          program_id: "1708",
+          curriculum: "2017",
+        })
+      );
 
       assertIsDefined(studentData, STUDENT_NOT_FOUND);
 
@@ -72,6 +104,8 @@ export class StudentResolver {
         name: studentData.name,
         state: studentData.state,
         programs: [{ id: studentData.program_id }],
+        curriculums: studentData.curriculum,
+        program: studentData.program_id,
       };
     } else {
       assertIsDefined(student_id, STUDENT_NOT_FOUND);
@@ -110,6 +144,8 @@ export class StudentResolver {
         name: studentData.name,
         state: studentData.state,
         programs: [{ id: program_id }],
+        curriculums: studentData.curriculum,
+        program: studentData.program_id,
       };
     }
   }
@@ -234,5 +270,53 @@ export class StudentResolver {
     );
 
     return await StudentEmployedDataLoader.load(id);
+  }
+
+  @FieldResolver()
+  async n_courses_bachelor(
+    @Root() { id, programs, curriculums }: PartialStudent
+  ): Promise<$PropertyType<Student, "n_courses_bachelor">> {
+    const n_courses = await StudentBachillerCourseDataLoader.load({
+      program_id: programs![0]["id"],
+      curriculum: curriculums!,
+    });
+    return Number(n_courses[0]["count"]);
+  }
+
+  @FieldResolver()
+  async n_passed_courses_bachelor(
+    @Root() { id, programs, curriculums }: PartialStudent
+  ): Promise<$PropertyType<Student, "n_courses_bachelor">> {
+    const n_passed = await StudentBachillerApprovedCourseDataLoader.load({
+      program_id: programs![0]["id"],
+      curriculum: curriculums!,
+      student_id: id,
+    });
+    return Number(n_passed[0]["count"]);
+  }
+
+  @FieldResolver()
+  async n_courses_licentiate(
+    @Root() { id, programs, curriculums }: PartialStudent
+  ): Promise<$PropertyType<Student, "n_courses_bachelor">> {
+    const nlicentiate = await StudentLicentiateCourseDataLoader.load({
+      program_id: programs![0]["id"],
+      curriculum: curriculums!,
+    });
+    return Number(nlicentiate[0]["count"]);
+  }
+
+  @FieldResolver()
+  async n_passed_courses_licentiate(
+    @Root() { id, programs, curriculums }: PartialStudent
+  ): Promise<$PropertyType<Student, "n_courses_bachelor">> {
+    const nlicentiateapproved = await StudentLicentiateApprovedCourseDataLoader.load(
+      {
+        program_id: programs![0]["id"],
+        curriculum: curriculums!,
+        student_id: id,
+      }
+    );
+    return Number(nlicentiateapproved[0]["count"]);
   }
 }

@@ -52,7 +52,6 @@ import { ToggleDarkMode } from "../DarkMode";
 import {
   Dropout,
   ForeplanModeSwitch,
-  // ForeplanSummary,
   ComplementaryInfo,
 } from "../DynamicComponents";
 import { Feedback } from "../feedback";
@@ -448,7 +447,7 @@ export function Dashboard() {
                   key={key}
                   term={term}
                   year={year}
-                  comments={"comments test"}
+                  //comments={comments}
                 />
               );
             })}
@@ -482,13 +481,11 @@ export function Dashboard() {
       if (user?.config?.SHOW_STUDENT_CYCLE) {
         ProgressStudentComponent = (
           <ProgressStudent
-            n_course_bachiller={studentData.student_cycle.n_courses_bachelor}
-            n_course_approved_bachiller={
-              studentData.student_cycle.n_passed_courses_bachelor
-            }
-            n_course_licentiate={studentData.student_cycle.n_courses_licentiate}
+            n_course_bachiller={studentData.n_courses_bachelor}
+            n_course_approved_bachiller={studentData.n_passed_courses_bachelor}
+            n_course_licentiate={studentData.n_courses_licentiate}
             n_course_approved_licentiate={
-              studentData.student_cycle.n_passed_courses_licentiate
+              studentData.n_passed_courses_licentiate
             }
           />
         );

@@ -4001,7 +4001,7 @@ const data: {
           semestral_grade: 0,
           cumulated_grade: 0,
           program_grade: 4.31,
-          // comments: "",
+          comments: "",
           takenCourses: [
             {
               id: 647897,
@@ -4161,7 +4161,7 @@ const data: {
           semestral_grade: 4.85,
           cumulated_grade: 5.49,
           program_grade: 4.31,
-          // comments: "",
+          comments: "",
           takenCourses: [
             {
               id: 578337,
@@ -4534,7 +4534,7 @@ const data: {
           semestral_grade: 5.25,
           cumulated_grade: 5.66,
           program_grade: 4.31,
-          // comments: "REINCORP",
+          comments: "REINCORP",
           takenCourses: [
             {
               id: 455472,
@@ -4895,7 +4895,7 @@ const data: {
           semestral_grade: 3.61,
           cumulated_grade: 5.15,
           program_grade: 4.31,
-          // comments: "",
+          comments: "",
           takenCourses: [
             {
               id: 455341,
@@ -5198,7 +5198,7 @@ const data: {
           semestral_grade: 5.89,
           cumulated_grade: 5.95,
           program_grade: 4.31,
-          // comments: "",
+          comments: "",
           takenCourses: [
             {
               id: 455162,
@@ -5617,7 +5617,7 @@ const data: {
           semestral_grade: 6.02,
           cumulated_grade: 6.02,
           program_grade: 4.31,
-          // comments: "",
+          comments: "",
           takenCourses: [
             {
               id: 454944,
@@ -5912,6 +5912,10 @@ const data: {
           ],
         },
       ],
+      n_courses_bachelor: 24,
+      n_courses_licentiate: 25,
+      n_passed_courses_bachelor: 20,
+      n_passed_courses_licentiate: 1,
       dropout: {
         prob_dropout: 60.56,
         model_accuracy: 0.82,
@@ -5929,12 +5933,7 @@ const data: {
         institution: "Liceo Recto Armando Robles",
         months_to_first_job: 15,
       },
-      student_cycle: {
-        n_courses_bachelor: 24,
-        n_courses_licentiate: 25,
-        n_passed_courses_bachelor: 20,
-        n_passed_courses_licentiate: 1,
-      },
+     
     },
   },
 
