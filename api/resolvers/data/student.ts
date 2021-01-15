@@ -29,7 +29,6 @@ import {
   StudentViaProgramsDataLoader,
 } from "../../dataloaders/student";
 
-import { AllCoursesOfProgramCurriculumDataLoader } from "../../dataloaders/foreplan";
 import {
   StudentBachillerCourseDataLoader,
   StudentBachillerApprovedCourseDataLoader,
@@ -68,34 +67,12 @@ export class StudentResolver {
   ): Promise<PartialStudent | null> {
     assertIsDefined(user, `Error on authorization context`);
 
-    const hola = await StudentBachillerCourseDataLoader.load({
-      program_id: "1708",
-      curriculum: "2017",
-    });
-
-    console.log(
-      await StudentBachillerApprovedCourseDataLoader.load({
-        program_id: "1708",
-        curriculum: "2015",
-        student_id: "6fdb8a7f5bbaf0c68dbca0f5462e866a",
-      })
-    );
-
-    console.log(hola[0]["count"]);
-
     if (defaultUserType(user.type) === UserType.Student) {
       const student_id = await anonService.getAnonymousIdOrGetItBack(
         user.student_id
       );
 
       const studentData = await StudentViaProgramsDataLoader.load(student_id);
-      console.log(
-        "hola2",
-        await AllCoursesOfProgramCurriculumDataLoader.load({
-          program_id: "1708",
-          curriculum: "2017",
-        })
-      );
 
       assertIsDefined(studentData, STUDENT_NOT_FOUND);
 

@@ -284,12 +284,6 @@ const migration = async () => {
         table.text("tags").notNullable();
         table.boolean("active").notNullable().defaultTo(true);
         table.float("last_gpa", 4).notNullable().defaultTo(0);
-        table.text("cycle_bachelor_name").notNullable();
-        table.text("cycle_licentiate_name").notNullable();
-        table.integer("bachelor_start", 2).notNullable();
-        table.integer("bachelor_end", 2).notNullable();
-        table.integer("licentiate_start", 2).notNullable();
-        table.integer("licentiate_end", 2).notNullable();
       });
       await ProgramTable().insert(
         (await import("./mockData/program.json")).default.map(
@@ -413,11 +407,6 @@ const migration = async () => {
           table.text("mention").notNullable();
           table.integer("last_term", 4).notNullable();
           table.integer("n_courses", 8).notNullable();
-          table.integer("n_passed_courses", 8).notNullable();
-          table.integer("n_courses_bachelor", 8).notNullable();
-          table.integer("n_passed_courses_bachelor", 8).notNullable();
-          table.integer("n_courses_licentiate", 8).notNullable();
-          table.integer("n_passed_courses_licentiate", 8).notNullable();
           table.float("completion", 4).notNullable();
         });
         await StudentProgramTable().insert(
