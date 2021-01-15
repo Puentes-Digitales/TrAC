@@ -82,6 +82,7 @@ export const TakenSemesterBox: FC<{
     <Box
       textAlign="center"
       border={config.TAKEN_SEMESTER_BOX_BORDER}
+      fontFamily='Lato'
       borderColor={borderColor}
       borderRadius={config.TAKEN_SEMESTER_BOX_BORDER_RADIUS}
       backgroundColor={config.TAKEN_SEMESTER_BOX_BACKGROUND_COLOR}

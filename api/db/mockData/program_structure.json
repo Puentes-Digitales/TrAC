@@ -1,89 +1,5 @@
 [
   {
-    "id": 1701,
-    "program_id": 1708,
-    "curriculum": 2017,
-    "semester": 1,
-    "course_id": "EID-17",
-    "credits": 0,
-    "requisites": "",
-    "mention": "",
-    "course_cat": "",
-    "mode": "semestral",
-    "credits_sct": -1,
-    "tags": ""
-  },
-  {
-    "id": 1702,
-    "program_id": 1708,
-    "curriculum": 2017,
-    "semester": 5,
-    "course_id": "END-17",
-    "credits": 0,
-    "requisites": "",
-    "mention": "",
-    "course_cat": "",
-    "mode": "semestral",
-    "credits_sct": -1,
-    "tags": ""
-  },
-  {
-    "id": 1501,
-    "program_id": 1708,
-    "curriculum": 2015,
-    "semester": 1,
-    "course_id": "EID-15",
-    "credits": 0,
-    "requisites": "",
-    "mention": "",
-    "course_cat": "",
-    "mode": "semestral",
-    "credits_sct": -1,
-    "tags": ""
-  },
-  {
-    "id": 1502,
-    "program_id": 1708,
-    "curriculum": 2015,
-    "semester": 5,
-    "course_id": "END-15",
-    "credits": 0,
-    "requisites": "",
-    "mention": "",
-    "course_cat": "",
-    "mode": "semestral",
-    "credits_sct": -1,
-    "tags": ""
-  },
-  {
-    "id": 1301,
-    "program_id": 1700,
-    "curriculum": 2013,
-    "semester": 1,
-    "course_id": "EID-13",
-    "credits": 0,
-    "requisites": "",
-    "mention": "",
-    "course_cat": "",
-    "mode": "semestral",
-    "credits_sct": -1,
-    "tags": ""
-  },
-  {
-    "id": 1302,
-    "program_id": 1700,
-    "curriculum": 2013,
-    "semester": 5,
-    "course_id": "END-13",
-    "credits": 0,
-    "requisites": "",
-    "mention": "",
-    "course_cat": "",
-    "mode": "semestral",
-    "credits_sct": -1,
-    "tags": ""
-  },
-  {
     "id": 3245,
     "program_id": 1708,
     "curriculum": 2017,
@@ -92,7 +8,7 @@
     "credits": 5,
     "requisites": "INFO081-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "bachillerato",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -484,7 +400,7 @@
     "credits": 5,
     "requisites": "",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -498,7 +414,7 @@
     "credits": 5,
     "requisites": "GEOG100-90",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -512,7 +428,7 @@
     "credits": 6,
     "requisites": "PSVE102-90",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -526,7 +442,7 @@
     "credits": 5,
     "requisites": "BIOQ104-04",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -540,7 +456,7 @@
     "credits": 5,
     "requisites": "MATM115-04",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -554,7 +470,7 @@
     "credits": 5,
     "requisites": "AGRO180-06",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -568,7 +484,7 @@
     "credits": 5,
     "requisites": "IIAS121-90",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -582,7 +498,7 @@
     "credits": 5,
     "requisites": "AGRO181-06",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -596,7 +512,7 @@
     "credits": 5,
     "requisites": "EAGR110-90",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -610,7 +526,7 @@
     "credits": 5,
     "requisites": "PSVE110-04",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -624,7 +540,7 @@
     "credits": 5,
     "requisites": "PRAN111-04",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -638,7 +554,7 @@
     "credits": 5,
     "requisites": "MICR105-90",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -652,7 +568,7 @@
     "credits": 5,
     "requisites": "ICSO109-04",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -666,7 +582,7 @@
     "credits": 5,
     "requisites": "PSVE110-04",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -680,7 +596,7 @@
     "credits": 5,
     "requisites": "IIAS121-90",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -694,7 +610,7 @@
     "credits": 5,
     "requisites": "EAGR110-90",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -708,7 +624,7 @@
     "credits": 5,
     "requisites": "FSCA106-01, MATM115-04",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -722,7 +638,7 @@
     "credits": 5,
     "requisites": "EAGR204-04",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -736,7 +652,7 @@
     "credits": 5,
     "requisites": "PSVE110-04",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -750,7 +666,7 @@
     "credits": 5,
     "requisites": "PSVE110-04",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -764,7 +680,7 @@
     "credits": 6,
     "requisites": "AGRO080-06, AGRO081-06, AGRO082-06, AGRO180-06, AGRO182-06, BIOQ104-04, BOTN017-04, BOTN143-04, EAGR212-90, ESTD224-03, FSCA106-01, GEOG100-90, GEOG122-90, ICML105-12, ICSO109-04, IIAS122-04, IIAS123-04, MATM014-04, MATM114-04, MATM115-04, MICR105-90, PRAN100-04, PRAN112-04, PRAN124-04, PSVE101-90, PSVE102-90, PSVE113-04, PSVE131-90, PSVE141-90, QUIM105-90, QUIM113-90",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -778,7 +694,7 @@
     "credits": 3,
     "requisites": "PRAN124-04",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -792,7 +708,7 @@
     "credits": 0,
     "requisites": "",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -1520,7 +1436,7 @@
     "credits": 0,
     "requisites": "",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -1898,7 +1814,7 @@
     "credits": 5,
     "requisites": "BAIN036-07",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -1912,7 +1828,7 @@
     "credits": 4,
     "requisites": "INFO035-08, INFO053-07",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -1926,7 +1842,7 @@
     "credits": 6,
     "requisites": "INFO053-07",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -1940,7 +1856,7 @@
     "credits": 5,
     "requisites": "BAIN019-07, BAIN037-07, BAIN038-07",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -1954,7 +1870,7 @@
     "credits": 6,
     "requisites": "BAIN009-07, INFO035-08",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -1968,7 +1884,7 @@
     "credits": 6,
     "requisites": "INFO053-07",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -1982,7 +1898,7 @@
     "credits": 4,
     "requisites": "INFO053-07",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -1996,7 +1912,7 @@
     "credits": 5,
     "requisites": "BAIN042-07, BAIN052-07, INFO172-00",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2010,7 +1926,7 @@
     "credits": 5,
     "requisites": "BAIN041-07, INFO184-08",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2024,7 +1940,7 @@
     "credits": 5,
     "requisites": "INFO164-00",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2038,7 +1954,7 @@
     "credits": 4,
     "requisites": "INFO261-08",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2052,7 +1968,7 @@
     "credits": 6,
     "requisites": "INFO035-08, INFO053-07",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2066,7 +1982,7 @@
     "credits": 4,
     "requisites": "BAIN042-07, INFO035-08",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2080,7 +1996,7 @@
     "credits": 4,
     "requisites": "INFO163-08",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2094,7 +2010,7 @@
     "credits": 4,
     "requisites": "INFO164-00",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2108,7 +2024,7 @@
     "credits": 6,
     "requisites": "BAIN042-07, BAIN054-07, INFO184-08",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2122,7 +2038,7 @@
     "credits": 4,
     "requisites": "BAIN043-07, BAIN053-07, INFO045-08, INFO183-00",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2136,7 +2052,7 @@
     "credits": 5,
     "requisites": "ADMI100-90, INFO175-08",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2150,7 +2066,7 @@
     "credits": 6,
     "requisites": "INFO182-00, INFO185-97",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2164,7 +2080,7 @@
     "credits": 6,
     "requisites": "INFO035-08, INFO263-08",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2178,7 +2094,7 @@
     "credits": 6,
     "requisites": "INFO263-08",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2192,7 +2108,7 @@
     "credits": 4,
     "requisites": "ADMI100-90, IECO102-05, INFO270-00",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2206,7 +2122,7 @@
     "credits": 4,
     "requisites": "IECO102-05, INFO173-00",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2220,7 +2136,7 @@
     "credits": 6,
     "requisites": "BAIN054-07, INFO175-08, INFO183-00",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2668,7 +2584,7 @@
     "credits": 8,
     "requisites": "BAIN065-14, BAIN067-14",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "bachillerato",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2682,7 +2598,7 @@
     "credits": 0,
     "requisites": "",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "bachillerato",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2696,7 +2612,7 @@
     "credits": 5,
     "requisites": "BAIN073-14, BAIN075-14",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "bachillerato",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2710,7 +2626,7 @@
     "credits": 5,
     "requisites": "BAIN075-14",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "bachillerato",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2724,7 +2640,7 @@
     "credits": 4,
     "requisites": "INFO081-17, INFO083-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "bachillerato",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2738,7 +2654,7 @@
     "credits": 6,
     "requisites": "INFO081-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "bachillerato",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2752,7 +2668,7 @@
     "credits": 4,
     "requisites": "BAIN073-14",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "bachillerato",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2766,7 +2682,7 @@
     "credits": 8,
     "requisites": "BAIN075-14, BAIN077-14",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "bachillerato",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2780,7 +2696,7 @@
     "credits": 4,
     "requisites": "BAIN081-14",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "bachillerato",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2794,7 +2710,7 @@
     "credits": 6,
     "requisites": "BAIN073-14",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "bachillerato",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2808,7 +2724,7 @@
     "credits": 4,
     "requisites": "INFO085-17, INFO088-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "bachillerato",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2822,7 +2738,7 @@
     "credits": 4,
     "requisites": "BAIN065-14, BAIN067-14, BAIN069-14, BAIN071-14, BAIN073-14, BAIN075-14, BAIN075-17, BAIN077-14, BAIN077-17, BAIN079-14, BAIN081-14, BAIN083-14, BAIN083-17, BAIN085-14, BAIN087-14, BAIN091-14, DYRE070-14, ELECT12, INFO063-17, INFO073-17, INFO081-17, INFO083-17, INFO085-17, INFO088-17, INFO090-17, INFO099-17, INFO104-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2836,7 +2752,7 @@
     "credits": 4,
     "requisites": "BAIN091-14, INFO085-17, INFO099-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2850,7 +2766,7 @@
     "credits": 0,
     "requisites": "",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2864,7 +2780,7 @@
     "credits": 5,
     "requisites": "BAIN069-14, BAIN085-14, INFO063-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2878,7 +2794,7 @@
     "credits": 4,
     "requisites": "BAIN079-14",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2892,7 +2808,7 @@
     "credits": 6,
     "requisites": "INFO088-17, INFO099-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2906,7 +2822,7 @@
     "credits": 6,
     "requisites": "INFO104-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2920,7 +2836,7 @@
     "credits": 4,
     "requisites": "INFO133-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2934,7 +2850,7 @@
     "credits": 4,
     "requisites": "BAIN140-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2948,7 +2864,7 @@
     "credits": 8,
     "requisites": "BAIN073-14, BAIN083-14, BAIN083-17, BAIN091-14",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2962,7 +2878,7 @@
     "credits": 4,
     "requisites": "INFO104-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2976,7 +2892,7 @@
     "credits": 4,
     "requisites": "INFO090-17, INFO104-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -2990,7 +2906,7 @@
     "credits": 6,
     "requisites": "INFO088-17, INFO128-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -3004,7 +2920,7 @@
     "credits": 4,
     "requisites": "BAIN083-14, BAIN083-17, INFO104-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -3018,7 +2934,7 @@
     "credits": 6,
     "requisites": "INFO145-17, INFO188-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -3032,7 +2948,7 @@
     "credits": 5,
     "requisites": "INFO208-17, INFO229-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -3046,7 +2962,7 @@
     "credits": 4,
     "requisites": "BAIN150-17, INFO208-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -3060,7 +2976,7 @@
     "credits": 6,
     "requisites": "INFO139-17, INFO198-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -3074,7 +2990,7 @@
     "credits": 5,
     "requisites": "EICI223-17, INFO200-17, INFO248-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -3088,7 +3004,7 @@
     "credits": 0,
     "requisites": "",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -3102,7 +3018,7 @@
     "credits": 6,
     "requisites": "INFO239-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -3116,7 +3032,7 @@
     "credits": 6,
     "requisites": "EICI223-17, INFO248-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -3130,7 +3046,7 @@
     "credits": 2,
     "requisites": "EICI223-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""
@@ -3144,7 +3060,7 @@
     "credits": 7,
     "requisites": "INFO245-17, INFO248-17",
     "mention": "",
-    "course_cat": "",
+    "course_cat": "licenciatura",
     "mode": "semestral",
     "credits_sct": -1,
     "tags": ""

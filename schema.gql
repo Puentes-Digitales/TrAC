@@ -283,20 +283,16 @@ type Student {
   employed: Employed!
   id: ID!
   mention: String!
+  n_courses_bachelor: Float!
+  n_courses_licentiate: Float!
+  n_passed_courses_bachelor: Float!
+  n_passed_courses_licentiate: Float!
   name: String!
   programs: [Program!]!
   progress: Float!
   start_year: Int!
   state: String!
-  student_cycle: StudentCycle!
   terms: [Term!]!
-}
-
-type StudentCycle {
-  n_courses_bachelor: Float!
-  n_courses_licentiate: Float!
-  n_passed_courses_bachelor: Float!
-  n_passed_courses_licentiate: Float!
 }
 
 type TakenCourse {

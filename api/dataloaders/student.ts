@@ -56,7 +56,7 @@ export const StudentViaProgramsDataLoader = new DataLoader(
     return await Promise.all(
       student_ids.map((student_id) => {
         return StudentProgramTable()
-          .select("program_id", "name", "state")
+          .select("program_id", "name", "state", "curriculum")
           .innerJoin<IStudent>(
             STUDENT_TABLE,
             `${STUDENT_TABLE}.id`,

@@ -4,7 +4,6 @@ import { Employed } from "./employed";
 import { Dropout } from "./dropout";
 import { Program } from "./program";
 import { Term } from "./term";
-import { StudentCycle } from "./studentcycle";
 
 @ObjectType({ simpleResolvers: true })
 export class Student {
@@ -52,10 +51,19 @@ export class Student {
   @Field()
   admission: Admission;
 
-  @Field()
-  student_cycle: StudentCycle;
-
   // student_employed
   @Field()
   employed: Employed;
+
+  @Field()
+  n_courses_bachelor: number;
+
+  @Field()
+  n_passed_courses_bachelor: number;
+
+  @Field()
+  n_courses_licentiate: number;
+
+  @Field()
+  n_passed_courses_licentiate: number;
 }
