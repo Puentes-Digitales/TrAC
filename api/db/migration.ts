@@ -444,7 +444,6 @@ const migration = async () => {
           table.text("mention").notNullable();
           table.integer("last_term", 4).notNullable();
           table.integer("n_courses", 8).notNullable();
-          table.integer("n_passed_courses", 8).notNullable();
           table.float("completion", 4).notNullable();
         });
         await StudentProgramTable().insert(

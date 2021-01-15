@@ -405,7 +405,7 @@ export type TakenDiagnosticTest = {
 };
 
 export type Term = {
-  comments: Scalars["String"];
+  comments?: Maybe<Scalars["String"]>;
   cumulated_grade: Scalars["Float"];
   id: Scalars["Int"];
   program_grade: Scalars["Float"];
@@ -712,6 +712,7 @@ export type SearchStudentMutation = {
           | "year"
           | "term"
           | "situation"
+          | "comments"
           | "semestral_grade"
           | "cumulated_grade"
           | "program_grade"
@@ -2059,6 +2060,7 @@ export const SearchStudentDocument = gql`
         year
         term
         situation
+        comments
         semestral_grade
         cumulated_grade
         program_grade

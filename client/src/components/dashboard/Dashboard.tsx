@@ -441,13 +441,13 @@ export function Dashboard() {
             .slice()
             .reverse()
             // .map(({ term, year, comments }, key) => {
-            .map(({ term, year }, key) => {
+            .map(({ term, year, comments }, key) => {
               return (
                 <TakenSemesterBox
                   key={key}
                   term={term}
                   year={year}
-                  //comments={comments}
+                  comments={comments!}
                 />
               );
             })}

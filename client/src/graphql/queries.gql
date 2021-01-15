@@ -104,6 +104,7 @@ mutation searchStudent($student_id: String, $program_id: String) {
       year
       term
       situation
+      comments
       semestral_grade
       cumulated_grade
       program_grade
