@@ -1,4 +1,4 @@
-import React, { FC, memo, useContext, useEffect, useState } from "react";
+import React, { FC, memo, useContext, useEffect } from "react";
 import { Progress } from "semantic-ui-react";
 import { Flex, Stack, Text, Box } from "@chakra-ui/react";
 import { setTrackingData, track } from "../../context/Tracking";
