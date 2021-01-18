@@ -1,6 +1,7 @@
-import React, { FC, memo, useContext } from "react";
+import React, { FC, memo, useContext, useEffect, useState } from "react";
 import { Progress } from "semantic-ui-react";
 import { Flex, Stack, Text, Box } from "@chakra-ui/react";
+import { setTrackingData, track } from "../../context/Tracking";
 
 import { ConfigContext } from "../../context/Config";
 
@@ -21,6 +22,17 @@ export const ProgressStudent: FC<{
       PROGRESS_STUDENT_INFORMATION_TEXT_COLOR,
     } = useContext(ConfigContext);
 
+    useEffect(() => {
+      setTrackingData({
+        showingProgressStudenCycle: true,
+      });
+      return () => {
+        setTrackingData({
+          showingProgressStudenCycle: false,
+        });
+      };
+    }, []);
+
     return (
       <Flex alignItems="center" ml="1em">
         <Flex
@@ -28,7 +40,6 @@ export const ProgressStudent: FC<{
           borderRadius="10px 10px 10px 10px"
           alignItems="center"
           color={PROGRESS_STUDENT_INFORMATION_TEXT_COLOR}
-          cursor="pointer"
           transition="box-shadow 0.4s ease-in-out"
           data-testid="BoxContainer"
         >
