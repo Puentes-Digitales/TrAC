@@ -7,6 +7,7 @@ import {
   ProgramTable,
   StudentCourseTable,
   StudentTermTable,
+  STUDENT_EXTERNAL_EVALUATION_TABLE,
 } from "../db/tables";
 
 export const TermDataLoader = new DataLoader(
@@ -54,21 +55,25 @@ export const TakenCoursesDataLoader = new DataLoader(
       ids.map(async ({ year, term, student_id }) => {
         const takenCoursesData = await StudentCourseTable()
           .select("id", "course_taken", "course_equiv", "elect_equiv")
+          .unionAll(function () {
+            this.select(
+              "id",
+              "external_evaluation_taken",
+              "registration",
+              "state"
+            ).from(STUDENT_EXTERNAL_EVALUATION_TABLE);
+          })
           .where({
             year,
             term,
             student_id,
-          })
-          .orderBy([
-            { column: "course_taken", order: "desc" },
-            { column: "year", order: "desc" },
-            { column: "term", order: "desc" },
-            {
-              column: "state",
-              order: "asc",
-            },
-          ]);
-
+          });
+        // .orderBy([
+        //   { column: "course_taken", order: "desc" },
+        //   { column: "year", order: "desc" },
+        //   { column: "term", order: "desc" },
+        //   { column: "state", order: "asc" },
+        // ]);
         return uniqBy(takenCoursesData, ({ course_taken }) => course_taken);
       })
     );

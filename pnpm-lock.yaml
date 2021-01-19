@@ -44,7 +44,7 @@ dependencies:
   json-stringify-safe: 5.0.1
   json2csv: 5.0.5
   jsonwebtoken: 8.5.1
-  knex: 0.21.15_pg@8.5.1
+  knex: 0.21.16_pg@8.5.1
   lodash: 4.17.20
   lru_map: 0.4.1
   markdown-to-jsx: 7.1.0_react@17.0.1
@@ -54,11 +54,13 @@ dependencies:
   next: 10.0.4_c39e9db791ea05e3ec4e0e74abb7a6b5
   node-fetch: 2.6.1
   nprogress: 0.2.0
+  objection: 2.2.7_knex@0.21.16
   open: 7.3.0
   pg: 8.5.1
   pino: 6.8.0
   pino-pretty: 4.3.0
   randomstring: 1.1.5
+  raw: 0.1.4
   react: 17.0.1
   react-datepicker: 3.3.0_react-dom@17.0.1+react@17.0.1
   react-dom: 17.0.1_react@17.0.1
@@ -141,7 +143,7 @@ devDependencies:
   husky: 4.3.6
   jest: 26.6.3_ts-node@9.1.1
   jest-css-modules: 2.1.0
-  mock-knex: 0.4.9_knex@0.21.15
+  mock-knex: 0.4.9_knex@0.21.16
   npm-run-all: 4.1.5
   pm2: 4.5.1
   prettier: 2.2.1
@@ -239,6 +241,7 @@ packages:
       ts-invariant: 0.6.0
       tslib: 1.14.1
       zen-observable: 0.8.15
+    dev: false
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0
       react: ^16.8.0 || ^17.0.0
@@ -250,9 +253,38 @@ packages:
         optional: true
     resolution:
       integrity: sha512-XSm/STyNS8aHdDigLLACKNMHwI0qaQmEHWHtTP+jHe/E1wZRnn66VZMMgwKLy2V4uHISHfmiZ4KpUKDPeJAKqg==
+  /@apollo/client/3.3.7_graphql@15.4.0+react@17.0.1:
+    dependencies:
+      "@graphql-typed-document-node/core": 3.1.0_graphql@15.4.0
+      "@types/zen-observable": 0.8.2
+      "@wry/context": 0.5.3
+      "@wry/equality": 0.3.1
+      fast-json-stable-stringify: 2.1.0
+      graphql: 15.4.0
+      graphql-tag: 2.11.0_graphql@15.4.0
+      hoist-non-react-statics: 3.3.2
+      optimism: 0.14.0
+      prop-types: 15.7.2
+      react: 17.0.1
+      symbol-observable: 2.0.3
+      ts-invariant: 0.6.0
+      tslib: 1.14.1
+      zen-observable: 0.8.15
+    dev: true
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0
+      react: ^16.8.0 || ^17.0.0
+      subscriptions-transport-ws: ^0.9.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      subscriptions-transport-ws:
+        optional: true
+    resolution:
+      integrity: sha512-Cb0OqqvlehlRHtHIXRIS/Pe5WYU4hHl1FznXTRSxBAN42WmBUM3zy/Unvw183RdWMyV6Kc2pFKOEuaG1K7JTAQ==
   /@apollo/react-testing/4.0.0_graphql@15.4.0+react@17.0.1:
     dependencies:
-      "@apollo/client": 3.3.6_graphql@15.4.0+react@17.0.1
+      "@apollo/client": 3.3.7_graphql@15.4.0+react@17.0.1
     dev: true
     peerDependencies:
       graphql: "*"
@@ -3599,6 +3631,12 @@ packages:
       tslib: 1.14.1
     resolution:
       integrity: sha512-8/Ftr3jUZ4EXhACfSwPIfNsE8V6WKesdjp+Dxi78Bej6qlasAxiz0/F8j0miACRj9CL4vC5Y5FsfwwEYAuhWbg==
+  /@wry/trie/0.2.1:
+    dependencies:
+      tslib: 1.14.1
+    dev: true
+    resolution:
+      integrity: sha512-sYkuXZqArky2MLQCv4tLW6hX3N8AfTZ5ZMBc8jC6Yy35WYr82UYLLtjS7k/uRGHOA0yTSjuNadG6QQ6a5CS5hQ==
   /@xobotyi/scrollbar-width/1.9.5:
     dev: false
     resolution:
@@ -3727,7 +3765,7 @@ packages:
       fast-deep-equal: 3.1.3
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
-      uri-js: 4.4.0
+      uri-js: 4.4.1
     resolution:
       integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
   /ally.js/1.4.1:
@@ -5571,6 +5609,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-3VmRXEtw7RZKAf+4Tv1Ym9AGeo8r8+CjDi26x+7SYQil1UqtqdaokhzoEJohqlzt0m5kacJSDhJQkG/LWhpRBw==
+  /db-errors/0.2.3:
+    dev: false
+    resolution:
+      integrity: sha512-OOgqgDuCavHXjYSJoV2yGhv6SeG8nk42aoCSoyXLZUH7VwFG27rxbavU1z+VrZbZjphw5UkDQwUlD21MwZpUng==
   /de-indent/1.0.2:
     dev: true
     optional: true
@@ -9054,7 +9096,7 @@ packages:
       node: ">= 8"
     resolution:
       integrity: sha512-ZRbnvdg/NxqzC7L9Uyqzf4psi1OM4Cuc+sJAkQPjO6XkQIJTNbfK2Rsmbw8fx1p2mkZdp2FZYo2+LwXYY/uwIA==
-  /knex/0.21.15_pg@8.5.1:
+  /knex/0.21.16_pg@8.5.1:
     dependencies:
       colorette: 1.2.1
       commander: 6.2.1
@@ -9091,7 +9133,7 @@ packages:
       sqlite3:
         optional: true
     resolution:
-      integrity: sha512-STHnPIIkExZVz0X3zIDaWC/q9EcTAfuuRE5Rev7NpOhF1QVh24K5iT2FXD0nWoJ1BUSeDs5QdgdTaz9H8oEtfg==
+      integrity: sha512-M3FTFfby49AEngsx/0UXEJEMnKMjPjeKOtvk+AY6d6kboz9NsT7xDudl0wRNj+S0lq0yearCSb1v+YxgbU/kWA==
   /latest-version/5.1.0:
     dependencies:
       package-json: 6.5.0
@@ -9707,10 +9749,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
-  /mock-knex/0.4.9_knex@0.21.15:
+  /mock-knex/0.4.9_knex@0.21.16:
     dependencies:
       bluebird: 3.7.2
-      knex: 0.21.15_pg@8.5.1
+      knex: 0.21.16_pg@8.5.1
       lodash: 4.17.20
       semver: 5.7.1
     dev: true
@@ -10227,6 +10269,18 @@ packages:
       node: ">=0.10.0"
     resolution:
       integrity: sha1-h6EKxMFpS9Lhy/U1kaZhQftd10c=
+  /objection/2.2.7_knex@0.21.16:
+    dependencies:
+      ajv: 6.12.6
+      db-errors: 0.2.3
+      knex: 0.21.16_pg@8.5.1
+    dev: false
+    engines:
+      node: ">=8.0.0"
+    peerDependencies:
+      knex: 0.x
+    resolution:
+      integrity: sha512-B/joqs+HFi/v3LzQxuO9JBca+0JkOXt/qfLs9kNCNbOX6pbvsAflaNxB2p7tpe9JI6gUm81qJ8Khje/70CcXfw==
   /on-finished/2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -10278,8 +10332,16 @@ packages:
   /optimism/0.13.2:
     dependencies:
       "@wry/context": 0.5.3
+    dev: false
     resolution:
       integrity: sha512-kJkpDUEs/Rp8HsAYYlDzyvQHlT6YZa95P+2GGNR8p/VvsIkt6NilAk7oeTvMRKCq7BeclB7+bmdIexog2859GQ==
+  /optimism/0.14.0:
+    dependencies:
+      "@wry/context": 0.5.3
+      "@wry/trie": 0.2.1
+    dev: true
+    resolution:
+      integrity: sha512-ygbNt8n4DOCVpkwiLF+IrKKeNHOjtr9aXLWGP9HNJGoblSGsnVbJLstcH6/nE9Xy5ZQtlkSioFQNnthmENW6FQ==
   /optionator/0.8.3:
     dependencies:
       deep-is: 0.1.3
@@ -11287,6 +11349,10 @@ packages:
       node: ">= 0.8"
     resolution:
       integrity: sha512-9WmIKF6mkvA0SLmA2Knm9+qj89e+j1zqgyn8aXGd7+nAduPoqgI9lO57SAZNn/Byzo5P7JhXTyg9PzaJbH73bA==
+  /raw/0.1.4:
+    dev: false
+    resolution:
+      integrity: sha1-gehe3IXbqAit2OjdS9RlPBRdllY=
   /rc/1.2.8:
     dependencies:
       deep-extend: 0.6.0
@@ -13754,11 +13820,11 @@ packages:
     dev: true
     resolution:
       integrity: sha512-KgdgDGJt2TpuwBUIjgG6lzw2GWFRCW9Qkfkiv0DxqHHLYJHmtmdUIKcZd8rHgFSjopVTlw6ggzCm1b8MFQwikg==
-  /uri-js/4.4.0:
+  /uri-js/4.4.1:
     dependencies:
       punycode: 2.1.1
     resolution:
-      integrity: sha512-B0yRTzYdUCCn9n+F4+Gh4yIDtMQcaJsmYBDsTSG8g/OejKBodLQ2IHfN3bM7jUsRXndopT7OIXWdYqc1fjmV6g==
+      integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   /urix/0.1.0:
     deprecated: "Please see https://github.com/lydell/urix#deprecated"
     resolution:
@@ -14455,7 +14521,7 @@ specifiers:
   json-stringify-safe: ^5.0.1
   json2csv: ^5.0.5
   jsonwebtoken: ^8.5.1
-  knex: ^0.21.15
+  knex: ^0.21.16
   lodash: ^4.17.20
   lru_map: ^0.4.1
   markdown-to-jsx: ^7.1.0
@@ -14467,6 +14533,7 @@ specifiers:
   node-fetch: ^2.6.1
   npm-run-all: ^4.1.5
   nprogress: ^0.2.0
+  objection: ^2.2.7
   open: ^7.3.0
   pg: ^8.5.1
   pino: ^6.8.0
@@ -14475,6 +14542,7 @@ specifiers:
   prettier: ^2.2.1
   pretty-quick: ^3.1.0
   randomstring: ^1.1.5
+  raw: ^0.1.4
   react: ^17.0.1
   react-datepicker: ^3.3.0
   react-dom: ^17.0.1

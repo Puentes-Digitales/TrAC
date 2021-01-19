@@ -6,6 +6,8 @@ import {
   CourseStatsTable,
   CourseTable,
   ICourse,
+  EXTERNAL_EVALUATION_STATS_TABLE,
+  EXTERNAL_EVALUATION_TABLE,
   ProgramStructureTable,
 } from "../db/tables";
 import { clearErrorArray } from "../utils/clearErrorArray";
@@ -82,7 +84,12 @@ export const CourseFlowDataLoader = new DataLoader(
 export const CourseDataLoader = new DataLoader(
   async (ids: readonly string[]) => {
     const dataDict: Dictionary<ICourse | undefined> = keyBy(
-      await CourseTable().select("*").whereIn("id", ids),
+      await CourseTable()
+        .select("*")
+        .unionAll(function () {
+          this.select("*").from(EXTERNAL_EVALUATION_TABLE);
+        })
+        .whereIn("id", ids),
       "id"
     );
     return ids.map((id) => {
@@ -98,7 +105,6 @@ export const CourseAndStructureDataLoader = new DataLoader(
   async (keys: readonly { id: number; code: string }[]) => {
     const [courseTableData, programStructureData] = await Promise.all([
       CourseDataLoader.loadMany(keys.map(({ code }) => code)),
-
       ProgramStructureTable()
         .select("*")
         .whereIn(
@@ -128,7 +134,12 @@ export const CourseAndStructureDataLoader = new DataLoader(
 export const CourseStatsDataLoader = new DataLoader(
   async (codes: readonly string[]) => {
     const groupedData = groupBy(
-      await CourseStatsTable().select("*").whereIn("course_taken", codes),
+      await CourseStatsTable()
+        .select("*")
+        .unionAll(function () {
+          this.select("*").from(EXTERNAL_EVALUATION_STATS_TABLE);
+        })
+        .whereIn("course_taken", codes),
       "course_taken"
     );
 

@@ -48,7 +48,7 @@ export type Course = {
   credits: Array<Credit>;
   flow: Array<Course>;
   historicalDistribution: Array<DistributionValue>;
-  /** Course-Semester-Curriculum-Program ID */
+  /** Course-Semester-Curriculum-Program ID  */
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
@@ -63,16 +63,6 @@ export type Credit = {
 export type Curriculum = {
   id: Scalars["String"];
   semesters: Array<Semester>;
-};
-
-export type DiagnosticTest = {
-  bandColors: Array<BandColor>;
-  code: Scalars["String"];
-  historicalDistribution: Array<DistributionValue>;
-  /** DiagnosticTest-Semester-Curriculum-Program ID */
-  id: Scalars["Int"];
-  mention: Scalars["String"];
-  name: Scalars["String"];
 };
 
 export type DistributionValue = {
@@ -93,6 +83,16 @@ export type Employed = {
   employed: Scalars["Boolean"];
   institution?: Maybe<Scalars["String"]>;
   months_to_first_job?: Maybe<Scalars["Float"]>;
+};
+
+export type ExternalEvaluation = {
+  bandColors: Array<BandColor>;
+  code: Scalars["String"];
+  historicalDistribution: Array<DistributionValue>;
+  /** ExternalEvaluation-Semester-Curriculum-Program ID  */
+  id: Scalars["Int"];
+  mention: Scalars["String"];
+  name: Scalars["String"];
 };
 
 export type FeedbackAnswer = {
@@ -347,7 +347,7 @@ export type QueryUserPersistencesArgs = {
 
 export type Semester = {
   courses: Array<Course>;
-  diagnostictests: Array<DiagnosticTest>;
+  externalEvaluations: Array<ExternalEvaluation>;
   id: Scalars["Int"];
 };
 
@@ -392,7 +392,7 @@ export type TakenCourse = {
   state: StateCourse;
 };
 
-export type TakenDiagnosticTest = {
+export type TakenExternalEvaluation = {
   bandColors: Array<BandColor>;
   code: Scalars["String"];
   currentDistribution: Array<DistributionValue>;
@@ -413,7 +413,7 @@ export type Term = {
   situation: Scalars["String"];
   student_id: Scalars["String"];
   takenCourses: Array<TakenCourse>;
-  takenDiagnosticTests: Array<TakenDiagnosticTest>;
+  takenExternalEvaluations: Array<TakenExternalEvaluation>;
   term: TermType;
   year: Scalars["Int"];
 };

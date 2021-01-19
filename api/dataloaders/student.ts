@@ -122,7 +122,6 @@ export const StudentTermsDataLoader = new DataLoader(
         for (const studentTerm of studentTermData) {
           TermDataLoader.prime(studentTerm.id, studentTerm);
         }
-
         return studentTermData;
       })
     );

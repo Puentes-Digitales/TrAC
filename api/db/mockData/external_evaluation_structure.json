@@ -2,6 +2,7 @@
   {
     "id": 1701,
     "program_id": 1708,
+    "curriculum": "2017",
     "year": 2017,
     "semester": 1,
     "external_evaluation_id": "EID-17",
@@ -16,6 +17,7 @@
   {
     "id": 1702,
     "program_id": 1708,
+    "curriculum": "2017",
     "year": 2017,
     "semester": 7,
     "external_evaluation_id": "END-17",
@@ -30,6 +32,7 @@
   {
     "id": 1501,
     "program_id": 1708,
+    "curriculum": "2015",
     "year": 2015,
     "semester": 1,
     "external_evaluation_id": "EID-15",
@@ -44,6 +47,7 @@
   {
     "id": 1502,
     "program_id": 1708,
+    "curriculum": "2015",
     "year": 2015,
     "semester": 7,
     "external_evaluation_id": "END-15",
@@ -58,6 +62,7 @@
   {
     "id": 1301,
     "program_id": 1700,
+    "curriculum": "2013",
     "year": 2013,
     "semester": 1,
     "external_evaluation_id": "EID-13",
@@ -72,6 +77,7 @@
   {
     "id": 1302,
     "program_id": 1700,
+    "curriculum": "2013",
     "year": 2013,
     "semester": 7,
     "external_evaluation_id": "END-13",

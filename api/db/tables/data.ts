@@ -91,7 +91,8 @@ export const ProgramStructureTable = () =>
 export interface IExternalEvaluationStructure {
   id: number;
   program_id: string;
-  year: string;
+  curriculum: string;
+  year: number;
   semester: number;
   external_evaluation_id: string;
   credits: number;
@@ -230,6 +231,7 @@ export const StudentAdmissionTable = () =>
 // -------------------------------------------------------------------------------------
 export interface IStudentExternalEvaluation {
   id: number;
+  curriculum: number;
   year: number;
   term: number;
   student_id: string;

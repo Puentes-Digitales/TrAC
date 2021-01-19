@@ -341,7 +341,8 @@ const migration = async () => {
           (table) => {
             table.integer("id", 8).notNullable().primary();
             table.text("program_id").notNullable();
-            table.text("year").notNullable();
+            table.text("curriculum").notNullable();
+            table.integer("year").notNullable();
             table.integer("semester", 4).notNullable();
             table.text("external_evaluation_id").notNullable();
             table.float("credits", 8).notNullable();
@@ -356,11 +357,11 @@ const migration = async () => {
         await ExternalEvaluationStructureTable().insert(
           (
             await import("./mockData/external_evaluation_structure.json")
-          ).default.map(({ program_id, year, ...rest }) => {
+          ).default.map(({ program_id, curriculum, ...rest }) => {
             return {
               ...rest,
               program_id: program_id.toString(),
-              year: year.toString(),
+              curriculum: curriculum.toString(),
             };
           })
         );
@@ -444,6 +445,7 @@ const migration = async () => {
           table.text("mention").notNullable();
           table.integer("last_term", 4).notNullable();
           table.integer("n_courses", 8).notNullable();
+          table.integer("n_passed_courses", 8).notNullable();
           table.float("completion", 4).notNullable();
         });
         await StudentProgramTable().insert(
@@ -517,7 +519,7 @@ const migration = async () => {
         await dbData.schema.createTable(
           STUDENT_EXTERNAL_EVALUATION_TABLE,
           (table) => {
-            table.text("id").notNullable().primary();
+            table.integer("id").notNullable().primary();
             table.integer("year").notNullable();
             table.integer("term").notNullable();
             table.text("student_id").notNullable();

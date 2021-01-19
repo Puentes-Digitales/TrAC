@@ -24,6 +24,7 @@ import {
   ProgramDataLoader,
   StudentProgramCurriculumsDataLoader,
   StudentProgramDataLoader,
+  // CurriculumsExternalEvaluationDataLoader,
 } from "../../dataloaders/program";
 import { ProgramTable, UserProgramsTable } from "../../db/tables";
 import { Program } from "../../entities/data/program";
@@ -38,7 +39,6 @@ import type {
   IfImplements,
 } from "../../../interfaces/utils";
 import type { PartialCourse } from "./course";
-// import type { PartialExternalEvaluation } from "./externalEvaluation";
 
 export type PartialProgram = Pick<Program, "id">;
 
