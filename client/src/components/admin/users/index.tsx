@@ -229,11 +229,13 @@ export const Users: FC<{
 
               <Table.HeaderCell
                 sorted={
-                  column === "config.SHOW_STUDENT_CYCLE" ? direction : undefined
+                  column === "config.SHOW_PROGRESS_STUDENT_CYCLE"
+                    ? direction
+                    : undefined
                 }
-                onClick={handleSort("config.SHOW_STUDENT_CYCLE")}
+                onClick={handleSort("config.SHOW_PROGRESS_STUDENT_CYCLE")}
               >
-                show_student_cycle
+                show_progress_student_cycle
               </Table.HeaderCell>
               <Table.HeaderCell
                 sorted={
@@ -346,7 +348,7 @@ export const Users: FC<{
                             <Icon
                               circular
                               name={
-                                configObj?.SHOW_STUDENT_CYCLE
+                                configObj?.SHOW_PROGRESS_STUDENT_CYCLE
                                   ? "check circle outline"
                                   : "times circle outline"
                               }

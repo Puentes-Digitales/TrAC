@@ -478,7 +478,7 @@ export function Dashboard() {
           />
         );
       }
-      if (user?.config?.SHOW_STUDENT_CYCLE) {
+      if (user?.config?.SHOW_PROGRESS_STUDENT_CYCLE) {
         ProgressStudentComponent = (
           <ProgressStudent
             n_course_bachiller={studentData.n_courses_bachelor}

@@ -172,7 +172,7 @@ const migration = async () => {
             ...baseUserConfig,
             SHOW_STUDENT_COMPLEMENTARY_INFORMATION: true,
             SHOW_DROPOUT: true,
-            SHOW_STUDENT_CYCLE: true,
+            SHOW_PROGRESS_STUDENT_CYCLE: true,
             SHOW_STUDENT_LIST: true,
             FOREPLAN: true,
           },
@@ -445,7 +445,7 @@ const migration = async () => {
           table.text("mention").notNullable();
           table.integer("last_term", 4).notNullable();
           table.integer("n_courses", 8).notNullable();
-          table.integer("n_passed_courses", 8).notNullable();
+          table.integer("n_passed_courses", 4).notNullable();
           table.float("completion", 4).notNullable();
         });
         await StudentProgramTable().insert(
