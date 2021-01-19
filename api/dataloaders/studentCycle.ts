@@ -7,7 +7,8 @@ import {
   PROGRAM_STRUCTURE_TABLE,
   STUDENT_COURSE_TABLE,
 } from "../db/tables";
-export const StudentBachillerCourseDataLoader = new DataLoader(
+
+export const StudentListCyclesDataLoader = new DataLoader(
   async (
     keys: readonly {
       program_id: string;
@@ -16,10 +17,37 @@ export const StudentBachillerCourseDataLoader = new DataLoader(
   ) => {
     return await Promise.all(
       keys.map(({ program_id, curriculum }) => {
+        return ProgramStructureTable()
+          .distinct("course_cat")
+          .whereNot("course_cat", "")
+          .where({
+            program_id: program_id,
+            curriculum: curriculum,
+          })
+          .groupBy("course_cat");
+      })
+    );
+  },
+
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentCourseListDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+      curriculum: string;
+      course_cat: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ program_id, curriculum, course_cat }) => {
         return ProgramStructureTable().count("course_id").where({
           program_id: program_id,
           curriculum: curriculum,
-          course_cat: "bachillerato",
+          course_cat: course_cat,
         });
       })
     );
@@ -30,39 +58,17 @@ export const StudentBachillerCourseDataLoader = new DataLoader(
   }
 );
 
-export const StudentLicentiateCourseDataLoader = new DataLoader(
-  async (
-    keys: readonly {
-      program_id: string;
-      curriculum: string;
-    }[]
-  ) => {
-    return await Promise.all(
-      keys.map(({ program_id, curriculum }) => {
-        return ProgramStructureTable().count("course_id").where({
-          program_id: program_id,
-          curriculum: curriculum,
-          course_cat: "licenciatura",
-        });
-      })
-    );
-  },
-
-  {
-    cacheMap: new LRUMap(1000),
-  }
-);
-
-export const StudentBachillerApprovedCourseDataLoader = new DataLoader(
+export const StudentCycleApprovedCourseDataLoader = new DataLoader(
   async (
     keys: readonly {
       program_id: string;
       curriculum: string;
       student_id: string;
+      course_cat: string;
     }[]
   ) => {
     return await Promise.all(
-      keys.map(({ program_id, curriculum, student_id }) => {
+      keys.map(({ program_id, curriculum, student_id, course_cat }) => {
         return ProgramStructureTable()
           .count("course_id")
           .innerJoin<IStudentCourse>(STUDENT_COURSE_TABLE, function () {
@@ -78,7 +84,7 @@ export const StudentBachillerApprovedCourseDataLoader = new DataLoader(
           .where({
             program_id: program_id,
             curriculum: curriculum,
-            course_cat: "bachillerato",
+            course_cat: course_cat,
             state: "A",
             student_id: student_id,
           });
@@ -90,50 +96,3 @@ export const StudentBachillerApprovedCourseDataLoader = new DataLoader(
     cacheMap: new LRUMap(1000),
   }
 );
-
-export const StudentLicentiateApprovedCourseDataLoader = new DataLoader(
-  async (
-    keys: readonly {
-      program_id: string;
-      curriculum: string;
-      student_id: string;
-    }[]
-  ) => {
-    return await Promise.all(
-      keys.map(({ program_id, curriculum, student_id }) => {
-        return ProgramStructureTable()
-          .count("course_id")
-          .innerJoin<IStudentCourse>(STUDENT_COURSE_TABLE, function () {
-            this.on(
-              `${PROGRAM_STRUCTURE_TABLE}.course_id`,
-              `${STUDENT_COURSE_TABLE}.course_taken`
-            );
-            this.orOn(
-              `${PROGRAM_STRUCTURE_TABLE}.course_id`,
-              `${STUDENT_COURSE_TABLE}.course_equiv`
-            );
-          })
-          .where({
-            program_id: program_id,
-            curriculum: curriculum,
-            course_cat: "licenciatura",
-            state: "A",
-            student_id: student_id,
-          });
-      })
-    );
-  },
-
-  {
-    cacheMap: new LRUMap(1000),
-  }
-);
-
-/*
-  select course_id from program_structure WHERE program_id='1708' and curriculum='2015' 
-and course_cat='bachillerato';
- */
-
-/* select count(course_id) from program_structure as A join student_course as B on A.course_id=B.course_taken 
-and B.state='A' and A.program_id='1708' and A.curriculum='2015' and course_cat='bachillerato' and student_id='6fdb8a7f5bbaf0c68dbca0f5462e866a'
-*/

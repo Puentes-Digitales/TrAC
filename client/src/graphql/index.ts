@@ -367,10 +367,8 @@ export type Student = {
   employed: Employed;
   id: Scalars["ID"];
   mention: Scalars["String"];
-  n_courses_bachelor: Scalars["Float"];
-  n_courses_licentiate: Scalars["Float"];
-  n_passed_courses_bachelor: Scalars["Float"];
-  n_passed_courses_licentiate: Scalars["Float"];
+  n_courses_cycles: Array<Scalars["Float"]>;
+  n_cycles: Array<Scalars["String"]>;
   name: Scalars["String"];
   programs: Array<Program>;
   progress: Scalars["Float"];
@@ -697,10 +695,8 @@ export type SearchStudentMutation = {
       | "id"
       | "curriculums"
       | "start_year"
-      | "n_courses_bachelor"
-      | "n_passed_courses_bachelor"
-      | "n_courses_licentiate"
-      | "n_passed_courses_licentiate"
+      | "n_courses_cycles"
+      | "n_cycles"
       | "mention"
     > & {
       programs: Array<Pick<Program, "id" | "name">>;
@@ -2049,10 +2045,8 @@ export const SearchStudentDocument = gql`
       }
       curriculums
       start_year
-      n_courses_bachelor
-      n_passed_courses_bachelor
-      n_courses_licentiate
-      n_passed_courses_licentiate
+      n_courses_cycles
+      n_cycles
       mention
       terms {
         id

@@ -30,10 +30,9 @@ import {
 } from "../../dataloaders/student";
 
 import {
-  StudentBachillerCourseDataLoader,
-  StudentBachillerApprovedCourseDataLoader,
-  StudentLicentiateApprovedCourseDataLoader,
-  StudentLicentiateCourseDataLoader,
+  StudentListCyclesDataLoader,
+  StudentCourseListDataLoader,
+  StudentCycleApprovedCourseDataLoader,
 } from "../../dataloaders/studentCycle";
 import { StudentProgramTable, UserProgramsTable } from "../../db/tables";
 import { Student } from "../../entities/data/student";
@@ -250,50 +249,48 @@ export class StudentResolver {
   }
 
   @FieldResolver()
-  async n_courses_bachelor(
-    @Root() { id, programs, curriculums }: PartialStudent
-  ): Promise<$PropertyType<Student, "n_courses_bachelor">> {
-    const n_courses = await StudentBachillerCourseDataLoader.load({
+  async n_cycles(
+    @Root() { programs, curriculums }: PartialStudent
+  ): Promise<$PropertyType<Student, "n_cycles">> {
+    const total_cycles = await StudentListCyclesDataLoader.load({
       program_id: programs![0]["id"],
       curriculum: curriculums!,
     });
-    return Number(n_courses[0]["count"]);
-  }
+    const list_cycle = total_cycles.map((d) => d.course_cat);
 
-  @FieldResolver()
-  async n_passed_courses_bachelor(
-    @Root() { id, programs, curriculums }: PartialStudent
-  ): Promise<$PropertyType<Student, "n_courses_bachelor">> {
-    const n_passed = await StudentBachillerApprovedCourseDataLoader.load({
-      program_id: programs![0]["id"],
-      curriculum: curriculums!,
-      student_id: id,
-    });
-    return Number(n_passed[0]["count"]);
+    return list_cycle;
   }
-
   @FieldResolver()
-  async n_courses_licentiate(
-    @Root() { id, programs, curriculums }: PartialStudent
-  ): Promise<$PropertyType<Student, "n_courses_bachelor">> {
-    const nlicentiate = await StudentLicentiateCourseDataLoader.load({
+  async n_courses_cycles(
+    @Root() { programs, curriculums, id }: PartialStudent
+  ): Promise<$PropertyType<Student, "n_courses_cycles">> {
+    const total_cycles = await StudentListCyclesDataLoader.load({
       program_id: programs![0]["id"],
       curriculum: curriculums!,
     });
-    return Number(nlicentiate[0]["count"]);
-  }
 
-  @FieldResolver()
-  async n_passed_courses_licentiate(
-    @Root() { id, programs, curriculums }: PartialStudent
-  ): Promise<$PropertyType<Student, "n_courses_bachelor">> {
-    const nlicentiateapproved = await StudentLicentiateApprovedCourseDataLoader.load(
-      {
+    const list_cycle = total_cycles.map((d) => d.course_cat);
+    var valores_totales = [];
+
+    for await (let cycle of list_cycle) {
+      const n_courses = await StudentCourseListDataLoader.load({
         program_id: programs![0]["id"],
         curriculum: curriculums!,
-        student_id: id,
-      }
-    );
-    return Number(nlicentiateapproved[0]["count"]);
+        course_cat: cycle,
+      });
+      const n_approved_courses = await StudentCycleApprovedCourseDataLoader.load(
+        {
+          program_id: programs![0]["id"],
+          curriculum: curriculums!,
+          student_id: id,
+          course_cat: cycle,
+        }
+      );
+
+      valores_totales.push(Number(n_courses[0]["count"]));
+      valores_totales.push(Number(n_approved_courses[0]["count"]));
+    }
+
+    return valores_totales;
   }
 }

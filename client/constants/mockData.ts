@@ -5912,10 +5912,9 @@ const data: {
           ],
         },
       ],
-      n_courses_bachelor: 24,
-      n_courses_licentiate: 25,
-      n_passed_courses_bachelor: 20,
-      n_passed_courses_licentiate: 1,
+      n_cycles : ["bachillerato","licenciatura"],
+      n_courses_cycles: [24,20,25,1],
+
       dropout: {
         prob_dropout: 60.56,
         model_accuracy: 0.82,
@@ -5933,7 +5932,7 @@ const data: {
         institution: "Liceo Recto Armando Robles",
         months_to_first_job: 15,
       },
-     
+
     },
   },
 
