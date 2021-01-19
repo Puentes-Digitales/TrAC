@@ -80,6 +80,10 @@ export const StudentCycleApprovedCourseDataLoader = new DataLoader(
               `${PROGRAM_STRUCTURE_TABLE}.course_id`,
               `${STUDENT_COURSE_TABLE}.course_equiv`
             );
+            this.orOn(
+              `${PROGRAM_STRUCTURE_TABLE}.course_id`,
+              `${STUDENT_COURSE_TABLE}.elect_equiv`
+            );
           })
           .where({
             program_id: program_id,
