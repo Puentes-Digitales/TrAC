@@ -2,52 +2,52 @@ import { toInteger, toNumber } from "lodash";
 import { FieldResolver, Resolver, Root } from "type-graphql";
 
 import {
-  DiagnosticTestAndStructureDataLoader,
-  DiagnosticTestStatsDataLoader,
-} from "../../dataloaders/diagnosticTest";
-import { DiagnosticTest } from "../../entities/data/diagnosticTest";
+  ExternalEvaluationAndStructureDataLoader,
+  ExternalEvaluationStatsDataLoader,
+} from "../../dataloaders/externalEvaluation";
+import { ExternalEvaluation } from "../../entities/data/externalEvaluation";
 
 import type { $PropertyType } from "utility-types";
 
-export type PartialDiagnosticTest = Pick<DiagnosticTest, "id" | "code">;
+export type PartialExternalEvaluation = Pick<ExternalEvaluation, "id" | "code">;
 
 /**
  * These resolvers assumes that they will always have access to:
  * "id" which comes from program_structure => id
  * "code" which comes from program_structure => code
  */
-@Resolver(() => DiagnosticTest)
-export class DiagnosticTestResolver {
+@Resolver(() => ExternalEvaluation)
+export class ExternalEvaluationResolver {
   @FieldResolver()
   async name(
     @Root()
-    { id, code }: PartialDiagnosticTest
-  ): Promise<$PropertyType<DiagnosticTest, "name">> {
+    { id, code }: PartialExternalEvaluation
+  ): Promise<$PropertyType<ExternalEvaluation, "name">> {
     return (
-      (await DiagnosticTestAndStructureDataLoader.load({ id, code }))
-        ?.diagnosticTestTable?.name ?? ""
+      (await ExternalEvaluationAndStructureDataLoader.load({ id, code }))
+        ?.externalEvaluationTable?.name ?? ""
     );
   }
 
   @FieldResolver()
   async mention(
-    @Root() { id, code }: PartialDiagnosticTest
-  ): Promise<$PropertyType<DiagnosticTest, "mention">> {
+    @Root() { id, code }: PartialExternalEvaluation
+  ): Promise<$PropertyType<ExternalEvaluation, "mention">> {
     return (
       (
-        await DiagnosticTestAndStructureDataLoader.load({
+        await ExternalEvaluationAndStructureDataLoader.load({
           id,
           code,
         })
-      )?.programStructureTable?.mention ?? ""
+      )?.externalEvaluationtructureTable?.mention ?? ""
     );
   }
 
   @FieldResolver()
   async historicalDistribution(
-    @Root() { code }: PartialDiagnosticTest
-  ): Promise<$PropertyType<DiagnosticTest, "historicalDistribution">> {
-    const histogramData = await DiagnosticTestStatsDataLoader.load(code);
+    @Root() { code }: PartialExternalEvaluation
+  ): Promise<$PropertyType<ExternalEvaluation, "historicalDistribution">> {
+    const histogramData = await ExternalEvaluationStatsDataLoader.load(code);
 
     const reducedHistogramData =
       histogramData?.reduce<Record<number, { label: string; value: number }>>(
@@ -71,10 +71,10 @@ export class DiagnosticTestResolver {
 
   @FieldResolver()
   async bandColors(
-    @Root() { code }: PartialDiagnosticTest
-  ): Promise<$PropertyType<DiagnosticTest, "bandColors">> {
+    @Root() { code }: PartialExternalEvaluation
+  ): Promise<$PropertyType<ExternalEvaluation, "bandColors">> {
     const bandColorsData = (
-      await DiagnosticTestStatsDataLoader.load(code)
+      await ExternalEvaluationStatsDataLoader.load(code)
     )?.[0];
 
     if (bandColorsData === undefined) {

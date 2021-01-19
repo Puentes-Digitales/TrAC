@@ -24,6 +24,7 @@ import {
   ProgramDataLoader,
   StudentProgramCurriculumsDataLoader,
   StudentProgramDataLoader,
+  // CurriculumsExternalEvaluationDataLoader,
 } from "../../dataloaders/program";
 import { ProgramTable, UserProgramsTable } from "../../db/tables";
 import { Program } from "../../entities/data/program";
@@ -38,7 +39,6 @@ import type {
   IfImplements,
 } from "../../../interfaces/utils";
 import type { PartialCourse } from "./course";
-import type { PartialDiagnosticTest } from "./diagnosticTest";
 
 export type PartialProgram = Pick<Program, "id">;
 
@@ -253,7 +253,6 @@ export class ProgramResolver {
         semesters: {
           id: number;
           courses: PartialCourse[];
-          diagnostictests: PartialDiagnosticTest[];
         }[];
       }[],
       $PropertyType<Program, "curriculums">

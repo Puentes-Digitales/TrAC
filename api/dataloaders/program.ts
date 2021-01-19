@@ -4,9 +4,10 @@ import { LRUMap } from "lru_map";
 
 import {
   IProgram,
-  ProgramStructureTable,
+  ExternalEvaluationStructureTable,
   ProgramTable,
   StudentProgramTable,
+  PROGRAM_STRUCTURE_TABLE,
 } from "../db/tables";
 
 import type { Curriculum } from "../entities/data/program";
@@ -97,15 +98,29 @@ export const CurriculumsDataLoader = new DataLoader(
     return await Promise.all(
       keys.map(async ({ program_id, curriculumsIds }) => {
         const data = curriculumsIds
-          ? await ProgramStructureTable()
-              .select("id", "curriculum", "semester", "course_id")
+          ? await ExternalEvaluationStructureTable()
+              .select("id", "curriculum", "semester", "external_evaluation_id")
+              .unionAll(function () {
+                this.select("id", "curriculum", "semester", "course_id")
+                  .from(PROGRAM_STRUCTURE_TABLE)
+                  .where({ program_id })
+                  .whereIn(
+                    "curriculum",
+                    curriculumsIds.map(({ id }) => id)
+                  );
+              })
               .where({ program_id })
               .whereIn(
                 "curriculum",
                 curriculumsIds.map(({ id }) => id)
               )
-          : await ProgramStructureTable()
-              .select("id", "curriculum", "semester", "course_id")
+          : await ExternalEvaluationStructureTable()
+              .select("id", "curriculum", "semester", "external_evaluation_id")
+              .unionAll(function () {
+                this.select("id", "curriculum", "semester", "course_id")
+                  .from(PROGRAM_STRUCTURE_TABLE)
+                  .where({ program_id });
+              })
               .where({ program_id });
 
         const curriculums = data.reduce<
@@ -121,15 +136,11 @@ export const CurriculumsDataLoader = new DataLoader(
                     id: number /* Course-semester-curriculum id (program_structure => id) */;
                     code: string /* Course id (program_structure => course_id) */;
                   }[];
-                  diagnostictests: {
-                    id: number /* Course-semester-curriculum id (program_structure => id) */;
-                    code: string /* Course id (program_structure => course_id) */;
-                  }[];
                 }
               >;
             }
           >
-        >((acum, { curriculum, semester, course_id, id }) => {
+        >((acum, { curriculum, semester, external_evaluation_id, id }) => {
           defaultsDeep(acum, {
             [curriculum]: {
               id: curriculum,
@@ -137,7 +148,6 @@ export const CurriculumsDataLoader = new DataLoader(
                 [semester]: {
                   id: semester,
                   courses: [],
-                  diagnostictests: [],
                 },
               },
             },
@@ -145,11 +155,7 @@ export const CurriculumsDataLoader = new DataLoader(
 
           acum[curriculum].semesters[semester].courses.push({
             id,
-            code: course_id,
-          });
-          acum[curriculum].semesters[semester].diagnostictests.push({
-            id,
-            code: course_id,
+            code: external_evaluation_id,
           });
 
           return acum;
@@ -158,15 +164,12 @@ export const CurriculumsDataLoader = new DataLoader(
         return Object.values(curriculums).map(({ id, semesters }) => {
           return {
             id,
-            semesters: Object.values(semesters).map(
-              ({ id, courses, diagnostictests }) => {
-                return {
-                  id,
-                  courses,
-                  diagnostictests,
-                };
-              }
-            ),
+            semesters: Object.values(semesters).map(({ id, courses }) => {
+              return {
+                id,
+                courses,
+              };
+            }),
           };
         });
       })

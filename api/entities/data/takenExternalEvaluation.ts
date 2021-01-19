@@ -3,40 +3,40 @@ import { Field, Int, ObjectType, registerEnumType } from "type-graphql";
 import { StateCourse } from "../../../client/constants";
 import { BandColor, DistributionValue } from "./distribution";
 
-import type { DiagnosticTest } from "./diagnosticTest";
+import type { ExternalEvaluation } from "./externalEvaluation";
 registerEnumType(StateCourse, {
   name: "StateCourse",
   description: "Possible states of a taken course",
 });
 
 @ObjectType({ simpleResolvers: true })
-export class TakenDiagnosticTest
-  implements Pick<DiagnosticTest, "code" | "name"> {
-  // student_diagnostic_test => id
+export class TakenExternalEvaluation
+  implements Pick<ExternalEvaluation, "code" | "name"> {
+  // student_external_evaluation => id
   @Field(() => Int)
   id: number;
 
-  // student_diagnostic_test => diagnostic_test_taken
+  // student_external_evaluation => external_evaluation_taken
   @Field()
   code: string;
 
-  // course => name | helper field, probably isn't needed
+  // external_evaluation => name | helper field, probably isn't needed
   @Field()
   name: string;
 
-  // student_diagnostic_test => registration
+  // student_external_evaluation => registration
   @Field()
   registration: string;
 
-  // student_diagnostic_test => grade
+  // student_external_evaluation => grade
   @Field()
   grade: number;
 
-  // student_diagnostic_test => state
+  // student_external_evaluation => state
   @Field(() => StateCourse)
   state: StateCourse;
 
-  // student_diagnostic_test => p_group
+  // student_external_evaluation => p_group
   @Field(() => Int)
   parallelGroup: number;
 
