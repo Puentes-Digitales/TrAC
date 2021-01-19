@@ -29,6 +29,71 @@ const data: {
               id: 1,
               courses: [
                 {
+                  code: "EID-17",
+                  name: "PRUEBA INICIAL DIAGNÓSTICA",
+                  credits: [
+                    {
+                      label: "Créditos",
+                      value: 0,
+                    },
+                    {
+                      label: "SCT",
+                      value: -1,
+                    },
+                  ],
+                  mention: "",
+                  flow: [],
+                  requisites: [],
+                  historicalDistribution: [
+                    {
+                      label: "1-2",
+                      value: 56,
+                    },
+                    {
+                      label: "2-3",
+                      value: 233,
+                    },
+                    {
+                      label: "3-4",
+                      value: 942,
+                    },
+                    {
+                      label: "4-5",
+                      value: 1111,
+                    },
+                    {
+                      label: "5-6",
+                      value: 788,
+                    },
+                    {
+                      label: "6-7",
+                      value: 111,
+                    },
+                  ],
+                  bandColors: [
+                    {
+                      min: 1,
+                      max: 3.4999,
+                      color: "#d6604d",
+                    },
+                    {
+                      min: 3.5,
+                      max: 3.9999,
+                      color: "#f48873",
+                    },
+                    {
+                      min: 4,
+                      max: 4.4999,
+                      color: "#a7dc78",
+                    },
+                    {
+                      min: 4.5,
+                      max: 7,
+                      color: "#66b43e",
+                    },
+                  ],
+                },
+                {
                   code: "BAIN065-14",
                   name: "ÁLGEBRA PARA INGENIERÍA",
                   credits: [
@@ -2824,6 +2889,71 @@ const data: {
               id: 7,
               courses: [
                 {
+                  code: "END-17",
+                  name: "PRUEBA NACIONAL DIAGNÓSTICA",
+                  credits: [
+                    {
+                      label: "Créditos",
+                      value: 0,
+                    },
+                    {
+                      label: "SCT",
+                      value: -1,
+                    },
+                  ],
+                  mention: "",
+                  flow: [],
+                  requisites: [],
+                  historicalDistribution: [
+                    {
+                      label: "1-2",
+                      value: 56,
+                    },
+                    {
+                      label: "2-3",
+                      value: 111,
+                    },
+                    {
+                      label: "3-4",
+                      value: 775,
+                    },
+                    {
+                      label: "4-5",
+                      value: 2000,
+                    },
+                    {
+                      label: "5-6",
+                      value: 122,
+                    },
+                    {
+                      label: "6-7",
+                      value: 566,
+                    },
+                  ],
+                  bandColors: [
+                    {
+                      min: 1,
+                      max: 3.4999,
+                      color: "#d6604d",
+                    },
+                    {
+                      min: 3.5,
+                      max: 3.9999,
+                      color: "#f48873",
+                    },
+                    {
+                      min: 4,
+                      max: 4.4999,
+                      color: "#a7dc78",
+                    },
+                    {
+                      min: 4.5,
+                      max: 7,
+                      color: "#66b43e",
+                    },
+                  ],
+                },
+                {
                   code: "ELECT101",
                   name: "OPTATIVO DE ESPECIALIZACIÓN II",
                   credits: [
@@ -4003,6 +4133,18 @@ const data: {
           program_grade: 4.31,
           comments: "",
           takenCourses: [
+            {
+              id: 123123,
+              code: "END-17",
+              equiv: "",
+              name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
+              registration: "REGISTRADA",
+              grade: 0,
+              state: StateCourse.Pending,
+              parallelGroup: 0,
+              currentDistribution: [],
+              bandColors: [],
+            },
             {
               id: 647897,
               code: "INFO229-17",
@@ -5620,6 +5762,64 @@ const data: {
           comments: "",
           takenCourses: [
             {
+              id: 123567,
+              code: "EID-17",
+              equiv: "",
+              name: "PRUEBA INICIAL DIAGNÓSTICA",
+              registration: "CURSADA",
+              grade: 6.5,
+              state: StateCourse.Passed,
+              parallelGroup: 1,
+              currentDistribution: [
+                {
+                  label: "1-2",
+                  value: 10,
+                },
+                {
+                  label: "2-3",
+                  value: 5,
+                },
+                {
+                  label: "3-4",
+                  value: 0,
+                },
+                {
+                  label: "4-5",
+                  value: 5,
+                },
+                {
+                  label: "5-6",
+                  value: 9,
+                },
+                {
+                  label: "6-7",
+                  value: 24,
+                },
+              ],
+              bandColors: [
+                {
+                  min: 1,
+                  max: 3.4999,
+                  color: "#d6604d",
+                },
+                {
+                  min: 3.5,
+                  max: 3.9999,
+                  color: "#f48873",
+                },
+                {
+                  min: 4,
+                  max: 4.4999,
+                  color: "#a7dc78",
+                },
+                {
+                  min: 4.5,
+                  max: 7,
+                  color: "#66b43e",
+                },
+              ],
+            },
+            {
               id: 454944,
               code: "INFO073-17",
               equiv: "",
@@ -5912,8 +6112,8 @@ const data: {
           ],
         },
       ],
-      n_cycles : ["bachillerato","licenciatura"],
-      n_courses_cycles: [24,20,25,1],
+      n_cycles: ["bachillerato", "licenciatura"],
+      n_courses_cycles: [24, 20, 25, 1],
 
       dropout: {
         prob_dropout: 60.56,
@@ -5932,7 +6132,6 @@ const data: {
         institution: "Liceo Recto Armando Robles",
         months_to_first_job: 15,
       },
-
     },
   },
 
