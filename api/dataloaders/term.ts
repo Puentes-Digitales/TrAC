@@ -59,8 +59,8 @@ export const TakenCoursesDataLoader = new DataLoader(
             this.select(
               "id",
               "external_evaluation_taken",
-              "registration",
-              "state"
+              "comments",
+              "comments"
             ).from(STUDENT_EXTERNAL_EVALUATION_TABLE);
           })
           .where({
