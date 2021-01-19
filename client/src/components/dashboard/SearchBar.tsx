@@ -226,6 +226,7 @@ export const SearchBar: FC<{
                     setTrackingData({
                       student: undefined,
                     });
+
                     track({
                       action: "click",
                       effect: "load-program",
@@ -394,6 +395,13 @@ export const SearchBar: FC<{
                 placeholder="..."
                 noOptionsMessage={() => NO_CURRICULUMS_LABEL}
                 css={{ color: "black" }}
+              />
+              <Select
+                options={[
+                  { value: "Ingreso PACE", label: "Ingreso PACE" },
+                  { value: "Ingreso PSU", label: "Ingreso PSU" },
+                ]}
+                defaultInputValue={"Ingreso PACE"}
               />
             </Box>
           </Flex>

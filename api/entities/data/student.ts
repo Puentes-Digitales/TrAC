@@ -55,15 +55,9 @@ export class Student {
   @Field()
   employed: Employed;
 
-  @Field()
-  n_courses_bachelor: number;
+  @Field(() => [String])
+  n_cycles: string[];
 
-  @Field()
-  n_passed_courses_bachelor: number;
-
-  @Field()
-  n_courses_licentiate: number;
-
-  @Field()
-  n_passed_courses_licentiate: number;
+  @Field(() => [Number])
+  n_courses_cycles: number[];
 }

@@ -478,15 +478,14 @@ export function Dashboard() {
           />
         );
       }
-      if (user?.config?.SHOW_PROGRESS_STUDENT_CYCLE) {
+      if (
+        user?.config?.SHOW_PROGRESS_STUDENT_CYCLE &&
+        studentData.n_cycles.length >= 1
+      ) {
         ProgressStudentComponent = (
           <ProgressStudent
-            n_course_bachiller={studentData.n_courses_bachelor}
-            n_course_approved_bachiller={studentData.n_passed_courses_bachelor}
-            n_course_licentiate={studentData.n_courses_licentiate}
-            n_course_approved_licentiate={
-              studentData.n_passed_courses_licentiate
-            }
+            n_courses_cycles={studentData.n_courses_cycles}
+            n_cycles_student={studentData.n_cycles}
           />
         );
       }
