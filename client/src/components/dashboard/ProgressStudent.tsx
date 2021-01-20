@@ -31,7 +31,7 @@ export const ProgressStudent: FC<{
         backgroundColor={PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR}
         borderRadius="10px 10px 10px 10px"
         alignItems="center"
-        color={PROGRESS_STUDENT_INFORMATION_TEXT_COLOR}
+        color={PROGRESS_STUDENT_INFORMATION_TEXT_COLOR + ".500"}
         transition="box-shadow 0.4s ease-in-out"
         data-testid="BoxContainer"
       >
