@@ -101,6 +101,12 @@ export const CourseStatsByCourseTakenDataLoader = new DataLoader(
     > = keyBy(
       await CourseStatsTable()
         .select("color_bands", "course_taken")
+        .unionAll(function () {
+          this.select("color_bands", "external_evaluation_taken")
+            .from(EXTERNAL_EVALUATION_STATS_TABLE)
+            .whereIn("external_evaluation_taken", codes),
+            "external_evaluation_taken";
+        })
         .whereIn("course_taken", codes),
       "course_taken"
     );
