@@ -35,9 +35,10 @@ export const StudentExternalEvaluationCourseDataLoader = new DataLoader(
       await StudentCourseTable()
         .select("id", "year", "term", "p_group")
         .unionAll(function () {
-          this.select("id", "year", "term", "p_group").from(
-            STUDENT_EXTERNAL_EVALUATION_TABLE
-          );
+          this.select("id", "year", "term", "p_group")
+            .from(STUDENT_EXTERNAL_EVALUATION_TABLE)
+            .whereIn("id", ids),
+            "id";
         })
         .whereIn("id", ids),
       "id"
@@ -66,9 +67,14 @@ export const CourseStatsByStateDataLoader = new DataLoader(
         return CourseStatsTable()
           .select("histogram", "histogram_labels", "color_bands")
           .unionAll(function () {
-            this.select("histogram", "histogram_labels", "color_bands").from(
-              EXTERNAL_EVALUATION_STATS_TABLE
-            );
+            this.select("histogram", "histogram_labels", "color_bands")
+              .where({
+                external_evaluation_taken: course_taken,
+                year: year,
+                term: term,
+                p_group: p_group,
+              })
+              .from(EXTERNAL_EVALUATION_STATS_TABLE);
           })
           .where({
             course_taken,

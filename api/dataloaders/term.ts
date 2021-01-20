@@ -61,7 +61,13 @@ export const TakenCoursesDataLoader = new DataLoader(
               "external_evaluation_taken",
               "comments",
               "comments"
-            ).from(STUDENT_EXTERNAL_EVALUATION_TABLE);
+            )
+              .from(STUDENT_EXTERNAL_EVALUATION_TABLE)
+              .where({
+                year,
+                term,
+                student_id,
+              });
           })
           .where({
             year,

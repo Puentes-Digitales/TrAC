@@ -93,9 +93,10 @@ export const StudentExternalEvaluationAndCourseDataLoader = new DataLoader(
       await StudentExternalEvaluationTable()
         .select("id", "registration", "grade", "state", "p_group")
         .unionAll(function () {
-          this.select("id", "registration", "grade", "state", "p_group").from(
-            STUDENT_COURSE_TABLE
-          );
+          this.select("id", "registration", "grade", "state", "p_group")
+            .from(STUDENT_COURSE_TABLE)
+            .whereIn("id", ids),
+            "id";
         })
         .whereIn("id", ids),
       "id"

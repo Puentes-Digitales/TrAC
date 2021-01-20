@@ -33,9 +33,9 @@ export class TakenCourseResolver {
     if (nameData === undefined) {
       return code;
     }
-
     return nameData.name ?? nameData.id;
   }
+
   @FieldResolver()
   async registration(
     @Root()
