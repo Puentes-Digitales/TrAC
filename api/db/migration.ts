@@ -69,18 +69,30 @@ const migration = async () => {
     PerformanceByLoadTable,
     PERSISTENCE_TABLE,
     PROGRAM_STRUCTURE_TABLE,
+    EXTERNAL_EVALUATION_STRUCTURE_TABLE,
     PROGRAM_TABLE,
     ProgramStructureTable,
+    ExternalEvaluationStructureTable,
     ProgramTable,
+    STUDENT_ADMISSION_TABLE,
+    STUDENT_EXTERNAL_EVALUATION_TABLE,
+    EXTERNAL_EVALUATION_TABLE,
+    EXTERNAL_EVALUATION_STATS_TABLE,
     STUDENT_CLUSTER_TABLE,
     STUDENT_COURSE_TABLE,
     STUDENT_DROPOUT_TABLE,
+    STUDENT_EMPLOYED_TABLE,
     STUDENT_PROGRAM_TABLE,
     STUDENT_TABLE,
     STUDENT_TERM_TABLE,
+    StudentAdmissionTable,
+    StudentExternalEvaluationTable,
+    ExternalEvaluationTable,
+    ExternalEvaluationStatsTable,
     StudentClusterTable,
     StudentCourseTable,
     StudentDropoutTable,
+    StudentEmployedTable,
     StudentProgramTable,
     StudentTable,
     StudentTermTable,
@@ -158,7 +170,9 @@ const migration = async () => {
           email: "admin@admin.dev",
           config: {
             ...baseUserConfig,
+            SHOW_STUDENT_COMPLEMENTARY_INFORMATION: true,
             SHOW_DROPOUT: true,
+            SHOW_PROGRESS_STUDENT_CYCLE: true,
             SHOW_STUDENT_LIST: true,
             FOREPLAN: true,
           },
@@ -318,6 +332,42 @@ const migration = async () => {
       }
     });
 
+  const externalEvaluationStructure = dbData.schema
+    .hasTable(EXTERNAL_EVALUATION_STRUCTURE_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(
+          EXTERNAL_EVALUATION_STRUCTURE_TABLE,
+          (table) => {
+            table.integer("id", 8).notNullable().primary();
+            table.text("program_id").notNullable();
+            table.text("curriculum").notNullable();
+            table.integer("year").notNullable();
+            table.integer("semester", 4).notNullable();
+            table.text("external_evaluation_id").notNullable();
+            table.float("credits", 8).notNullable();
+            table.text("requisites").defaultTo("").notNullable();
+            table.text("mention").defaultTo("").notNullable();
+            table.text("evaluation_cat").defaultTo("").notNullable();
+            table.text("mode").defaultTo("semestral").notNullable();
+            table.float("credits_sct", 8).notNullable();
+            table.text("tags").notNullable().defaultTo("");
+          }
+        );
+        await ExternalEvaluationStructureTable().insert(
+          (
+            await import("./mockData/external_evaluation_structure.json")
+          ).default.map(({ program_id, curriculum, ...rest }) => {
+            return {
+              ...rest,
+              program_id: program_id.toString(),
+              curriculum: curriculum.toString(),
+            };
+          })
+        );
+      }
+    });
+
   const student = dbData.schema.hasTable(STUDENT_TABLE).then(async (exists) => {
     if (!exists) {
       await dbData.schema.createTable(STUDENT_TABLE, (table) => {
@@ -395,7 +445,7 @@ const migration = async () => {
           table.text("mention").notNullable();
           table.integer("last_term", 4).notNullable();
           table.integer("n_courses", 8).notNullable();
-          table.integer("n_passed_courses", 8).notNullable();
+          table.integer("n_passed_courses", 4).notNullable();
           table.float("completion", 4).notNullable();
         });
         await StudentProgramTable().insert(
@@ -441,6 +491,117 @@ const migration = async () => {
               };
             }
           )
+        );
+      }
+    });
+
+  const studentAdmission = dbData.schema
+    .hasTable(STUDENT_ADMISSION_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(STUDENT_ADMISSION_TABLE, (table) => {
+          table.text("student_id").notNullable().primary();
+          table.boolean("active").notNullable().defaultTo(true);
+          table.text("type_admission").notNullable();
+          table.float("initial_test", 4);
+          table.float("final_test", 4);
+        });
+        await StudentAdmissionTable().insert(
+          (await import("./mockData/student_admission.json")).default
+        );
+      }
+    });
+
+  const studentExternalEvaluation = dbData.schema
+    .hasTable(STUDENT_EXTERNAL_EVALUATION_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(
+          STUDENT_EXTERNAL_EVALUATION_TABLE,
+          (table) => {
+            table.integer("id").notNullable().primary();
+            table.integer("year").notNullable();
+            table.integer("term").notNullable();
+            table.text("student_id").notNullable();
+            table.text("external_evaluation_taken").notNullable();
+            table.text("registration").notNullable();
+            table.text("state").notNullable();
+            table.float("grade", 4).notNullable();
+            table.integer("p_group").notNullable();
+            table.text("comments");
+            table.integer("duplicates").notNullable();
+          }
+        );
+        await StudentExternalEvaluationTable().insert(
+          (await import("./mockData/student_external_evaluation.json")).default
+        );
+      }
+    });
+
+  const externalEvaluation = dbData.schema
+    .hasTable(EXTERNAL_EVALUATION_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(EXTERNAL_EVALUATION_TABLE, (table) => {
+          table.text("id").notNullable().primary();
+          table.text("name").notNullable();
+          table.text("description").notNullable();
+          table.text("tags").notNullable();
+          table.text("grading").notNullable();
+          table.integer("grade_min").notNullable();
+          table.integer("grade_max").notNullable();
+          table.integer("grade_pass_min").notNullable();
+        });
+        await ExternalEvaluationTable().insert(
+          (await import("./mockData/external_evaluation.json")).default
+        );
+      }
+    });
+
+  const externalEvaluationStats = dbData.schema
+    .hasTable(EXTERNAL_EVALUATION_STATS_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(
+          EXTERNAL_EVALUATION_STATS_TABLE,
+          (table) => {
+            table.text("external_evaluation_taken").notNullable();
+            table.integer("year", 4).notNullable();
+            table.integer("term", 4).notNullable();
+            table.integer("p_group", 2).notNullable();
+            table.integer("n_total", 8).notNullable();
+            table.integer("n_finished", 8).notNullable();
+            table.integer("n_pass", 8).notNullable();
+            table.integer("n_fail", 8).notNullable();
+            table.integer("n_drop", 8).notNullable();
+            table.text("histogram").notNullable();
+            table.float("avg_grade").notNullable();
+            table.integer("n_grades", 4).notNullable();
+            table.integer("id", 8).primary().notNullable();
+            table.text("histogram_labels").notNullable();
+            table.text("color_bands").notNullable();
+          }
+        );
+        await ExternalEvaluationStatsTable().insert(
+          (await import("./mockData/external_evaluation_stats.json")).default
+        );
+      }
+    });
+
+  const studentEmployed = dbData.schema
+    .hasTable(STUDENT_EMPLOYED_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(STUDENT_EMPLOYED_TABLE, (table) => {
+          table.text("student_id").notNullable().primary();
+          table.boolean("employed").defaultTo(false).notNullable();
+          table.text("institution");
+          table.text("educational_system");
+          table.integer("months_to_first_job");
+          table.text("description");
+        });
+        await StudentEmployedTable().insert(
+          (await import("./mockData/student_employed.json")).default
         );
       }
     });
@@ -689,9 +850,15 @@ const migration = async () => {
     param,
     program,
     programStructure,
+    externalEvaluationStructure,
     student,
+    studentAdmission,
+    studentExternalEvaluation,
+    externalEvaluation,
+    externalEvaluationStats,
     studentCourse,
     studentDropout,
+    studentEmployed,
     studentProgram,
     studentTerm,
     performanceByLoad,

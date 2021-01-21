@@ -3,6 +3,13 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Admission {
+  active: Boolean!
+  final_test: Float
+  initial_test: Float
+  type_admission: String!
+}
+
 type AuthResult {
   error: String
   token: String
@@ -62,6 +69,27 @@ type Dropout {
 A field whose value conforms to the standard internet email address format as specified in RFC822: https://www.w3.org/Protocols/rfc822/.
 """
 scalar EmailAddress
+
+type Employed {
+  description: String
+  educational_system: String
+  employed: Boolean!
+  institution: String
+  months_to_first_job: Float
+}
+
+type ExternalEvaluation {
+  bandColors: [BandColor!]!
+  code: String!
+  historicalDistribution: [DistributionValue!]!
+
+  """
+  ExternalEvaluation-Semester-Curriculum-Program ID
+  """
+  id: Int!
+  mention: String!
+  name: String!
+}
 
 type FeedbackAnswer {
   answer: String!
@@ -233,6 +261,7 @@ type Query {
 
 type Semester {
   courses: [Course!]!
+  externalEvaluations: [ExternalEvaluation!]!
   id: Int!
 }
 
@@ -248,10 +277,14 @@ enum StateCourse {
 }
 
 type Student {
+  admission: Admission!
   curriculums: [String!]!
   dropout: Dropout
+  employed: Employed!
   id: ID!
   mention: String!
+  n_courses_cycles: [Float!]!
+  n_cycles: [String!]!
   name: String!
   programs: [Program!]!
   progress: Float!
@@ -273,8 +306,20 @@ type TakenCourse {
   state: StateCourse!
 }
 
+type TakenExternalEvaluation {
+  bandColors: [BandColor!]!
+  code: String!
+  currentDistribution: [DistributionValue!]!
+  grade: Float!
+  id: Int!
+  name: String!
+  parallelGroup: Int!
+  registration: String!
+  state: StateCourse!
+}
+
 type Term {
-  comments: String!
+  comments: String
   cumulated_grade: Float!
   id: Int!
   program_grade: Float!
@@ -282,6 +327,7 @@ type Term {
   situation: String!
   student_id: String!
   takenCourses: [TakenCourse!]!
+  takenExternalEvaluations: [TakenExternalEvaluation!]!
   term: TermType!
   year: Int!
 }

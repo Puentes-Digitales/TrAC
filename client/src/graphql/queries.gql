@@ -93,6 +93,8 @@ mutation searchStudent($student_id: String, $program_id: String) {
     }
     curriculums
     start_year
+    n_courses_cycles
+    n_cycles
     mention
     terms {
       id
@@ -100,10 +102,10 @@ mutation searchStudent($student_id: String, $program_id: String) {
       year
       term
       situation
+      comments
       semestral_grade
       cumulated_grade
       program_grade
-      comments
       takenCourses {
         id
         code
@@ -128,6 +130,18 @@ mutation searchStudent($student_id: String, $program_id: String) {
       prob_dropout
       model_accuracy
       active
+    }
+    admission {
+      active
+      type_admission
+      initial_test
+      final_test
+    }
+    employed {
+      employed
+      institution
+      educational_system
+      months_to_first_job
     }
   }
 }
@@ -155,6 +169,12 @@ query studentsList($program_id: String!) {
     dropout {
       prob_dropout
       explanation
+    }
+    admission {
+      active
+      type_admission
+      initial_test
+      final_test
     }
   }
 }

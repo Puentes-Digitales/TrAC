@@ -23,6 +23,13 @@ export type Scalars = {
   JSONObject: Record<string, any>;
 };
 
+export type Admission = {
+  active: Scalars["Boolean"];
+  final_test?: Maybe<Scalars["Float"]>;
+  initial_test?: Maybe<Scalars["Float"]>;
+  type_admission: Scalars["String"];
+};
+
 export type AuthResult = {
   error?: Maybe<Scalars["String"]>;
   token?: Maybe<Scalars["String"]>;
@@ -41,7 +48,7 @@ export type Course = {
   credits: Array<Credit>;
   flow: Array<Course>;
   historicalDistribution: Array<DistributionValue>;
-  /** Course-Semester-Curriculum-Program ID */
+  /** Course-Semester-Curriculum-Program ID  */
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
@@ -68,6 +75,24 @@ export type Dropout = {
   explanation?: Maybe<Scalars["String"]>;
   model_accuracy?: Maybe<Scalars["Float"]>;
   prob_dropout?: Maybe<Scalars["Float"]>;
+};
+
+export type Employed = {
+  description?: Maybe<Scalars["String"]>;
+  educational_system?: Maybe<Scalars["String"]>;
+  employed: Scalars["Boolean"];
+  institution?: Maybe<Scalars["String"]>;
+  months_to_first_job?: Maybe<Scalars["Float"]>;
+};
+
+export type ExternalEvaluation = {
+  bandColors: Array<BandColor>;
+  code: Scalars["String"];
+  historicalDistribution: Array<DistributionValue>;
+  /** ExternalEvaluation-Semester-Curriculum-Program ID  */
+  id: Scalars["Int"];
+  mention: Scalars["String"];
+  name: Scalars["String"];
 };
 
 export type FeedbackAnswer = {
@@ -322,6 +347,7 @@ export type QueryUserPersistencesArgs = {
 
 export type Semester = {
   courses: Array<Course>;
+  externalEvaluations: Array<ExternalEvaluation>;
   id: Scalars["Int"];
 };
 
@@ -335,10 +361,14 @@ export enum StateCourse {
 }
 
 export type Student = {
+  admission: Admission;
   curriculums: Array<Scalars["String"]>;
   dropout?: Maybe<Dropout>;
+  employed: Employed;
   id: Scalars["ID"];
   mention: Scalars["String"];
+  n_courses_cycles: Array<Scalars["Float"]>;
+  n_cycles: Array<Scalars["String"]>;
   name: Scalars["String"];
   programs: Array<Program>;
   progress: Scalars["Float"];
@@ -360,8 +390,20 @@ export type TakenCourse = {
   state: StateCourse;
 };
 
+export type TakenExternalEvaluation = {
+  bandColors: Array<BandColor>;
+  code: Scalars["String"];
+  currentDistribution: Array<DistributionValue>;
+  grade: Scalars["Float"];
+  id: Scalars["Int"];
+  name: Scalars["String"];
+  parallelGroup: Scalars["Int"];
+  registration: Scalars["String"];
+  state: StateCourse;
+};
+
 export type Term = {
-  comments: Scalars["String"];
+  comments?: Maybe<Scalars["String"]>;
   cumulated_grade: Scalars["Float"];
   id: Scalars["Int"];
   program_grade: Scalars["Float"];
@@ -369,6 +411,7 @@ export type Term = {
   situation: Scalars["String"];
   student_id: Scalars["String"];
   takenCourses: Array<TakenCourse>;
+  takenExternalEvaluations: Array<TakenExternalEvaluation>;
   term: TermType;
   year: Scalars["Int"];
 };
@@ -647,7 +690,15 @@ export type SearchStudentMutationVariables = Exact<{
 
 export type SearchStudentMutation = {
   student?: Maybe<
-    Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
+    Pick<
+      Student,
+      | "id"
+      | "curriculums"
+      | "start_year"
+      | "n_courses_cycles"
+      | "n_cycles"
+      | "mention"
+    > & {
       programs: Array<Pick<Program, "id" | "name">>;
       terms: Array<
         Pick<
@@ -657,10 +708,10 @@ export type SearchStudentMutation = {
           | "year"
           | "term"
           | "situation"
+          | "comments"
           | "semestral_grade"
           | "cumulated_grade"
           | "program_grade"
-          | "comments"
         > & {
           takenCourses: Array<
             Pick<
@@ -684,6 +735,17 @@ export type SearchStudentMutation = {
       >;
       dropout?: Maybe<
         Pick<Dropout, "prob_dropout" | "model_accuracy" | "active">
+      >;
+      admission: Pick<
+        Admission,
+        "active" | "type_admission" | "initial_test" | "final_test"
+      >;
+      employed: Pick<
+        Employed,
+        | "employed"
+        | "institution"
+        | "educational_system"
+        | "months_to_first_job"
       >;
     }
   >;
@@ -714,6 +776,10 @@ export type StudentsListQuery = {
   students: Array<
     Pick<Student, "id" | "progress" | "start_year"> & {
       dropout?: Maybe<Pick<Dropout, "prob_dropout" | "explanation">>;
+      admission: Pick<
+        Admission,
+        "active" | "type_admission" | "initial_test" | "final_test"
+      >;
     }
   >;
 };
@@ -1979,6 +2045,8 @@ export const SearchStudentDocument = gql`
       }
       curriculums
       start_year
+      n_courses_cycles
+      n_cycles
       mention
       terms {
         id
@@ -1986,10 +2054,10 @@ export const SearchStudentDocument = gql`
         year
         term
         situation
+        comments
         semestral_grade
         cumulated_grade
         program_grade
-        comments
         takenCourses {
           id
           code
@@ -2014,6 +2082,18 @@ export const SearchStudentDocument = gql`
         prob_dropout
         model_accuracy
         active
+      }
+      admission {
+        active
+        type_admission
+        initial_test
+        final_test
+      }
+      employed {
+        employed
+        institution
+        educational_system
+        months_to_first_job
       }
     }
   }
@@ -2211,6 +2291,12 @@ export const StudentsListDocument = gql`
       dropout {
         prob_dropout
         explanation
+      }
+      admission {
+        active
+        type_admission
+        initial_test
+        final_test
       }
     }
   }

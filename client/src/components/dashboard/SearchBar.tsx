@@ -395,6 +395,13 @@ export const SearchBar: FC<{
                 noOptionsMessage={() => NO_CURRICULUMS_LABEL}
                 css={{ color: "black" }}
               />
+              <Select
+                options={[
+                  { value: "Ingreso PACE", label: "Ingreso PACE" },
+                  { value: "Ingreso PSU", label: "Ingreso PSU" },
+                ]}
+                defaultInputValue={"Ingreso PACE"}
+              />
             </Box>
           </Flex>
         ) : searchResult?.curriculums.length === 1 ? (

@@ -2,6 +2,7 @@ import { Field, Int, ObjectType, registerEnumType } from "type-graphql";
 
 import { TermType } from "../../../client/constants";
 import { TakenCourse } from "./takenCourse";
+import { TakenExternalEvaluation } from "./takenExternalEvaluation";
 
 registerEnumType(TermType, {
   name: "TermType",
@@ -32,7 +33,7 @@ export class Term {
   situation: string;
 
   // student_term => comments
-  @Field()
+  @Field({ nullable: true })
   comments: string;
 
   // student_term => t_gpa
@@ -50,4 +51,8 @@ export class Term {
   // student_course => *
   @Field(() => [TakenCourse])
   takenCourses: TakenCourse[];
+
+  // student_external_evaluation => *
+  @Field(() => [TakenExternalEvaluation])
+  takenExternalEvaluations: TakenExternalEvaluation[];
 }

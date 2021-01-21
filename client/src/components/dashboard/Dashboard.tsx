@@ -52,7 +52,7 @@ import { ToggleDarkMode } from "../DarkMode";
 import {
   Dropout,
   ForeplanModeSwitch,
-  ForeplanSummary,
+  ComplementaryInfo,
 } from "../DynamicComponents";
 import { Feedback } from "../feedback";
 import { LoadingPage } from "../Loading";
@@ -60,6 +60,7 @@ import { SearchBar } from "./SearchBar";
 import { SemestersList } from "./SemestersList";
 import { TakenSemesterBox } from "./TakenSemesterBox";
 import { TimeLine } from "./Timeline/Timeline";
+import { ProgressStudent } from "./ProgressStudent";
 
 export function Dashboard() {
   const mock = useIsMockActive();
@@ -378,11 +379,17 @@ export function Dashboard() {
     TakenSemestersComponent,
     SemestersComponent,
     DropoutComponent,
+    ComplementaryInfoComponent,
+    ProgressStudentComponent,
+    ForePlanSwitchComponent,
   } = useMemo(() => {
     let TimeLineComponent: JSX.Element | null = null;
     let DropoutComponent: JSX.Element | null = null;
     let TakenSemestersComponent: JSX.Element | null = null;
     let SemestersComponent: JSX.Element | null = null;
+    let ComplementaryInfoComponent: JSX.Element | null = null;
+    let ProgressStudentComponent: JSX.Element | null = null;
+    let ForePlanSwitchComponent: JSX.Element | null = null;
 
     const studentData = mock
       ? mockData?.default.searchStudentData.student
@@ -433,24 +440,52 @@ export function Dashboard() {
           {studentData.terms
             .slice()
             .reverse()
+            // .map(({ term, year, comments }, key) => {
             .map(({ term, year, comments }, key) => {
               return (
                 <TakenSemesterBox
                   key={key}
                   term={term}
                   year={year}
-                  comments={comments}
+                  comments={comments!}
                 />
               );
             })}
-          {user?.config?.FOREPLAN && <ForeplanModeSwitch />}
         </Flex>
       );
+      if (user?.config?.FOREPLAN)
+        ForePlanSwitchComponent = <ForeplanModeSwitch />;
       if (studentData.dropout?.active && user?.config?.SHOW_DROPOUT) {
         DropoutComponent = (
           <Dropout
             probability={studentData.dropout.prob_dropout}
             accuracy={studentData.dropout.model_accuracy}
+          />
+        );
+      }
+      if (
+        studentData.admission?.active &&
+        user?.config?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION
+      ) {
+        ComplementaryInfoComponent = (
+          <ComplementaryInfo
+            type_admission={studentData.admission.type_admission}
+            initial_test={studentData.admission.initial_test}
+            final_test={studentData.admission.final_test}
+            educational_system={studentData.employed.educational_system}
+            institution={studentData.employed.institution}
+            months_to_first_job={studentData.employed.months_to_first_job}
+          />
+        );
+      }
+      if (
+        user?.config?.SHOW_PROGRESS_STUDENT_CYCLE &&
+        studentData.n_cycles.length >= 1
+      ) {
+        ProgressStudentComponent = (
+          <ProgressStudent
+            n_courses_cycles={studentData.n_courses_cycles}
+            n_cycles_student={studentData.n_cycles}
           />
         );
       }
@@ -554,6 +589,9 @@ export function Dashboard() {
       DropoutComponent,
       TakenSemestersComponent,
       SemestersComponent,
+      ComplementaryInfoComponent,
+      ProgressStudentComponent,
+      ForePlanSwitchComponent,
     };
   }, [searchStudentData, searchProgramData, chosenCurriculum, mock, mockData]);
 
@@ -710,14 +748,22 @@ export function Dashboard() {
 
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
-          <Box>{TimeLineComponent}</Box>
-          {DropoutComponent}
-          {user?.config.FOREPLAN && <ForeplanSummary />}
-        </Flex>
+          {ComplementaryInfoComponent}
+          {ProgressStudentComponent}
+          <Box>
+            {TimeLineComponent}
 
-        <Stack isInline pl="50px">
-          {TakenSemestersComponent}
-        </Stack>
+            <Stack isInline pl="45px">
+              {TakenSemestersComponent}
+            </Stack>
+          </Box>
+          <Box pt="70px">
+            {DropoutComponent}
+            <Stack isInline pt="10px">
+              {ForePlanSwitchComponent}
+            </Stack>
+          </Box>
+        </Flex>
       </ScrollContainer>
 
       {SemestersComponent}

@@ -2,52 +2,52 @@ import { compact, toInteger, toNumber } from "lodash";
 import { FieldResolver, Resolver, Root } from "type-graphql";
 
 import { defaultStateCourse } from "../../../client/constants";
-import { CourseDataLoader } from "../../dataloaders/course";
+import { ExternalEvaluationDataLoader } from "../../dataloaders/externalEvaluation";
 import {
-  CourseStatsByCourseTakenDataLoader,
-  CourseStatsByStateDataLoader,
-  StudentExternalEvaluationCourseDataLoader,
-} from "../../dataloaders/takenCourse";
-import { StudentExternalEvaluationAndCourseDataLoader } from "../../dataloaders/takenExternalEvaluation";
-import { TakenCourse } from "../../entities/data/takenCourse";
+  ExternalEvaluationStatsByExternalEvaluationTakenDataLoader,
+  ExternalEvaluationStatsByStateDataLoader,
+  StudentExternalEvaluationDataLoader,
+} from "../../dataloaders/takenExternalEvaluation";
+import { TakenExternalEvaluation } from "../../entities/data/takenExternalEvaluation";
 import { assertIsDefined } from "../../utils/assert";
 import { clearErrorArray } from "../../utils/clearErrorArray";
 
 import type { $PropertyType } from "utility-types";
 
-export type PartialTakenCourse = Pick<TakenCourse, "id" | "code" | "equiv">;
+export type PartialTakenExternalEvaluation = Pick<
+  TakenExternalEvaluation,
+  "id" | "code"
+>;
 
-@Resolver(() => TakenCourse)
-export class TakenCourseResolver {
+@Resolver(() => TakenExternalEvaluation)
+export class TakenExternalEvaluationResolver {
   @FieldResolver()
   async name(
     @Root()
-    { code }: PartialTakenCourse
-  ): Promise<$PropertyType<TakenCourse, "name">> {
+    { code }: PartialTakenExternalEvaluation
+  ): Promise<$PropertyType<TakenExternalEvaluation, "name">> {
     assertIsDefined(
       code,
       `code needs to be available for Taken Course field resolvers`
     );
-    const nameData = await CourseDataLoader.load(code);
+    const nameData = await ExternalEvaluationDataLoader.load(code);
 
     if (nameData === undefined) {
       return code;
     }
+
     return nameData.name ?? nameData.id;
   }
-
   @FieldResolver()
   async registration(
     @Root()
-    { id }: PartialTakenCourse
-  ): Promise<$PropertyType<TakenCourse, "registration">> {
+    { id }: PartialTakenExternalEvaluation
+  ): Promise<$PropertyType<TakenExternalEvaluation, "registration">> {
     assertIsDefined(
       id,
       `id needs to be available for Taken Course field resolvers`
     );
-    const registrationData = await StudentExternalEvaluationAndCourseDataLoader.load(
-      id
-    );
+    const registrationData = await StudentExternalEvaluationDataLoader.load(id);
     assertIsDefined(
       registrationData,
       `Registration could not be found for ${id} taken course`
@@ -57,15 +57,13 @@ export class TakenCourseResolver {
   @FieldResolver()
   async grade(
     @Root()
-    { id }: PartialTakenCourse
-  ): Promise<$PropertyType<TakenCourse, "grade">> {
+    { id }: PartialTakenExternalEvaluation
+  ): Promise<$PropertyType<TakenExternalEvaluation, "grade">> {
     assertIsDefined(
       id,
       `id and code needs to be available for Taken Course field resolvers`
     );
-    const gradeData = await StudentExternalEvaluationAndCourseDataLoader.load(
-      id
-    );
+    const gradeData = await StudentExternalEvaluationDataLoader.load(id);
     assertIsDefined(
       gradeData,
       `Grade could not be found for ${id} taken course`
@@ -75,15 +73,13 @@ export class TakenCourseResolver {
   @FieldResolver()
   async state(
     @Root()
-    { id }: PartialTakenCourse
-  ): Promise<$PropertyType<TakenCourse, "state">> {
+    { id }: PartialTakenExternalEvaluation
+  ): Promise<$PropertyType<TakenExternalEvaluation, "state">> {
     assertIsDefined(
       id,
       `id needs to be available for Taken Course field resolvers`
     );
-    const stateData = await StudentExternalEvaluationAndCourseDataLoader.load(
-      id
-    );
+    const stateData = await StudentExternalEvaluationDataLoader.load(id);
     assertIsDefined(
       stateData,
       `State could not be found for ${id} taken course`
@@ -93,13 +89,13 @@ export class TakenCourseResolver {
   @FieldResolver()
   async parallelGroup(
     @Root()
-    { id }: PartialTakenCourse
+    { id }: PartialTakenExternalEvaluation
   ) {
     assertIsDefined(
       id,
       `id needs to be available for Taken Course field resolvers`
     );
-    const parallelGroupData = await StudentExternalEvaluationAndCourseDataLoader.load(
+    const parallelGroupData = await StudentExternalEvaluationDataLoader.load(
       id
     );
     assertIsDefined(
@@ -111,8 +107,8 @@ export class TakenCourseResolver {
   @FieldResolver()
   async currentDistribution(
     @Root()
-    { id, code }: PartialTakenCourse
-  ): Promise<$PropertyType<TakenCourse, "currentDistribution">> {
+    { id, code }: PartialTakenExternalEvaluation
+  ): Promise<$PropertyType<TakenExternalEvaluation, "currentDistribution">> {
     assertIsDefined(
       id,
       `id needs to be available for Taken Course field resolvers`
@@ -122,17 +118,15 @@ export class TakenCourseResolver {
       `code needs to be available for Taken Course field resolvers`
     );
 
-    const dataTakenCourse = await StudentExternalEvaluationCourseDataLoader.load(
-      id
-    );
+    const dataTakenCourse = await StudentExternalEvaluationDataLoader.load(id);
 
     assertIsDefined(
       dataTakenCourse,
       `Data of the taken course ${id} ${code} could not be found!`
     );
 
-    const histogramData = await CourseStatsByStateDataLoader.load({
-      course_taken: code,
+    const histogramData = await ExternalEvaluationStatsByStateDataLoader.load({
+      external_evaluation_taken: code,
       year: dataTakenCourse.year,
       term: dataTakenCourse.term,
       p_group: dataTakenCourse.p_group,
@@ -160,12 +154,12 @@ export class TakenCourseResolver {
 
   @FieldResolver()
   async bandColors(
-    @Root() { code, equiv }: PartialTakenCourse
-  ): Promise<$PropertyType<TakenCourse, "bandColors">> {
+    @Root() { code }: PartialTakenExternalEvaluation
+  ): Promise<$PropertyType<TakenExternalEvaluation, "bandColors">> {
     const bandColorsData = compact(
       clearErrorArray(
-        await CourseStatsByCourseTakenDataLoader.loadMany(
-          compact([equiv, code])
+        await ExternalEvaluationStatsByExternalEvaluationTakenDataLoader.loadMany(
+          compact([code])
         )
       )
     )[0];

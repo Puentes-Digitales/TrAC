@@ -6,9 +6,13 @@ import {
   IProgram,
   IStudent,
   IStudentDropout,
+  IStudentAdmission,
+  IStudentEmployed,
   STUDENT_PROGRAM_TABLE,
   STUDENT_TABLE,
+  StudentAdmissionTable,
   StudentDropoutTable,
+  StudentEmployedTable,
   StudentProgramTable,
   StudentTable,
   StudentTermTable,
@@ -36,7 +40,7 @@ export const StudentViaProgramsDataLoader = new DataLoader(
     return await Promise.all(
       student_ids.map((student_id) => {
         return StudentProgramTable()
-          .select("program_id", "name", "state")
+          .select("program_id", "name", "state", "curriculum")
           .innerJoin<IStudent>(
             STUDENT_TABLE,
             `${STUDENT_TABLE}.id`,
@@ -118,7 +122,6 @@ export const StudentTermsDataLoader = new DataLoader(
         for (const studentTerm of studentTermData) {
           TermDataLoader.prime(studentTerm.id, studentTerm);
         }
-
         return studentTermData;
       })
     );
@@ -135,6 +138,36 @@ export const StudentDropoutDataLoader = new DataLoader(
   async (student_ids: readonly string[]) => {
     const dataDict: Dictionary<IStudentDropout | undefined> = keyBy(
       await StudentDropoutTable().whereIn("student_id", student_ids),
+      "student_id"
+    );
+    return student_ids.map((id) => {
+      return dataDict[id];
+    });
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentAdmissionDataLoader = new DataLoader(
+  async (student_ids: readonly string[]) => {
+    const dataDict: Dictionary<IStudentAdmission | undefined> = keyBy(
+      await StudentAdmissionTable().whereIn("student_id", student_ids),
+      "student_id"
+    );
+    return student_ids.map((id) => {
+      return dataDict[id];
+    });
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentEmployedDataLoader = new DataLoader(
+  async (student_ids: readonly string[]) => {
+    const dataDict: Dictionary<IStudentEmployed | undefined> = keyBy(
+      await StudentEmployedTable().whereIn("student_id", student_ids),
       "student_id"
     );
     return student_ids.map((id) => {

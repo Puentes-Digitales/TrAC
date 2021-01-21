@@ -1,24 +1,30 @@
 import { Field, Int, ObjectType } from "type-graphql";
 
 import { Course } from "./course";
+import { ExternalEvaluation } from "./externalEvaluation";
 
 @ObjectType({ simpleResolvers: true })
 export class Semester {
-  // program_structure => semester
+  // external_evaluation_structure => semester
   @Field(() => Int)
   id: number;
 
-  // program_structure => course_id
+  // external_evaluation_structure => course_id
   @Field(() => [Course])
   courses: Course[];
+
+  // external_evaluation_structure => external_evaluation_id
+  @Field(() => [ExternalEvaluation])
+  externalEvaluations: ExternalEvaluation[];
 }
+
 @ObjectType({ simpleResolvers: true })
 export class Curriculum {
-  // program_structure => curriculum
+  // external_evaluation_structure => curriculum
   @Field()
   id: string;
 
-  // program_structure => semester
+  // external_evaluation_structure => semester
   @Field(() => [Semester])
   semesters: Semester[];
 }
@@ -44,7 +50,7 @@ export class Program {
   @Field()
   lastGPA: number;
 
-  // program_structure => curriculum
+  // external_evaluation_structure => curriculum
   @Field(() => [Curriculum])
   curriculums: Curriculum[];
 }
