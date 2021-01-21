@@ -31,8 +31,6 @@
     "n_courses": 62,
     "n_passed_courses": 24,
     "completion": 0.39
-<<<<<<< HEAD
-=======
   },
   {
     "student_id": "c381c9bba3e870e0698d9dfa51619c1f",
@@ -66,6 +64,5 @@
     "n_courses": 60,
     "n_passed_courses": 30,
     "completion": 0.5
->>>>>>> new-proyect/main
   }
 ]

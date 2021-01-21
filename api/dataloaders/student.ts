@@ -6,11 +6,6 @@ import {
   IProgram,
   IStudent,
   IStudentDropout,
-<<<<<<< HEAD
-  STUDENT_PROGRAM_TABLE,
-  STUDENT_TABLE,
-  StudentDropoutTable,
-=======
   IStudentAdmission,
   IStudentEmployed,
   STUDENT_PROGRAM_TABLE,
@@ -18,7 +13,6 @@ import {
   StudentAdmissionTable,
   StudentDropoutTable,
   StudentEmployedTable,
->>>>>>> new-proyect/main
   StudentProgramTable,
   StudentTable,
   StudentTermTable,
@@ -46,11 +40,7 @@ export const StudentViaProgramsDataLoader = new DataLoader(
     return await Promise.all(
       student_ids.map((student_id) => {
         return StudentProgramTable()
-<<<<<<< HEAD
-          .select("program_id", "name", "state")
-=======
           .select("program_id", "name", "state", "curriculum")
->>>>>>> new-proyect/main
           .innerJoin<IStudent>(
             STUDENT_TABLE,
             `${STUDENT_TABLE}.id`,
@@ -132,10 +122,6 @@ export const StudentTermsDataLoader = new DataLoader(
         for (const studentTerm of studentTermData) {
           TermDataLoader.prime(studentTerm.id, studentTerm);
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> new-proyect/main
         return studentTermData;
       })
     );
@@ -163,8 +149,6 @@ export const StudentDropoutDataLoader = new DataLoader(
   }
 );
 
-<<<<<<< HEAD
-=======
 export const StudentAdmissionDataLoader = new DataLoader(
   async (student_ids: readonly string[]) => {
     const dataDict: Dictionary<IStudentAdmission | undefined> = keyBy(
@@ -195,7 +179,6 @@ export const StudentEmployedDataLoader = new DataLoader(
   }
 );
 
->>>>>>> new-proyect/main
 export const StudentListDataLoader = new DataLoader(
   async (program_ids: readonly string[]) => {
     return await Promise.all(

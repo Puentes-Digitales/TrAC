@@ -88,8 +88,6 @@ export const ProgramStructureTable = () =>
 
 // -------------------------------------------------------------------------------------
 
-<<<<<<< HEAD
-=======
 export interface IExternalEvaluationStructure {
   id: number;
   program_id: string;
@@ -114,7 +112,6 @@ export const ExternalEvaluationStructureTable = () =>
 
 // -------------------------------------------------------------------------------------
 
->>>>>>> new-proyect/main
 export interface IStudent {
   id: string;
   name: string;
@@ -202,9 +199,6 @@ export interface IStudentTerm {
 export const STUDENT_TERM_TABLE = "student_term";
 
 export const StudentTermTable = () => dbData<IStudentTerm>(STUDENT_TERM_TABLE);
-<<<<<<< HEAD
-
-=======
 // -------------------------------------------------------------------------------------
 export interface IStudentEmployed {
   id: string;
@@ -292,7 +286,6 @@ export const EXTERNAL_EVALUATION_STATS_TABLE = "external_evaluation_stats";
 
 export const ExternalEvaluationStatsTable = () =>
   dbData<IExternalEvaluationStats>(EXTERNAL_EVALUATION_STATS_TABLE);
->>>>>>> new-proyect/main
 // -------------------------------------------------------------------------------------
 
 export interface IPerformanceByLoad {

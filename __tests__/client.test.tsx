@@ -184,8 +184,6 @@ describe("admin", () => {
   });
 });
 
-<<<<<<< HEAD
-=======
 describe("Test <AdmissionDropout />", () => {
   test("Test Snapshot", () => {
     const tree = render(
@@ -257,5 +255,4 @@ test("test null props complementary component", () => {
   expect(education_system_value).toHaveLength(1);
 });
 
->>>>>>> new-proyect/main
 export {};

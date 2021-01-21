@@ -69,20 +69,6 @@ const migration = async () => {
     PerformanceByLoadTable,
     PERSISTENCE_TABLE,
     PROGRAM_STRUCTURE_TABLE,
-<<<<<<< HEAD
-    PROGRAM_TABLE,
-    ProgramStructureTable,
-    ProgramTable,
-    STUDENT_CLUSTER_TABLE,
-    STUDENT_COURSE_TABLE,
-    STUDENT_DROPOUT_TABLE,
-    STUDENT_PROGRAM_TABLE,
-    STUDENT_TABLE,
-    STUDENT_TERM_TABLE,
-    StudentClusterTable,
-    StudentCourseTable,
-    StudentDropoutTable,
-=======
     EXTERNAL_EVALUATION_STRUCTURE_TABLE,
     PROGRAM_TABLE,
     ProgramStructureTable,
@@ -107,7 +93,6 @@ const migration = async () => {
     StudentCourseTable,
     StudentDropoutTable,
     StudentEmployedTable,
->>>>>>> new-proyect/main
     StudentProgramTable,
     StudentTable,
     StudentTermTable,
@@ -185,13 +170,9 @@ const migration = async () => {
           email: "admin@admin.dev",
           config: {
             ...baseUserConfig,
-<<<<<<< HEAD
-            SHOW_DROPOUT: true,
-=======
             SHOW_STUDENT_COMPLEMENTARY_INFORMATION: true,
             SHOW_DROPOUT: true,
             SHOW_PROGRESS_STUDENT_CYCLE: true,
->>>>>>> new-proyect/main
             SHOW_STUDENT_LIST: true,
             FOREPLAN: true,
           },
@@ -351,8 +332,6 @@ const migration = async () => {
       }
     });
 
-<<<<<<< HEAD
-=======
   const externalEvaluationStructure = dbData.schema
     .hasTable(EXTERNAL_EVALUATION_STRUCTURE_TABLE)
     .then(async (exists) => {
@@ -389,7 +368,6 @@ const migration = async () => {
       }
     });
 
->>>>>>> new-proyect/main
   const student = dbData.schema.hasTable(STUDENT_TABLE).then(async (exists) => {
     if (!exists) {
       await dbData.schema.createTable(STUDENT_TABLE, (table) => {
@@ -467,11 +445,7 @@ const migration = async () => {
           table.text("mention").notNullable();
           table.integer("last_term", 4).notNullable();
           table.integer("n_courses", 8).notNullable();
-<<<<<<< HEAD
-          table.integer("n_passed_courses", 8).notNullable();
-=======
           table.integer("n_passed_courses", 4).notNullable();
->>>>>>> new-proyect/main
           table.float("completion", 4).notNullable();
         });
         await StudentProgramTable().insert(
@@ -521,8 +495,6 @@ const migration = async () => {
       }
     });
 
-<<<<<<< HEAD
-=======
   const studentAdmission = dbData.schema
     .hasTable(STUDENT_ADMISSION_TABLE)
     .then(async (exists) => {
@@ -634,7 +606,6 @@ const migration = async () => {
       }
     });
 
->>>>>>> new-proyect/main
   const performanceByLoad = dbData.schema
     .hasTable(PERFORMANCE_BY_LOAD_TABLE)
     .then(async (exists) => {
@@ -879,11 +850,6 @@ const migration = async () => {
     param,
     program,
     programStructure,
-<<<<<<< HEAD
-    student,
-    studentCourse,
-    studentDropout,
-=======
     externalEvaluationStructure,
     student,
     studentAdmission,
@@ -893,7 +859,6 @@ const migration = async () => {
     studentCourse,
     studentDropout,
     studentEmployed,
->>>>>>> new-proyect/main
     studentProgram,
     studentTerm,
     performanceByLoad,

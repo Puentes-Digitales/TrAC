@@ -5,10 +5,7 @@ import { Stack, StackProps, Text } from "@chakra-ui/react";
 import { ICourse } from "../../../../interfaces";
 import { ConfigContext } from "../../context/Config";
 import { CourseBox } from "./CourseBox/CourseBox";
-<<<<<<< HEAD
-=======
 import { ExternalEvaluationBox } from "./CourseBox/ExternalEvaluationBox";
->>>>>>> new-proyect/main
 
 const toRoman = (num: number, first = false): string => {
   if (first && num === 0) {
@@ -57,11 +54,6 @@ export const Semester: FC<
       >
         <b>{toRoman(n, true)}</b>
       </Text>
-<<<<<<< HEAD
-      {semester.map((course) => (
-        <CourseBox key={course.code} {...course} />
-      ))}
-=======
       {semester.map(
         (course) =>
           course.credits[0].value === -1 && (
@@ -74,7 +66,6 @@ export const Semester: FC<
             <CourseBox key={course.code} {...course} />
           )
       )}
->>>>>>> new-proyect/main
     </Stack>
   );
 };

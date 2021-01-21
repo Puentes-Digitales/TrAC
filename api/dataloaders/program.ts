@@ -4,16 +4,10 @@ import { LRUMap } from "lru_map";
 
 import {
   IProgram,
-<<<<<<< HEAD
-  ProgramStructureTable,
-  ProgramTable,
-  StudentProgramTable,
-=======
   ExternalEvaluationStructureTable,
   ProgramTable,
   StudentProgramTable,
   PROGRAM_STRUCTURE_TABLE,
->>>>>>> new-proyect/main
 } from "../db/tables";
 
 import type { Curriculum } from "../entities/data/program";
@@ -104,10 +98,6 @@ export const CurriculumsDataLoader = new DataLoader(
     return await Promise.all(
       keys.map(async ({ program_id, curriculumsIds }) => {
         const data = curriculumsIds
-<<<<<<< HEAD
-          ? await ProgramStructureTable()
-              .select("id", "curriculum", "semester", "course_id")
-=======
           ? await ExternalEvaluationStructureTable()
               .select("id", "curriculum", "semester", "external_evaluation_id")
               .unionAll(function () {
@@ -119,16 +109,11 @@ export const CurriculumsDataLoader = new DataLoader(
                     curriculumsIds.map(({ id }) => id)
                   );
               })
->>>>>>> new-proyect/main
               .where({ program_id })
               .whereIn(
                 "curriculum",
                 curriculumsIds.map(({ id }) => id)
               )
-<<<<<<< HEAD
-          : await ProgramStructureTable()
-              .select("id", "curriculum", "semester", "course_id")
-=======
           : await ExternalEvaluationStructureTable()
               .select("id", "curriculum", "semester", "external_evaluation_id")
               .unionAll(function () {
@@ -136,7 +121,6 @@ export const CurriculumsDataLoader = new DataLoader(
                   .from(PROGRAM_STRUCTURE_TABLE)
                   .where({ program_id });
               })
->>>>>>> new-proyect/main
               .where({ program_id });
 
         const curriculums = data.reduce<
@@ -156,11 +140,7 @@ export const CurriculumsDataLoader = new DataLoader(
               >;
             }
           >
-<<<<<<< HEAD
-        >((acum, { curriculum, semester, course_id, id }) => {
-=======
         >((acum, { curriculum, semester, external_evaluation_id, id }) => {
->>>>>>> new-proyect/main
           defaultsDeep(acum, {
             [curriculum]: {
               id: curriculum,
@@ -175,14 +155,9 @@ export const CurriculumsDataLoader = new DataLoader(
 
           acum[curriculum].semesters[semester].courses.push({
             id,
-<<<<<<< HEAD
-            code: course_id,
-          });
-=======
             code: external_evaluation_id,
           });
 
->>>>>>> new-proyect/main
           return acum;
         }, {});
 

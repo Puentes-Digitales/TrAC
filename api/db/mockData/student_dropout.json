@@ -14,8 +14,6 @@
     "active": true,
     "model_accuracy": 0.82,
     "explanation": "se estima que el 60% de todos los estudiantes tienen más riesgo de abandono que el estudiante en análisis"
-<<<<<<< HEAD
-=======
   },
   {
     "student_id": "238de40ae2a0e9f417c495e913d56773",
@@ -48,6 +46,5 @@
     "active": true,
     "model_accuracy": 0.82,
     "explanation": "se estima que el 60% de todos los estudiantes tienen más riesgo de abandono que el estudiante en análisis"
->>>>>>> new-proyect/main
   }
 ]

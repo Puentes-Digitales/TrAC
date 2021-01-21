@@ -1,10 +1,6 @@
 import { Field, ID, Int, ObjectType } from "type-graphql";
-<<<<<<< HEAD
-
-=======
 import { Admission } from "./admission";
 import { Employed } from "./employed";
->>>>>>> new-proyect/main
 import { Dropout } from "./dropout";
 import { Program } from "./program";
 import { Term } from "./term";
@@ -50,8 +46,6 @@ export class Student {
   // student_dropout
   @Field({ nullable: true })
   dropout?: Dropout;
-<<<<<<< HEAD
-=======
 
   // student_admission
   @Field()
@@ -66,5 +60,4 @@ export class Student {
 
   @Field(() => [Number])
   n_courses_cycles: number[];
->>>>>>> new-proyect/main
 }

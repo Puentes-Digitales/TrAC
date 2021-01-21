@@ -45,10 +45,6 @@ export enum StateCourse {
   Canceled = "Canceled",
   Pending = "Pending",
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> new-proyect/main
 export enum UserType {
   Director = "Director",
   Student = "Student",

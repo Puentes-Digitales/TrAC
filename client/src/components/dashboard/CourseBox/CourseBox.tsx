@@ -466,11 +466,7 @@ const GradeComponent: FC<Pick<CurrentTakenData, "state" | "grade">> = memo(
         fontWeight="bold"
       >
         {(() => {
-<<<<<<< HEAD
-          if (grade) {
-=======
           if (grade && grade != -1) {
->>>>>>> new-proyect/main
             return grade.toFixed(1);
           }
           switch (state) {

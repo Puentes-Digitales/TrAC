@@ -93,11 +93,8 @@ mutation searchStudent($student_id: String, $program_id: String) {
     }
     curriculums
     start_year
-<<<<<<< HEAD
-=======
     n_courses_cycles
     n_cycles
->>>>>>> new-proyect/main
     mention
     terms {
       id
@@ -105,17 +102,10 @@ mutation searchStudent($student_id: String, $program_id: String) {
       year
       term
       situation
-<<<<<<< HEAD
-      semestral_grade
-      cumulated_grade
-      program_grade
-      comments
-=======
       comments
       semestral_grade
       cumulated_grade
       program_grade
->>>>>>> new-proyect/main
       takenCourses {
         id
         code
@@ -141,8 +131,6 @@ mutation searchStudent($student_id: String, $program_id: String) {
       model_accuracy
       active
     }
-<<<<<<< HEAD
-=======
     admission {
       active
       type_admission
@@ -155,7 +143,6 @@ mutation searchStudent($student_id: String, $program_id: String) {
       educational_system
       months_to_first_job
     }
->>>>>>> new-proyect/main
   }
 }
 
@@ -183,15 +170,12 @@ query studentsList($program_id: String!) {
       prob_dropout
       explanation
     }
-<<<<<<< HEAD
-=======
     admission {
       active
       type_admission
       initial_test
       final_test
     }
->>>>>>> new-proyect/main
   }
 }
 

@@ -24,10 +24,7 @@ import {
   ProgramDataLoader,
   StudentProgramCurriculumsDataLoader,
   StudentProgramDataLoader,
-<<<<<<< HEAD
-=======
   // CurriculumsExternalEvaluationDataLoader,
->>>>>>> new-proyect/main
 } from "../../dataloaders/program";
 import { ProgramTable, UserProgramsTable } from "../../db/tables";
 import { Program } from "../../entities/data/program";

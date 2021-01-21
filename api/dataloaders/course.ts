@@ -6,12 +6,9 @@ import {
   CourseStatsTable,
   CourseTable,
   ICourse,
-<<<<<<< HEAD
-=======
   EXTERNAL_EVALUATION_STATS_TABLE,
   EXTERNAL_EVALUATION_TABLE,
   EXTERNAL_EVALUATION_STRUCTURE_TABLE,
->>>>>>> new-proyect/main
   ProgramStructureTable,
 } from "../db/tables";
 import { clearErrorArray } from "../utils/clearErrorArray";
@@ -88,9 +85,6 @@ export const CourseFlowDataLoader = new DataLoader(
 export const CourseDataLoader = new DataLoader(
   async (ids: readonly string[]) => {
     const dataDict: Dictionary<ICourse | undefined> = keyBy(
-<<<<<<< HEAD
-      await CourseTable().select("*").whereIn("id", ids),
-=======
       await CourseTable()
         .select("*")
         .unionAll(function () {
@@ -98,7 +92,6 @@ export const CourseDataLoader = new DataLoader(
             "id";
         })
         .whereIn("id", ids),
->>>>>>> new-proyect/main
       "id"
     );
     return ids.map((id) => {
@@ -114,11 +107,6 @@ export const CourseAndStructureDataLoader = new DataLoader(
   async (keys: readonly { id: number; code: string }[]) => {
     const [courseTableData, programStructureData] = await Promise.all([
       CourseDataLoader.loadMany(keys.map(({ code }) => code)),
-<<<<<<< HEAD
-
-      ProgramStructureTable()
-        .select("*")
-=======
       ProgramStructureTable()
         .select(
           "id",
@@ -157,7 +145,6 @@ export const CourseAndStructureDataLoader = new DataLoader(
               keys.map(({ id }) => id)
             );
         })
->>>>>>> new-proyect/main
         .whereIn(
           "id",
           keys.map(({ id }) => id)
@@ -185,9 +172,6 @@ export const CourseAndStructureDataLoader = new DataLoader(
 export const CourseStatsDataLoader = new DataLoader(
   async (codes: readonly string[]) => {
     const groupedData = groupBy(
-<<<<<<< HEAD
-      await CourseStatsTable().select("*").whereIn("course_taken", codes),
-=======
       await CourseStatsTable()
         .select("*")
         .unionAll(function () {
@@ -197,7 +181,6 @@ export const CourseStatsDataLoader = new DataLoader(
             "external_evaluation_taken";
         })
         .whereIn("course_taken", codes),
->>>>>>> new-proyect/main
       "course_taken"
     );
 

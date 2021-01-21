@@ -29,8 +29,6 @@ const data: {
               id: 1,
               courses: [
                 {
-<<<<<<< HEAD
-=======
                   code: "EID-17",
                   name: "PRUEBA INICIAL DIAGNÓSTICA",
                   credits: [
@@ -96,7 +94,6 @@ const data: {
                   ],
                 },
                 {
->>>>>>> new-proyect/main
                   code: "BAIN065-14",
                   name: "ÁLGEBRA PARA INGENIERÍA",
                   credits: [
@@ -2892,8 +2889,6 @@ const data: {
               id: 7,
               courses: [
                 {
-<<<<<<< HEAD
-=======
                   code: "END-17",
                   name: "PRUEBA NACIONAL DIAGNÓSTICA",
                   credits: [
@@ -2959,7 +2954,6 @@ const data: {
                   ],
                 },
                 {
->>>>>>> new-proyect/main
                   code: "ELECT101",
                   name: "OPTATIVO DE ESPECIALIZACIÓN II",
                   credits: [
@@ -4140,8 +4134,6 @@ const data: {
           comments: "",
           takenCourses: [
             {
-<<<<<<< HEAD
-=======
               id: 123123,
               code: "END-17",
               equiv: "",
@@ -4154,7 +4146,6 @@ const data: {
               bandColors: [],
             },
             {
->>>>>>> new-proyect/main
               id: 647897,
               code: "INFO229-17",
               equiv: "",
@@ -5771,8 +5762,6 @@ const data: {
           comments: "",
           takenCourses: [
             {
-<<<<<<< HEAD
-=======
               id: 123567,
               code: "EID-17",
               equiv: "",
@@ -5831,7 +5820,6 @@ const data: {
               ],
             },
             {
->>>>>>> new-proyect/main
               id: 454944,
               code: "INFO073-17",
               equiv: "",
@@ -6124,19 +6112,14 @@ const data: {
           ],
         },
       ],
-<<<<<<< HEAD
-=======
       n_cycles: ["bachillerato", "licenciatura"],
       n_courses_cycles: [24, 20, 25, 1],
 
->>>>>>> new-proyect/main
       dropout: {
         prob_dropout: 60.56,
         model_accuracy: 0.82,
         active: true,
       },
-<<<<<<< HEAD
-=======
       admission: {
         type_admission: "PSU",
         initial_test: 10,
@@ -6149,7 +6132,6 @@ const data: {
         institution: "Liceo Recto Armando Robles",
         months_to_first_job: 15,
       },
->>>>>>> new-proyect/main
     },
   },
 

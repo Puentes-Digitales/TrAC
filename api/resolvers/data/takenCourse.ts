@@ -6,14 +6,9 @@ import { CourseDataLoader } from "../../dataloaders/course";
 import {
   CourseStatsByCourseTakenDataLoader,
   CourseStatsByStateDataLoader,
-<<<<<<< HEAD
-  StudentCourseDataLoader,
-} from "../../dataloaders/takenCourse";
-=======
   StudentExternalEvaluationCourseDataLoader,
 } from "../../dataloaders/takenCourse";
 import { StudentExternalEvaluationAndCourseDataLoader } from "../../dataloaders/takenExternalEvaluation";
->>>>>>> new-proyect/main
 import { TakenCourse } from "../../entities/data/takenCourse";
 import { assertIsDefined } from "../../utils/assert";
 import { clearErrorArray } from "../../utils/clearErrorArray";
@@ -38,15 +33,9 @@ export class TakenCourseResolver {
     if (nameData === undefined) {
       return code;
     }
-<<<<<<< HEAD
-
-    return nameData.name ?? nameData.id;
-  }
-=======
     return nameData.name ?? nameData.id;
   }
 
->>>>>>> new-proyect/main
   @FieldResolver()
   async registration(
     @Root()
@@ -56,13 +45,9 @@ export class TakenCourseResolver {
       id,
       `id needs to be available for Taken Course field resolvers`
     );
-<<<<<<< HEAD
-    const registrationData = await StudentCourseDataLoader.load(id);
-=======
     const registrationData = await StudentExternalEvaluationAndCourseDataLoader.load(
       id
     );
->>>>>>> new-proyect/main
     assertIsDefined(
       registrationData,
       `Registration could not be found for ${id} taken course`
@@ -78,13 +63,9 @@ export class TakenCourseResolver {
       id,
       `id and code needs to be available for Taken Course field resolvers`
     );
-<<<<<<< HEAD
-    const gradeData = await StudentCourseDataLoader.load(id);
-=======
     const gradeData = await StudentExternalEvaluationAndCourseDataLoader.load(
       id
     );
->>>>>>> new-proyect/main
     assertIsDefined(
       gradeData,
       `Grade could not be found for ${id} taken course`
@@ -100,21 +81,13 @@ export class TakenCourseResolver {
       id,
       `id needs to be available for Taken Course field resolvers`
     );
-<<<<<<< HEAD
-    const stateData = await StudentCourseDataLoader.load(id);
-=======
     const stateData = await StudentExternalEvaluationAndCourseDataLoader.load(
       id
     );
->>>>>>> new-proyect/main
     assertIsDefined(
       stateData,
       `State could not be found for ${id} taken course`
     );
-<<<<<<< HEAD
-=======
-
->>>>>>> new-proyect/main
     return defaultStateCourse(stateData.state);
   }
   @FieldResolver()
@@ -126,13 +99,9 @@ export class TakenCourseResolver {
       id,
       `id needs to be available for Taken Course field resolvers`
     );
-<<<<<<< HEAD
-    const parallelGroupData = await StudentCourseDataLoader.load(id);
-=======
     const parallelGroupData = await StudentExternalEvaluationAndCourseDataLoader.load(
       id
     );
->>>>>>> new-proyect/main
     assertIsDefined(
       parallelGroupData,
       `Parallel group could not be found for ${id} taken course`
@@ -153,13 +122,9 @@ export class TakenCourseResolver {
       `code needs to be available for Taken Course field resolvers`
     );
 
-<<<<<<< HEAD
-    const dataTakenCourse = await StudentCourseDataLoader.load(id);
-=======
     const dataTakenCourse = await StudentExternalEvaluationCourseDataLoader.load(
       id
     );
->>>>>>> new-proyect/main
 
     assertIsDefined(
       dataTakenCourse,

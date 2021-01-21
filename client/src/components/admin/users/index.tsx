@@ -208,8 +208,6 @@ export const Users: FC<{
               </Table.HeaderCell>
               <Table.HeaderCell
                 sorted={
-<<<<<<< HEAD
-=======
                   column === "config.SHOW_STUDENT_COMPLEMENTARY_INFORMATION"
                     ? direction
                     : undefined
@@ -222,15 +220,12 @@ export const Users: FC<{
               </Table.HeaderCell>
               <Table.HeaderCell
                 sorted={
->>>>>>> new-proyect/main
                   column === "config.SHOW_DROPOUT" ? direction : undefined
                 }
                 onClick={handleSort("config.SHOW_DROPOUT")}
               >
                 show_dropout
               </Table.HeaderCell>
-<<<<<<< HEAD
-=======
 
               <Table.HeaderCell
                 sorted={
@@ -242,7 +237,6 @@ export const Users: FC<{
               >
                 show_progress_student_cycle
               </Table.HeaderCell>
->>>>>>> new-proyect/main
               <Table.HeaderCell
                 sorted={
                   column === "config.SHOW_STUDENT_LIST" ? direction : undefined
@@ -334,8 +328,6 @@ export const Users: FC<{
                             <Icon
                               circular
                               name={
-<<<<<<< HEAD
-=======
                                 configObj?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION
                                   ? "check circle outline"
                                   : "times circle outline"
@@ -346,7 +338,6 @@ export const Users: FC<{
                             <Icon
                               circular
                               name={
->>>>>>> new-proyect/main
                                 configObj?.SHOW_DROPOUT
                                   ? "check circle outline"
                                   : "times circle outline"
@@ -357,8 +348,6 @@ export const Users: FC<{
                             <Icon
                               circular
                               name={
-<<<<<<< HEAD
-=======
                                 configObj?.SHOW_PROGRESS_STUDENT_CYCLE
                                   ? "check circle outline"
                                   : "times circle outline"
@@ -369,7 +358,6 @@ export const Users: FC<{
                             <Icon
                               circular
                               name={
->>>>>>> new-proyect/main
                                 configObj?.SHOW_STUDENT_LIST
                                   ? "check circle outline"
                                   : "times circle outline"

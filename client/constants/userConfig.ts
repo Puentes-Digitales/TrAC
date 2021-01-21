@@ -1,11 +1,7 @@
 export const baseUserConfig = {
-<<<<<<< HEAD
-  SHOW_DROPOUT: false,
-=======
   SHOW_PROGRESS_STUDENT_CYCLE: false,
   SHOW_DROPOUT: false,
   SHOW_STUDENT_COMPLEMENTARY_INFORMATION: false,
->>>>>>> new-proyect/main
   SHOW_STUDENT_LIST: false,
   FOREPLAN: false,
   FOREPLAN_ADVICES_COMPARE_BY_PERFORMANCE: false,

@@ -19,8 +19,6 @@ export const baseConfig = {
   DROPOUT_PREDICTION_DESCRIPTION:
     "El sistema estima un percentil de riesgo de abandono",
   DROPOUT_TEXT_COLOR: "black",
-<<<<<<< HEAD
-=======
 
   COMPLEMENTARY_INFORMATION_BACKGROUND_COLOR: "rgb(165,206,252)",
   COMPLEMENTARY_INFORMATION_EMPLOYED_INFORMATION: "Datos de empleabilidad",
@@ -34,7 +32,6 @@ export const baseConfig = {
   COMPLEMENTARY_INFORMATION_TEXT_COLOR: "black",
   PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR: "rgb(252,249,165)",
   PROGRESS_STUDENT_INFORMATION_TEXT: "Avance en",
->>>>>>> new-proyect/main
   ENTRY_YEAR_LABEL: "Ingreso",
   ERROR_PROGRAM_NOT_FOUND: "Programa especificado no pudo ser encontrado.",
   ERROR_PROGRAM_UNAUTHORIZED_MESSAGE:
@@ -272,11 +269,7 @@ export const baseConfig = {
   TAKEN_SEMESTER_BOX_HEIGHT: "3em",
   TAKEN_SEMESTER_BOX_INACTIVE: "grey",
   TAKEN_SEMESTER_BOX_MARGIN_SIDES: 3,
-<<<<<<< HEAD
-  TAKEN_SEMESTER_BOX_PADDING: "6px",
-=======
   TAKEN_SEMESTER_BOX_PADDING: "7.5px",
->>>>>>> new-proyect/main
   TAKEN_SEMESTER_BOX_TEXT_COLOR: "black",
   TAKEN_SEMESTER_BOX_TRANSITION: "all 0.4s ease-in-out",
   TIMELINE_AXIS_COLOR: "black",

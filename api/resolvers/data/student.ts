@@ -19,28 +19,21 @@ import {
   UserType,
 } from "../../../client/constants";
 import {
-<<<<<<< HEAD
-  StudentDropoutDataLoader,
-=======
   StudentAdmissionDataLoader,
   StudentDropoutDataLoader,
   StudentEmployedDataLoader,
->>>>>>> new-proyect/main
   StudentLastProgramDataLoader,
   StudentListDataLoader,
   StudentProgramsDataLoader,
   StudentTermsDataLoader,
   StudentViaProgramsDataLoader,
 } from "../../dataloaders/student";
-<<<<<<< HEAD
-=======
 
 import {
   StudentListCyclesDataLoader,
   StudentCourseListDataLoader,
   StudentCycleApprovedCourseDataLoader,
 } from "../../dataloaders/studentCycle";
->>>>>>> new-proyect/main
 import { StudentProgramTable, UserProgramsTable } from "../../db/tables";
 import { Student } from "../../entities/data/student";
 import { anonService } from "../../services/anonymization";
@@ -50,21 +43,15 @@ import type { $PropertyType } from "utility-types";
 
 import type { IContext } from "../../interfaces";
 import type { Dropout } from "../../entities/data/dropout";
-<<<<<<< HEAD
-=======
 import type { Admission } from "../../entities/data/admission";
 import type { Employed } from "../../entities/data/employed";
->>>>>>> new-proyect/main
 import type { PartialProgram } from "./program";
 import type { PartialTerm } from "./term";
 
 export type PartialStudent = Pick<Student, "id" | "name" | "state"> & {
   programs?: PartialProgram[];
-<<<<<<< HEAD
-=======
   curriculums?: string;
   program?: string;
->>>>>>> new-proyect/main
 };
 @Resolver(() => Student)
 export class StudentResolver {
@@ -93,11 +80,8 @@ export class StudentResolver {
         name: studentData.name,
         state: studentData.state,
         programs: [{ id: studentData.program_id }],
-<<<<<<< HEAD
-=======
         curriculums: studentData.curriculum,
         program: studentData.program_id,
->>>>>>> new-proyect/main
       };
     } else {
       assertIsDefined(student_id, STUDENT_NOT_FOUND);
@@ -136,11 +120,8 @@ export class StudentResolver {
         name: studentData.name,
         state: studentData.state,
         programs: [{ id: program_id }],
-<<<<<<< HEAD
-=======
         curriculums: studentData.curriculum,
         program: studentData.program_id,
->>>>>>> new-proyect/main
       };
     }
   }
@@ -242,8 +223,6 @@ export class StudentResolver {
 
     return await StudentDropoutDataLoader.load(id);
   }
-<<<<<<< HEAD
-=======
 
   @FieldResolver()
   async admission(
@@ -314,5 +293,4 @@ export class StudentResolver {
 
     return valores_totales;
   }
->>>>>>> new-proyect/main
 }

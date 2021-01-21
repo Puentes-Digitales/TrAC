@@ -6,11 +6,8 @@ import {
   CourseStatsTable,
   ICourseStats,
   IStudentCourse,
-<<<<<<< HEAD
-=======
   STUDENT_EXTERNAL_EVALUATION_TABLE,
   EXTERNAL_EVALUATION_STATS_TABLE,
->>>>>>> new-proyect/main
   StudentCourseTable,
 } from "../db/tables";
 
@@ -30,8 +27,6 @@ export const StudentCourseDataLoader = new DataLoader(
   }
 );
 
-<<<<<<< HEAD
-=======
 export const StudentExternalEvaluationCourseDataLoader = new DataLoader(
   async (ids: readonly number[]) => {
     const dataDict: Dictionary<
@@ -58,7 +53,6 @@ export const StudentExternalEvaluationCourseDataLoader = new DataLoader(
   }
 );
 
->>>>>>> new-proyect/main
 export const CourseStatsByStateDataLoader = new DataLoader(
   async (
     keys: readonly {
@@ -72,8 +66,6 @@ export const CourseStatsByStateDataLoader = new DataLoader(
       keys.map(({ course_taken, year, term, p_group }) => {
         return CourseStatsTable()
           .select("histogram", "histogram_labels", "color_bands")
-<<<<<<< HEAD
-=======
           .unionAll(function () {
             this.select("histogram", "histogram_labels", "color_bands")
               .where({
@@ -84,7 +76,6 @@ export const CourseStatsByStateDataLoader = new DataLoader(
               })
               .from(EXTERNAL_EVALUATION_STATS_TABLE);
           })
->>>>>>> new-proyect/main
           .where({
             course_taken,
             year,
@@ -110,15 +101,12 @@ export const CourseStatsByCourseTakenDataLoader = new DataLoader(
     > = keyBy(
       await CourseStatsTable()
         .select("color_bands", "course_taken")
-<<<<<<< HEAD
-=======
         .unionAll(function () {
           this.select("color_bands", "external_evaluation_taken")
             .from(EXTERNAL_EVALUATION_STATS_TABLE)
             .whereIn("external_evaluation_taken", codes),
             "external_evaluation_taken";
         })
->>>>>>> new-proyect/main
         .whereIn("course_taken", codes),
       "course_taken"
     );

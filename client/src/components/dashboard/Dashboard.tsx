@@ -52,11 +52,7 @@ import { ToggleDarkMode } from "../DarkMode";
 import {
   Dropout,
   ForeplanModeSwitch,
-<<<<<<< HEAD
-  ForeplanSummary,
-=======
   ComplementaryInfo,
->>>>>>> new-proyect/main
 } from "../DynamicComponents";
 import { Feedback } from "../feedback";
 import { LoadingPage } from "../Loading";
@@ -64,10 +60,7 @@ import { SearchBar } from "./SearchBar";
 import { SemestersList } from "./SemestersList";
 import { TakenSemesterBox } from "./TakenSemesterBox";
 import { TimeLine } from "./Timeline/Timeline";
-<<<<<<< HEAD
-=======
 import { ProgressStudent } from "./ProgressStudent";
->>>>>>> new-proyect/main
 
 export function Dashboard() {
   const mock = useIsMockActive();
@@ -386,23 +379,17 @@ export function Dashboard() {
     TakenSemestersComponent,
     SemestersComponent,
     DropoutComponent,
-<<<<<<< HEAD
-=======
     ComplementaryInfoComponent,
     ProgressStudentComponent,
     ForePlanSwitchComponent,
->>>>>>> new-proyect/main
   } = useMemo(() => {
     let TimeLineComponent: JSX.Element | null = null;
     let DropoutComponent: JSX.Element | null = null;
     let TakenSemestersComponent: JSX.Element | null = null;
     let SemestersComponent: JSX.Element | null = null;
-<<<<<<< HEAD
-=======
     let ComplementaryInfoComponent: JSX.Element | null = null;
     let ProgressStudentComponent: JSX.Element | null = null;
     let ForePlanSwitchComponent: JSX.Element | null = null;
->>>>>>> new-proyect/main
 
     const studentData = mock
       ? mockData?.default.searchStudentData.student
@@ -453,25 +440,13 @@ export function Dashboard() {
           {studentData.terms
             .slice()
             .reverse()
-<<<<<<< HEAD
-=======
             // .map(({ term, year, comments }, key) => {
->>>>>>> new-proyect/main
             .map(({ term, year, comments }, key) => {
               return (
                 <TakenSemesterBox
                   key={key}
                   term={term}
                   year={year}
-<<<<<<< HEAD
-                  comments={comments}
-                />
-              );
-            })}
-          {user?.config?.FOREPLAN && <ForeplanModeSwitch />}
-        </Flex>
-      );
-=======
                   comments={comments!}
                 />
               );
@@ -480,7 +455,6 @@ export function Dashboard() {
       );
       if (user?.config?.FOREPLAN)
         ForePlanSwitchComponent = <ForeplanModeSwitch />;
->>>>>>> new-proyect/main
       if (studentData.dropout?.active && user?.config?.SHOW_DROPOUT) {
         DropoutComponent = (
           <Dropout
@@ -489,8 +463,6 @@ export function Dashboard() {
           />
         );
       }
-<<<<<<< HEAD
-=======
       if (
         studentData.admission?.active &&
         user?.config?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION
@@ -517,7 +489,6 @@ export function Dashboard() {
           />
         );
       }
->>>>>>> new-proyect/main
     }
     if (programData) {
       const curriculums =
@@ -618,12 +589,9 @@ export function Dashboard() {
       DropoutComponent,
       TakenSemestersComponent,
       SemestersComponent,
-<<<<<<< HEAD
-=======
       ComplementaryInfoComponent,
       ProgressStudentComponent,
       ForePlanSwitchComponent,
->>>>>>> new-proyect/main
     };
   }, [searchStudentData, searchProgramData, chosenCurriculum, mock, mockData]);
 
@@ -780,16 +748,6 @@ export function Dashboard() {
 
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
-<<<<<<< HEAD
-          <Box>{TimeLineComponent}</Box>
-          {DropoutComponent}
-          {user?.config.FOREPLAN && <ForeplanSummary />}
-        </Flex>
-
-        <Stack isInline pl="50px">
-          {TakenSemestersComponent}
-        </Stack>
-=======
           {ComplementaryInfoComponent}
           {ProgressStudentComponent}
           <Box>
@@ -806,7 +764,6 @@ export function Dashboard() {
             </Stack>
           </Box>
         </Flex>
->>>>>>> new-proyect/main
       </ScrollContainer>
 
       {SemestersComponent}

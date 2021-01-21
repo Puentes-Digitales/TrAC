@@ -12,11 +12,8 @@ type TrackingTemplateData = {
   student?: string;
   showingProgress?: boolean;
   showingPrediction?: boolean;
-<<<<<<< HEAD
-=======
   showingProgressStudenCycle?: boolean;
   showingStudentComplementaryInformation?: boolean;
->>>>>>> new-proyect/main
   coursesOpen?: string;
   foreplanActive?: boolean;
   foreplanCourses?: string;
@@ -78,11 +75,8 @@ export const TrackingManager: FC = memo(() => {
       student,
       showingProgress,
       showingPrediction,
-<<<<<<< HEAD
-=======
       showingProgressStudenCycle,
       showingStudentComplementaryInformation,
->>>>>>> new-proyect/main
       coursesOpen,
       action,
       effect,
@@ -98,13 +92,10 @@ export const TrackingManager: FC = memo(() => {
         student || null
       },showing-progress=${showingProgress ? 1 : 0},showing-prediction=${
         showingPrediction ? 1 : 0
-<<<<<<< HEAD
-=======
       },showing-student-complementary-information=${
         showingStudentComplementaryInformation ? 1 : 0
       },showing-progress-student-cycle=${
         showingProgressStudenCycle ? 1 : 0
->>>>>>> new-proyect/main
       },courses-open=${coursesOpen || null},user-config=${
         userConfig || "null"
       },foreplanActive=${foreplanActive ? 1 : 0},foreplanCourses=${
