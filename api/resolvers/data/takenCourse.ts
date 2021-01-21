@@ -88,7 +88,6 @@ export class TakenCourseResolver {
       stateData,
       `State could not be found for ${id} taken course`
     );
-
     return defaultStateCourse(stateData.state);
   }
   @FieldResolver()

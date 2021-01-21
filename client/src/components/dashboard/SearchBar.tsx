@@ -226,7 +226,6 @@ export const SearchBar: FC<{
                     setTrackingData({
                       student: undefined,
                     });
-
                     track({
                       action: "click",
                       effect: "load-program",
