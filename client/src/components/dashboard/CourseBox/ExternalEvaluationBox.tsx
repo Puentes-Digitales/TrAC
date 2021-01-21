@@ -208,7 +208,7 @@ const MainBlockOuter: FC<
     semestersTaken: ITakenSemester[];
   }
 > = memo(({ children, code, flow, requisites, semestersTaken }) => {
-  const config = useContext(ConfigContext);
+  // const config = useContext(ConfigContext);
   const bg = useColorModeValue("#D2B4DE", "#6C3483");
   return (
     <Flex
