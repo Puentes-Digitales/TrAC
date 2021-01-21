@@ -27,6 +27,7 @@ export const ProgressStudent: FC<{
   }, []);
 
   return (
+    
     <Flex alignItems="center" ml="1em">
       <Flex
         backgroundColor={PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR}
