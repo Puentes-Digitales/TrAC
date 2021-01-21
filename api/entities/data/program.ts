@@ -13,7 +13,7 @@ export class Semester {
   @Field(() => [Course])
   courses: Course[];
 
-  // external_evaluation_structure => Diagnostic_test_id
+  // external_evaluation_structure => external_evaluation_id
   @Field(() => [ExternalEvaluation])
   externalEvaluations: ExternalEvaluation[];
 }
