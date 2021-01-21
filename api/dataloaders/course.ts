@@ -8,6 +8,7 @@ import {
   ICourse,
   EXTERNAL_EVALUATION_STATS_TABLE,
   EXTERNAL_EVALUATION_TABLE,
+  EXTERNAL_EVALUATION_STRUCTURE_TABLE,
   ProgramStructureTable,
 } from "../db/tables";
 import { clearErrorArray } from "../utils/clearErrorArray";
@@ -87,7 +88,8 @@ export const CourseDataLoader = new DataLoader(
       await CourseTable()
         .select("*")
         .unionAll(function () {
-          this.select("*").from(EXTERNAL_EVALUATION_TABLE);
+          this.select("*").from(EXTERNAL_EVALUATION_TABLE).whereIn("id", ids),
+            "id";
         })
         .whereIn("id", ids),
       "id"
@@ -106,7 +108,43 @@ export const CourseAndStructureDataLoader = new DataLoader(
     const [courseTableData, programStructureData] = await Promise.all([
       CourseDataLoader.loadMany(keys.map(({ code }) => code)),
       ProgramStructureTable()
-        .select("*")
+        .select(
+          "id",
+          "program_id",
+          "curriculum",
+          "semester",
+          "course_id",
+          "credits",
+          "requisites",
+          "mention",
+          "mention",
+          "course_cat",
+          "mode",
+          "credits_sct",
+          "tags"
+        )
+        .unionAll(function () {
+          this.select(
+            "id",
+            "program_id",
+            "curriculum",
+            "semester",
+            "external_evaluation_id",
+            "credits",
+            "requisites",
+            "mention",
+            "mention",
+            "evaluation_cat",
+            "mode",
+            "credits_sct",
+            "tags"
+          )
+            .from(EXTERNAL_EVALUATION_STRUCTURE_TABLE)
+            .whereIn(
+              "id",
+              keys.map(({ id }) => id)
+            );
+        })
         .whereIn(
           "id",
           keys.map(({ id }) => id)
@@ -137,7 +175,10 @@ export const CourseStatsDataLoader = new DataLoader(
       await CourseStatsTable()
         .select("*")
         .unionAll(function () {
-          this.select("*").from(EXTERNAL_EVALUATION_STATS_TABLE);
+          this.select("*")
+            .from(EXTERNAL_EVALUATION_STATS_TABLE)
+            .whereIn("external_evaluation_taken", codes),
+            "external_evaluation_taken";
         })
         .whereIn("course_taken", codes),
       "course_taken"

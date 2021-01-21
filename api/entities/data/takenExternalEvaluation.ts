@@ -40,11 +40,11 @@ export class TakenExternalEvaluation
   @Field(() => Int)
   parallelGroup: number;
 
-  // diagnostic_test_stats => histogram , histogram_labels
+  // external_evaluation_stats => histogram , histogram_labels
   @Field(() => [DistributionValue])
   currentDistribution: DistributionValue[];
 
-  // LOGIC, CHOOSE ACCORDINGLY => diagnostic_test_stats => color_bands
+  // LOGIC, CHOOSE ACCORDINGLY => external_evaluation_stats => color_bands
   @Field(() => [BandColor])
   bandColors: BandColor[];
 }

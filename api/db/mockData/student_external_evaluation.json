@@ -7,8 +7,8 @@
     "external_evaluation_taken": "EID-15",
     "registration": "CURSADA",
     "state": "A",
-    "grade": 4.4,
-    "p_group": 1,
+    "grade": -1,
+    "p_group": 0,
     "comments": "1708,2015",
     "duplicates": 1
   },
@@ -20,8 +20,8 @@
     "external_evaluation_taken": "END-15",
     "registration": "CURSADA",
     "state": "A",
-    "grade": 5.4,
-    "p_group": 1,
+    "grade": -1,
+    "p_group": 0,
     "comments": "1708,2015",
     "duplicates": 1
   },
@@ -33,8 +33,8 @@
     "external_evaluation_taken": "EID-17",
     "registration": "CURSADA",
     "state": "A",
-    "grade": 6.8,
-    "p_group": 1,
+    "grade": -1,
+    "p_group": 0,
     "comments": "1708,2017",
     "duplicates": 1
   },
@@ -46,7 +46,7 @@
     "external_evaluation_taken": "EID-15",
     "registration": "CURSADA",
     "state": "A",
-    "grade": 6.5,
+    "grade": -1,
     "p_group": 0,
     "comments": "1708,2015",
     "duplicates": 1
@@ -59,8 +59,8 @@
     "external_evaluation_taken": "END-15",
     "registration": "CURSADA",
     "state": "A",
-    "grade": 5.4,
-    "p_group": 1,
+    "grade": -1,
+    "p_group": 0,
     "comments": "1708,2015",
     "duplicates": 1
   },
@@ -72,8 +72,8 @@
     "external_evaluation_taken": "EID-17",
     "registration": "CURSADA",
     "state": "A",
-    "grade": 4.8,
-    "p_group": 1,
+    "grade": -1,
+    "p_group": 0,
     "comments": "1708,2017",
     "duplicates": 1
   },
@@ -85,8 +85,8 @@
     "external_evaluation_taken": "END-17",
     "registration": "CURSADA",
     "state": "A",
-    "grade": 5.8,
-    "p_group": 1,
+    "grade": -1,
+    "p_group": 0,
     "comments": "1708,2017",
     "duplicates": 1
   },
@@ -98,8 +98,8 @@
     "external_evaluation_taken": "EID-17",
     "registration": "CURSADA",
     "state": "A",
-    "grade": 5.4,
-    "p_group": 1,
+    "grade": -1,
+    "p_group": 0,
     "comments": "1708,2017",
     "duplicates": 1
   },
@@ -111,8 +111,8 @@
     "external_evaluation_taken": "END-17",
     "registration": "REGISTRADA",
     "state": "C",
-    "grade": 0,
-    "p_group": 2,
+    "grade": -1,
+    "p_group": 0,
     "comments": "1708,2017",
     "duplicates": 1
   }
