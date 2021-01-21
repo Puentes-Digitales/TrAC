@@ -23,6 +23,16 @@ export type Scalars = {
   JSONObject: Record<string, any>;
 };
 
+<<<<<<< HEAD
+=======
+export type Admission = {
+  active: Scalars["Boolean"];
+  final_test?: Maybe<Scalars["Float"]>;
+  initial_test?: Maybe<Scalars["Float"]>;
+  type_admission: Scalars["String"];
+};
+
+>>>>>>> new-proyect/main
 export type AuthResult = {
   error?: Maybe<Scalars["String"]>;
   token?: Maybe<Scalars["String"]>;
@@ -70,6 +80,27 @@ export type Dropout = {
   prob_dropout?: Maybe<Scalars["Float"]>;
 };
 
+<<<<<<< HEAD
+=======
+export type Employed = {
+  description?: Maybe<Scalars["String"]>;
+  educational_system?: Maybe<Scalars["String"]>;
+  employed: Scalars["Boolean"];
+  institution?: Maybe<Scalars["String"]>;
+  months_to_first_job?: Maybe<Scalars["Float"]>;
+};
+
+export type ExternalEvaluation = {
+  bandColors: Array<BandColor>;
+  code: Scalars["String"];
+  historicalDistribution: Array<DistributionValue>;
+  /** ExternalEvaluation-Semester-Curriculum-Program ID */
+  id: Scalars["Int"];
+  mention: Scalars["String"];
+  name: Scalars["String"];
+};
+
+>>>>>>> new-proyect/main
 export type FeedbackAnswer = {
   answer: Scalars["String"];
   question: FeedbackQuestion;
@@ -322,6 +353,10 @@ export type QueryUserPersistencesArgs = {
 
 export type Semester = {
   courses: Array<Course>;
+<<<<<<< HEAD
+=======
+  externalEvaluations: Array<ExternalEvaluation>;
+>>>>>>> new-proyect/main
   id: Scalars["Int"];
 };
 
@@ -335,10 +370,21 @@ export enum StateCourse {
 }
 
 export type Student = {
+<<<<<<< HEAD
   curriculums: Array<Scalars["String"]>;
   dropout?: Maybe<Dropout>;
   id: Scalars["ID"];
   mention: Scalars["String"];
+=======
+  admission: Admission;
+  curriculums: Array<Scalars["String"]>;
+  dropout?: Maybe<Dropout>;
+  employed: Employed;
+  id: Scalars["ID"];
+  mention: Scalars["String"];
+  n_courses_cycles: Array<Scalars["Float"]>;
+  n_cycles: Array<Scalars["String"]>;
+>>>>>>> new-proyect/main
   name: Scalars["String"];
   programs: Array<Program>;
   progress: Scalars["Float"];
@@ -360,8 +406,25 @@ export type TakenCourse = {
   state: StateCourse;
 };
 
+<<<<<<< HEAD
 export type Term = {
   comments: Scalars["String"];
+=======
+export type TakenExternalEvaluation = {
+  bandColors: Array<BandColor>;
+  code: Scalars["String"];
+  currentDistribution: Array<DistributionValue>;
+  grade: Scalars["Float"];
+  id: Scalars["Int"];
+  name: Scalars["String"];
+  parallelGroup: Scalars["Int"];
+  registration: Scalars["String"];
+  state: StateCourse;
+};
+
+export type Term = {
+  comments?: Maybe<Scalars["String"]>;
+>>>>>>> new-proyect/main
   cumulated_grade: Scalars["Float"];
   id: Scalars["Int"];
   program_grade: Scalars["Float"];
@@ -369,6 +432,10 @@ export type Term = {
   situation: Scalars["String"];
   student_id: Scalars["String"];
   takenCourses: Array<TakenCourse>;
+<<<<<<< HEAD
+=======
+  takenExternalEvaluations: Array<TakenExternalEvaluation>;
+>>>>>>> new-proyect/main
   term: TermType;
   year: Scalars["Int"];
 };
@@ -647,7 +714,19 @@ export type SearchStudentMutationVariables = Exact<{
 
 export type SearchStudentMutation = {
   student?: Maybe<
+<<<<<<< HEAD
     Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
+=======
+    Pick<
+      Student,
+      | "id"
+      | "curriculums"
+      | "start_year"
+      | "n_courses_cycles"
+      | "n_cycles"
+      | "mention"
+    > & {
+>>>>>>> new-proyect/main
       programs: Array<Pick<Program, "id" | "name">>;
       terms: Array<
         Pick<
@@ -657,10 +736,17 @@ export type SearchStudentMutation = {
           | "year"
           | "term"
           | "situation"
+<<<<<<< HEAD
           | "semestral_grade"
           | "cumulated_grade"
           | "program_grade"
           | "comments"
+=======
+          | "comments"
+          | "semestral_grade"
+          | "cumulated_grade"
+          | "program_grade"
+>>>>>>> new-proyect/main
         > & {
           takenCourses: Array<
             Pick<
@@ -685,6 +771,20 @@ export type SearchStudentMutation = {
       dropout?: Maybe<
         Pick<Dropout, "prob_dropout" | "model_accuracy" | "active">
       >;
+<<<<<<< HEAD
+=======
+      admission: Pick<
+        Admission,
+        "active" | "type_admission" | "initial_test" | "final_test"
+      >;
+      employed: Pick<
+        Employed,
+        | "employed"
+        | "institution"
+        | "educational_system"
+        | "months_to_first_job"
+      >;
+>>>>>>> new-proyect/main
     }
   >;
 };
@@ -714,6 +814,13 @@ export type StudentsListQuery = {
   students: Array<
     Pick<Student, "id" | "progress" | "start_year"> & {
       dropout?: Maybe<Pick<Dropout, "prob_dropout" | "explanation">>;
+<<<<<<< HEAD
+=======
+      admission: Pick<
+        Admission,
+        "active" | "type_admission" | "initial_test" | "final_test"
+      >;
+>>>>>>> new-proyect/main
     }
   >;
 };
@@ -1979,6 +2086,11 @@ export const SearchStudentDocument = gql`
       }
       curriculums
       start_year
+<<<<<<< HEAD
+=======
+      n_courses_cycles
+      n_cycles
+>>>>>>> new-proyect/main
       mention
       terms {
         id
@@ -1986,10 +2098,17 @@ export const SearchStudentDocument = gql`
         year
         term
         situation
+<<<<<<< HEAD
         semestral_grade
         cumulated_grade
         program_grade
         comments
+=======
+        comments
+        semestral_grade
+        cumulated_grade
+        program_grade
+>>>>>>> new-proyect/main
         takenCourses {
           id
           code
@@ -2015,6 +2134,21 @@ export const SearchStudentDocument = gql`
         model_accuracy
         active
       }
+<<<<<<< HEAD
+=======
+      admission {
+        active
+        type_admission
+        initial_test
+        final_test
+      }
+      employed {
+        employed
+        institution
+        educational_system
+        months_to_first_job
+      }
+>>>>>>> new-proyect/main
     }
   }
 `;
@@ -2212,6 +2346,15 @@ export const StudentsListDocument = gql`
         prob_dropout
         explanation
       }
+<<<<<<< HEAD
+=======
+      admission {
+        active
+        type_admission
+        initial_test
+        final_test
+      }
+>>>>>>> new-proyect/main
     }
   }
 `;

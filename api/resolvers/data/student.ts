@@ -19,13 +19,28 @@ import {
   UserType,
 } from "../../../client/constants";
 import {
+<<<<<<< HEAD
   StudentDropoutDataLoader,
+=======
+  StudentAdmissionDataLoader,
+  StudentDropoutDataLoader,
+  StudentEmployedDataLoader,
+>>>>>>> new-proyect/main
   StudentLastProgramDataLoader,
   StudentListDataLoader,
   StudentProgramsDataLoader,
   StudentTermsDataLoader,
   StudentViaProgramsDataLoader,
 } from "../../dataloaders/student";
+<<<<<<< HEAD
+=======
+
+import {
+  StudentListCyclesDataLoader,
+  StudentCourseListDataLoader,
+  StudentCycleApprovedCourseDataLoader,
+} from "../../dataloaders/studentCycle";
+>>>>>>> new-proyect/main
 import { StudentProgramTable, UserProgramsTable } from "../../db/tables";
 import { Student } from "../../entities/data/student";
 import { anonService } from "../../services/anonymization";
@@ -35,11 +50,21 @@ import type { $PropertyType } from "utility-types";
 
 import type { IContext } from "../../interfaces";
 import type { Dropout } from "../../entities/data/dropout";
+<<<<<<< HEAD
+=======
+import type { Admission } from "../../entities/data/admission";
+import type { Employed } from "../../entities/data/employed";
+>>>>>>> new-proyect/main
 import type { PartialProgram } from "./program";
 import type { PartialTerm } from "./term";
 
 export type PartialStudent = Pick<Student, "id" | "name" | "state"> & {
   programs?: PartialProgram[];
+<<<<<<< HEAD
+=======
+  curriculums?: string;
+  program?: string;
+>>>>>>> new-proyect/main
 };
 @Resolver(() => Student)
 export class StudentResolver {
@@ -68,6 +93,11 @@ export class StudentResolver {
         name: studentData.name,
         state: studentData.state,
         programs: [{ id: studentData.program_id }],
+<<<<<<< HEAD
+=======
+        curriculums: studentData.curriculum,
+        program: studentData.program_id,
+>>>>>>> new-proyect/main
       };
     } else {
       assertIsDefined(student_id, STUDENT_NOT_FOUND);
@@ -106,6 +136,11 @@ export class StudentResolver {
         name: studentData.name,
         state: studentData.state,
         programs: [{ id: program_id }],
+<<<<<<< HEAD
+=======
+        curriculums: studentData.curriculum,
+        program: studentData.program_id,
+>>>>>>> new-proyect/main
       };
     }
   }
@@ -207,4 +242,77 @@ export class StudentResolver {
 
     return await StudentDropoutDataLoader.load(id);
   }
+<<<<<<< HEAD
+=======
+
+  @FieldResolver()
+  async admission(
+    @Root() { id }: PartialStudent
+  ): Promise<Admission | undefined> {
+    assertIsDefined(
+      id,
+      `student id needs to be available for Student field resolvers`
+    );
+
+    return await StudentAdmissionDataLoader.load(id);
+  }
+
+  @FieldResolver()
+  async employed(
+    @Root() { id }: PartialStudent
+  ): Promise<Employed | undefined> {
+    assertIsDefined(
+      id,
+      `student id needs to be available for Student field resolvers`
+    );
+
+    return await StudentEmployedDataLoader.load(id);
+  }
+
+  @FieldResolver()
+  async n_cycles(
+    @Root() { programs, curriculums }: PartialStudent
+  ): Promise<$PropertyType<Student, "n_cycles">> {
+    const total_cycles = await StudentListCyclesDataLoader.load({
+      program_id: programs![0]["id"],
+      curriculum: curriculums!,
+    });
+    const list_cycle = total_cycles.map((d) => d.course_cat);
+
+    return list_cycle;
+  }
+  @FieldResolver()
+  async n_courses_cycles(
+    @Root() { programs, curriculums, id }: PartialStudent
+  ): Promise<$PropertyType<Student, "n_courses_cycles">> {
+    const total_cycles = await StudentListCyclesDataLoader.load({
+      program_id: programs![0]["id"],
+      curriculum: curriculums!,
+    });
+
+    const list_cycle = total_cycles.map((d) => d.course_cat);
+    var valores_totales = [];
+
+    for await (let cycle of list_cycle) {
+      const n_courses = await StudentCourseListDataLoader.load({
+        program_id: programs![0]["id"],
+        curriculum: curriculums!,
+        course_cat: cycle,
+      });
+      const n_approved_courses = await StudentCycleApprovedCourseDataLoader.load(
+        {
+          program_id: programs![0]["id"],
+          curriculum: curriculums!,
+          student_id: id,
+          course_cat: cycle,
+        }
+      );
+
+      valores_totales.push(Number(n_courses[0]["count"]));
+      valores_totales.push(Number(n_approved_courses[0]["count"]));
+    }
+
+    return valores_totales;
+  }
+>>>>>>> new-proyect/main
 }

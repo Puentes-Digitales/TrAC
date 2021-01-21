@@ -82,6 +82,10 @@ export const TakenSemesterBox: FC<{
     <Box
       textAlign="center"
       border={config.TAKEN_SEMESTER_BOX_BORDER}
+<<<<<<< HEAD
+=======
+      fontFamily='Lato'
+>>>>>>> new-proyect/main
       borderColor={borderColor}
       borderRadius={config.TAKEN_SEMESTER_BOX_BORDER_RADIUS}
       backgroundColor={config.TAKEN_SEMESTER_BOX_BACKGROUND_COLOR}
@@ -112,7 +116,11 @@ export const TakenSemesterBox: FC<{
           <Box>
             <Badge
               bg={badgeBgColor}
+<<<<<<< HEAD
               borderRadius="5px"
+=======
+              borderRadius="4px"
+>>>>>>> new-proyect/main
               fontSize="0.5em"
               {...badgeProps}
             >

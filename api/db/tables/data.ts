@@ -88,6 +88,33 @@ export const ProgramStructureTable = () =>
 
 // -------------------------------------------------------------------------------------
 
+<<<<<<< HEAD
+=======
+export interface IExternalEvaluationStructure {
+  id: number;
+  program_id: string;
+  curriculum: string;
+  year: number;
+  semester: number;
+  external_evaluation_id: string;
+  credits: number;
+  requisites: string;
+  mention: string;
+  evaluation_cat: string;
+  mode: string;
+  credits_sct: number;
+  tags: string;
+}
+
+export const EXTERNAL_EVALUATION_STRUCTURE_TABLE =
+  "external_evaluation_structure";
+
+export const ExternalEvaluationStructureTable = () =>
+  dbData<IExternalEvaluationStructure>(EXTERNAL_EVALUATION_STRUCTURE_TABLE);
+
+// -------------------------------------------------------------------------------------
+
+>>>>>>> new-proyect/main
 export interface IStudent {
   id: string;
   name: string;
@@ -175,7 +202,97 @@ export interface IStudentTerm {
 export const STUDENT_TERM_TABLE = "student_term";
 
 export const StudentTermTable = () => dbData<IStudentTerm>(STUDENT_TERM_TABLE);
+<<<<<<< HEAD
 
+=======
+// -------------------------------------------------------------------------------------
+export interface IStudentEmployed {
+  id: string;
+  student_id: string;
+  employed: boolean;
+  institution: string;
+  educational_system: string;
+  months_to_first_job: number;
+  description: string;
+}
+
+export const STUDENT_EMPLOYED_TABLE = "student_employed";
+
+export const StudentEmployedTable = () =>
+  dbData<IStudentEmployed>(STUDENT_EMPLOYED_TABLE);
+
+// --------------------------------------------------------------------------
+export interface IStudentAdmission {
+  student_id: string;
+  active: boolean;
+  type_admission: string;
+  initial_test: number;
+  final_test?: number;
+}
+
+export const STUDENT_ADMISSION_TABLE = "student_admission";
+
+export const StudentAdmissionTable = () =>
+  dbData<IStudentAdmission>(STUDENT_ADMISSION_TABLE);
+// -------------------------------------------------------------------------------------
+export interface IStudentExternalEvaluation {
+  id: number;
+  curriculum: number;
+  year: number;
+  term: number;
+  student_id: string;
+  external_evaluation_taken: string;
+  registration: string;
+  state: string;
+  grade: number;
+  p_group: number;
+  comments: string;
+  duplicates: number;
+}
+
+export const STUDENT_EXTERNAL_EVALUATION_TABLE = "student_external_evaluation";
+
+export const StudentExternalEvaluationTable = () =>
+  dbData<IStudentExternalEvaluation>(STUDENT_EXTERNAL_EVALUATION_TABLE);
+// -------------------------------------------------------------------------------------
+export interface IExternalEvaluation {
+  id: string;
+  name: string;
+  description: string;
+  tags: string;
+  grading: string;
+  grade_min: number;
+  grade_max: number;
+  grade_pass_min: number;
+}
+
+export const EXTERNAL_EVALUATION_TABLE = "external_evaluation";
+
+export const ExternalEvaluationTable = () =>
+  dbData<IExternalEvaluation>(EXTERNAL_EVALUATION_TABLE);
+// -------------------------------------------------------------------------------------
+export interface IExternalEvaluationStats {
+  external_evaluation_taken: string;
+  year: number;
+  term: number;
+  p_group: number;
+  n_total: number;
+  n_finished: number;
+  n_pass: number;
+  n_fail: number;
+  n_drop: number;
+  histogram: string;
+  avg_grade: number;
+  id: number;
+  histogram_labels: string;
+  color_bands: string;
+}
+
+export const EXTERNAL_EVALUATION_STATS_TABLE = "external_evaluation_stats";
+
+export const ExternalEvaluationStatsTable = () =>
+  dbData<IExternalEvaluationStats>(EXTERNAL_EVALUATION_STATS_TABLE);
+>>>>>>> new-proyect/main
 // -------------------------------------------------------------------------------------
 
 export interface IPerformanceByLoad {

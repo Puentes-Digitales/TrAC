@@ -208,8 +208,8 @@ const MainBlockOuter: FC<
     semestersTaken: ITakenSemester[];
   }
 > = memo(({ children, code, flow, requisites, semestersTaken }) => {
-  const config = useContext(ConfigContext);
-  const bg = useColorModeValue(config.COURSE_BOX_BACKGROUND_COLOR, "#1A202C");
+  // const config = useContext(ConfigContext);
+  const bg = useColorModeValue("#D2B4DE", "#6C3483");
   return (
     <Flex
       w="100%"
@@ -466,11 +466,7 @@ const GradeComponent: FC<Pick<CurrentTakenData, "state" | "grade">> = memo(
         fontWeight="bold"
       >
         {(() => {
-<<<<<<< HEAD
-          if (grade) {
-=======
           if (grade && grade != -1) {
->>>>>>> new-proyect/main
             return grade.toFixed(1);
           }
           switch (state) {
@@ -505,7 +501,7 @@ export const currentDistributionLabel = ({
   return `${label} ${term} ${year}`;
 };
 
-export function CourseBox({
+export function ExternalEvaluationBox({
   code,
   name,
   credits,

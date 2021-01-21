@@ -3,6 +3,10 @@ import { AiOutlineSchedule } from "react-icons/ai";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 
 import { Button } from "@chakra-ui/react";
+<<<<<<< HEAD
+=======
+import { useUser } from "../../utils/useUser";
+>>>>>>> new-proyect/main
 
 import { ConfigContext } from "../../context/Config";
 import { ForeplanActiveStore } from "../../context/ForeplanContext";
@@ -22,7 +26,11 @@ const ForeplanModeSwitch: FC = () => {
     FOREPLAN_MODE_SWITCH_FONT_FAMILY,
     FOREPLAN_MODE_SWITCH_FONT_SIZE,
   } = useContext(ConfigContext);
+<<<<<<< HEAD
 
+=======
+  const { user } = useUser();
+>>>>>>> new-proyect/main
   return (
     <Button
       backgroundColor={
@@ -43,6 +51,10 @@ const ForeplanModeSwitch: FC = () => {
       fontSize={FOREPLAN_MODE_SWITCH_FONT_SIZE}
       fontFamily={FOREPLAN_MODE_SWITCH_FONT_FAMILY}
       transition="all 1s"
+<<<<<<< HEAD
+=======
+      mt={user?.config?.SHOW_DROPOUT ? "0px" : "190px"}
+>>>>>>> new-proyect/main
       onClick={() => {
         if (isForeplanActive) {
           disableForeplan();

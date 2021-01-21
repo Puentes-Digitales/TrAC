@@ -3,6 +3,16 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+<<<<<<< HEAD
+=======
+type Admission {
+  active: Boolean!
+  final_test: Float
+  initial_test: Float
+  type_admission: String!
+}
+
+>>>>>>> new-proyect/main
 type AuthResult {
   error: String
   token: String
@@ -63,6 +73,30 @@ A field whose value conforms to the standard internet email address format as sp
 """
 scalar EmailAddress
 
+<<<<<<< HEAD
+=======
+type Employed {
+  description: String
+  educational_system: String
+  employed: Boolean!
+  institution: String
+  months_to_first_job: Float
+}
+
+type ExternalEvaluation {
+  bandColors: [BandColor!]!
+  code: String!
+  historicalDistribution: [DistributionValue!]!
+
+  """
+  ExternalEvaluation-Semester-Curriculum-Program ID
+  """
+  id: Int!
+  mention: String!
+  name: String!
+}
+
+>>>>>>> new-proyect/main
 type FeedbackAnswer {
   answer: String!
   question: FeedbackQuestion!
@@ -233,6 +267,10 @@ type Query {
 
 type Semester {
   courses: [Course!]!
+<<<<<<< HEAD
+=======
+  externalEvaluations: [ExternalEvaluation!]!
+>>>>>>> new-proyect/main
   id: Int!
 }
 
@@ -248,10 +286,21 @@ enum StateCourse {
 }
 
 type Student {
+<<<<<<< HEAD
   curriculums: [String!]!
   dropout: Dropout
   id: ID!
   mention: String!
+=======
+  admission: Admission!
+  curriculums: [String!]!
+  dropout: Dropout
+  employed: Employed!
+  id: ID!
+  mention: String!
+  n_courses_cycles: [Float!]!
+  n_cycles: [String!]!
+>>>>>>> new-proyect/main
   name: String!
   programs: [Program!]!
   progress: Float!
@@ -273,8 +322,25 @@ type TakenCourse {
   state: StateCourse!
 }
 
+<<<<<<< HEAD
 type Term {
   comments: String!
+=======
+type TakenExternalEvaluation {
+  bandColors: [BandColor!]!
+  code: String!
+  currentDistribution: [DistributionValue!]!
+  grade: Float!
+  id: Int!
+  name: String!
+  parallelGroup: Int!
+  registration: String!
+  state: StateCourse!
+}
+
+type Term {
+  comments: String
+>>>>>>> new-proyect/main
   cumulated_grade: Float!
   id: Int!
   program_grade: Float!
@@ -282,6 +348,10 @@ type Term {
   situation: String!
   student_id: String!
   takenCourses: [TakenCourse!]!
+<<<<<<< HEAD
+=======
+  takenExternalEvaluations: [TakenExternalEvaluation!]!
+>>>>>>> new-proyect/main
   term: TermType!
   year: Int!
 }
