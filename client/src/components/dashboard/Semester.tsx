@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 
-import { Stack, StackProps, Text, Flex } from "@chakra-ui/react";
+import { Stack, StackProps, Text } from "@chakra-ui/react";
 
 import { ICourse } from "../../../../interfaces";
 import { ConfigContext } from "../../context/Config";
