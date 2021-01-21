@@ -11,7 +11,8 @@ export const ProgressStudent: FC<{
 }> = memo(({ n_cycles_student, n_courses_cycles }) => {
   const {
     PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR,
-    PROGRESS_STUDENT_INFORMATION_TEXT_COLOR,
+
+    PROGRESS_STUDENT_INFORMATION_TEXT,
   } = useContext(ConfigContext);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export const ProgressStudent: FC<{
         backgroundColor={PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR}
         borderRadius="10px 10px 10px 10px"
         alignItems="center"
-        color={PROGRESS_STUDENT_INFORMATION_TEXT_COLOR + ".500"}
+        color="black"
         transition="box-shadow 0.4s ease-in-out"
         data-testid="BoxContainer"
       >
@@ -45,8 +46,7 @@ export const ProgressStudent: FC<{
                   fontFamily="Lato"
                   className="horizontalText"
                 >
-                  {"Avance en "}
-                  {cycle}
+                  {PROGRESS_STUDENT_INFORMATION_TEXT} {cycle}
                 </Text>
                 <Flex>
                   <Text width="250px" pr={3} pb={1} mb={0} fontFamily="Lato">
