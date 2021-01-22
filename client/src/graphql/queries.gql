@@ -179,6 +179,19 @@ query studentsList($program_id: String!) {
   }
 }
 
+query studentsFilterList($program_id: String!, $curriculum: String!) {
+  students_filter(program_id: $program_id, curriculum: $curriculum) {
+    id
+    programs {
+      id
+      name
+    }
+    curriculums
+    start_year
+    mention
+  }
+}
+
 mutation performanceLoadAdvices($student_id: String, $program_id: String) {
   performanceLoadAdvices(student_id: $student_id, program_id: $program_id) {
     id

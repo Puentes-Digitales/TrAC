@@ -253,6 +253,7 @@ type Query {
   myPrograms: [Program!]!
   programs: [Program!]!
   students(last_n_years: Int = 2, program_id: String!): [Student!]!
+  students_filter(curriculum: String!, program_id: String!): [Student!]!
   trackInfo(maxDate: DateTime!, minDate: DateTime!): [Track!]!
   unansweredForm: FeedbackForm
   userPersistences(user: String!): [Persistence!]!

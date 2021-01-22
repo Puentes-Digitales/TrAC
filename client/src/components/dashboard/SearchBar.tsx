@@ -38,6 +38,8 @@ import {
   setMock,
   useChosenCurriculum,
   useIsMockActive,
+  useGroupedActive,
+  setGroupedActive,
 } from "../../context/DashboardInput";
 import { setTrackingData, track } from "../../context/Tracking";
 import { useMyProgramsQuery } from "../../graphql";
@@ -74,6 +76,57 @@ export const SearchBar: FC<{
 }> = memo(({ isSearchLoading, onSearch, searchResult, error }) => {
   const mock = useIsMockActive();
   const chosenCurriculum = useChosenCurriculum();
+  const groupedActive = useGroupedActive();
+
+  const GrupedMode: FC = memo(() => {
+    const groupedActive = useGroupedActive();
+
+    return (
+      <Button
+        basic
+        onClick={async (ev) => {
+          setGroupedActive(!groupedActive);
+
+          if (program) {
+            ev.preventDefault();
+            const onSearchResult = await onSearch({
+              student_id: "",
+              program_id: program.value,
+            });
+
+            switch (onSearchResult) {
+              case "student": {
+                addStudentOption(student_id);
+                setStudentIdShow(student_id);
+                setStudentId("");
+                track({
+                  action: "click",
+                  effect: "load-student",
+                  target: "search-button",
+                });
+                break;
+              }
+              default: {
+                setTrackingData({
+                  student: "student_id",
+                });
+                setStudentIdShow("");
+                track({
+                  action: "click",
+                  effect: "wrong-student",
+                  target: "search-button",
+                });
+              }
+            }
+          }
+        }}
+        color={groupedActive ? "blue" : "red"}
+      >
+        {groupedActive ? "Grouped ON" : "Grouped OFF"}
+      </Button>
+    );
+  });
+
   useEffect(() => {
     if (
       (chosenCurriculum === undefined &&
@@ -184,6 +237,8 @@ export const SearchBar: FC<{
         alignItems="center"
         className="stack"
       >
+        {isDirector && <GrupedMode />}
+
         {user?.admin && <MockingMode />}
         {isDirector && user?.config?.SHOW_STUDENT_LIST && (
           <StudentList
@@ -356,59 +411,64 @@ export const SearchBar: FC<{
     >
       <Flex wrap="wrap" alignItems="center">
         {programOptionsComponent}
+        {isDirector &&
+          groupedActive &&
+          ((searchResult?.curriculums.length ?? 0) > 1 ? (
+            <Flex mr={5}>
+              <Tag colorScheme="blue" variant="outline">
+                {searchResult?.program_id} | {CURRICULUM_LABEL}
+              </Tag>
 
-        {(searchResult?.curriculums.length ?? 0) > 1 ? (
-          <Flex mr={5}>
-            <Tag colorScheme="blue" variant="outline">
-              {searchResult?.program_id} | {CURRICULUM_LABEL}
-            </Tag>
-            <Box width={90} ml={2}>
-              <Select
-                options={
-                  searchResult?.curriculums
-                    .sort()
-                    .slice()
-                    .reverse()
-                    .map((curriculum) => {
-                      return {
-                        label: curriculum,
-                        value: curriculum,
-                      };
-                    }) ?? []
-                }
-                value={
-                  chosenCurriculum
-                    ? { value: chosenCurriculum, label: chosenCurriculum }
-                    : undefined
-                }
-                onChange={(selected) => {
-                  track({
-                    action: "click",
-                    target: "curriculum-menu",
-                    effect: "change-curriculum",
-                  });
-                  DashboardInputActions.setChosenCurriculum(
-                    (selected as { label: string; value: string }).value
-                  );
-                }}
-                placeholder="..."
-                noOptionsMessage={() => NO_CURRICULUMS_LABEL}
-                css={{ color: "black" }}
-              />
-              <Select
-                options={[
-                  { value: "Ingreso PACE", label: "Ingreso PACE" },
-                  { value: "Ingreso PSU", label: "Ingreso PSU" },
-                ]}
-                defaultInputValue={"Ingreso PACE"}
-              />
-            </Box>
-          </Flex>
-        ) : searchResult?.curriculums.length === 1 ? (
-          <Tag mr={2} mt={1} mb={1} p={2}>{`${
-            isDirector ? searchResult?.program_id : searchResult?.program_name
-          } | ${CURRICULUM_LABEL}: ${searchResult?.curriculums[0]}`}</Tag>
-        ) : null}
+              <Box width={90} ml={2}>
+                <Select
+                  options={
+                    searchResult?.curriculums
+                      .sort()
+                      .slice()
+                      .reverse()
+                      .map((curriculum) => {
+                        return {
+                          label: curriculum,
+                          value: curriculum,
+                        };
+                      }) ?? []
+                  }
+                  value={
+                    chosenCurriculum
+                      ? { value: chosenCurriculum, label: chosenCurriculum }
+                      : undefined
+                  }
+                  onChange={(selected) => {
+                    track({
+                      action: "click",
+                      target: "curriculum-menu",
+                      effect: "change-curriculum",
+                    });
+                    DashboardInputActions.setChosenCurriculum(
+                      (selected as { label: string; value: string }).value
+                    );
+                    DashboardInputActions.setChosenCurriculumFilter(
+                      (selected as { label: string; value: string }).value
+                    );
+                  }}
+                  placeholder="..."
+                  noOptionsMessage={() => NO_CURRICULUMS_LABEL}
+                  css={{ color: "black" }}
+                />
+                <Select
+                  options={[
+                    { value: "Ingreso PACE", label: "Ingreso PACE" },
+                    { value: "Ingreso PSU", label: "Ingreso PSU" },
+                  ]}
+                  defaultInputValue={"Ingreso PACE"}
+                />
+              </Box>
+            </Flex>
+          ) : searchResult?.curriculums.length === 1 ? (
+            <Tag mr={2} mt={1} mb={1} p={2}>{`${
+              isDirector ? searchResult?.program_id : searchResult?.program_name
+            } | ${CURRICULUM_LABEL}: ${searchResult?.curriculums[0]}`}</Tag>
+          ) : null)}
         {searchResult?.student && (
           <Tag
             cursor="text"
@@ -421,7 +481,7 @@ export const SearchBar: FC<{
           >{`${STUDENT_LABEL}: ${studentIdShow || searchResult?.student}`}</Tag>
         )}
 
-        {isDirector && (
+        {isDirector && !groupedActive && (
           <form>
             <Flex wrap="wrap" alignItems="center">
               <InputGroup size="lg" width="fit-content" mt={2} mb={2}>
@@ -501,6 +561,7 @@ export const SearchBar: FC<{
                         break;
                       }
                       case "program": {
+                        setGroupedActive(true);
                         setTrackingData({
                           student: undefined,
                         });

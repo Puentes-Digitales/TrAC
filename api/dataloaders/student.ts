@@ -12,6 +12,7 @@ import {
   STUDENT_TABLE,
   StudentAdmissionTable,
   StudentDropoutTable,
+  STUDENT_ADMISSION_TABLE,
   StudentEmployedTable,
   StudentProgramTable,
   StudentTable,
@@ -192,6 +193,39 @@ export const StudentListDataLoader = new DataLoader(
           )
           .where({
             program_id,
+          });
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentListFilterDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+      curriculum: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ program_id, curriculum }) => {
+        return StudentProgramTable()
+          .select("*")
+          .join<IStudent>(
+            STUDENT_TABLE,
+            `${STUDENT_PROGRAM_TABLE}.student_id`,
+            `${STUDENT_TABLE}.id`
+          )
+          .join<IStudent>(
+            STUDENT_ADMISSION_TABLE,
+            `${STUDENT_PROGRAM_TABLE}.student_id`,
+            `${STUDENT_ADMISSION_TABLE}.student_id`
+          )
+          .where({
+            program_id,
+            curriculum,
           });
       })
     );

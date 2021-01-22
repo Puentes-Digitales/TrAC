@@ -48,7 +48,7 @@ export type Course = {
   credits: Array<Credit>;
   flow: Array<Course>;
   historicalDistribution: Array<DistributionValue>;
-  /** Course-Semester-Curriculum-Program ID  */
+  /** Course-Semester-Curriculum-Program ID */
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
@@ -89,7 +89,7 @@ export type ExternalEvaluation = {
   bandColors: Array<BandColor>;
   code: Scalars["String"];
   historicalDistribution: Array<DistributionValue>;
-  /** ExternalEvaluation-Semester-Curriculum-Program ID  */
+  /** ExternalEvaluation-Semester-Curriculum-Program ID */
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
@@ -312,6 +312,7 @@ export type Query = {
   myPrograms: Array<Program>;
   programs: Array<Program>;
   students: Array<Student>;
+  students_filter: Array<Student>;
   trackInfo: Array<Track>;
   unansweredForm?: Maybe<FeedbackForm>;
   userPersistences: Array<Persistence>;
@@ -333,6 +334,11 @@ export type QueryGetPersistenceValueArgs = {
 
 export type QueryStudentsArgs = {
   last_n_years?: Maybe<Scalars["Int"]>;
+  program_id: Scalars["String"];
+};
+
+export type QueryStudents_FilterArgs = {
+  curriculum: Scalars["String"];
   program_id: Scalars["String"];
 };
 
@@ -780,6 +786,19 @@ export type StudentsListQuery = {
         Admission,
         "active" | "type_admission" | "initial_test" | "final_test"
       >;
+    }
+  >;
+};
+
+export type StudentsFilterListQueryVariables = Exact<{
+  program_id: Scalars["String"];
+  curriculum: Scalars["String"];
+}>;
+
+export type StudentsFilterListQuery = {
+  students_filter: Array<
+    Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
+      programs: Array<Pick<Program, "id" | "name">>;
     }
   >;
 };
@@ -2349,6 +2368,70 @@ export type StudentsListLazyQueryHookResult = ReturnType<
 export type StudentsListQueryResult = Apollo.QueryResult<
   StudentsListQuery,
   StudentsListQueryVariables
+>;
+export const StudentsFilterListDocument = gql`
+  query studentsFilterList($program_id: String!, $curriculum: String!) {
+    students_filter(program_id: $program_id, curriculum: $curriculum) {
+      id
+      programs {
+        id
+        name
+      }
+      curriculums
+      start_year
+      mention
+    }
+  }
+`;
+
+/**
+ * __useStudentsFilterListQuery__
+ *
+ * To run a query within a React component, call `useStudentsFilterListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStudentsFilterListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStudentsFilterListQuery({
+ *   variables: {
+ *      program_id: // value for 'program_id'
+ *      curriculum: // value for 'curriculum'
+ *   },
+ * });
+ */
+export function useStudentsFilterListQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    StudentsFilterListQuery,
+    StudentsFilterListQueryVariables
+  >
+) {
+  return Apollo.useQuery<
+    StudentsFilterListQuery,
+    StudentsFilterListQueryVariables
+  >(StudentsFilterListDocument, baseOptions);
+}
+export function useStudentsFilterListLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    StudentsFilterListQuery,
+    StudentsFilterListQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<
+    StudentsFilterListQuery,
+    StudentsFilterListQueryVariables
+  >(StudentsFilterListDocument, baseOptions);
+}
+export type StudentsFilterListQueryHookResult = ReturnType<
+  typeof useStudentsFilterListQuery
+>;
+export type StudentsFilterListLazyQueryHookResult = ReturnType<
+  typeof useStudentsFilterListLazyQuery
+>;
+export type StudentsFilterListQueryResult = Apollo.QueryResult<
+  StudentsFilterListQuery,
+  StudentsFilterListQueryVariables
 >;
 export const PerformanceLoadAdvicesDocument = gql`
   mutation performanceLoadAdvices($student_id: String, $program_id: String) {

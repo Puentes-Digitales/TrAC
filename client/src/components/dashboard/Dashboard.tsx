@@ -26,6 +26,8 @@ import {
   DashboardInputActions,
   setMock,
   useChosenCurriculum,
+  // useChosenCurriculumFilter,
+  useGroupedActive,
   useIsMockActive,
   useProgram,
 } from "../../context/DashboardInput";
@@ -66,6 +68,8 @@ export function Dashboard() {
   const mock = useIsMockActive();
   const chosenCurriculum = useChosenCurriculum();
   const program = useProgram();
+  // const chosenCurriculumFilter = useChosenCurriculumFilter();
+  const groupedActive = useGroupedActive();
 
   const { user } = useUser();
 

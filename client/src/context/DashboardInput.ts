@@ -26,14 +26,45 @@ export const {
 );
 
 export const {
+  hooks: { useGroupedActive },
+  actions: { setGroupedActive },
+} = createStore(
+  {
+    groupedActive: 0,
+  },
+  {
+    storagePersistence: {
+      isActive: true,
+      persistenceKey: "GroupedActive",
+    },
+    hooks: {
+      useGroupedActive({ groupedActive }) {
+        return Boolean(groupedActive);
+      },
+    },
+    actions: {
+      setGroupedActive: (groupedActive: boolean) => (draft) => {
+        draft.groupedActive = groupedActive ? 1 : 0;
+      },
+    },
+  }
+);
+
+export const {
   useStore: useDashboardInputState,
   actions: DashboardInputActions,
-  hooks: { useProgram, useStudent, useChosenCurriculum },
+  hooks: {
+    useProgram,
+    useStudent,
+    useChosenCurriculum,
+    useChosenCurriculumFilter,
+  },
 } = createStore(
   {
     chosenCurriculum: undefined as string | undefined,
     program: undefined as string | undefined,
     student: undefined as string | undefined,
+    chosenCurriculumFilter: undefined as string | undefined,
   },
   {
     devName: "DashboardInput",
@@ -47,6 +78,9 @@ export const {
       useChosenCurriculum: ({ chosenCurriculum }) => {
         return chosenCurriculum;
       },
+      useChosenCurriculumFilter: ({ chosenCurriculumFilter }) => {
+        return chosenCurriculumFilter;
+      },
     },
     actions: {
       setProgram: (program?: string) => (draft) => {
@@ -57,6 +91,11 @@ export const {
       },
       setChosenCurriculum: (chosenCurriculum?: string) => (draft) => {
         draft.chosenCurriculum = chosenCurriculum;
+      },
+      setChosenCurriculumFilter: (chosenCurriculumFilter?: string) => (
+        draft
+      ) => {
+        draft.chosenCurriculumFilter = chosenCurriculumFilter;
       },
     },
   }
