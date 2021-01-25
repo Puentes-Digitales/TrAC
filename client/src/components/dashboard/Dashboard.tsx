@@ -26,8 +26,6 @@ import {
   DashboardInputActions,
   setMock,
   useChosenCurriculum,
-  // useChosenCurriculumFilter,
-  useGroupedActive,
   useIsMockActive,
   useProgram,
 } from "../../context/DashboardInput";
@@ -68,9 +66,6 @@ export function Dashboard() {
   const mock = useIsMockActive();
   const chosenCurriculum = useChosenCurriculum();
   const program = useProgram();
-  // const chosenCurriculumFilter = useChosenCurriculumFilter();
-  const groupedActive = useGroupedActive();
-
   const { user } = useUser();
 
   const [mockData, setMockData] = useState<
@@ -444,14 +439,13 @@ export function Dashboard() {
           {studentData.terms
             .slice()
             .reverse()
-            // .map(({ term, year, comments }, key) => {
             .map(({ term, year, comments }, key) => {
               return (
                 <TakenSemesterBox
                   key={key}
                   term={term}
                   year={year}
-                  comments={comments!}
+                  comments={comments}
                 />
               );
             })}

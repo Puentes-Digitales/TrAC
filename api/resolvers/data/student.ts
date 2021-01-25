@@ -251,11 +251,20 @@ export class StudentResolver {
 
   @FieldResolver()
   async n_cycles(
-    @Root() { programs, curriculums }: PartialStudent
+    @Root() { program, curriculums }: PartialStudent
   ): Promise<$PropertyType<Student, "n_cycles">> {
+    assertIsDefined(
+      program,
+      `programs id needs to be available for Student field resolvers`
+    );
+    assertIsDefined(
+      curriculums,
+      `curriculums id needs to be available for Student field resolvers`
+    );
+
     const total_cycles = await StudentListCyclesDataLoader.load({
-      program_id: programs![0]["id"],
-      curriculum: curriculums!,
+      program_id: program,
+      curriculum: curriculums,
     });
     const list_cycle = total_cycles.map((d) => d.course_cat);
 
@@ -263,36 +272,47 @@ export class StudentResolver {
   }
   @FieldResolver()
   async n_courses_cycles(
-    @Root() { programs, curriculums, id }: PartialStudent
+    @Root() { program, curriculums, id }: PartialStudent
   ): Promise<$PropertyType<Student, "n_courses_cycles">> {
+    assertIsDefined(
+      program,
+      `programs id needs to be available for Student field resolvers`
+    );
+    assertIsDefined(
+      curriculums,
+      `curriculums id needs to be available for Student field resolvers`
+    );
+    assertIsDefined(
+      id,
+      ` id needs to be available for Student field resolvers`
+    );
     const total_cycles = await StudentListCyclesDataLoader.load({
-      program_id: programs![0]["id"],
-      curriculum: curriculums!,
+      program_id: program,
+      curriculum: curriculums,
     });
 
     const list_cycle = total_cycles.map((d) => d.course_cat);
-    var valores_totales = [];
 
-    for await (let cycle of list_cycle) {
-      const n_courses = await StudentCourseListDataLoader.load({
-        program_id: programs![0]["id"],
-        curriculum: curriculums!,
-        course_cat: cycle,
-      });
-      const n_approved_courses = await StudentCycleApprovedCourseDataLoader.load(
-        {
-          program_id: programs![0]["id"],
-          curriculum: curriculums!,
+    var dataCycleStudent = [];
+
+    for (const cycle of list_cycle) {
+      const [n_courses, n_approved_courses] = await Promise.all([
+        StudentCourseListDataLoader.load({
+          program_id: program,
+          curriculum: curriculums,
+          course_cat: cycle,
+        }),
+        StudentCycleApprovedCourseDataLoader.load({
+          program_id: program,
+          curriculum: curriculums,
           student_id: id,
           course_cat: cycle,
-        }
-      );
-
-      valores_totales.push(Number(n_courses[0]["count"]));
-      valores_totales.push(Number(n_approved_courses[0]["count"]));
+        }),
+      ]);
+      dataCycleStudent.push(Number(n_courses[0]["count"]));
+      dataCycleStudent.push(Number(n_approved_courses[0]["count"]));
     }
-
-    return valores_totales;
+    return dataCycleStudent;
   }
 
   @Authorized()
