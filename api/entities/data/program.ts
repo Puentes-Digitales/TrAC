@@ -5,26 +5,26 @@ import { ExternalEvaluation } from "./externalEvaluation";
 
 @ObjectType({ simpleResolvers: true })
 export class Semester {
-  // external_evaluation_structure => semester
+  // program_structure => semester
   @Field(() => Int)
   id: number;
 
-  // external_evaluation_structure => course_id
+  // program_structure => course_id
   @Field(() => [Course])
   courses: Course[];
 
-  // external_evaluation_structure => external_evaluation_id
+  // program_structure => external_evaluation_id
   @Field(() => [ExternalEvaluation])
   externalEvaluations: ExternalEvaluation[];
 }
 
 @ObjectType({ simpleResolvers: true })
 export class Curriculum {
-  // external_evaluation_structure => curriculum
+  // program_structure => curriculum
   @Field()
   id: string;
 
-  // external_evaluation_structure => semester
+  // program_structure => semester
   @Field(() => [Semester])
   semesters: Semester[];
 }
@@ -50,7 +50,7 @@ export class Program {
   @Field()
   lastGPA: number;
 
-  // external_evaluation_structure => curriculum
+  // program_structure => curriculum
   @Field(() => [Curriculum])
   curriculums: Curriculum[];
 }

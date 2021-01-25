@@ -122,7 +122,6 @@ export const CurriculumsDataLoader = new DataLoader(
                   .where({ program_id });
               })
               .where({ program_id });
-
         const curriculums = data.reduce<
           Record<
             string /*Curriculum id (program_structure => curriculum)*/,
