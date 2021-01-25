@@ -15,7 +15,7 @@ import { CoursesDashboardStore } from "../../context/CoursesDashboard";
 export const TakenSemesterBox: FC<{
   year: number;
   term: string;
-  comments: string;
+  comments?: string;
 }> = memo(({ year, term, comments }) => {
   const config = useContext(ConfigContext);
 

@@ -409,7 +409,7 @@ export type TakenExternalEvaluation = {
 };
 
 export type Term = {
-  comments?: Maybe<Scalars["String"]>;
+  comments: Scalars["String"];
   cumulated_grade: Scalars["Float"];
   id: Scalars["Int"];
   program_grade: Scalars["Float"];

@@ -320,7 +320,7 @@ type TakenExternalEvaluation {
 }
 
 type Term {
-  comments: String
+  comments: String!
   cumulated_grade: Float!
   id: Int!
   program_grade: Float!

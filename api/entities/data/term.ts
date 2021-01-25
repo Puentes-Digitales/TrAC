@@ -33,7 +33,7 @@ export class Term {
   situation: string;
 
   // student_term => comments
-  @Field({ nullable: true })
+  @Field()
   comments: string;
 
   // student_term => t_gpa
