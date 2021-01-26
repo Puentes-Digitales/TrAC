@@ -29,7 +29,7 @@ export const SemestersList: FC<{
         position="absolute"
         left={190 * (n - 1)}
         top={0}
-        width={190}
+        width={1090}
         courses={courses}
         key={n}
         n={n}

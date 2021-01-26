@@ -419,7 +419,7 @@ export const SearchBar: FC<{
                 {searchResult?.program_id} | {CURRICULUM_LABEL}
               </Tag>
 
-              <Box width={90} ml={2}>
+              <Box width={150} ml={2}>
                 <Select
                   options={
                     searchResult?.curriculums
@@ -460,7 +460,8 @@ export const SearchBar: FC<{
                     { value: "Ingreso PACE", label: "Ingreso PACE" },
                     { value: "Ingreso PSU", label: "Ingreso PSU" },
                   ]}
-                  defaultInputValue={"Ingreso PACE"}
+                  placeholder={"Tipo de ingreso"}
+                  css={{ color: "black" }}
                 />
               </Box>
             </Flex>

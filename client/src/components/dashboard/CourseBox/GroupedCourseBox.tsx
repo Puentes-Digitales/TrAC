@@ -40,6 +40,7 @@ import { HistoricalCirclesComponent } from "../HistoricalCirclesComponent";
 
 import type {
   ICourse,
+  IGroupedCourse,
   ITakenCourse,
   ITakenSemester,
 } from "../../../../../interfaces";
@@ -208,8 +209,8 @@ const MainBlockOuter: FC<
     semestersTaken: ITakenSemester[];
   }
 > = memo(({ children, code, flow, requisites, semestersTaken }) => {
-  // const config = useContext(ConfigContext);
-  const bg = useColorModeValue("#D2B4DE", "#6C3483");
+  const config = useContext(ConfigContext);
+  const bg = useColorModeValue(config.COURSE_BOX_BACKGROUND_COLOR, "#1A202C");
   return (
     <Flex
       w="100%"
@@ -278,56 +279,30 @@ const NameComponent: FC<
 });
 
 const SecondaryBlockOuter: FC<
-  Pick<ICourse, "taken" | "bandColors"> &
+  Pick<ICourse, "bandColors"> &
     Pick<CurrentTakenData, "grade" | "state"> & {
+      n_total: number;
+      n_passed: number;
       borderColor: string;
     }
-> = memo(({ children, taken, bandColors, borderColor, state, grade }) => {
+> = memo(({ children, borderColor, n_total, n_passed }) => {
   const config = useContext(ConfigContext);
 
   const { colorMode } = useColorMode();
 
   const stateColor = useMemo(() => {
-    const bandColorsCourse = taken?.[0]?.bandColors ?? bandColors;
-
-    switch (state) {
-      case StateCourse.Passed: {
-        const gradeToCompare = grade ?? config.MAX_GRADE;
-
-        return (
-          bandColorsCourse.find(({ min, max }) => {
-            return gradeToCompare <= max && gradeToCompare >= min;
-          })?.color ??
-          bandColorsCourse[bandColorsCourse.length - 1]?.color ??
-          config.STATE_COLOR_PASS_FALLBACK
-        );
-      }
-      case StateCourse.Failed: {
-        const gradeToCompare = grade ?? config.MIN_GRADE;
-        return (
-          bandColorsCourse.find(({ min, max }) => {
-            return gradeToCompare <= max && gradeToCompare >= min;
-          })?.color ??
-          bandColorsCourse[0]?.color ??
-          config.STATE_COLOR_FAIL_FALLBACK
-        );
-      }
-      case StateCourse.Current: {
-        return config.STATE_COURSE_CURRENT_COLOR;
-      }
-      case StateCourse.Canceled: {
-        return config.STATE_COURSE_CANCELED_COLOR;
-      }
-      case StateCourse.Pending: {
-        return config.STATE_COURSE_PENDING_COLOR;
-      }
-      default: {
-        return colorMode === "light"
-          ? config.COURSE_BOX_BACKGROUND_COLOR
-          : config.STATE_COURSE_DEFAULT_DARK_COLOR;
-      }
+    if (n_passed == 0) {
+      return "rgb(255,255,255)";
+    } else if (n_passed < n_total * 0.25) {
+      return "rgb(210,180,222)";
+    } else if (n_passed < n_total * 0.5) {
+      return "rgb(165,105,189)";
+    } else if (n_passed < n_total * 0.75) {
+      return "rgb(125,60,152)";
+    } else {
+      return "rgb(91,44,111)";
     }
-  }, [state, colorMode, grade, bandColors, taken, config]);
+  }, [colorMode, config]);
 
   return (
     <Flex
@@ -501,16 +476,19 @@ export const currentDistributionLabel = ({
   return `${label} ${term} ${year}`;
 };
 
-export function ExternalEvaluationBox({
+export function GroupedCourseBox({
   code,
   name,
   credits,
+  groupedDistribution,
   historicDistribution,
+  n_total,
+  n_passed,
   taken,
   bandColors,
   requisites,
   flow,
-}: ICourse) {
+}: IGroupedCourse) {
   const config = useContext(ConfigContext);
 
   const semestersTaken = useMemo(() => {
@@ -662,11 +640,12 @@ export function ExternalEvaluationBox({
         </AnimatePresence>
       </MainBlockOuter>
       <SecondaryBlockOuter
-        taken={taken}
         bandColors={bandColors}
-        borderColor={borderColor}
         grade={grade}
         state={state}
+        n_total={n_total}
+        n_passed={n_passed}
+        borderColor={borderColor}
       >
         {grade !== undefined && <GradeComponent grade={grade} state={state} />}
 
