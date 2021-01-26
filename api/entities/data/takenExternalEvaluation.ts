@@ -4,10 +4,6 @@ import { StateCourse } from "../../../client/constants";
 import { BandColor, DistributionValue } from "./distribution";
 
 import type { ExternalEvaluation } from "./externalEvaluation";
-registerEnumType(StateCourse, {
-  name: "StateCourse",
-  description: "Possible states of a taken course",
-});
 
 @ObjectType({ simpleResolvers: true })
 export class TakenExternalEvaluation
