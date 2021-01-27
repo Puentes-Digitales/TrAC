@@ -147,6 +147,14 @@ type FeedbackResult {
   user: User!
 }
 
+type GroupedComplementary {
+  average_time_university_degree: Float!
+  retention_rate: Float!
+  timely_university_degree_rate: Float!
+  total_students: Float!
+  university_degree_rate: Float!
+}
+
 type IndirectTakeCourse {
   course: Course!
   requisitesUnmet: [String!]!
@@ -236,6 +244,7 @@ type Program {
   active: Boolean!
   curriculums: [Curriculum!]!
   desc: String!
+  groupedComplementary: [GroupedComplementary!]!
   id: String!
   lastGPA: Float!
   name: String!

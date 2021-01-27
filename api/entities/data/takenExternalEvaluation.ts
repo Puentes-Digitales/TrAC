@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType, registerEnumType } from "type-graphql";
+import { Field, Int, ObjectType } from "type-graphql";
 
 import { StateCourse } from "../../../client/constants";
 import { BandColor, DistributionValue } from "./distribution";

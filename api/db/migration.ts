@@ -55,8 +55,10 @@ const migration = async () => {
     CONFIGURATION_TABLE,
     COURSE_STATS_TABLE,
     COURSE_TABLE,
+    COURSE_GROUPED_STATS_TABLE,
     CourseStatsTable,
     CourseTable,
+    CourseGroupedStatsTable,
     FEEDBACK_FORM_QUESTION_TABLE,
     FEEDBACK_FORM_TABLE,
     FEEDBACK_RESULT_TABLE,
@@ -79,6 +81,7 @@ const migration = async () => {
     EXTERNAL_EVALUATION_TABLE,
     EXTERNAL_EVALUATION_STATS_TABLE,
     STUDENT_CLUSTER_TABLE,
+    STUDENT_GROUPED_COMPLEMENTARY_TABLE,
     STUDENT_COURSE_TABLE,
     STUDENT_DROPOUT_TABLE,
     STUDENT_EMPLOYED_TABLE,
@@ -91,6 +94,7 @@ const migration = async () => {
     ExternalEvaluationStatsTable,
     StudentClusterTable,
     StudentCourseTable,
+    StudentGroupedComplementaryTable,
     StudentDropoutTable,
     StudentEmployedTable,
     StudentProgramTable,
@@ -328,6 +332,42 @@ const migration = async () => {
               };
             }
           )
+        );
+      }
+    });
+
+  const studentGroupedComplementaryStructure = dbData.schema
+    .hasTable(STUDENT_GROUPED_COMPLEMENTARY_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(
+          STUDENT_GROUPED_COMPLEMENTARY_TABLE,
+          (table) => {
+            table.integer("id", 8).notNullable().primary();
+            table.text("program_id").notNullable();
+            table.text("curriculum").notNullable();
+            table.text("type_admission").notNullable();
+            table.text("cohort").notNullable();
+            table.integer("total_students", 6).notNullable();
+            table.float("university_degree_rate", 3).notNullable();
+            table.float("retention_rate", 3).notNullable();
+            table.float("average_time_university_degree", 3).notNullable();
+            table.float("timely_university_degree_rate", 3).notNullable();
+          }
+        );
+        await StudentGroupedComplementaryTable().insert(
+          (
+            await import(
+              "./mockData/student_grouped_complementary_information.json"
+            )
+          ).default.map(({ program_id, curriculum, cohort, ...rest }) => {
+            return {
+              ...rest,
+              program_id: program_id.toString(),
+              curriculum: curriculum.toString(),
+              cohort: cohort.toString(),
+            };
+          })
         );
       }
     });
@@ -584,6 +624,47 @@ const migration = async () => {
         );
         await ExternalEvaluationStatsTable().insert(
           (await import("./mockData/external_evaluation_stats.json")).default
+        );
+      }
+    });
+
+  const courseGroupedStats = dbData.schema
+    .hasTable(COURSE_GROUPED_STATS_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(COURSE_GROUPED_STATS_TABLE, (table) => {
+          table.text("id").notNullable();
+          table.text("program_id").notNullable();
+          table.text("curriculum").notNullable();
+          table.text("type_admission").notNullable();
+          table.text("cohort").notNullable();
+          table.primary([
+            "id",
+            "cohort",
+            "type_admission",
+            "program_id",
+            "curriculum",
+          ]);
+          table.integer("n_total", 8).notNullable();
+          table.integer("n_finished", 8).notNullable();
+          table.integer("n_pass", 8).notNullable();
+          table.integer("n_fail", 8).notNullable();
+          table.integer("n_drop", 8).notNullable();
+          table.text("histogram").notNullable();
+          table.text("histogram_labels").notNullable();
+          table.text("color_bands").notNullable();
+        });
+        await CourseGroupedStatsTable().insert(
+          (await import("./mockData/course_grouped_stats.json")).default.map(
+            ({ program_id, curriculum, cohort, ...rest }) => {
+              return {
+                ...rest,
+                program_id: program_id.toString(),
+                curriculum: curriculum.toString(),
+                cohort: cohort.toString(),
+              };
+            }
+          )
         );
       }
     });
@@ -847,6 +928,7 @@ const migration = async () => {
     track,
     course,
     courseStats,
+    courseGroupedStats,
     param,
     program,
     programStructure,
@@ -854,6 +936,7 @@ const migration = async () => {
     student,
     studentAdmission,
     studentExternalEvaluation,
+    studentGroupedComplementaryStructure,
     externalEvaluation,
     externalEvaluationStats,
     studentCourse,

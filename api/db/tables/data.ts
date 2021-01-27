@@ -228,6 +228,48 @@ export const STUDENT_ADMISSION_TABLE = "student_admission";
 
 export const StudentAdmissionTable = () =>
   dbData<IStudentAdmission>(STUDENT_ADMISSION_TABLE);
+// --------------------------------------------------------------------------
+
+export interface IStudentGroupedComplementary {
+  id: number;
+  program_id: string;
+  curriculum: string;
+  type_admission: string;
+  cohort: string;
+  total_students: number;
+  university_degree_rate: number;
+  retention_rate: number;
+  average_time_university_degree: number;
+  timely_university_degree_rate: number;
+}
+
+export const STUDENT_GROUPED_COMPLEMENTARY_TABLE =
+  "student_grouped_complementary";
+export const StudentGroupedComplementaryTable = () =>
+  dbData<IStudentGroupedComplementary>(STUDENT_GROUPED_COMPLEMENTARY_TABLE);
+// --------------------------------------------------------------------------
+
+export interface ICourseGroupedStats {
+  id: string;
+  program_id: string;
+  curriculum: string;
+  type_admission: string;
+  cohort: string;
+  n_total: number;
+  n_finished: number;
+  n_pass: number;
+  n_fail: number;
+  n_drop: number;
+  histogram: string;
+  histogram_labels: string;
+  color_bands: string;
+}
+
+export const COURSE_GROUPED_STATS_TABLE = "course_grouped_stats";
+
+export const CourseGroupedStatsTable = () =>
+  dbData<ICourseGroupedStats>(COURSE_GROUPED_STATS_TABLE);
+// -------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------
 export interface IStudentExternalEvaluation {
   id: number;
