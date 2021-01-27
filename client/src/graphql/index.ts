@@ -149,6 +149,14 @@ export type FeedbackResult = {
   user: User;
 };
 
+export type GroupedComplementary = {
+  average_time_university_degree: Scalars["Float"];
+  retention_rate: Scalars["Float"];
+  timely_university_degree_rate: Scalars["Float"];
+  total_students: Scalars["Float"];
+  university_degree_rate: Scalars["Float"];
+};
+
 export type IndirectTakeCourse = {
   course: Course;
   requisitesUnmet: Array<Scalars["String"]>;
@@ -297,6 +305,7 @@ export type Program = {
   active: Scalars["Boolean"];
   curriculums: Array<Curriculum>;
   desc: Scalars["String"];
+  groupedComplementary: Array<GroupedComplementary>;
   id: Scalars["String"];
   lastGPA: Scalars["Float"];
   name: Scalars["String"];

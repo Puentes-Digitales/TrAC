@@ -3,6 +3,8 @@ import { Field, Int, ObjectType } from "type-graphql";
 import { Course } from "./course";
 import { ExternalEvaluation } from "./externalEvaluation";
 
+import { GroupedComplementary } from "./groupedComplementary";
+
 @ObjectType({ simpleResolvers: true })
 export class Semester {
   // program_structure => semester
@@ -53,4 +55,7 @@ export class Program {
   // program_structure => curriculum
   @Field(() => [Curriculum])
   curriculums: Curriculum[];
+
+  @Field(() => [GroupedComplementary])
+  groupedComplementary: GroupedComplementary[];
 }

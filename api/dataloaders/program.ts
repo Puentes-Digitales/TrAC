@@ -7,6 +7,7 @@ import {
   ExternalEvaluationStructureTable,
   ProgramTable,
   StudentProgramTable,
+  StudentGroupedComplementaryTable,
   PROGRAM_STRUCTURE_TABLE,
 } from "../db/tables";
 
@@ -186,5 +187,24 @@ export const CurriculumsDataLoader = new DataLoader(
       );
     },
     cacheMap: new LRUMap(50),
+  }
+);
+
+export const CourseGroupedStatsDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ program_id }) => {
+        return StudentGroupedComplementaryTable().where({
+          program_id: program_id,
+        });
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
   }
 );
