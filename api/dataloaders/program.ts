@@ -194,12 +194,18 @@ export const CourseGroupedStatsDataLoader = new DataLoader(
   async (
     keys: readonly {
       program_id: string;
+      curriculum: string;
+      type_admission: string;
+      cohort: string;
     }[]
   ) => {
     return await Promise.all(
-      keys.map(({ program_id }) => {
+      keys.map(({ program_id, curriculum, type_admission, cohort }) => {
         return StudentGroupedComplementaryTable().where({
           program_id: program_id,
+          curriculum: curriculum,
+          type_admission: type_admission,
+          cohort: cohort,
         });
       })
     );

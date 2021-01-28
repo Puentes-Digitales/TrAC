@@ -259,6 +259,12 @@ type Query {
   currentUser: AuthResult
   feedbackResults(user_ids: [String!]): [FeedbackResult!]!
   getPersistenceValue(key: String!): Persistence
+  groupedDataComplementary(
+    cohort: String!
+    curriculum: String!
+    program_id: String!
+    type_admission: String!
+  ): [GroupedComplementary!]!
   myPrograms: [Program!]!
   programs: [Program!]!
   students(last_n_years: Int = 2, program_id: String!): [Student!]!
