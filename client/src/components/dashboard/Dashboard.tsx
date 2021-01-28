@@ -26,6 +26,7 @@ import {
   DashboardInputActions,
   setMock,
   useChosenCurriculum,
+  useChosenAdmissionType,
   useIsMockActive,
   useProgram,
 } from "../../context/DashboardInput";
@@ -46,6 +47,7 @@ import {
   usePerformanceLoadAdvicesMutation,
   useSearchProgramMutation,
   useSearchStudentMutation,
+  useGroupedDataComplementaryQuery,
 } from "../../graphql";
 import { useUser } from "../../utils/useUser";
 import { ToggleDarkMode } from "../DarkMode";
@@ -61,11 +63,13 @@ import { SemestersList } from "./SemestersList";
 import { TakenSemesterBox } from "./TakenSemesterBox";
 import { TimeLine } from "./Timeline/Timeline";
 import { ProgressStudent } from "./ProgressStudent";
+import { GroupedComplementaryInfo } from "./GroupedComplementaryInfo";
 
 export function Dashboard() {
   const mock = useIsMockActive();
   const chosenCurriculum = useChosenCurriculum();
   const program = useProgram();
+  const chosenAdmissionType = useChosenAdmissionType();
   const { user } = useUser();
 
   const [mockData, setMockData] = useState<
@@ -117,6 +121,15 @@ export function Dashboard() {
       error: searchProgramError,
     },
   ] = useSearchProgramMutation();
+
+  const { data: groupedComplementaryData } = useGroupedDataComplementaryQuery({
+    variables: {
+      program_id: program || "",
+      curriculum: chosenCurriculum || "",
+      type_admission: chosenAdmissionType || "",
+      cohort: "" || "",
+    },
+  });
 
   const [
     searchStudent,
@@ -381,6 +394,7 @@ export function Dashboard() {
     ComplementaryInfoComponent,
     ProgressStudentComponent,
     ForePlanSwitchComponent,
+    GroupedComplementaryInfoComponent,
   } = useMemo(() => {
     let TimeLineComponent: JSX.Element | null = null;
     let DropoutComponent: JSX.Element | null = null;
@@ -389,6 +403,7 @@ export function Dashboard() {
     let ComplementaryInfoComponent: JSX.Element | null = null;
     let ProgressStudentComponent: JSX.Element | null = null;
     let ForePlanSwitchComponent: JSX.Element | null = null;
+    let GroupedComplementaryInfoComponent: JSX.Element | null = null;
 
     const studentData = mock
       ? mockData?.default.searchStudentData.student
@@ -579,6 +594,30 @@ export function Dashboard() {
             semesters={data.semesters.map(({ semester }) => semester)}
           />
         );
+        GroupedComplementaryInfoComponent = (
+          <GroupedComplementaryInfo
+            total_students={
+              groupedComplementaryData?.groupedDataComplementary[0]
+                ?.total_students
+            }
+            university_degree_rate={
+              groupedComplementaryData?.groupedDataComplementary[0]
+                ?.university_degree_rate
+            }
+            average_time_university_degree={
+              groupedComplementaryData?.groupedDataComplementary[0]
+                ?.average_time_university_degree
+            }
+            timely_university_degree_rate={
+              groupedComplementaryData?.groupedDataComplementary[0]
+                ?.timely_university_degree_rate
+            }
+            retention_rate={
+              groupedComplementaryData?.groupedDataComplementary[0]
+                ?.retention_rate
+            }
+          />
+        );
       }
     }
 
@@ -590,8 +629,16 @@ export function Dashboard() {
       ComplementaryInfoComponent,
       ProgressStudentComponent,
       ForePlanSwitchComponent,
+      GroupedComplementaryInfoComponent,
     };
-  }, [searchStudentData, searchProgramData, chosenCurriculum, mock, mockData]);
+  }, [
+    searchStudentData,
+    searchProgramData,
+    chosenCurriculum,
+    chosenAdmissionType,
+    mock,
+    mockData,
+  ]);
 
   const {
     ERROR_STUDENT_NOT_FOUND_MESSAGE,
@@ -746,6 +793,7 @@ export function Dashboard() {
 
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
+          {GroupedComplementaryInfoComponent}
           {ComplementaryInfoComponent}
           {ProgressStudentComponent}
           <Box>
