@@ -447,9 +447,6 @@ export const SearchBar: FC<{
                     DashboardInputActions.setChosenCurriculum(
                       (selected as { label: string; value: string }).value
                     );
-                    DashboardInputActions.setChosenCurriculumFilter(
-                      (selected as { label: string; value: string }).value
-                    );
                   }}
                   placeholder="..."
                   noOptionsMessage={() => NO_CURRICULUMS_LABEL}
@@ -457,9 +454,19 @@ export const SearchBar: FC<{
                 />
                 <Select
                   options={[
-                    { value: "Ingreso PACE", label: "Ingreso PACE" },
-                    { value: "Ingreso PSU", label: "Ingreso PSU" },
+                    { value: "PACE", label: "PACE" },
+                    { value: "PSU", label: "PSU" },
                   ]}
+                  onChange={(selected) => {
+                    track({
+                      action: "click",
+                      target: "admission-menu",
+                      effect: "change-admission",
+                    });
+                    DashboardInputActions.setChosenAdmissionType(
+                      (selected as { label: string; value: string }).value
+                    );
+                  }}
                   placeholder={"Tipo de ingreso"}
                   css={{ color: "black" }}
                 />

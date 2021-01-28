@@ -57,14 +57,14 @@ export const {
     useProgram,
     useStudent,
     useChosenCurriculum,
-    useChosenCurriculumFilter,
+    useChosenAdmissionType,
   },
 } = createStore(
   {
     chosenCurriculum: undefined as string | undefined,
     program: undefined as string | undefined,
     student: undefined as string | undefined,
-    chosenCurriculumFilter: undefined as string | undefined,
+    chosenAdmissionType: undefined as string | undefined,
   },
   {
     devName: "DashboardInput",
@@ -78,8 +78,8 @@ export const {
       useChosenCurriculum: ({ chosenCurriculum }) => {
         return chosenCurriculum;
       },
-      useChosenCurriculumFilter: ({ chosenCurriculumFilter }) => {
-        return chosenCurriculumFilter;
+      useChosenAdmissionType: ({ chosenAdmissionType }) => {
+        return chosenAdmissionType;
       },
     },
     actions: {
@@ -92,10 +92,8 @@ export const {
       setChosenCurriculum: (chosenCurriculum?: string) => (draft) => {
         draft.chosenCurriculum = chosenCurriculum;
       },
-      setChosenCurriculumFilter: (chosenCurriculumFilter?: string) => (
-        draft
-      ) => {
-        draft.chosenCurriculumFilter = chosenCurriculumFilter;
+      setChosenAdmissionType: (chosenAdmissionType?: string) => (draft) => {
+        draft.chosenAdmissionType = chosenAdmissionType;
       },
     },
   }
