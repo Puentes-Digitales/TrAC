@@ -197,7 +197,12 @@ type Mutation {
     program_id: String
     student_id: String
   ): [PerformanceByLoad!]!
-  program(id: String, student_id: String): Program!
+  program(
+    cohort: String
+    id: String
+    student_id: String
+    type_admision: String
+  ): Program!
   resetDataLoadersCache: Int!
   resetPersistence(user: String!): Int!
   setPersistenceValue(data: JSONObject!, key: String!): Persistence!

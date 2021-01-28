@@ -238,8 +238,10 @@ export type MutationPerformanceLoadAdvicesArgs = {
 };
 
 export type MutationProgramArgs = {
+  cohort?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
   student_id?: Maybe<Scalars["String"]>;
+  type_admision?: Maybe<Scalars["String"]>;
 };
 
 export type MutationResetPersistenceArgs = {
@@ -684,6 +686,15 @@ export type SearchProgramMutationVariables = Exact<{
 
 export type SearchProgramMutation = {
   program: Pick<Program, "id" | "name" | "desc" | "active"> & {
+    groupedComplementary: Array<
+      Pick<
+        GroupedComplementary,
+        | "total_students"
+        | "timely_university_degree_rate"
+        | "average_time_university_degree"
+        | "university_degree_rate"
+      >
+    >;
     curriculums: Array<
       Pick<Curriculum, "id"> & {
         semesters: Array<
@@ -2016,6 +2027,12 @@ export const SearchProgramDocument = gql`
       name
       desc
       active
+      groupedComplementary {
+        total_students
+        timely_university_degree_rate
+        average_time_university_degree
+        university_degree_rate
+      }
       curriculums {
         id
         semesters {

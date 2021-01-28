@@ -14,6 +14,7 @@ type TrackingTemplateData = {
   showingPrediction?: boolean;
   showingProgressStudenCycle?: boolean;
   showingStudentComplementaryInformation?: boolean;
+  showingGroupedComplementaryInfo?: boolean;
   coursesOpen?: string;
   foreplanActive?: boolean;
   foreplanCourses?: string;
