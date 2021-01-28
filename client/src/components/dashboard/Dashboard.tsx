@@ -29,6 +29,7 @@ import {
   useChosenAdmissionType,
   useIsMockActive,
   useProgram,
+  useGroupedActive,
 } from "../../context/DashboardInput";
 import {
   ForeplanActiveStore,
@@ -70,6 +71,7 @@ export function Dashboard() {
   const chosenCurriculum = useChosenCurriculum();
   const program = useProgram();
   const chosenAdmissionType = useChosenAdmissionType();
+  const grouped = useGroupedActive();
   const { user } = useUser();
 
   const [mockData, setMockData] = useState<
@@ -503,6 +505,7 @@ export function Dashboard() {
         );
       }
     }
+
     if (programData) {
       const curriculums =
         programData?.curriculums
@@ -588,7 +591,14 @@ export function Dashboard() {
           ? curriculumId === chosenCurriculum
           : true;
       });
-      if (data) {
+      if (data && studentData) {
+        SemestersComponent = (
+          <SemestersList
+            semesters={data.semesters.map(({ semester }) => semester)}
+          />
+        );
+      }
+      if (data && grouped) {
         SemestersComponent = (
           <SemestersList
             semesters={data.semesters.map(({ semester }) => semester)}
@@ -636,6 +646,7 @@ export function Dashboard() {
     searchProgramData,
     chosenCurriculum,
     chosenAdmissionType,
+    grouped,
     mock,
     mockData,
   ]);

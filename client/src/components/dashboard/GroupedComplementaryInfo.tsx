@@ -54,7 +54,7 @@ export const GroupedComplementaryInfo: FC<{
         >
           <Stack className="unselectable" isInline pt={10} pb={10}>
             <Text
-              minWidth="90px"
+              minWidth="60px"
               height="120px"
               m={0}
               ml={4}
