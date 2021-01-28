@@ -224,16 +224,10 @@ export class ProgramResolver {
   @Query(() => [GroupedComplementary])
   async groupedDataComplementary(
     @Ctx() { user }: IContext,
-    @Arg("program_id") program_id: string,
-    @Arg("curriculum") curriculum: string,
-    @Arg("type_admission") type_admission: string,
-    @Arg("cohort") cohort: string
+    @Arg("program_id") program_id: string
   ): Promise<GroupedComplementary[]> {
     return await StudentGroupedComplementaryDataLoader.load({
       program_id: program_id,
-      curriculum: curriculum,
-      type_admission: type_admission,
-      cohort: cohort,
     });
   }
 

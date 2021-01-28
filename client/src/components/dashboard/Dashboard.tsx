@@ -127,9 +127,6 @@ export function Dashboard() {
   const { data: groupedComplementaryData } = useGroupedDataComplementaryQuery({
     variables: {
       program_id: program || "",
-      curriculum: chosenCurriculum || "",
-      type_admission: chosenAdmissionType || "",
-      cohort: "" || "",
     },
   });
 
@@ -507,6 +504,37 @@ export function Dashboard() {
     }
 
     if (programData) {
+      const objetos_datos = [
+        {
+          id: 1,
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PSU",
+          cohort: "2017",
+          total_students: 25,
+        },
+        {
+          id: 2,
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "",
+          total_students: 25,
+        },
+      ];
+
+      const filterdata2 = objetos_datos.filter(
+        (objetos_datos) => objetos_datos.curriculum == "2015"
+      );
+      console.log(filterdata2);
+
+      const filterdata = groupedComplementaryData?.groupedDataComplementary.filter(
+        (objetos_datos) =>
+          objetos_datos.curriculum == "2015" &&
+          objetos_datos.type_admission == "PSU"
+      );
+
+      console.log(filterdata);
       const curriculums =
         programData?.curriculums
           .filter(({ id }) => {

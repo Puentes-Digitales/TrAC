@@ -163,9 +163,13 @@ export type FeedbackResult = {
 
 export type GroupedComplementary = {
   average_time_university_degree: Scalars["Float"];
+  cohort: Scalars["String"];
+  curriculum: Scalars["String"];
+  program_id: Scalars["String"];
   retention_rate: Scalars["Float"];
   timely_university_degree_rate: Scalars["Float"];
   total_students: Scalars["Float"];
+  type_admission: Scalars["String"];
   university_degree_rate: Scalars["Float"];
 };
 
@@ -363,10 +367,7 @@ export type QueryGetPersistenceValueArgs = {
 };
 
 export type QueryGroupedDataComplementaryArgs = {
-  cohort: Scalars["String"];
-  curriculum: Scalars["String"];
   program_id: Scalars["String"];
-  type_admission: Scalars["String"];
 };
 
 export type QueryStudentsArgs = {
@@ -842,15 +843,16 @@ export type StudentsFilterListQuery = {
 
 export type GroupedDataComplementaryQueryVariables = Exact<{
   program_id: Scalars["String"];
-  curriculum: Scalars["String"];
-  type_admission: Scalars["String"];
-  cohort: Scalars["String"];
 }>;
 
 export type GroupedDataComplementaryQuery = {
   groupedDataComplementary: Array<
     Pick<
       GroupedComplementary,
+      | "program_id"
+      | "curriculum"
+      | "type_admission"
+      | "cohort"
       | "total_students"
       | "retention_rate"
       | "university_degree_rate"
@@ -2515,18 +2517,12 @@ export type StudentsFilterListQueryResult = Apollo.QueryResult<
   StudentsFilterListQueryVariables
 >;
 export const GroupedDataComplementaryDocument = gql`
-  query groupedDataComplementary(
-    $program_id: String!
-    $curriculum: String!
-    $type_admission: String!
-    $cohort: String!
-  ) {
-    groupedDataComplementary(
-      program_id: $program_id
-      curriculum: $curriculum
-      type_admission: $type_admission
-      cohort: $cohort
-    ) {
+  query groupedDataComplementary($program_id: String!) {
+    groupedDataComplementary(program_id: $program_id) {
+      program_id
+      curriculum
+      type_admission
+      cohort
       total_students
       retention_rate
       university_degree_rate
@@ -2549,9 +2545,6 @@ export const GroupedDataComplementaryDocument = gql`
  * const { data, loading, error } = useGroupedDataComplementaryQuery({
  *   variables: {
  *      program_id: // value for 'program_id'
- *      curriculum: // value for 'curriculum'
- *      type_admission: // value for 'type_admission'
- *      cohort: // value for 'cohort'
  *   },
  * });
  */

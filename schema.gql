@@ -161,9 +161,13 @@ type FeedbackResult {
 
 type GroupedComplementary {
   average_time_university_degree: Float!
+  cohort: String!
+  curriculum: String!
+  program_id: String!
   retention_rate: Float!
   timely_university_degree_rate: Float!
   total_students: Float!
+  type_admission: String!
   university_degree_rate: Float!
 }
 
@@ -277,12 +281,7 @@ type Query {
   currentUser: AuthResult
   feedbackResults(user_ids: [String!]): [FeedbackResult!]!
   getPersistenceValue(key: String!): Persistence
-  groupedDataComplementary(
-    cohort: String!
-    curriculum: String!
-    program_id: String!
-    type_admission: String!
-  ): [GroupedComplementary!]!
+  groupedDataComplementary(program_id: String!): [GroupedComplementary!]!
   myPrograms: [Program!]!
   programs: [Program!]!
   students(last_n_years: Int = 2, program_id: String!): [Student!]!

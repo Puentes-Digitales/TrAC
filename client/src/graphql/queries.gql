@@ -193,18 +193,12 @@ query studentsFilterList($program_id: String!, $curriculum: String!) {
   }
 }
 
-query groupedDataComplementary(
-  $program_id: String!
-  $curriculum: String!
-  $type_admission: String!
-  $cohort: String!
-) {
-  groupedDataComplementary(
-    program_id: $program_id
-    curriculum: $curriculum
-    type_admission: $type_admission
-    cohort: $cohort
-  ) {
+query groupedDataComplementary($program_id: String!) {
+  groupedDataComplementary(program_id: $program_id) {
+    program_id
+    curriculum
+    type_admission
+    cohort
     total_students
     retention_rate
     university_degree_rate
