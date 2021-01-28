@@ -39,6 +39,7 @@ import {
   useChosenCurriculum,
   useIsMockActive,
   useGroupedActive,
+  useChosenAdmissionType,
   setGroupedActive,
 } from "../../context/DashboardInput";
 import { setTrackingData, track } from "../../context/Tracking";
@@ -77,6 +78,7 @@ export const SearchBar: FC<{
   const mock = useIsMockActive();
   const chosenCurriculum = useChosenCurriculum();
   const groupedActive = useGroupedActive();
+  const chosenAdmissionType = useChosenAdmissionType();
 
   const GrupedMode: FC = memo(() => {
     const groupedActive = useGroupedActive();
@@ -457,6 +459,14 @@ export const SearchBar: FC<{
                     { value: "PACE", label: "PACE" },
                     { value: "PSU", label: "PSU" },
                   ]}
+                  value={
+                    chosenAdmissionType
+                      ? {
+                          value: chosenAdmissionType,
+                          label: chosenAdmissionType,
+                        }
+                      : undefined
+                  }
                   onChange={(selected) => {
                     track({
                       action: "click",
