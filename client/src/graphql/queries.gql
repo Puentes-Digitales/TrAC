@@ -51,6 +51,7 @@ mutation searchProgram($id: String, $student_id: String) {
     name
     desc
     active
+
     curriculums {
       id
       semesters {
@@ -189,6 +190,26 @@ query studentsFilterList($program_id: String!, $curriculum: String!) {
     curriculums
     start_year
     mention
+  }
+}
+
+query groupedDataComplementary(
+  $program_id: String!
+  $curriculum: String!
+  $type_admission: String!
+  $cohort: String!
+) {
+  groupedDataComplementary(
+    program_id: $program_id
+    curriculum: $curriculum
+    type_admission: $type_admission
+    cohort: $cohort
+  ) {
+    total_students
+    retention_rate
+    university_degree_rate
+    average_time_university_degree
+    timely_university_degree_rate
   }
 }
 

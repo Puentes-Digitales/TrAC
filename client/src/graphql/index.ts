@@ -318,6 +318,7 @@ export type Query = {
   currentUser?: Maybe<AuthResult>;
   feedbackResults: Array<FeedbackResult>;
   getPersistenceValue?: Maybe<Persistence>;
+  groupedDataComplementary: Array<GroupedComplementary>;
   myPrograms: Array<Program>;
   programs: Array<Program>;
   students: Array<Student>;
@@ -339,6 +340,13 @@ export type QueryFeedbackResultsArgs = {
 
 export type QueryGetPersistenceValueArgs = {
   key: Scalars["String"];
+};
+
+export type QueryGroupedDataComplementaryArgs = {
+  cohort: Scalars["String"];
+  curriculum: Scalars["String"];
+  program_id: Scalars["String"];
+  type_admission: Scalars["String"];
 };
 
 export type QueryStudentsArgs = {
@@ -809,6 +817,26 @@ export type StudentsFilterListQuery = {
     Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
       programs: Array<Pick<Program, "id" | "name">>;
     }
+  >;
+};
+
+export type GroupedDataComplementaryQueryVariables = Exact<{
+  program_id: Scalars["String"];
+  curriculum: Scalars["String"];
+  type_admission: Scalars["String"];
+  cohort: Scalars["String"];
+}>;
+
+export type GroupedDataComplementaryQuery = {
+  groupedDataComplementary: Array<
+    Pick<
+      GroupedComplementary,
+      | "total_students"
+      | "retention_rate"
+      | "university_degree_rate"
+      | "average_time_university_degree"
+      | "timely_university_degree_rate"
+    >
   >;
 };
 
@@ -2441,6 +2469,79 @@ export type StudentsFilterListLazyQueryHookResult = ReturnType<
 export type StudentsFilterListQueryResult = Apollo.QueryResult<
   StudentsFilterListQuery,
   StudentsFilterListQueryVariables
+>;
+export const GroupedDataComplementaryDocument = gql`
+  query groupedDataComplementary(
+    $program_id: String!
+    $curriculum: String!
+    $type_admission: String!
+    $cohort: String!
+  ) {
+    groupedDataComplementary(
+      program_id: $program_id
+      curriculum: $curriculum
+      type_admission: $type_admission
+      cohort: $cohort
+    ) {
+      total_students
+      retention_rate
+      university_degree_rate
+      average_time_university_degree
+      timely_university_degree_rate
+    }
+  }
+`;
+
+/**
+ * __useGroupedDataComplementaryQuery__
+ *
+ * To run a query within a React component, call `useGroupedDataComplementaryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGroupedDataComplementaryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGroupedDataComplementaryQuery({
+ *   variables: {
+ *      program_id: // value for 'program_id'
+ *      curriculum: // value for 'curriculum'
+ *      type_admission: // value for 'type_admission'
+ *      cohort: // value for 'cohort'
+ *   },
+ * });
+ */
+export function useGroupedDataComplementaryQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GroupedDataComplementaryQuery,
+    GroupedDataComplementaryQueryVariables
+  >
+) {
+  return Apollo.useQuery<
+    GroupedDataComplementaryQuery,
+    GroupedDataComplementaryQueryVariables
+  >(GroupedDataComplementaryDocument, baseOptions);
+}
+export function useGroupedDataComplementaryLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GroupedDataComplementaryQuery,
+    GroupedDataComplementaryQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<
+    GroupedDataComplementaryQuery,
+    GroupedDataComplementaryQueryVariables
+  >(GroupedDataComplementaryDocument, baseOptions);
+}
+export type GroupedDataComplementaryQueryHookResult = ReturnType<
+  typeof useGroupedDataComplementaryQuery
+>;
+export type GroupedDataComplementaryLazyQueryHookResult = ReturnType<
+  typeof useGroupedDataComplementaryLazyQuery
+>;
+export type GroupedDataComplementaryQueryResult = Apollo.QueryResult<
+  GroupedDataComplementaryQuery,
+  GroupedDataComplementaryQueryVariables
 >;
 export const PerformanceLoadAdvicesDocument = gql`
   mutation performanceLoadAdvices($student_id: String, $program_id: String) {
