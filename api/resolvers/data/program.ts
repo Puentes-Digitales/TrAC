@@ -25,9 +25,13 @@ import {
   StudentProgramCurriculumsDataLoader,
   StudentProgramDataLoader,
   CourseGroupedStatsDataLoader,
+  StudentGroupedComplementaryDataLoader,
 } from "../../dataloaders/program";
 import { ProgramTable, UserProgramsTable } from "../../db/tables";
 import { Program } from "../../entities/data/program";
+import { CourseGroupedStats } from "../../entities/data/courseGroupedStats";
+
+import { GroupedComplementary } from "../../entities/data/groupedComplementary";
 
 import { anonService } from "../../services/anonymization";
 import { assertIsDefined } from "../../utils/assert";
@@ -40,7 +44,6 @@ import type {
   IfImplements,
 } from "../../../interfaces/utils";
 import type { PartialCourse } from "./course";
-import { GroupedComplementary } from "../../entities/data/groupedComplementary";
 export type PartialProgram = Pick<Program, "id">;
 
 @Resolver(() => Program)
@@ -226,6 +229,23 @@ export class ProgramResolver {
     @Arg("type_admission") type_admission: string,
     @Arg("cohort") cohort: string
   ): Promise<GroupedComplementary[]> {
+    return await StudentGroupedComplementaryDataLoader.load({
+      program_id: program_id,
+      curriculum: curriculum,
+      type_admission: type_admission,
+      cohort: cohort,
+    });
+  }
+
+  @Authorized()
+  @Query(() => [CourseGroupedStats])
+  async courseGroupedStats(
+    @Ctx() { user }: IContext,
+    @Arg("program_id") program_id: string,
+    @Arg("curriculum") curriculum: string,
+    @Arg("type_admission") type_admission: string,
+    @Arg("cohort") cohort: string
+  ): Promise<CourseGroupedStats[]> {
     return await CourseGroupedStatsDataLoader.load({
       program_id: program_id,
       curriculum: curriculum,

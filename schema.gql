@@ -38,6 +38,18 @@ type Course {
   requisites: [Course!]!
 }
 
+type CourseGroupedStats {
+  color_bands: String!
+  histogram: String!
+  histogram_labels: String!
+  id: String!
+  n_drop: Float!
+  n_fail: Float!
+  n_finished: Float!
+  n_pass: Float!
+  n_total: Float!
+}
+
 type Credit {
   label: String!
   value: Int!
@@ -197,12 +209,7 @@ type Mutation {
     program_id: String
     student_id: String
   ): [PerformanceByLoad!]!
-  program(
-    cohort: String
-    id: String
-    student_id: String
-    type_admision: String
-  ): Program!
+  program(id: String, student_id: String): Program!
   resetDataLoadersCache: Int!
   resetPersistence(user: String!): Int!
   setPersistenceValue(data: JSONObject!, key: String!): Persistence!
@@ -261,6 +268,12 @@ type Query {
   """
   checkUnlockKey(email: EmailAddress!, unlockKey: String!): String
   config: JSONObject!
+  courseGroupedStats(
+    cohort: String!
+    curriculum: String!
+    program_id: String!
+    type_admission: String!
+  ): [CourseGroupedStats!]!
   currentUser: AuthResult
   feedbackResults(user_ids: [String!]): [FeedbackResult!]!
   getPersistenceValue(key: String!): Persistence

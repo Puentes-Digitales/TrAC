@@ -213,6 +213,30 @@ query groupedDataComplementary(
   }
 }
 
+query courseGroupedStats(
+  $program_id: String!
+  $curriculum: String!
+  $type_admission: String!
+  $cohort: String!
+) {
+  courseGroupedStats(
+    program_id: $program_id
+    curriculum: $curriculum
+    type_admission: $type_admission
+    cohort: $cohort
+  ) {
+    id
+    n_total
+    n_finished
+    n_pass
+    n_drop
+    n_fail
+    histogram
+    histogram_labels
+    color_bands
+  }
+}
+
 mutation performanceLoadAdvices($student_id: String, $program_id: String) {
   performanceLoadAdvices(student_id: $student_id, program_id: $program_id) {
     id
