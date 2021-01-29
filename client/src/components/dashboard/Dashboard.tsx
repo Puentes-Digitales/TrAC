@@ -27,6 +27,7 @@ import {
   setMock,
   useChosenCurriculum,
   useChosenAdmissionType,
+  useChosenCohort,
   useIsMockActive,
   useProgram,
   useGroupedActive,
@@ -48,7 +49,6 @@ import {
   usePerformanceLoadAdvicesMutation,
   useSearchProgramMutation,
   useSearchStudentMutation,
-  useGroupedDataComplementaryQuery,
 } from "../../graphql";
 import { useUser } from "../../utils/useUser";
 import { ToggleDarkMode } from "../DarkMode";
@@ -71,6 +71,7 @@ export function Dashboard() {
   const chosenCurriculum = useChosenCurriculum();
   const program = useProgram();
   const chosenAdmissionType = useChosenAdmissionType();
+  const chosenCohort = useChosenCohort();
   const grouped = useGroupedActive();
   const { user } = useUser();
 
@@ -123,12 +124,6 @@ export function Dashboard() {
       error: searchProgramError,
     },
   ] = useSearchProgramMutation();
-
-  const { data: groupedComplementaryData } = useGroupedDataComplementaryQuery({
-    variables: {
-      program_id: program || "",
-    },
-  });
 
   const [
     searchStudent,
@@ -598,10 +593,10 @@ export function Dashboard() {
       if (data && grouped) {
         const filterdata = programData.groupedComplementary.filter(
           (value) =>
-            value.curriculum == "2015" &&
-            value.type_admission == "PSU" &&
-            value.program_id == "1708" &&
-            value.cohort == ""
+            value.curriculum == data.id &&
+            value.type_admission == chosenAdmissionType &&
+            value.program_id == programData.id &&
+            value.cohort == chosenCohort
         );
 
         SemestersComponent = (
@@ -612,22 +607,14 @@ export function Dashboard() {
         GroupedComplementaryInfoComponent = (
           <GroupedComplementaryInfo
             total_students={filterdata[0].total_students}
-            university_degree_rate={
-              groupedComplementaryData?.groupedDataComplementary[0]
-                ?.university_degree_rate
-            }
+            university_degree_rate={filterdata[0].university_degree_rate}
             average_time_university_degree={
-              groupedComplementaryData?.groupedDataComplementary[0]
-                ?.average_time_university_degree
+              filterdata[0].average_time_university_degree
             }
             timely_university_degree_rate={
-              groupedComplementaryData?.groupedDataComplementary[0]
-                ?.timely_university_degree_rate
+              filterdata[0].timely_university_degree_rate
             }
-            retention_rate={
-              groupedComplementaryData?.groupedDataComplementary[0]
-                ?.retention_rate
-            }
+            retention_rate={filterdata[0].retention_rate}
           />
         );
       }
@@ -648,6 +635,7 @@ export function Dashboard() {
     searchProgramData,
     chosenCurriculum,
     chosenAdmissionType,
+    chosenCohort,
     grouped,
     mock,
     mockData,
