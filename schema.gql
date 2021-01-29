@@ -39,7 +39,9 @@ type Course {
 }
 
 type CourseGroupedStats {
+  cohort: String!
   color_bands: String!
+  curriculum: String!
   histogram: String!
   histogram_labels: String!
   id: String!
@@ -48,6 +50,8 @@ type CourseGroupedStats {
   n_finished: Float!
   n_pass: Float!
   n_total: Float!
+  program_id: String!
+  type_admission: String!
 }
 
 type Credit {
@@ -258,6 +262,7 @@ type Persistence {
 
 type Program {
   active: Boolean!
+  courseGroupedStats: [CourseGroupedStats!]!
   curriculums: [Curriculum!]!
   desc: String!
   groupedComplementary: [GroupedComplementary!]!
@@ -272,16 +277,9 @@ type Query {
   """
   checkUnlockKey(email: EmailAddress!, unlockKey: String!): String
   config: JSONObject!
-  courseGroupedStats(
-    cohort: String!
-    curriculum: String!
-    program_id: String!
-    type_admission: String!
-  ): [CourseGroupedStats!]!
   currentUser: AuthResult
   feedbackResults(user_ids: [String!]): [FeedbackResult!]!
   getPersistenceValue(key: String!): Persistence
-  groupedDataComplementary(program_id: String!): [GroupedComplementary!]!
   myPrograms: [Program!]!
   programs: [Program!]!
   students(last_n_years: Int = 2, program_id: String!): [Student!]!

@@ -29,9 +29,6 @@ import {
 } from "../../dataloaders/program";
 import { ProgramTable, UserProgramsTable } from "../../db/tables";
 import { Program } from "../../entities/data/program";
-import { CourseGroupedStats } from "../../entities/data/courseGroupedStats";
-
-import { GroupedComplementary } from "../../entities/data/groupedComplementary";
 
 import { anonService } from "../../services/anonymization";
 import { assertIsDefined } from "../../utils/assert";
@@ -233,31 +230,17 @@ export class ProgramResolver {
     });
   }
 
-  @Authorized()
-  @Query(() => [GroupedComplementary])
-  async groupedDataComplementary(
-    @Ctx() { user }: IContext,
-    @Arg("program_id") program_id: string
-  ): Promise<GroupedComplementary[]> {
-    return await StudentGroupedComplementaryDataLoader.load({
-      program_id: program_id,
-    });
-  }
-
-  @Authorized()
-  @Query(() => [CourseGroupedStats])
+  @FieldResolver()
   async courseGroupedStats(
-    @Ctx() { user }: IContext,
-    @Arg("program_id") program_id: string,
-    @Arg("curriculum") curriculum: string,
-    @Arg("type_admission") type_admission: string,
-    @Arg("cohort") cohort: string
-  ): Promise<CourseGroupedStats[]> {
+    @Root()
+    { id }: Partial<Program>
+  ): Promise<$PropertyType<Program, "courseGroupedStats">> {
+    assertIsDefined(
+      id,
+      "The id needs to be available for the program fields resolvers"
+    );
     return await CourseGroupedStatsDataLoader.load({
-      program_id: program_id,
-      curriculum: curriculum,
-      type_admission: type_admission,
-      cohort: cohort,
+      program_id: id,
     });
   }
 

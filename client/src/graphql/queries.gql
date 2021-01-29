@@ -62,6 +62,21 @@ mutation searchProgram($id: String, $student_id: String) {
       university_degree_rate
       retention_rate
     }
+    courseGroupedStats {
+      program_id
+      curriculum
+      type_admission
+      cohort
+      id
+      n_total
+      n_finished
+      n_pass
+      n_drop
+      n_fail
+      histogram
+      histogram_labels
+      color_bands
+    }
     curriculums {
       id
       semesters {
@@ -200,44 +215,6 @@ query studentsFilterList($program_id: String!, $curriculum: String!) {
     curriculums
     start_year
     mention
-  }
-}
-
-query groupedDataComplementary($program_id: String!) {
-  groupedDataComplementary(program_id: $program_id) {
-    program_id
-    curriculum
-    type_admission
-    cohort
-    total_students
-    retention_rate
-    university_degree_rate
-    average_time_university_degree
-    timely_university_degree_rate
-  }
-}
-
-query courseGroupedStats(
-  $program_id: String!
-  $curriculum: String!
-  $type_admission: String!
-  $cohort: String!
-) {
-  courseGroupedStats(
-    program_id: $program_id
-    curriculum: $curriculum
-    type_admission: $type_admission
-    cohort: $cohort
-  ) {
-    id
-    n_total
-    n_finished
-    n_pass
-    n_drop
-    n_fail
-    histogram
-    histogram_labels
-    color_bands
   }
 }
 
