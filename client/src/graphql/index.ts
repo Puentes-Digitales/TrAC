@@ -705,6 +705,20 @@ export type SearchProgramMutationVariables = Exact<{
 
 export type SearchProgramMutation = {
   program: Pick<Program, "id" | "name" | "desc" | "active"> & {
+    groupedComplementary: Array<
+      Pick<
+        GroupedComplementary,
+        | "timely_university_degree_rate"
+        | "total_students"
+        | "average_time_university_degree"
+        | "program_id"
+        | "curriculum"
+        | "type_admission"
+        | "cohort"
+        | "university_degree_rate"
+        | "retention_rate"
+      >
+    >;
     curriculums: Array<
       Pick<Curriculum, "id"> & {
         semesters: Array<
@@ -2062,6 +2076,17 @@ export const SearchProgramDocument = gql`
       name
       desc
       active
+      groupedComplementary {
+        timely_university_degree_rate
+        total_students
+        average_time_university_degree
+        program_id
+        curriculum
+        type_admission
+        cohort
+        university_degree_rate
+        retention_rate
+      }
       curriculums {
         id
         semesters {

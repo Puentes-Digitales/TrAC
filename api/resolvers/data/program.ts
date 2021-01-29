@@ -219,6 +219,19 @@ export class ProgramResolver {
 
     return activeData.active;
   }
+  @FieldResolver()
+  async groupedComplementary(
+    @Root()
+    { id }: Partial<Program>
+  ): Promise<$PropertyType<Program, "groupedComplementary">> {
+    assertIsDefined(
+      id,
+      "The id needs to be available for the program fields resolvers"
+    );
+    return await StudentGroupedComplementaryDataLoader.load({
+      program_id: id,
+    });
+  }
 
   @Authorized()
   @Query(() => [GroupedComplementary])

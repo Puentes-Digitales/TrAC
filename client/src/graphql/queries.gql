@@ -51,7 +51,17 @@ mutation searchProgram($id: String, $student_id: String) {
     name
     desc
     active
-
+    groupedComplementary {
+      timely_university_degree_rate
+      total_students
+      average_time_university_degree
+      program_id
+      curriculum
+      type_admission
+      cohort
+      university_degree_rate
+      retention_rate
+    }
     curriculums {
       id
       semesters {
