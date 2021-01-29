@@ -40,9 +40,9 @@ import {
   useChosenCurriculum,
   useIsMockActive,
   useGroupedActive,
+  setGroupedActive,
   useChosenAdmissionType,
   useChosenCohort,
-  setGroupedActive,
 } from "../../context/DashboardInput";
 import { setTrackingData, track } from "../../context/Tracking";
 import { useMyProgramsQuery } from "../../graphql";
@@ -55,9 +55,14 @@ const StudentList = dynamic(() => import("./StudentList"));
 
 const MockingMode: FC = memo(() => {
   const mock = useIsMockActive();
-
   return (
-    <Button basic onClick={() => setMock(!mock)} color={mock ? "blue" : "red"}>
+    <Button
+      basic
+      onClick={() => {
+        setMock(!mock);
+      }}
+      color={mock ? "blue" : "red"}
+    >
       {mock ? "Mocking ON" : "Mocking OFF"}
     </Button>
   );
@@ -85,44 +90,18 @@ export const SearchBar: FC<{
 
   const GrupedMode: FC = memo(() => {
     const groupedActive = useGroupedActive();
-
     return (
       <Button
         basic
         onClick={async (ev) => {
           setGroupedActive(!groupedActive);
-
+          setTrackingData({ student: undefined });
           if (program) {
             ev.preventDefault();
-            const onSearchResult = await onSearch({
+            onSearch({
               student_id: "",
               program_id: program.value,
             });
-
-            switch (onSearchResult) {
-              case "student": {
-                addStudentOption(student_id);
-                setStudentIdShow(student_id);
-                setStudentId("");
-                track({
-                  action: "click",
-                  effect: "load-student",
-                  target: "search-button",
-                });
-                break;
-              }
-              default: {
-                setTrackingData({
-                  student: "student_id",
-                });
-                setStudentIdShow("");
-                track({
-                  action: "click",
-                  effect: "wrong-student",
-                  target: "search-button",
-                });
-              }
-            }
           }
         }}
         color={groupedActive ? "blue" : "red"}
@@ -148,6 +127,8 @@ export const SearchBar: FC<{
     if (chosenAdmissionType === undefined || chosenCohort === undefined) {
       DashboardInputActions.setChosenAdmissionType("");
       DashboardInputActions.setChosenCohort("");
+      setGroupedActive(false);
+      setMock(false);
     }
   }, [groupedActive]);
 
@@ -290,18 +271,7 @@ export const SearchBar: FC<{
                     });
                     break;
                   }
-                  case "program": {
-                    setStudentIdShow("");
-                    setTrackingData({
-                      student: undefined,
-                    });
-                    track({
-                      action: "click",
-                      effect: "load-program",
-                      target: "student-list-row",
-                    });
-                    break;
-                  }
+
                   default: {
                     setStudentIdShow("");
                     setTrackingData({
