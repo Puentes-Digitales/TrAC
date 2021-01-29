@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from "type-graphql";
 
 import { Course } from "./course";
+import { CourseGroupedStats } from "./courseGroupedStats";
 import { ExternalEvaluation } from "./externalEvaluation";
 
 import { GroupedComplementary } from "./groupedComplementary";
@@ -58,4 +59,7 @@ export class Program {
 
   @Field(() => [GroupedComplementary])
   groupedComplementary: GroupedComplementary[];
+
+  @Field(() => [CourseGroupedStats])
+  courseGroupedStats: CourseGroupedStats[];
 }

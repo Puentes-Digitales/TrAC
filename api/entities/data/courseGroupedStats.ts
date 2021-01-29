@@ -6,6 +6,18 @@ export class CourseGroupedStats {
   id: string;
 
   @Field()
+  program_id: string;
+
+  @Field()
+  curriculum: string;
+
+  @Field()
+  type_admission: string;
+
+  @Field()
+  cohort: string;
+
+  @Field()
   n_total: number;
 
   @Field()

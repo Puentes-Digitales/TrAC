@@ -21,6 +21,59 @@ const data: {
       name: "INGENIERÍA CIVIL EN INFORMÁTICA",
       desc: "",
       active: true,
+
+      courseGroupedStats: [
+        {
+          id: "INFO261-08",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_total: 19,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 9,
+          histogram: "0,1,2,3,4,5",
+          histogram_labels: "1-2,2-3,3-4,4-5,5-6,6-7",
+          color_bands:
+            "1.0,3.4999,#d6604d;3.5,3.9999,#f48873;4.0,4.4999,#a7dc78;4.5,7,#66b43e",
+        },
+        {
+          id: "INFO261-08",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PSU",
+          cohort: "",
+          n_total: 19,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 9,
+          histogram: "0,1,2,3,4,5",
+          histogram_labels: "1-2,2-3,3-4,4-5,5-6,6-7",
+          color_bands:
+            "1.0,3.4999,#d6604d;3.5,3.9999,#f48873;4.0,4.4999,#a7dc78;4.5,7,#66b43e",
+        },
+
+        {
+          id: "INFO261-08",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_total: 19,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 9,
+          histogram: "0,1,2,3,4,5",
+          histogram_labels: "1-2,2-3,3-4,4-5,5-6,6-7",
+          color_bands:
+            "1.0,3.4999,#d6604d;3.5,3.9999,#f48873;4.0,4.4999,#a7dc78;4.5,7,#66b43e",
+        },
+      ],
+
       groupedComplementary: [
         {
           program_id: "1708",
