@@ -25,6 +25,7 @@ import {
   AlertTitle,
   Box,
   Flex,
+  Stack,
   Input,
   InputGroup,
   InputRightElement,
@@ -40,6 +41,7 @@ import {
   useIsMockActive,
   useGroupedActive,
   useChosenAdmissionType,
+  useChosenCohort,
   setGroupedActive,
 } from "../../context/DashboardInput";
 import { setTrackingData, track } from "../../context/Tracking";
@@ -79,6 +81,7 @@ export const SearchBar: FC<{
   const chosenCurriculum = useChosenCurriculum();
   const groupedActive = useGroupedActive();
   const chosenAdmissionType = useChosenAdmissionType();
+  const chosenCohort = useChosenCohort();
 
   const GrupedMode: FC = memo(() => {
     const groupedActive = useGroupedActive();
@@ -141,6 +144,13 @@ export const SearchBar: FC<{
     }
   }, [chosenCurriculum, searchResult?.curriculums]);
 
+  useEffect(() => {
+    if (chosenAdmissionType === undefined || chosenCohort === undefined) {
+      DashboardInputActions.setChosenAdmissionType("");
+      DashboardInputActions.setChosenCohort("");
+    }
+  }, [groupedActive]);
+
   const { user } = useUser();
 
   const isDirector = user?.type === UserType.Director;
@@ -152,6 +162,8 @@ export const SearchBar: FC<{
     NO_CURRICULUMS_LABEL,
     PROGRAM_NOT_SPECIFIED_PLACEHOLDER,
     CURRICULUM_LABEL,
+    ADMISSION_TYPE_LABEL,
+    COHORT_LABEL,
     STUDENT_LABEL,
     PLACEHOLDER_SEARCH_STUDENT,
     LOGOUT_CONFIRMATION_LABEL,
@@ -417,10 +429,17 @@ export const SearchBar: FC<{
           groupedActive &&
           ((searchResult?.curriculums.length ?? 0) > 1 ? (
             <Flex mr={5}>
-              <Tag colorScheme="blue" variant="outline">
-                {searchResult?.program_id} | {CURRICULUM_LABEL}
-              </Tag>
-
+              <Stack>
+                <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
+                  {CURRICULUM_LABEL}
+                </Tag>
+                <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
+                  {ADMISSION_TYPE_LABEL}
+                </Tag>
+                <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
+                  {COHORT_LABEL}
+                </Tag>
+              </Stack>
               <Box width={150} ml={2}>
                 <Select
                   options={
@@ -456,8 +475,9 @@ export const SearchBar: FC<{
                 />
                 <Select
                   options={[
-                    { value: "PACE", label: "PACE" },
+                    { value: "", label: "Todos" },
                     { value: "PSU", label: "PSU" },
+                    { value: "PACE", label: "PACE" },
                   ]}
                   value={
                     chosenAdmissionType
@@ -477,7 +497,33 @@ export const SearchBar: FC<{
                       (selected as { label: string; value: string }).value
                     );
                   }}
-                  placeholder={"Tipo de ingreso"}
+                  placeholder={"Todos"}
+                  css={{ color: "black" }}
+                />
+                <Select
+                  options={[
+                    { value: "", label: "Todos" },
+                    { value: "2017", label: "2017" },
+                  ]}
+                  value={
+                    chosenCohort
+                      ? {
+                          value: chosenCohort,
+                          label: chosenCohort,
+                        }
+                      : undefined
+                  }
+                  onChange={(selected) => {
+                    track({
+                      action: "click",
+                      target: "cohort-menu",
+                      effect: "change-cohort",
+                    });
+                    DashboardInputActions.setChosenCohort(
+                      (selected as { label: string; value: string }).value
+                    );
+                  }}
+                  placeholder={"Todos"}
                   css={{ color: "black" }}
                 />
               </Box>

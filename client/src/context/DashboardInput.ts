@@ -58,6 +58,7 @@ export const {
     useStudent,
     useChosenCurriculum,
     useChosenAdmissionType,
+    useChosenCohort,
   },
 } = createStore(
   {
@@ -65,6 +66,7 @@ export const {
     program: undefined as string | undefined,
     student: undefined as string | undefined,
     chosenAdmissionType: undefined as string | undefined,
+    chosenCohort: undefined as string | undefined,
   },
   {
     devName: "DashboardInput",
@@ -81,6 +83,9 @@ export const {
       useChosenAdmissionType: ({ chosenAdmissionType }) => {
         return chosenAdmissionType;
       },
+      useChosenCohort: ({ chosenCohort }) => {
+        return chosenCohort;
+      },
     },
     actions: {
       setProgram: (program?: string) => (draft) => {
@@ -94,6 +99,9 @@ export const {
       },
       setChosenAdmissionType: (chosenAdmissionType?: string) => (draft) => {
         draft.chosenAdmissionType = chosenAdmissionType;
+      },
+      setChosenCohort: (chosenCohort?: string) => (draft) => {
+        draft.chosenCohort = chosenCohort;
       },
     },
   }
