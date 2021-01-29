@@ -73,8 +73,8 @@ export function Dashboard() {
   const chosenAdmissionType = useChosenAdmissionType();
   const chosenCohort = useChosenCohort();
   const grouped = useGroupedActive();
+  // setMock(false)
   const { user } = useUser();
-
   const [mockData, setMockData] = useState<
     typeof import("../../../constants/mockData")
   >();
@@ -187,7 +187,6 @@ export function Dashboard() {
         showingProgress: true,
         program: searchProgramData.program.id,
       });
-      setMock(false);
     } else {
       DashboardInputActions.setProgram(undefined);
       setTrackingData({
@@ -400,13 +399,16 @@ export function Dashboard() {
     let GroupedComplementaryInfoComponent: JSX.Element | null = null;
 
     const studentData = mock
-      ? mockData?.default.searchStudentData.student
+      ? grouped
+        ? undefined
+        : mockData?.default.searchStudentData.student
       : searchStudentData?.student;
+
     const programData = mock
       ? mockData?.default.searchProgramData.program
       : searchProgramData?.program;
 
-    if (studentData) {
+    if (studentData && !grouped) {
       const {
         cumulated_grade,
         semestral_grade,
@@ -499,6 +501,100 @@ export function Dashboard() {
     }
 
     if (programData) {
+      const curriculums =
+        programData?.curriculums
+          .filter(({ id }) => {
+            if (studentData) {
+              return studentData.curriculums.includes(id);
+            }
+            return true;
+          })
+          .map(({ semesters: curriculumSemesters, id: curriculumId }) => {
+            const semesters = curriculumSemesters.map((va) => {
+              const semester = {
+                n: va.id,
+                courses: va.courses.map(
+                  ({
+                    code,
+                    name,
+                    credits,
+                    flow,
+                    requisites,
+                    historicalDistribution,
+                    bandColors,
+                  }) => {
+                    return {
+                      code,
+                      name,
+                      credits,
+                      flow: flow.map(({ code }) => {
+                        return code;
+                      }),
+                      requisites: requisites.map(({ code }) => {
+                        return code;
+                      }),
+                      historicDistribution: historicalDistribution,
+                      bandColors,
+                      taken: (() => {
+                        const taken: ITakenCourse[] = [];
+                        if (studentData) {
+                          for (const {
+                            term,
+                            year,
+                            takenCourses,
+                          } of studentData.terms) {
+                            for (const {
+                              code: courseCode,
+                              equiv,
+                              registration,
+                              state,
+                              grade,
+                              currentDistribution,
+                              parallelGroup,
+                              bandColors,
+                            } of takenCourses) {
+                              if (equiv === code || courseCode === code) {
+                                taken.push({
+                                  term,
+                                  year,
+                                  registration,
+                                  state,
+                                  grade,
+                                  currentDistribution,
+                                  parallelGroup,
+                                  equiv: equiv === code ? courseCode : "",
+                                  bandColors,
+                                });
+                              }
+                            }
+                          }
+                        }
+
+                        return taken;
+                      })(),
+                    };
+                  }
+                ),
+              };
+              return { semester };
+            });
+            return { id: curriculumId, semesters };
+          }) ?? [];
+      const data = curriculums.find(({ id: curriculumId }) => {
+        return !mock && chosenCurriculum
+          ? curriculumId === chosenCurriculum
+          : true;
+      });
+      if (data && studentData) {
+        SemestersComponent = (
+          <SemestersList
+            semesters={data.semesters.map(({ semester }) => semester)}
+          />
+        );
+      }
+    }
+
+    if (programData && grouped) {
       const curriculums =
         programData?.curriculums
           .filter(({ id }) => {
