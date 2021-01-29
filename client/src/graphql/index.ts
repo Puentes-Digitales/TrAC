@@ -55,6 +55,18 @@ export type Course = {
   requisites: Array<Course>;
 };
 
+export type CourseGroupedStats = {
+  color_bands: Scalars["String"];
+  histogram: Scalars["String"];
+  histogram_labels: Scalars["String"];
+  id: Scalars["String"];
+  n_drop: Scalars["Float"];
+  n_fail: Scalars["Float"];
+  n_finished: Scalars["Float"];
+  n_pass: Scalars["Float"];
+  n_total: Scalars["Float"];
+};
+
 export type Credit = {
   label: Scalars["String"];
   value: Scalars["Int"];
@@ -151,9 +163,13 @@ export type FeedbackResult = {
 
 export type GroupedComplementary = {
   average_time_university_degree: Scalars["Float"];
+  cohort: Scalars["String"];
+  curriculum: Scalars["String"];
+  program_id: Scalars["String"];
   retention_rate: Scalars["Float"];
   timely_university_degree_rate: Scalars["Float"];
   total_students: Scalars["Float"];
+  type_admission: Scalars["String"];
   university_degree_rate: Scalars["Float"];
 };
 
@@ -315,6 +331,7 @@ export type Query = {
   /** Check unlockKey combination, if it's valid, returns null, if it's invalid, returns an error message. */
   checkUnlockKey?: Maybe<Scalars["String"]>;
   config: Scalars["JSONObject"];
+  courseGroupedStats: Array<CourseGroupedStats>;
   currentUser?: Maybe<AuthResult>;
   feedbackResults: Array<FeedbackResult>;
   getPersistenceValue?: Maybe<Persistence>;
@@ -334,6 +351,13 @@ export type QueryCheckUnlockKeyArgs = {
   unlockKey: Scalars["String"];
 };
 
+export type QueryCourseGroupedStatsArgs = {
+  cohort: Scalars["String"];
+  curriculum: Scalars["String"];
+  program_id: Scalars["String"];
+  type_admission: Scalars["String"];
+};
+
 export type QueryFeedbackResultsArgs = {
   user_ids?: Maybe<Array<Scalars["String"]>>;
 };
@@ -343,10 +367,7 @@ export type QueryGetPersistenceValueArgs = {
 };
 
 export type QueryGroupedDataComplementaryArgs = {
-  cohort: Scalars["String"];
-  curriculum: Scalars["String"];
   program_id: Scalars["String"];
-  type_admission: Scalars["String"];
 };
 
 export type QueryStudentsArgs = {
@@ -684,6 +705,20 @@ export type SearchProgramMutationVariables = Exact<{
 
 export type SearchProgramMutation = {
   program: Pick<Program, "id" | "name" | "desc" | "active"> & {
+    groupedComplementary: Array<
+      Pick<
+        GroupedComplementary,
+        | "timely_university_degree_rate"
+        | "total_students"
+        | "average_time_university_degree"
+        | "program_id"
+        | "curriculum"
+        | "type_admission"
+        | "cohort"
+        | "university_degree_rate"
+        | "retention_rate"
+      >
+    >;
     curriculums: Array<
       Pick<Curriculum, "id"> & {
         semesters: Array<
@@ -822,20 +857,45 @@ export type StudentsFilterListQuery = {
 
 export type GroupedDataComplementaryQueryVariables = Exact<{
   program_id: Scalars["String"];
-  curriculum: Scalars["String"];
-  type_admission: Scalars["String"];
-  cohort: Scalars["String"];
 }>;
 
 export type GroupedDataComplementaryQuery = {
   groupedDataComplementary: Array<
     Pick<
       GroupedComplementary,
+      | "program_id"
+      | "curriculum"
+      | "type_admission"
+      | "cohort"
       | "total_students"
       | "retention_rate"
       | "university_degree_rate"
       | "average_time_university_degree"
       | "timely_university_degree_rate"
+    >
+  >;
+};
+
+export type CourseGroupedStatsQueryVariables = Exact<{
+  program_id: Scalars["String"];
+  curriculum: Scalars["String"];
+  type_admission: Scalars["String"];
+  cohort: Scalars["String"];
+}>;
+
+export type CourseGroupedStatsQuery = {
+  courseGroupedStats: Array<
+    Pick<
+      CourseGroupedStats,
+      | "id"
+      | "n_total"
+      | "n_finished"
+      | "n_pass"
+      | "n_drop"
+      | "n_fail"
+      | "histogram"
+      | "histogram_labels"
+      | "color_bands"
     >
   >;
 };
@@ -2016,6 +2076,17 @@ export const SearchProgramDocument = gql`
       name
       desc
       active
+      groupedComplementary {
+        timely_university_degree_rate
+        total_students
+        average_time_university_degree
+        program_id
+        curriculum
+        type_admission
+        cohort
+        university_degree_rate
+        retention_rate
+      }
       curriculums {
         id
         semesters {
@@ -2471,18 +2542,12 @@ export type StudentsFilterListQueryResult = Apollo.QueryResult<
   StudentsFilterListQueryVariables
 >;
 export const GroupedDataComplementaryDocument = gql`
-  query groupedDataComplementary(
-    $program_id: String!
-    $curriculum: String!
-    $type_admission: String!
-    $cohort: String!
-  ) {
-    groupedDataComplementary(
-      program_id: $program_id
-      curriculum: $curriculum
-      type_admission: $type_admission
-      cohort: $cohort
-    ) {
+  query groupedDataComplementary($program_id: String!) {
+    groupedDataComplementary(program_id: $program_id) {
+      program_id
+      curriculum
+      type_admission
+      cohort
       total_students
       retention_rate
       university_degree_rate
@@ -2505,9 +2570,6 @@ export const GroupedDataComplementaryDocument = gql`
  * const { data, loading, error } = useGroupedDataComplementaryQuery({
  *   variables: {
  *      program_id: // value for 'program_id'
- *      curriculum: // value for 'curriculum'
- *      type_admission: // value for 'type_admission'
- *      cohort: // value for 'cohort'
  *   },
  * });
  */
@@ -2542,6 +2604,83 @@ export type GroupedDataComplementaryLazyQueryHookResult = ReturnType<
 export type GroupedDataComplementaryQueryResult = Apollo.QueryResult<
   GroupedDataComplementaryQuery,
   GroupedDataComplementaryQueryVariables
+>;
+export const CourseGroupedStatsDocument = gql`
+  query courseGroupedStats(
+    $program_id: String!
+    $curriculum: String!
+    $type_admission: String!
+    $cohort: String!
+  ) {
+    courseGroupedStats(
+      program_id: $program_id
+      curriculum: $curriculum
+      type_admission: $type_admission
+      cohort: $cohort
+    ) {
+      id
+      n_total
+      n_finished
+      n_pass
+      n_drop
+      n_fail
+      histogram
+      histogram_labels
+      color_bands
+    }
+  }
+`;
+
+/**
+ * __useCourseGroupedStatsQuery__
+ *
+ * To run a query within a React component, call `useCourseGroupedStatsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCourseGroupedStatsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCourseGroupedStatsQuery({
+ *   variables: {
+ *      program_id: // value for 'program_id'
+ *      curriculum: // value for 'curriculum'
+ *      type_admission: // value for 'type_admission'
+ *      cohort: // value for 'cohort'
+ *   },
+ * });
+ */
+export function useCourseGroupedStatsQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    CourseGroupedStatsQuery,
+    CourseGroupedStatsQueryVariables
+  >
+) {
+  return Apollo.useQuery<
+    CourseGroupedStatsQuery,
+    CourseGroupedStatsQueryVariables
+  >(CourseGroupedStatsDocument, baseOptions);
+}
+export function useCourseGroupedStatsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    CourseGroupedStatsQuery,
+    CourseGroupedStatsQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<
+    CourseGroupedStatsQuery,
+    CourseGroupedStatsQueryVariables
+  >(CourseGroupedStatsDocument, baseOptions);
+}
+export type CourseGroupedStatsQueryHookResult = ReturnType<
+  typeof useCourseGroupedStatsQuery
+>;
+export type CourseGroupedStatsLazyQueryHookResult = ReturnType<
+  typeof useCourseGroupedStatsLazyQuery
+>;
+export type CourseGroupedStatsQueryResult = Apollo.QueryResult<
+  CourseGroupedStatsQuery,
+  CourseGroupedStatsQueryVariables
 >;
 export const PerformanceLoadAdvicesDocument = gql`
   mutation performanceLoadAdvices($student_id: String, $program_id: String) {

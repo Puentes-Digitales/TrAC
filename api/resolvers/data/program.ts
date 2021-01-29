@@ -25,9 +25,13 @@ import {
   StudentProgramCurriculumsDataLoader,
   StudentProgramDataLoader,
   CourseGroupedStatsDataLoader,
+  StudentGroupedComplementaryDataLoader,
 } from "../../dataloaders/program";
 import { ProgramTable, UserProgramsTable } from "../../db/tables";
 import { Program } from "../../entities/data/program";
+import { CourseGroupedStats } from "../../entities/data/courseGroupedStats";
+
+import { GroupedComplementary } from "../../entities/data/groupedComplementary";
 
 import { anonService } from "../../services/anonymization";
 import { assertIsDefined } from "../../utils/assert";
@@ -40,7 +44,6 @@ import type {
   IfImplements,
 } from "../../../interfaces/utils";
 import type { PartialCourse } from "./course";
-import { GroupedComplementary } from "../../entities/data/groupedComplementary";
 export type PartialProgram = Pick<Program, "id">;
 
 @Resolver(() => Program)
@@ -216,16 +219,40 @@ export class ProgramResolver {
 
     return activeData.active;
   }
+  @FieldResolver()
+  async groupedComplementary(
+    @Root()
+    { id }: Partial<Program>
+  ): Promise<$PropertyType<Program, "groupedComplementary">> {
+    assertIsDefined(
+      id,
+      "The id needs to be available for the program fields resolvers"
+    );
+    return await StudentGroupedComplementaryDataLoader.load({
+      program_id: id,
+    });
+  }
 
   @Authorized()
   @Query(() => [GroupedComplementary])
   async groupedDataComplementary(
     @Ctx() { user }: IContext,
+    @Arg("program_id") program_id: string
+  ): Promise<GroupedComplementary[]> {
+    return await StudentGroupedComplementaryDataLoader.load({
+      program_id: program_id,
+    });
+  }
+
+  @Authorized()
+  @Query(() => [CourseGroupedStats])
+  async courseGroupedStats(
+    @Ctx() { user }: IContext,
     @Arg("program_id") program_id: string,
     @Arg("curriculum") curriculum: string,
     @Arg("type_admission") type_admission: string,
     @Arg("cohort") cohort: string
-  ): Promise<GroupedComplementary[]> {
+  ): Promise<CourseGroupedStats[]> {
     return await CourseGroupedStatsDataLoader.load({
       program_id: program_id,
       curriculum: curriculum,

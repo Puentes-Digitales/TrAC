@@ -127,9 +127,6 @@ export function Dashboard() {
   const { data: groupedComplementaryData } = useGroupedDataComplementaryQuery({
     variables: {
       program_id: program || "",
-      curriculum: chosenCurriculum || "",
-      type_admission: chosenAdmissionType || "",
-      cohort: "" || "",
     },
   });
 
@@ -599,6 +596,14 @@ export function Dashboard() {
         );
       }
       if (data && grouped) {
+        const filterdata = programData.groupedComplementary.filter(
+          (value) =>
+            value.curriculum == "2015" &&
+            value.type_admission == "PSU" &&
+            value.program_id == "1708" &&
+            value.cohort == ""
+        );
+
         SemestersComponent = (
           <SemestersList
             semesters={data.semesters.map(({ semester }) => semester)}
@@ -606,10 +611,7 @@ export function Dashboard() {
         );
         GroupedComplementaryInfoComponent = (
           <GroupedComplementaryInfo
-            total_students={
-              groupedComplementaryData?.groupedDataComplementary[0]
-                ?.total_students
-            }
+            total_students={filterdata[0].total_students}
             university_degree_rate={
               groupedComplementaryData?.groupedDataComplementary[0]
                 ?.university_degree_rate

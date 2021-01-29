@@ -21,6 +21,19 @@ const data: {
       name: "INGENIERÍA CIVIL EN INFORMÁTICA",
       desc: "",
       active: true,
+      groupedComplementary: [
+        {
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "",
+          cohort: "",
+          total_students: 25,
+          university_degree_rate: 60,
+          retention_rate: 88,
+          average_time_university_degree: 5.5,
+          timely_university_degree_rate: 6,
+        },
+      ],
       curriculums: [
         {
           id: "2017",

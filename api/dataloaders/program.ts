@@ -9,6 +9,7 @@ import {
   StudentProgramTable,
   StudentGroupedComplementaryTable,
   PROGRAM_STRUCTURE_TABLE,
+  CourseGroupedStatsTable,
 } from "../db/tables";
 
 import type { Curriculum } from "../entities/data/program";
@@ -190,6 +191,25 @@ export const CurriculumsDataLoader = new DataLoader(
   }
 );
 
+export const StudentGroupedComplementaryDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ program_id }) => {
+        return StudentGroupedComplementaryTable().where({
+          program_id: program_id,
+        });
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
 export const CourseGroupedStatsDataLoader = new DataLoader(
   async (
     keys: readonly {
@@ -201,7 +221,7 @@ export const CourseGroupedStatsDataLoader = new DataLoader(
   ) => {
     return await Promise.all(
       keys.map(({ program_id, curriculum, type_admission, cohort }) => {
-        return StudentGroupedComplementaryTable().where({
+        return CourseGroupedStatsTable().where({
           program_id: program_id,
           curriculum: curriculum,
           type_admission: type_admission,
