@@ -61,6 +61,7 @@ import { Feedback } from "../feedback";
 import { LoadingPage } from "../Loading";
 import { SearchBar } from "./SearchBar";
 import { SemestersList } from "./SemestersList";
+// import { GroupedSemestersList } from "./GroupedSemesterList";
 import { TakenSemesterBox } from "./TakenSemesterBox";
 import { TimeLine } from "./Timeline/Timeline";
 import { ProgressStudent } from "./ProgressStudent";
@@ -73,7 +74,6 @@ export function Dashboard() {
   const chosenAdmissionType = useChosenAdmissionType();
   const chosenCohort = useChosenCohort();
   const grouped = useGroupedActive();
-  // setMock(false)
   const { user } = useUser();
   const [mockData, setMockData] = useState<
     typeof import("../../../constants/mockData")
@@ -500,7 +500,7 @@ export function Dashboard() {
       }
     }
 
-    if (programData) {
+    if (programData && !grouped) {
       const curriculums =
         programData?.curriculums
           .filter(({ id }) => {
@@ -629,43 +629,6 @@ export function Dashboard() {
                       }),
                       historicDistribution: historicalDistribution,
                       bandColors,
-                      taken: (() => {
-                        const taken: ITakenCourse[] = [];
-                        if (studentData) {
-                          for (const {
-                            term,
-                            year,
-                            takenCourses,
-                          } of studentData.terms) {
-                            for (const {
-                              code: courseCode,
-                              equiv,
-                              registration,
-                              state,
-                              grade,
-                              currentDistribution,
-                              parallelGroup,
-                              bandColors,
-                            } of takenCourses) {
-                              if (equiv === code || courseCode === code) {
-                                taken.push({
-                                  term,
-                                  year,
-                                  registration,
-                                  state,
-                                  grade,
-                                  currentDistribution,
-                                  parallelGroup,
-                                  equiv: equiv === code ? courseCode : "",
-                                  bandColors,
-                                });
-                              }
-                            }
-                          }
-                        }
-
-                        return taken;
-                      })(),
                     };
                   }
                 ),
@@ -679,14 +642,7 @@ export function Dashboard() {
           ? curriculumId === chosenCurriculum
           : true;
       });
-      if (data && studentData) {
-        SemestersComponent = (
-          <SemestersList
-            semesters={data.semesters.map(({ semester }) => semester)}
-          />
-        );
-      }
-      if (data && grouped) {
+      if (data) {
         const filterdata = programData.groupedComplementary.filter(
           (value) =>
             value.curriculum == data.id &&
@@ -695,11 +651,11 @@ export function Dashboard() {
             value.cohort == chosenCohort
         );
 
-        SemestersComponent = (
-          <SemestersList
-            semesters={data.semesters.map(({ semester }) => semester)}
-          />
-        );
+        // SemestersComponent = (
+        //   <GroupedSemestersList
+        //     semesters={data.semesters.map(({ semester }) => semester)}
+        //   />
+        // );
         GroupedComplementaryInfoComponent = (
           <GroupedComplementaryInfo
             total_students={filterdata[0].total_students}

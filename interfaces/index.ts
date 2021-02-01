@@ -47,7 +47,6 @@ export type IGroupedCourse = {
   groupedDistribution: IDistribution[];
   n_total: number;
   n_passed: number;
-  taken: ITakenCourse[];
   bandColors: { min: number; max: number; color: string }[];
 };
 
