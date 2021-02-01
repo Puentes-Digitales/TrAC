@@ -162,11 +162,11 @@ const SecondaryBlockOuter: FC<
     } else if (n_passed < n_total * 0.25) {
       return "#cbc9e2";
     } else if (n_passed < n_total * 0.5) {
-      return "#";
+      return "#9e9ac8";
     } else if (n_passed < n_total * 0.75) {
-      return "rgb(125,60,152)";
+      return "#756bb1";
     } else {
-      return "rgb(91,44,111)";
+      return "#54278f";
     }
   }, [colorMode, config]);
 
@@ -284,6 +284,8 @@ export const currentDistributionLabel = ({
 
 export function GroupedCourseBox({
   code,
+  n_total,
+  n_passed,
   name,
   credits,
   historicDistribution,
@@ -342,8 +344,8 @@ export function GroupedCourseBox({
       </MainBlockOuter>
       <SecondaryBlockOuter
         bandColors={bandColors}
-        n_passed={56}
-        n_total={100}
+        n_passed={n_passed}
+        n_total={n_total}
         borderColor={borderColor}
       ></SecondaryBlockOuter>
     </OuterCourseBox>
