@@ -1,5 +1,6 @@
 import DataLoader from "dataloader";
-import { defaultsDeep, Dictionary, keyBy } from "lodash";
+import { defaultsDeep, Dictionary, keyBy, toInteger } from "lodash";
+
 import { LRUMap } from "lru_map";
 
 import {
@@ -228,3 +229,106 @@ export const CourseGroupedStatsDataLoader = new DataLoader(
     cacheMap: new LRUMap(1000),
   }
 );
+
+export const CourseGroupedStatsDataLoadertest2 = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(async ({ program_id }) => {
+        const data = await CourseGroupedStatsTable()
+          .select(
+            "id",
+            "program_id",
+            "curriculum",
+            "type_admission",
+            "cohort",
+            "n_total",
+            "n_finished",
+            "n_pass",
+            "n_fail",
+            "n_drop",
+            "color_bands",
+            "histogram",
+            "histogram_labels"
+          )
+          .where({
+            program_id: program_id,
+          });
+        data.map((id, histogram) => {
+          const histogramValues = id["histogram"].split(",").map(toInteger);
+          const histogramLabels = id["histogram_labels"].split(",");
+          return histogramValues.map((value, key) => {
+            console.log(id, histogramLabels[key] ?? `${key}`, value);
+
+            return {
+              id,
+              histogram2: {
+                label: histogramLabels[key] ?? `${key}`,
+                value,
+              },
+            };
+          });
+        });
+
+        return data;
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+export const CourseGroupedStatsDataLoadertest = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(async ({ program_id }) => {
+        const data = await CourseGroupedStatsTable()
+          .select("histogram", "histogram_labels")
+          .where({
+            program_id: program_id,
+          });
+
+        data.map((histogram) => {
+          const histogramValues = histogram["histogram"]
+            .split(",")
+            .map(toInteger);
+          const histogramLabels = histogram["histogram_labels"].split(",");
+
+          return histogramValues.map((value, key) => {
+            return {
+              label: histogramLabels[key] ?? `${key}`,
+              value,
+            };
+          });
+        });
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+/*
+const reducedHistogramData =
+histogramData?.reduce<Record<number, { label: string; value: number }>>(
+  (acum, { histogram, histogram_labels }, key) => {
+    const histogramValues = histogram.split(",").map(toInteger);
+    const histogramLabels = key === 0 ? histogram_labels.split(",") : [];
+
+    for (let i = 0; i < histogramValues.length; i++) {
+      acum[i] = {
+        label: acum[i]?.label ?? histogramLabels[i],
+        value: (acum[i]?.value ?? 0) + (histogramValues[i] ?? 0),
+      };
+    }
+    return acum;
+  },
+  {}
+) ?? {}; */
