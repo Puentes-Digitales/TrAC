@@ -44,7 +44,6 @@ export type IGroupedCourse = {
   flow: string[];
   requisites: string[];
   historicDistribution: IDistribution[];
-  groupedDistribution: IDistribution[];
   n_total: number;
   n_passed: number;
   bandColors: { min: number; max: number; color: string }[];

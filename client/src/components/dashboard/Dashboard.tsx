@@ -61,7 +61,7 @@ import { Feedback } from "../feedback";
 import { LoadingPage } from "../Loading";
 import { SearchBar } from "./SearchBar";
 import { SemestersList } from "./SemestersList";
-// import { GroupedSemestersList } from "./GroupedSemesterList";
+import { GroupedSemestersList } from "./GroupedSemesterList";
 import { TakenSemesterBox } from "./TakenSemesterBox";
 import { TimeLine } from "./Timeline/Timeline";
 import { ProgressStudent } from "./ProgressStudent";
@@ -617,6 +617,22 @@ export function Dashboard() {
                     historicalDistribution,
                     bandColors,
                   }) => {
+                    console.log(code);
+                    const dataFiltrada = programData.courseGroupedStats.filter(
+                      (value) =>
+                        value.curriculum == curriculumId &&
+                        value.type_admission == chosenAdmissionType &&
+                        value.program_id == programData.id &&
+                        value.cohort == chosenCohort &&
+                        value.id == code
+                    );
+                    const datosComplementary = programData.groupedComplementary.filter(
+                      (value) =>
+                        value.curriculum == curriculumId &&
+                        value.type_admission == chosenAdmissionType &&
+                        value.program_id == programData.id &&
+                        value.cohort == chosenCohort
+                    );
                     return {
                       code,
                       name,
@@ -629,6 +645,45 @@ export function Dashboard() {
                       }),
                       historicDistribution: historicalDistribution,
                       bandColors,
+                      n_passed: dataFiltrada[0].n_pass,
+                      n_total: datosComplementary[0].total_students,
+                      taken: (() => {
+                        const taken: ITakenCourse[] = [];
+                        if (studentData) {
+                          for (const {
+                            term,
+                            year,
+                            takenCourses,
+                          } of studentData.terms) {
+                            for (const {
+                              code: courseCode,
+                              equiv,
+                              registration,
+                              state,
+                              grade,
+                              currentDistribution,
+                              parallelGroup,
+                              bandColors,
+                            } of takenCourses) {
+                              if (equiv === code || courseCode === code) {
+                                taken.push({
+                                  term,
+                                  year,
+                                  registration,
+                                  state,
+                                  grade,
+                                  currentDistribution,
+                                  parallelGroup,
+                                  equiv: equiv === code ? courseCode : "",
+                                  bandColors,
+                                });
+                              }
+                            }
+                          }
+                        }
+
+                        return taken;
+                      })(),
                     };
                   }
                 ),
@@ -651,11 +706,11 @@ export function Dashboard() {
             value.cohort == chosenCohort
         );
 
-        // SemestersComponent = (
-        //   <GroupedSemestersList
-        //     semesters={data.semesters.map(({ semester }) => semester)}
-        //   />
-        // );
+        SemestersComponent = (
+          <GroupedSemestersList
+            semesters={data.semesters.map(({ semester }) => semester)}
+          />
+        );
         GroupedComplementaryInfoComponent = (
           <GroupedComplementaryInfo
             total_students={filterdata[0].total_students}
