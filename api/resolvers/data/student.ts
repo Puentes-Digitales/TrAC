@@ -293,7 +293,7 @@ export class StudentResolver {
 
     const list_cycle = total_cycles.map((d) => d.course_cat);
 
-    var dataCycleStudent = [];
+    const dataCycleStudent = [];
 
     for (const cycle of list_cycle) {
       const [n_courses, n_approved_courses] = await Promise.all([
