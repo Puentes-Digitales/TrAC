@@ -317,20 +317,3 @@ export const CourseGroupedStatsDataLoadertest = new DataLoader(
     cacheMap: new LRUMap(1000),
   }
 );
-/*
-const reducedHistogramData =
-histogramData?.reduce<Record<number, { label: string; value: number }>>(
-  (acum, { histogram, histogram_labels }, key) => {
-    const histogramValues = histogram.split(",").map(toInteger);
-    const histogramLabels = key === 0 ? histogram_labels.split(",") : [];
-
-    for (let i = 0; i < histogramValues.length; i++) {
-      acum[i] = {
-        label: acum[i]?.label ?? histogramLabels[i],
-        value: (acum[i]?.value ?? 0) + (histogramValues[i] ?? 0),
-      };
-    }
-    return acum;
-  },
-  {}
-) ?? {}; */

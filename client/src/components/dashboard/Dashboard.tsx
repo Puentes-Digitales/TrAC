@@ -701,19 +701,21 @@ export function Dashboard() {
             semesters={data.semesters.map(({ semester }) => semester)}
           />
         );
-        GroupedComplementaryInfoComponent = (
-          <GroupedComplementaryInfo
-            total_students={filterdata[0].total_students}
-            university_degree_rate={filterdata[0].university_degree_rate}
-            average_time_university_degree={
-              filterdata[0].average_time_university_degree
-            }
-            timely_university_degree_rate={
-              filterdata[0].timely_university_degree_rate
-            }
-            retention_rate={filterdata[0].retention_rate}
-          />
-        );
+        if (user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO) {
+          GroupedComplementaryInfoComponent = (
+            <GroupedComplementaryInfo
+              total_students={filterdata[0].total_students}
+              university_degree_rate={filterdata[0].university_degree_rate}
+              average_time_university_degree={
+                filterdata[0].average_time_university_degree
+              }
+              timely_university_degree_rate={
+                filterdata[0].timely_university_degree_rate
+              }
+              retention_rate={filterdata[0].retention_rate}
+            />
+          );
+        }
       }
     }
 
