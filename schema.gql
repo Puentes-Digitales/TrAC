@@ -40,10 +40,9 @@ type Course {
 
 type CourseGroupedStats {
   cohort: String!
-  color_bands: String!
+  color_bands: [BandColor!]!
   curriculum: String!
-  histogram: String!
-  histogram_labels: String!
+  distribution: [DistributionValue!]!
   id: String!
   n_drop: Float!
   n_fail: Float!

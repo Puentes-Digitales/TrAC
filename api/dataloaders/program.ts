@@ -1,5 +1,5 @@
 import DataLoader from "dataloader";
-import { defaultsDeep, Dictionary, keyBy, toInteger } from "lodash";
+import { defaultsDeep, Dictionary, keyBy, toInteger, toNumber } from "lodash";
 
 import { LRUMap } from "lru_map";
 
@@ -217,99 +217,46 @@ export const CourseGroupedStatsDataLoader = new DataLoader(
       program_id: string;
     }[]
   ) => {
-    const data = await Promise.all(
-      keys.map(({ program_id }) => {
-        return CourseGroupedStatsTable().where({
+    return await Promise.all(
+      keys.map(async ({ program_id }) => {
+        const data = await CourseGroupedStatsTable().where({
           program_id: program_id,
         });
-      })
-    );
 
-    return data;
-  },
-  {
-    cacheMap: new LRUMap(1000),
-  }
-);
-
-export const CourseGroupedStatsDataLoadertest2 = new DataLoader(
-  async (
-    keys: readonly {
-      program_id: string;
-    }[]
-  ) => {
-    return await Promise.all(
-      keys.map(async ({ program_id }) => {
-        const data = await CourseGroupedStatsTable()
-          .select(
-            "id",
-            "program_id",
-            "curriculum",
-            "type_admission",
-            "cohort",
-            "n_total",
-            "n_finished",
-            "n_pass",
-            "n_fail",
-            "n_drop",
-            "color_bands",
-            "histogram",
-            "histogram_labels"
-          )
-          .where({
-            program_id: program_id,
-          });
-        data.map((id, histogram) => {
-          const histogramValues = id["histogram"].split(",").map(toInteger);
-          const histogramLabels = id["histogram_labels"].split(",");
-          return histogramValues.map((value, key) => {
-            console.log(id, histogramLabels[key] ?? `${key}`, value);
-
-            return {
-              id,
-              histogram2: {
-                label: histogramLabels[key] ?? `${key}`,
-                value,
-              },
-            };
-          });
-        });
-
-        return data;
-      })
-    );
-  },
-  {
-    cacheMap: new LRUMap(1000),
-  }
-);
-export const CourseGroupedStatsDataLoadertest = new DataLoader(
-  async (
-    keys: readonly {
-      program_id: string;
-    }[]
-  ) => {
-    return await Promise.all(
-      keys.map(async ({ program_id }) => {
-        const data = await CourseGroupedStatsTable()
-          .select("histogram", "histogram_labels")
-          .where({
-            program_id: program_id,
-          });
-
-        data.map((histogram) => {
-          const histogramValues = histogram["histogram"]
-            .split(",")
-            .map(toInteger);
-          const histogramLabels = histogram["histogram_labels"].split(",");
-
-          return histogramValues.map((value, key) => {
+        const groupedData = data.map((value) => {
+          const histogramValues = value["histogram"].split(",").map(toInteger);
+          const histogramLabels = value["histogram_labels"].split(",");
+          const dist = histogramValues.map((value, key) => {
             return {
               label: histogramLabels[key] ?? `${key}`,
               value,
             };
           });
+          const colorbands = value["color_bands"].split(";").map((value) => {
+            const [min, max, color] = value.split(",");
+            return {
+              min: toNumber(min),
+              max: toNumber(max),
+              color,
+            };
+          });
+
+          return {
+            id: value["id"],
+            program_id: value["program_id"],
+            curriculum: value["curriculum"],
+            type_admission: value["type_admission"],
+            cohort: value["cohort"],
+            n_total: value["n_total"],
+            n_finished: value["n_finished"],
+            n_pass: value["n_pass"],
+            n_fail: value["n_fail"],
+            n_drop: value["n_drop"],
+            distribution: dist,
+            color_bands: colorbands,
+          };
         });
+        return groupedData;
       })
     );
   },

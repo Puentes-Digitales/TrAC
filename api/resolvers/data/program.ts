@@ -239,9 +239,12 @@ export class ProgramResolver {
       id,
       "The id needs to be available for the program fields resolvers"
     );
-    return await CourseGroupedStatsDataLoader.load({
+
+    const data = await CourseGroupedStatsDataLoader.load({
       program_id: id,
     });
+
+    return data;
   }
 
   @FieldResolver()
