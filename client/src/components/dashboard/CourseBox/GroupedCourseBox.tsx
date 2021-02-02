@@ -17,7 +17,11 @@ import {
   toggleOpenCourse,
 } from "../../../context/CoursesDashboard";
 import { track } from "../../../context/Tracking";
-import { HistogramHistoric, HistogramsComponent } from "../Histogram";
+import {
+  HistogramHistoric,
+  HistogramsComponent,
+  HistogramGrouped,
+} from "../Histogram";
 
 import type {
   ICourse,
@@ -192,7 +196,7 @@ const SecondaryBlockOuter: FC<
     } else {
       return "#54278f";
     }
-  }, [colorMode, config]);
+  }, [colorMode, config, n_total, n_passed]);
 
   return (
     <Flex
@@ -361,13 +365,13 @@ export function GroupedCourseBox({
 
           {isOpen && (
             <HistogramsComponent key="histogramsComponent" code={code}>
+              <HistogramGrouped
+                agroupedDistribution={agroupedDistribution}
+                bandColors={agroupedBandColors}
+              />
               <HistogramHistoric
                 historicDistribution={historicDistribution}
                 bandColors={bandColors}
-              />
-              <HistogramHistoric
-                historicDistribution={agroupedDistribution}
-                bandColors={agroupedBandColors}
               />
             </HistogramsComponent>
           )}
