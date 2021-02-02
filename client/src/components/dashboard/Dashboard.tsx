@@ -766,6 +766,14 @@ export function Dashboard() {
         searchProgramData?.program?.curriculums?.map(({ id }) => {
           return id;
         }) ?? [],
+      admission_types:
+        searchProgramData?.program?.groupedComplementary
+          ?.map((i) => i.type_admission)
+          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
+      cohort:
+        searchProgramData?.program?.groupedComplementary
+          ?.map((i) => i.cohort)
+          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
       student:
         user?.type === UserType.Director
           ? searchStudentData?.student?.id
