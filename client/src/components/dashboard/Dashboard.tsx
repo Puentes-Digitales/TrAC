@@ -1,4 +1,4 @@
-import { flatMapDeep, random, uniq } from "lodash";
+import { flatMapDeep, random, uniq, toInteger, toNumber } from "lodash";
 import React, {
   useCallback,
   useContext,
@@ -617,7 +617,6 @@ export function Dashboard() {
                     historicalDistribution,
                     bandColors,
                   }) => {
-                    console.log(code);
                     const dataFiltrada = programData.courseGroupedStats.filter(
                       (value) =>
                         value.curriculum == curriculumId &&
@@ -633,6 +632,32 @@ export function Dashboard() {
                         value.program_id == programData.id &&
                         value.cohort == chosenCohort
                     );
+                    const histogramValues = dataFiltrada[0].histogram
+                      .split(",")
+                      .map(toInteger);
+                    const histogramLabels = dataFiltrada[0].histogram_labels.split(
+                      ","
+                    );
+
+                    const agroupedDistribution = histogramValues.map(
+                      (value, key) => {
+                        return {
+                          label: histogramLabels[key] ?? `${key}`,
+                          value: value,
+                        };
+                      }
+                    );
+                    const agroupedBandColors = dataFiltrada[0].color_bands
+                      .split(";")
+                      .map((value) => {
+                        const [min, max, color] = value.split(",");
+                        return {
+                          min: toNumber(min),
+                          max: toNumber(max),
+                          color,
+                        };
+                      });
+
                     return {
                       code,
                       name,
@@ -647,43 +672,8 @@ export function Dashboard() {
                       bandColors,
                       n_passed: dataFiltrada[0].n_pass,
                       n_total: datosComplementary[0].total_students,
-                      taken: (() => {
-                        const taken: ITakenCourse[] = [];
-                        if (studentData) {
-                          for (const {
-                            term,
-                            year,
-                            takenCourses,
-                          } of studentData.terms) {
-                            for (const {
-                              code: courseCode,
-                              equiv,
-                              registration,
-                              state,
-                              grade,
-                              currentDistribution,
-                              parallelGroup,
-                              bandColors,
-                            } of takenCourses) {
-                              if (equiv === code || courseCode === code) {
-                                taken.push({
-                                  term,
-                                  year,
-                                  registration,
-                                  state,
-                                  grade,
-                                  currentDistribution,
-                                  parallelGroup,
-                                  equiv: equiv === code ? courseCode : "",
-                                  bandColors,
-                                });
-                              }
-                            }
-                          }
-                        }
-
-                        return taken;
-                      })(),
+                      agroupedDistribution: agroupedDistribution,
+                      agroupedBandColors: agroupedBandColors,
                     };
                   }
                 ),
