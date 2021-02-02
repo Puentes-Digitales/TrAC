@@ -34,10 +34,54 @@ const data: {
           n_pass: 10,
           n_fail: 0,
           n_drop: 9,
-          histogram: "0,1,2,3,4,5",
-          histogram_labels: "1-2,2-3,3-4,4-5,5-6,6-7",
-          color_bands:
-            "1.0,3.4999,#d6604d;3.5,3.9999,#f48873;4.0,4.4999,#a7dc78;4.5,7,#66b43e",
+          distribution: [
+            {
+              label: "1-2",
+              value: 1,
+            },
+            {
+              label: "2-3",
+              value: 0,
+            },
+            {
+              label: "3-4",
+              value: 1,
+            },
+            {
+              label: "4-5",
+              value: 4,
+            },
+            {
+              label: "5-6",
+              value: 8,
+            },
+            {
+              label: "6-7",
+              value: 5,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
         },
         {
           id: "INFO261-08",
@@ -50,10 +94,54 @@ const data: {
           n_pass: 10,
           n_fail: 0,
           n_drop: 9,
-          histogram: "0,1,2,3,4,5",
-          histogram_labels: "1-2,2-3,3-4,4-5,5-6,6-7",
-          color_bands:
-            "1.0,3.4999,#d6604d;3.5,3.9999,#f48873;4.0,4.4999,#a7dc78;4.5,7,#66b43e",
+          distribution: [
+            {
+              label: "1-2",
+              value: 1,
+            },
+            {
+              label: "2-3",
+              value: 0,
+            },
+            {
+              label: "3-4",
+              value: 1,
+            },
+            {
+              label: "4-5",
+              value: 4,
+            },
+            {
+              label: "5-6",
+              value: 8,
+            },
+            {
+              label: "6-7",
+              value: 5,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
         },
 
         {
@@ -67,10 +155,54 @@ const data: {
           n_pass: 10,
           n_fail: 0,
           n_drop: 9,
-          histogram: "0,1,2,3,4,5",
-          histogram_labels: "1-2,2-3,3-4,4-5,5-6,6-7",
-          color_bands:
-            "1.0,3.4999,#d6604d;3.5,3.9999,#f48873;4.0,4.4999,#a7dc78;4.5,7,#66b43e",
+          distribution: [
+            {
+              label: "1-2",
+              value: 1,
+            },
+            {
+              label: "2-3",
+              value: 0,
+            },
+            {
+              label: "3-4",
+              value: 1,
+            },
+            {
+              label: "4-5",
+              value: 4,
+            },
+            {
+              label: "5-6",
+              value: 8,
+            },
+            {
+              label: "6-7",
+              value: 5,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
         },
       ],
 
