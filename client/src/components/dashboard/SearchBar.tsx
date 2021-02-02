@@ -397,143 +397,137 @@ export const SearchBar: FC<{
     >
       <Flex wrap="wrap" alignItems="center">
         {programOptionsComponent}
-        {isDirector &&
-          groupedActive &&
-          ((searchResult?.curriculums.length ?? 0) > 1 ? (
-            <Flex mr={5}>
-              <Stack>
-                <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
-                  {CURRICULUM_LABEL}
-                </Tag>
-                <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
-                  {ADMISSION_TYPE_LABEL}
-                </Tag>
-                <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
-                  {COHORT_LABEL}
-                </Tag>
-              </Stack>
-              <Box width={150} ml={2}>
-                <Select
-                  options={
-                    searchResult?.curriculums
-                      .sort()
-                      .slice()
-                      .reverse()
-                      .map((curriculum) => {
+        {isDirector && groupedActive && (
+          <Flex mr={5}>
+            <Stack>
+              <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
+                {CURRICULUM_LABEL}
+              </Tag>
+              <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
+                {ADMISSION_TYPE_LABEL}
+              </Tag>
+              <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
+                {COHORT_LABEL}
+              </Tag>
+            </Stack>
+            <Box width={150} ml={2}>
+              <Select
+                options={
+                  searchResult?.curriculums
+                    .sort()
+                    .slice()
+                    .reverse()
+                    .map((curriculum) => {
+                      return {
+                        label: curriculum,
+                        value: curriculum,
+                      };
+                    }) ?? []
+                }
+                value={
+                  chosenCurriculum
+                    ? { value: chosenCurriculum, label: chosenCurriculum }
+                    : undefined
+                }
+                onChange={(selected) => {
+                  track({
+                    action: "click",
+                    target: "curriculum-menu",
+                    effect: "change-curriculum",
+                  });
+                  DashboardInputActions.setChosenCurriculum(
+                    (selected as { label: string; value: string }).value
+                  );
+                }}
+                placeholder="..."
+                noOptionsMessage={() => NO_CURRICULUMS_LABEL}
+                css={{ color: "black" }}
+              />
+              <Select
+                options={
+                  searchResult?.admission_types
+                    .sort()
+                    .slice()
+                    .reverse()
+                    .map((admission_type) => {
+                      if (admission_type == "") {
                         return {
-                          label: curriculum,
-                          value: curriculum,
+                          label: "Todos",
+                          value: admission_type,
                         };
-                      }) ?? []
-                  }
-                  value={
-                    chosenCurriculum
-                      ? { value: chosenCurriculum, label: chosenCurriculum }
-                      : undefined
-                  }
-                  onChange={(selected) => {
-                    track({
-                      action: "click",
-                      target: "curriculum-menu",
-                      effect: "change-curriculum",
-                    });
-                    DashboardInputActions.setChosenCurriculum(
-                      (selected as { label: string; value: string }).value
-                    );
-                  }}
-                  placeholder="..."
-                  noOptionsMessage={() => NO_CURRICULUMS_LABEL}
-                  css={{ color: "black" }}
-                />
-                <Select
-                  options={
-                    searchResult?.admission_types
-                      .sort()
-                      .slice()
-                      .reverse()
-                      .map((admission_type) => {
-                        if (admission_type == "") {
-                          return {
-                            label: "Todos",
-                            value: admission_type,
-                          };
-                        } else {
-                          return {
-                            label: admission_type,
-                            value: admission_type,
-                          };
-                        }
-                      }) ?? []
-                  }
-                  value={
-                    chosenAdmissionType
-                      ? {
-                          value: chosenAdmissionType,
-                          label: chosenAdmissionType,
-                        }
-                      : undefined
-                  }
-                  onChange={(selected) => {
-                    track({
-                      action: "click",
-                      target: "admission-menu",
-                      effect: "change-admission",
-                    });
-                    DashboardInputActions.setChosenAdmissionType(
-                      (selected as { label: string; value: string }).value
-                    );
-                  }}
-                  placeholder={"Todos"}
-                  css={{ color: "black" }}
-                />
-                <Select
-                  options={
-                    searchResult?.cohort
-                      .sort()
-                      .slice()
-                      .reverse()
-                      .map((cohort) => {
-                        if (cohort == "") {
-                          return {
-                            label: "Todos",
-                            value: cohort,
-                          };
-                        } else {
-                          return {
-                            label: cohort,
-                            value: cohort,
-                          };
-                        }
-                      }) ?? []
-                  }
-                  value={
-                    chosenCohort
-                      ? {
-                          value: chosenCohort,
-                          label: chosenCohort,
-                        }
-                      : undefined
-                  }
-                  onChange={(selected) => {
-                    track({
-                      action: "click",
-                      target: "cohort-menu",
-                      effect: "change-cohort",
-                    });
-                    DashboardInputActions.setChosenCohort(
-                      (selected as { label: string; value: string }).value
-                    );
-                  }}
-                  placeholder={"Todos"}
-                  css={{ color: "black" }}
-                />
-              </Box>
-            </Flex>
-          ) : searchResult?.curriculums.length === 1 ? (
-            <Tag mr={2} mt={1} mb={1} p={2}>{`${
-              isDirector ? searchResult?.program_id : searchResult?.program_name
-            } | ${CURRICULUM_LABEL}: ${searchResult?.curriculums[0]}`}</Tag>
-          ) : null)}
+                      } else {
+                        return {
+                          label: admission_type,
+                          value: admission_type,
+                        };
+                      }
+                    }) ?? []
+                }
+                value={
+                  chosenAdmissionType
+                    ? {
+                        value: chosenAdmissionType,
+                        label: chosenAdmissionType,
+                      }
+                    : undefined
+                }
+                onChange={(selected) => {
+                  track({
+                    action: "click",
+                    target: "admission-menu",
+                    effect: "change-admission",
+                  });
+                  DashboardInputActions.setChosenAdmissionType(
+                    (selected as { label: string; value: string }).value
+                  );
+                }}
+                placeholder={"Todos"}
+                css={{ color: "black" }}
+              />
+              <Select
+                options={
+                  searchResult?.cohort
+                    .sort()
+                    .slice()
+                    .reverse()
+                    .map((cohort) => {
+                      if (cohort == "") {
+                        return {
+                          label: "Todos",
+                          value: cohort,
+                        };
+                      } else {
+                        return {
+                          label: cohort,
+                          value: cohort,
+                        };
+                      }
+                    }) ?? []
+                }
+                value={
+                  chosenCohort
+                    ? {
+                        value: chosenCohort,
+                        label: chosenCohort,
+                      }
+                    : undefined
+                }
+                onChange={(selected) => {
+                  track({
+                    action: "click",
+                    target: "cohort-menu",
+                    effect: "change-cohort",
+                  });
+                  DashboardInputActions.setChosenCohort(
+                    (selected as { label: string; value: string }).value
+                  );
+                }}
+                placeholder={"Todos"}
+                css={{ color: "black" }}
+              />
+            </Box>
+          </Flex>
+        )}
         {searchResult?.student && (
           <Tag
             cursor="text"
