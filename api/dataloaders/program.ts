@@ -217,13 +217,15 @@ export const CourseGroupedStatsDataLoader = new DataLoader(
       program_id: string;
     }[]
   ) => {
-    return await Promise.all(
+    const data = await Promise.all(
       keys.map(({ program_id }) => {
         return CourseGroupedStatsTable().where({
           program_id: program_id,
         });
       })
     );
+
+    return data;
   },
   {
     cacheMap: new LRUMap(1000),

@@ -76,6 +76,8 @@ export const SearchBar: FC<{
   }) => Promise<"student" | "program" | undefined>;
   searchResult?: {
     curriculums: string[];
+    admission_types: string[];
+    cohort: string[];
     student?: string;
     program_id?: string;
     program_name?: string;
@@ -444,11 +446,25 @@ export const SearchBar: FC<{
                   css={{ color: "black" }}
                 />
                 <Select
-                  options={[
-                    { value: "", label: "Todos" },
-                    { value: "PSU", label: "PSU" },
-                    { value: "PACE", label: "PACE" },
-                  ]}
+                  options={
+                    searchResult?.admission_types
+                      .sort()
+                      .slice()
+                      .reverse()
+                      .map((admission_type) => {
+                        if (admission_type == "") {
+                          return {
+                            label: "Todos",
+                            value: admission_type,
+                          };
+                        } else {
+                          return {
+                            label: admission_type,
+                            value: admission_type,
+                          };
+                        }
+                      }) ?? []
+                  }
                   value={
                     chosenAdmissionType
                       ? {
@@ -471,10 +487,25 @@ export const SearchBar: FC<{
                   css={{ color: "black" }}
                 />
                 <Select
-                  options={[
-                    { value: "", label: "Todos" },
-                    { value: "2017", label: "2017" },
-                  ]}
+                  options={
+                    searchResult?.cohort
+                      .sort()
+                      .slice()
+                      .reverse()
+                      .map((cohort) => {
+                        if (cohort == "") {
+                          return {
+                            label: "Todos",
+                            value: cohort,
+                          };
+                        } else {
+                          return {
+                            label: cohort,
+                            value: cohort,
+                          };
+                        }
+                      }) ?? []
+                  }
                   value={
                     chosenCohort
                       ? {
