@@ -751,11 +751,20 @@ export function Dashboard() {
         }) ?? [],
       admission_types:
         searchProgramData?.program?.groupedComplementary
-          ?.map((i) => i.type_admission)
+          ?.map((i) =>
+            chosenCurriculum == i.curriculum && chosenCohort == i.cohort
+              ? i.type_admission
+              : ""
+          )
           .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
       cohort:
         searchProgramData?.program?.groupedComplementary
-          ?.map((i) => i.cohort)
+          ?.map((i) =>
+            chosenCurriculum == i.curriculum &&
+            chosenAdmissionType == i.type_admission
+              ? i.cohort
+              : ""
+          )
           .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
       student:
         user?.type === UserType.Director
@@ -764,7 +773,14 @@ export function Dashboard() {
       program_id: searchProgramData?.program?.id,
       program_name: searchProgramData?.program?.name,
     };
-  }, [searchProgramData, searchStudentData, user]);
+  }, [
+    searchProgramData,
+    searchStudentData,
+    chosenCurriculum,
+    chosenCohort,
+    chosenAdmissionType,
+    user,
+  ]);
 
   const searchError = useMemo(() => {
     return uniq(
