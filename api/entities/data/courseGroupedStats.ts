@@ -1,4 +1,5 @@
 import { Field, ObjectType } from "type-graphql";
+import { DistributionValue, BandColor } from "./distribution";
 
 @ObjectType()
 export class CourseGroupedStats {
@@ -32,12 +33,9 @@ export class CourseGroupedStats {
   @Field()
   n_drop: number;
 
-  @Field()
-  histogram: string;
+  @Field(() => [DistributionValue])
+  distribution: DistributionValue[];
 
-  @Field()
-  histogram_labels: string;
-
-  @Field()
-  color_bands: string;
+  @Field(() => [BandColor])
+  color_bands: BandColor[];
 }

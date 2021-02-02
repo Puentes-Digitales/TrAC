@@ -73,9 +73,15 @@ mutation searchProgram($id: String, $student_id: String) {
       n_pass
       n_drop
       n_fail
-      histogram
-      histogram_labels
-      color_bands
+      distribution {
+        label
+        value
+      }
+      color_bands {
+        min
+        max
+        color
+      }
     }
     curriculums {
       id

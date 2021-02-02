@@ -220,6 +220,16 @@ export const Users: FC<{
               </Table.HeaderCell>
               <Table.HeaderCell
                 sorted={
+                  column === "config.SHOW_GROUPED_COMPLEMENTARY_INFO"
+                    ? direction
+                    : undefined
+                }
+                onClick={handleSort("config.SHOW_GROUPED_COMPLEMENTARY_INFO")}
+              >
+                show_student_complementary_info
+              </Table.HeaderCell>
+              <Table.HeaderCell
+                sorted={
                   column === "config.SHOW_DROPOUT" ? direction : undefined
                 }
                 onClick={handleSort("config.SHOW_DROPOUT")}

@@ -632,31 +632,6 @@ export function Dashboard() {
                         value.program_id == programData.id &&
                         value.cohort == chosenCohort
                     );
-                    const histogramValues = dataFiltrada[0].histogram
-                      .split(",")
-                      .map(toInteger);
-                    const histogramLabels = dataFiltrada[0].histogram_labels.split(
-                      ","
-                    );
-
-                    const agroupedDistribution = histogramValues.map(
-                      (value, key) => {
-                        return {
-                          label: histogramLabels[key] ?? `${key}`,
-                          value: value,
-                        };
-                      }
-                    );
-                    const agroupedBandColors = dataFiltrada[0].color_bands
-                      .split(";")
-                      .map((value) => {
-                        const [min, max, color] = value.split(",");
-                        return {
-                          min: toNumber(min),
-                          max: toNumber(max),
-                          color,
-                        };
-                      });
 
                     return {
                       code,
@@ -672,8 +647,8 @@ export function Dashboard() {
                       bandColors,
                       n_passed: dataFiltrada[0].n_pass,
                       n_total: datosComplementary[0].total_students,
-                      agroupedDistribution: agroupedDistribution,
-                      agroupedBandColors: agroupedBandColors,
+                      agroupedDistribution: dataFiltrada[0].distribution,
+                      agroupedBandColors: dataFiltrada[0].color_bands,
                     };
                   }
                 ),
@@ -701,19 +676,21 @@ export function Dashboard() {
             semesters={data.semesters.map(({ semester }) => semester)}
           />
         );
-        GroupedComplementaryInfoComponent = (
-          <GroupedComplementaryInfo
-            total_students={filterdata[0].total_students}
-            university_degree_rate={filterdata[0].university_degree_rate}
-            average_time_university_degree={
-              filterdata[0].average_time_university_degree
-            }
-            timely_university_degree_rate={
-              filterdata[0].timely_university_degree_rate
-            }
-            retention_rate={filterdata[0].retention_rate}
-          />
-        );
+        if (user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO) {
+          GroupedComplementaryInfoComponent = (
+            <GroupedComplementaryInfo
+              total_students={filterdata[0].total_students}
+              university_degree_rate={filterdata[0].university_degree_rate}
+              average_time_university_degree={
+                filterdata[0].average_time_university_degree
+              }
+              timely_university_degree_rate={
+                filterdata[0].timely_university_degree_rate
+              }
+              retention_rate={filterdata[0].retention_rate}
+            />
+          );
+        }
       }
     }
 

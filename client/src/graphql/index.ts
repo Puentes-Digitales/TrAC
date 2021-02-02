@@ -57,10 +57,9 @@ export type Course = {
 
 export type CourseGroupedStats = {
   cohort: Scalars["String"];
-  color_bands: Scalars["String"];
+  color_bands: Array<BandColor>;
   curriculum: Scalars["String"];
-  histogram: Scalars["String"];
-  histogram_labels: Scalars["String"];
+  distribution: Array<DistributionValue>;
   id: Scalars["String"];
   n_drop: Scalars["Float"];
   n_fail: Scalars["Float"];
@@ -724,10 +723,10 @@ export type SearchProgramMutation = {
         | "n_pass"
         | "n_drop"
         | "n_fail"
-        | "histogram"
-        | "histogram_labels"
-        | "color_bands"
-      >
+      > & {
+        distribution: Array<Pick<DistributionValue, "label" | "value">>;
+        color_bands: Array<Pick<BandColor, "min" | "max" | "color">>;
+      }
     >;
     curriculums: Array<
       Pick<Curriculum, "id"> & {
@@ -2063,9 +2062,15 @@ export const SearchProgramDocument = gql`
         n_pass
         n_drop
         n_fail
-        histogram
-        histogram_labels
-        color_bands
+        distribution {
+          label
+          value
+        }
+        color_bands {
+          min
+          max
+          color
+        }
       }
       curriculums {
         id
