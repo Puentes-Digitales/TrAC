@@ -237,7 +237,7 @@ export const SearchBar: FC<{
         {isDirector && <GrupedMode />}
 
         {user?.admin && <MockingMode />}
-        {isDirector && user?.config?.SHOW_STUDENT_LIST && (
+        {isDirector && !groupedActive && user?.config?.SHOW_STUDENT_LIST && (
           <StudentList
             program_id={program?.value}
             mockData={
@@ -337,6 +337,7 @@ export const SearchBar: FC<{
     logoutLoading,
     program,
     mock,
+    groupedActive,
     onSearch,
     HELP_ENABLED,
   ]);

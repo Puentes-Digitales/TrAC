@@ -645,10 +645,16 @@ export function Dashboard() {
                       }),
                       historicDistribution: historicalDistribution,
                       bandColors,
-                      n_passed: dataFiltrada[0].n_pass,
-                      n_total: datosComplementary[0].total_students,
-                      agroupedDistribution: dataFiltrada[0].distribution,
-                      agroupedBandColors: dataFiltrada[0].color_bands,
+                      n_passed: dataFiltrada[0] ? dataFiltrada[0].n_pass : 0,
+                      n_total: datosComplementary[0]
+                        ? datosComplementary[0].total_students
+                        : 0,
+                      agroupedDistribution: dataFiltrada[0]
+                        ? dataFiltrada[0].distribution
+                        : [],
+                      agroupedBandColors: dataFiltrada[0]
+                        ? dataFiltrada[0].color_bands
+                        : [],
                     };
                   }
                 ),
@@ -676,7 +682,7 @@ export function Dashboard() {
             semesters={data.semesters.map(({ semester }) => semester)}
           />
         );
-        if (user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO) {
+        if (filterdata[0] && user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO) {
           GroupedComplementaryInfoComponent = (
             <GroupedComplementaryInfo
               total_students={filterdata[0].total_students}
