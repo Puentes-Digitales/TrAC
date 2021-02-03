@@ -645,8 +645,10 @@ export function Dashboard() {
                       }),
                       historicDistribution: historicalDistribution,
                       bandColors,
-                      n_passed: dataFiltrada[0].n_pass,
-                      n_total: datosComplementary[0].total_students,
+                      n_passed: dataFiltrada[0] ? dataFiltrada[0].n_pass : 0,
+                      n_total: datosComplementary[0]
+                        ? datosComplementary[0].total_students
+                        : 0,
                       taken: (() => {
                         const taken: ITakenCourse[] = [];
                         if (studentData) {
@@ -711,19 +713,22 @@ export function Dashboard() {
             semesters={data.semesters.map(({ semester }) => semester)}
           />
         );
-        GroupedComplementaryInfoComponent = (
-          <GroupedComplementaryInfo
-            total_students={filterdata[0].total_students}
-            university_degree_rate={filterdata[0].university_degree_rate}
-            average_time_university_degree={
-              filterdata[0].average_time_university_degree
-            }
-            timely_university_degree_rate={
-              filterdata[0].timely_university_degree_rate
-            }
-            retention_rate={filterdata[0].retention_rate}
-          />
-        );
+
+        if (filterdata[0]) {
+          GroupedComplementaryInfoComponent = (
+            <GroupedComplementaryInfo
+              total_students={filterdata[0].total_students}
+              university_degree_rate={filterdata[0].university_degree_rate}
+              average_time_university_degree={
+                filterdata[0].average_time_university_degree
+              }
+              timely_university_degree_rate={
+                filterdata[0].timely_university_degree_rate
+              }
+              retention_rate={filterdata[0].retention_rate}
+            />
+          );
+        }
       }
     }
 

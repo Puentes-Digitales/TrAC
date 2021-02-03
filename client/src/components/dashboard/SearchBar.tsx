@@ -143,8 +143,6 @@ export const SearchBar: FC<{
     NO_CURRICULUMS_LABEL,
     PROGRAM_NOT_SPECIFIED_PLACEHOLDER,
     CURRICULUM_LABEL,
-    ADMISSION_TYPE_LABEL,
-    COHORT_LABEL,
     STUDENT_LABEL,
     PLACEHOLDER_SEARCH_STUDENT,
     LOGOUT_CONFIRMATION_LABEL,
@@ -235,7 +233,7 @@ export const SearchBar: FC<{
         {isDirector && <GrupedMode />}
 
         {user?.admin && <MockingMode />}
-        {isDirector && user?.config?.SHOW_STUDENT_LIST && (
+        {isDirector && !groupedActive && user?.config?.SHOW_STUDENT_LIST && (
           <StudentList
             program_id={program?.value}
             mockData={
@@ -337,6 +335,7 @@ export const SearchBar: FC<{
     mock,
     onSearch,
     HELP_ENABLED,
+    groupedActive,
   ]);
 
   useEffect(() => {
@@ -403,12 +402,6 @@ export const SearchBar: FC<{
                 <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
                   {CURRICULUM_LABEL}
                 </Tag>
-                <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
-                  {ADMISSION_TYPE_LABEL}
-                </Tag>
-                <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
-                  {COHORT_LABEL}
-                </Tag>
               </Stack>
               <Box width={150} ml={2}>
                 <Select
@@ -441,59 +434,6 @@ export const SearchBar: FC<{
                   }}
                   placeholder="..."
                   noOptionsMessage={() => NO_CURRICULUMS_LABEL}
-                  css={{ color: "black" }}
-                />
-                <Select
-                  options={[
-                    { value: "", label: "Todos" },
-                    { value: "PSU", label: "PSU" },
-                    { value: "PACE", label: "PACE" },
-                  ]}
-                  value={
-                    chosenAdmissionType
-                      ? {
-                          value: chosenAdmissionType,
-                          label: chosenAdmissionType,
-                        }
-                      : undefined
-                  }
-                  onChange={(selected) => {
-                    track({
-                      action: "click",
-                      target: "admission-menu",
-                      effect: "change-admission",
-                    });
-                    DashboardInputActions.setChosenAdmissionType(
-                      (selected as { label: string; value: string }).value
-                    );
-                  }}
-                  placeholder={"Todos"}
-                  css={{ color: "black" }}
-                />
-                <Select
-                  options={[
-                    { value: "", label: "Todos" },
-                    { value: "2017", label: "2017" },
-                  ]}
-                  value={
-                    chosenCohort
-                      ? {
-                          value: chosenCohort,
-                          label: chosenCohort,
-                        }
-                      : undefined
-                  }
-                  onChange={(selected) => {
-                    track({
-                      action: "click",
-                      target: "cohort-menu",
-                      effect: "change-cohort",
-                    });
-                    DashboardInputActions.setChosenCohort(
-                      (selected as { label: string; value: string }).value
-                    );
-                  }}
-                  placeholder={"Todos"}
                   css={{ color: "black" }}
                 />
               </Box>

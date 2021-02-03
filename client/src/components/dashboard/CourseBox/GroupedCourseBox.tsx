@@ -168,7 +168,7 @@ const SecondaryBlockOuter: FC<
     } else {
       return "#54278f";
     }
-  }, [colorMode, config]);
+  }, [colorMode, config, n_total, n_passed]);
 
   return (
     <Flex
