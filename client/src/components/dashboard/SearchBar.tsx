@@ -132,7 +132,7 @@ export const SearchBar: FC<{
       setGroupedActive(false);
       setMock(false);
     }
-  }, [groupedActive]);
+  }, []);
 
   const { user } = useUser();
 
@@ -360,7 +360,7 @@ export const SearchBar: FC<{
               isDisabled={isSearchLoading}
               placeholder={PROGRAM_NOT_SPECIFIED_PLACEHOLDER}
               classNamePrefix="react-select"
-              onChange={(selected: any) => {
+              onChange={async (selected: any) => {
                 track({
                   action: "click",
                   effect: `change-program-menu-to-${selected?.value}`,
@@ -369,6 +369,38 @@ export const SearchBar: FC<{
                 setProgram(
                   selected as $ElementType<typeof programsOptions, number>
                 );
+                if (program && groupedActive) {
+                  const onSearchResult = await onSearch({
+                    student_id,
+                    program_id: selected.value,
+                  });
+
+                  switch (onSearchResult) {
+                    case "program": {
+                      setTrackingData({
+                        student: undefined,
+                      });
+                      setStudentIdShow("");
+                      track({
+                        action: "click",
+                        effect: "load-program",
+                        target: "search-button",
+                      });
+                      break;
+                    }
+                    default: {
+                      setTrackingData({
+                        student: student_id,
+                      });
+                      setStudentIdShow("");
+                      track({
+                        action: "click",
+                        effect: "wrong-student",
+                        target: "search-button",
+                      });
+                    }
+                  }
+                }
               }}
               css={{ color: "black" }}
             />
@@ -621,7 +653,6 @@ export const SearchBar: FC<{
                         break;
                       }
                       case "program": {
-                        setGroupedActive(true);
                         setTrackingData({
                           student: undefined,
                         });

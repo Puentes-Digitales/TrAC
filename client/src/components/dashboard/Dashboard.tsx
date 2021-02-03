@@ -387,7 +387,7 @@ export function Dashboard() {
     ComplementaryInfoComponent,
     ProgressStudentComponent,
     ForePlanSwitchComponent,
-    GroupedComplementaryInfoComponent,
+    GroupedPerformanceInfoComponent,
   } = useMemo(() => {
     let TimeLineComponent: JSX.Element | null = null;
     let DropoutComponent: JSX.Element | null = null;
@@ -396,7 +396,7 @@ export function Dashboard() {
     let ComplementaryInfoComponent: JSX.Element | null = null;
     let ProgressStudentComponent: JSX.Element | null = null;
     let ForePlanSwitchComponent: JSX.Element | null = null;
-    let GroupedComplementaryInfoComponent: JSX.Element | null = null;
+    let GroupedPerformanceInfoComponent: JSX.Element | null = null;
 
     const studentData = mock
       ? grouped
@@ -683,7 +683,7 @@ export function Dashboard() {
           />
         );
         if (filterdata[0] && user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO) {
-          GroupedComplementaryInfoComponent = (
+          GroupedPerformanceInfoComponent = (
             <GroupedComplementaryInfo
               total_students={filterdata[0].total_students}
               university_degree_rate={filterdata[0].university_degree_rate}
@@ -708,7 +708,7 @@ export function Dashboard() {
       ComplementaryInfoComponent,
       ProgressStudentComponent,
       ForePlanSwitchComponent,
-      GroupedComplementaryInfoComponent,
+      GroupedPerformanceInfoComponent,
     };
   }, [
     searchStudentData,
@@ -774,6 +774,7 @@ export function Dashboard() {
       program_name: searchProgramData?.program?.name,
     };
   }, [
+    program,
     searchProgramData,
     searchStudentData,
     chosenCurriculum,
@@ -898,7 +899,7 @@ export function Dashboard() {
 
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
-          {GroupedComplementaryInfoComponent}
+          {GroupedPerformanceInfoComponent}
           {ComplementaryInfoComponent}
           {ProgressStudentComponent}
           <Box>
