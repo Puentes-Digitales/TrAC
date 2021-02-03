@@ -732,6 +732,7 @@ export type SearchProgramMutation = {
         | "curriculum"
         | "type_admission"
         | "cohort"
+        | "employed_rate_educational_system"
       >
     >;
     courseGroupedStats: Array<
@@ -2083,7 +2084,7 @@ export const SearchProgramDocument = gql`
         curriculum
         type_admission
         cohort
-        average_time_job_finding
+        employed_rate_educational_system
       }
       courseGroupedStats {
         program_id
