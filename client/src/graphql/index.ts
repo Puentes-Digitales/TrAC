@@ -176,6 +176,17 @@ export type GroupedComplementary = {
   university_degree_rate: Scalars["Float"];
 };
 
+export type GroupedEmployed = {
+  average_time_job_finding: Scalars["Float"];
+  cohort: Scalars["String"];
+  curriculum: Scalars["String"];
+  employed_rate: Scalars["Float"];
+  employed_rate_educational_system: Scalars["Float"];
+  program_id: Scalars["String"];
+  total_students: Scalars["Float"];
+  type_admission: Scalars["String"];
+};
+
 export type IndirectTakeCourse = {
   course: Course;
   requisitesUnmet: Array<Scalars["String"]>;
@@ -326,6 +337,7 @@ export type Program = {
   curriculums: Array<Curriculum>;
   desc: Scalars["String"];
   groupedComplementary: Array<GroupedComplementary>;
+  groupedEmployed: Array<GroupedEmployed>;
   id: Scalars["String"];
   lastGPA: Scalars["Float"];
   name: Scalars["String"];
@@ -708,6 +720,18 @@ export type SearchProgramMutation = {
         | "cohort"
         | "university_degree_rate"
         | "retention_rate"
+      >
+    >;
+    groupedEmployed: Array<
+      Pick<
+        GroupedEmployed,
+        | "employed_rate"
+        | "total_students"
+        | "average_time_job_finding"
+        | "program_id"
+        | "curriculum"
+        | "type_admission"
+        | "cohort"
       >
     >;
     courseGroupedStats: Array<
@@ -2050,6 +2074,16 @@ export const SearchProgramDocument = gql`
         cohort
         university_degree_rate
         retention_rate
+      }
+      groupedEmployed {
+        employed_rate
+        total_students
+        average_time_job_finding
+        program_id
+        curriculum
+        type_admission
+        cohort
+        average_time_job_finding
       }
       courseGroupedStats {
         program_id
