@@ -26,6 +26,7 @@ import {
   StudentProgramDataLoader,
   CourseGroupedStatsDataLoader,
   StudentGroupedComplementaryDataLoader,
+  StudentGroupedEmployedDataLoader,
 } from "../../dataloaders/program";
 import { ProgramTable, UserProgramsTable } from "../../db/tables";
 import { Program } from "../../entities/data/program";
@@ -226,6 +227,20 @@ export class ProgramResolver {
       "The id needs to be available for the program fields resolvers"
     );
     return await StudentGroupedComplementaryDataLoader.load({
+      program_id: id,
+    });
+  }
+
+  @FieldResolver()
+  async groupedEmployed(
+    @Root()
+    { id }: Partial<Program>
+  ): Promise<$PropertyType<Program, "groupedEmployed">> {
+    assertIsDefined(
+      id,
+      "The id needs to be available for the program fields resolvers"
+    );
+    return await StudentGroupedEmployedDataLoader.load({
       program_id: id,
     });
   }

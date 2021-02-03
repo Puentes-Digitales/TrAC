@@ -9,6 +9,7 @@ import {
   ProgramTable,
   StudentProgramTable,
   StudentGroupedComplementaryTable,
+  StudentGroupedEmployedTable,
   PROGRAM_STRUCTURE_TABLE,
   CourseGroupedStatsTable,
 } from "../db/tables";
@@ -201,6 +202,25 @@ export const StudentGroupedComplementaryDataLoader = new DataLoader(
     return await Promise.all(
       keys.map(({ program_id }) => {
         return StudentGroupedComplementaryTable().where({
+          program_id: program_id,
+        });
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentGroupedEmployedDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ program_id }) => {
+        return StudentGroupedEmployedTable().where({
           program_id: program_id,
         });
       })

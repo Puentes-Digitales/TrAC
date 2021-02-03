@@ -174,6 +174,17 @@ type GroupedComplementary {
   university_degree_rate: Float!
 }
 
+type GroupedEmployed {
+  average_time_job_finding: Float!
+  cohort: String!
+  curriculum: String!
+  employed_rate: Float!
+  employed_rate_educational_system: Float!
+  program_id: String!
+  total_students: Float!
+  type_admission: String!
+}
+
 type IndirectTakeCourse {
   course: Course!
   requisitesUnmet: [String!]!
@@ -265,6 +276,7 @@ type Program {
   curriculums: [Curriculum!]!
   desc: String!
   groupedComplementary: [GroupedComplementary!]!
+  groupedEmployed: [GroupedEmployed!]!
   id: String!
   lastGPA: Float!
   name: String!
