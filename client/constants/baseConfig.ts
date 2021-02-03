@@ -26,19 +26,50 @@ export const baseConfig = {
   COMPLEMENTARY_INFORMATION_EMPLOYED_INFORMATION: "Datos de empleabilidad",
   COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM: "Sistema educacional:",
   COMPLEMENTARY_INFORMATION: "Información Complementaria",
+  GROUPED_COMPLEMENTARY_INFORMATION: "Información Complementaria Agrupada",
+  COMPLEMENTARY_INFORMATION_YEAR_TEXT: "años",
   COMPLEMENTARY_INFORMATION_TYPE_ADMISSION: "Tipo de ingreso: ",
-  COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS: "Cantidad de estudiantes:",
-  COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE: "Tasa de titulación:",
-  COMPLEMENTARY_INFORMATION_RETENTION_RATE: "Tasa de retención",
-  COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE:
-    "Tasa de titulación oportuna",
-  COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE:
-    "Tiempo promedio de titulación",
+  GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS: "Cantidad de estudiantes:",
+  GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE:
+    "Tasa de titulación:",
+  GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE: "Tasa de retención:",
+  GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE:
+    "Tasa de titulación oportuna:",
+  GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE:
+    "Tiempo promedio de titulación:",
+  GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE: "Tasa de ocupación:",
+  GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB:
+    "Tiempo promedio en encontrar empleo:",
+  GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM:
+    "Tasa de ocupación en sistema educativo:",
+  COMPLEMENTARY_INFORMATION_PERCENT_MARK: "%",
   COMPLEMENTARY_INFORMATION_INITIAL_TEST: "Evaluación inicial diagnóstica: ",
   COMPLEMENTARY_INFORMATION_FINAL_TEST: "Evaluación nacional diagnóstica: ",
   COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION: "Nombre de institución:",
   COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS: "Meses hasta encontrar trabajo:",
   COMPLEMENTARY_INFORMATION_TEXT_COLOR: "black",
+  GROPUED_COURSE_BOX_COLORS: [
+    {
+      val: 0,
+      color: "#f2f0f7",
+    },
+    {
+      val: 0.25,
+      color: "#cbc9e2",
+    },
+    {
+      val: 0.5,
+      color: "#9e9ac8",
+    },
+    {
+      val: 0.75,
+      color: "#756bb1",
+    },
+    {
+      val: 1,
+      color: "#54278f",
+    },
+  ],
   PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR: "rgb(252,249,165)",
   PROGRESS_STUDENT_INFORMATION_TEXT: "Avance en",
   ENTRY_YEAR_LABEL: "Ingreso",

@@ -184,17 +184,19 @@ const SecondaryBlockOuter: FC<
 
   const { colorMode } = useColorMode();
 
+  const grouped_box = config?.GROPUED_COURSE_BOX_COLORS;
+
   const stateColor = useMemo(() => {
-    if (n_passed == 0) {
-      return "#f2f0f7";
-    } else if (n_passed < n_total * 0.25) {
-      return "#cbc9e2";
-    } else if (n_passed < n_total * 0.5) {
-      return "#9e9ac8";
-    } else if (n_passed < n_total * 0.75) {
-      return "#756bb1";
+    if (n_passed == grouped_box[0].val) {
+      return grouped_box[0].color;
+    } else if (n_passed < n_total * grouped_box[1].val) {
+      return config.GROPUED_COURSE_BOX_COLORS[1].color;
+    } else if (n_passed < n_total * grouped_box[2].val) {
+      return config.GROPUED_COURSE_BOX_COLORS[2].color;
+    } else if (n_passed < n_total * grouped_box[3].val) {
+      return config.GROPUED_COURSE_BOX_COLORS[3].color;
     } else {
-      return "#54278f";
+      return config.GROPUED_COURSE_BOX_COLORS[4].color;
     }
   }, [colorMode, config, n_total, n_passed]);
 

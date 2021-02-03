@@ -387,7 +387,7 @@ export function Dashboard() {
     ComplementaryInfoComponent,
     ProgressStudentComponent,
     ForePlanSwitchComponent,
-    GroupedComplementaryInfoComponent,
+    GroupedPerformanceInfoComponent,
   } = useMemo(() => {
     let TimeLineComponent: JSX.Element | null = null;
     let DropoutComponent: JSX.Element | null = null;
@@ -396,7 +396,7 @@ export function Dashboard() {
     let ComplementaryInfoComponent: JSX.Element | null = null;
     let ProgressStudentComponent: JSX.Element | null = null;
     let ForePlanSwitchComponent: JSX.Element | null = null;
-    let GroupedComplementaryInfoComponent: JSX.Element | null = null;
+    let GroupedPerformanceInfoComponent: JSX.Element | null = null;
 
     const studentData = mock
       ? grouped
@@ -683,7 +683,7 @@ export function Dashboard() {
           />
         );
         if (filterdata[0] && user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO) {
-          GroupedComplementaryInfoComponent = (
+          GroupedPerformanceInfoComponent = (
             <GroupedComplementaryInfo
               total_students={filterdata[0].total_students}
               university_degree_rate={filterdata[0].university_degree_rate}
@@ -708,7 +708,7 @@ export function Dashboard() {
       ComplementaryInfoComponent,
       ProgressStudentComponent,
       ForePlanSwitchComponent,
-      GroupedComplementaryInfoComponent,
+      GroupedPerformanceInfoComponent,
     };
   }, [
     searchStudentData,
@@ -751,11 +751,20 @@ export function Dashboard() {
         }) ?? [],
       admission_types:
         searchProgramData?.program?.groupedComplementary
-          ?.map((i) => i.type_admission)
+          ?.map((i) =>
+            chosenCurriculum == i.curriculum && chosenCohort == i.cohort
+              ? i.type_admission
+              : ""
+          )
           .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
       cohort:
         searchProgramData?.program?.groupedComplementary
-          ?.map((i) => i.cohort)
+          ?.map((i) =>
+            chosenCurriculum == i.curriculum &&
+            chosenAdmissionType == i.type_admission
+              ? i.cohort
+              : ""
+          )
           .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
       student:
         user?.type === UserType.Director
@@ -764,7 +773,15 @@ export function Dashboard() {
       program_id: searchProgramData?.program?.id,
       program_name: searchProgramData?.program?.name,
     };
-  }, [searchProgramData, searchStudentData, user]);
+  }, [
+    program,
+    searchProgramData,
+    searchStudentData,
+    chosenCurriculum,
+    chosenCohort,
+    chosenAdmissionType,
+    user,
+  ]);
 
   const searchError = useMemo(() => {
     return uniq(
@@ -882,7 +899,7 @@ export function Dashboard() {
 
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
-          {GroupedComplementaryInfoComponent}
+          {GroupedPerformanceInfoComponent}
           {ComplementaryInfoComponent}
           {ProgressStudentComponent}
           <Box>
