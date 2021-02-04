@@ -159,7 +159,6 @@ const NameComponent: FC<
     isOpen: boolean;
   }
 > = memo(({ code, name, isOpen }) => {
-  // const config = useContext(ConfigContext);
   return (
     <Stack spacing={1}>
       <Flex alignItems="center"></Flex>
@@ -184,19 +183,19 @@ const SecondaryBlockOuter: FC<
 
   const { colorMode } = useColorMode();
 
-  const grouped_box = config?.GROPUED_COURSE_BOX_COLORS;
+  const grouped_box = config.GROPUED_COURSE_BOX_COLORS;
 
   const stateColor = useMemo(() => {
-    if (n_passed == grouped_box[0].val) {
+    if (grouped_box[0] && n_passed == grouped_box[0].val) {
       return grouped_box[0].color;
-    } else if (n_passed < n_total * grouped_box[1].val) {
-      return config.GROPUED_COURSE_BOX_COLORS[1].color;
-    } else if (n_passed < n_total * grouped_box[2].val) {
-      return config.GROPUED_COURSE_BOX_COLORS[2].color;
-    } else if (n_passed < n_total * grouped_box[3].val) {
-      return config.GROPUED_COURSE_BOX_COLORS[3].color;
+    } else if (grouped_box[1] && n_passed < n_total * grouped_box[1].val) {
+      return grouped_box[1].color;
+    } else if (grouped_box[2] && n_passed < n_total * grouped_box[2].val) {
+      return grouped_box[2]?.color;
+    } else if (grouped_box[3] && n_passed < n_total * grouped_box[3]?.val) {
+      return grouped_box[3]?.color;
     } else {
-      return config.GROPUED_COURSE_BOX_COLORS[4].color;
+      return grouped_box[4]?.color;
     }
   }, [colorMode, config, n_total, n_passed]);
 
