@@ -466,10 +466,17 @@ export const SearchBar: FC<{
                     .slice()
                     .reverse()
                     .map((curriculum) => {
-                      return {
-                        label: curriculum,
-                        value: curriculum,
-                      };
+                      if (curriculum == "") {
+                        return {
+                          label: "Todos",
+                          value: curriculum,
+                        };
+                      } else {
+                        return {
+                          label: curriculum,
+                          value: curriculum,
+                        };
+                      }
                     }) ?? []
                 }
                 value={

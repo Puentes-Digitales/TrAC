@@ -677,7 +677,6 @@ export function Dashboard() {
             value.program_id == programData.id &&
             value.cohort == chosenCohort
         );
-
         const filteredEmpleabilityData = programData.groupedEmployed.filter(
           (value) =>
             value.curriculum == data.id &&
@@ -685,13 +684,15 @@ export function Dashboard() {
             value.program_id == programData.id &&
             value.cohort == chosenCohort
         );
-
-        SemestersComponent = (
-          <GroupedSemestersList
-            semesters={data.semesters.map(({ semester }) => semester)}
-          />
-        );
+        if (chosenCurriculum != "") {
+          SemestersComponent = (
+            <GroupedSemestersList
+              semesters={data.semesters.map(({ semester }) => semester)}
+            />
+          );
+        }
         if (
+          filteredEmpleabilityData[0] &&
           filteredComplementaryData[0] &&
           user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO
         ) {
@@ -767,11 +768,12 @@ export function Dashboard() {
   const searchResult = useMemo(() => {
     return {
       curriculums:
-        searchProgramData?.program?.curriculums?.map(({ id }) => {
-          return id;
-        }) ?? [],
+        searchProgramData?.program?.courseGroupedStats
+          ?.map((i) => i.curriculum)
+          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
+
       admission_types:
-        searchProgramData?.program?.groupedComplementary
+        searchProgramData?.program?.courseGroupedStats
           ?.map((i) =>
             chosenCurriculum == i.curriculum && chosenCohort == i.cohort
               ? i.type_admission
@@ -779,7 +781,7 @@ export function Dashboard() {
           )
           .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
       cohort:
-        searchProgramData?.program?.groupedComplementary
+        searchProgramData?.program?.courseGroupedStats
           ?.map((i) =>
             chosenCurriculum == i.curriculum &&
             chosenAdmissionType == i.type_admission
