@@ -683,7 +683,6 @@ export function Dashboard() {
             value.program_id == programData.id &&
             value.cohort == chosenCohort
         );
-
         const filteredEmpleabilityData = programData.groupedEmployed.filter(
           (value) =>
             value.curriculum == chosenCurriculum &&
@@ -691,13 +690,15 @@ export function Dashboard() {
             value.program_id == programData.id &&
             value.cohort == chosenCohort
         );
-
-        SemestersComponent = (
-          <GroupedSemestersList
-            semesters={data.semesters.map(({ semester }) => semester)}
-          />
-        );
+        if (chosenCurriculum != "") {
+          SemestersComponent = (
+            <GroupedSemestersList
+              semesters={data.semesters.map(({ semester }) => semester)}
+            />
+          );
+        }
         if (
+          filteredEmpleabilityData[0] &&
           filteredComplementaryData[0] &&
           user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO
         ) {

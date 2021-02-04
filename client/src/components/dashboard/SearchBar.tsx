@@ -154,6 +154,7 @@ export const SearchBar: FC<{
   }, []);
 
   useEffect(() => {
+    DashboardInputActions.setChosenCurriculum("");
     DashboardInputActions.setChosenAdmissionType("");
     DashboardInputActions.setChosenCohort("");
   }, [groupedActive]);
