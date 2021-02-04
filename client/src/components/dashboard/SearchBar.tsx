@@ -126,12 +126,27 @@ export const SearchBar: FC<{
   }, [chosenCurriculum, searchResult?.curriculums]);
 
   useEffect(() => {
-    if (chosenAdmissionType === undefined || chosenCohort === undefined) {
+    if (
+      (chosenAdmissionType === undefined &&
+        (searchResult?.admission_types.length ?? 0) > 0) ||
+      !searchResult?.admission_types.includes(chosenAdmissionType ?? "")
+    ) {
       DashboardInputActions.setChosenAdmissionType("");
-      DashboardInputActions.setChosenCohort("");
-      setGroupedActive(false);
-      setMock(false);
     }
+  }, [chosenAdmissionType, searchResult?.admission_types]);
+
+  useEffect(() => {
+    if (
+      (chosenCohort === undefined && (searchResult?.cohort.length ?? 0) > 0) ||
+      !searchResult?.cohort.includes(chosenCohort ?? "")
+    ) {
+      DashboardInputActions.setChosenCohort("");
+    }
+  }, [chosenCohort, searchResult?.cohort]);
+
+  useEffect(() => {
+    setGroupedActive(false);
+    setMock(false);
   }, []);
 
   const { user } = useUser();
@@ -514,7 +529,7 @@ export const SearchBar: FC<{
                     (selected as { label: string; value: string }).value
                   );
                 }}
-                placeholder={"Todos"}
+                placeholder={"..."}
                 css={{ color: "black" }}
               />
               <Select
@@ -539,10 +554,12 @@ export const SearchBar: FC<{
                 }
                 value={
                   chosenCohort
-                    ? {
-                        value: chosenCohort,
-                        label: chosenCohort,
-                      }
+                    ? chosenCohort == ""
+                      ? {
+                          value: chosenCohort,
+                          label: "Todos",
+                        }
+                      : { value: chosenCohort, label: chosenCohort }
                     : undefined
                 }
                 onChange={(selected) => {
@@ -555,7 +572,7 @@ export const SearchBar: FC<{
                     (selected as { label: string; value: string }).value
                   );
                 }}
-                placeholder={"Todos"}
+                placeholder={"..."}
                 css={{ color: "black" }}
               />
             </Box>

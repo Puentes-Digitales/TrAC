@@ -489,7 +489,8 @@ export function Dashboard() {
       }
       if (
         user?.config?.SHOW_PROGRESS_STUDENT_CYCLE &&
-        studentData.n_cycles.length >= 1
+        studentData.n_courses_cycles != undefined &&
+        studentData.n_cycles != undefined
       ) {
         ProgressStudentComponent = (
           <ProgressStudent
@@ -669,7 +670,15 @@ export function Dashboard() {
           : true;
       });
       if (data) {
-        const filterdata = programData.groupedComplementary.filter(
+        const filteredComplementaryData = programData.groupedComplementary.filter(
+          (value) =>
+            value.curriculum == data.id &&
+            value.type_admission == chosenAdmissionType &&
+            value.program_id == programData.id &&
+            value.cohort == chosenCohort
+        );
+
+        const filteredEmpleabilityData = programData.groupedEmployed.filter(
           (value) =>
             value.curriculum == data.id &&
             value.type_admission == chosenAdmissionType &&
@@ -682,18 +691,30 @@ export function Dashboard() {
             semesters={data.semesters.map(({ semester }) => semester)}
           />
         );
-        if (filterdata[0] && user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO) {
+        if (
+          filteredComplementaryData[0] &&
+          user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO
+        ) {
           GroupedPerformanceInfoComponent = (
             <GroupedComplementaryInfo
-              total_students={filterdata[0].total_students}
-              university_degree_rate={filterdata[0].university_degree_rate}
+              total_students={filteredComplementaryData[0].total_students}
+              university_degree_rate={
+                filteredComplementaryData[0].university_degree_rate
+              }
               average_time_university_degree={
-                filterdata[0].average_time_university_degree
+                filteredComplementaryData[0].average_time_university_degree
               }
               timely_university_degree_rate={
-                filterdata[0].timely_university_degree_rate
+                filteredComplementaryData[0].timely_university_degree_rate
               }
-              retention_rate={filterdata[0].retention_rate}
+              retention_rate={filteredComplementaryData[0].retention_rate}
+              empleability_rate={filteredEmpleabilityData[0]?.employed_rate}
+              average_time_finding_job={
+                filteredEmpleabilityData[0]?.average_time_job_finding
+              }
+              empleability_rate_educational_system={
+                filteredEmpleabilityData[0]?.employed_rate_educational_system
+              }
             />
           );
         }
