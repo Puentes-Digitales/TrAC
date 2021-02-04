@@ -25,6 +25,7 @@ import { CoursesDashbordManager } from "../../context/CoursesDashboard";
 import {
   DashboardInputActions,
   setMock,
+  setGroupedActive,
   useChosenCurriculum,
   useChosenAdmissionType,
   useChosenCohort,
@@ -164,6 +165,11 @@ export function Dashboard() {
       curriculum: chosenCurriculum,
     });
   }, [chosenCurriculum]);
+
+  useEffect(() => {
+    setGroupedActive(false);
+    setMock(false);
+  }, []);
 
   useEffect(() => {
     if (searchStudentData?.student) {
@@ -672,7 +678,7 @@ export function Dashboard() {
       if (data) {
         const filteredComplementaryData = programData.groupedComplementary.filter(
           (value) =>
-            value.curriculum == data.id &&
+            value.curriculum == chosenCurriculum &&
             value.type_admission == chosenAdmissionType &&
             value.program_id == programData.id &&
             value.cohort == chosenCohort
@@ -680,7 +686,7 @@ export function Dashboard() {
 
         const filteredEmpleabilityData = programData.groupedEmployed.filter(
           (value) =>
-            value.curriculum == data.id &&
+            value.curriculum == chosenCurriculum &&
             value.type_admission == chosenAdmissionType &&
             value.program_id == programData.id &&
             value.cohort == chosenCohort
@@ -767,19 +773,25 @@ export function Dashboard() {
   const searchResult = useMemo(() => {
     return {
       curriculums:
-        searchProgramData?.program?.curriculums?.map(({ id }) => {
-          return id;
-        }) ?? [],
+        searchProgramData?.program?.courseGroupedStats
+          ?.map((i) =>
+            chosenAdmissionType == i.type_admission && chosenCohort == i.cohort
+              ? i.curriculum
+              : ""
+          )
+          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
+
       admission_types:
-        searchProgramData?.program?.groupedComplementary
+        searchProgramData?.program?.courseGroupedStats
           ?.map((i) =>
             chosenCurriculum == i.curriculum && chosenCohort == i.cohort
               ? i.type_admission
               : ""
           )
           .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
+
       cohort:
-        searchProgramData?.program?.groupedComplementary
+        searchProgramData?.program?.courseGroupedStats
           ?.map((i) =>
             chosenCurriculum == i.curriculum &&
             chosenAdmissionType == i.type_admission
@@ -795,12 +807,11 @@ export function Dashboard() {
       program_name: searchProgramData?.program?.name,
     };
   }, [
-    program,
     searchProgramData,
     searchStudentData,
     chosenCurriculum,
-    chosenCohort,
     chosenAdmissionType,
+    chosenCohort,
     user,
   ]);
 
