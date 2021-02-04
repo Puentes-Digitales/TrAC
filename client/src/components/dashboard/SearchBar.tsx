@@ -120,7 +120,7 @@ export const SearchBar: FC<{
       !searchResult?.curriculums.includes(chosenCurriculum ?? "")
     ) {
       DashboardInputActions.setChosenCurriculum(
-        searchResult?.curriculums.sort().slice().reverse()[0]
+        searchResult?.curriculums.sort().slice()[0]
       );
     }
   }, [chosenCurriculum, searchResult?.curriculums]);
@@ -131,7 +131,9 @@ export const SearchBar: FC<{
         (searchResult?.admission_types.length ?? 0) > 0) ||
       !searchResult?.admission_types.includes(chosenAdmissionType ?? "")
     ) {
-      DashboardInputActions.setChosenAdmissionType("");
+      DashboardInputActions.setChosenAdmissionType(
+        searchResult?.admission_types.sort().slice()[0]
+      );
     }
   }, [chosenAdmissionType, searchResult?.admission_types]);
 
@@ -140,7 +142,9 @@ export const SearchBar: FC<{
       (chosenCohort === undefined && (searchResult?.cohort.length ?? 0) > 0) ||
       !searchResult?.cohort.includes(chosenCohort ?? "")
     ) {
-      DashboardInputActions.setChosenCohort("");
+      DashboardInputActions.setChosenCohort(
+        searchResult?.cohort.sort().slice()[0]
+      );
     }
   }, [chosenCohort, searchResult?.cohort]);
 
@@ -148,6 +152,12 @@ export const SearchBar: FC<{
     setGroupedActive(false);
     setMock(false);
   }, []);
+
+  useEffect(() => {
+    DashboardInputActions.setChosenCurriculum("");
+    DashboardInputActions.setChosenAdmissionType("");
+    DashboardInputActions.setChosenCohort("");
+  }, [groupedActive]);
 
   const { user } = useUser();
 
@@ -480,8 +490,16 @@ export const SearchBar: FC<{
                     }) ?? []
                 }
                 value={
-                  chosenCurriculum
-                    ? { value: chosenCurriculum, label: chosenCurriculum }
+                  chosenCurriculum != undefined
+                    ? chosenCurriculum
+                      ? {
+                          value: chosenCurriculum,
+                          label: chosenCurriculum,
+                        }
+                      : {
+                          value: chosenCurriculum,
+                          label: "Todos",
+                        }
                     : undefined
                 }
                 onChange={(selected) => {
@@ -519,11 +537,16 @@ export const SearchBar: FC<{
                     }) ?? []
                 }
                 value={
-                  chosenAdmissionType
-                    ? {
-                        value: chosenAdmissionType,
-                        label: chosenAdmissionType,
-                      }
+                  chosenAdmissionType != undefined
+                    ? chosenAdmissionType
+                      ? {
+                          value: chosenAdmissionType,
+                          label: chosenAdmissionType,
+                        }
+                      : {
+                          value: chosenAdmissionType,
+                          label: "Todos",
+                        }
                     : undefined
                 }
                 onChange={(selected) => {
@@ -560,13 +583,16 @@ export const SearchBar: FC<{
                     }) ?? []
                 }
                 value={
-                  chosenCohort
-                    ? chosenCohort == ""
+                  chosenCohort != undefined
+                    ? chosenCohort
                       ? {
+                          value: chosenCohort,
+                          label: chosenCohort,
+                        }
+                      : {
                           value: chosenCohort,
                           label: "Todos",
                         }
-                      : { value: chosenCohort, label: chosenCohort }
                     : undefined
                 }
                 onChange={(selected) => {
