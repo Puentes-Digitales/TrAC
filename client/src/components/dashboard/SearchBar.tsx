@@ -114,6 +114,12 @@ export const SearchBar: FC<{
   });
 
   useEffect(() => {
+    DashboardInputActions.setChosenCurriculum("");
+    DashboardInputActions.setChosenAdmissionType("");
+    DashboardInputActions.setChosenCohort("");
+  }, [groupedActive]);
+
+  useEffect(() => {
     if (
       (chosenCurriculum === undefined &&
         (searchResult?.curriculums.length ?? 0) > 0) ||
@@ -152,12 +158,6 @@ export const SearchBar: FC<{
     setGroupedActive(false);
     setMock(false);
   }, []);
-
-  useEffect(() => {
-    DashboardInputActions.setChosenCurriculum("");
-    DashboardInputActions.setChosenAdmissionType("");
-    DashboardInputActions.setChosenCohort("");
-  }, [groupedActive]);
 
   const { user } = useUser();
 
