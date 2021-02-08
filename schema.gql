@@ -3,6 +3,13 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Admission {
+  active: Boolean!
+  final_test: Float
+  initial_test: Float
+  type_admission: String!
+}
+
 type AuthResult {
   error: String
   token: String
@@ -29,6 +36,21 @@ type Course {
   mention: String!
   name: String!
   requisites: [Course!]!
+}
+
+type CourseGroupedStats {
+  cohort: String!
+  color_bands: [BandColor!]!
+  curriculum: String!
+  distribution: [DistributionValue!]!
+  id: String!
+  n_drop: Float!
+  n_fail: Float!
+  n_finished: Float!
+  n_pass: Float!
+  n_total: Float!
+  program_id: String!
+  type_admission: String!
 }
 
 type Credit {
@@ -62,6 +84,27 @@ type Dropout {
 A field whose value conforms to the standard internet email address format as specified in RFC822: https://www.w3.org/Protocols/rfc822/.
 """
 scalar EmailAddress
+
+type Employed {
+  description: String
+  educational_system: String
+  employed: Boolean!
+  institution: String
+  months_to_first_job: Float
+}
+
+type ExternalEvaluation {
+  bandColors: [BandColor!]!
+  code: String!
+  historicalDistribution: [DistributionValue!]!
+
+  """
+  ExternalEvaluation-Semester-Curriculum-Program ID
+  """
+  id: Int!
+  mention: String!
+  name: String!
+}
 
 type FeedbackAnswer {
   answer: String!
@@ -117,6 +160,29 @@ type FeedbackResult {
   form: FeedbackForm!
   timestamp: DateTime!
   user: User!
+}
+
+type GroupedComplementary {
+  average_time_university_degree: Float!
+  cohort: String!
+  curriculum: String!
+  program_id: String!
+  retention_rate: Float!
+  timely_university_degree_rate: Float!
+  total_students: Float!
+  type_admission: String!
+  university_degree_rate: Float!
+}
+
+type GroupedEmployed {
+  average_time_job_finding: Float!
+  cohort: String!
+  curriculum: String!
+  employed_rate: Float!
+  employed_rate_educational_system: Float!
+  program_id: String!
+  total_students: Float!
+  type_admission: String!
 }
 
 type IndirectTakeCourse {
@@ -206,8 +272,11 @@ type Persistence {
 
 type Program {
   active: Boolean!
+  courseGroupedStats: [CourseGroupedStats!]!
   curriculums: [Curriculum!]!
   desc: String!
+  groupedComplementary: [GroupedComplementary!]!
+  groupedEmployed: [GroupedEmployed!]!
   id: String!
   lastGPA: Float!
   name: String!
@@ -225,6 +294,7 @@ type Query {
   myPrograms: [Program!]!
   programs: [Program!]!
   students(last_n_years: Int = 2, program_id: String!): [Student!]!
+  students_filter(curriculum: String!, program_id: String!): [Student!]!
   trackInfo(maxDate: DateTime!, minDate: DateTime!): [Track!]!
   unansweredForm: FeedbackForm
   userPersistences(user: String!): [Persistence!]!
@@ -233,6 +303,7 @@ type Query {
 
 type Semester {
   courses: [Course!]!
+  externalEvaluations: [ExternalEvaluation!]!
   id: Int!
 }
 
@@ -248,10 +319,14 @@ enum StateCourse {
 }
 
 type Student {
+  admission: Admission!
   curriculums: [String!]!
   dropout: Dropout
+  employed: Employed!
   id: ID!
   mention: String!
+  n_courses_cycles: [Float!]!
+  n_cycles: [String!]!
   name: String!
   programs: [Program!]!
   progress: Float!
@@ -273,6 +348,18 @@ type TakenCourse {
   state: StateCourse!
 }
 
+type TakenExternalEvaluation {
+  bandColors: [BandColor!]!
+  code: String!
+  currentDistribution: [DistributionValue!]!
+  grade: Float!
+  id: Int!
+  name: String!
+  parallelGroup: Int!
+  registration: String!
+  state: StateCourse!
+}
+
 type Term {
   comments: String!
   cumulated_grade: Float!
@@ -282,6 +369,7 @@ type Term {
   situation: String!
   student_id: String!
   takenCourses: [TakenCourse!]!
+  takenExternalEvaluations: [TakenExternalEvaluation!]!
   term: TermType!
   year: Int!
 }

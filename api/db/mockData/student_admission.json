@@ -1,0 +1,44 @@
+[
+  {
+    "student_id": "238de40ae2a0e9f417c495e913d56773",
+    "type_admission": "PSU",
+    "initial_test": 25,
+    "final_test": 35,
+    "active": true
+  },
+  {
+    "student_id": "6fdb8a7f5bbaf0c68dbca0f5462e866a",
+    "type_admission": "PSU",
+    "initial_test": 25,
+    "final_test": 30,
+    "active": true
+  },
+  {
+    "student_id": "e078c7de4d67798a915801ba7e2539fb",
+    "type_admission": "PSU",
+    "initial_test": 10,
+    "final_test": 50,
+    "active": true
+  },
+  {
+    "student_id": "c381c9bba3e870e0698d9dfa51619c1f",
+    "type_admission": "PACE",
+    "initial_test": 30,
+    "final_test": 60,
+    "active": true
+  },
+  {
+    "student_id": "d8e9b1f97ec3bc542b7d018b5f9e4224",
+    "type_admission": "PACE",
+    "initial_test": 30,
+    "final_test": 60,
+    "active": true
+  },
+  {
+    "student_id": "993567bb136c986c3e18669a748e26b1",
+    "type_admission": "PSU",
+    "initial_test": 20,
+    "final_test": 45,
+    "active": true
+  }
+]

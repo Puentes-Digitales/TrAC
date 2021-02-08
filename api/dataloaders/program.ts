@@ -1,12 +1,17 @@
 import DataLoader from "dataloader";
-import { defaultsDeep, Dictionary, keyBy } from "lodash";
+import { defaultsDeep, Dictionary, keyBy, toInteger, toNumber } from "lodash";
+
 import { LRUMap } from "lru_map";
 
 import {
   IProgram,
-  ProgramStructureTable,
+  ExternalEvaluationStructureTable,
   ProgramTable,
   StudentProgramTable,
+  StudentGroupedComplementaryTable,
+  StudentGroupedEmployedTable,
+  PROGRAM_STRUCTURE_TABLE,
+  CourseGroupedStatsTable,
 } from "../db/tables";
 
 import type { Curriculum } from "../entities/data/program";
@@ -97,17 +102,30 @@ export const CurriculumsDataLoader = new DataLoader(
     return await Promise.all(
       keys.map(async ({ program_id, curriculumsIds }) => {
         const data = curriculumsIds
-          ? await ProgramStructureTable()
-              .select("id", "curriculum", "semester", "course_id")
+          ? await ExternalEvaluationStructureTable()
+              .select("id", "curriculum", "semester", "external_evaluation_id")
+              .unionAll(function () {
+                this.select("id", "curriculum", "semester", "course_id")
+                  .from(PROGRAM_STRUCTURE_TABLE)
+                  .where({ program_id })
+                  .whereIn(
+                    "curriculum",
+                    curriculumsIds.map(({ id }) => id)
+                  );
+              })
               .where({ program_id })
               .whereIn(
                 "curriculum",
                 curriculumsIds.map(({ id }) => id)
               )
-          : await ProgramStructureTable()
-              .select("id", "curriculum", "semester", "course_id")
+          : await ExternalEvaluationStructureTable()
+              .select("id", "curriculum", "semester", "external_evaluation_id")
+              .unionAll(function () {
+                this.select("id", "curriculum", "semester", "course_id")
+                  .from(PROGRAM_STRUCTURE_TABLE)
+                  .where({ program_id });
+              })
               .where({ program_id });
-
         const curriculums = data.reduce<
           Record<
             string /*Curriculum id (program_structure => curriculum)*/,
@@ -125,7 +143,7 @@ export const CurriculumsDataLoader = new DataLoader(
               >;
             }
           >
-        >((acum, { curriculum, semester, course_id, id }) => {
+        >((acum, { curriculum, semester, external_evaluation_id, id }) => {
           defaultsDeep(acum, {
             [curriculum]: {
               id: curriculum,
@@ -140,8 +158,9 @@ export const CurriculumsDataLoader = new DataLoader(
 
           acum[curriculum].semesters[semester].courses.push({
             id,
-            code: course_id,
+            code: external_evaluation_id,
           });
+
           return acum;
         }, {});
 
@@ -171,5 +190,97 @@ export const CurriculumsDataLoader = new DataLoader(
       );
     },
     cacheMap: new LRUMap(50),
+  }
+);
+
+export const StudentGroupedComplementaryDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ program_id }) => {
+        return StudentGroupedComplementaryTable().where({
+          program_id: program_id,
+        });
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentGroupedEmployedDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ program_id }) => {
+        return StudentGroupedEmployedTable().where({
+          program_id: program_id,
+        });
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const CourseGroupedStatsDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(async ({ program_id }) => {
+        const data = await CourseGroupedStatsTable().where({
+          program_id: program_id,
+        });
+
+        const groupedData = data.map((value) => {
+          const histogramValues = value["histogram"].split(",").map(toInteger);
+          const histogramLabels = value["histogram_labels"].split(",");
+          const dist = histogramValues.map((value, key) => {
+            return {
+              label: histogramLabels[key] ?? `${key}`,
+              value,
+            };
+          });
+          const colorbands = value["color_bands"].split(";").map((value) => {
+            const [min, max, color] = value.split(",");
+            return {
+              min: toNumber(min),
+              max: toNumber(max),
+              color,
+            };
+          });
+
+          return {
+            id: value["id"],
+            program_id: value["program_id"],
+            curriculum: value["curriculum"],
+            type_admission: value["type_admission"],
+            cohort: value["cohort"],
+            n_total: value["n_total"],
+            n_finished: value["n_finished"],
+            n_pass: value["n_pass"],
+            n_fail: value["n_fail"],
+            n_drop: value["n_drop"],
+            distribution: dist,
+            color_bands: colorbands,
+          };
+        });
+        return groupedData;
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
   }
 );

@@ -11,6 +11,8 @@ export const baseConfig = {
   CUMULATED_GRADE_COLOR: "rgb(173,66,244)",
   CUMULATED_GRADE_LABEL: "PGA",
   CURRICULUM_LABEL: "Plan",
+  ADMISSION_TYPE_LABEL: "Tipo de admisión",
+  COHORT_LABEL: "Cohorte",
   DASHBOARD_SEMESTERS_LIST_MOBILE_BREAKPOINT: 1200,
   DROPOUT_BACKGROUND_COLOR: "rgb(252,249,165)",
   DROPOUT_PREDICTION: "Percentil de riesgo",
@@ -19,6 +21,57 @@ export const baseConfig = {
   DROPOUT_PREDICTION_DESCRIPTION:
     "El sistema estima un percentil de riesgo de abandono",
   DROPOUT_TEXT_COLOR: "black",
+
+  COMPLEMENTARY_INFORMATION_BACKGROUND_COLOR: "rgb(165,206,252)",
+  COMPLEMENTARY_INFORMATION_EMPLOYED_INFORMATION: "Datos de empleabilidad",
+  COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM: "Sistema educacional:",
+  COMPLEMENTARY_INFORMATION: "Información Complementaria",
+  GROUPED_COMPLEMENTARY_INFORMATION: "Información Complementaria Agrupada",
+  COMPLEMENTARY_INFORMATION_YEAR_TEXT: "años",
+  COMPLEMENTARY_INFORMATION_TYPE_ADMISSION: "Tipo de ingreso: ",
+  GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS: "Cantidad de estudiantes:",
+  GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE:
+    "Tasa de titulación:",
+  GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE: "Tasa de retención:",
+  GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE:
+    "Tasa de titulación oportuna:",
+  GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE:
+    "Tiempo promedio de titulación:",
+  GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE: "Tasa de ocupación:",
+  GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB:
+    "Tiempo promedio en encontrar empleo:",
+  GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM:
+    "Tasa de ocupación en sistema educativo:",
+  COMPLEMENTARY_INFORMATION_PERCENT_MARK: "%",
+  COMPLEMENTARY_INFORMATION_INITIAL_TEST: "Evaluación inicial diagnóstica: ",
+  COMPLEMENTARY_INFORMATION_FINAL_TEST: "Evaluación nacional diagnóstica: ",
+  COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION: "Nombre de institución:",
+  COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS: "Meses hasta encontrar trabajo:",
+  COMPLEMENTARY_INFORMATION_TEXT_COLOR: "black",
+  GROPUED_COURSE_BOX_COLORS: [
+    {
+      val: 0,
+      color: "#f2f0f7",
+    },
+    {
+      val: 0.25,
+      color: "#cbc9e2",
+    },
+    {
+      val: 0.5,
+      color: "#9e9ac8",
+    },
+    {
+      val: 0.75,
+      color: "#756bb1",
+    },
+    {
+      val: 1,
+      color: "#54278f",
+    },
+  ],
+  PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR: "rgb(252,249,165)",
+  PROGRESS_STUDENT_INFORMATION_TEXT: "Avance en",
   ENTRY_YEAR_LABEL: "Ingreso",
   ERROR_PROGRAM_NOT_FOUND: "Programa especificado no pudo ser encontrado.",
   ERROR_PROGRAM_UNAUTHORIZED_MESSAGE:
@@ -186,6 +239,7 @@ export const baseConfig = {
   HISTOGRAM_BAR_ACTIVE: "rgb(122,122,122)",
   HISTOGRAM_BAR_INACTIVE: "rgb(191,191,191)",
   HISTORIC_GRADES: "Calificaciones históricas",
+  GROUPED_GRADES: "Calificaciones grupo",
   INACTIVE_COURSE_BOX_COLOR: "#A0AEC0",
   LOGIN_BUTTON: "Ingresar",
   LOGIN_EMAIL_LABEL: "Correo Electrónico",
@@ -256,7 +310,7 @@ export const baseConfig = {
   TAKEN_SEMESTER_BOX_HEIGHT: "3em",
   TAKEN_SEMESTER_BOX_INACTIVE: "grey",
   TAKEN_SEMESTER_BOX_MARGIN_SIDES: 3,
-  TAKEN_SEMESTER_BOX_PADDING: "6px",
+  TAKEN_SEMESTER_BOX_PADDING: "7.5px",
   TAKEN_SEMESTER_BOX_TEXT_COLOR: "black",
   TAKEN_SEMESTER_BOX_TRANSITION: "all 0.4s ease-in-out",
   TIMELINE_AXIS_COLOR: "black",

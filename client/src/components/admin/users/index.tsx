@@ -208,11 +208,44 @@ export const Users: FC<{
               </Table.HeaderCell>
               <Table.HeaderCell
                 sorted={
+                  column === "config.SHOW_STUDENT_COMPLEMENTARY_INFORMATION"
+                    ? direction
+                    : undefined
+                }
+                onClick={handleSort(
+                  "config.SHOW_STUDENT_COMPLEMENTARY_INFORMATION"
+                )}
+              >
+                show_student_complementary_information
+              </Table.HeaderCell>
+              <Table.HeaderCell
+                sorted={
+                  column === "config.SHOW_GROUPED_COMPLEMENTARY_INFO"
+                    ? direction
+                    : undefined
+                }
+                onClick={handleSort("config.SHOW_GROUPED_COMPLEMENTARY_INFO")}
+              >
+                show_student_complementary_info
+              </Table.HeaderCell>
+              <Table.HeaderCell
+                sorted={
                   column === "config.SHOW_DROPOUT" ? direction : undefined
                 }
                 onClick={handleSort("config.SHOW_DROPOUT")}
               >
                 show_dropout
+              </Table.HeaderCell>
+
+              <Table.HeaderCell
+                sorted={
+                  column === "config.SHOW_PROGRESS_STUDENT_CYCLE"
+                    ? direction
+                    : undefined
+                }
+                onClick={handleSort("config.SHOW_PROGRESS_STUDENT_CYCLE")}
+              >
+                show_progress_student_cycle
               </Table.HeaderCell>
               <Table.HeaderCell
                 sorted={
@@ -305,7 +338,27 @@ export const Users: FC<{
                             <Icon
                               circular
                               name={
+                                configObj?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION
+                                  ? "check circle outline"
+                                  : "times circle outline"
+                              }
+                            />
+                          </Table.Cell>
+                          <Table.Cell onClick={configOnClick} width={1}>
+                            <Icon
+                              circular
+                              name={
                                 configObj?.SHOW_DROPOUT
+                                  ? "check circle outline"
+                                  : "times circle outline"
+                              }
+                            />
+                          </Table.Cell>
+                          <Table.Cell onClick={configOnClick} width={1}>
+                            <Icon
+                              circular
+                              name={
+                                configObj?.SHOW_PROGRESS_STUDENT_CYCLE
                                   ? "check circle outline"
                                   : "times circle outline"
                               }

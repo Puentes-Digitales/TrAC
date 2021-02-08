@@ -19,13 +19,21 @@ import {
   UserType,
 } from "../../../client/constants";
 import {
+  StudentAdmissionDataLoader,
   StudentDropoutDataLoader,
+  StudentEmployedDataLoader,
   StudentLastProgramDataLoader,
   StudentListDataLoader,
   StudentProgramsDataLoader,
+  StudentListFilterDataLoader,
   StudentTermsDataLoader,
   StudentViaProgramsDataLoader,
 } from "../../dataloaders/student";
+import {
+  StudentListCyclesDataLoader,
+  StudentCourseListDataLoader,
+  StudentCycleApprovedCourseDataLoader,
+} from "../../dataloaders/studentCycle";
 import { StudentProgramTable, UserProgramsTable } from "../../db/tables";
 import { Student } from "../../entities/data/student";
 import { anonService } from "../../services/anonymization";
@@ -35,11 +43,15 @@ import type { $PropertyType } from "utility-types";
 
 import type { IContext } from "../../interfaces";
 import type { Dropout } from "../../entities/data/dropout";
+import type { Admission } from "../../entities/data/admission";
+import type { Employed } from "../../entities/data/employed";
 import type { PartialProgram } from "./program";
 import type { PartialTerm } from "./term";
 
 export type PartialStudent = Pick<Student, "id" | "name" | "state"> & {
   programs?: PartialProgram[];
+  curriculums?: string;
+  program?: string;
 };
 @Resolver(() => Student)
 export class StudentResolver {
@@ -68,6 +80,8 @@ export class StudentResolver {
         name: studentData.name,
         state: studentData.state,
         programs: [{ id: studentData.program_id }],
+        curriculums: studentData.curriculum,
+        program: studentData.program_id,
       };
     } else {
       assertIsDefined(student_id, STUDENT_NOT_FOUND);
@@ -106,6 +120,8 @@ export class StudentResolver {
         name: studentData.name,
         state: studentData.state,
         programs: [{ id: program_id }],
+        curriculums: studentData.curriculum,
+        program: studentData.program_id,
       };
     }
   }
@@ -206,5 +222,122 @@ export class StudentResolver {
     );
 
     return await StudentDropoutDataLoader.load(id);
+  }
+
+  @FieldResolver()
+  async admission(
+    @Root() { id }: PartialStudent
+  ): Promise<Admission | undefined> {
+    assertIsDefined(
+      id,
+      `student id needs to be available for Student field resolvers`
+    );
+
+    return await StudentAdmissionDataLoader.load(id);
+  }
+
+  @FieldResolver()
+  async employed(
+    @Root() { id }: PartialStudent
+  ): Promise<Employed | undefined> {
+    assertIsDefined(
+      id,
+      `student id needs to be available for Student field resolvers`
+    );
+
+    return await StudentEmployedDataLoader.load(id);
+  }
+
+  @FieldResolver()
+  async n_cycles(
+    @Root() { program, curriculums }: PartialStudent
+  ): Promise<$PropertyType<Student, "n_cycles">> {
+    assertIsDefined(
+      program,
+      `programs id needs to be available for Student field resolvers`
+    );
+    assertIsDefined(
+      curriculums,
+      `curriculums id needs to be available for Student field resolvers`
+    );
+
+    const total_cycles = await StudentListCyclesDataLoader.load({
+      program_id: program,
+      curriculum: curriculums,
+    });
+    const list_cycle = total_cycles.map((d) => d.course_cat);
+
+    return list_cycle;
+  }
+  @FieldResolver()
+  async n_courses_cycles(
+    @Root() { program, curriculums, id }: PartialStudent
+  ): Promise<$PropertyType<Student, "n_courses_cycles">> {
+    assertIsDefined(
+      program,
+      `programs id needs to be available for Student field resolvers`
+    );
+    assertIsDefined(
+      curriculums,
+      `curriculums id needs to be available for Student field resolvers`
+    );
+    assertIsDefined(
+      id,
+      ` id needs to be available for Student field resolvers`
+    );
+    const total_cycles = await StudentListCyclesDataLoader.load({
+      program_id: program,
+      curriculum: curriculums,
+    });
+
+    const list_cycle = total_cycles.map((d) => d.course_cat);
+
+    const dataCycleStudent = [];
+
+    for (const cycle of list_cycle) {
+      const [n_courses, n_approved_courses] = await Promise.all([
+        StudentCourseListDataLoader.load({
+          program_id: program,
+          curriculum: curriculums,
+          course_cat: cycle,
+        }),
+        StudentCycleApprovedCourseDataLoader.load({
+          program_id: program,
+          curriculum: curriculums,
+          student_id: id,
+          course_cat: cycle,
+        }),
+      ]);
+      dataCycleStudent.push(Number(n_courses[0]["count"]));
+      dataCycleStudent.push(Number(n_approved_courses[0]["count"]));
+    }
+    return dataCycleStudent;
+  }
+
+  @Authorized()
+  @Query(() => [Student])
+  async students_filter(
+    @Ctx() { user }: IContext,
+    @Arg("program_id") program_id: string,
+    @Arg("curriculum") curriculum: string
+  ): Promise<PartialStudent[]> {
+    assertIsDefined(user, `Error on authorization context`);
+
+    const IsAuthorized = await UserProgramsTable()
+      .select("program")
+      .where({
+        email: user.email,
+        program: program_id,
+      })
+      .first();
+
+    assertIsDefined(IsAuthorized, STUDENT_LIST_UNAUTHORIZED);
+
+    const studentList = await StudentListFilterDataLoader.load({
+      program_id: program_id,
+      curriculum: curriculum,
+    });
+
+    return studentList;
   }
 }

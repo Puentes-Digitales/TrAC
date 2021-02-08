@@ -25,6 +25,7 @@ import {
   AlertTitle,
   Box,
   Flex,
+  Stack,
   Input,
   InputGroup,
   InputRightElement,
@@ -38,6 +39,10 @@ import {
   setMock,
   useChosenCurriculum,
   useIsMockActive,
+  useGroupedActive,
+  setGroupedActive,
+  useChosenAdmissionType,
+  useChosenCohort,
 } from "../../context/DashboardInput";
 import { setTrackingData, track } from "../../context/Tracking";
 import { useMyProgramsQuery } from "../../graphql";
@@ -50,9 +55,14 @@ const StudentList = dynamic(() => import("./StudentList"));
 
 const MockingMode: FC = memo(() => {
   const mock = useIsMockActive();
-
   return (
-    <Button basic onClick={() => setMock(!mock)} color={mock ? "blue" : "red"}>
+    <Button
+      basic
+      onClick={() => {
+        setMock(!mock);
+      }}
+      color={mock ? "blue" : "red"}
+    >
       {mock ? "Mocking ON" : "Mocking OFF"}
     </Button>
   );
@@ -66,6 +76,8 @@ export const SearchBar: FC<{
   }) => Promise<"student" | "program" | undefined>;
   searchResult?: {
     curriculums: string[];
+    admission_types: string[];
+    cohort: string[];
     student?: string;
     program_id?: string;
     program_name?: string;
@@ -74,6 +86,39 @@ export const SearchBar: FC<{
 }> = memo(({ isSearchLoading, onSearch, searchResult, error }) => {
   const mock = useIsMockActive();
   const chosenCurriculum = useChosenCurriculum();
+  const groupedActive = useGroupedActive();
+  const chosenAdmissionType = useChosenAdmissionType();
+  const chosenCohort = useChosenCohort();
+
+  const GrupedMode: FC = memo(() => {
+    const groupedActive = useGroupedActive();
+    return (
+      <Button
+        basic
+        onClick={async (ev) => {
+          setGroupedActive(!groupedActive);
+          setTrackingData({ student: undefined });
+          if (program) {
+            ev.preventDefault();
+            onSearch({
+              student_id: "",
+              program_id: program.value,
+            });
+          }
+        }}
+        color={groupedActive ? "blue" : "red"}
+      >
+        {groupedActive ? "Grouped ON" : "Grouped OFF"}
+      </Button>
+    );
+  });
+
+  useEffect(() => {
+    DashboardInputActions.setChosenCurriculum("");
+    DashboardInputActions.setChosenAdmissionType("");
+    DashboardInputActions.setChosenCohort("");
+  }, [groupedActive]);
+
   useEffect(() => {
     if (
       (chosenCurriculum === undefined &&
@@ -81,10 +126,38 @@ export const SearchBar: FC<{
       !searchResult?.curriculums.includes(chosenCurriculum ?? "")
     ) {
       DashboardInputActions.setChosenCurriculum(
-        searchResult?.curriculums.sort().slice().reverse()[0]
+        searchResult?.curriculums.sort().slice()[0]
       );
     }
   }, [chosenCurriculum, searchResult?.curriculums]);
+
+  useEffect(() => {
+    if (
+      (chosenAdmissionType === undefined &&
+        (searchResult?.admission_types.length ?? 0) > 0) ||
+      !searchResult?.admission_types.includes(chosenAdmissionType ?? "")
+    ) {
+      DashboardInputActions.setChosenAdmissionType(
+        searchResult?.admission_types.sort().slice()[0]
+      );
+    }
+  }, [chosenAdmissionType, searchResult?.admission_types]);
+
+  useEffect(() => {
+    if (
+      (chosenCohort === undefined && (searchResult?.cohort.length ?? 0) > 0) ||
+      !searchResult?.cohort.includes(chosenCohort ?? "")
+    ) {
+      DashboardInputActions.setChosenCohort(
+        searchResult?.cohort.sort().slice()[0]
+      );
+    }
+  }, [chosenCohort, searchResult?.cohort]);
+
+  useEffect(() => {
+    setGroupedActive(false);
+    setMock(false);
+  }, []);
 
   const { user } = useUser();
 
@@ -97,6 +170,8 @@ export const SearchBar: FC<{
     NO_CURRICULUMS_LABEL,
     PROGRAM_NOT_SPECIFIED_PLACEHOLDER,
     CURRICULUM_LABEL,
+    ADMISSION_TYPE_LABEL,
+    COHORT_LABEL,
     STUDENT_LABEL,
     PLACEHOLDER_SEARCH_STUDENT,
     LOGOUT_CONFIRMATION_LABEL,
@@ -184,8 +259,10 @@ export const SearchBar: FC<{
         alignItems="center"
         className="stack"
       >
+        {isDirector && <GrupedMode />}
+
         {user?.admin && <MockingMode />}
-        {isDirector && user?.config?.SHOW_STUDENT_LIST && (
+        {isDirector && !groupedActive && user?.config?.SHOW_STUDENT_LIST && (
           <StudentList
             program_id={program?.value}
             mockData={
@@ -221,18 +298,7 @@ export const SearchBar: FC<{
                     });
                     break;
                   }
-                  case "program": {
-                    setStudentIdShow("");
-                    setTrackingData({
-                      student: undefined,
-                    });
-                    track({
-                      action: "click",
-                      effect: "load-program",
-                      target: "student-list-row",
-                    });
-                    break;
-                  }
+
                   default: {
                     setStudentIdShow("");
                     setTrackingData({
@@ -296,6 +362,7 @@ export const SearchBar: FC<{
     logoutLoading,
     program,
     mock,
+    groupedActive,
     onSearch,
     HELP_ENABLED,
   ]);
@@ -318,7 +385,7 @@ export const SearchBar: FC<{
               isDisabled={isSearchLoading}
               placeholder={PROGRAM_NOT_SPECIFIED_PLACEHOLDER}
               classNamePrefix="react-select"
-              onChange={(selected: any) => {
+              onChange={async (selected: any) => {
                 track({
                   action: "click",
                   effect: `change-program-menu-to-${selected?.value}`,
@@ -327,6 +394,38 @@ export const SearchBar: FC<{
                 setProgram(
                   selected as $ElementType<typeof programsOptions, number>
                 );
+                if (program && groupedActive) {
+                  const onSearchResult = await onSearch({
+                    student_id,
+                    program_id: selected.value,
+                  });
+
+                  switch (onSearchResult) {
+                    case "program": {
+                      setTrackingData({
+                        student: undefined,
+                      });
+                      setStudentIdShow("");
+                      track({
+                        action: "click",
+                        effect: "load-program",
+                        target: "search-button",
+                      });
+                      break;
+                    }
+                    default: {
+                      setTrackingData({
+                        student: student_id,
+                      });
+                      setStudentIdShow("");
+                      track({
+                        action: "click",
+                        effect: "wrong-student",
+                        target: "search-button",
+                      });
+                    }
+                  }
+                }
               }}
               css={{ color: "black" }}
             />
@@ -356,13 +455,20 @@ export const SearchBar: FC<{
     >
       <Flex wrap="wrap" alignItems="center">
         {programOptionsComponent}
-
-        {(searchResult?.curriculums.length ?? 0) > 1 ? (
+        {isDirector && groupedActive && (
           <Flex mr={5}>
-            <Tag colorScheme="blue" variant="outline">
-              {searchResult?.program_id} | {CURRICULUM_LABEL}
-            </Tag>
-            <Box width={90} ml={2}>
+            <Stack>
+              <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
+                {CURRICULUM_LABEL}
+              </Tag>
+              <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
+                {ADMISSION_TYPE_LABEL}
+              </Tag>
+              <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
+                {COHORT_LABEL}
+              </Tag>
+            </Stack>
+            <Box width={150} ml={2}>
               <Select
                 options={
                   searchResult?.curriculums
@@ -370,15 +476,30 @@ export const SearchBar: FC<{
                     .slice()
                     .reverse()
                     .map((curriculum) => {
-                      return {
-                        label: curriculum,
-                        value: curriculum,
-                      };
+                      if (curriculum == "") {
+                        return {
+                          label: "Todos",
+                          value: curriculum,
+                        };
+                      } else {
+                        return {
+                          label: curriculum,
+                          value: curriculum,
+                        };
+                      }
                     }) ?? []
                 }
                 value={
-                  chosenCurriculum
-                    ? { value: chosenCurriculum, label: chosenCurriculum }
+                  chosenCurriculum != undefined
+                    ? chosenCurriculum
+                      ? {
+                          value: chosenCurriculum,
+                          label: chosenCurriculum,
+                        }
+                      : {
+                          value: chosenCurriculum,
+                          label: "Todos",
+                        }
                     : undefined
                 }
                 onChange={(selected) => {
@@ -395,13 +516,101 @@ export const SearchBar: FC<{
                 noOptionsMessage={() => NO_CURRICULUMS_LABEL}
                 css={{ color: "black" }}
               />
+              <Select
+                options={
+                  searchResult?.admission_types
+                    .sort()
+                    .slice()
+                    .reverse()
+                    .map((admission_type) => {
+                      if (admission_type == "") {
+                        return {
+                          label: "Todos",
+                          value: admission_type,
+                        };
+                      } else {
+                        return {
+                          label: admission_type,
+                          value: admission_type,
+                        };
+                      }
+                    }) ?? []
+                }
+                value={
+                  chosenAdmissionType != undefined
+                    ? chosenAdmissionType
+                      ? {
+                          value: chosenAdmissionType,
+                          label: chosenAdmissionType,
+                        }
+                      : {
+                          value: chosenAdmissionType,
+                          label: "Todos",
+                        }
+                    : undefined
+                }
+                onChange={(selected) => {
+                  track({
+                    action: "click",
+                    target: "admission-menu",
+                    effect: "change-admission",
+                  });
+                  DashboardInputActions.setChosenAdmissionType(
+                    (selected as { label: string; value: string }).value
+                  );
+                }}
+                placeholder={"..."}
+                css={{ color: "black" }}
+              />
+              <Select
+                options={
+                  searchResult?.cohort
+                    .sort()
+                    .slice()
+                    .reverse()
+                    .map((cohort) => {
+                      if (cohort == "") {
+                        return {
+                          label: "Todos",
+                          value: cohort,
+                        };
+                      } else {
+                        return {
+                          label: cohort,
+                          value: cohort,
+                        };
+                      }
+                    }) ?? []
+                }
+                value={
+                  chosenCohort != undefined
+                    ? chosenCohort
+                      ? {
+                          value: chosenCohort,
+                          label: chosenCohort,
+                        }
+                      : {
+                          value: chosenCohort,
+                          label: "Todos",
+                        }
+                    : undefined
+                }
+                onChange={(selected) => {
+                  track({
+                    action: "click",
+                    target: "cohort-menu",
+                    effect: "change-cohort",
+                  });
+                  DashboardInputActions.setChosenCohort(
+                    (selected as { label: string; value: string }).value
+                  );
+                }}
+                placeholder={"..."}
+                css={{ color: "black" }}
+              />
             </Box>
           </Flex>
-        ) : searchResult?.curriculums.length === 1 ? (
-          <Tag mr={2} mt={1} mb={1} p={2}>{`${
-            isDirector ? searchResult?.program_id : searchResult?.program_name
-          } | ${CURRICULUM_LABEL}: ${searchResult?.curriculums[0]}`}</Tag>
-        ) : null}
+        )}
         {searchResult?.student && (
           <Tag
             cursor="text"
@@ -414,7 +623,7 @@ export const SearchBar: FC<{
           >{`${STUDENT_LABEL}: ${studentIdShow || searchResult?.student}`}</Tag>
         )}
 
-        {isDirector && (
+        {isDirector && !groupedActive && (
           <form>
             <Flex wrap="wrap" alignItems="center">
               <InputGroup size="lg" width="fit-content" mt={2} mb={2}>

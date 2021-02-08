@@ -14,5 +14,37 @@
     "active": true,
     "model_accuracy": 0.82,
     "explanation": "se estima que el 60% de todos los estudiantes tienen más riesgo de abandono que el estudiante en análisis"
+  },
+  {
+    "student_id": "238de40ae2a0e9f417c495e913d56773",
+    "prob_dropout": 60.56,
+    "weight_per_semester": 0.2,
+    "active": true,
+    "model_accuracy": 0.82,
+    "explanation": "se estima que el 60% de todos los estudiantes tienen más riesgo de abandono que el estudiante en análisis"
+  },
+  {
+    "student_id": "c381c9bba3e870e0698d9dfa51619c1f",
+    "prob_dropout": 36.16,
+    "weight_per_semester": 0.2,
+    "active": true,
+    "model_accuracy": 0.82,
+    "explanation": "se estima que el 36% de todos los estudiantes tienen más riesgo de abandono que el estudiante en análisis"
+  },
+  {
+    "student_id": "d8e9b1f97ec3bc542b7d018b5f9e4224",
+    "prob_dropout": 60.56,
+    "weight_per_semester": 0.2,
+    "active": true,
+    "model_accuracy": 0.82,
+    "explanation": "se estima que el 60% de todos los estudiantes tienen más riesgo de abandono que el estudiante en análisis"
+  },
+  {
+    "student_id": "993567bb136c986c3e18669a748e26b1",
+    "prob_dropout": 60.56,
+    "weight_per_semester": 0.2,
+    "active": true,
+    "model_accuracy": 0.82,
+    "explanation": "se estima que el 60% de todos los estudiantes tienen más riesgo de abandono que el estudiante en análisis"
   }
 ]

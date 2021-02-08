@@ -466,7 +466,7 @@ const GradeComponent: FC<Pick<CurrentTakenData, "state" | "grade">> = memo(
         fontWeight="bold"
       >
         {(() => {
-          if (grade) {
+          if (grade && grade != -1) {
             return grade.toFixed(1);
           }
           switch (state) {

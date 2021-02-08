@@ -37,4 +37,18 @@ export type ICourse = {
   bandColors: { min: number; max: number; color: string }[];
 };
 
+export type IGroupedCourse = {
+  code: string;
+  name: string;
+  credits: { label: string; value: number }[];
+  flow: string[];
+  requisites: string[];
+  historicDistribution: IDistribution[];
+  agroupedDistribution: IDistribution[];
+  n_total: number;
+  n_passed: number;
+  bandColors: { min: number; max: number; color: string }[];
+  agroupedBandColors: { min: number; max: number; color: string }[];
+};
+
 export * from "./utils";

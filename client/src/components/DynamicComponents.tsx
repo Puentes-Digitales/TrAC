@@ -7,3 +7,6 @@ export const ForeplanModeSwitch = dynamic(
 export const ForeplanSummary = dynamic(
   () => import("./foreplan/foreplanSummary/MainBox")
 );
+export const ComplementaryInfo = dynamic(
+  () => import("./dashboard/ComplementaryInfo")
+);

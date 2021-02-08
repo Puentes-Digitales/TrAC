@@ -45,7 +45,6 @@ export enum StateCourse {
   Canceled = "Canceled",
   Pending = "Pending",
 }
-
 export enum UserType {
   Director = "Director",
   Student = "Student",

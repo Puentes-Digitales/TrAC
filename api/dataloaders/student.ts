@@ -6,9 +6,14 @@ import {
   IProgram,
   IStudent,
   IStudentDropout,
+  IStudentAdmission,
+  IStudentEmployed,
   STUDENT_PROGRAM_TABLE,
   STUDENT_TABLE,
+  StudentAdmissionTable,
   StudentDropoutTable,
+  STUDENT_ADMISSION_TABLE,
+  StudentEmployedTable,
   StudentProgramTable,
   StudentTable,
   StudentTermTable,
@@ -36,7 +41,7 @@ export const StudentViaProgramsDataLoader = new DataLoader(
     return await Promise.all(
       student_ids.map((student_id) => {
         return StudentProgramTable()
-          .select("program_id", "name", "state")
+          .select("program_id", "name", "state", "curriculum")
           .innerJoin<IStudent>(
             STUDENT_TABLE,
             `${STUDENT_TABLE}.id`,
@@ -118,7 +123,6 @@ export const StudentTermsDataLoader = new DataLoader(
         for (const studentTerm of studentTermData) {
           TermDataLoader.prime(studentTerm.id, studentTerm);
         }
-
         return studentTermData;
       })
     );
@@ -146,6 +150,36 @@ export const StudentDropoutDataLoader = new DataLoader(
   }
 );
 
+export const StudentAdmissionDataLoader = new DataLoader(
+  async (student_ids: readonly string[]) => {
+    const dataDict: Dictionary<IStudentAdmission | undefined> = keyBy(
+      await StudentAdmissionTable().whereIn("student_id", student_ids),
+      "student_id"
+    );
+    return student_ids.map((id) => {
+      return dataDict[id];
+    });
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentEmployedDataLoader = new DataLoader(
+  async (student_ids: readonly string[]) => {
+    const dataDict: Dictionary<IStudentEmployed | undefined> = keyBy(
+      await StudentEmployedTable().whereIn("student_id", student_ids),
+      "student_id"
+    );
+    return student_ids.map((id) => {
+      return dataDict[id];
+    });
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
 export const StudentListDataLoader = new DataLoader(
   async (program_ids: readonly string[]) => {
     return await Promise.all(
@@ -159,6 +193,39 @@ export const StudentListDataLoader = new DataLoader(
           )
           .where({
             program_id,
+          });
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentListFilterDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+      curriculum: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ program_id, curriculum }) => {
+        return StudentProgramTable()
+          .select("*")
+          .join<IStudent>(
+            STUDENT_TABLE,
+            `${STUDENT_PROGRAM_TABLE}.student_id`,
+            `${STUDENT_TABLE}.id`
+          )
+          .join<IStudent>(
+            STUDENT_ADMISSION_TABLE,
+            `${STUDENT_PROGRAM_TABLE}.student_id`,
+            `${STUDENT_ADMISSION_TABLE}.student_id`
+          )
+          .where({
+            program_id,
+            curriculum,
           });
       })
     );
