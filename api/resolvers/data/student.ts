@@ -309,8 +309,8 @@ export class StudentResolver {
           course_cat: cycle,
         }),
       ]);
-      dataCycleStudent.push(Number((n_courses[0] as any)["count"]));
-      dataCycleStudent.push(Number((n_approved_courses[0] as any)["count"]));
+      dataCycleStudent.push(Number(n_courses[0]["count"]));
+      dataCycleStudent.push(Number(n_approved_courses[0]["count"]));
     }
     return dataCycleStudent;
   }

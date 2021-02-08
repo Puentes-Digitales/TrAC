@@ -183,6 +183,6 @@ export class TakenCourseResolver {
       };
     });
 
-    return bandColors as any;
+    return bandColors;
   }
 }

@@ -136,8 +136,7 @@ const migration = async () => {
         locked: false,
         admin: true,
         type: UserType.Director,
-        student_id: ((await import("./mockData/student.json"))
-          .default[0] as any).id,
+        student_id: (await import("./mockData/student.json")).default[0].id,
       });
     }
   });

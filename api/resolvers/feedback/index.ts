@@ -306,7 +306,7 @@ function hashQuestionsByForm(allQuestions: IFeedbackFormQuestion[]) {
   return allQuestions.reduce<Record<number, IFeedbackFormQuestion[]>>(
     (acum, value) => {
       if (value.form_id in acum) {
-        (acum[value.form_id] as any).push(value);
+        acum[value.form_id].push(value);
       } else {
         acum[value.form_id] = [value];
       }
@@ -352,10 +352,10 @@ function hashAnswersByUser(
     if (!form) return acum;
 
     if (user_id in acum) {
-      if (form_id in (acum[user_id] as any)) {
-        (acum[user_id] as any)([form_id] as any).result.push(resultValue);
+      if (form_id in acum[user_id]) {
+        acum[user_id][form_id].result.push(resultValue);
       } else {
-        (acum[user_id] as any)[form_id] = { result: [resultValue], form };
+        acum[user_id][form_id] = { result: [resultValue], form };
       }
     } else {
       acum[user_id] = { [form_id]: { result: [resultValue], form } };

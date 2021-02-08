@@ -154,7 +154,7 @@ export const CurriculumsDataLoader = new DataLoader(
             },
           });
 
-          (acum[curriculum] as any).semesters[semester].courses.push({
+          acum[curriculum].semesters[semester].courses.push({
             id,
             code: external_evaluation_id,
           });
