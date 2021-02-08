@@ -8,7 +8,7 @@ import {
   ExternalEvaluationStructureTable,
   ProgramTable,
   StudentProgramTable,
-  StudentGroupedComplementaryTable,
+  GroupedComplementaryInformationTable,
   StudentGroupedEmployedTable,
   PROGRAM_STRUCTURE_TABLE,
   CourseGroupedStatsTable,
@@ -201,7 +201,7 @@ export const StudentGroupedComplementaryDataLoader = new DataLoader(
   ) => {
     return await Promise.all(
       keys.map(({ program_id }) => {
-        return StudentGroupedComplementaryTable().where({
+        return GroupedComplementaryInformationTable().where({
           program_id: program_id,
         });
       })

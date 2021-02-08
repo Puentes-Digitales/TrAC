@@ -65,6 +65,8 @@ const migration = async () => {
     FeedbackFormQuestionTable,
     FeedbackFormTable,
     FeedbackResultTable,
+    GroupedComplementaryInformationTable,
+    GROUPED_COMPLEMENTARY_INFORMATION_TABLE,
     PARAMETER_TABLE,
     ParameterTable,
     PERFORMANCE_BY_LOAD_TABLE,
@@ -81,7 +83,6 @@ const migration = async () => {
     EXTERNAL_EVALUATION_TABLE,
     EXTERNAL_EVALUATION_STATS_TABLE,
     STUDENT_CLUSTER_TABLE,
-    STUDENT_GROUPED_COMPLEMENTARY_TABLE,
     STUDENT_COURSE_TABLE,
     STUDENT_DROPOUT_TABLE,
     STUDENT_EMPLOYED_TABLE,
@@ -95,7 +96,6 @@ const migration = async () => {
     ExternalEvaluationStatsTable,
     StudentClusterTable,
     StudentCourseTable,
-    StudentGroupedComplementaryTable,
     StudentDropoutTable,
     StudentEmployedTable,
     StudentProgramTable,
@@ -339,12 +339,12 @@ const migration = async () => {
       }
     });
 
-  const studentGroupedComplementaryStructure = dbData.schema
-    .hasTable(STUDENT_GROUPED_COMPLEMENTARY_TABLE)
+  const groupedComplementaryInformationStructure = dbData.schema
+    .hasTable(GROUPED_COMPLEMENTARY_INFORMATION_TABLE)
     .then(async (exists) => {
       if (!exists) {
         await dbData.schema.createTable(
-          STUDENT_GROUPED_COMPLEMENTARY_TABLE,
+          GROUPED_COMPLEMENTARY_INFORMATION_TABLE,
           (table) => {
             table.integer("id", 8).notNullable().primary();
             table.text("program_id").notNullable();
@@ -358,11 +358,9 @@ const migration = async () => {
             table.float("timely_university_degree_rate", 3).notNullable();
           }
         );
-        await StudentGroupedComplementaryTable().insert(
+        await GroupedComplementaryInformationTable().insert(
           (
-            await import(
-              "./mockData/student_grouped_complementary_information.json"
-            )
+            await import("./mockData/grouped_complementary_information.json")
           ).default.map(({ program_id, curriculum, cohort, ...rest }) => {
             return {
               ...rest,
@@ -966,6 +964,7 @@ const migration = async () => {
     course,
     courseStats,
     courseGroupedStats,
+    groupedComplementaryInformationStructure,
     param,
     program,
     programStructure,
@@ -973,7 +972,6 @@ const migration = async () => {
     student,
     studentAdmission,
     studentExternalEvaluation,
-    studentGroupedComplementaryStructure,
     studentGroupedEmployedStructure,
     externalEvaluation,
     externalEvaluationStats,
