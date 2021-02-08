@@ -7,7 +7,7 @@ import {
   ProgramTable,
   StudentCourseTable,
   StudentTermTable,
-  STUDENT_EXTERNAL_EVALUATION_TABLE,
+  StudentExternalEvaluationTable,
 } from "../db/tables";
 
 export const TermDataLoader = new DataLoader(
@@ -54,32 +54,7 @@ export const TakenCoursesDataLoader = new DataLoader(
     return await Promise.all(
       ids.map(async ({ year, term, student_id }) => {
         const takenCoursesData = await StudentCourseTable()
-          .select(
-            "id",
-            "course_taken",
-            "course_equiv",
-            "elect_equiv",
-            "year",
-            "term",
-            "state"
-          )
-          .unionAll(function () {
-            this.select(
-              "id",
-              "external_evaluation_taken",
-              "comments",
-              "comments",
-              "year",
-              "term",
-              "state"
-            )
-              .from(STUDENT_EXTERNAL_EVALUATION_TABLE)
-              .where({
-                year,
-                term,
-                student_id,
-              });
-          })
+          .select("id", "course_taken", "course_equiv", "elect_equiv")
           .where({
             year,
             term,
@@ -92,6 +67,40 @@ export const TakenCoursesDataLoader = new DataLoader(
             { column: "state", order: "asc" },
           ]);
         return uniqBy(takenCoursesData, ({ course_taken }) => course_taken);
+      })
+    );
+  },
+  {
+    cacheKeyFn: ({ year, term, student_id }) => {
+      return year + student_id + term;
+    },
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const TakenExternalEvaluationDataLoader = new DataLoader(
+  async (
+    ids: readonly { year: number; term: number; student_id: string }[]
+  ) => {
+    return await Promise.all(
+      ids.map(async ({ year, term, student_id }) => {
+        const takenExternalEvaluationsData = await StudentExternalEvaluationTable()
+          .select("id", "external_evaluation_taken")
+          .where({
+            year,
+            term,
+            student_id,
+          })
+          .orderBy([
+            { column: "external_evaluation_taken", order: "desc" },
+            { column: "year", order: "desc" },
+            { column: "term", order: "desc" },
+            { column: "state", order: "asc" },
+          ]);
+        return uniqBy(
+          takenExternalEvaluationsData,
+          ({ external_evaluation_taken }) => external_evaluation_taken
+        );
       })
     );
   },

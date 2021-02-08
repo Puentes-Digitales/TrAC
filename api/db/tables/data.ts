@@ -297,6 +297,7 @@ export interface IStudentExternalEvaluation {
   term: number;
   student_id: string;
   external_evaluation_taken: string;
+  topic: string;
   registration: string;
   state: string;
   grade: number;

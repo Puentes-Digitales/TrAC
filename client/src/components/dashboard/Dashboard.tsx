@@ -520,6 +520,14 @@ export function Dashboard() {
             const semesters = curriculumSemesters.map((va) => {
               const semester = {
                 n: va.id,
+                externalEvaluations: va.externalEvaluations.map(
+                  ({ code, name }) => {
+                    return {
+                      code,
+                      name,
+                    };
+                  }
+                ),
                 courses: va.courses.map(
                   ({
                     code,

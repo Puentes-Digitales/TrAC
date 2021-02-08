@@ -3,7 +3,7 @@ import { FieldResolver, Resolver, Root } from "type-graphql";
 
 import { baseConfig } from "../../../client/constants/baseConfig";
 import {
-  CourseAndStructureDataLoader,
+  CourseStructureDataLoader,
   CourseFlowDataLoader,
   CourseRequisitesLoader,
   CourseStatsDataLoader,
@@ -47,8 +47,8 @@ export class CourseResolver {
     { id, code }: PartialCourse
   ): Promise<$PropertyType<Course, "name">> {
     return (
-      (await CourseAndStructureDataLoader.load({ id, code }))?.courseTable
-        ?.name ?? ""
+      (await CourseStructureDataLoader.load({ id, code }))?.courseTable?.name ??
+      ""
     );
   }
 
@@ -57,7 +57,7 @@ export class CourseResolver {
     @Root() { id, code }: PartialCourse
   ): Promise<$PropertyType<Course, "credits">> {
     const courseData = (
-      await CourseAndStructureDataLoader.load({
+      await CourseStructureDataLoader.load({
         id,
         code,
       })
@@ -75,7 +75,7 @@ export class CourseResolver {
   ): Promise<$PropertyType<Course, "mention">> {
     return (
       (
-        await CourseAndStructureDataLoader.load({
+        await CourseStructureDataLoader.load({
           id,
           code,
         })
