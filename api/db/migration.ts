@@ -34,7 +34,8 @@ const migration = async () => {
 
   if (createdDatabases.length) {
     console.info(
-      `CREATED "${createdDatabases.join(" | ")}" DATABASE${createdDatabases.length > 1 ? "S" : ""
+      `CREATED "${createdDatabases.join(" | ")}" DATABASE${
+        createdDatabases.length > 1 ? "S" : ""
       }!`
     );
   }
