@@ -177,6 +177,6 @@ export class TakenExternalEvaluationResolver {
       };
     });
 
-    return bandColors;
+    return bandColors as any;
   }
 }

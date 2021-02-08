@@ -112,7 +112,7 @@ export class CourseResolver {
 
           for (let i = 0; i < histogramValues.length; i++) {
             acum[i] = {
-              label: acum[i]?.label ?? histogramLabels[i],
+              label: (acum[i]?.label as string) ?? histogramLabels[i],
               value: (acum[i]?.value ?? 0) + (histogramValues[i] ?? 0),
             };
           }
@@ -143,6 +143,6 @@ export class CourseResolver {
       };
     });
 
-    return bandColors;
+    return bandColors as any;
   }
 }
