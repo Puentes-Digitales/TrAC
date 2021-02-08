@@ -198,10 +198,10 @@ const ForeplanCourseCheckbox: FC<
             }
           }}
           className={classNames({
-            [styles.checkboxInput]: true,
+            [styles.checkboxInput as string]: true,
             [isDirectTake || isPredictedDirectTake
-              ? styles.direct
-              : styles.indirect]: true,
+              ? (styles.direct as string)
+              : (styles.indirect as string)]: true,
             foreplanCourseCheckboxIndirect: !(
               isDirectTake || isPredictedDirectTake
             ),
