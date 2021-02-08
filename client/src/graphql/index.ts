@@ -58,13 +58,14 @@ export type Course = {
 export type CourseGroupedStats = {
   cohort: Scalars["String"];
   color_bands: Array<BandColor>;
+  course_id: Scalars["String"];
   curriculum: Scalars["String"];
   distribution: Array<DistributionValue>;
-  id: Scalars["String"];
   n_drop: Scalars["Float"];
   n_fail: Scalars["Float"];
   n_finished: Scalars["Float"];
   n_pass: Scalars["Float"];
+  n_students: Scalars["Float"];
   n_total: Scalars["Float"];
   program_id: Scalars["String"];
   type_admission: Scalars["String"];
@@ -742,7 +743,8 @@ export type SearchProgramMutation = {
         | "curriculum"
         | "type_admission"
         | "cohort"
-        | "id"
+        | "course_id"
+        | "n_students"
         | "n_total"
         | "n_finished"
         | "n_pass"
@@ -2091,7 +2093,8 @@ export const SearchProgramDocument = gql`
         curriculum
         type_admission
         cohort
-        id
+        course_id
+        n_students
         n_total
         n_finished
         n_pass

@@ -269,11 +269,12 @@ export const StudentGroupedEmployedTable = () =>
 // --------------------------------------------------------------------------
 
 export interface ICourseGroupedStats {
-  id: string;
+  course_id: string;
   program_id: string;
   curriculum: string;
   type_admission: string;
   cohort: string;
+  n_students: number;
   n_total: number;
   n_finished: number;
   n_pass: number;

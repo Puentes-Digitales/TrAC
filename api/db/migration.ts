@@ -34,8 +34,7 @@ const migration = async () => {
 
   if (createdDatabases.length) {
     console.info(
-      `CREATED "${createdDatabases.join(" | ")}" DATABASE${
-        createdDatabases.length > 1 ? "S" : ""
+      `CREATED "${createdDatabases.join(" | ")}" DATABASE${createdDatabases.length > 1 ? "S" : ""
       }!`
     );
   }
@@ -669,18 +668,19 @@ const migration = async () => {
     .then(async (exists) => {
       if (!exists) {
         await dbData.schema.createTable(COURSE_GROUPED_STATS_TABLE, (table) => {
-          table.text("id").notNullable();
+          table.text("course_id").notNullable();
           table.text("program_id").notNullable();
           table.text("curriculum").notNullable();
           table.text("type_admission").notNullable();
           table.text("cohort").notNullable();
           table.primary([
-            "id",
+            "course_id",
             "cohort",
             "type_admission",
             "program_id",
             "curriculum",
           ]);
+          table.integer("n_students").notNullable();
           table.integer("n_total", 8).notNullable();
           table.integer("n_finished", 8).notNullable();
           table.integer("n_pass", 8).notNullable();

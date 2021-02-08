@@ -262,11 +262,12 @@ export const CourseGroupedStatsDataLoader = new DataLoader(
           });
 
           return {
-            id: value["id"],
+            course_id: value["course_id"],
             program_id: value["program_id"],
             curriculum: value["curriculum"],
             type_admission: value["type_admission"],
             cohort: value["cohort"],
+            n_students: value["n_students"],
             n_total: value["n_total"],
             n_finished: value["n_finished"],
             n_pass: value["n_pass"],
