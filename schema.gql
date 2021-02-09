@@ -40,10 +40,9 @@ type Course {
 
 type CourseGroupedStats {
   cohort: String!
-  color_bands: String!
+  color_bands: [BandColor!]!
   curriculum: String!
-  histogram: String!
-  histogram_labels: String!
+  distribution: [DistributionValue!]!
   id: String!
   n_drop: Float!
   n_fail: Float!
@@ -105,6 +104,7 @@ type ExternalEvaluation {
   id: Int!
   mention: String!
   name: String!
+  year: Float!
 }
 
 type FeedbackAnswer {
@@ -173,6 +173,17 @@ type GroupedComplementary {
   total_students: Float!
   type_admission: String!
   university_degree_rate: Float!
+}
+
+type GroupedEmployed {
+  average_time_job_finding: Float!
+  cohort: String!
+  curriculum: String!
+  employed_rate: Float!
+  employed_rate_educational_system: Float!
+  program_id: String!
+  total_students: Float!
+  type_admission: String!
 }
 
 type IndirectTakeCourse {
@@ -266,6 +277,7 @@ type Program {
   curriculums: [Curriculum!]!
   desc: String!
   groupedComplementary: [GroupedComplementary!]!
+  groupedEmployed: [GroupedEmployed!]!
   id: String!
   lastGPA: Float!
   name: String!
@@ -338,15 +350,12 @@ type TakenCourse {
 }
 
 type TakenExternalEvaluation {
-  bandColors: [BandColor!]!
   code: String!
-  currentDistribution: [DistributionValue!]!
-  grade: Float!
   id: Int!
   name: String!
-  parallelGroup: Int!
   registration: String!
   state: StateCourse!
+  topic: String!
 }
 
 type Term {

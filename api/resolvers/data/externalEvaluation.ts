@@ -2,7 +2,7 @@ import { toInteger, toNumber } from "lodash";
 import { FieldResolver, Resolver, Root } from "type-graphql";
 
 import {
-  ExternalEvaluationAndStructureDataLoader,
+  ExternalEvaluationStructureDataLoader,
   ExternalEvaluationStatsDataLoader,
 } from "../../dataloaders/externalEvaluation";
 import { ExternalEvaluation } from "../../entities/data/externalEvaluation";
@@ -24,7 +24,7 @@ export class ExternalEvaluationResolver {
     { id, code }: PartialExternalEvaluation
   ): Promise<$PropertyType<ExternalEvaluation, "name">> {
     return (
-      (await ExternalEvaluationAndStructureDataLoader.load({ id, code }))
+      (await ExternalEvaluationStructureDataLoader.load({ id, code }))
         ?.externalEvaluationTable?.name ?? ""
     );
   }
@@ -35,7 +35,7 @@ export class ExternalEvaluationResolver {
   ): Promise<$PropertyType<ExternalEvaluation, "mention">> {
     return (
       (
-        await ExternalEvaluationAndStructureDataLoader.load({
+        await ExternalEvaluationStructureDataLoader.load({
           id,
           code,
         })

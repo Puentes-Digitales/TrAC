@@ -247,6 +247,25 @@ export const STUDENT_GROUPED_COMPLEMENTARY_TABLE =
   "student_grouped_complementary";
 export const StudentGroupedComplementaryTable = () =>
   dbData<IStudentGroupedComplementary>(STUDENT_GROUPED_COMPLEMENTARY_TABLE);
+
+// --------------------------------------------------------------------------
+
+export interface IStudentGroupedEmployed {
+  id: number;
+  program_id: string;
+  curriculum: string;
+  type_admission: string;
+  cohort: string;
+  total_students: number;
+  employed_rate: number;
+  average_time_job_finding: number;
+  employed_rate_educational_system: number;
+}
+
+export const STUDENT_GROUPED_EMPLOYED_TABLE = "student_grouped_employed";
+export const StudentGroupedEmployedTable = () =>
+  dbData<IStudentGroupedEmployed>(STUDENT_GROUPED_EMPLOYED_TABLE);
+
 // --------------------------------------------------------------------------
 
 export interface ICourseGroupedStats {
@@ -278,6 +297,7 @@ export interface IStudentExternalEvaluation {
   term: number;
   student_id: string;
   external_evaluation_taken: string;
+  topic: string;
   registration: string;
   state: string;
   grade: number;

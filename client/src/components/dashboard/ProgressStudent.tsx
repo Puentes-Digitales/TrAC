@@ -11,7 +11,7 @@ export const ProgressStudent: FC<{
 }> = memo(({ n_cycles_student, n_courses_cycles }) => {
   const {
     PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR,
-
+    COMPLEMENTARY_INFORMATION_PERCENT_MARK,
     PROGRESS_STUDENT_INFORMATION_TEXT,
   } = useContext(ConfigContext);
 
@@ -63,7 +63,7 @@ export const ProgressStudent: FC<{
                       ((n_courses_cycles[2 * i + 1] ?? 0) * 100) /
                       (n_courses_cycles[2 * i] ?? 1)
                     ).toFixed(1)}{" "}
-                    %
+                    {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
                   </Text>
                 </Flex>
               </div>

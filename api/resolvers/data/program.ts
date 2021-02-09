@@ -26,6 +26,7 @@ import {
   StudentProgramDataLoader,
   CourseGroupedStatsDataLoader,
   StudentGroupedComplementaryDataLoader,
+  StudentGroupedEmployedDataLoader,
 } from "../../dataloaders/program";
 import { ProgramTable, UserProgramsTable } from "../../db/tables";
 import { Program } from "../../entities/data/program";
@@ -41,6 +42,7 @@ import type {
   IfImplements,
 } from "../../../interfaces/utils";
 import type { PartialCourse } from "./course";
+import type { PartialExternalEvaluation } from "./externalEvaluation";
 export type PartialProgram = Pick<Program, "id">;
 
 @Resolver(() => Program)
@@ -231,6 +233,20 @@ export class ProgramResolver {
   }
 
   @FieldResolver()
+  async groupedEmployed(
+    @Root()
+    { id }: Partial<Program>
+  ): Promise<$PropertyType<Program, "groupedEmployed">> {
+    assertIsDefined(
+      id,
+      "The id needs to be available for the program fields resolvers"
+    );
+    return await StudentGroupedEmployedDataLoader.load({
+      program_id: id,
+    });
+  }
+
+  @FieldResolver()
   async courseGroupedStats(
     @Root()
     { id }: Partial<Program>
@@ -239,9 +255,12 @@ export class ProgramResolver {
       id,
       "The id needs to be available for the program fields resolvers"
     );
-    return await CourseGroupedStatsDataLoader.load({
+
+    const data = await CourseGroupedStatsDataLoader.load({
       program_id: id,
     });
+
+    return data;
   }
 
   @FieldResolver()
@@ -281,6 +300,7 @@ export class ProgramResolver {
         semesters: {
           id: number;
           courses: PartialCourse[];
+          externalEvaluations: PartialExternalEvaluation[];
         }[];
       }[],
       $PropertyType<Program, "curriculums">

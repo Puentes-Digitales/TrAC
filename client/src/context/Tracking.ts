@@ -78,6 +78,7 @@ export const TrackingManager: FC = memo(() => {
       showingPrediction,
       showingProgressStudenCycle,
       showingStudentComplementaryInformation,
+      showingGroupedComplementaryInfo,
       coursesOpen,
       action,
       effect,
@@ -95,6 +96,8 @@ export const TrackingManager: FC = memo(() => {
         showingPrediction ? 1 : 0
       },showing-student-complementary-information=${
         showingStudentComplementaryInformation ? 1 : 0
+      },showing-grouped-complementary-info=${
+        showingGroupedComplementaryInfo ? 1 : 0
       },showing-progress-student-cycle=${
         showingProgressStudenCycle ? 1 : 0
       },courses-open=${coursesOpen || null},user-config=${

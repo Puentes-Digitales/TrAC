@@ -2,7 +2,7 @@ import React, { FC, useContext } from "react";
 
 import { Stack, StackProps, Text } from "@chakra-ui/react";
 
-import { ICourse } from "../../../../interfaces";
+import { ICourse, IExternalEvaluation } from "../../../../interfaces";
 import { ConfigContext } from "../../context/Config";
 import { CourseBox } from "./CourseBox/CourseBox";
 
@@ -37,9 +37,16 @@ const toRoman = (num: number, first = false): string => {
 export const Semester: FC<
   {
     courses: ICourse[];
+    externalEvaluations: IExternalEvaluation[];
     n: number;
   } & StackProps
-> = ({ courses: semester, n, mr, ...stackProps }) => {
+> = ({
+  courses: semesterCourse,
+  externalEvaluations: semesterExternalEvaluation,
+  n,
+  mr,
+  ...stackProps
+}) => {
   const { SEMESTER_HEADER_TEXT_COLOR, SEMESTER_HEADER_FONT_SIZE } = useContext(
     ConfigContext
   );
@@ -53,7 +60,21 @@ export const Semester: FC<
       >
         <b>{toRoman(n, true)}</b>
       </Text>
-      {semester.map((course) => (
+
+      {semesterExternalEvaluation.map((externalEvaluations) => (
+        <CourseBox
+          code={externalEvaluations.code}
+          name={externalEvaluations.name}
+          credits={[{ label: "asd", value: 2 }]}
+          historicDistribution={[]}
+          taken={[]}
+          bandColors={[]}
+          requisites={[]}
+          flow={[]}
+        />
+      ))}
+
+      {semesterCourse.map((course) => (
         <CourseBox key={course.code} {...course} />
       ))}
     </Stack>

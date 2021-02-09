@@ -57,10 +57,9 @@ export type Course = {
 
 export type CourseGroupedStats = {
   cohort: Scalars["String"];
-  color_bands: Scalars["String"];
+  color_bands: Array<BandColor>;
   curriculum: Scalars["String"];
-  histogram: Scalars["String"];
-  histogram_labels: Scalars["String"];
+  distribution: Array<DistributionValue>;
   id: Scalars["String"];
   n_drop: Scalars["Float"];
   n_fail: Scalars["Float"];
@@ -109,6 +108,7 @@ export type ExternalEvaluation = {
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
+  year: Scalars["Float"];
 };
 
 export type FeedbackAnswer = {
@@ -175,6 +175,17 @@ export type GroupedComplementary = {
   total_students: Scalars["Float"];
   type_admission: Scalars["String"];
   university_degree_rate: Scalars["Float"];
+};
+
+export type GroupedEmployed = {
+  average_time_job_finding: Scalars["Float"];
+  cohort: Scalars["String"];
+  curriculum: Scalars["String"];
+  employed_rate: Scalars["Float"];
+  employed_rate_educational_system: Scalars["Float"];
+  program_id: Scalars["String"];
+  total_students: Scalars["Float"];
+  type_admission: Scalars["String"];
 };
 
 export type IndirectTakeCourse = {
@@ -327,6 +338,7 @@ export type Program = {
   curriculums: Array<Curriculum>;
   desc: Scalars["String"];
   groupedComplementary: Array<GroupedComplementary>;
+  groupedEmployed: Array<GroupedEmployed>;
   id: Scalars["String"];
   lastGPA: Scalars["Float"];
   name: Scalars["String"];
@@ -427,13 +439,9 @@ export type TakenCourse = {
 };
 
 export type TakenExternalEvaluation = {
-  bandColors: Array<BandColor>;
   code: Scalars["String"];
-  currentDistribution: Array<DistributionValue>;
-  grade: Scalars["Float"];
   id: Scalars["Int"];
   name: Scalars["String"];
-  parallelGroup: Scalars["Int"];
   registration: Scalars["String"];
   state: StateCourse;
 };
@@ -711,6 +719,19 @@ export type SearchProgramMutation = {
         | "retention_rate"
       >
     >;
+    groupedEmployed: Array<
+      Pick<
+        GroupedEmployed,
+        | "employed_rate"
+        | "total_students"
+        | "average_time_job_finding"
+        | "program_id"
+        | "curriculum"
+        | "type_admission"
+        | "cohort"
+        | "employed_rate_educational_system"
+      >
+    >;
     courseGroupedStats: Array<
       Pick<
         CourseGroupedStats,
@@ -724,10 +745,10 @@ export type SearchProgramMutation = {
         | "n_pass"
         | "n_drop"
         | "n_fail"
-        | "histogram"
-        | "histogram_labels"
-        | "color_bands"
-      >
+      > & {
+        distribution: Array<Pick<DistributionValue, "label" | "value">>;
+        color_bands: Array<Pick<BandColor, "min" | "max" | "color">>;
+      }
     >;
     curriculums: Array<
       Pick<Curriculum, "id"> & {
@@ -743,6 +764,9 @@ export type SearchProgramMutation = {
                 >;
                 bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
               }
+            >;
+            externalEvaluations: Array<
+              Pick<ExternalEvaluation, "code" | "name">
             >;
           }
         >;
@@ -798,6 +822,12 @@ export type SearchStudentMutation = {
               >;
               bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
             }
+          >;
+          takenExternalEvaluations: Array<
+            Pick<
+              TakenExternalEvaluation,
+              "id" | "code" | "name" | "registration" | "state"
+            >
           >;
         }
       >;
@@ -2052,6 +2082,16 @@ export const SearchProgramDocument = gql`
         university_degree_rate
         retention_rate
       }
+      groupedEmployed {
+        employed_rate
+        total_students
+        average_time_job_finding
+        program_id
+        curriculum
+        type_admission
+        cohort
+        employed_rate_educational_system
+      }
       courseGroupedStats {
         program_id
         curriculum
@@ -2063,9 +2103,15 @@ export const SearchProgramDocument = gql`
         n_pass
         n_drop
         n_fail
-        histogram
-        histogram_labels
-        color_bands
+        distribution {
+          label
+          value
+        }
+        color_bands {
+          min
+          max
+          color
+        }
       }
       curriculums {
         id
@@ -2094,6 +2140,10 @@ export const SearchProgramDocument = gql`
               max
               color
             }
+          }
+          externalEvaluations {
+            code
+            name
           }
         }
       }
@@ -2183,6 +2233,13 @@ export const SearchStudentDocument = gql`
             max
             color
           }
+        }
+        takenExternalEvaluations {
+          id
+          code
+          name
+          registration
+          state
         }
       }
       dropout {
