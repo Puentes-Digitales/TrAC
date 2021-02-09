@@ -771,7 +771,14 @@ export function Dashboard() {
               ? i.curriculum
               : ""
           )
-          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
+          .filter((v, i, obj) => obj.indexOf(v) === i)
+          .map((v, i, obj) => {
+            if (obj.length == 2) {
+              obj.sort().shift();
+              return obj;
+            }
+            return obj;
+          })[0] ?? [],
 
       admission_types:
         searchProgramData?.program?.courseGroupedStats
@@ -780,7 +787,14 @@ export function Dashboard() {
               ? i.type_admission
               : ""
           )
-          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
+          .filter((v, i, obj) => obj.indexOf(v) === i)
+          .map((v, i, obj) => {
+            if (obj.length == 2) {
+              obj.sort().shift();
+              return obj;
+            }
+            return obj;
+          })[0] ?? [],
 
       cohort:
         searchProgramData?.program?.courseGroupedStats
@@ -790,7 +804,14 @@ export function Dashboard() {
               ? i.cohort
               : ""
           )
-          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
+          .filter((v, i, obj) => obj.indexOf(v) === i)
+          .map((v, i, obj) => {
+            if (obj.length == 2) {
+              obj.sort().shift();
+              return obj;
+            }
+            return obj;
+          })[0] ?? [],
       student:
         user?.type === UserType.Director
           ? searchStudentData?.student?.id

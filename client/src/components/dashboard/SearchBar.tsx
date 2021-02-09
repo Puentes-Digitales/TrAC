@@ -170,8 +170,8 @@ export const SearchBar: FC<{
     NO_CURRICULUMS_LABEL,
     PROGRAM_NOT_SPECIFIED_PLACEHOLDER,
     CURRICULUM_LABEL,
-    ADMISSION_TYPE_LABEL,
     COHORT_LABEL,
+    ADMISSION_TYPE_LABEL,
     STUDENT_LABEL,
     PLACEHOLDER_SEARCH_STUDENT,
     LOGOUT_CONFIRMATION_LABEL,
@@ -365,6 +365,7 @@ export const SearchBar: FC<{
     groupedActive,
     onSearch,
     HELP_ENABLED,
+    groupedActive,
   ]);
 
   useEffect(() => {
