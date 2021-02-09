@@ -25,24 +25,6 @@ export const StudentExternalEvaluationDataLoader = new DataLoader(
   }
 );
 
-export const StudentExternalEvaluationDataLoader2 = new DataLoader(
-  async (codes: readonly string[]) => {
-    const dataDict: Dictionary<IStudentExternalEvaluation | undefined> = keyBy(
-      await StudentExternalEvaluationTable()
-        .select("*")
-        .where("external_evaluation_taken", "EID-15"),
-      "external_evaluation_taken"
-    );
-
-    return codes.map((code) => {
-      return dataDict[code];
-    });
-  },
-  {
-    cacheMap: new LRUMap(1000),
-  }
-);
-
 export const ExternalEvaluationStatsByStateDataLoader = new DataLoader(
   async (
     keys: readonly {
