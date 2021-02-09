@@ -45,7 +45,7 @@ export const SemestersList: FC<{
 
   const Column = useCallback<FC<ListChildComponentProps>>(
     ({ index }) => {
-      return SemestersComponent[index];
+      return SemestersComponent[index]!;
     },
     [semesters]
   );

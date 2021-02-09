@@ -40,6 +40,7 @@ export type ICourse = {
 export type IExternalEvaluation = {
   code: string;
   name: string;
+  taken: ITakenExternalEvaluation[];
 };
 
 export type ITakenExternalEvaluation = {

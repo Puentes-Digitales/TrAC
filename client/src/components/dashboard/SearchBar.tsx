@@ -192,7 +192,7 @@ export const SearchBar: FC<{
   );
 
   const [studentOptions, setStudentOptions] = useRememberState<
-    Record<string, string[]>
+    Record<string, string[] | undefined>
   >("student_input_program_options", {});
 
   const programsOptions = useMemo(() => {
@@ -365,6 +365,7 @@ export const SearchBar: FC<{
     groupedActive,
     onSearch,
     HELP_ENABLED,
+    groupedActive,
   ]);
 
   useEffect(() => {
@@ -656,7 +657,7 @@ export const SearchBar: FC<{
                 />
                 {program && studentOptions[program.value] && (
                   <datalist id="student_options">
-                    {studentOptions[program.value].map((value, key) => (
+                    {studentOptions[program.value]?.map((value, key) => (
                       <option key={key} value={value} />
                     ))}
                   </datalist>

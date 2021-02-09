@@ -78,7 +78,8 @@ mutation searchProgram($id: String, $student_id: String) {
       curriculum
       type_admission
       cohort
-      id
+      course_id
+      n_students
       n_total
       n_finished
       n_pass
@@ -175,9 +176,11 @@ mutation searchStudent($student_id: String, $program_id: String) {
       takenExternalEvaluations {
         id
         code
+        topic
         name
         registration
         state
+        grade
       }
     }
     dropout {
