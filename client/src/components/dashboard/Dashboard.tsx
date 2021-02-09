@@ -167,6 +167,18 @@ export function Dashboard() {
   }, [chosenCurriculum]);
 
   useEffect(() => {
+    setTrackingData({
+      admission_type: chosenAdmissionType,
+    });
+  }, [chosenAdmissionType]);
+
+  useEffect(() => {
+    setTrackingData({
+      cohort: chosenCohort,
+    });
+  }, [chosenCohort]);
+
+  useEffect(() => {
     setGroupedActive(false);
     setMock(false);
   }, []);

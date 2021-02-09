@@ -67,7 +67,7 @@ export const Semester: FC<
           name={externalEvaluations.name}
           credits={[{ label: "asd", value: 2 }]}
           historicDistribution={[]}
-          taken={externalEvaluations.taken}
+          taken={[]}
           bandColors={[]}
           requisites={[]}
           flow={[]}
