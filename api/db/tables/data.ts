@@ -230,7 +230,7 @@ export const StudentAdmissionTable = () =>
   dbData<IStudentAdmission>(STUDENT_ADMISSION_TABLE);
 // --------------------------------------------------------------------------
 
-export interface IStudentGroupedComplementary {
+export interface IGroupedComplementaryInformation {
   id: number;
   program_id: string;
   curriculum: string;
@@ -243,10 +243,12 @@ export interface IStudentGroupedComplementary {
   timely_university_degree_rate: number;
 }
 
-export const STUDENT_GROUPED_COMPLEMENTARY_TABLE =
-  "student_grouped_complementary";
-export const StudentGroupedComplementaryTable = () =>
-  dbData<IStudentGroupedComplementary>(STUDENT_GROUPED_COMPLEMENTARY_TABLE);
+export const GROUPED_COMPLEMENTARY_INFORMATION_TABLE =
+  "grouped_complementary_information";
+export const GroupedComplementaryInformationTable = () =>
+  dbData<IGroupedComplementaryInformation>(
+    GROUPED_COMPLEMENTARY_INFORMATION_TABLE
+  );
 
 // --------------------------------------------------------------------------
 
@@ -269,11 +271,12 @@ export const StudentGroupedEmployedTable = () =>
 // --------------------------------------------------------------------------
 
 export interface ICourseGroupedStats {
-  id: string;
+  course_id: string;
   program_id: string;
   curriculum: string;
   type_admission: string;
   cohort: string;
+  n_students: number;
   n_total: number;
   n_finished: number;
   n_pass: number;

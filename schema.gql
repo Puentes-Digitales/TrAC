@@ -41,13 +41,14 @@ type Course {
 type CourseGroupedStats {
   cohort: String!
   color_bands: [BandColor!]!
+  course_id: String!
   curriculum: String!
   distribution: [DistributionValue!]!
-  id: String!
   n_drop: Float!
   n_fail: Float!
   n_finished: Float!
   n_pass: Float!
+  n_students: Float!
   n_total: Float!
   program_id: String!
   type_admission: String!

@@ -11,8 +11,8 @@ export const ProgressStudent: FC<{
 }> = memo(({ n_cycles_student, n_courses_cycles }) => {
   const {
     PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR,
-    COMPLEMENTARY_INFORMATION_PERCENT_MARK,
     PROGRESS_STUDENT_INFORMATION_TEXT,
+    COMPLEMENTARY_INFORMATION_PERCENT_MARK,
   } = useContext(ConfigContext);
 
   useEffect(() => {

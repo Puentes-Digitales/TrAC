@@ -78,7 +78,8 @@ mutation searchProgram($id: String, $student_id: String) {
       curriculum
       type_admission
       cohort
-      id
+      course_id
+      n_students
       n_total
       n_finished
       n_pass

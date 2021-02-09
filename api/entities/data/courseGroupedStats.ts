@@ -4,7 +4,7 @@ import { DistributionValue, BandColor } from "./distribution";
 @ObjectType()
 export class CourseGroupedStats {
   @Field()
-  id: string;
+  course_id: string;
 
   @Field()
   program_id: string;
@@ -17,6 +17,9 @@ export class CourseGroupedStats {
 
   @Field()
   cohort: string;
+
+  @Field()
+  n_students: number;
 
   @Field()
   n_total: number;

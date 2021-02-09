@@ -630,14 +630,7 @@ export function Dashboard() {
                         value.type_admission == chosenAdmissionType &&
                         value.program_id == programData.id &&
                         value.cohort == chosenCohort &&
-                        value.id == code
-                    );
-                    const datosComplementary = programData.groupedComplementary.filter(
-                      (value) =>
-                        value.curriculum == curriculumId &&
-                        value.type_admission == chosenAdmissionType &&
-                        value.program_id == programData.id &&
-                        value.cohort == chosenCohort
+                        value.course_id == code
                     );
 
                     return {
@@ -653,9 +646,7 @@ export function Dashboard() {
                       historicDistribution: historicalDistribution,
                       bandColors,
                       n_passed: dataFiltrada[0] ? dataFiltrada[0].n_pass : 0,
-                      n_total: datosComplementary[0]
-                        ? datosComplementary[0].total_students
-                        : 0,
+                      n_total: dataFiltrada[0] ? dataFiltrada[0].n_students : 0,
                       agroupedDistribution: dataFiltrada[0]
                         ? dataFiltrada[0].distribution
                         : [],

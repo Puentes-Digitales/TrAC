@@ -24,14 +24,1418 @@ const data: {
 
       courseGroupedStats: [
         {
-          id: "INFO280-17",
+          course_id: "INFO280-17",
           program_id: "1708",
           curriculum: "2017",
           type_admission: "PACE",
           cohort: "2016",
-          n_total: 10,
+          n_students: 29,
+          n_total: 8,
+          n_finished: 4,
+          n_pass: 4,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 6,
+            },
+            {
+              label: "2-3",
+              value: 6,
+            },
+            {
+              label: "3-4",
+              value: 6,
+            },
+            {
+              label: "4-5",
+              value: 4,
+            },
+            {
+              label: "5-6",
+              value: 3,
+            },
+            {
+              label: "6-7",
+              value: 1,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN150-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "2016",
+          n_students: 22,
+          n_total: 15,
           n_finished: 9,
           n_pass: 9,
+          n_fail: 0,
+          n_drop: 6,
+          distribution: [
+            {
+              label: "1-2",
+              value: 1,
+            },
+            {
+              label: "2-3",
+              value: 2,
+            },
+            {
+              label: "3-4",
+              value: 4,
+            },
+            {
+              label: "4-5",
+              value: 7,
+            },
+            {
+              label: "5-6",
+              value: 3,
+            },
+            {
+              label: "6-7",
+              value: 9,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO139-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "2016",
+          n_students: 24,
+          n_total: 10,
+          n_finished: 6,
+          n_pass: 6,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 0,
+            },
+            {
+              label: "2-3",
+              value: 6,
+            },
+            {
+              label: "3-4",
+              value: 0,
+            },
+            {
+              label: "4-5",
+              value: 2,
+            },
+            {
+              label: "5-6",
+              value: 1,
+            },
+            {
+              label: "6-7",
+              value: 9,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "2016",
+          n_students: 29,
+          n_total: 5,
+          n_finished: 4,
+          n_pass: 4,
+          n_fail: 0,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 3,
+            },
+            {
+              label: "2-3",
+              value: 3,
+            },
+            {
+              label: "3-4",
+              value: 0,
+            },
+            {
+              label: "4-5",
+              value: 0,
+            },
+            {
+              label: "5-6",
+              value: 3,
+            },
+            {
+              label: "6-7",
+              value: 7,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "ELECT116",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "2016",
+          n_students: 22,
+          n_total: 5,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 2,
+            },
+            {
+              label: "2-3",
+              value: 4,
+            },
+            {
+              label: "3-4",
+              value: 3,
+            },
+            {
+              label: "4-5",
+              value: 9,
+            },
+            {
+              label: "5-6",
+              value: 9,
+            },
+            {
+              label: "6-7",
+              value: 2,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO280-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_students: 22,
+          n_total: 15,
+          n_finished: 9,
+          n_pass: 9,
+          n_fail: 0,
+          n_drop: 6,
+          distribution: [
+            {
+              label: "1-2",
+              value: 4,
+            },
+            {
+              label: "2-3",
+              value: 1,
+            },
+            {
+              label: "3-4",
+              value: 7,
+            },
+            {
+              label: "4-5",
+              value: 7,
+            },
+            {
+              label: "5-6",
+              value: 0,
+            },
+            {
+              label: "6-7",
+              value: 4,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN150-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_students: 29,
+          n_total: 7,
+          n_finished: 3,
+          n_pass: 3,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 4,
+            },
+            {
+              label: "2-3",
+              value: 3,
+            },
+            {
+              label: "3-4",
+              value: 4,
+            },
+            {
+              label: "4-5",
+              value: 8,
+            },
+            {
+              label: "5-6",
+              value: 1,
+            },
+            {
+              label: "6-7",
+              value: 8,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO139-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_students: 23,
+          n_total: 14,
+          n_finished: 8,
+          n_pass: 8,
+          n_fail: 0,
+          n_drop: 6,
+          distribution: [
+            {
+              label: "1-2",
+              value: 9,
+            },
+            {
+              label: "2-3",
+              value: 5,
+            },
+            {
+              label: "3-4",
+              value: 1,
+            },
+            {
+              label: "4-5",
+              value: 1,
+            },
+            {
+              label: "5-6",
+              value: 7,
+            },
+            {
+              label: "6-7",
+              value: 1,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_students: 27,
+          n_total: 14,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 0,
+            },
+            {
+              label: "2-3",
+              value: 5,
+            },
+            {
+              label: "3-4",
+              value: 5,
+            },
+            {
+              label: "4-5",
+              value: 0,
+            },
+            {
+              label: "5-6",
+              value: 3,
+            },
+            {
+              label: "6-7",
+              value: 0,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "ELECT116",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_students: 27,
+          n_total: 17,
+          n_finished: 7,
+          n_pass: 7,
+          n_fail: 0,
+          n_drop: 10,
+          distribution: [
+            {
+              label: "1-2",
+              value: 8,
+            },
+            {
+              label: "2-3",
+              value: 6,
+            },
+            {
+              label: "3-4",
+              value: 9,
+            },
+            {
+              label: "4-5",
+              value: 1,
+            },
+            {
+              label: "5-6",
+              value: 0,
+            },
+            {
+              label: "6-7",
+              value: 0,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO280-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "",
+          n_students: 27,
+          n_total: 3,
+          n_finished: 2,
+          n_pass: 2,
+          n_fail: 0,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 7,
+            },
+            {
+              label: "2-3",
+              value: 5,
+            },
+            {
+              label: "3-4",
+              value: 6,
+            },
+            {
+              label: "4-5",
+              value: 2,
+            },
+            {
+              label: "5-6",
+              value: 1,
+            },
+            {
+              label: "6-7",
+              value: 3,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN150-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "",
+          n_students: 26,
+          n_total: 18,
+          n_finished: 12,
+          n_pass: 12,
+          n_fail: 0,
+          n_drop: 6,
+          distribution: [
+            {
+              label: "1-2",
+              value: 4,
+            },
+            {
+              label: "2-3",
+              value: 7,
+            },
+            {
+              label: "3-4",
+              value: 3,
+            },
+            {
+              label: "4-5",
+              value: 1,
+            },
+            {
+              label: "5-6",
+              value: 4,
+            },
+            {
+              label: "6-7",
+              value: 1,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO139-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "",
+          n_students: 28,
+          n_total: 15,
+          n_finished: 13,
+          n_pass: 13,
+          n_fail: 0,
+          n_drop: 2,
+          distribution: [
+            {
+              label: "1-2",
+              value: 9,
+            },
+            {
+              label: "2-3",
+              value: 9,
+            },
+            {
+              label: "3-4",
+              value: 0,
+            },
+            {
+              label: "4-5",
+              value: 4,
+            },
+            {
+              label: "5-6",
+              value: 2,
+            },
+            {
+              label: "6-7",
+              value: 4,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "",
+          n_students: 25,
+          n_total: 3,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 2,
+          distribution: [
+            {
+              label: "1-2",
+              value: 2,
+            },
+            {
+              label: "2-3",
+              value: 4,
+            },
+            {
+              label: "3-4",
+              value: 8,
+            },
+            {
+              label: "4-5",
+              value: 2,
+            },
+            {
+              label: "5-6",
+              value: 6,
+            },
+            {
+              label: "6-7",
+              value: 6,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "ELECT116",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "",
+          n_students: 23,
+          n_total: 5,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 9,
+            },
+            {
+              label: "2-3",
+              value: 5,
+            },
+            {
+              label: "3-4",
+              value: 0,
+            },
+            {
+              label: "4-5",
+              value: 4,
+            },
+            {
+              label: "5-6",
+              value: 8,
+            },
+            {
+              label: "6-7",
+              value: 1,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO280-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "2016",
+          n_students: 24,
+          n_total: 12,
+          n_finished: 8,
+          n_pass: 8,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 6,
+            },
+            {
+              label: "2-3",
+              value: 0,
+            },
+            {
+              label: "3-4",
+              value: 4,
+            },
+            {
+              label: "4-5",
+              value: 8,
+            },
+            {
+              label: "5-6",
+              value: 0,
+            },
+            {
+              label: "6-7",
+              value: 9,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN150-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "2016",
+          n_students: 25,
+          n_total: 11,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 3,
+            },
+            {
+              label: "2-3",
+              value: 9,
+            },
+            {
+              label: "3-4",
+              value: 9,
+            },
+            {
+              label: "4-5",
+              value: 2,
+            },
+            {
+              label: "5-6",
+              value: 8,
+            },
+            {
+              label: "6-7",
+              value: 4,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO139-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "2016",
+          n_students: 27,
+          n_total: 9,
+          n_finished: 5,
+          n_pass: 5,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 2,
+            },
+            {
+              label: "2-3",
+              value: 8,
+            },
+            {
+              label: "3-4",
+              value: 7,
+            },
+            {
+              label: "4-5",
+              value: 6,
+            },
+            {
+              label: "5-6",
+              value: 9,
+            },
+            {
+              label: "6-7",
+              value: 2,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "2016",
+          n_students: 22,
+          n_total: 7,
+          n_finished: 4,
+          n_pass: 4,
+          n_fail: 0,
+          n_drop: 3,
+          distribution: [
+            {
+              label: "1-2",
+              value: 2,
+            },
+            {
+              label: "2-3",
+              value: 7,
+            },
+            {
+              label: "3-4",
+              value: 9,
+            },
+            {
+              label: "4-5",
+              value: 1,
+            },
+            {
+              label: "5-6",
+              value: 5,
+            },
+            {
+              label: "6-7",
+              value: 4,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "ELECT116",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "2016",
+          n_students: 28,
+          n_total: 15,
+          n_finished: 2,
+          n_pass: 2,
+          n_fail: 0,
+          n_drop: 13,
+          distribution: [
+            {
+              label: "1-2",
+              value: 0,
+            },
+            {
+              label: "2-3",
+              value: 8,
+            },
+            {
+              label: "3-4",
+              value: 0,
+            },
+            {
+              label: "4-5",
+              value: 7,
+            },
+            {
+              label: "5-6",
+              value: 2,
+            },
+            {
+              label: "6-7",
+              value: 8,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO280-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_students: 29,
+          n_total: 13,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 3,
+          distribution: [
+            {
+              label: "1-2",
+              value: 9,
+            },
+            {
+              label: "2-3",
+              value: 9,
+            },
+            {
+              label: "3-4",
+              value: 4,
+            },
+            {
+              label: "4-5",
+              value: 3,
+            },
+            {
+              label: "5-6",
+              value: 3,
+            },
+            {
+              label: "6-7",
+              value: 2,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN150-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_students: 27,
+          n_total: 15,
+          n_finished: 5,
+          n_pass: 5,
+          n_fail: 0,
+          n_drop: 10,
+          distribution: [
+            {
+              label: "1-2",
+              value: 3,
+            },
+            {
+              label: "2-3",
+              value: 1,
+            },
+            {
+              label: "3-4",
+              value: 8,
+            },
+            {
+              label: "4-5",
+              value: 8,
+            },
+            {
+              label: "5-6",
+              value: 8,
+            },
+            {
+              label: "6-7",
+              value: 6,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO139-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_students: 28,
+          n_total: 3,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 2,
+          distribution: [
+            {
+              label: "1-2",
+              value: 8,
+            },
+            {
+              label: "2-3",
+              value: 4,
+            },
+            {
+              label: "3-4",
+              value: 9,
+            },
+            {
+              label: "4-5",
+              value: 7,
+            },
+            {
+              label: "5-6",
+              value: 0,
+            },
+            {
+              label: "6-7",
+              value: 3,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_students: 29,
+          n_total: 14,
+          n_finished: 13,
+          n_pass: 13,
           n_fail: 0,
           n_drop: 1,
           distribution: [
@@ -41,19 +1445,202 @@ const data: {
             },
             {
               label: "2-3",
-              value: 4,
+              value: 2,
             },
             {
               label: "3-4",
-              value: 8,
+              value: 5,
             },
             {
               label: "4-5",
-              value: 8,
+              value: 2,
             },
             {
               label: "5-6",
               value: 1,
+            },
+            {
+              label: "6-7",
+              value: 0,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "ELECT116",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_students: 25,
+          n_total: 12,
+          n_finished: 3,
+          n_pass: 3,
+          n_fail: 0,
+          n_drop: 9,
+          distribution: [
+            {
+              label: "1-2",
+              value: 5,
+            },
+            {
+              label: "2-3",
+              value: 1,
+            },
+            {
+              label: "3-4",
+              value: 4,
+            },
+            {
+              label: "4-5",
+              value: 0,
+            },
+            {
+              label: "5-6",
+              value: 5,
+            },
+            {
+              label: "6-7",
+              value: 6,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO280-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "",
+          n_students: 25,
+          n_total: 11,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 3,
+            },
+            {
+              label: "2-3",
+              value: 7,
+            },
+            {
+              label: "3-4",
+              value: 6,
+            },
+            {
+              label: "4-5",
+              value: 2,
+            },
+            {
+              label: "5-6",
+              value: 4,
+            },
+            {
+              label: "6-7",
+              value: 9,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN150-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "",
+          n_students: 29,
+          n_total: 6,
+          n_finished: 2,
+          n_pass: 2,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 0,
+            },
+            {
+              label: "2-3",
+              value: 8,
+            },
+            {
+              label: "3-4",
+              value: 6,
+            },
+            {
+              label: "4-5",
+              value: 6,
+            },
+            {
+              label: "5-6",
+              value: 9,
             },
             {
               label: "6-7",
@@ -84,20 +1671,82 @@ const data: {
           ],
         },
         {
-          id: "BAIN150-17",
+          course_id: "INFO139-17",
           program_id: "1708",
-          curriculum: "2017",
+          curriculum: "",
           type_admission: "PACE",
-          cohort: "2016",
-          n_total: 12,
-          n_finished: 2,
-          n_pass: 2,
+          cohort: "",
+          n_students: 29,
+          n_total: 3,
+          n_finished: 1,
+          n_pass: 1,
           n_fail: 0,
-          n_drop: 10,
+          n_drop: 2,
           distribution: [
             {
               label: "1-2",
-              value: 2,
+              value: 1,
+            },
+            {
+              label: "2-3",
+              value: 9,
+            },
+            {
+              label: "3-4",
+              value: 5,
+            },
+            {
+              label: "4-5",
+              value: 0,
+            },
+            {
+              label: "5-6",
+              value: 4,
+            },
+            {
+              label: "6-7",
+              value: 7,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "",
+          n_students: 25,
+          n_total: 15,
+          n_finished: 9,
+          n_pass: 9,
+          n_fail: 0,
+          n_drop: 6,
+          distribution: [
+            {
+              label: "1-2",
+              value: 0,
             },
             {
               label: "2-3",
@@ -109,15 +1758,15 @@ const data: {
             },
             {
               label: "4-5",
-              value: 2,
+              value: 7,
             },
             {
               label: "5-6",
-              value: 0,
+              value: 5,
             },
             {
               label: "6-7",
-              value: 8,
+              value: 7,
             },
           ],
           color_bands: [
@@ -144,20 +1793,265 @@ const data: {
           ],
         },
         {
-          id: "INFO278-17",
+          course_id: "ELECT116",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PACE",
+          cohort: "",
+          n_students: 26,
+          n_total: 6,
+          n_finished: 2,
+          n_pass: 2,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 0,
+            },
+            {
+              label: "2-3",
+              value: 6,
+            },
+            {
+              label: "3-4",
+              value: 6,
+            },
+            {
+              label: "4-5",
+              value: 1,
+            },
+            {
+              label: "5-6",
+              value: 8,
+            },
+            {
+              label: "6-7",
+              value: 5,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO280-17",
           program_id: "1708",
           curriculum: "2017",
-          type_admission: "PACE",
+          type_admission: "PSU",
           cohort: "2016",
-          n_total: 11,
-          n_finished: 8,
-          n_pass: 8,
+          n_students: 22,
+          n_total: 15,
+          n_finished: 14,
+          n_pass: 14,
           n_fail: 0,
-          n_drop: 3,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 5,
+            },
+            {
+              label: "2-3",
+              value: 2,
+            },
+            {
+              label: "3-4",
+              value: 8,
+            },
+            {
+              label: "4-5",
+              value: 8,
+            },
+            {
+              label: "5-6",
+              value: 0,
+            },
+            {
+              label: "6-7",
+              value: 4,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN150-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PSU",
+          cohort: "2016",
+          n_students: 23,
+          n_total: 9,
+          n_finished: 5,
+          n_pass: 5,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 8,
+            },
+            {
+              label: "2-3",
+              value: 0,
+            },
+            {
+              label: "3-4",
+              value: 3,
+            },
+            {
+              label: "4-5",
+              value: 7,
+            },
+            {
+              label: "5-6",
+              value: 4,
+            },
+            {
+              label: "6-7",
+              value: 4,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO139-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PSU",
+          cohort: "2016",
+          n_students: 25,
+          n_total: 13,
+          n_finished: 12,
+          n_pass: 12,
+          n_fail: 0,
+          n_drop: 1,
           distribution: [
             {
               label: "1-2",
               value: 7,
+            },
+            {
+              label: "2-3",
+              value: 8,
+            },
+            {
+              label: "3-4",
+              value: 9,
+            },
+            {
+              label: "4-5",
+              value: 5,
+            },
+            {
+              label: "5-6",
+              value: 3,
+            },
+            {
+              label: "6-7",
+              value: 0,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PSU",
+          cohort: "2016",
+          n_students: 29,
+          n_total: 14,
+          n_finished: 7,
+          n_pass: 7,
+          n_fail: 0,
+          n_drop: 7,
+          distribution: [
+            {
+              label: "1-2",
+              value: 2,
             },
             {
               label: "2-3",
@@ -165,19 +2059,19 @@ const data: {
             },
             {
               label: "3-4",
-              value: 6,
+              value: 7,
             },
             {
               label: "4-5",
-              value: 7,
+              value: 0,
             },
             {
               label: "5-6",
-              value: 2,
+              value: 7,
             },
             {
               label: "6-7",
-              value: 7,
+              value: 0,
             },
           ],
           color_bands: [
@@ -204,371 +2098,12 @@ const data: {
           ],
         },
         {
-          id: "INFO295-17",
+          course_id: "ELECT116",
           program_id: "1708",
           curriculum: "2017",
-          type_admission: "PACE",
+          type_admission: "PSU",
           cohort: "2016",
-          n_total: 10,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 7,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 5,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 10,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "2020",
-          n_total: 10,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 8,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 13,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 11,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "2017",
+          n_students: 28,
           n_total: 19,
           n_finished: 15,
           n_pass: 15,
@@ -581,203 +2116,23 @@ const data: {
             },
             {
               label: "2-3",
-              value: 8,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 4,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 12,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 17,
-          n_finished: 8,
-          n_pass: 8,
-          n_fail: 0,
-          n_drop: 9,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
               value: 1,
             },
             {
               label: "3-4",
-              value: 7,
+              value: 3,
             },
             {
               label: "4-5",
-              value: 8,
+              value: 9,
             },
             {
               label: "5-6",
-              value: 4,
+              value: 3,
             },
             {
               label: "6-7",
-              value: 1,
+              value: 3,
             },
           ],
           color_bands: [
@@ -804,314 +2159,15 @@ const data: {
           ],
         },
         {
-          id: "EICI146-17",
+          course_id: "INFO280-17",
           program_id: "1708",
           curriculum: "2017",
-          type_admission: "PACE",
+          type_admission: "PSU",
           cohort: "2017",
-          n_total: 17,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 14,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 7,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 18,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 17,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 18,
+          n_students: 22,
+          n_total: 13,
           n_finished: 12,
           n_pass: 12,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 17,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 12,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
           n_fail: 0,
           n_drop: 1,
           distribution: [
@@ -1121,143 +2177,23 @@ const data: {
             },
             {
               label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 16,
-          n_finished: 8,
-          n_pass: 8,
-          n_fail: 0,
-          n_drop: 8,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 5,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
               value: 7,
             },
             {
-              label: "2-3",
-              value: 8,
-            },
-            {
               label: "3-4",
-              value: 4,
+              value: 3,
             },
             {
               label: "4-5",
-              value: 4,
+              value: 3,
             },
             {
               label: "5-6",
-              value: 1,
+              value: 9,
             },
             {
               label: "6-7",
-              value: 3,
+              value: 2,
             },
           ],
           color_bands: [
@@ -1284,11 +2220,12 @@ const data: {
           ],
         },
         {
-          id: "ELECT116",
+          course_id: "BAIN150-17",
           program_id: "1708",
           curriculum: "2017",
-          type_admission: "PACE",
-          cohort: "",
+          type_admission: "PSU",
+          cohort: "2017",
+          n_students: 27,
           n_total: 8,
           n_finished: 7,
           n_pass: 7,
@@ -1297,27 +2234,27 @@ const data: {
           distribution: [
             {
               label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
               value: 2,
             },
             {
+              label: "2-3",
+              value: 8,
+            },
+            {
+              label: "3-4",
+              value: 4,
+            },
+            {
+              label: "4-5",
+              value: 4,
+            },
+            {
+              label: "5-6",
+              value: 0,
+            },
+            {
               label: "6-7",
-              value: 6,
+              value: 7,
             },
           ],
           color_bands: [
@@ -1344,11 +2281,12 @@ const data: {
           ],
         },
         {
-          id: "INFO280-17",
+          course_id: "INFO139-17",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2016",
+          curriculum: "2017",
+          type_admission: "PSU",
+          cohort: "2017",
+          n_students: 26,
           n_total: 5,
           n_finished: 4,
           n_pass: 4,
@@ -1357,255 +2295,15 @@ const data: {
           distribution: [
             {
               label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
               value: 7,
             },
             {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 7,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
               label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 4,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 12,
-          n_finished: 7,
-          n_pass: 7,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
               value: 5,
-            },
-            {
-              label: "2-3",
-              value: 3,
             },
             {
               label: "3-4",
               value: 5,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 4,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
-            {
-              label: "2-3",
-              value: 8,
-            },
-            {
-              label: "3-4",
-              value: 7,
             },
             {
               label: "4-5",
@@ -1613,309 +2311,9 @@ const data: {
             },
             {
               label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 5,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 9,
-          n_finished: 8,
-          n_pass: 8,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 14,
-          n_finished: 13,
-          n_pass: 13,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 11,
-          n_finished: 9,
-          n_pass: 9,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
-            {
-              label: "2-3",
-              value: 3,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 11,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 8,
-            },
-            {
-              label: "3-4",
-              value: 8,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 13,
-          n_finished: 12,
-          n_pass: 12,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
               value: 7,
             },
             {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
               label: "6-7",
               value: 5,
             },
@@ -1944,821 +2342,42 @@ const data: {
           ],
         },
         {
-          id: "INFO295-17",
+          course_id: "EICI146-17",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
+          curriculum: "2017",
+          type_admission: "PSU",
           cohort: "2017",
-          n_total: 13,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 12,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 7,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 18,
+          n_students: 28,
+          n_total: 19,
           n_finished: 14,
           n_pass: 14,
           n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 9,
-          n_finished: 7,
-          n_pass: 7,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 3,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 5,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 5,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 11,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
           n_drop: 5,
           distribution: [
             {
               label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 7,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 5,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
               value: 7,
             },
             {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 11,
-          n_finished: 9,
-          n_pass: 9,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
               label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 7,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
               value: 5,
             },
             {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 7,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
               label: "3-4",
-              value: 2,
+              value: 9,
             },
             {
               label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 19,
-          n_finished: 13,
-          n_pass: 13,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
               value: 2,
             },
+            {
+              label: "5-6",
+              value: 1,
+            },
+            {
+              label: "6-7",
+              value: 5,
+            },
           ],
           color_bands: [
             {
@@ -2784,272 +2403,33 @@ const data: {
           ],
         },
         {
-          id: "INFO295-17",
+          course_id: "ELECT116",
           program_id: "1708",
           curriculum: "2017",
           type_admission: "PSU",
-          cohort: "2016",
-          n_total: 5,
+          cohort: "2017",
+          n_students: 20,
+          n_total: 14,
           n_finished: 4,
           n_pass: 4,
           n_fail: 0,
-          n_drop: 1,
+          n_drop: 10,
           distribution: [
             {
               label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 5,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 14,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 13,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 5,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 8,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
               value: 4,
             },
             {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 11,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 8,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
               label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 15,
-          n_finished: 14,
-          n_pass: 14,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
               value: 3,
             },
             {
-              label: "2-3",
-              value: 6,
-            },
-            {
               label: "3-4",
-              value: 4,
+              value: 0,
             },
             {
               label: "4-5",
-              value: 0,
+              value: 9,
             },
             {
               label: "5-6",
@@ -3057,366 +2437,6 @@ const data: {
             },
             {
               label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 8,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 6,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 12,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 5,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 18,
-          n_finished: 13,
-          n_pass: 13,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 8,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
               value: 6,
             },
           ],
@@ -3444,191 +2464,12 @@ const data: {
           ],
         },
         {
-          id: "INFO280-17",
+          course_id: "INFO280-17",
           program_id: "1708",
           curriculum: "2017",
           type_admission: "PSU",
           cohort: "",
-          n_total: 14,
-          n_finished: 11,
-          n_pass: 11,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 8,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 7,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 5,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 5,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "",
+          n_students: 20,
           n_total: 4,
           n_finished: 3,
           n_pass: 3,
@@ -3637,27 +2478,27 @@ const data: {
           distribution: [
             {
               label: "1-2",
-              value: 6,
+              value: 2,
             },
             {
               label: "2-3",
-              value: 5,
+              value: 3,
             },
             {
               label: "3-4",
-              value: 8,
+              value: 2,
             },
             {
               label: "4-5",
-              value: 8,
+              value: 4,
             },
             {
               label: "5-6",
-              value: 0,
+              value: 7,
             },
             {
               label: "6-7",
-              value: 9,
+              value: 2,
             },
           ],
           color_bands: [
@@ -3684,1177 +2525,38 @@ const data: {
           ],
         },
         {
-          id: "INFO139-17",
+          course_id: "BAIN150-17",
           program_id: "1708",
           curriculum: "2017",
           type_admission: "PSU",
           cohort: "",
-          n_total: 8,
-          n_finished: 7,
-          n_pass: 7,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 13,
-          n_finished: 11,
-          n_pass: 11,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 6,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 3,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 12,
-          n_finished: 11,
-          n_pass: 11,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 9,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 6,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 8,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 7,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 12,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2016",
+          n_students: 25,
           n_total: 3,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 15,
-          n_finished: 7,
-          n_pass: 7,
-          n_fail: 0,
-          n_drop: 8,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 8,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 13,
-          n_finished: 9,
-          n_pass: 9,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 19,
-          n_finished: 18,
-          n_pass: 18,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 5,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 8,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 5,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 17,
-          n_finished: 10,
-          n_pass: 10,
-          n_fail: 0,
-          n_drop: 7,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 2,
           n_finished: 1,
           n_pass: 1,
           n_fail: 0,
-          n_drop: 1,
+          n_drop: 2,
           distribution: [
             {
               label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
               value: 3,
             },
             {
-              label: "5-6",
+              label: "2-3",
               value: 2,
             },
             {
-              label: "6-7",
+              label: "3-4",
+              value: 4,
+            },
+            {
+              label: "4-5",
+              value: 1,
+            },
+            {
+              label: "5-6",
               value: 0,
             },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 15,
-          n_finished: 7,
-          n_pass: 7,
-          n_fail: 0,
-          n_drop: 8,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 5,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 17,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 11,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 17,
-          n_finished: 9,
-          n_pass: 9,
-          n_fail: 0,
-          n_drop: 8,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 8,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 7,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
             {
               label: "6-7",
               value: 8,
@@ -4884,80 +2586,21 @@ const data: {
           ],
         },
         {
-          id: "INFO295-17",
+          course_id: "INFO139-17",
           program_id: "1708",
-          curriculum: "",
+          curriculum: "2017",
           type_admission: "PSU",
           cohort: "",
-          n_total: 11,
-          n_finished: 8,
-          n_pass: 8,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 7,
+          n_students: 26,
+          n_total: 6,
           n_finished: 5,
           n_pass: 5,
           n_fail: 0,
-          n_drop: 2,
+          n_drop: 1,
           distribution: [
             {
               label: "1-2",
-              value: 3,
+              value: 4,
             },
             {
               label: "2-3",
@@ -4969,11 +2612,72 @@ const data: {
             },
             {
               label: "4-5",
-              value: 3,
+              value: 4,
             },
             {
               label: "5-6",
-              value: 4,
+              value: 1,
+            },
+            {
+              label: "6-7",
+              value: 5,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PSU",
+          cohort: "",
+          n_students: 29,
+          n_total: 12,
+          n_finished: 11,
+          n_pass: 11,
+          n_fail: 0,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 0,
+            },
+            {
+              label: "2-3",
+              value: 1,
+            },
+            {
+              label: "3-4",
+              value: 6,
+            },
+            {
+              label: "4-5",
+              value: 0,
+            },
+            {
+              label: "5-6",
+              value: 1,
             },
             {
               label: "6-7",
@@ -5004,40 +2708,41 @@ const data: {
           ],
         },
         {
-          id: "EICI146-17",
+          course_id: "ELECT116",
           program_id: "1708",
-          curriculum: "",
+          curriculum: "2017",
           type_admission: "PSU",
           cohort: "",
-          n_total: 8,
-          n_finished: 2,
-          n_pass: 2,
+          n_students: 23,
+          n_total: 9,
+          n_finished: 1,
+          n_pass: 1,
           n_fail: 0,
-          n_drop: 6,
+          n_drop: 8,
           distribution: [
             {
               label: "1-2",
-              value: 3,
+              value: 1,
             },
             {
               label: "2-3",
-              value: 8,
+              value: 7,
             },
             {
               label: "3-4",
-              value: 3,
+              value: 4,
             },
             {
               label: "4-5",
-              value: 5,
+              value: 9,
             },
             {
               label: "5-6",
-              value: 5,
+              value: 7,
             },
             {
               label: "6-7",
-              value: 0,
+              value: 1,
             },
           ],
           color_bands: [
@@ -5064,208 +2769,29 @@ const data: {
           ],
         },
         {
-          id: "ELECT116",
+          course_id: "INFO280-17",
           program_id: "1708",
           curriculum: "",
           type_admission: "PSU",
-          cohort: "",
-          n_total: 13,
-          n_finished: 4,
-          n_pass: 4,
+          cohort: "2016",
+          n_students: 26,
+          n_total: 12,
+          n_finished: 3,
+          n_pass: 3,
           n_fail: 0,
           n_drop: 9,
           distribution: [
             {
               label: "1-2",
-              value: 3,
+              value: 8,
             },
             {
               label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
               value: 5,
             },
             {
-              label: "4-5",
+              label: "3-4",
               value: 0,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 4,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 6,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 5,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 2,
             },
             {
               label: "4-5",
@@ -5273,132 +2799,12 @@ const data: {
             },
             {
               label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 9,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 3,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
               value: 8,
             },
             {
-              label: "5-6",
-              value: 9,
-            },
-            {
               label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 13,
-          n_finished: 12,
-          n_pass: 12,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
               value: 2,
             },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 5,
-            },
           ],
           color_bands: [
             {
@@ -5424,6161 +2830,42 @@ const data: {
           ],
         },
         {
-          id: "EICI146-17",
+          course_id: "BAIN150-17",
           program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
+          curriculum: "",
+          type_admission: "PSU",
           cohort: "2016",
-          n_total: 3,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 3,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 14,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 10,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 11,
-          n_finished: 8,
-          n_pass: 8,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 8,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 9,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "2017",
+          n_students: 23,
           n_total: 17,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 13,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 13,
-          n_finished: 11,
-          n_pass: 11,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 3,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 14,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 13,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 8,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 17,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 14,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 5,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "",
-          n_total: 16,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 11,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "",
-          n_total: 10,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "",
-          n_total: 15,
-          n_finished: 11,
-          n_pass: 11,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 8,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "",
-          n_total: 17,
-          n_finished: 9,
-          n_pass: 9,
-          n_fail: 0,
-          n_drop: 8,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "",
-          n_total: 7,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "2017",
-          type_admission: "",
-          cohort: "",
-          n_total: 7,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 8,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 7,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 6,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 14,
-          n_finished: 12,
-          n_pass: 12,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 17,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 16,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 9,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 3,
           n_finished: 2,
           n_pass: 2,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 12,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 10,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 12,
-          n_finished: 9,
-          n_pass: 9,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 13,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 8,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 6,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 3,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO280-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 10,
-          n_finished: 9,
-          n_pass: 9,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN150-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 4,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO278-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 10,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO295-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 7,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO139-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 16,
-          n_finished: 12,
-          n_pass: 12,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI146-17",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT116",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 9,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 16,
-          n_finished: 9,
-          n_pass: 9,
-          n_fail: 0,
-          n_drop: 7,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 8,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 12,
-          n_finished: 10,
-          n_pass: 10,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 9,
-          n_finished: 7,
-          n_pass: 7,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 4,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 8,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 19,
-          n_finished: 12,
-          n_pass: 12,
-          n_fail: 0,
-          n_drop: 7,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN038-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 10,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 9,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 11,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 6,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 6,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 11,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 10,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 8,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 18,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 12,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 5,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN038-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 13,
-          n_finished: 8,
-          n_pass: 8,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 4,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 19,
-          n_finished: 15,
-          n_pass: 15,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 15,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 12,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 8,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 6,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 8,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 18,
-          n_finished: 13,
-          n_pass: 13,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN038-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 18,
-          n_finished: 7,
-          n_pass: 7,
-          n_fail: 0,
-          n_drop: 11,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 16,
-          n_finished: 13,
-          n_pass: 13,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 5,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 5,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 3,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 14,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 8,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 7,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 5,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 3,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN038-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 5,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 19,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 13,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 16,
-          n_finished: 12,
-          n_pass: 12,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 6,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 10,
-          n_finished: 7,
-          n_pass: 7,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 6,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 5,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN038-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 18,
-          n_finished: 7,
-          n_pass: 7,
-          n_fail: 0,
-          n_drop: 11,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 8,
-            },
-            {
-              label: "3-4",
-              value: 8,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 11,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 7,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 15,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 14,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 17,
-          n_finished: 12,
-          n_pass: 12,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 10,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 7,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 7,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 14,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 9,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN038-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 4,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 6,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 5,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 5,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 3,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 12,
-          n_finished: 10,
-          n_pass: 10,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 5,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 17,
-          n_finished: 13,
-          n_pass: 13,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN038-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 6,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 6,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 3,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 16,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 11,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 9,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 7,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 8,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 15,
-          n_finished: 8,
-          n_pass: 8,
-          n_fail: 0,
-          n_drop: 7,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 6,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 17,
-          n_finished: 10,
-          n_pass: 10,
-          n_fail: 0,
-          n_drop: 7,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN038-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 7,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 11,
-          n_finished: 9,
-          n_pass: 9,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "",
-          n_total: 11,
-          n_finished: 10,
-          n_pass: 10,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "",
-          n_total: 10,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "",
-          n_total: 14,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 10,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "",
-          n_total: 16,
-          n_finished: 10,
-          n_pass: 10,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "",
-          n_total: 16,
-          n_finished: 14,
-          n_pass: 14,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 9,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN038-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "",
-          n_total: 16,
-          n_finished: 1,
-          n_pass: 1,
           n_fail: 0,
           n_drop: 15,
           distribution: [
             {
               label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 5,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "2015",
-          type_admission: "",
-          cohort: "",
-          n_total: 14,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 11,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
               value: 7,
             },
             {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 5,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
               label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 7,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
               value: 8,
             },
             {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 15,
-          n_finished: 9,
-          n_pass: 9,
-          n_fail: 0,
-          n_drop: 6,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
               label: "3-4",
-              value: 2,
+              value: 4,
             },
             {
               label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
               value: 0,
             },
+            {
+              label: "5-6",
+              value: 5,
+            },
+            {
+              label: "6-7",
+              value: 5,
+            },
           ],
           color_bands: [
             {
@@ -11604,16 +2891,78 @@ const data: {
           ],
         },
         {
-          id: "BAIN036-07",
+          course_id: "INFO139-17",
           program_id: "1708",
           curriculum: "",
-          type_admission: "PACE",
+          type_admission: "PSU",
           cohort: "2016",
-          n_total: 7,
-          n_finished: 3,
-          n_pass: 3,
+          n_students: 23,
+          n_total: 2,
+          n_finished: 1,
+          n_pass: 1,
           n_fail: 0,
-          n_drop: 4,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 8,
+            },
+            {
+              label: "2-3",
+              value: 5,
+            },
+            {
+              label: "3-4",
+              value: 9,
+            },
+            {
+              label: "4-5",
+              value: 1,
+            },
+            {
+              label: "5-6",
+              value: 2,
+            },
+            {
+              label: "6-7",
+              value: 7,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PSU",
+          cohort: "2016",
+          n_students: 25,
+          n_total: 9,
+          n_finished: 2,
+          n_pass: 2,
+          n_fail: 0,
+          n_drop: 7,
           distribution: [
             {
               label: "1-2",
@@ -11621,83 +2970,23 @@ const data: {
             },
             {
               label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
               value: 3,
             },
             {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
+              label: "3-4",
               value: 0,
             },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 16,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 15,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
             {
               label: "4-5",
-              value: 5,
+              value: 6,
             },
             {
               label: "5-6",
-              value: 4,
+              value: 3,
             },
             {
               label: "6-7",
-              value: 5,
+              value: 8,
             },
           ],
           color_bands: [
@@ -11724,11 +3013,12 @@ const data: {
           ],
         },
         {
-          id: "BAIN038-07",
+          course_id: "ELECT116",
           program_id: "1708",
           curriculum: "",
-          type_admission: "PACE",
+          type_admission: "PSU",
           cohort: "2016",
+          n_students: 23,
           n_total: 15,
           n_finished: 11,
           n_pass: 11,
@@ -11737,199 +3027,19 @@ const data: {
           distribution: [
             {
               label: "1-2",
-              value: 5,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2016",
-          n_total: 8,
-          n_finished: 7,
-          n_pass: 7,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 14,
-          n_finished: 10,
-          n_pass: 10,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
               value: 9,
             },
             {
-              label: "6-7",
+              label: "2-3",
+              value: 0,
+            },
+            {
+              label: "3-4",
               value: 7,
             },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 15,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 9,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 8,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
             {
               label: "4-5",
-              value: 1,
+              value: 6,
             },
             {
               label: "5-6",
@@ -11937,7 +3047,7 @@ const data: {
             },
             {
               label: "6-7",
-              value: 9,
+              value: 6,
             },
           ],
           color_bands: [
@@ -11964,160 +3074,41 @@ const data: {
           ],
         },
         {
-          id: "ELECT20",
+          course_id: "INFO280-17",
           program_id: "1708",
           curriculum: "",
-          type_admission: "PACE",
+          type_admission: "PSU",
           cohort: "2017",
-          n_total: 14,
-          n_finished: 12,
-          n_pass: 12,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 12,
+          n_students: 25,
+          n_total: 4,
           n_finished: 1,
           n_pass: 1,
-          n_fail: 0,
-          n_drop: 11,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 6,
-          n_finished: 3,
-          n_pass: 3,
           n_fail: 0,
           n_drop: 3,
           distribution: [
             {
               label: "1-2",
-              value: 5,
+              value: 4,
             },
             {
               label: "2-3",
-              value: 8,
+              value: 1,
             },
             {
               label: "3-4",
-              value: 8,
+              value: 0,
             },
             {
               label: "4-5",
-              value: 3,
+              value: 0,
             },
             {
               label: "5-6",
-              value: 8,
+              value: 1,
             },
             {
               label: "6-7",
-              value: 8,
+              value: 0,
             },
           ],
           color_bands: [
@@ -12144,32 +3135,704 @@ const data: {
           ],
         },
         {
-          id: "BAIN038-07",
+          course_id: "BAIN150-17",
           program_id: "1708",
           curriculum: "",
-          type_admission: "PACE",
+          type_admission: "PSU",
           cohort: "2017",
-          n_total: 16,
+          n_students: 21,
+          n_total: 4,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 3,
+          distribution: [
+            {
+              label: "1-2",
+              value: 4,
+            },
+            {
+              label: "2-3",
+              value: 8,
+            },
+            {
+              label: "3-4",
+              value: 6,
+            },
+            {
+              label: "4-5",
+              value: 2,
+            },
+            {
+              label: "5-6",
+              value: 8,
+            },
+            {
+              label: "6-7",
+              value: 2,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO139-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PSU",
+          cohort: "2017",
+          n_students: 27,
+          n_total: 17,
           n_finished: 10,
           n_pass: 10,
+          n_fail: 0,
+          n_drop: 7,
+          distribution: [
+            {
+              label: "1-2",
+              value: 2,
+            },
+            {
+              label: "2-3",
+              value: 3,
+            },
+            {
+              label: "3-4",
+              value: 4,
+            },
+            {
+              label: "4-5",
+              value: 3,
+            },
+            {
+              label: "5-6",
+              value: 1,
+            },
+            {
+              label: "6-7",
+              value: 4,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PSU",
+          cohort: "2017",
+          n_students: 25,
+          n_total: 16,
+          n_finished: 9,
+          n_pass: 9,
+          n_fail: 0,
+          n_drop: 7,
+          distribution: [
+            {
+              label: "1-2",
+              value: 2,
+            },
+            {
+              label: "2-3",
+              value: 1,
+            },
+            {
+              label: "3-4",
+              value: 8,
+            },
+            {
+              label: "4-5",
+              value: 2,
+            },
+            {
+              label: "5-6",
+              value: 2,
+            },
+            {
+              label: "6-7",
+              value: 3,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "ELECT116",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PSU",
+          cohort: "2017",
+          n_students: 20,
+          n_total: 10,
+          n_finished: 5,
+          n_pass: 5,
+          n_fail: 0,
+          n_drop: 5,
+          distribution: [
+            {
+              label: "1-2",
+              value: 2,
+            },
+            {
+              label: "2-3",
+              value: 9,
+            },
+            {
+              label: "3-4",
+              value: 7,
+            },
+            {
+              label: "4-5",
+              value: 4,
+            },
+            {
+              label: "5-6",
+              value: 7,
+            },
+            {
+              label: "6-7",
+              value: 2,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO280-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PSU",
+          cohort: "",
+          n_students: 22,
+          n_total: 8,
+          n_finished: 2,
+          n_pass: 2,
           n_fail: 0,
           n_drop: 6,
           distribution: [
             {
               label: "1-2",
-              value: 0,
+              value: 3,
             },
             {
               label: "2-3",
-              value: 2,
+              value: 7,
             },
             {
               label: "3-4",
-              value: 9,
+              value: 1,
             },
             {
               label: "4-5",
+              value: 7,
+            },
+            {
+              label: "5-6",
+              value: 4,
+            },
+            {
+              label: "6-7",
+              value: 0,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN150-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PSU",
+          cohort: "",
+          n_students: 24,
+          n_total: 7,
+          n_finished: 3,
+          n_pass: 3,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
               value: 2,
+            },
+            {
+              label: "2-3",
+              value: 6,
+            },
+            {
+              label: "3-4",
+              value: 7,
+            },
+            {
+              label: "4-5",
+              value: 7,
+            },
+            {
+              label: "5-6",
+              value: 4,
+            },
+            {
+              label: "6-7",
+              value: 4,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO139-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PSU",
+          cohort: "",
+          n_students: 27,
+          n_total: 10,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 9,
+          distribution: [
+            {
+              label: "1-2",
+              value: 4,
+            },
+            {
+              label: "2-3",
+              value: 1,
+            },
+            {
+              label: "3-4",
+              value: 3,
+            },
+            {
+              label: "4-5",
+              value: 9,
+            },
+            {
+              label: "5-6",
+              value: 6,
+            },
+            {
+              label: "6-7",
+              value: 3,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PSU",
+          cohort: "",
+          n_students: 20,
+          n_total: 3,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 2,
+          distribution: [
+            {
+              label: "1-2",
+              value: 3,
+            },
+            {
+              label: "2-3",
+              value: 6,
+            },
+            {
+              label: "3-4",
+              value: 3,
+            },
+            {
+              label: "4-5",
+              value: 9,
+            },
+            {
+              label: "5-6",
+              value: 0,
+            },
+            {
+              label: "6-7",
+              value: 0,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "ELECT116",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "PSU",
+          cohort: "",
+          n_students: 22,
+          n_total: 12,
+          n_finished: 2,
+          n_pass: 2,
+          n_fail: 0,
+          n_drop: 10,
+          distribution: [
+            {
+              label: "1-2",
+              value: 4,
+            },
+            {
+              label: "2-3",
+              value: 3,
+            },
+            {
+              label: "3-4",
+              value: 7,
+            },
+            {
+              label: "4-5",
+              value: 0,
+            },
+            {
+              label: "5-6",
+              value: 0,
+            },
+            {
+              label: "6-7",
+              value: 3,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO280-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "2016",
+          n_students: 28,
+          n_total: 16,
+          n_finished: 7,
+          n_pass: 7,
+          n_fail: 0,
+          n_drop: 9,
+          distribution: [
+            {
+              label: "1-2",
+              value: 7,
+            },
+            {
+              label: "2-3",
+              value: 9,
+            },
+            {
+              label: "3-4",
+              value: 7,
+            },
+            {
+              label: "4-5",
+              value: 7,
+            },
+            {
+              label: "5-6",
+              value: 0,
+            },
+            {
+              label: "6-7",
+              value: 1,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN150-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "2016",
+          n_students: 27,
+          n_total: 8,
+          n_finished: 2,
+          n_pass: 2,
+          n_fail: 0,
+          n_drop: 6,
+          distribution: [
+            {
+              label: "1-2",
+              value: 3,
+            },
+            {
+              label: "2-3",
+              value: 9,
+            },
+            {
+              label: "3-4",
+              value: 8,
+            },
+            {
+              label: "4-5",
+              value: 9,
+            },
+            {
+              label: "5-6",
+              value: 4,
+            },
+            {
+              label: "6-7",
+              value: 0,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO139-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "2016",
+          n_students: 21,
+          n_total: 13,
+          n_finished: 7,
+          n_pass: 7,
+          n_fail: 0,
+          n_drop: 6,
+          distribution: [
+            {
+              label: "1-2",
+              value: 7,
+            },
+            {
+              label: "2-3",
+              value: 4,
+            },
+            {
+              label: "3-4",
+              value: 5,
+            },
+            {
+              label: "4-5",
+              value: 3,
             },
             {
               label: "5-6",
@@ -12177,7 +3840,7 @@ const data: {
             },
             {
               label: "6-7",
-              value: 1,
+              value: 2,
             },
           ],
           color_bands: [
@@ -12204,280 +3867,102 @@ const data: {
           ],
         },
         {
-          id: "BAIN041-07",
+          course_id: "EICI146-17",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "2017",
-          n_total: 5,
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "2016",
+          n_students: 24,
+          n_total: 19,
           n_finished: 4,
           n_pass: 4,
+          n_fail: 0,
+          n_drop: 15,
+          distribution: [
+            {
+              label: "1-2",
+              value: 9,
+            },
+            {
+              label: "2-3",
+              value: 7,
+            },
+            {
+              label: "3-4",
+              value: 8,
+            },
+            {
+              label: "4-5",
+              value: 8,
+            },
+            {
+              label: "5-6",
+              value: 9,
+            },
+            {
+              label: "6-7",
+              value: 6,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "ELECT116",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "2016",
+          n_students: 23,
+          n_total: 2,
+          n_finished: 1,
+          n_pass: 1,
           n_fail: 0,
           n_drop: 1,
           distribution: [
             {
               label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 5,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 6,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
               value: 1,
             },
             {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
+              label: "2-3",
               value: 0,
             },
             {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 19,
-          n_finished: 8,
-          n_pass: 8,
-          n_fail: 0,
-          n_drop: 11,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
               label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 12,
-          n_finished: 10,
-          n_pass: 10,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 4,
-            },
-            {
-              label: "4-5",
               value: 0,
             },
             {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 9,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 3,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
               label: "4-5",
-              value: 1,
+              value: 5,
             },
             {
               label: "5-6",
-              value: 9,
+              value: 6,
             },
             {
               label: "6-7",
-              value: 1,
+              value: 0,
             },
           ],
           color_bands: [
@@ -12504,11 +3989,12 @@ const data: {
           ],
         },
         {
-          id: "INFO284-08",
+          course_id: "INFO280-17",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "2017",
+          n_students: 25,
           n_total: 7,
           n_finished: 6,
           n_pass: 6,
@@ -12517,11 +4003,11 @@ const data: {
           distribution: [
             {
               label: "1-2",
-              value: 9,
+              value: 7,
             },
             {
               label: "2-3",
-              value: 3,
+              value: 0,
             },
             {
               label: "3-4",
@@ -12529,15 +4015,15 @@ const data: {
             },
             {
               label: "4-5",
-              value: 6,
+              value: 5,
             },
             {
               label: "5-6",
-              value: 4,
+              value: 3,
             },
             {
               label: "6-7",
-              value: 4,
+              value: 3,
             },
           ],
           color_bands: [
@@ -12564,16 +4050,78 @@ const data: {
           ],
         },
         {
-          id: "BAIN038-07",
+          course_id: "BAIN150-17",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 19,
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "2017",
+          n_students: 28,
+          n_total: 2,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 2,
+            },
+            {
+              label: "2-3",
+              value: 4,
+            },
+            {
+              label: "3-4",
+              value: 3,
+            },
+            {
+              label: "4-5",
+              value: 0,
+            },
+            {
+              label: "5-6",
+              value: 2,
+            },
+            {
+              label: "6-7",
+              value: 9,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO139-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "2017",
+          n_students: 24,
+          n_total: 4,
           n_finished: 2,
           n_pass: 2,
           n_fail: 0,
-          n_drop: 17,
+          n_drop: 2,
           distribution: [
             {
               label: "1-2",
@@ -12581,23 +4129,23 @@ const data: {
             },
             {
               label: "2-3",
-              value: 3,
+              value: 6,
             },
             {
               label: "3-4",
-              value: 7,
+              value: 1,
             },
             {
               label: "4-5",
-              value: 8,
+              value: 1,
             },
             {
               label: "5-6",
-              value: 3,
+              value: 8,
             },
             {
               label: "6-7",
-              value: 4,
+              value: 7,
             },
           ],
           color_bands: [
@@ -12624,16 +4172,78 @@ const data: {
           ],
         },
         {
-          id: "BAIN041-07",
+          course_id: "EICI146-17",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "PACE",
-          cohort: "",
-          n_total: 19,
-          n_finished: 13,
-          n_pass: 13,
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "2017",
+          n_students: 25,
+          n_total: 10,
+          n_finished: 6,
+          n_pass: 6,
           n_fail: 0,
-          n_drop: 6,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 2,
+            },
+            {
+              label: "2-3",
+              value: 9,
+            },
+            {
+              label: "3-4",
+              value: 9,
+            },
+            {
+              label: "4-5",
+              value: 1,
+            },
+            {
+              label: "5-6",
+              value: 8,
+            },
+            {
+              label: "6-7",
+              value: 7,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "ELECT116",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "2017",
+          n_students: 29,
+          n_total: 9,
+          n_finished: 6,
+          n_pass: 6,
+          n_fail: 0,
+          n_drop: 3,
           distribution: [
             {
               label: "1-2",
@@ -12641,23 +4251,23 @@ const data: {
             },
             {
               label: "2-3",
-              value: 5,
+              value: 3,
             },
             {
               label: "3-4",
-              value: 2,
+              value: 1,
             },
             {
               label: "4-5",
-              value: 9,
+              value: 1,
             },
             {
               label: "5-6",
-              value: 9,
+              value: 7,
             },
             {
               label: "6-7",
-              value: 0,
+              value: 1,
             },
           ],
           color_bands: [
@@ -12684,40 +4294,41 @@ const data: {
           ],
         },
         {
-          id: "INFO261-08",
+          course_id: "INFO280-17",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 9,
-          n_finished: 3,
-          n_pass: 3,
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "",
+          n_students: 26,
+          n_total: 16,
+          n_finished: 8,
+          n_pass: 8,
           n_fail: 0,
-          n_drop: 6,
+          n_drop: 8,
           distribution: [
             {
               label: "1-2",
-              value: 3,
+              value: 9,
             },
             {
               label: "2-3",
-              value: 8,
+              value: 0,
             },
             {
               label: "3-4",
-              value: 6,
+              value: 9,
             },
             {
               label: "4-5",
-              value: 3,
+              value: 8,
             },
             {
               label: "5-6",
-              value: 4,
+              value: 1,
             },
             {
               label: "6-7",
-              value: 6,
+              value: 8,
             },
           ],
           color_bands: [
@@ -12744,20 +4355,21 @@ const data: {
           ],
         },
         {
-          id: "EICI298-09",
+          course_id: "BAIN150-17",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 18,
-          n_finished: 9,
-          n_pass: 9,
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "",
+          n_students: 20,
+          n_total: 16,
+          n_finished: 7,
+          n_pass: 7,
           n_fail: 0,
           n_drop: 9,
           distribution: [
             {
               label: "1-2",
-              value: 4,
+              value: 1,
             },
             {
               label: "2-3",
@@ -12765,15 +4377,15 @@ const data: {
             },
             {
               label: "3-4",
-              value: 6,
+              value: 3,
             },
             {
               label: "4-5",
-              value: 8,
+              value: 0,
             },
             {
               label: "5-6",
-              value: 3,
+              value: 6,
             },
             {
               label: "6-7",
@@ -12804,36 +4416,159 @@ const data: {
           ],
         },
         {
-          id: "ELECT20",
+          course_id: "INFO139-17",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 15,
-          n_finished: 3,
-          n_pass: 3,
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "",
+          n_students: 29,
+          n_total: 9,
+          n_finished: 5,
+          n_pass: 5,
           n_fail: 0,
-          n_drop: 12,
+          n_drop: 4,
           distribution: [
             {
               label: "1-2",
-              value: 1,
+              value: 6,
             },
             {
               label: "2-3",
-              value: 4,
+              value: 2,
             },
             {
               label: "3-4",
-              value: 8,
+              value: 6,
             },
             {
               label: "4-5",
-              value: 9,
+              value: 1,
             },
             {
               label: "5-6",
-              value: 1,
+              value: 0,
+            },
+            {
+              label: "6-7",
+              value: 2,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "",
+          n_students: 22,
+          n_total: 11,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 8,
+            },
+            {
+              label: "2-3",
+              value: 6,
+            },
+            {
+              label: "3-4",
+              value: 7,
+            },
+            {
+              label: "4-5",
+              value: 4,
+            },
+            {
+              label: "5-6",
+              value: 9,
+            },
+            {
+              label: "6-7",
+              value: 5,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "ELECT116",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "",
+          n_students: 26,
+          n_total: 13,
+          n_finished: 12,
+          n_pass: 12,
+          n_fail: 0,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 0,
+            },
+            {
+              label: "2-3",
+              value: 7,
+            },
+            {
+              label: "3-4",
+              value: 6,
+            },
+            {
+              label: "4-5",
+              value: 6,
+            },
+            {
+              label: "5-6",
+              value: 6,
             },
             {
               label: "6-7",
@@ -12864,14 +4599,198 @@ const data: {
           ],
         },
         {
-          id: "BAIN036-07",
+          course_id: "INFO280-17",
           program_id: "1708",
           curriculum: "",
-          type_admission: "PSU",
+          type_admission: "",
           cohort: "2016",
-          n_total: 19,
-          n_finished: 3,
-          n_pass: 3,
+          n_students: 20,
+          n_total: 7,
+          n_finished: 2,
+          n_pass: 2,
+          n_fail: 0,
+          n_drop: 5,
+          distribution: [
+            {
+              label: "1-2",
+              value: 8,
+            },
+            {
+              label: "2-3",
+              value: 8,
+            },
+            {
+              label: "3-4",
+              value: 3,
+            },
+            {
+              label: "4-5",
+              value: 4,
+            },
+            {
+              label: "5-6",
+              value: 5,
+            },
+            {
+              label: "6-7",
+              value: 9,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN150-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "",
+          cohort: "2016",
+          n_students: 27,
+          n_total: 8,
+          n_finished: 5,
+          n_pass: 5,
+          n_fail: 0,
+          n_drop: 3,
+          distribution: [
+            {
+              label: "1-2",
+              value: 7,
+            },
+            {
+              label: "2-3",
+              value: 6,
+            },
+            {
+              label: "3-4",
+              value: 8,
+            },
+            {
+              label: "4-5",
+              value: 6,
+            },
+            {
+              label: "5-6",
+              value: 9,
+            },
+            {
+              label: "6-7",
+              value: 3,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO139-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "",
+          cohort: "2016",
+          n_students: 22,
+          n_total: 17,
+          n_finished: 5,
+          n_pass: 5,
+          n_fail: 0,
+          n_drop: 12,
+          distribution: [
+            {
+              label: "1-2",
+              value: 5,
+            },
+            {
+              label: "2-3",
+              value: 5,
+            },
+            {
+              label: "3-4",
+              value: 5,
+            },
+            {
+              label: "4-5",
+              value: 2,
+            },
+            {
+              label: "5-6",
+              value: 4,
+            },
+            {
+              label: "6-7",
+              value: 7,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "",
+          cohort: "2016",
+          n_students: 29,
+          n_total: 17,
+          n_finished: 1,
+          n_pass: 1,
           n_fail: 0,
           n_drop: 16,
           distribution: [
@@ -12881,83 +4800,23 @@ const data: {
             },
             {
               label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 8,
-            },
-            {
-              label: "4-5",
               value: 5,
             },
             {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 2,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 8,
-            },
-            {
               label: "3-4",
-              value: 2,
+              value: 6,
             },
             {
               label: "4-5",
-              value: 7,
+              value: 3,
             },
             {
               label: "5-6",
-              value: 4,
+              value: 1,
             },
             {
               label: "6-7",
-              value: 1,
+              value: 2,
             },
           ],
           color_bands: [
@@ -12984,152 +4843,33 @@ const data: {
           ],
         },
         {
-          id: "BAIN038-07",
+          course_id: "ELECT116",
           program_id: "1708",
           curriculum: "",
-          type_admission: "PSU",
+          type_admission: "",
           cohort: "2016",
+          n_students: 24,
           n_total: 8,
-          n_finished: 5,
-          n_pass: 5,
+          n_finished: 3,
+          n_pass: 3,
           n_fail: 0,
-          n_drop: 3,
+          n_drop: 5,
           distribution: [
             {
               label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2016",
-          n_total: 6,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 8,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
               value: 2,
             },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 7,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
             {
               label: "2-3",
-              value: 9,
+              value: 8,
             },
             {
               label: "3-4",
-              value: 6,
+              value: 8,
             },
             {
               label: "4-5",
-              value: 9,
+              value: 0,
             },
             {
               label: "5-6",
@@ -13137,7 +4877,7 @@ const data: {
             },
             {
               label: "6-7",
-              value: 9,
+              value: 5,
             },
           ],
           color_bands: [
@@ -13164,20 +4904,21 @@ const data: {
           ],
         },
         {
-          id: "EICI298-09",
+          course_id: "INFO280-17",
           program_id: "1708",
           curriculum: "",
-          type_admission: "PSU",
+          type_admission: "",
           cohort: "2017",
-          n_total: 12,
-          n_finished: 5,
-          n_pass: 5,
+          n_students: 21,
+          n_total: 10,
+          n_finished: 3,
+          n_pass: 3,
           n_fail: 0,
           n_drop: 7,
           distribution: [
             {
               label: "1-2",
-              value: 1,
+              value: 5,
             },
             {
               label: "2-3",
@@ -13185,15 +4926,15 @@ const data: {
             },
             {
               label: "3-4",
-              value: 4,
+              value: 1,
             },
             {
               label: "4-5",
-              value: 2,
+              value: 9,
             },
             {
               label: "5-6",
-              value: 4,
+              value: 1,
             },
             {
               label: "6-7",
@@ -13224,14 +4965,76 @@ const data: {
           ],
         },
         {
-          id: "ELECT20",
+          course_id: "BAIN150-17",
           program_id: "1708",
           curriculum: "",
-          type_admission: "PSU",
+          type_admission: "",
           cohort: "2017",
-          n_total: 12,
-          n_finished: 6,
-          n_pass: 6,
+          n_students: 22,
+          n_total: 3,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 2,
+          distribution: [
+            {
+              label: "1-2",
+              value: 5,
+            },
+            {
+              label: "2-3",
+              value: 4,
+            },
+            {
+              label: "3-4",
+              value: 4,
+            },
+            {
+              label: "4-5",
+              value: 0,
+            },
+            {
+              label: "5-6",
+              value: 5,
+            },
+            {
+              label: "6-7",
+              value: 3,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO139-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "",
+          cohort: "2017",
+          n_students: 27,
+          n_total: 14,
+          n_finished: 8,
+          n_pass: 8,
           n_fail: 0,
           n_drop: 6,
           distribution: [
@@ -13245,7 +5048,7 @@ const data: {
             },
             {
               label: "3-4",
-              value: 6,
+              value: 0,
             },
             {
               label: "4-5",
@@ -13253,12 +5056,12 @@ const data: {
             },
             {
               label: "5-6",
+              value: 6,
+            },
+            {
+              label: "6-7",
               value: 4,
             },
-            {
-              label: "6-7",
-              value: 5,
-            },
           ],
           color_bands: [
             {
@@ -13284,444 +5087,25 @@ const data: {
           ],
         },
         {
-          id: "BAIN036-07",
+          course_id: "EICI146-17",
           program_id: "1708",
           curriculum: "",
-          type_admission: "PSU",
+          type_admission: "",
           cohort: "2017",
-          n_total: 19,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 16,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 19,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 13,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 1,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN038-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2017",
+          n_students: 25,
           n_total: 7,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "2017",
-          n_total: 16,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 13,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 14,
-          n_finished: 11,
-          n_pass: 11,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 8,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 3,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 3,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 10,
-          n_finished: 7,
-          n_pass: 7,
-          n_fail: 0,
-          n_drop: 3,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 0,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 0,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 17,
           n_finished: 2,
           n_pass: 2,
           n_fail: 0,
-          n_drop: 15,
+          n_drop: 5,
           distribution: [
             {
               label: "1-2",
-              value: 2,
+              value: 8,
             },
             {
               label: "2-3",
-              value: 6,
+              value: 4,
             },
             {
               label: "3-4",
@@ -13729,11 +5113,804 @@ const data: {
             },
             {
               label: "4-5",
+              value: 8,
+            },
+            {
+              label: "5-6",
+              value: 7,
+            },
+            {
+              label: "6-7",
+              value: 0,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "ELECT116",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "",
+          cohort: "2017",
+          n_students: 24,
+          n_total: 13,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 3,
+          distribution: [
+            {
+              label: "1-2",
+              value: 9,
+            },
+            {
+              label: "2-3",
+              value: 4,
+            },
+            {
+              label: "3-4",
+              value: 8,
+            },
+            {
+              label: "4-5",
+              value: 6,
+            },
+            {
+              label: "5-6",
+              value: 8,
+            },
+            {
+              label: "6-7",
+              value: 9,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO280-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "",
+          cohort: "",
+          n_students: 22,
+          n_total: 10,
+          n_finished: 6,
+          n_pass: 6,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 3,
+            },
+            {
+              label: "2-3",
+              value: 2,
+            },
+            {
+              label: "3-4",
+              value: 8,
+            },
+            {
+              label: "4-5",
+              value: 8,
+            },
+            {
+              label: "5-6",
+              value: 1,
+            },
+            {
+              label: "6-7",
+              value: 8,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN150-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "",
+          cohort: "",
+          n_students: 21,
+          n_total: 2,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 6,
+            },
+            {
+              label: "2-3",
+              value: 0,
+            },
+            {
+              label: "3-4",
+              value: 6,
+            },
+            {
+              label: "4-5",
+              value: 8,
+            },
+            {
+              label: "5-6",
+              value: 1,
+            },
+            {
+              label: "6-7",
+              value: 5,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO139-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "",
+          cohort: "",
+          n_students: 24,
+          n_total: 12,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 11,
+          distribution: [
+            {
+              label: "1-2",
+              value: 4,
+            },
+            {
+              label: "2-3",
+              value: 2,
+            },
+            {
+              label: "3-4",
+              value: 5,
+            },
+            {
+              label: "4-5",
+              value: 9,
+            },
+            {
+              label: "5-6",
+              value: 8,
+            },
+            {
+              label: "6-7",
+              value: 3,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "EICI146-17",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "",
+          cohort: "",
+          n_students: 23,
+          n_total: 11,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 10,
+          distribution: [
+            {
+              label: "1-2",
+              value: 7,
+            },
+            {
+              label: "2-3",
+              value: 3,
+            },
+            {
+              label: "3-4",
+              value: 4,
+            },
+            {
+              label: "4-5",
+              value: 0,
+            },
+            {
+              label: "5-6",
+              value: 7,
+            },
+            {
+              label: "6-7",
+              value: 1,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "ELECT116",
+          program_id: "1708",
+          curriculum: "",
+          type_admission: "",
+          cohort: "",
+          n_students: 25,
+          n_total: 16,
+          n_finished: 11,
+          n_pass: 11,
+          n_fail: 0,
+          n_drop: 5,
+          distribution: [
+            {
+              label: "1-2",
+              value: 7,
+            },
+            {
+              label: "2-3",
+              value: 2,
+            },
+            {
+              label: "3-4",
+              value: 5,
+            },
+            {
+              label: "4-5",
+              value: 9,
+            },
+            {
+              label: "5-6",
+              value: 1,
+            },
+            {
+              label: "6-7",
+              value: 2,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO261-08",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 28,
+          cohort: "2016",
+          n_total: 3,
+          n_finished: 2,
+          n_pass: 2,
+          n_fail: 0,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 1,
+            },
+            {
+              label: "2-3",
+              value: 8,
+            },
+            {
+              label: "3-4",
+              value: 7,
+            },
+            {
+              label: "4-5",
+              value: 6,
+            },
+            {
+              label: "5-6",
+              value: 2,
+            },
+            {
+              label: "6-7",
+              value: 2,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN036-07",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 24,
+          cohort: "2016",
+          n_total: 17,
+          n_finished: 4,
+          n_pass: 4,
+          n_fail: 0,
+          n_drop: 13,
+          distribution: [
+            {
+              label: "1-2",
+              value: 9,
+            },
+            {
+              label: "2-3",
+              value: 9,
+            },
+            {
+              label: "3-4",
+              value: 8,
+            },
+            {
+              label: "4-5",
+              value: 5,
+            },
+            {
+              label: "5-6",
+              value: 5,
+            },
+            {
+              label: "6-7",
+              value: 4,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO284-08",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 25,
+          cohort: "2016",
+          n_total: 11,
+          n_finished: 4,
+          n_pass: 4,
+          n_fail: 0,
+          n_drop: 7,
+          distribution: [
+            {
+              label: "1-2",
+              value: 7,
+            },
+            {
+              label: "2-3",
+              value: 9,
+            },
+            {
+              label: "3-4",
+              value: 3,
+            },
+            {
+              label: "4-5",
               value: 4,
             },
             {
               label: "5-6",
+              value: 2,
+            },
+            {
+              label: "6-7",
+              value: 6,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN038-07",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 29,
+          cohort: "2016",
+          n_total: 10,
+          n_finished: 6,
+          n_pass: 6,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 8,
+            },
+            {
+              label: "2-3",
+              value: 0,
+            },
+            {
+              label: "3-4",
+              value: 6,
+            },
+            {
+              label: "4-5",
+              value: 3,
+            },
+            {
+              label: "5-6",
+              value: 9,
+            },
+            {
+              label: "6-7",
+              value: 5,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN041-07",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 22,
+          cohort: "2016",
+          n_total: 19,
+          n_finished: 6,
+          n_pass: 6,
+          n_fail: 0,
+          n_drop: 13,
+          distribution: [
+            {
+              label: "1-2",
+              value: 5,
+            },
+            {
+              label: "2-3",
+              value: 1,
+            },
+            {
+              label: "3-4",
+              value: 2,
+            },
+            {
+              label: "4-5",
+              value: 3,
+            },
+            {
+              label: "5-6",
+              value: 5,
+            },
+            {
+              label: "6-7",
+              value: 6,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO261-08",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 27,
+          cohort: "2017",
+          n_total: 4,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 3,
+          distribution: [
+            {
+              label: "1-2",
               value: 4,
+            },
+            {
+              label: "2-3",
+              value: 0,
+            },
+            {
+              label: "3-4",
+              value: 5,
+            },
+            {
+              label: "4-5",
+              value: 0,
+            },
+            {
+              label: "5-6",
+              value: 5,
+            },
+            {
+              label: "6-7",
+              value: 8,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN036-07",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 28,
+          cohort: "2017",
+          n_total: 4,
+          n_finished: 3,
+          n_pass: 3,
+          n_fail: 0,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 8,
+            },
+            {
+              label: "2-3",
+              value: 1,
+            },
+            {
+              label: "3-4",
+              value: 6,
+            },
+            {
+              label: "4-5",
+              value: 3,
+            },
+            {
+              label: "5-6",
+              value: 3,
             },
             {
               label: "6-7",
@@ -13764,16 +5941,17 @@ const data: {
           ],
         },
         {
-          id: "INFO284-08",
+          course_id: "INFO284-08",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
-          cohort: "",
-          n_total: 19,
-          n_finished: 1,
-          n_pass: 1,
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 25,
+          cohort: "2017",
+          n_total: 15,
+          n_finished: 12,
+          n_pass: 12,
           n_fail: 0,
-          n_drop: 18,
+          n_drop: 3,
           distribution: [
             {
               label: "1-2",
@@ -13781,7 +5959,190 @@ const data: {
             },
             {
               label: "2-3",
+              value: 7,
+            },
+            {
+              label: "3-4",
+              value: 3,
+            },
+            {
+              label: "4-5",
+              value: 5,
+            },
+            {
+              label: "5-6",
+              value: 6,
+            },
+            {
+              label: "6-7",
+              value: 4,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN038-07",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 29,
+          cohort: "2017",
+          n_total: 15,
+          n_finished: 6,
+          n_pass: 6,
+          n_fail: 0,
+          n_drop: 9,
+          distribution: [
+            {
+              label: "1-2",
+              value: 6,
+            },
+            {
+              label: "2-3",
+              value: 9,
+            },
+            {
+              label: "3-4",
+              value: 4,
+            },
+            {
+              label: "4-5",
+              value: 6,
+            },
+            {
+              label: "5-6",
+              value: 0,
+            },
+            {
+              label: "6-7",
+              value: 9,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN041-07",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 22,
+          cohort: "2017",
+          n_total: 15,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 5,
+          distribution: [
+            {
+              label: "1-2",
               value: 2,
+            },
+            {
+              label: "2-3",
+              value: 7,
+            },
+            {
+              label: "3-4",
+              value: 3,
+            },
+            {
+              label: "4-5",
+              value: 3,
+            },
+            {
+              label: "5-6",
+              value: 6,
+            },
+            {
+              label: "6-7",
+              value: 0,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO261-08",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 27,
+          cohort: "",
+          n_total: 12,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 2,
+          distribution: [
+            {
+              label: "1-2",
+              value: 6,
+            },
+            {
+              label: "2-3",
+              value: 6,
             },
             {
               label: "3-4",
@@ -13789,11 +6150,72 @@ const data: {
             },
             {
               label: "4-5",
-              value: 4,
+              value: 6,
             },
             {
               label: "5-6",
-              value: 6,
+              value: 4,
+            },
+            {
+              label: "6-7",
+              value: 1,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN036-07",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 26,
+          cohort: "",
+          n_total: 17,
+          n_finished: 12,
+          n_pass: 12,
+          n_fail: 0,
+          n_drop: 5,
+          distribution: [
+            {
+              label: "1-2",
+              value: 0,
+            },
+            {
+              label: "2-3",
+              value: 2,
+            },
+            {
+              label: "3-4",
+              value: 8,
+            },
+            {
+              label: "4-5",
+              value: 3,
+            },
+            {
+              label: "5-6",
+              value: 0,
             },
             {
               label: "6-7",
@@ -13824,20 +6246,21 @@ const data: {
           ],
         },
         {
-          id: "BAIN038-07",
+          course_id: "INFO284-08",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 22,
           cohort: "",
-          n_total: 16,
-          n_finished: 15,
-          n_pass: 15,
+          n_total: 2,
+          n_finished: 1,
+          n_pass: 1,
           n_fail: 0,
           n_drop: 1,
           distribution: [
             {
               label: "1-2",
-              value: 5,
+              value: 0,
             },
             {
               label: "2-3",
@@ -13845,7 +6268,7 @@ const data: {
             },
             {
               label: "3-4",
-              value: 6,
+              value: 2,
             },
             {
               label: "4-5",
@@ -13853,11 +6276,11 @@ const data: {
             },
             {
               label: "5-6",
-              value: 9,
+              value: 8,
             },
             {
               label: "6-7",
-              value: 2,
+              value: 0,
             },
           ],
           color_bands: [
@@ -13884,11 +6307,195 @@ const data: {
           ],
         },
         {
-          id: "BAIN041-07",
+          course_id: "BAIN038-07",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "PSU",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 24,
           cohort: "",
+          n_total: 14,
+          n_finished: 5,
+          n_pass: 5,
+          n_fail: 0,
+          n_drop: 9,
+          distribution: [
+            {
+              label: "1-2",
+              value: 7,
+            },
+            {
+              label: "2-3",
+              value: 9,
+            },
+            {
+              label: "3-4",
+              value: 5,
+            },
+            {
+              label: "4-5",
+              value: 8,
+            },
+            {
+              label: "5-6",
+              value: 3,
+            },
+            {
+              label: "6-7",
+              value: 7,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN041-07",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          n_students: 29,
+          cohort: "",
+          n_total: 9,
+          n_finished: 8,
+          n_pass: 8,
+          n_fail: 0,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 2,
+            },
+            {
+              label: "2-3",
+              value: 1,
+            },
+            {
+              label: "3-4",
+              value: 7,
+            },
+            {
+              label: "4-5",
+              value: 7,
+            },
+            {
+              label: "5-6",
+              value: 8,
+            },
+            {
+              label: "6-7",
+              value: 5,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO261-08",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PSU",
+          n_students: 21,
+          cohort: "2016",
+          n_total: 7,
+          n_finished: 2,
+          n_pass: 2,
+          n_fail: 0,
+          n_drop: 5,
+          distribution: [
+            {
+              label: "1-2",
+              value: 4,
+            },
+            {
+              label: "2-3",
+              value: 9,
+            },
+            {
+              label: "3-4",
+              value: 6,
+            },
+            {
+              label: "4-5",
+              value: 1,
+            },
+            {
+              label: "5-6",
+              value: 5,
+            },
+            {
+              label: "6-7",
+              value: 8,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN036-07",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PSU",
+          n_students: 21,
+          cohort: "2016",
           n_total: 11,
           n_finished: 9,
           n_pass: 9,
@@ -13897,263 +6504,23 @@ const data: {
           distribution: [
             {
               label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 3,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 3,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 2,
-            },
-            {
-              label: "6-7",
-              value: 5,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 5,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 2,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 8,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 3,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 5,
-          n_finished: 4,
-          n_pass: 4,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 0,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
               value: 4,
             },
             {
+              label: "2-3",
+              value: 4,
+            },
+            {
+              label: "3-4",
+              value: 2,
+            },
+            {
+              label: "4-5",
+              value: 2,
+            },
+            {
               label: "5-6",
-              value: 8,
+              value: 3,
             },
             {
               label: "6-7",
@@ -14184,280 +6551,41 @@ const data: {
           ],
         },
         {
-          id: "INFO284-08",
+          course_id: "INFO284-08",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "",
+          curriculum: "2015",
+          type_admission: "PSU",
+          n_students: 27,
           cohort: "2016",
-          n_total: 19,
-          n_finished: 6,
-          n_pass: 6,
-          n_fail: 0,
-          n_drop: 13,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 1,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN038-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 8,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 7,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 6,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 2,
-            },
-            {
-              label: "5-6",
-              value: 5,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2016",
-          n_total: 10,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 9,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 4,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO261-08",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 3,
-          n_finished: 2,
-          n_pass: 2,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 4,
-            },
-            {
-              label: "5-6",
-              value: 8,
-            },
-            {
-              label: "6-7",
-              value: 8,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 18,
+          n_total: 13,
           n_finished: 10,
           n_pass: 10,
           n_fail: 0,
-          n_drop: 8,
+          n_drop: 3,
           distribution: [
             {
               label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 9,
-            },
-            {
-              label: "3-4",
-              value: 7,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
               value: 5,
             },
             {
+              label: "2-3",
+              value: 5,
+            },
+            {
+              label: "3-4",
+              value: 0,
+            },
+            {
+              label: "4-5",
+              value: 0,
+            },
+            {
+              label: "5-6",
+              value: 2,
+            },
+            {
               label: "6-7",
-              value: 9,
+              value: 7,
             },
           ],
           color_bands: [
@@ -14484,24 +6612,86 @@ const data: {
           ],
         },
         {
-          id: "ELECT20",
+          course_id: "BAIN038-07",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 11,
-          n_finished: 6,
-          n_pass: 6,
+          curriculum: "2015",
+          type_admission: "PSU",
+          n_students: 26,
+          cohort: "2016",
+          n_total: 19,
+          n_finished: 9,
+          n_pass: 9,
           n_fail: 0,
-          n_drop: 5,
+          n_drop: 10,
           distribution: [
             {
               label: "1-2",
-              value: 0,
+              value: 7,
             },
             {
               label: "2-3",
+              value: 1,
+            },
+            {
+              label: "3-4",
+              value: 0,
+            },
+            {
+              label: "4-5",
+              value: 2,
+            },
+            {
+              label: "5-6",
               value: 3,
+            },
+            {
+              label: "6-7",
+              value: 4,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN041-07",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PSU",
+          n_students: 20,
+          cohort: "2016",
+          n_total: 17,
+          n_finished: 5,
+          n_pass: 5,
+          n_fail: 0,
+          n_drop: 12,
+          distribution: [
+            {
+              label: "1-2",
+              value: 4,
+            },
+            {
+              label: "2-3",
+              value: 4,
             },
             {
               label: "3-4",
@@ -14509,15 +6699,15 @@ const data: {
             },
             {
               label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
               value: 1,
             },
             {
+              label: "5-6",
+              value: 6,
+            },
+            {
               label: "6-7",
-              value: 0,
+              value: 1,
             },
           ],
           color_bands: [
@@ -14544,10 +6734,133 @@ const data: {
           ],
         },
         {
-          id: "BAIN036-07",
+          course_id: "INFO261-08",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "",
+          curriculum: "2015",
+          type_admission: "PSU",
+          n_students: 20,
+          cohort: "2017",
+          n_total: 10,
+          n_finished: 9,
+          n_pass: 9,
+          n_fail: 0,
+          n_drop: 1,
+          distribution: [
+            {
+              label: "1-2",
+              value: 2,
+            },
+            {
+              label: "2-3",
+              value: 2,
+            },
+            {
+              label: "3-4",
+              value: 3,
+            },
+            {
+              label: "4-5",
+              value: 1,
+            },
+            {
+              label: "5-6",
+              value: 2,
+            },
+            {
+              label: "6-7",
+              value: 3,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN036-07",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PSU",
+          n_students: 27,
+          cohort: "2017",
+          n_total: 9,
+          n_finished: 4,
+          n_pass: 4,
+          n_fail: 0,
+          n_drop: 5,
+          distribution: [
+            {
+              label: "1-2",
+              value: 3,
+            },
+            {
+              label: "2-3",
+              value: 6,
+            },
+            {
+              label: "3-4",
+              value: 9,
+            },
+            {
+              label: "4-5",
+              value: 9,
+            },
+            {
+              label: "5-6",
+              value: 0,
+            },
+            {
+              label: "6-7",
+              value: 6,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO284-08",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PSU",
+          n_students: 29,
           cohort: "2017",
           n_total: 8,
           n_finished: 2,
@@ -14557,128 +6870,8 @@ const data: {
           distribution: [
             {
               label: "1-2",
-              value: 4,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 6,
-            },
-            {
-              label: "4-5",
-              value: 9,
-            },
-            {
-              label: "5-6",
-              value: 6,
-            },
-            {
-              label: "6-7",
-              value: 7,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 14,
-          n_finished: 5,
-          n_pass: 5,
-          n_fail: 0,
-          n_drop: 9,
-          distribution: [
-            {
-              label: "1-2",
-              value: 9,
-            },
-            {
-              label: "2-3",
-              value: 0,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 7,
-            },
-            {
-              label: "5-6",
-              value: 0,
-            },
-            {
-              label: "6-7",
               value: 3,
             },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN038-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
             {
               label: "2-3",
               value: 6,
@@ -14689,76 +6882,16 @@ const data: {
             },
             {
               label: "4-5",
+              value: 6,
+            },
+            {
+              label: "5-6",
               value: 8,
             },
             {
-              label: "5-6",
-              value: 9,
-            },
-            {
               label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN041-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "2017",
-          n_total: 7,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 1,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
               value: 6,
             },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
           ],
           color_bands: [
             {
@@ -14784,314 +6917,15 @@ const data: {
           ],
         },
         {
-          id: "INFO261-08",
+          course_id: "BAIN038-07",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 6,
+          curriculum: "2015",
+          type_admission: "PSU",
+          n_students: 20,
+          cohort: "2017",
+          n_total: 5,
           n_finished: 2,
           n_pass: 2,
-          n_fail: 0,
-          n_drop: 4,
-          distribution: [
-            {
-              label: "1-2",
-              value: 7,
-            },
-            {
-              label: "2-3",
-              value: 3,
-            },
-            {
-              label: "3-4",
-              value: 9,
-            },
-            {
-              label: "4-5",
-              value: 8,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 3,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "EICI298-09",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 8,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 5,
-          distribution: [
-            {
-              label: "1-2",
-              value: 1,
-            },
-            {
-              label: "2-3",
-              value: 2,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 5,
-            },
-            {
-              label: "5-6",
-              value: 4,
-            },
-            {
-              label: "6-7",
-              value: 9,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "ELECT20",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 10,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 7,
-          distribution: [
-            {
-              label: "1-2",
-              value: 2,
-            },
-            {
-              label: "2-3",
-              value: 5,
-            },
-            {
-              label: "3-4",
-              value: 5,
-            },
-            {
-              label: "4-5",
-              value: 0,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 6,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN036-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 2,
-          n_finished: 1,
-          n_pass: 1,
-          n_fail: 0,
-          n_drop: 1,
-          distribution: [
-            {
-              label: "1-2",
-              value: 5,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 2,
-            },
-            {
-              label: "4-5",
-              value: 6,
-            },
-            {
-              label: "5-6",
-              value: 7,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "INFO284-08",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 12,
-          n_finished: 3,
-          n_pass: 3,
-          n_fail: 0,
-          n_drop: 9,
-          distribution: [
-            {
-              label: "1-2",
-              value: 8,
-            },
-            {
-              label: "2-3",
-              value: 7,
-            },
-            {
-              label: "3-4",
-              value: 1,
-            },
-            {
-              label: "4-5",
-              value: 3,
-            },
-            {
-              label: "5-6",
-              value: 1,
-            },
-            {
-              label: "6-7",
-              value: 4,
-            },
-          ],
-          color_bands: [
-            {
-              min: 1,
-              max: 3.4999,
-              color: "#d6604d",
-            },
-            {
-              min: 3.5,
-              max: 3.9999,
-              color: "#f48873",
-            },
-            {
-              min: 4,
-              max: 4.4999,
-              color: "#a7dc78",
-            },
-            {
-              min: 4.5,
-              max: 7,
-              color: "#66b43e",
-            },
-          ],
-        },
-        {
-          id: "BAIN038-07",
-          program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 8,
-          n_finished: 5,
-          n_pass: 5,
           n_fail: 0,
           n_drop: 3,
           distribution: [
@@ -15101,23 +6935,23 @@ const data: {
             },
             {
               label: "2-3",
-              value: 8,
+              value: 6,
             },
             {
               label: "3-4",
-              value: 0,
+              value: 4,
             },
             {
               label: "4-5",
-              value: 8,
+              value: 3,
             },
             {
               label: "5-6",
-              value: 5,
+              value: 7,
             },
             {
               label: "6-7",
-              value: 6,
+              value: 0,
             },
           ],
           color_bands: [
@@ -15144,20 +6978,21 @@ const data: {
           ],
         },
         {
-          id: "BAIN041-07",
+          course_id: "BAIN041-07",
           program_id: "1708",
-          curriculum: "",
-          type_admission: "",
-          cohort: "",
-          n_total: 5,
-          n_finished: 3,
-          n_pass: 3,
+          curriculum: "2015",
+          type_admission: "PSU",
+          n_students: 21,
+          cohort: "2017",
+          n_total: 14,
+          n_finished: 10,
+          n_pass: 10,
           n_fail: 0,
-          n_drop: 2,
+          n_drop: 4,
           distribution: [
             {
               label: "1-2",
-              value: 0,
+              value: 6,
             },
             {
               label: "2-3",
@@ -15165,19 +7000,141 @@ const data: {
             },
             {
               label: "3-4",
-              value: 9,
+              value: 7,
             },
             {
               label: "4-5",
-              value: 2,
+              value: 6,
             },
             {
               label: "5-6",
-              value: 5,
+              value: 1,
+            },
+            {
+              label: "6-7",
+              value: 7,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "INFO261-08",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PSU",
+          n_students: 26,
+          cohort: "",
+          n_total: 4,
+          n_finished: 1,
+          n_pass: 1,
+          n_fail: 0,
+          n_drop: 3,
+          distribution: [
+            {
+              label: "1-2",
+              value: 7,
+            },
+            {
+              label: "2-3",
+              value: 3,
+            },
+            {
+              label: "3-4",
+              value: 3,
+            },
+            {
+              label: "4-5",
+              value: 8,
+            },
+            {
+              label: "5-6",
+              value: 0,
             },
             {
               label: "6-7",
               value: 4,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+        {
+          course_id: "BAIN036-07",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PSU",
+          n_students: 29,
+          cohort: "",
+          n_total: 11,
+          n_finished: 7,
+          n_pass: 7,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 9,
+            },
+            {
+              label: "2-3",
+              value: 1,
+            },
+            {
+              label: "3-4",
+              value: 8,
+            },
+            {
+              label: "4-5",
+              value: 8,
+            },
+            {
+              label: "5-6",
+              value: 7,
+            },
+            {
+              label: "6-7",
+              value: 0,
             },
           ],
           color_bands: [
