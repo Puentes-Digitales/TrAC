@@ -4,9 +4,12 @@ import { LRUMap } from "lru_map";
 
 import {
   IProgram,
-  ProgramStructureTable,
+  ExternalEvaluationStructureTable,
   ProgramTable,
   StudentProgramTable,
+  StudentGroupedComplementaryTable,
+  PROGRAM_STRUCTURE_TABLE,
+  CourseGroupedStatsTable,
 } from "../db/tables";
 
 import type { Curriculum } from "../entities/data/program";
@@ -97,17 +100,30 @@ export const CurriculumsDataLoader = new DataLoader(
     return await Promise.all(
       keys.map(async ({ program_id, curriculumsIds }) => {
         const data = curriculumsIds
-          ? await ProgramStructureTable()
-              .select("id", "curriculum", "semester", "course_id")
+          ? await ExternalEvaluationStructureTable()
+              .select("id", "curriculum", "semester", "external_evaluation_id")
+              .unionAll(function () {
+                this.select("id", "curriculum", "semester", "course_id")
+                  .from(PROGRAM_STRUCTURE_TABLE)
+                  .where({ program_id })
+                  .whereIn(
+                    "curriculum",
+                    curriculumsIds.map(({ id }) => id)
+                  );
+              })
               .where({ program_id })
               .whereIn(
                 "curriculum",
                 curriculumsIds.map(({ id }) => id)
               )
-          : await ProgramStructureTable()
-              .select("id", "curriculum", "semester", "course_id")
+          : await ExternalEvaluationStructureTable()
+              .select("id", "curriculum", "semester", "external_evaluation_id")
+              .unionAll(function () {
+                this.select("id", "curriculum", "semester", "course_id")
+                  .from(PROGRAM_STRUCTURE_TABLE)
+                  .where({ program_id });
+              })
               .where({ program_id });
-
         const curriculums = data.reduce<
           Record<
             string /*Curriculum id (program_structure => curriculum)*/,
@@ -125,7 +141,7 @@ export const CurriculumsDataLoader = new DataLoader(
               >;
             }
           >
-        >((acum, { curriculum, semester, course_id, id }) => {
+        >((acum, { curriculum, semester, external_evaluation_id, id }) => {
           defaultsDeep(acum, {
             [curriculum]: {
               id: curriculum,
@@ -140,8 +156,9 @@ export const CurriculumsDataLoader = new DataLoader(
 
           acum[curriculum].semesters[semester].courses.push({
             id,
-            code: course_id,
+            code: external_evaluation_id,
           });
+
           return acum;
         }, {});
 
@@ -171,5 +188,43 @@ export const CurriculumsDataLoader = new DataLoader(
       );
     },
     cacheMap: new LRUMap(50),
+  }
+);
+
+export const StudentGroupedComplementaryDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ program_id }) => {
+        return StudentGroupedComplementaryTable().where({
+          program_id: program_id,
+        });
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const CourseGroupedStatsDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ program_id }) => {
+        return CourseGroupedStatsTable().where({
+          program_id: program_id,
+        });
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
   }
 );

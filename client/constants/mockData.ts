@@ -21,6 +21,94 @@ const data: {
       name: "INGENIERÍA CIVIL EN INFORMÁTICA",
       desc: "",
       active: true,
+
+      courseGroupedStats: [
+        {
+          id: "INFO261-08",
+          program_id: "1708",
+          curriculum: "2015",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_total: 19,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 9,
+          histogram: "0,1,2,3,4,5",
+          histogram_labels: "1-2,2-3,3-4,4-5,5-6,6-7",
+          color_bands:
+            "1.0,3.4999,#d6604d;3.5,3.9999,#f48873;4.0,4.4999,#a7dc78;4.5,7,#66b43e",
+        },
+        {
+          id: "INFO261-08",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PSU",
+          cohort: "",
+          n_total: 19,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 9,
+          histogram: "0,1,2,3,4,5",
+          histogram_labels: "1-2,2-3,3-4,4-5,5-6,6-7",
+          color_bands:
+            "1.0,3.4999,#d6604d;3.5,3.9999,#f48873;4.0,4.4999,#a7dc78;4.5,7,#66b43e",
+        },
+
+        {
+          id: "INFO261-08",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "2017",
+          n_total: 19,
+          n_finished: 10,
+          n_pass: 10,
+          n_fail: 0,
+          n_drop: 9,
+          histogram: "0,1,2,3,4,5",
+          histogram_labels: "1-2,2-3,3-4,4-5,5-6,6-7",
+          color_bands:
+            "1.0,3.4999,#d6604d;3.5,3.9999,#f48873;4.0,4.4999,#a7dc78;4.5,7,#66b43e",
+        },
+      ],
+
+      groupedComplementary: [
+        {
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "",
+          cohort: "",
+          total_students: 25,
+          university_degree_rate: 60,
+          retention_rate: 88,
+          average_time_university_degree: 5.5,
+          timely_university_degree_rate: 6,
+        },
+        {
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PSU",
+          cohort: "",
+          total_students: 25,
+          university_degree_rate: 60,
+          retention_rate: 88,
+          average_time_university_degree: 5.5,
+          timely_university_degree_rate: 6,
+        },
+        {
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "",
+          total_students: 25,
+          university_degree_rate: 60,
+          retention_rate: 88,
+          average_time_university_degree: 5.5,
+          timely_university_degree_rate: 6,
+        },
+      ],
       curriculums: [
         {
           id: "2017",
@@ -28,6 +116,71 @@ const data: {
             {
               id: 1,
               courses: [
+                {
+                  code: "EID-17",
+                  name: "PRUEBA INICIAL DIAGNÓSTICA",
+                  credits: [
+                    {
+                      label: "Créditos",
+                      value: 0,
+                    },
+                    {
+                      label: "SCT",
+                      value: -1,
+                    },
+                  ],
+                  mention: "",
+                  flow: [],
+                  requisites: [],
+                  historicalDistribution: [
+                    {
+                      label: "1-2",
+                      value: 56,
+                    },
+                    {
+                      label: "2-3",
+                      value: 233,
+                    },
+                    {
+                      label: "3-4",
+                      value: 942,
+                    },
+                    {
+                      label: "4-5",
+                      value: 1111,
+                    },
+                    {
+                      label: "5-6",
+                      value: 788,
+                    },
+                    {
+                      label: "6-7",
+                      value: 111,
+                    },
+                  ],
+                  bandColors: [
+                    {
+                      min: 1,
+                      max: 3.4999,
+                      color: "#d6604d",
+                    },
+                    {
+                      min: 3.5,
+                      max: 3.9999,
+                      color: "#f48873",
+                    },
+                    {
+                      min: 4,
+                      max: 4.4999,
+                      color: "#a7dc78",
+                    },
+                    {
+                      min: 4.5,
+                      max: 7,
+                      color: "#66b43e",
+                    },
+                  ],
+                },
                 {
                   code: "BAIN065-14",
                   name: "ÁLGEBRA PARA INGENIERÍA",
@@ -2824,6 +2977,71 @@ const data: {
               id: 7,
               courses: [
                 {
+                  code: "END-17",
+                  name: "PRUEBA NACIONAL DIAGNÓSTICA",
+                  credits: [
+                    {
+                      label: "Créditos",
+                      value: 0,
+                    },
+                    {
+                      label: "SCT",
+                      value: -1,
+                    },
+                  ],
+                  mention: "",
+                  flow: [],
+                  requisites: [],
+                  historicalDistribution: [
+                    {
+                      label: "1-2",
+                      value: 56,
+                    },
+                    {
+                      label: "2-3",
+                      value: 111,
+                    },
+                    {
+                      label: "3-4",
+                      value: 775,
+                    },
+                    {
+                      label: "4-5",
+                      value: 2000,
+                    },
+                    {
+                      label: "5-6",
+                      value: 122,
+                    },
+                    {
+                      label: "6-7",
+                      value: 566,
+                    },
+                  ],
+                  bandColors: [
+                    {
+                      min: 1,
+                      max: 3.4999,
+                      color: "#d6604d",
+                    },
+                    {
+                      min: 3.5,
+                      max: 3.9999,
+                      color: "#f48873",
+                    },
+                    {
+                      min: 4,
+                      max: 4.4999,
+                      color: "#a7dc78",
+                    },
+                    {
+                      min: 4.5,
+                      max: 7,
+                      color: "#66b43e",
+                    },
+                  ],
+                },
+                {
                   code: "ELECT101",
                   name: "OPTATIVO DE ESPECIALIZACIÓN II",
                   credits: [
@@ -4003,6 +4221,18 @@ const data: {
           program_grade: 4.31,
           comments: "",
           takenCourses: [
+            {
+              id: 123123,
+              code: "END-17",
+              equiv: "",
+              name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
+              registration: "REGISTRADA",
+              grade: 0,
+              state: StateCourse.Pending,
+              parallelGroup: 0,
+              currentDistribution: [],
+              bandColors: [],
+            },
             {
               id: 647897,
               code: "INFO229-17",
@@ -5620,6 +5850,64 @@ const data: {
           comments: "",
           takenCourses: [
             {
+              id: 123567,
+              code: "EID-17",
+              equiv: "",
+              name: "PRUEBA INICIAL DIAGNÓSTICA",
+              registration: "CURSADA",
+              grade: 6.5,
+              state: StateCourse.Passed,
+              parallelGroup: 1,
+              currentDistribution: [
+                {
+                  label: "1-2",
+                  value: 10,
+                },
+                {
+                  label: "2-3",
+                  value: 5,
+                },
+                {
+                  label: "3-4",
+                  value: 0,
+                },
+                {
+                  label: "4-5",
+                  value: 5,
+                },
+                {
+                  label: "5-6",
+                  value: 9,
+                },
+                {
+                  label: "6-7",
+                  value: 24,
+                },
+              ],
+              bandColors: [
+                {
+                  min: 1,
+                  max: 3.4999,
+                  color: "#d6604d",
+                },
+                {
+                  min: 3.5,
+                  max: 3.9999,
+                  color: "#f48873",
+                },
+                {
+                  min: 4,
+                  max: 4.4999,
+                  color: "#a7dc78",
+                },
+                {
+                  min: 4.5,
+                  max: 7,
+                  color: "#66b43e",
+                },
+              ],
+            },
+            {
               id: 454944,
               code: "INFO073-17",
               equiv: "",
@@ -5912,10 +6200,25 @@ const data: {
           ],
         },
       ],
+      n_cycles: ["bachillerato", "licenciatura"],
+      n_courses_cycles: [24, 20, 25, 1],
+
       dropout: {
         prob_dropout: 60.56,
         model_accuracy: 0.82,
         active: true,
+      },
+      admission: {
+        type_admission: "PSU",
+        initial_test: 10,
+        final_test: null,
+        active: true,
+      },
+      employed: {
+        employed: true,
+        educational_system: "Sistema educacional chileno",
+        institution: "Liceo Recto Armando Robles",
+        months_to_first_job: 15,
       },
     },
   },

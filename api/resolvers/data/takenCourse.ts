@@ -6,8 +6,9 @@ import { CourseDataLoader } from "../../dataloaders/course";
 import {
   CourseStatsByCourseTakenDataLoader,
   CourseStatsByStateDataLoader,
-  StudentCourseDataLoader,
+  StudentExternalEvaluationCourseDataLoader,
 } from "../../dataloaders/takenCourse";
+import { StudentExternalEvaluationAndCourseDataLoader } from "../../dataloaders/takenExternalEvaluation";
 import { TakenCourse } from "../../entities/data/takenCourse";
 import { assertIsDefined } from "../../utils/assert";
 import { clearErrorArray } from "../../utils/clearErrorArray";
@@ -32,9 +33,9 @@ export class TakenCourseResolver {
     if (nameData === undefined) {
       return code;
     }
-
     return nameData.name ?? nameData.id;
   }
+
   @FieldResolver()
   async registration(
     @Root()
@@ -44,7 +45,9 @@ export class TakenCourseResolver {
       id,
       `id needs to be available for Taken Course field resolvers`
     );
-    const registrationData = await StudentCourseDataLoader.load(id);
+    const registrationData = await StudentExternalEvaluationAndCourseDataLoader.load(
+      id
+    );
     assertIsDefined(
       registrationData,
       `Registration could not be found for ${id} taken course`
@@ -60,7 +63,9 @@ export class TakenCourseResolver {
       id,
       `id and code needs to be available for Taken Course field resolvers`
     );
-    const gradeData = await StudentCourseDataLoader.load(id);
+    const gradeData = await StudentExternalEvaluationAndCourseDataLoader.load(
+      id
+    );
     assertIsDefined(
       gradeData,
       `Grade could not be found for ${id} taken course`
@@ -76,7 +81,9 @@ export class TakenCourseResolver {
       id,
       `id needs to be available for Taken Course field resolvers`
     );
-    const stateData = await StudentCourseDataLoader.load(id);
+    const stateData = await StudentExternalEvaluationAndCourseDataLoader.load(
+      id
+    );
     assertIsDefined(
       stateData,
       `State could not be found for ${id} taken course`
@@ -92,7 +99,9 @@ export class TakenCourseResolver {
       id,
       `id needs to be available for Taken Course field resolvers`
     );
-    const parallelGroupData = await StudentCourseDataLoader.load(id);
+    const parallelGroupData = await StudentExternalEvaluationAndCourseDataLoader.load(
+      id
+    );
     assertIsDefined(
       parallelGroupData,
       `Parallel group could not be found for ${id} taken course`
@@ -113,7 +122,9 @@ export class TakenCourseResolver {
       `code needs to be available for Taken Course field resolvers`
     );
 
-    const dataTakenCourse = await StudentCourseDataLoader.load(id);
+    const dataTakenCourse = await StudentExternalEvaluationCourseDataLoader.load(
+      id
+    );
 
     assertIsDefined(
       dataTakenCourse,

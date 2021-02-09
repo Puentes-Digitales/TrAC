@@ -23,6 +23,13 @@ export type Scalars = {
   JSONObject: Record<string, any>;
 };
 
+export type Admission = {
+  active: Scalars["Boolean"];
+  final_test?: Maybe<Scalars["Float"]>;
+  initial_test?: Maybe<Scalars["Float"]>;
+  type_admission: Scalars["String"];
+};
+
 export type AuthResult = {
   error?: Maybe<Scalars["String"]>;
   token?: Maybe<Scalars["String"]>;
@@ -48,6 +55,22 @@ export type Course = {
   requisites: Array<Course>;
 };
 
+export type CourseGroupedStats = {
+  cohort: Scalars["String"];
+  color_bands: Scalars["String"];
+  curriculum: Scalars["String"];
+  histogram: Scalars["String"];
+  histogram_labels: Scalars["String"];
+  id: Scalars["String"];
+  n_drop: Scalars["Float"];
+  n_fail: Scalars["Float"];
+  n_finished: Scalars["Float"];
+  n_pass: Scalars["Float"];
+  n_total: Scalars["Float"];
+  program_id: Scalars["String"];
+  type_admission: Scalars["String"];
+};
+
 export type Credit = {
   label: Scalars["String"];
   value: Scalars["Int"];
@@ -68,6 +91,24 @@ export type Dropout = {
   explanation?: Maybe<Scalars["String"]>;
   model_accuracy?: Maybe<Scalars["Float"]>;
   prob_dropout?: Maybe<Scalars["Float"]>;
+};
+
+export type Employed = {
+  description?: Maybe<Scalars["String"]>;
+  educational_system?: Maybe<Scalars["String"]>;
+  employed: Scalars["Boolean"];
+  institution?: Maybe<Scalars["String"]>;
+  months_to_first_job?: Maybe<Scalars["Float"]>;
+};
+
+export type ExternalEvaluation = {
+  bandColors: Array<BandColor>;
+  code: Scalars["String"];
+  historicalDistribution: Array<DistributionValue>;
+  /** ExternalEvaluation-Semester-Curriculum-Program ID */
+  id: Scalars["Int"];
+  mention: Scalars["String"];
+  name: Scalars["String"];
 };
 
 export type FeedbackAnswer = {
@@ -122,6 +163,18 @@ export type FeedbackResult = {
   form: FeedbackForm;
   timestamp: Scalars["DateTime"];
   user: User;
+};
+
+export type GroupedComplementary = {
+  average_time_university_degree: Scalars["Float"];
+  cohort: Scalars["String"];
+  curriculum: Scalars["String"];
+  program_id: Scalars["String"];
+  retention_rate: Scalars["Float"];
+  timely_university_degree_rate: Scalars["Float"];
+  total_students: Scalars["Float"];
+  type_admission: Scalars["String"];
+  university_degree_rate: Scalars["Float"];
 };
 
 export type IndirectTakeCourse = {
@@ -270,8 +323,10 @@ export type Persistence = {
 
 export type Program = {
   active: Scalars["Boolean"];
+  courseGroupedStats: Array<CourseGroupedStats>;
   curriculums: Array<Curriculum>;
   desc: Scalars["String"];
+  groupedComplementary: Array<GroupedComplementary>;
   id: Scalars["String"];
   lastGPA: Scalars["Float"];
   name: Scalars["String"];
@@ -287,6 +342,7 @@ export type Query = {
   myPrograms: Array<Program>;
   programs: Array<Program>;
   students: Array<Student>;
+  students_filter: Array<Student>;
   trackInfo: Array<Track>;
   unansweredForm?: Maybe<FeedbackForm>;
   userPersistences: Array<Persistence>;
@@ -311,6 +367,11 @@ export type QueryStudentsArgs = {
   program_id: Scalars["String"];
 };
 
+export type QueryStudents_FilterArgs = {
+  curriculum: Scalars["String"];
+  program_id: Scalars["String"];
+};
+
 export type QueryTrackInfoArgs = {
   maxDate: Scalars["DateTime"];
   minDate: Scalars["DateTime"];
@@ -322,6 +383,7 @@ export type QueryUserPersistencesArgs = {
 
 export type Semester = {
   courses: Array<Course>;
+  externalEvaluations: Array<ExternalEvaluation>;
   id: Scalars["Int"];
 };
 
@@ -335,10 +397,14 @@ export enum StateCourse {
 }
 
 export type Student = {
+  admission: Admission;
   curriculums: Array<Scalars["String"]>;
   dropout?: Maybe<Dropout>;
+  employed: Employed;
   id: Scalars["ID"];
   mention: Scalars["String"];
+  n_courses_cycles: Array<Scalars["Float"]>;
+  n_cycles: Array<Scalars["String"]>;
   name: Scalars["String"];
   programs: Array<Program>;
   progress: Scalars["Float"];
@@ -360,6 +426,18 @@ export type TakenCourse = {
   state: StateCourse;
 };
 
+export type TakenExternalEvaluation = {
+  bandColors: Array<BandColor>;
+  code: Scalars["String"];
+  currentDistribution: Array<DistributionValue>;
+  grade: Scalars["Float"];
+  id: Scalars["Int"];
+  name: Scalars["String"];
+  parallelGroup: Scalars["Int"];
+  registration: Scalars["String"];
+  state: StateCourse;
+};
+
 export type Term = {
   comments: Scalars["String"];
   cumulated_grade: Scalars["Float"];
@@ -369,6 +447,7 @@ export type Term = {
   situation: Scalars["String"];
   student_id: Scalars["String"];
   takenCourses: Array<TakenCourse>;
+  takenExternalEvaluations: Array<TakenExternalEvaluation>;
   term: TermType;
   year: Scalars["Int"];
 };
@@ -618,6 +697,38 @@ export type SearchProgramMutationVariables = Exact<{
 
 export type SearchProgramMutation = {
   program: Pick<Program, "id" | "name" | "desc" | "active"> & {
+    groupedComplementary: Array<
+      Pick<
+        GroupedComplementary,
+        | "timely_university_degree_rate"
+        | "total_students"
+        | "average_time_university_degree"
+        | "program_id"
+        | "curriculum"
+        | "type_admission"
+        | "cohort"
+        | "university_degree_rate"
+        | "retention_rate"
+      >
+    >;
+    courseGroupedStats: Array<
+      Pick<
+        CourseGroupedStats,
+        | "program_id"
+        | "curriculum"
+        | "type_admission"
+        | "cohort"
+        | "id"
+        | "n_total"
+        | "n_finished"
+        | "n_pass"
+        | "n_drop"
+        | "n_fail"
+        | "histogram"
+        | "histogram_labels"
+        | "color_bands"
+      >
+    >;
     curriculums: Array<
       Pick<Curriculum, "id"> & {
         semesters: Array<
@@ -647,7 +758,15 @@ export type SearchStudentMutationVariables = Exact<{
 
 export type SearchStudentMutation = {
   student?: Maybe<
-    Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
+    Pick<
+      Student,
+      | "id"
+      | "curriculums"
+      | "start_year"
+      | "n_courses_cycles"
+      | "n_cycles"
+      | "mention"
+    > & {
       programs: Array<Pick<Program, "id" | "name">>;
       terms: Array<
         Pick<
@@ -657,10 +776,10 @@ export type SearchStudentMutation = {
           | "year"
           | "term"
           | "situation"
+          | "comments"
           | "semestral_grade"
           | "cumulated_grade"
           | "program_grade"
-          | "comments"
         > & {
           takenCourses: Array<
             Pick<
@@ -684,6 +803,17 @@ export type SearchStudentMutation = {
       >;
       dropout?: Maybe<
         Pick<Dropout, "prob_dropout" | "model_accuracy" | "active">
+      >;
+      admission: Pick<
+        Admission,
+        "active" | "type_admission" | "initial_test" | "final_test"
+      >;
+      employed: Pick<
+        Employed,
+        | "employed"
+        | "institution"
+        | "educational_system"
+        | "months_to_first_job"
       >;
     }
   >;
@@ -714,6 +844,23 @@ export type StudentsListQuery = {
   students: Array<
     Pick<Student, "id" | "progress" | "start_year"> & {
       dropout?: Maybe<Pick<Dropout, "prob_dropout" | "explanation">>;
+      admission: Pick<
+        Admission,
+        "active" | "type_admission" | "initial_test" | "final_test"
+      >;
+    }
+  >;
+};
+
+export type StudentsFilterListQueryVariables = Exact<{
+  program_id: Scalars["String"];
+  curriculum: Scalars["String"];
+}>;
+
+export type StudentsFilterListQuery = {
+  students_filter: Array<
+    Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
+      programs: Array<Pick<Program, "id" | "name">>;
     }
   >;
 };
@@ -1894,6 +2041,32 @@ export const SearchProgramDocument = gql`
       name
       desc
       active
+      groupedComplementary {
+        timely_university_degree_rate
+        total_students
+        average_time_university_degree
+        program_id
+        curriculum
+        type_admission
+        cohort
+        university_degree_rate
+        retention_rate
+      }
+      courseGroupedStats {
+        program_id
+        curriculum
+        type_admission
+        cohort
+        id
+        n_total
+        n_finished
+        n_pass
+        n_drop
+        n_fail
+        histogram
+        histogram_labels
+        color_bands
+      }
       curriculums {
         id
         semesters {
@@ -1979,6 +2152,8 @@ export const SearchStudentDocument = gql`
       }
       curriculums
       start_year
+      n_courses_cycles
+      n_cycles
       mention
       terms {
         id
@@ -1986,10 +2161,10 @@ export const SearchStudentDocument = gql`
         year
         term
         situation
+        comments
         semestral_grade
         cumulated_grade
         program_grade
-        comments
         takenCourses {
           id
           code
@@ -2014,6 +2189,18 @@ export const SearchStudentDocument = gql`
         prob_dropout
         model_accuracy
         active
+      }
+      admission {
+        active
+        type_admission
+        initial_test
+        final_test
+      }
+      employed {
+        employed
+        institution
+        educational_system
+        months_to_first_job
       }
     }
   }
@@ -2212,6 +2399,12 @@ export const StudentsListDocument = gql`
         prob_dropout
         explanation
       }
+      admission {
+        active
+        type_admission
+        initial_test
+        final_test
+      }
     }
   }
 `;
@@ -2263,6 +2456,70 @@ export type StudentsListLazyQueryHookResult = ReturnType<
 export type StudentsListQueryResult = Apollo.QueryResult<
   StudentsListQuery,
   StudentsListQueryVariables
+>;
+export const StudentsFilterListDocument = gql`
+  query studentsFilterList($program_id: String!, $curriculum: String!) {
+    students_filter(program_id: $program_id, curriculum: $curriculum) {
+      id
+      programs {
+        id
+        name
+      }
+      curriculums
+      start_year
+      mention
+    }
+  }
+`;
+
+/**
+ * __useStudentsFilterListQuery__
+ *
+ * To run a query within a React component, call `useStudentsFilterListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStudentsFilterListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStudentsFilterListQuery({
+ *   variables: {
+ *      program_id: // value for 'program_id'
+ *      curriculum: // value for 'curriculum'
+ *   },
+ * });
+ */
+export function useStudentsFilterListQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    StudentsFilterListQuery,
+    StudentsFilterListQueryVariables
+  >
+) {
+  return Apollo.useQuery<
+    StudentsFilterListQuery,
+    StudentsFilterListQueryVariables
+  >(StudentsFilterListDocument, baseOptions);
+}
+export function useStudentsFilterListLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    StudentsFilterListQuery,
+    StudentsFilterListQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<
+    StudentsFilterListQuery,
+    StudentsFilterListQueryVariables
+  >(StudentsFilterListDocument, baseOptions);
+}
+export type StudentsFilterListQueryHookResult = ReturnType<
+  typeof useStudentsFilterListQuery
+>;
+export type StudentsFilterListLazyQueryHookResult = ReturnType<
+  typeof useStudentsFilterListLazyQuery
+>;
+export type StudentsFilterListQueryResult = Apollo.QueryResult<
+  StudentsFilterListQuery,
+  StudentsFilterListQueryVariables
 >;
 export const PerformanceLoadAdvicesDocument = gql`
   mutation performanceLoadAdvices($student_id: String, $program_id: String) {

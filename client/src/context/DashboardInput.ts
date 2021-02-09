@@ -26,14 +26,47 @@ export const {
 );
 
 export const {
+  hooks: { useGroupedActive },
+  actions: { setGroupedActive },
+} = createStore(
+  {
+    groupedActive: 0,
+  },
+  {
+    storagePersistence: {
+      isActive: true,
+      persistenceKey: "GroupedActive",
+    },
+    hooks: {
+      useGroupedActive({ groupedActive }) {
+        return Boolean(groupedActive);
+      },
+    },
+    actions: {
+      setGroupedActive: (groupedActive: boolean) => (draft) => {
+        draft.groupedActive = groupedActive ? 1 : 0;
+      },
+    },
+  }
+);
+
+export const {
   useStore: useDashboardInputState,
   actions: DashboardInputActions,
-  hooks: { useProgram, useStudent, useChosenCurriculum },
+  hooks: {
+    useProgram,
+    useStudent,
+    useChosenCurriculum,
+    useChosenAdmissionType,
+    useChosenCohort,
+  },
 } = createStore(
   {
     chosenCurriculum: undefined as string | undefined,
     program: undefined as string | undefined,
     student: undefined as string | undefined,
+    chosenAdmissionType: undefined as string | undefined,
+    chosenCohort: undefined as string | undefined,
   },
   {
     devName: "DashboardInput",
@@ -47,6 +80,12 @@ export const {
       useChosenCurriculum: ({ chosenCurriculum }) => {
         return chosenCurriculum;
       },
+      useChosenAdmissionType: ({ chosenAdmissionType }) => {
+        return chosenAdmissionType;
+      },
+      useChosenCohort: ({ chosenCohort }) => {
+        return chosenCohort;
+      },
     },
     actions: {
       setProgram: (program?: string) => (draft) => {
@@ -57,6 +96,12 @@ export const {
       },
       setChosenCurriculum: (chosenCurriculum?: string) => (draft) => {
         draft.chosenCurriculum = chosenCurriculum;
+      },
+      setChosenAdmissionType: (chosenAdmissionType?: string) => (draft) => {
+        draft.chosenAdmissionType = chosenAdmissionType;
+      },
+      setChosenCohort: (chosenCohort?: string) => (draft) => {
+        draft.chosenCohort = chosenCohort;
       },
     },
   }

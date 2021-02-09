@@ -51,6 +51,32 @@ mutation searchProgram($id: String, $student_id: String) {
     name
     desc
     active
+    groupedComplementary {
+      timely_university_degree_rate
+      total_students
+      average_time_university_degree
+      program_id
+      curriculum
+      type_admission
+      cohort
+      university_degree_rate
+      retention_rate
+    }
+    courseGroupedStats {
+      program_id
+      curriculum
+      type_admission
+      cohort
+      id
+      n_total
+      n_finished
+      n_pass
+      n_drop
+      n_fail
+      histogram
+      histogram_labels
+      color_bands
+    }
     curriculums {
       id
       semesters {
@@ -93,6 +119,8 @@ mutation searchStudent($student_id: String, $program_id: String) {
     }
     curriculums
     start_year
+    n_courses_cycles
+    n_cycles
     mention
     terms {
       id
@@ -100,10 +128,10 @@ mutation searchStudent($student_id: String, $program_id: String) {
       year
       term
       situation
+      comments
       semestral_grade
       cumulated_grade
       program_grade
-      comments
       takenCourses {
         id
         code
@@ -128,6 +156,18 @@ mutation searchStudent($student_id: String, $program_id: String) {
       prob_dropout
       model_accuracy
       active
+    }
+    admission {
+      active
+      type_admission
+      initial_test
+      final_test
+    }
+    employed {
+      employed
+      institution
+      educational_system
+      months_to_first_job
     }
   }
 }
@@ -156,6 +196,25 @@ query studentsList($program_id: String!) {
       prob_dropout
       explanation
     }
+    admission {
+      active
+      type_admission
+      initial_test
+      final_test
+    }
+  }
+}
+
+query studentsFilterList($program_id: String!, $curriculum: String!) {
+  students_filter(program_id: $program_id, curriculum: $curriculum) {
+    id
+    programs {
+      id
+      name
+    }
+    curriculums
+    start_year
+    mention
   }
 }
 

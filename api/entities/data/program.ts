@@ -1,6 +1,10 @@
 import { Field, Int, ObjectType } from "type-graphql";
 
 import { Course } from "./course";
+import { CourseGroupedStats } from "./courseGroupedStats";
+import { ExternalEvaluation } from "./externalEvaluation";
+
+import { GroupedComplementary } from "./groupedComplementary";
 
 @ObjectType({ simpleResolvers: true })
 export class Semester {
@@ -11,7 +15,12 @@ export class Semester {
   // program_structure => course_id
   @Field(() => [Course])
   courses: Course[];
+
+  // program_structure => external_evaluation_id
+  @Field(() => [ExternalEvaluation])
+  externalEvaluations: ExternalEvaluation[];
 }
+
 @ObjectType({ simpleResolvers: true })
 export class Curriculum {
   // program_structure => curriculum
@@ -47,4 +56,10 @@ export class Program {
   // program_structure => curriculum
   @Field(() => [Curriculum])
   curriculums: Curriculum[];
+
+  @Field(() => [GroupedComplementary])
+  groupedComplementary: GroupedComplementary[];
+
+  @Field(() => [CourseGroupedStats])
+  courseGroupedStats: CourseGroupedStats[];
 }

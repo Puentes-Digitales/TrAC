@@ -13,7 +13,6 @@ import { FaChevronLeft, FaChevronRight, FaListOl } from "react-icons/fa";
 import { useUpdateEffect } from "react-use";
 import { Pagination, Progress, Table, TableCell } from "semantic-ui-react";
 import { useRememberState } from "use-remember-state";
-
 import {
   Button,
   Drawer,

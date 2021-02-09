@@ -26,8 +26,11 @@ import {
   DashboardInputActions,
   setMock,
   useChosenCurriculum,
+  useChosenAdmissionType,
+  useChosenCohort,
   useIsMockActive,
   useProgram,
+  useGroupedActive,
 } from "../../context/DashboardInput";
 import {
   ForeplanActiveStore,
@@ -52,22 +55,26 @@ import { ToggleDarkMode } from "../DarkMode";
 import {
   Dropout,
   ForeplanModeSwitch,
-  ForeplanSummary,
+  ComplementaryInfo,
 } from "../DynamicComponents";
 import { Feedback } from "../feedback";
 import { LoadingPage } from "../Loading";
 import { SearchBar } from "./SearchBar";
 import { SemestersList } from "./SemestersList";
+import { GroupedSemestersList } from "./GroupedSemesterList";
 import { TakenSemesterBox } from "./TakenSemesterBox";
 import { TimeLine } from "./Timeline/Timeline";
+import { ProgressStudent } from "./ProgressStudent";
+import { GroupedComplementaryInfo } from "./GroupedComplementaryInfo";
 
 export function Dashboard() {
   const mock = useIsMockActive();
   const chosenCurriculum = useChosenCurriculum();
   const program = useProgram();
-
+  const chosenAdmissionType = useChosenAdmissionType();
+  const chosenCohort = useChosenCohort();
+  const grouped = useGroupedActive();
   const { user } = useUser();
-
   const [mockData, setMockData] = useState<
     typeof import("../../../constants/mockData")
   >();
@@ -180,7 +187,6 @@ export function Dashboard() {
         showingProgress: true,
         program: searchProgramData.program.id,
       });
-      setMock(false);
     } else {
       DashboardInputActions.setProgram(undefined);
       setTrackingData({
@@ -378,20 +384,31 @@ export function Dashboard() {
     TakenSemestersComponent,
     SemestersComponent,
     DropoutComponent,
+    ComplementaryInfoComponent,
+    ProgressStudentComponent,
+    ForePlanSwitchComponent,
+    GroupedComplementaryInfoComponent,
   } = useMemo(() => {
     let TimeLineComponent: JSX.Element | null = null;
     let DropoutComponent: JSX.Element | null = null;
     let TakenSemestersComponent: JSX.Element | null = null;
     let SemestersComponent: JSX.Element | null = null;
+    let ComplementaryInfoComponent: JSX.Element | null = null;
+    let ProgressStudentComponent: JSX.Element | null = null;
+    let ForePlanSwitchComponent: JSX.Element | null = null;
+    let GroupedComplementaryInfoComponent: JSX.Element | null = null;
 
     const studentData = mock
-      ? mockData?.default.searchStudentData.student
+      ? grouped
+        ? undefined
+        : mockData?.default.searchStudentData.student
       : searchStudentData?.student;
+
     const programData = mock
       ? mockData?.default.searchProgramData.program
       : searchProgramData?.program;
 
-    if (studentData) {
+    if (studentData && !grouped) {
       const {
         cumulated_grade,
         semestral_grade,
@@ -443,9 +460,10 @@ export function Dashboard() {
                 />
               );
             })}
-          {user?.config?.FOREPLAN && <ForeplanModeSwitch />}
         </Flex>
       );
+      if (user?.config?.FOREPLAN)
+        ForePlanSwitchComponent = <ForeplanModeSwitch />;
       if (studentData.dropout?.active && user?.config?.SHOW_DROPOUT) {
         DropoutComponent = (
           <Dropout
@@ -454,8 +472,35 @@ export function Dashboard() {
           />
         );
       }
+      if (
+        studentData.admission?.active &&
+        user?.config?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION
+      ) {
+        ComplementaryInfoComponent = (
+          <ComplementaryInfo
+            type_admission={studentData.admission.type_admission}
+            initial_test={studentData.admission.initial_test}
+            final_test={studentData.admission.final_test}
+            educational_system={studentData.employed.educational_system}
+            institution={studentData.employed.institution}
+            months_to_first_job={studentData.employed.months_to_first_job}
+          />
+        );
+      }
+      if (
+        user?.config?.SHOW_PROGRESS_STUDENT_CYCLE &&
+        studentData.n_cycles.length >= 1
+      ) {
+        ProgressStudentComponent = (
+          <ProgressStudent
+            n_courses_cycles={studentData.n_courses_cycles}
+            n_cycles_student={studentData.n_cycles}
+          />
+        );
+      }
     }
-    if (programData) {
+
+    if (programData && !grouped) {
       const curriculums =
         programData?.curriculums
           .filter(({ id }) => {
@@ -540,7 +585,7 @@ export function Dashboard() {
           ? curriculumId === chosenCurriculum
           : true;
       });
-      if (data) {
+      if (data && studentData) {
         SemestersComponent = (
           <SemestersList
             semesters={data.semesters.map(({ semester }) => semester)}
@@ -549,13 +594,164 @@ export function Dashboard() {
       }
     }
 
+    if (programData && grouped) {
+      const curriculums =
+        programData?.curriculums
+          .filter(({ id }) => {
+            if (studentData) {
+              return studentData.curriculums.includes(id);
+            }
+            return true;
+          })
+          .map(({ semesters: curriculumSemesters, id: curriculumId }) => {
+            const semesters = curriculumSemesters.map((va) => {
+              const semester = {
+                n: va.id,
+                courses: va.courses.map(
+                  ({
+                    code,
+                    name,
+                    credits,
+                    flow,
+                    requisites,
+                    historicalDistribution,
+                    bandColors,
+                  }) => {
+                    console.log(code);
+                    const dataFiltrada = programData.courseGroupedStats.filter(
+                      (value) =>
+                        value.curriculum == curriculumId &&
+                        value.type_admission == chosenAdmissionType &&
+                        value.program_id == programData.id &&
+                        value.cohort == chosenCohort &&
+                        value.id == code
+                    );
+                    const datosComplementary = programData.groupedComplementary.filter(
+                      (value) =>
+                        value.curriculum == curriculumId &&
+                        value.type_admission == chosenAdmissionType &&
+                        value.program_id == programData.id &&
+                        value.cohort == chosenCohort
+                    );
+                    return {
+                      code,
+                      name,
+                      credits,
+                      flow: flow.map(({ code }) => {
+                        return code;
+                      }),
+                      requisites: requisites.map(({ code }) => {
+                        return code;
+                      }),
+                      historicDistribution: historicalDistribution,
+                      bandColors,
+                      n_passed: dataFiltrada[0] ? dataFiltrada[0].n_pass : 0,
+                      n_total: datosComplementary[0]
+                        ? datosComplementary[0].total_students
+                        : 0,
+                      taken: (() => {
+                        const taken: ITakenCourse[] = [];
+                        if (studentData) {
+                          for (const {
+                            term,
+                            year,
+                            takenCourses,
+                          } of studentData.terms) {
+                            for (const {
+                              code: courseCode,
+                              equiv,
+                              registration,
+                              state,
+                              grade,
+                              currentDistribution,
+                              parallelGroup,
+                              bandColors,
+                            } of takenCourses) {
+                              if (equiv === code || courseCode === code) {
+                                taken.push({
+                                  term,
+                                  year,
+                                  registration,
+                                  state,
+                                  grade,
+                                  currentDistribution,
+                                  parallelGroup,
+                                  equiv: equiv === code ? courseCode : "",
+                                  bandColors,
+                                });
+                              }
+                            }
+                          }
+                        }
+
+                        return taken;
+                      })(),
+                    };
+                  }
+                ),
+              };
+              return { semester };
+            });
+            return { id: curriculumId, semesters };
+          }) ?? [];
+      const data = curriculums.find(({ id: curriculumId }) => {
+        return !mock && chosenCurriculum
+          ? curriculumId === chosenCurriculum
+          : true;
+      });
+      if (data) {
+        const filterdata = programData.groupedComplementary.filter(
+          (value) =>
+            value.curriculum == data.id &&
+            value.type_admission == chosenAdmissionType &&
+            value.program_id == programData.id &&
+            value.cohort == chosenCohort
+        );
+
+        SemestersComponent = (
+          <GroupedSemestersList
+            semesters={data.semesters.map(({ semester }) => semester)}
+          />
+        );
+
+        if (filterdata[0]) {
+          GroupedComplementaryInfoComponent = (
+            <GroupedComplementaryInfo
+              total_students={filterdata[0].total_students}
+              university_degree_rate={filterdata[0].university_degree_rate}
+              average_time_university_degree={
+                filterdata[0].average_time_university_degree
+              }
+              timely_university_degree_rate={
+                filterdata[0].timely_university_degree_rate
+              }
+              retention_rate={filterdata[0].retention_rate}
+            />
+          );
+        }
+      }
+    }
+
     return {
       TimeLineComponent,
       DropoutComponent,
       TakenSemestersComponent,
       SemestersComponent,
+      ComplementaryInfoComponent,
+      ProgressStudentComponent,
+      ForePlanSwitchComponent,
+      GroupedComplementaryInfoComponent,
     };
-  }, [searchStudentData, searchProgramData, chosenCurriculum, mock, mockData]);
+  }, [
+    searchStudentData,
+    searchProgramData,
+    chosenCurriculum,
+    chosenAdmissionType,
+    chosenCohort,
+    grouped,
+    mock,
+    mockData,
+  ]);
 
   const {
     ERROR_STUDENT_NOT_FOUND_MESSAGE,
@@ -710,14 +906,23 @@ export function Dashboard() {
 
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
-          <Box>{TimeLineComponent}</Box>
-          {DropoutComponent}
-          {user?.config.FOREPLAN && <ForeplanSummary />}
-        </Flex>
+          {GroupedComplementaryInfoComponent}
+          {ComplementaryInfoComponent}
+          {ProgressStudentComponent}
+          <Box>
+            {TimeLineComponent}
 
-        <Stack isInline pl="50px">
-          {TakenSemestersComponent}
-        </Stack>
+            <Stack isInline pl="45px">
+              {TakenSemestersComponent}
+            </Stack>
+          </Box>
+          <Box pt="70px">
+            {DropoutComponent}
+            <Stack isInline pt="10px">
+              {ForePlanSwitchComponent}
+            </Stack>
+          </Box>
+        </Flex>
       </ScrollContainer>
 
       {SemestersComponent}

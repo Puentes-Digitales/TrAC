@@ -1,0 +1,50 @@
+[
+  {
+    "student_id": "238de40ae2a0e9f417c495e913d56773",
+    "employed": true,
+    "educational_system": "Sistema educacional estadounidense",
+    "institution": "Facultad de agronomía UACH",
+    "months_to_first_job": 12,
+    "description": ""
+  },
+  {
+    "student_id": "6fdb8a7f5bbaf0c68dbca0f5462e866a",
+    "employed": true,
+    "educational_system": "Sistema educacional chileno",
+    "institution": "Escuela 1",
+    "months_to_first_job": 8,
+    "description": ""
+  },
+  {
+    "student_id": "e078c7de4d67798a915801ba7e2539fb",
+    "employed": false,
+    "educational_system": "",
+    "institution": "",
+    "months_to_first_job": 3,
+    "description": ""
+  },
+  {
+    "student_id": "c381c9bba3e870e0698d9dfa51619c1f",
+    "employed": false,
+    "educational_system": "",
+    "institution": "",
+    "months_to_first_job": 3,
+    "description": ""
+  },
+  {
+    "student_id": "d8e9b1f97ec3bc542b7d018b5f9e4224",
+    "employed": true,
+    "educational_system": "",
+    "institution": "",
+    "months_to_first_job": 3,
+    "description": ""
+  },
+  {
+    "student_id": "993567bb136c986c3e18669a748e26b1",
+    "employed": true,
+    "educational_system": "",
+    "institution": "",
+    "months_to_first_job": 5,
+    "description": ""
+  }
+]
