@@ -82,4 +82,21 @@ export class TakenExternalEvaluationResolver {
     );
     return defaultStateCourse(stateData.state);
   }
+
+  @FieldResolver()
+  async grade(
+    @Root()
+    { id }: PartialTakenExternalEvaluation
+  ): Promise<$PropertyType<TakenExternalEvaluation, "grade">> {
+    assertIsDefined(
+      id,
+      `id and code needs to be available for Taken Course field resolvers`
+    );
+    const gradeData = await StudentExternalEvaluationDataLoader.load(id);
+    assertIsDefined(
+      gradeData,
+      `Grade could not be found for ${id} taken course`
+    );
+    return gradeData.grade;
+  }
 }

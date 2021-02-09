@@ -97,10 +97,7 @@ export const TakenExternalEvaluationDataLoader = new DataLoader(
             { column: "term", order: "desc" },
             { column: "state", order: "asc" },
           ]);
-        return uniqBy(
-          takenExternalEvaluationsData,
-          ({ external_evaluation_taken }) => external_evaluation_taken
-        );
+        return takenExternalEvaluationsData;
       })
     );
   },

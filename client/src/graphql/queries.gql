@@ -175,9 +175,11 @@ mutation searchStudent($student_id: String, $program_id: String) {
       takenExternalEvaluations {
         id
         code
+        topic
         name
         registration
         state
+        grade
       }
     }
     dropout {

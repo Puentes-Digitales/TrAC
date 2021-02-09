@@ -440,10 +440,12 @@ export type TakenCourse = {
 
 export type TakenExternalEvaluation = {
   code: Scalars["String"];
+  grade: Scalars["Float"];
   id: Scalars["Int"];
   name: Scalars["String"];
   registration: Scalars["String"];
   state: StateCourse;
+  topic: Scalars["String"];
 };
 
 export type Term = {
@@ -826,7 +828,13 @@ export type SearchStudentMutation = {
           takenExternalEvaluations: Array<
             Pick<
               TakenExternalEvaluation,
-              "id" | "code" | "name" | "registration" | "state"
+              | "id"
+              | "code"
+              | "topic"
+              | "name"
+              | "registration"
+              | "state"
+              | "grade"
             >
           >;
         }
@@ -2237,9 +2245,11 @@ export const SearchStudentDocument = gql`
         takenExternalEvaluations {
           id
           code
+          topic
           name
           registration
           state
+          grade
         }
       }
       dropout {

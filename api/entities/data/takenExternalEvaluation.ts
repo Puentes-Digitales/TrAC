@@ -29,4 +29,7 @@ export class TakenExternalEvaluation
   // student_external_evaluation => state
   @Field(() => StateCourse)
   state: StateCourse;
+
+  @Field()
+  grade: number;
 }
