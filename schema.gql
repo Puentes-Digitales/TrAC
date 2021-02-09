@@ -40,15 +40,15 @@ type Course {
 
 type CourseGroupedStats {
   cohort: String!
-  color_bands: String!
+  color_bands: [BandColor!]!
+  course_id: String!
   curriculum: String!
-  histogram: String!
-  histogram_labels: String!
-  id: String!
+  distribution: [DistributionValue!]!
   n_drop: Float!
   n_fail: Float!
   n_finished: Float!
   n_pass: Float!
+  n_students: Float!
   n_total: Float!
   program_id: String!
   type_admission: String!
@@ -175,6 +175,17 @@ type GroupedComplementary {
   university_degree_rate: Float!
 }
 
+type GroupedEmployed {
+  average_time_job_finding: Float!
+  cohort: String!
+  curriculum: String!
+  employed_rate: Float!
+  employed_rate_educational_system: Float!
+  program_id: String!
+  total_students: Float!
+  type_admission: String!
+}
+
 type IndirectTakeCourse {
   course: Course!
   requisitesUnmet: [String!]!
@@ -266,6 +277,7 @@ type Program {
   curriculums: [Curriculum!]!
   desc: String!
   groupedComplementary: [GroupedComplementary!]!
+  groupedEmployed: [GroupedEmployed!]!
   id: String!
   lastGPA: Float!
   name: String!

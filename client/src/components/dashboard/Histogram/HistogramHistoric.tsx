@@ -2,7 +2,6 @@ import { some } from "lodash";
 import React, { useContext } from "react";
 
 import { Badge } from "@chakra-ui/react";
-
 import { ICourse } from "../../../../../interfaces";
 import { ConfigContext } from "../../../context/Config";
 import { CurrentTakenData } from "../CourseBox/CourseBox";
@@ -15,6 +14,7 @@ export function HistogramHistoric({
 }: Pick<ICourse, "historicDistribution" | "bandColors"> &
   Pick<CurrentTakenData, "grade">) {
   const config = useContext(ConfigContext);
+
   return historicDistribution &&
     some(historicDistribution, ({ value }) => value) ? (
     <Histogram

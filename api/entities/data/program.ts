@@ -5,6 +5,7 @@ import { CourseGroupedStats } from "./courseGroupedStats";
 import { ExternalEvaluation } from "./externalEvaluation";
 
 import { GroupedComplementary } from "./groupedComplementary";
+import { GroupedEmployed } from "./groupedEmployed";
 
 @ObjectType({ simpleResolvers: true })
 export class Semester {
@@ -62,4 +63,7 @@ export class Program {
 
   @Field(() => [CourseGroupedStats])
   courseGroupedStats: CourseGroupedStats[];
+
+  @Field(() => [GroupedEmployed])
+  groupedEmployed: GroupedEmployed[];
 }
