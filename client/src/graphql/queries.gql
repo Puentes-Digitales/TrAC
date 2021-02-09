@@ -123,6 +123,10 @@ mutation searchProgram($id: String, $student_id: String) {
             color
           }
         }
+        externalEvaluations {
+          code
+          name
+        }
       }
     }
   }
@@ -168,6 +172,15 @@ mutation searchStudent($student_id: String, $program_id: String) {
           max
           color
         }
+      }
+      takenExternalEvaluations {
+        id
+        code
+        topic
+        name
+        registration
+        state
+        grade
       }
     }
     dropout {

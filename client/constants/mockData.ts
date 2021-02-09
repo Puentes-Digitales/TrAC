@@ -9063,6 +9063,12 @@ const data: {
           semesters: [
             {
               id: 1,
+              externalEvaluations: [
+                {
+                  code: "EID-17",
+                  name: "PRUEBA INICIAL DIAGNÓSTICA",
+                },
+              ],
               courses: [
                 {
                   code: "EID-17",
@@ -9538,6 +9544,7 @@ const data: {
             },
             {
               id: 2,
+              externalEvaluations: [],
               courses: [
                 {
                   code: "BAIN073-14",
@@ -10132,6 +10139,7 @@ const data: {
             },
             {
               id: 3,
+              externalEvaluations: [],
               courses: [
                 {
                   code: "BAIN077-14",
@@ -10598,6 +10606,7 @@ const data: {
             },
             {
               id: 4,
+              externalEvaluations: [],
               courses: [
                 {
                   code: "INFO090-17",
@@ -11116,6 +11125,7 @@ const data: {
             },
             {
               id: 5,
+              externalEvaluations: [],
               courses: [
                 {
                   code: "EICI146-17",
@@ -11702,6 +11712,7 @@ const data: {
             },
             {
               id: 6,
+              externalEvaluations: [],
               courses: [
                 {
                   code: "INFO229-17",
@@ -11923,6 +11934,12 @@ const data: {
             },
             {
               id: 7,
+              externalEvaluations: [
+                {
+                  code: "END-17",
+                  name: "PRUEBA NACIONAL DIAGNÓSTICA",
+                },
+              ],
               courses: [
                 {
                   code: "END-17",
@@ -12208,6 +12225,7 @@ const data: {
             },
             {
               id: 8,
+              externalEvaluations: [],
               courses: [
                 {
                   code: "INFO270-17",
@@ -12441,6 +12459,7 @@ const data: {
             },
             {
               id: 9,
+              externalEvaluations: [],
               courses: [
                 {
                   code: "EICI270-17",
@@ -12648,6 +12667,7 @@ const data: {
             },
             {
               id: 10,
+              externalEvaluations: [],
               courses: [
                 {
                   code: "ELECT116",
@@ -12884,6 +12904,7 @@ const data: {
             },
             {
               id: 11,
+              externalEvaluations: [],
               courses: [
                 {
                   code: "INFO299-17",
@@ -13168,6 +13189,7 @@ const data: {
           cumulated_grade: 0,
           program_grade: 4.31,
           comments: "",
+          takenExternalEvaluations: [],
           takenCourses: [
             {
               id: 123123,
@@ -13340,6 +13362,7 @@ const data: {
           cumulated_grade: 5.49,
           program_grade: 4.31,
           comments: "",
+          takenExternalEvaluations: [],
           takenCourses: [
             {
               id: 578337,
@@ -13713,6 +13736,7 @@ const data: {
           cumulated_grade: 5.66,
           program_grade: 4.31,
           comments: "REINCORP",
+          takenExternalEvaluations: [],
           takenCourses: [
             {
               id: 455472,
@@ -14074,6 +14098,7 @@ const data: {
           cumulated_grade: 5.15,
           program_grade: 4.31,
           comments: "",
+          takenExternalEvaluations: [],
           takenCourses: [
             {
               id: 455341,
@@ -14377,6 +14402,7 @@ const data: {
           cumulated_grade: 5.95,
           program_grade: 4.31,
           comments: "",
+          takenExternalEvaluations: [],
           takenCourses: [
             {
               id: 455162,
@@ -14796,6 +14822,7 @@ const data: {
           cumulated_grade: 6.02,
           program_grade: 4.31,
           comments: "",
+          takenExternalEvaluations: [],
           takenCourses: [
             {
               id: 123567,

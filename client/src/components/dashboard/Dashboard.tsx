@@ -11,7 +11,7 @@ import { useUpdateEffect } from "react-use";
 
 import { Box, Flex, Stack } from "@chakra-ui/react";
 
-import { ITakenCourse } from "../../../../interfaces";
+import { ITakenCourse, ITakenExternalEvaluation } from "../../../../interfaces";
 import {
   IS_NOT_TEST,
   PROGRAM_NOT_FOUND,
@@ -520,6 +520,44 @@ export function Dashboard() {
             const semesters = curriculumSemesters.map((va) => {
               const semester = {
                 n: va.id,
+                externalEvaluations: va.externalEvaluations.map(
+                  ({ code, name }) => {
+                    return {
+                      code,
+                      name,
+                      taken: (() => {
+                        const taken: ITakenExternalEvaluation[] = [];
+                        if (studentData) {
+                          for (const {
+                            term,
+                            year,
+                            takenExternalEvaluations,
+                          } of studentData.terms) {
+                            for (const {
+                              code: courseCode,
+                              registration,
+                              state,
+                              grade,
+                            } of takenExternalEvaluations) {
+                              if (courseCode === code) {
+                                taken.push({
+                                  term,
+                                  year,
+                                  registration,
+                                  state,
+                                  grade,
+                                });
+                              }
+                            }
+                          }
+                        }
+
+                        return taken;
+                      })(),
+                    };
+                  }
+                ),
+
                 courses: va.courses.map(
                   ({
                     code,

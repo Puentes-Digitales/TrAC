@@ -10,8 +10,8 @@ import {
   StudentProgramTable,
   GroupedComplementaryInformationTable,
   StudentGroupedEmployedTable,
-  PROGRAM_STRUCTURE_TABLE,
   CourseGroupedStatsTable,
+  ProgramStructureTable,
 } from "../db/tables";
 
 import type { Curriculum } from "../entities/data/program";
@@ -102,17 +102,20 @@ export const CurriculumsDataLoader = new DataLoader(
     return await Promise.all(
       keys.map(async ({ program_id, curriculumsIds }) => {
         const data = curriculumsIds
+          ? await ProgramStructureTable()
+              .select("id", "curriculum", "semester", "course_id")
+              .where({ program_id })
+              .whereIn(
+                "curriculum",
+                curriculumsIds.map(({ id }) => id)
+              )
+          : await ProgramStructureTable()
+              .select("id", "curriculum", "semester", "course_id")
+              .where({ program_id });
+
+        const data2 = curriculumsIds
           ? await ExternalEvaluationStructureTable()
               .select("id", "curriculum", "semester", "external_evaluation_id")
-              .unionAll(function () {
-                this.select("id", "curriculum", "semester", "course_id")
-                  .from(PROGRAM_STRUCTURE_TABLE)
-                  .where({ program_id })
-                  .whereIn(
-                    "curriculum",
-                    curriculumsIds.map(({ id }) => id)
-                  );
-              })
               .where({ program_id })
               .whereIn(
                 "curriculum",
@@ -120,12 +123,8 @@ export const CurriculumsDataLoader = new DataLoader(
               )
           : await ExternalEvaluationStructureTable()
               .select("id", "curriculum", "semester", "external_evaluation_id")
-              .unionAll(function () {
-                this.select("id", "curriculum", "semester", "course_id")
-                  .from(PROGRAM_STRUCTURE_TABLE)
-                  .where({ program_id });
-              })
               .where({ program_id });
+
         const curriculums = data.reduce<
           Record<
             string /*Curriculum id (program_structure => curriculum)*/,
@@ -139,11 +138,15 @@ export const CurriculumsDataLoader = new DataLoader(
                     id: number /* Course-semester-curriculum id (program_structure => id) */;
                     code: string /* Course id (program_structure => course_id) */;
                   }[];
+                  externalEvaluations: {
+                    id: number;
+                    code: string;
+                  }[];
                 }
               >;
             }
           >
-        >((acum, { curriculum, semester, external_evaluation_id, id }) => {
+        >((acum, { curriculum, semester, course_id, id }) => {
           defaultsDeep(acum, {
             [curriculum]: {
               id: curriculum,
@@ -151,6 +154,7 @@ export const CurriculumsDataLoader = new DataLoader(
                 [semester]: {
                   id: semester,
                   courses: [],
+                  externalEvaluations: [],
                 },
               },
             },
@@ -158,21 +162,38 @@ export const CurriculumsDataLoader = new DataLoader(
 
           acum[curriculum].semesters[semester].courses.push({
             id,
-            code: external_evaluation_id,
+            code: course_id,
           });
 
           return acum;
         }, {});
 
+        for (let i in curriculums) {
+          for (let j in curriculums[i].semesters) {
+            data2.map((val, index) => {
+              if (val.curriculum == i && val.semester.toString() == j) {
+                curriculums[i].semesters[j].externalEvaluations.push({
+                  id: val.id,
+                  code: val.external_evaluation_id,
+                });
+                data2.splice(index, 1);
+              }
+            });
+          }
+        }
+
         return Object.values(curriculums).map(({ id, semesters }) => {
           return {
             id,
-            semesters: Object.values(semesters).map(({ id, courses }) => {
-              return {
-                id,
-                courses,
-              };
-            }),
+            semesters: Object.values(semesters).map(
+              ({ id, courses, externalEvaluations }) => {
+                return {
+                  id,
+                  courses,
+                  externalEvaluations,
+                };
+              }
+            ),
           };
         });
       })

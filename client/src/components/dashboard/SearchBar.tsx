@@ -114,6 +114,12 @@ export const SearchBar: FC<{
   });
 
   useEffect(() => {
+    DashboardInputActions.setChosenCurriculum("");
+    DashboardInputActions.setChosenAdmissionType("");
+    DashboardInputActions.setChosenCohort("");
+  }, [groupedActive]);
+
+  useEffect(() => {
     if (
       (chosenCurriculum === undefined &&
         (searchResult?.curriculums.length ?? 0) > 0) ||
@@ -153,12 +159,6 @@ export const SearchBar: FC<{
     setMock(false);
   }, []);
 
-  useEffect(() => {
-    DashboardInputActions.setChosenCurriculum("");
-    DashboardInputActions.setChosenAdmissionType("");
-    DashboardInputActions.setChosenCohort("");
-  }, [groupedActive]);
-
   const { user } = useUser();
 
   const isDirector = user?.type === UserType.Director;
@@ -170,8 +170,8 @@ export const SearchBar: FC<{
     NO_CURRICULUMS_LABEL,
     PROGRAM_NOT_SPECIFIED_PLACEHOLDER,
     CURRICULUM_LABEL,
-    COHORT_LABEL,
     ADMISSION_TYPE_LABEL,
+    COHORT_LABEL,
     STUDENT_LABEL,
     PLACEHOLDER_SEARCH_STUDENT,
     LOGOUT_CONFIRMATION_LABEL,

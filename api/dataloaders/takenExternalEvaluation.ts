@@ -7,7 +7,6 @@ import {
   IExternalEvaluationStats,
   IStudentExternalEvaluation,
   StudentExternalEvaluationTable,
-  STUDENT_COURSE_TABLE,
 } from "../db/tables";
 
 export const StudentExternalEvaluationDataLoader = new DataLoader(
@@ -19,6 +18,24 @@ export const StudentExternalEvaluationDataLoader = new DataLoader(
 
     return ids.map((id) => {
       return dataDict[id];
+    });
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentExternalEvaluationDataLoader2 = new DataLoader(
+  async (codes: readonly string[]) => {
+    const dataDict: Dictionary<IStudentExternalEvaluation | undefined> = keyBy(
+      await StudentExternalEvaluationTable()
+        .select("*")
+        .where("external_evaluation_taken", "EID-15"),
+      "external_evaluation_taken"
+    );
+
+    return codes.map((code) => {
+      return dataDict[code];
     });
   },
   {
@@ -74,36 +91,6 @@ export const ExternalEvaluationStatsByExternalEvaluationTakenDataLoader = new Da
 
     return codes.map((external_evaluation_taken) => {
       return dataDict[external_evaluation_taken];
-    });
-  },
-  {
-    cacheMap: new LRUMap(1000),
-  }
-);
-
-export const StudentExternalEvaluationAndCourseDataLoader = new DataLoader(
-  async (ids: readonly number[]) => {
-    const dataDict: Dictionary<
-      | Pick<
-          IStudentExternalEvaluation,
-          "id" | "registration" | "grade" | "state" | "p_group"
-        >
-      | undefined
-    > = keyBy(
-      await StudentExternalEvaluationTable()
-        .select("id", "registration", "grade", "state", "p_group")
-        .unionAll(function () {
-          this.select("id", "registration", "grade", "state", "p_group")
-            .from(STUDENT_COURSE_TABLE)
-            .whereIn("id", ids),
-            "id";
-        })
-        .whereIn("id", ids),
-      "id"
-    );
-
-    return ids.map((id) => {
-      return dataDict[id];
     });
   },
   {

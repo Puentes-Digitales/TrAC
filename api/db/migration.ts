@@ -598,6 +598,7 @@ const migration = async () => {
             table.integer("term").notNullable();
             table.text("student_id").notNullable();
             table.text("external_evaluation_taken").notNullable();
+            table.text("topic").notNullable();
             table.text("registration").notNullable();
             table.text("state").notNullable();
             table.float("grade", 4).notNullable();

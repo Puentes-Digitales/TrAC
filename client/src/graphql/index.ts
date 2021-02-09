@@ -109,6 +109,7 @@ export type ExternalEvaluation = {
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
+  year: Scalars["Float"];
 };
 
 export type FeedbackAnswer = {
@@ -439,15 +440,13 @@ export type TakenCourse = {
 };
 
 export type TakenExternalEvaluation = {
-  bandColors: Array<BandColor>;
   code: Scalars["String"];
-  currentDistribution: Array<DistributionValue>;
   grade: Scalars["Float"];
   id: Scalars["Int"];
   name: Scalars["String"];
-  parallelGroup: Scalars["Int"];
   registration: Scalars["String"];
   state: StateCourse;
+  topic: Scalars["String"];
 };
 
 export type Term = {
@@ -770,6 +769,9 @@ export type SearchProgramMutation = {
                 bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
               }
             >;
+            externalEvaluations: Array<
+              Pick<ExternalEvaluation, "code" | "name">
+            >;
           }
         >;
       }
@@ -824,6 +826,18 @@ export type SearchStudentMutation = {
               >;
               bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
             }
+          >;
+          takenExternalEvaluations: Array<
+            Pick<
+              TakenExternalEvaluation,
+              | "id"
+              | "code"
+              | "topic"
+              | "name"
+              | "registration"
+              | "state"
+              | "grade"
+            >
           >;
         }
       >;
@@ -2138,6 +2152,10 @@ export const SearchProgramDocument = gql`
               color
             }
           }
+          externalEvaluations {
+            code
+            name
+          }
         }
       }
     }
@@ -2226,6 +2244,15 @@ export const SearchStudentDocument = gql`
             max
             color
           }
+        }
+        takenExternalEvaluations {
+          id
+          code
+          topic
+          name
+          registration
+          state
+          grade
         }
       }
       dropout {
