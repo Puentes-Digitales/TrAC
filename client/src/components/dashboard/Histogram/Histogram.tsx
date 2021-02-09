@@ -123,7 +123,12 @@ export function Histogram({
     if (grade !== undefined) {
       return distribution.findIndex(({ label }, key: number) => {
         const [min, max] = label.split("-").map(toInteger); // TODO: Adapt to pass/fail histogram type
-        if (grade >= min && grade <= max) {
+        if (
+          min != undefined &&
+          max != undefined &&
+          grade >= min &&
+          grade <= max
+        ) {
           if (grade === max && distribution[key + 1]) {
             return false;
           }

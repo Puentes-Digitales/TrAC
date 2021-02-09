@@ -35,8 +35,8 @@ export function HistogramsComponent({
         position: "absolute",
       }}
       className={classNames({
-        [styles.histogramBox]: true,
-        [styles.foreplanActive]: isPossibleToTake,
+        [styles.histogramBox as string]: true,
+        [styles.foreplanActive as string]: isPossibleToTake,
       })}
     >
       {children}

@@ -44,9 +44,9 @@ const uniqWithEqual = <A>(a: A[]) => {
 export interface ICoursesDashboardData {
   activeCourse: string | undefined;
   activeHistory: readonly string[];
-  flow: Record<string, boolean>;
+  flow: Record<string, boolean> | undefined;
   flowHistory: readonly Record<string, boolean>[];
-  requisites: Record<string, boolean>;
+  requisites: Record<string, boolean> | undefined;
   requisitesHistory: readonly Record<string, boolean>[];
   semestersTaken: readonly ITakenSemester[] | undefined;
   semestersTakenHistory: readonly (ITakenSemester[] | undefined)[];

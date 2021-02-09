@@ -25,7 +25,7 @@
     ],
     "importsNotUsedAsValues": "remove",
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": false
+    "noUncheckedIndexedAccess": true
   },
   "exclude": ["node_modules", "api"],
   "include": ["**/*.ts", "**/*.tsx"]
