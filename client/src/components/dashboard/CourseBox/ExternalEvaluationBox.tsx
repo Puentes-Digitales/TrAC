@@ -87,7 +87,7 @@ const useIsCourseFuturePlanificationFulfilled = ({
 };
 
 const OuterCourseBox: FC<
-  Pick<IExternalEvaluation, "code"> & {
+  Pick<IExternalEvaluation, "code" | "taken"> & {
     isOpen: boolean;
     borderColor: string;
     semestersTaken: ITakenSemester[];
@@ -100,12 +100,13 @@ const OuterCourseBox: FC<
     code,
     currentDistribution,
     semestersTaken,
+    taken,
     borderColor,
     isOpen,
     isFutureCourseFulfilled,
   }) => {
     const config = useContext(ConfigContext);
-
+    const takenSize = taken.length;
     const activeCourse = CoursesDashboardStore.hooks.useActiveCourse(code);
     const explicitSemester = CoursesDashboardStore.hooks.useExplicitSemester();
 
@@ -130,25 +131,9 @@ const OuterCourseBox: FC<
       let height: number | undefined = undefined;
       let width: number | undefined = undefined;
       if (isOpen) {
-        if (
-          currentDistribution &&
-          some(currentDistribution, ({ value }) => value)
-        ) {
+        if (some(currentDistribution, ({ value }) => value)) {
           width = 350;
-          if (
-            currentDistribution &&
-            some(currentDistribution, ({ value }) => value)
-          ) {
-            height = 350;
-          } else {
-            height = 350 - 130;
-          }
-        } else if (
-          currentDistribution &&
-          some(currentDistribution, ({ value }) => value)
-        ) {
-          width = 350;
-          height = 350 - 130;
+          height = 220 + (takenSize - 1) * 130;
         }
       } else {
         width = 180;
@@ -485,6 +470,7 @@ export function ExternalEvaluationBox({
     <OuterCourseBox
       code={code}
       currentDistribution={currentDistribution}
+      taken={taken}
       isOpen={isOpen}
       semestersTaken={semestersTaken}
       borderColor={borderColor}
@@ -507,7 +493,7 @@ export function ExternalEvaluationBox({
               code={code}
               state={taken[0]?.state}
             >
-              {taken.map(({ currentDistribution }) => (
+              {taken.map(({ currentDistribution, topic, grade }) => (
                 <HistogramEvaluation
                   taken={taken}
                   bandColors={bandColors}
@@ -515,6 +501,7 @@ export function ExternalEvaluationBox({
                   term={term}
                   year={year}
                   grade={grade}
+                  topic={topic ?? ""}
                 />
               ))}
             </HistogramsComponent>

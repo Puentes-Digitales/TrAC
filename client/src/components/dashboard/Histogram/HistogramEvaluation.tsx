@@ -1,26 +1,20 @@
 import { some } from "lodash";
-import React, { useContext } from "react";
+import React from "react";
 
 import { IExternalEvaluation } from "../../../../../interfaces";
-import { termTypeToNumber } from "../../../../constants";
-import { ConfigContext } from "../../../context/Config";
-import {
-  currentDistributionLabel,
-  CurrentTakenData,
-} from "../CourseBox/CourseBox";
+import { CurrentTakenData } from "../CourseBox/CourseBox";
 import { Histogram } from "./Histogram";
 
 export function HistogramEvaluation({
   currentDistribution,
   term,
   year,
+  topic,
   taken,
   grade,
   bandColors,
-}: Pick<IExternalEvaluation, "taken" | "bandColors"> &
+}: Pick<IExternalEvaluation, "taken" | "bandColors" | "topic"> &
   Pick<CurrentTakenData, "currentDistribution" | "term" | "year" | "grade">) {
-  const { GRADES_LABEL: label } = useContext(ConfigContext);
-
   return (
     (currentDistribution &&
       some(currentDistribution, ({ value }) => value) &&
@@ -28,11 +22,7 @@ export function HistogramEvaluation({
       year && (
         <Histogram
           key="now"
-          label={currentDistributionLabel({
-            term: termTypeToNumber(term),
-            year,
-            label,
-          })}
+          label={topic}
           distribution={currentDistribution}
           grade={grade}
           bandColors={taken?.[0]?.bandColors ?? bandColors}
