@@ -5,8 +5,8 @@ import { defaultStateCourse } from "../../../client/constants";
 import { ExternalEvaluationDataLoader } from "../../dataloaders/externalEvaluation";
 import {
   StudentExternalEvaluationDataLoader,
-  ExternalEvaluationStatsByExternalEvaluationTakenDataLoader,
   ExternalEvaluationStatsByStateDataLoader,
+  ExternalEvaluationStatsByExternalEvaluationTakenDataLoader,
 } from "../../dataloaders/takenExternalEvaluation";
 import { TakenExternalEvaluation } from "../../entities/data/takenExternalEvaluation";
 import { assertIsDefined } from "../../utils/assert";
@@ -152,8 +152,7 @@ export class TakenExternalEvaluationResolver {
       dataTakenCourse,
       `Data of the taken course ${id} ${code} could not be found!`
     );
-    console.log(dataTakenCourse.topic);
-    console.log("ASdasdasdasda");
+
     const histogramData = await ExternalEvaluationStatsByStateDataLoader.load({
       external_evaluation_taken: code,
       year: dataTakenCourse.year,
@@ -161,9 +160,7 @@ export class TakenExternalEvaluationResolver {
       p_group: dataTakenCourse.p_group,
       topic: dataTakenCourse.topic,
     });
-    console.log(histogramData);
-    console.log("22222222");
-    if (histogramData === undefined) {
+    if (!histogramData) {
       return [];
     }
 
@@ -171,15 +168,20 @@ export class TakenExternalEvaluationResolver {
       histogramData,
       `Stats Data of the taken course ${id} ${code} could not be found!`
     );
+    if (histogramData[0]) {
+      const histogramValues = histogramData[0].histogram
+        .split(",")
+        .map(toInteger);
+      const histogramLabels = histogramData[0].histogram_labels.split(",");
 
-    const histogramValues = histogramData.histogram.split(",").map(toInteger);
-    const histogramLabels = histogramData.histogram_labels.split(",");
+      return histogramValues.map((value, key) => {
+        return {
+          label: histogramLabels[key] ?? `${key}`,
+          value,
+        };
+      });
+    }
 
-    return histogramValues.map((value, key) => {
-      return {
-        label: histogramLabels[key] ?? `${key}`,
-        value,
-      };
-    });
+    return [];
   }
 }
