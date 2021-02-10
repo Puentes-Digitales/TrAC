@@ -4,3 +4,4 @@ export * from "./HistogramHistoric";
 export * from "./HistogramNow";
 export * from "./HistogramGrouped";
 export * from "./HistogramsComponent";
+export * from "./HistogramEvaluation";

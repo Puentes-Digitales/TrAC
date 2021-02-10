@@ -521,10 +521,12 @@ export function Dashboard() {
               const semester = {
                 n: va.id,
                 externalEvaluations: va.externalEvaluations.map(
-                  ({ code, name }) => {
+                  ({ code, name, bandColors }) => {
                     return {
                       code,
                       name,
+                      bandColors,
+
                       taken: (() => {
                         const taken: ITakenExternalEvaluation[] = [];
                         if (studentData) {
@@ -538,6 +540,9 @@ export function Dashboard() {
                               registration,
                               state,
                               grade,
+                              topic,
+                              bandColors,
+                              currentDistribution,
                             } of takenExternalEvaluations) {
                               if (courseCode === code) {
                                 taken.push({
@@ -546,6 +551,9 @@ export function Dashboard() {
                                   registration,
                                   state,
                                   grade,
+                                  topic,
+                                  bandColors,
+                                  currentDistribution,
                                 });
                               }
                             }

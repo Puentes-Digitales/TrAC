@@ -9067,6 +9067,28 @@ const data: {
                 {
                   code: "EID-17",
                   name: "PRUEBA INICIAL DIAGNÓSTICA",
+                  bandColors: [
+                    {
+                      min: 1,
+                      max: 3.4999,
+                      color: "#d6604d",
+                    },
+                    {
+                      min: 3.5,
+                      max: 3.9999,
+                      color: "#f48873",
+                    },
+                    {
+                      min: 4,
+                      max: 4.4999,
+                      color: "#a7dc78",
+                    },
+                    {
+                      min: 4.5,
+                      max: 7,
+                      color: "#66b43e",
+                    },
+                  ],
                 },
               ],
               courses: [
@@ -11938,6 +11960,28 @@ const data: {
                 {
                   code: "END-17",
                   name: "PRUEBA NACIONAL DIAGNÓSTICA",
+                  bandColors: [
+                    {
+                      min: 1,
+                      max: 3.4999,
+                      color: "#d6604d",
+                    },
+                    {
+                      min: 3.5,
+                      max: 3.9999,
+                      color: "#f48873",
+                    },
+                    {
+                      min: 4,
+                      max: 4.4999,
+                      color: "#a7dc78",
+                    },
+                    {
+                      min: 4.5,
+                      max: 7,
+                      color: "#66b43e",
+                    },
+                  ],
                 },
               ],
               courses: [

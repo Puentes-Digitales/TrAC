@@ -2,6 +2,7 @@
   {
     "external_evaluation_taken": "EID-13",
     "year": 2013,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -19,6 +20,7 @@
   {
     "external_evaluation_taken": "EID-13",
     "year": 2014,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -36,6 +38,7 @@
   {
     "external_evaluation_taken": "EID-13",
     "year": 2015,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -53,6 +56,7 @@
   {
     "external_evaluation_taken": "END-13",
     "year": 2015,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -70,6 +74,7 @@
   {
     "external_evaluation_taken": "EID-13",
     "year": 2016,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -87,6 +92,7 @@
   {
     "external_evaluation_taken": "END-13",
     "year": 2016,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -104,6 +110,7 @@
   {
     "external_evaluation_taken": "END-13",
     "year": 2016,
+    "topic": "uno",
     "term": 2,
     "p_group": 0,
     "n_total": 9,
@@ -121,6 +128,7 @@
   {
     "external_evaluation_taken": "EID-13",
     "year": 2017,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -138,6 +146,7 @@
   {
     "external_evaluation_taken": "END-13",
     "year": 2017,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -155,6 +164,7 @@
   {
     "external_evaluation_taken": "END-13",
     "year": 2017,
+    "topic": "uno",
     "term": 2,
     "p_group": 0,
     "n_total": 9,
@@ -172,6 +182,7 @@
   {
     "external_evaluation_taken": "EID-13",
     "year": 2018,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -189,6 +200,7 @@
   {
     "external_evaluation_taken": "END-13",
     "year": 2018,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -206,6 +218,7 @@
   {
     "external_evaluation_taken": "END-13",
     "year": 2018,
+    "topic": "uno",
     "term": 2,
     "p_group": 0,
     "n_total": 9,
@@ -223,6 +236,7 @@
   {
     "external_evaluation_taken": "EID-13",
     "year": 2019,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -240,6 +254,7 @@
   {
     "external_evaluation_taken": "END-13",
     "year": 2019,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -257,6 +272,7 @@
   {
     "external_evaluation_taken": "END-13",
     "year": 2019,
+    "topic": "uno",
     "term": 2,
     "p_group": 0,
     "n_total": 9,
@@ -274,6 +290,7 @@
   {
     "external_evaluation_taken": "EID-15",
     "year": 2015,
+    "topic": "topico 1",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -281,7 +298,7 @@
     "n_pass": 7,
     "n_fail": 2,
     "n_drop": 0,
-    "histogram": "0,0,0,6,2,1",
+    "histogram": "1,2,3,4,5,6",
     "avg_grade": 4.84,
     "n_grades": 8,
     "id": 1007,
@@ -290,7 +307,44 @@
   },
   {
     "external_evaluation_taken": "EID-15",
+    "year": 2015,
+    "topic": "topico 2",
+    "term": 1,
+    "p_group": 0,
+    "n_total": 9,
+    "n_finished": 9,
+    "n_pass": 7,
+    "n_fail": 2,
+    "n_drop": 0,
+    "histogram": "6,5,4,3,2,1",
+    "avg_grade": 4.84,
+    "n_grades": 8,
+    "id": 9000,
+    "histogram_labels": "1-2,2-3,3-4,4-5,5-6,6-7",
+    "color_bands": "1.0,3.4999,#d6604d;3.5,3.9999,#f48873;4.0,4.4999,#a7dc78;4.5,7,#66b43e"
+  },
+  {
+    "external_evaluation_taken": "EID-15",
+    "year": 2015,
+    "topic": "topico 3",
+    "term": 1,
+    "p_group": 0,
+    "n_total": 9,
+    "n_finished": 9,
+    "n_pass": 7,
+    "n_fail": 2,
+    "n_drop": 0,
+    "histogram": "5,5,5,5,5,5",
+    "avg_grade": 4.84,
+    "n_grades": 8,
+    "id": 9001,
+    "histogram_labels": "1-2,2-3,3-4,4-5,5-6,6-7",
+    "color_bands": "1.0,3.4999,#d6604d;3.5,3.9999,#f48873;4.0,4.4999,#a7dc78;4.5,7,#66b43e"
+  },
+  {
+    "external_evaluation_taken": "EID-15",
     "year": 2016,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -308,6 +362,7 @@
   {
     "external_evaluation_taken": "EID-15",
     "year": 2017,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -325,6 +380,7 @@
   {
     "external_evaluation_taken": "END-15",
     "year": 2017,
+    "topic": "dos",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -342,6 +398,7 @@
   {
     "external_evaluation_taken": "END-15",
     "year": 2017,
+    "topic": "tres",
     "term": 2,
     "p_group": 0,
     "n_total": 9,
@@ -359,6 +416,7 @@
   {
     "external_evaluation_taken": "EID-15",
     "year": 2018,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -376,6 +434,7 @@
   {
     "external_evaluation_taken": "END-15",
     "year": 2018,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -393,6 +452,7 @@
   {
     "external_evaluation_taken": "END-15",
     "year": 2018,
+    "topic": "uno",
     "term": 2,
     "p_group": 0,
     "n_total": 9,
@@ -410,6 +470,7 @@
   {
     "external_evaluation_taken": "EID-15",
     "year": 2019,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -427,6 +488,7 @@
   {
     "external_evaluation_taken": "END-15",
     "year": 2019,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -444,6 +506,7 @@
   {
     "external_evaluation_taken": "END-15",
     "year": 2019,
+    "topic": "uno",
     "term": 2,
     "p_group": 0,
     "n_total": 9,
@@ -461,6 +524,7 @@
   {
     "external_evaluation_taken": "EID-17",
     "year": 2017,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -478,6 +542,7 @@
   {
     "external_evaluation_taken": "EID-17",
     "year": 2018,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -495,6 +560,7 @@
   {
     "external_evaluation_taken": "EID-17",
     "year": 2019,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -512,6 +578,7 @@
   {
     "external_evaluation_taken": "END-17",
     "year": 2019,
+    "topic": "uno",
     "term": 1,
     "p_group": 0,
     "n_total": 9,
@@ -529,6 +596,7 @@
   {
     "external_evaluation_taken": "END-17",
     "year": 2019,
+    "topic": "uno",
     "term": 2,
     "p_group": 0,
     "n_total": 9,

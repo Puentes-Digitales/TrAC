@@ -32,13 +32,15 @@ export const ExternalEvaluationStatsByStateDataLoader = new DataLoader(
       year: number;
       term: number;
       p_group: number;
+      topic: string;
     }[]
   ) => {
     return await Promise.all(
-      keys.map(({ external_evaluation_taken, year, term, p_group }) => {
+      keys.map(({ external_evaluation_taken, year, term, p_group, topic }) => {
         return ExternalEvaluationStatsTable()
           .select("histogram", "histogram_labels", "color_bands")
           .where({
+            topic,
             external_evaluation_taken,
             year,
             term,

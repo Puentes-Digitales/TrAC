@@ -334,6 +334,7 @@ export interface IExternalEvaluationStats {
   external_evaluation_taken: string;
   year: number;
   term: number;
+  topic: string;
   p_group: number;
   n_total: number;
   n_finished: number;

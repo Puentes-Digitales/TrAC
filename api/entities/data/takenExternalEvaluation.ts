@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from "type-graphql";
 
 import { StateCourse } from "../../../client/constants";
+import { BandColor, DistributionValue } from "./distribution";
 
 import type { ExternalEvaluation } from "./externalEvaluation";
 
@@ -32,4 +33,10 @@ export class TakenExternalEvaluation
 
   @Field()
   grade: number;
+
+  @Field(() => [BandColor])
+  bandColors: BandColor[];
+
+  @Field(() => [DistributionValue])
+  currentDistribution: DistributionValue[];
 }

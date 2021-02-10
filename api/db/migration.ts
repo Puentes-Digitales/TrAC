@@ -643,6 +643,7 @@ const migration = async () => {
             table.text("external_evaluation_taken").notNullable();
             table.integer("year", 4).notNullable();
             table.integer("term", 4).notNullable();
+            table.text("topic").notNullable();
             table.integer("p_group", 2).notNullable();
             table.integer("n_total", 8).notNullable();
             table.integer("n_finished", 8).notNullable();

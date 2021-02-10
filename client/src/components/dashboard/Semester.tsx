@@ -5,6 +5,7 @@ import { Stack, StackProps, Text } from "@chakra-ui/react";
 import { ICourse, IExternalEvaluation } from "../../../../interfaces";
 import { ConfigContext } from "../../context/Config";
 import { CourseBox } from "./CourseBox/CourseBox";
+import { ExternalEvaluationBox } from "./CourseBox/ExternalEvaluationBox";
 
 const toRoman = (num: number, first = false): string => {
   if (first && num === 0) {
@@ -62,15 +63,11 @@ export const Semester: FC<
       </Text>
 
       {semesterExternalEvaluation.map((externalEvaluations) => (
-        <CourseBox
+        <ExternalEvaluationBox
           code={externalEvaluations.code}
           name={externalEvaluations.name}
-          credits={[{ label: "asd", value: 2 }]}
-          historicDistribution={[]}
           taken={externalEvaluations.taken}
-          bandColors={[]}
-          requisites={[]}
-          flow={[]}
+          bandColors={externalEvaluations.bandColors}
         />
       ))}
 

@@ -126,6 +126,11 @@ mutation searchProgram($id: String, $student_id: String) {
         externalEvaluations {
           code
           name
+          bandColors {
+            min
+            max
+            color
+          }
         }
       }
     }
@@ -181,6 +186,15 @@ mutation searchStudent($student_id: String, $program_id: String) {
         registration
         state
         grade
+        currentDistribution {
+          label
+          value
+        }
+        bandColors {
+          min
+          max
+          color
+        }
       }
     }
     dropout {

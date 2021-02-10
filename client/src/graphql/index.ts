@@ -48,7 +48,7 @@ export type Course = {
   credits: Array<Credit>;
   flow: Array<Course>;
   historicalDistribution: Array<DistributionValue>;
-  /** Course-Semester-Curriculum-Program ID */
+  /** Course-Semester-Curriculum-Program ID  */
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
@@ -105,7 +105,7 @@ export type ExternalEvaluation = {
   bandColors: Array<BandColor>;
   code: Scalars["String"];
   historicalDistribution: Array<DistributionValue>;
-  /** ExternalEvaluation-Semester-Curriculum-Program ID */
+  /** ExternalEvaluation-Semester-Curriculum-Program ID  */
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
@@ -440,7 +440,9 @@ export type TakenCourse = {
 };
 
 export type TakenExternalEvaluation = {
+  bandColors: Array<BandColor>;
   code: Scalars["String"];
+  currentDistribution: Array<DistributionValue>;
   grade: Scalars["Float"];
   id: Scalars["Int"];
   name: Scalars["String"];
@@ -770,7 +772,9 @@ export type SearchProgramMutation = {
               }
             >;
             externalEvaluations: Array<
-              Pick<ExternalEvaluation, "code" | "name">
+              Pick<ExternalEvaluation, "code" | "name"> & {
+                bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
+              }
             >;
           }
         >;
@@ -837,7 +841,12 @@ export type SearchStudentMutation = {
               | "registration"
               | "state"
               | "grade"
-            >
+            > & {
+              currentDistribution: Array<
+                Pick<DistributionValue, "label" | "value">
+              >;
+              bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
+            }
           >;
         }
       >;
@@ -2155,6 +2164,11 @@ export const SearchProgramDocument = gql`
           externalEvaluations {
             code
             name
+            bandColors {
+              min
+              max
+              color
+            }
           }
         }
       }
@@ -2253,6 +2267,15 @@ export const SearchStudentDocument = gql`
           registration
           state
           grade
+          currentDistribution {
+            label
+            value
+          }
+          bandColors {
+            min
+            max
+            color
+          }
         }
       }
       dropout {
