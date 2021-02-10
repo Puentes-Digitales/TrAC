@@ -6,6 +6,7 @@ import { LRUMap } from "lru_map";
 import {
   IProgram,
   ExternalEvaluationStructureTable,
+  ExternalEvaluationGroupedStatsTable,
   ProgramTable,
   StudentProgramTable,
   GroupedComplementaryInformationTable,
@@ -284,6 +285,62 @@ export const CourseGroupedStatsDataLoader = new DataLoader(
 
           return {
             course_id: value["course_id"],
+            program_id: value["program_id"],
+            curriculum: value["curriculum"],
+            type_admission: value["type_admission"],
+            cohort: value["cohort"],
+            n_students: value["n_students"],
+            n_total: value["n_total"],
+            n_finished: value["n_finished"],
+            n_pass: value["n_pass"],
+            n_fail: value["n_fail"],
+            n_drop: value["n_drop"],
+            distribution: dist,
+            color_bands: colorbands,
+          };
+        });
+        return groupedData;
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const ExternalEvaluationGroupedStatsDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(async ({ program_id }) => {
+        const data = await ExternalEvaluationGroupedStatsTable().where({
+          program_id: program_id,
+        });
+
+        const groupedData = data.map((value) => {
+          const histogramValues = value["histogram"].split(",").map(toInteger);
+          const histogramLabels = value["histogram_labels"].split(",");
+          const dist = histogramValues.map((value, key) => {
+            return {
+              label: histogramLabels[key] ?? `${key}`,
+              value,
+            };
+          });
+          const colorbands = value["color_bands"].split(";").map((value) => {
+            const [min, max, color] = value.split(",");
+            return {
+              min: toNumber(min),
+              max: toNumber(max),
+              color,
+            };
+          });
+
+          return {
+            external_evaluation_id: value["external_evaluation_id"],
+            topic: value["topic"],
             program_id: value["program_id"],
             curriculum: value["curriculum"],
             type_admission: value["type_admission"],

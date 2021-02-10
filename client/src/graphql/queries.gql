@@ -95,6 +95,30 @@ mutation searchProgram($id: String, $student_id: String) {
         color
       }
     }
+    externalEvaluationGroupedStats {
+      program_id
+      curriculum
+      type_admission
+      cohort
+      topic
+      external_evaluation_id
+      n_students
+      n_total
+      n_finished
+      n_pass
+      n_drop
+      n_fail
+      distribution {
+        label
+        value
+      }
+      color_bands {
+        min
+        max
+        color
+      }
+    }
+
     curriculums {
       id
       semesters {

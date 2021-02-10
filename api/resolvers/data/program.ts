@@ -23,6 +23,7 @@ import {
   ProgramDataByStudentDataLoader,
   ProgramDataLoader,
   StudentProgramCurriculumsDataLoader,
+  ExternalEvaluationGroupedStatsDataLoader,
   StudentProgramDataLoader,
   CourseGroupedStatsDataLoader,
   StudentGroupedComplementaryDataLoader,
@@ -257,6 +258,23 @@ export class ProgramResolver {
     );
 
     const data = await CourseGroupedStatsDataLoader.load({
+      program_id: id,
+    });
+
+    return data;
+  }
+
+  @FieldResolver()
+  async externalEvaluationGroupedStats(
+    @Root()
+    { id }: Partial<Program>
+  ): Promise<$PropertyType<Program, "externalEvaluationGroupedStats">> {
+    assertIsDefined(
+      id,
+      "The id needs to be available for the program fields resolvers"
+    );
+
+    const data = await ExternalEvaluationGroupedStatsDataLoader.load({
       program_id: id,
     });
 

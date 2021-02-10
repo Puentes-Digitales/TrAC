@@ -112,6 +112,23 @@ export type ExternalEvaluation = {
   year: Scalars["Float"];
 };
 
+export type ExternalEvaluationGroupedStats = {
+  cohort: Scalars["String"];
+  color_bands: Array<BandColor>;
+  curriculum: Scalars["String"];
+  distribution: Array<DistributionValue>;
+  external_evaluation_id: Scalars["String"];
+  n_drop: Scalars["Float"];
+  n_fail: Scalars["Float"];
+  n_finished: Scalars["Float"];
+  n_pass: Scalars["Float"];
+  n_students: Scalars["Float"];
+  n_total: Scalars["Float"];
+  program_id: Scalars["String"];
+  topic: Scalars["String"];
+  type_admission: Scalars["String"];
+};
+
 export type FeedbackAnswer = {
   answer: Scalars["String"];
   question: FeedbackQuestion;
@@ -338,6 +355,7 @@ export type Program = {
   courseGroupedStats: Array<CourseGroupedStats>;
   curriculums: Array<Curriculum>;
   desc: Scalars["String"];
+  externalEvaluationGroupedStats: Array<ExternalEvaluationGroupedStats>;
   groupedComplementary: Array<GroupedComplementary>;
   groupedEmployed: Array<GroupedEmployed>;
   id: Scalars["String"];
@@ -745,6 +763,26 @@ export type SearchProgramMutation = {
         | "type_admission"
         | "cohort"
         | "course_id"
+        | "n_students"
+        | "n_total"
+        | "n_finished"
+        | "n_pass"
+        | "n_drop"
+        | "n_fail"
+      > & {
+        distribution: Array<Pick<DistributionValue, "label" | "value">>;
+        color_bands: Array<Pick<BandColor, "min" | "max" | "color">>;
+      }
+    >;
+    externalEvaluationGroupedStats: Array<
+      Pick<
+        ExternalEvaluationGroupedStats,
+        | "program_id"
+        | "curriculum"
+        | "type_admission"
+        | "cohort"
+        | "topic"
+        | "external_evaluation_id"
         | "n_students"
         | "n_total"
         | "n_finished"
@@ -2117,6 +2155,29 @@ export const SearchProgramDocument = gql`
         type_admission
         cohort
         course_id
+        n_students
+        n_total
+        n_finished
+        n_pass
+        n_drop
+        n_fail
+        distribution {
+          label
+          value
+        }
+        color_bands {
+          min
+          max
+          color
+        }
+      }
+      externalEvaluationGroupedStats {
+        program_id
+        curriculum
+        type_admission
+        cohort
+        topic
+        external_evaluation_id
         n_students
         n_total
         n_finished
