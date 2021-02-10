@@ -660,6 +660,26 @@ export function Dashboard() {
             const semesters = curriculumSemesters.map((va) => {
               const semester = {
                 n: va.id,
+                externalEvaluations: va.externalEvaluations.map(
+                  ({ code, name, bandColors }) => {
+                    const externalEvaluationFilter = programData.externalEvaluationGroupedStats.filter(
+                      (value) =>
+                        value.curriculum == curriculumId &&
+                        value.type_admission == chosenAdmissionType &&
+                        value.program_id == programData.id &&
+                        value.cohort == chosenCohort &&
+                        value.external_evaluation_id == code
+                    );
+                    console.log(externalEvaluationFilter);
+
+                    return {
+                      code,
+                      name,
+                      bandColors,
+                      taken: externalEvaluationFilter,
+                    };
+                  }
+                ),
                 courses: va.courses.map(
                   ({
                     code,
@@ -727,6 +747,8 @@ export function Dashboard() {
             value.program_id == programData.id &&
             value.cohort == chosenCohort
         );
+        console.log(data);
+
         if (chosenCurriculum != "") {
           SemestersComponent = (
             <GroupedSemestersList

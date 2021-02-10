@@ -70,4 +70,18 @@ export type IGroupedCourse = {
   agroupedBandColors: { min: number; max: number; color: string }[];
 };
 
+export type IGroupedExternalEvaluation = {
+  code: string;
+  name: string;
+  agroupedDistribution?: IDistribution[];
+  taken: ITopicExternalEvaluation[];
+  bandColors: { min: number; max: number; color: string }[];
+};
+
+export type ITopicExternalEvaluation = {
+  topic?: string;
+  distribution?: IDistribution[];
+  bandColors?: { min: number; max: number; color: string }[];
+};
+
 export * from "./utils";
