@@ -901,6 +901,8 @@ export type StudentsFilterListQuery = {
   students_filter: Array<
     Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
       programs: Array<Pick<Program, "id" | "name">>;
+      admission: Pick<Admission, "type_admission">;
+      terms: Array<Pick<Term, "year" | "term" | "semestral_grade">>;
     }
   >;
 };
@@ -2538,6 +2540,14 @@ export const StudentsFilterListDocument = gql`
       curriculums
       start_year
       mention
+      admission {
+        type_admission
+      }
+      terms {
+        year
+        term
+        semestral_grade
+      }
     }
   }
 `;

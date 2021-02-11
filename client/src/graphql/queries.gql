@@ -246,6 +246,14 @@ query studentsFilterList($program_id: String!, $curriculum: String!) {
     curriculums
     start_year
     mention
+    admission {
+      type_admission
+    }
+    terms {
+      year
+      term
+      semestral_grade
+    }
   }
 }
 

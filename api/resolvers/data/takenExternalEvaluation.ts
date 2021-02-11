@@ -47,7 +47,6 @@ export class TakenExternalEvaluationResolver {
       `Registration could not be found for ${id} taken course`
     );
 
-    console.log(topicData);
     return topicData.topic;
   }
   @FieldResolver()
