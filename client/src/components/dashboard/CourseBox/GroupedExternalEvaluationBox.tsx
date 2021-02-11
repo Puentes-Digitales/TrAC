@@ -17,7 +17,7 @@ import {
   toggleOpenCourse,
 } from "../../../context/CoursesDashboard";
 import { track } from "../../../context/Tracking";
-import { HistogramsComponent, HistogramGroupedEvaluation } from "../Histogram";
+import { HistogramsComponent, HistogramEvaluation } from "../Histogram";
 
 import type {
   IGroupedExternalEvaluation,
@@ -299,10 +299,10 @@ export function GroupedExternalEvaluationBox({
           {isOpen && (
             <HistogramsComponent key="histogramsComponent" code={code}>
               {taken.map(({ distribution, topic }) => (
-                <HistogramGroupedEvaluation
+                <HistogramEvaluation
                   bandColors={bandColors}
-                  agroupedDistribution={distribution ?? []}
-                  topic={topic}
+                  currentDistribution={distribution}
+                  topic={topic ?? ""}
                 />
               ))}
             </HistogramsComponent>

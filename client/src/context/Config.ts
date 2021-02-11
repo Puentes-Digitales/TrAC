@@ -9,6 +9,7 @@ import {
 } from "../components/dashboard/CourseBox/CourseBoxHelpers";
 import {
   scaleAxisX,
+  scaleEvaluationAxisX,
   scaleColorX,
 } from "../components/dashboard/Histogram/HistogramHelpers";
 import {
@@ -62,6 +63,14 @@ export const Config: FC = ({ children }) => {
   scaleAxisX
     .range([configState.MIN_GRADE, 250])
     .domain([configState.MIN_GRADE, configState.MAX_GRADE]);
+
+  scaleEvaluationAxisX
+    .range([configState.MIN_GRADE_EXTERNAL_EVALUATION, 215])
+    .domain([
+      configState.MIN_GRADE_EXTERNAL_EVALUATION,
+      configState.MAX_GRADE_EXTERNAL_EVALUATION,
+    ]);
+
   GradeScale.range([40, 170]).domain([
     configState.MAX_GRADE,
     configState.MIN_GRADE,

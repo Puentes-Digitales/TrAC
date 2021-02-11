@@ -23,10 +23,7 @@ import {
   ForeplanHelperStore,
 } from "../../../context/ForeplanContext";
 import { track } from "../../../context/Tracking";
-import {
-  TEXT_WHITE_SHADOW,
-  width100percent,
-} from "../../../utils/cssConstants";
+import { width100percent } from "../../../utils/cssConstants";
 import { useUser } from "../../../utils/useUser";
 import { PredictState } from "../../foreplan/courseBox/PredictState";
 import { HistogramEvaluation, HistogramsComponent } from "../Histogram";
@@ -231,39 +228,18 @@ const NameComponent: FC<
 });
 
 const SecondaryBlockOuter: FC<
-  Pick<IExternalEvaluation, "taken" | "bandColors"> &
-    Pick<CurrentTakenData, "grade" | "state"> & {
-      borderColor: string;
-    }
-> = memo(({ children, taken, bandColors, borderColor, state, grade }) => {
+  Pick<CurrentTakenData, "state"> & {
+    borderColor: string;
+  }
+> = memo(({ children, borderColor, state }) => {
   const config = useContext(ConfigContext);
 
   const { colorMode } = useColorMode();
 
   const stateColor = useMemo(() => {
-    const bandColorsCourse = taken?.[0]?.bandColors ?? bandColors;
-
     switch (state) {
       case StateCourse.Passed: {
-        const gradeToCompare = grade ?? config.MAX_GRADE;
-
-        return (
-          bandColorsCourse.find(({ min, max }) => {
-            return gradeToCompare <= max && gradeToCompare >= min;
-          })?.color ??
-          bandColorsCourse[bandColorsCourse.length - 1]?.color ??
-          config.STATE_COLOR_PASS_FALLBACK
-        );
-      }
-      case StateCourse.Failed: {
-        const gradeToCompare = grade ?? config.MIN_GRADE;
-        return (
-          bandColorsCourse.find(({ min, max }) => {
-            return gradeToCompare <= max && gradeToCompare >= min;
-          })?.color ??
-          bandColorsCourse[0]?.color ??
-          config.STATE_COLOR_FAIL_FALLBACK
-        );
+        return config.STATE_COLOR_PASS_FALLBACK;
       }
       case StateCourse.Current: {
         return config.STATE_COURSE_CURRENT_COLOR;
@@ -280,7 +256,7 @@ const SecondaryBlockOuter: FC<
           : config.STATE_COURSE_DEFAULT_DARK_COLOR;
       }
     }
-  }, [state, colorMode, grade, bandColors, taken, config]);
+  }, [state, colorMode, config]);
 
   return (
     <Flex
@@ -325,42 +301,6 @@ const RegistrationComponent: FC<Pick<CurrentTakenData, "registration">> = memo(
   }
 );
 
-const GradeComponent: FC<Pick<CurrentTakenData, "state" | "grade">> = memo(
-  ({ grade, state }) => {
-    const config = useContext(ConfigContext);
-
-    return (
-      <Text
-        mb={2}
-        pt={1}
-        textShadow={TEXT_WHITE_SHADOW}
-        color="black"
-        fontWeight="bold"
-      >
-        {(() => {
-          if (grade && grade != -1) {
-            return grade.toFixed(1);
-          }
-          switch (state) {
-            case StateCourse.Passed:
-              return config.STATE_PASSED_LABEL_MINI;
-            case StateCourse.Failed:
-              return config.STATE_FAILED_LABEL_MINI;
-            case StateCourse.Canceled:
-              return config.STATE_CANCELED_LABEL_MINI;
-            case StateCourse.Pending:
-              return config.STATE_PENDING_LABEL_MINI;
-            case StateCourse.Current:
-              return config.STATE_CURRENT_LABEL_MINI;
-            default:
-              return "BUGasd";
-          }
-        })()}
-      </Text>
-    );
-  }
-);
-
 export const currentDistributionLabel = ({
   term,
   year,
@@ -388,7 +328,6 @@ export function ExternalEvaluationBox({
 
     return semestersTaken;
   }, [taken]);
-  console.log(taken);
   const activeCourse = CoursesDashboardStore.hooks.useActiveCourse(code);
   const activeFlow = CoursesDashboardStore.hooks.useActiveFlow(code);
   const activeRequisites = CoursesDashboardStore.hooks.useActiveRequisites(
@@ -402,14 +341,9 @@ export function ExternalEvaluationBox({
     fetchPolicy: "cache-only",
   });
 
-  const {
-    state,
-    grade,
-    registration,
-    currentDistribution,
-    term,
-    year,
-  } = useMemo<Partial<ITakenExternalEvaluation>>(() => {
+  const { state, registration, currentDistribution } = useMemo<
+    Partial<ITakenExternalEvaluation>
+  >(() => {
     if (explicitSemester) {
       const foundData = taken.find(({ term, year }) => {
         return pairTermYear(term, year) === explicitSemester;
@@ -424,7 +358,6 @@ export function ExternalEvaluationBox({
     state: taken[0]?.state,
     code,
   });
-  console.log(taken);
   const isForeplanActive = ForeplanActiveStore.hooks.useIsForeplanActive();
 
   const isPossibleToTakeForeplan = ForeplanActiveStore.hooks.useIsPossibleToTakeForeplan(
@@ -495,11 +428,8 @@ export function ExternalEvaluationBox({
             >
               {taken.map(({ currentDistribution, topic, grade }) => (
                 <HistogramEvaluation
-                  taken={taken}
                   bandColors={bandColors}
                   currentDistribution={currentDistribution}
-                  term={term}
-                  year={year}
                   grade={grade}
                   topic={topic ?? ""}
                 />
@@ -511,15 +441,7 @@ export function ExternalEvaluationBox({
           )}
         </AnimatePresence>
       </MainBlockOuter>
-      <SecondaryBlockOuter
-        taken={taken}
-        bandColors={bandColors}
-        borderColor={borderColor}
-        grade={grade}
-        state={state}
-      >
-        {grade !== undefined && <GradeComponent grade={grade} state={state} />}
-
+      <SecondaryBlockOuter borderColor={borderColor} state={state}>
         {shouldPredictCourseState && (
           <PredictState code={code} isCourseOpen={isOpen} />
         )}

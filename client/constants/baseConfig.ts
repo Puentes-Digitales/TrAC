@@ -261,6 +261,8 @@ export const baseConfig = {
   MAX_PASS_SCALE_COLOR: "#5bff3b",
   MIN_FAIL_SCALE_COLOR: "#ff4040",
   MIN_GRADE: 1,
+  MIN_GRADE_EXTERNAL_EVALUATION: 0,
+  MAX_GRADE_EXTERNAL_EVALUATION: 100,
   MIN_PASS_SCALE_COLOR: "#b0ffa1",
   NO_CURRICULUMS_LABEL: "Sin planes",
   NO_HISTORIC_DATA: "No hay datos a mostrar",

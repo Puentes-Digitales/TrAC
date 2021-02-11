@@ -541,7 +541,6 @@ export function Dashboard() {
                               state,
                               grade,
                               topic,
-                              bandColors,
                               currentDistribution,
                             } of takenExternalEvaluations) {
                               if (courseCode === code) {
@@ -552,7 +551,6 @@ export function Dashboard() {
                                   state,
                                   grade,
                                   topic,
-                                  bandColors,
                                   currentDistribution,
                                 });
                               }
@@ -670,7 +668,6 @@ export function Dashboard() {
                         value.cohort == chosenCohort &&
                         value.external_evaluation_id == code
                     );
-                    console.log(externalEvaluationFilter);
 
                     return {
                       code,
@@ -747,7 +744,6 @@ export function Dashboard() {
             value.program_id == programData.id &&
             value.cohort == chosenCohort
         );
-        console.log(data);
 
         if (chosenCurriculum != "") {
           SemestersComponent = (
