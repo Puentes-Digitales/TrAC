@@ -273,6 +273,8 @@ export const baseConfig = {
   PLACEHOLDER_SEARCH_STUDENT: "ID del estudiante",
   PROGRAM_GRADE_COLOR: "rgb(102,102,102)",
   PROGRAM_GRADE_LABEL: "PGA de carrera",
+  CURRICULUM_GRADE_LABEL: "PGA de plan",
+  FILTERED_GRADE_LABEL: "PGA filtrada",
   PROGRAM_NOT_SPECIFIED_PLACEHOLDER: "Programa no especificado",
   PROGRESS_LABEL: "Progreso",
   REQUISITE_COURSE_BOX_COLOR: "#4299E1",

@@ -1,4 +1,4 @@
-import { flatMapDeep, random, uniq } from "lodash";
+import { flatMapDeep, random, uniq, toInteger } from "lodash";
 import React, {
   useCallback,
   useContext,
@@ -50,6 +50,7 @@ import {
   usePerformanceLoadAdvicesMutation,
   useSearchProgramMutation,
   useSearchStudentMutation,
+  useStudentsFilterListQuery,
 } from "../../graphql";
 import { useUser } from "../../utils/useUser";
 import { ToggleDarkMode } from "../DarkMode";
@@ -65,6 +66,7 @@ import { SemestersList } from "./SemestersList";
 import { GroupedSemestersList } from "./GroupedSemesterList";
 import { TakenSemesterBox } from "./TakenSemesterBox";
 import { TimeLine } from "./Timeline/Timeline";
+import { GroupedTimeLine } from "./Timeline/GroupedTimeline";
 import { ProgressStudent } from "./ProgressStudent";
 import { GroupedComplementaryInfo } from "./GroupedComplementaryInfo";
 
@@ -135,6 +137,14 @@ export function Dashboard() {
     },
   ] = useSearchStudentMutation();
 
+  const { data: dataStudentFilterList } = useStudentsFilterListQuery({
+    variables: {
+      program_id: program || "",
+      curriculum: chosenCurriculum || "",
+    },
+    skip: !program,
+  });
+
   useUpdateEffect(() => {
     if (IS_NOT_TEST && user?.admin) {
       console.log({
@@ -165,6 +175,18 @@ export function Dashboard() {
       curriculum: chosenCurriculum,
     });
   }, [chosenCurriculum]);
+
+  useEffect(() => {
+    setTrackingData({
+      admission_type: chosenAdmissionType,
+    });
+  }, [chosenAdmissionType]);
+
+  useEffect(() => {
+    setTrackingData({
+      cohort: chosenCohort,
+    });
+  }, [chosenCohort]);
 
   useEffect(() => {
     setGroupedActive(false);
@@ -687,7 +709,7 @@ export function Dashboard() {
                     historicalDistribution,
                     bandColors,
                   }) => {
-                    const dataFiltrada = programData.courseGroupedStats.filter(
+                    const filteredData = programData.courseGroupedStats.filter(
                       (value) =>
                         value.curriculum == curriculumId &&
                         value.type_admission == chosenAdmissionType &&
@@ -708,13 +730,13 @@ export function Dashboard() {
                       }),
                       historicDistribution: historicalDistribution,
                       bandColors,
-                      n_passed: dataFiltrada[0] ? dataFiltrada[0].n_pass : 0,
-                      n_total: dataFiltrada[0] ? dataFiltrada[0].n_students : 0,
-                      agroupedDistribution: dataFiltrada[0]
-                        ? dataFiltrada[0].distribution
+                      n_passed: filteredData[0] ? filteredData[0].n_pass : 0,
+                      n_total: filteredData[0] ? filteredData[0].n_students : 0,
+                      agroupedDistribution: filteredData[0]
+                        ? filteredData[0].distribution
                         : [],
-                      agroupedBandColors: dataFiltrada[0]
-                        ? dataFiltrada[0].color_bands
+                      agroupedBandColors: filteredData[0]
+                        ? filteredData[0].color_bands
                         : [],
                     };
                   }
@@ -780,6 +802,105 @@ export function Dashboard() {
             />
           );
         }
+
+        if (chosenCurriculum && chosenCohort) {
+          const cumulated = dataStudentFilterList?.students_filter.map(
+            (student) =>
+              student.terms
+                .map((semester) => semester.semestral_grade)
+                .reverse()
+          );
+
+          const filteredCumulated = dataStudentFilterList?.students_filter.map(
+            (student) =>
+              student.start_year == toInteger(chosenCohort)
+                ? chosenAdmissionType
+                  ? student.admission.type_admission == chosenAdmissionType
+                    ? student.terms
+                        .map((semester) => semester.semestral_grade)
+                        .reverse()
+                    : []
+                  : student.terms
+                      .map((semester) => semester.semestral_grade)
+                      .reverse()
+                : []
+          );
+
+          const maxTerm = cumulated
+            ?.map((v) => {
+              return v.length;
+            })
+            .reduce((a, b) => {
+              return Math.max(a, b);
+            });
+
+          const filteredMaxTerm = filteredCumulated
+            ?.map((v) => {
+              return v.length;
+            })
+            .reduce((a, b) => {
+              return Math.max(a, b);
+            });
+
+          const grades = [];
+          for (let i = 0; i < maxTerm!; i++) {
+            grades.push(cumulated?.map((v) => (v[i] ? v[i] : 0)));
+          }
+
+          const filteredGrades = [];
+          for (let i = 0; i < filteredMaxTerm!; i++) {
+            filteredGrades.push(
+              filteredCumulated?.map((v) => (v[i] ? v[i] : 0))
+            );
+          }
+
+          const avgGrades = grades!.map((arr) => {
+            return (
+              arr!.reduce((a, b) => {
+                if (a && b) return a + b;
+                if (!a) return b;
+                if (!b) return a;
+              })! / (arr!.filter((ele) => ele).length || 1)
+            );
+          });
+
+          const filteredAvgGrades = filteredGrades!.map((arr) => {
+            return (
+              arr!.reduce((a, b) => {
+                if (a && b) return a + b;
+                if (!a) return b;
+                if (!b) return a;
+              })! / (arr!.filter((ele) => ele).length || 1)
+            );
+          });
+
+          console.log(filteredCumulated);
+
+          TimeLineComponent = (
+            <GroupedTimeLine
+              programGrades={avgGrades}
+              filteredGrades={filteredAvgGrades}
+            />
+          );
+        }
+
+        // TakenSemestersComponent = (
+        //   <Flex alignItems="center" justifyContent="center" mt={0} mb={3}>
+        //     {studentData.terms
+        //       .slice()
+        //       .reverse()
+        //       .map(({ term, year, comments }, key) => {
+        //         return (
+        //           <TakenSemesterBox
+        //             key={key}
+        //             term={term}
+        //             year={year}
+        //             comments={comments}
+        //           />
+        //         );
+        //       })}
+        //   </Flex>
+        // );
       }
     }
 

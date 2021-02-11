@@ -48,7 +48,7 @@ export type Course = {
   credits: Array<Credit>;
   flow: Array<Course>;
   historicalDistribution: Array<DistributionValue>;
-  /** Course-Semester-Curriculum-Program ID */
+  /** Course-Semester-Curriculum-Program ID  */
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
@@ -105,7 +105,7 @@ export type ExternalEvaluation = {
   bandColors: Array<BandColor>;
   code: Scalars["String"];
   historicalDistribution: Array<DistributionValue>;
-  /** ExternalEvaluation-Semester-Curriculum-Program ID */
+  /** ExternalEvaluation-Semester-Curriculum-Program ID  */
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
@@ -948,6 +948,8 @@ export type StudentsFilterListQuery = {
   students_filter: Array<
     Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
       programs: Array<Pick<Program, "id" | "name">>;
+      admission: Pick<Admission, "type_admission">;
+      terms: Array<Pick<Term, "year" | "term" | "semestral_grade">>;
     }
   >;
 };
@@ -2622,6 +2624,14 @@ export const StudentsFilterListDocument = gql`
       curriculums
       start_year
       mention
+      admission {
+        type_admission
+      }
+      terms {
+        year
+        term
+        semestral_grade
+      }
     }
   }
 `;
