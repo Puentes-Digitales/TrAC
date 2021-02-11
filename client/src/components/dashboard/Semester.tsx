@@ -64,10 +64,8 @@ export const Semester: FC<
 
       {semesterExternalEvaluation.map((externalEvaluations) => (
         <ExternalEvaluationBox
-          code={externalEvaluations.code}
-          name={externalEvaluations.name}
-          taken={externalEvaluations.taken}
-          bandColors={externalEvaluations.bandColors}
+          key={externalEvaluations.code}
+          {...externalEvaluations}
         />
       ))}
 

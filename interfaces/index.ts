@@ -49,11 +49,10 @@ export type ITakenExternalEvaluation = {
   term: string;
   year: number;
   registration?: string;
-  grade?: number;
+  grade: number;
   topic?: string;
   state?: StateCourse;
   currentDistribution?: IDistribution[];
-  bandColors?: { min: number; max: number; color: string }[];
 };
 
 export type IGroupedCourse = {
@@ -68,6 +67,20 @@ export type IGroupedCourse = {
   n_passed: number;
   bandColors: { min: number; max: number; color: string }[];
   agroupedBandColors: { min: number; max: number; color: string }[];
+};
+
+export type IGroupedExternalEvaluation = {
+  code: string;
+  name: string;
+  agroupedDistribution?: IDistribution[];
+  taken: ITopicExternalEvaluation[];
+  bandColors: { min: number; max: number; color: string }[];
+};
+
+export type ITopicExternalEvaluation = {
+  topic?: string;
+  distribution?: IDistribution[];
+  bandColors?: { min: number; max: number; color: string }[];
 };
 
 export * from "./utils";

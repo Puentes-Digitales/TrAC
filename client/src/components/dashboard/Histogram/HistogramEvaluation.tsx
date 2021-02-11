@@ -1,33 +1,32 @@
 import { some } from "lodash";
 import React from "react";
 
-import { IExternalEvaluation } from "../../../../../interfaces";
-import { CurrentTakenData } from "../CourseBox/CourseBox";
-import { Histogram } from "./Histogram";
+import {
+  IExternalEvaluation,
+  IGroupedExternalEvaluation,
+} from "../../../../../interfaces";
+import { CurrentTakenData } from "../CourseBox/ExternalEvaluationBox";
+import { HistogramExternalEvaluation } from "./HistogramExternalEvaluation";
 
 export function HistogramEvaluation({
   currentDistribution,
-  term,
-  year,
   topic,
-  taken,
   grade,
   bandColors,
-}: Pick<IExternalEvaluation, "taken" | "bandColors" | "topic"> &
-  Pick<CurrentTakenData, "currentDistribution" | "term" | "year" | "grade">) {
+}: Pick<IExternalEvaluation, "topic"> &
+  Pick<IGroupedExternalEvaluation, "bandColors"> &
+  Pick<CurrentTakenData, "currentDistribution" | "grade">) {
+  const valueLabel = topic + " " + (grade ? grade.toString() : "");
   return (
-    (currentDistribution &&
-      some(currentDistribution, ({ value }) => value) &&
-      term &&
-      year && (
-        <Histogram
-          key="now"
-          label={topic}
-          distribution={currentDistribution}
-          grade={grade}
-          bandColors={taken?.[0]?.bandColors ?? bandColors}
-        />
-      )) ||
+    (currentDistribution && some(currentDistribution, ({ value }) => value) && (
+      <HistogramExternalEvaluation
+        key="now"
+        label={valueLabel}
+        distribution={currentDistribution}
+        grade={grade}
+        bandColors={bandColors}
+      />
+    )) ||
     null
   );
 }

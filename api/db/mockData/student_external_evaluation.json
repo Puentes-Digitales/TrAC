@@ -8,7 +8,7 @@
     "topic": "topico 1",
     "registration": "CURSADA",
     "state": "A",
-    "grade": 6.5,
+    "grade": 21,
     "p_group": 0,
     "comments": "1708,2015",
     "duplicates": 1
@@ -22,7 +22,7 @@
     "topic": "topico 2",
     "registration": "CURSADA",
     "state": "A",
-    "grade": 4.5,
+    "grade": 61,
     "p_group": 0,
     "comments": "1708,2015",
     "duplicates": 1
@@ -36,7 +36,7 @@
     "topic": "topico 3",
     "registration": "CURSADA",
     "state": "A",
-    "grade": 2.5,
+    "grade": 40,
     "p_group": 0,
     "comments": "1708,2015",
     "duplicates": 1
@@ -50,7 +50,7 @@
     "topic": "topico 4",
     "registration": "CURSADA",
     "state": "A",
-    "grade": 2.5,
+    "grade": 20,
     "p_group": 0,
     "comments": "1708,2015",
     "duplicates": 1

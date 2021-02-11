@@ -564,7 +564,6 @@ export function Dashboard() {
                               state,
                               grade,
                               topic,
-                              bandColors,
                               currentDistribution,
                             } of takenExternalEvaluations) {
                               if (courseCode === code) {
@@ -575,7 +574,6 @@ export function Dashboard() {
                                   state,
                                   grade,
                                   topic,
-                                  bandColors,
                                   currentDistribution,
                                 });
                               }
@@ -683,6 +681,25 @@ export function Dashboard() {
             const semesters = curriculumSemesters.map((va) => {
               const semester = {
                 n: va.id,
+                externalEvaluations: va.externalEvaluations.map(
+                  ({ code, name, bandColors }) => {
+                    const externalEvaluationFilter = programData.externalEvaluationGroupedStats.filter(
+                      (value) =>
+                        value.curriculum == curriculumId &&
+                        value.type_admission == chosenAdmissionType &&
+                        value.program_id == programData.id &&
+                        value.cohort == chosenCohort &&
+                        value.external_evaluation_id == code
+                    );
+
+                    return {
+                      code,
+                      name,
+                      bandColors,
+                      taken: externalEvaluationFilter,
+                    };
+                  }
+                ),
                 courses: va.courses.map(
                   ({
                     code,
@@ -750,6 +767,7 @@ export function Dashboard() {
             value.program_id == programData.id &&
             value.cohort == chosenCohort
         );
+
         if (chosenCurriculum != "") {
           SemestersComponent = (
             <GroupedSemestersList
