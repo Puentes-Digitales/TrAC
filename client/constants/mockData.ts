@@ -22,6 +22,71 @@ const data: {
       desc: "",
       active: true,
 
+      externalEvaluationGroupedStats: [
+        {
+          external_evaluation_id: "EID-15",
+          topic: "topico 1",
+          program_id: "1708",
+          curriculum: "2017",
+          type_admission: "PACE",
+          cohort: "2016",
+          n_students: 29,
+          n_total: 8,
+          n_finished: 4,
+          n_pass: 4,
+          n_fail: 0,
+          n_drop: 4,
+          distribution: [
+            {
+              label: "1-2",
+              value: 6,
+            },
+            {
+              label: "2-3",
+              value: 6,
+            },
+            {
+              label: "3-4",
+              value: 6,
+            },
+            {
+              label: "4-5",
+              value: 4,
+            },
+            {
+              label: "5-6",
+              value: 3,
+            },
+            {
+              label: "6-7",
+              value: 1,
+            },
+          ],
+          color_bands: [
+            {
+              min: 1,
+              max: 3.4999,
+              color: "#d6604d",
+            },
+            {
+              min: 3.5,
+              max: 3.9999,
+              color: "#f48873",
+            },
+            {
+              min: 4,
+              max: 4.4999,
+              color: "#a7dc78",
+            },
+            {
+              min: 4.5,
+              max: 7,
+              color: "#66b43e",
+            },
+          ],
+        },
+      ],
+
       courseGroupedStats: [
         {
           course_id: "INFO280-17",
@@ -9067,6 +9132,28 @@ const data: {
                 {
                   code: "EID-17",
                   name: "PRUEBA INICIAL DIAGNÓSTICA",
+                  bandColors: [
+                    {
+                      min: 1,
+                      max: 3.4999,
+                      color: "#d6604d",
+                    },
+                    {
+                      min: 3.5,
+                      max: 3.9999,
+                      color: "#f48873",
+                    },
+                    {
+                      min: 4,
+                      max: 4.4999,
+                      color: "#a7dc78",
+                    },
+                    {
+                      min: 4.5,
+                      max: 7,
+                      color: "#66b43e",
+                    },
+                  ],
                 },
               ],
               courses: [
@@ -11938,6 +12025,28 @@ const data: {
                 {
                   code: "END-17",
                   name: "PRUEBA NACIONAL DIAGNÓSTICA",
+                  bandColors: [
+                    {
+                      min: 1,
+                      max: 3.4999,
+                      color: "#d6604d",
+                    },
+                    {
+                      min: 3.5,
+                      max: 3.9999,
+                      color: "#f48873",
+                    },
+                    {
+                      min: 4,
+                      max: 4.4999,
+                      color: "#a7dc78",
+                    },
+                    {
+                      min: 4.5,
+                      max: 7,
+                      color: "#66b43e",
+                    },
+                  ],
                 },
               ],
               courses: [

@@ -1,8 +1,13 @@
 import { FieldResolver, Resolver, Root } from "type-graphql";
-
+import { compact, toNumber, toInteger } from "lodash";
+import { clearErrorArray } from "../../utils/clearErrorArray";
 import { defaultStateCourse } from "../../../client/constants";
 import { ExternalEvaluationDataLoader } from "../../dataloaders/externalEvaluation";
-import { StudentExternalEvaluationDataLoader } from "../../dataloaders/takenExternalEvaluation";
+import {
+  StudentExternalEvaluationDataLoader,
+  ExternalEvaluationStatsByStateDataLoader,
+  ExternalEvaluationStatsByExternalEvaluationTakenDataLoader,
+} from "../../dataloaders/takenExternalEvaluation";
 import { TakenExternalEvaluation } from "../../entities/data/takenExternalEvaluation";
 import { assertIsDefined } from "../../utils/assert";
 
@@ -97,5 +102,86 @@ export class TakenExternalEvaluationResolver {
       `Grade could not be found for ${id} taken course`
     );
     return gradeData.grade;
+  }
+
+  @FieldResolver()
+  async bandColors(
+    @Root() { code }: PartialTakenExternalEvaluation
+  ): Promise<$PropertyType<TakenExternalEvaluation, "bandColors">> {
+    const bandColorsData = compact(
+      clearErrorArray(
+        await ExternalEvaluationStatsByExternalEvaluationTakenDataLoader.loadMany(
+          compact([code])
+        )
+      )
+    )[0];
+
+    if (bandColorsData === undefined) {
+      return [];
+    }
+
+    const bandColors = bandColorsData.color_bands.split(";").map((value) => {
+      const [min, max, color] = value.split(",");
+      return {
+        min: toNumber(min),
+        max: toNumber(max),
+        color,
+      };
+    });
+
+    return bandColors;
+  }
+
+  @FieldResolver()
+  async currentDistribution(
+    @Root()
+    { id, code }: PartialTakenExternalEvaluation
+  ): Promise<$PropertyType<TakenExternalEvaluation, "currentDistribution">> {
+    assertIsDefined(
+      id,
+      `id needs to be available for Taken Course field resolvers`
+    );
+    assertIsDefined(
+      code,
+      `code needs to be available for Taken Course field resolvers`
+    );
+
+    const dataTakenCourse = await StudentExternalEvaluationDataLoader.load(id);
+
+    assertIsDefined(
+      dataTakenCourse,
+      `Data of the taken course ${id} ${code} could not be found!`
+    );
+
+    const histogramData = await ExternalEvaluationStatsByStateDataLoader.load({
+      external_evaluation_taken: code,
+      year: dataTakenCourse.year,
+      term: dataTakenCourse.term,
+      p_group: dataTakenCourse.p_group,
+      topic: dataTakenCourse.topic,
+    });
+    if (!histogramData) {
+      return [];
+    }
+
+    assertIsDefined(
+      histogramData,
+      `Stats Data of the taken course ${id} ${code} could not be found!`
+    );
+    if (histogramData[0]) {
+      const histogramValues = histogramData[0].histogram
+        .split(",")
+        .map(toInteger);
+      const histogramLabels = histogramData[0].histogram_labels.split(",");
+
+      return histogramValues.map((value, key) => {
+        return {
+          label: histogramLabels[key] ?? `${key}`,
+          value,
+        };
+      });
+    }
+
+    return [];
   }
 }

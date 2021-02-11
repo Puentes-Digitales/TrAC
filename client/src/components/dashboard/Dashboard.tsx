@@ -65,6 +65,7 @@ import { SearchBar } from "./SearchBar";
 import { SemestersList } from "./SemestersList";
 import { GroupedSemestersList } from "./GroupedSemesterList";
 import { TakenSemesterBox } from "./TakenSemesterBox";
+import { GroupedTakenSemesterBox } from "./GroupedTakenSemesterBox";
 import { TimeLine } from "./Timeline/Timeline";
 import { GroupedTimeLine } from "./Timeline/GroupedTimeline";
 import { ProgressStudent } from "./ProgressStudent";
@@ -543,10 +544,12 @@ export function Dashboard() {
               const semester = {
                 n: va.id,
                 externalEvaluations: va.externalEvaluations.map(
-                  ({ code, name }) => {
+                  ({ code, name, bandColors }) => {
                     return {
                       code,
                       name,
+                      bandColors,
+
                       taken: (() => {
                         const taken: ITakenExternalEvaluation[] = [];
                         if (studentData) {
@@ -560,6 +563,9 @@ export function Dashboard() {
                               registration,
                               state,
                               grade,
+                              topic,
+                              bandColors,
+                              currentDistribution,
                             } of takenExternalEvaluations) {
                               if (courseCode === code) {
                                 taken.push({
@@ -568,6 +574,9 @@ export function Dashboard() {
                                   registration,
                                   state,
                                   grade,
+                                  topic,
+                                  bandColors,
+                                  currentDistribution,
                                 });
                               }
                             }
@@ -848,33 +857,40 @@ export function Dashboard() {
             );
           });
 
-          console.log(filteredCumulated);
-
           TimeLineComponent = (
             <GroupedTimeLine
               programGrades={avgGrades}
               filteredGrades={filteredAvgGrades}
             />
           );
-        }
 
-        // TakenSemestersComponent = (
-        //   <Flex alignItems="center" justifyContent="center" mt={0} mb={3}>
-        //     {studentData.terms
-        //       .slice()
-        //       .reverse()
-        //       .map(({ term, year, comments }, key) => {
-        //         return (
-        //           <TakenSemesterBox
-        //             key={key}
-        //             term={term}
-        //             year={year}
-        //             comments={comments}
-        //           />
-        //         );
-        //       })}
-        //   </Flex>
-        // );
+          const studentTerms = dataStudentFilterList?.students_filter.filter(
+            (student) => student.terms.length == filteredMaxTerm
+          );
+
+          const a = [140, 101, 100, 90, 89, 1000];
+
+          studentTerms![0]
+            ? (TakenSemestersComponent = (
+                <Flex alignItems="center" justifyContent="center" mt={0} mb={3}>
+                  {studentTerms![0].terms
+                    .slice()
+                    .reverse()
+                    .map(({ term, year, comments }, key) => {
+                      return (
+                        <GroupedTakenSemesterBox
+                          key={key}
+                          term={term}
+                          n_students={a[key] || 0}
+                          year={year}
+                          comments={comments}
+                        />
+                      );
+                    })}
+                </Flex>
+              ))
+            : (TakenSemestersComponent = null);
+        }
       }
     }
 

@@ -334,6 +334,7 @@ export interface IExternalEvaluationStats {
   external_evaluation_taken: string;
   year: number;
   term: number;
+  topic: string;
   p_group: number;
   n_total: number;
   n_finished: number;
@@ -351,6 +352,34 @@ export const EXTERNAL_EVALUATION_STATS_TABLE = "external_evaluation_stats";
 
 export const ExternalEvaluationStatsTable = () =>
   dbData<IExternalEvaluationStats>(EXTERNAL_EVALUATION_STATS_TABLE);
+
+// -------------------------------------------------------------------------------------
+export interface IExternalEvaluationGroupedStats {
+  external_evaluation_id: string;
+  topic: string;
+  program_id: string;
+  curriculum: string;
+  type_admission: string;
+  cohort: string;
+  n_students: number;
+  p_group: number;
+  n_total: number;
+  n_finished: number;
+  n_pass: number;
+  n_fail: number;
+  n_drop: number;
+  histogram: string;
+  histogram_labels: string;
+  color_bands: string;
+}
+
+export const EXTERNAL_EVALUATION_GROUPED_STATS_TABLE =
+  "external_evaluation_grouped_stats";
+
+export const ExternalEvaluationGroupedStatsTable = () =>
+  dbData<IExternalEvaluationGroupedStats>(
+    EXTERNAL_EVALUATION_GROUPED_STATS_TABLE
+  );
 // -------------------------------------------------------------------------------------
 
 export interface IPerformanceByLoad {

@@ -108,6 +108,23 @@ type ExternalEvaluation {
   year: Float!
 }
 
+type ExternalEvaluationGroupedStats {
+  cohort: String!
+  color_bands: [BandColor!]!
+  curriculum: String!
+  distribution: [DistributionValue!]!
+  external_evaluation_id: String!
+  n_drop: Float!
+  n_fail: Float!
+  n_finished: Float!
+  n_pass: Float!
+  n_students: Float!
+  n_total: Float!
+  program_id: String!
+  topic: String!
+  type_admission: String!
+}
+
 type FeedbackAnswer {
   answer: String!
   question: FeedbackQuestion!
@@ -277,6 +294,7 @@ type Program {
   courseGroupedStats: [CourseGroupedStats!]!
   curriculums: [Curriculum!]!
   desc: String!
+  externalEvaluationGroupedStats: [ExternalEvaluationGroupedStats!]!
   groupedComplementary: [GroupedComplementary!]!
   groupedEmployed: [GroupedEmployed!]!
   id: String!
@@ -351,7 +369,9 @@ type TakenCourse {
 }
 
 type TakenExternalEvaluation {
+  bandColors: [BandColor!]!
   code: String!
+  currentDistribution: [DistributionValue!]!
   grade: Float!
   id: Int!
   name: String!

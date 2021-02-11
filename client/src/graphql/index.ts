@@ -112,6 +112,23 @@ export type ExternalEvaluation = {
   year: Scalars["Float"];
 };
 
+export type ExternalEvaluationGroupedStats = {
+  cohort: Scalars["String"];
+  color_bands: Array<BandColor>;
+  curriculum: Scalars["String"];
+  distribution: Array<DistributionValue>;
+  external_evaluation_id: Scalars["String"];
+  n_drop: Scalars["Float"];
+  n_fail: Scalars["Float"];
+  n_finished: Scalars["Float"];
+  n_pass: Scalars["Float"];
+  n_students: Scalars["Float"];
+  n_total: Scalars["Float"];
+  program_id: Scalars["String"];
+  topic: Scalars["String"];
+  type_admission: Scalars["String"];
+};
+
 export type FeedbackAnswer = {
   answer: Scalars["String"];
   question: FeedbackQuestion;
@@ -338,6 +355,7 @@ export type Program = {
   courseGroupedStats: Array<CourseGroupedStats>;
   curriculums: Array<Curriculum>;
   desc: Scalars["String"];
+  externalEvaluationGroupedStats: Array<ExternalEvaluationGroupedStats>;
   groupedComplementary: Array<GroupedComplementary>;
   groupedEmployed: Array<GroupedEmployed>;
   id: Scalars["String"];
@@ -440,7 +458,9 @@ export type TakenCourse = {
 };
 
 export type TakenExternalEvaluation = {
+  bandColors: Array<BandColor>;
   code: Scalars["String"];
+  currentDistribution: Array<DistributionValue>;
   grade: Scalars["Float"];
   id: Scalars["Int"];
   name: Scalars["String"];
@@ -754,6 +774,26 @@ export type SearchProgramMutation = {
         color_bands: Array<Pick<BandColor, "min" | "max" | "color">>;
       }
     >;
+    externalEvaluationGroupedStats: Array<
+      Pick<
+        ExternalEvaluationGroupedStats,
+        | "program_id"
+        | "curriculum"
+        | "type_admission"
+        | "cohort"
+        | "topic"
+        | "external_evaluation_id"
+        | "n_students"
+        | "n_total"
+        | "n_finished"
+        | "n_pass"
+        | "n_drop"
+        | "n_fail"
+      > & {
+        distribution: Array<Pick<DistributionValue, "label" | "value">>;
+        color_bands: Array<Pick<BandColor, "min" | "max" | "color">>;
+      }
+    >;
     curriculums: Array<
       Pick<Curriculum, "id"> & {
         semesters: Array<
@@ -770,7 +810,9 @@ export type SearchProgramMutation = {
               }
             >;
             externalEvaluations: Array<
-              Pick<ExternalEvaluation, "code" | "name">
+              Pick<ExternalEvaluation, "code" | "name"> & {
+                bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
+              }
             >;
           }
         >;
@@ -837,7 +879,12 @@ export type SearchStudentMutation = {
               | "registration"
               | "state"
               | "grade"
-            >
+            > & {
+              currentDistribution: Array<
+                Pick<DistributionValue, "label" | "value">
+              >;
+              bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
+            }
           >;
         }
       >;
@@ -902,7 +949,9 @@ export type StudentsFilterListQuery = {
     Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
       programs: Array<Pick<Program, "id" | "name">>;
       admission: Pick<Admission, "type_admission">;
-      terms: Array<Pick<Term, "year" | "term" | "semestral_grade">>;
+      terms: Array<
+        Pick<Term, "year" | "term" | "semestral_grade" | "comments">
+      >;
     }
   >;
 };
@@ -2126,6 +2175,29 @@ export const SearchProgramDocument = gql`
           color
         }
       }
+      externalEvaluationGroupedStats {
+        program_id
+        curriculum
+        type_admission
+        cohort
+        topic
+        external_evaluation_id
+        n_students
+        n_total
+        n_finished
+        n_pass
+        n_drop
+        n_fail
+        distribution {
+          label
+          value
+        }
+        color_bands {
+          min
+          max
+          color
+        }
+      }
       curriculums {
         id
         semesters {
@@ -2157,6 +2229,11 @@ export const SearchProgramDocument = gql`
           externalEvaluations {
             code
             name
+            bandColors {
+              min
+              max
+              color
+            }
           }
         }
       }
@@ -2255,6 +2332,15 @@ export const SearchStudentDocument = gql`
           registration
           state
           grade
+          currentDistribution {
+            label
+            value
+          }
+          bandColors {
+            min
+            max
+            color
+          }
         }
       }
       dropout {
@@ -2547,6 +2633,7 @@ export const StudentsFilterListDocument = gql`
         year
         term
         semestral_grade
+        comments
       }
     }
   }

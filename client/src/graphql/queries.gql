@@ -95,6 +95,30 @@ mutation searchProgram($id: String, $student_id: String) {
         color
       }
     }
+    externalEvaluationGroupedStats {
+      program_id
+      curriculum
+      type_admission
+      cohort
+      topic
+      external_evaluation_id
+      n_students
+      n_total
+      n_finished
+      n_pass
+      n_drop
+      n_fail
+      distribution {
+        label
+        value
+      }
+      color_bands {
+        min
+        max
+        color
+      }
+    }
+
     curriculums {
       id
       semesters {
@@ -126,6 +150,11 @@ mutation searchProgram($id: String, $student_id: String) {
         externalEvaluations {
           code
           name
+          bandColors {
+            min
+            max
+            color
+          }
         }
       }
     }
@@ -181,6 +210,15 @@ mutation searchStudent($student_id: String, $program_id: String) {
         registration
         state
         grade
+        currentDistribution {
+          label
+          value
+        }
+        bandColors {
+          min
+          max
+          color
+        }
       }
     }
     dropout {
@@ -253,6 +291,7 @@ query studentsFilterList($program_id: String!, $curriculum: String!) {
       year
       term
       semestral_grade
+      comments
     }
   }
 }

@@ -94,7 +94,7 @@ const transitionCSS = css`
   transition: "all 0.4s ease-in-out";
 `;
 
-const xTranslateMultiplier = 72.7;
+const xTranslateMultiplier = 72;
 const xTranslateAdded = 70;
 
 export const GroupedTimeLine: FC<{
@@ -267,7 +267,7 @@ export const GroupedTimeLine: FC<{
     ),
     [programGrades, config, textColor]
   );
-  const height = 270;
+  const height = 250;
   const scale = 0.7;
 
   const svgCSS = css`
