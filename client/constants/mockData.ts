@@ -9158,71 +9158,6 @@ const data: {
               ],
               courses: [
                 {
-                  code: "EID-17",
-                  name: "PRUEBA INICIAL DIAGNÓSTICA",
-                  credits: [
-                    {
-                      label: "Créditos",
-                      value: 0,
-                    },
-                    {
-                      label: "SCT",
-                      value: -1,
-                    },
-                  ],
-                  mention: "",
-                  flow: [],
-                  requisites: [],
-                  historicalDistribution: [
-                    {
-                      label: "1-2",
-                      value: 56,
-                    },
-                    {
-                      label: "2-3",
-                      value: 233,
-                    },
-                    {
-                      label: "3-4",
-                      value: 942,
-                    },
-                    {
-                      label: "4-5",
-                      value: 1111,
-                    },
-                    {
-                      label: "5-6",
-                      value: 788,
-                    },
-                    {
-                      label: "6-7",
-                      value: 111,
-                    },
-                  ],
-                  bandColors: [
-                    {
-                      min: 1,
-                      max: 3.4999,
-                      color: "#d6604d",
-                    },
-                    {
-                      min: 3.5,
-                      max: 3.9999,
-                      color: "#f48873",
-                    },
-                    {
-                      min: 4,
-                      max: 4.4999,
-                      color: "#a7dc78",
-                    },
-                    {
-                      min: 4.5,
-                      max: 7,
-                      color: "#66b43e",
-                    },
-                  ],
-                },
-                {
                   code: "BAIN065-14",
                   name: "ÁLGEBRA PARA INGENIERÍA",
                   credits: [
@@ -14933,64 +14868,6 @@ const data: {
           comments: "",
           takenExternalEvaluations: [],
           takenCourses: [
-            {
-              id: 123567,
-              code: "EID-17",
-              equiv: "",
-              name: "PRUEBA INICIAL DIAGNÓSTICA",
-              registration: "CURSADA",
-              grade: 6.5,
-              state: StateCourse.Passed,
-              parallelGroup: 1,
-              currentDistribution: [
-                {
-                  label: "1-2",
-                  value: 10,
-                },
-                {
-                  label: "2-3",
-                  value: 5,
-                },
-                {
-                  label: "3-4",
-                  value: 0,
-                },
-                {
-                  label: "4-5",
-                  value: 5,
-                },
-                {
-                  label: "5-6",
-                  value: 9,
-                },
-                {
-                  label: "6-7",
-                  value: 24,
-                },
-              ],
-              bandColors: [
-                {
-                  min: 1,
-                  max: 3.4999,
-                  color: "#d6604d",
-                },
-                {
-                  min: 3.5,
-                  max: 3.9999,
-                  color: "#f48873",
-                },
-                {
-                  min: 4,
-                  max: 4.4999,
-                  color: "#a7dc78",
-                },
-                {
-                  min: 4.5,
-                  max: 7,
-                  color: "#66b43e",
-                },
-              ],
-            },
             {
               id: 454944,
               code: "INFO073-17",

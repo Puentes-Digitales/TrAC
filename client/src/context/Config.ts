@@ -10,6 +10,7 @@ import {
 import {
   scaleAxisX,
   scaleEvaluationAxisX,
+  scaleEvaluationGradeAxisX,
   scaleColorX,
 } from "../components/dashboard/Histogram/HistogramHelpers";
 import {
@@ -70,6 +71,10 @@ export const Config: FC = ({ children }) => {
       configState.MIN_GRADE_EXTERNAL_EVALUATION,
       configState.MAX_GRADE_EXTERNAL_EVALUATION,
     ]);
+
+  scaleEvaluationGradeAxisX
+    .range([configState.MIN_GRADE_EXTERNAL_EVALUATION, 160])
+    .domain([configState.MIN_GRADE_EXTERNAL_EVALUATION, 40]);
 
   GradeScale.range([40, 170]).domain([
     configState.MAX_GRADE,

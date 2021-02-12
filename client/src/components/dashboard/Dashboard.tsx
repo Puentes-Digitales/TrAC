@@ -564,6 +564,7 @@ export function Dashboard() {
                               grade,
                               topic,
                               currentDistribution,
+                              bandColors,
                             } of takenExternalEvaluations) {
                               if (courseCode === code) {
                                 taken.push({
@@ -574,6 +575,7 @@ export function Dashboard() {
                                   grade,
                                   topic,
                                   currentDistribution,
+                                  bandColors,
                                 });
                               }
                             }

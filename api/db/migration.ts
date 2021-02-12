@@ -603,7 +603,7 @@ const migration = async () => {
             table.text("topic").notNullable();
             table.text("registration").notNullable();
             table.text("state").notNullable();
-            table.float("grade", 4).notNullable();
+            table.text("grade").notNullable();
             table.integer("p_group").notNullable();
             table.text("comments");
             table.integer("duplicates").notNullable();

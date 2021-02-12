@@ -174,38 +174,36 @@ const OuterCourseBox: FC<
   }
 );
 
-const MainBlockOuter: FC<
-  Pick<IExternalEvaluation, "code"> & {
-    semestersTaken: ITakenSemester[];
-  }
-> = memo(({ children, code, semestersTaken }) => {
-  const config = useContext(ConfigContext);
-  const bg = useColorModeValue(config.COURSE_BOX_BACKGROUND_COLOR, "#1A202C");
-  return (
-    <Flex
-      w="100%"
-      h="100%"
-      pt={2}
-      pl={2}
-      pos="relative"
-      className="mainBlock"
-      cursor="pointer"
-      borderRadius="5px 0px 0x 5px"
-      bg={bg}
-      onClick={() => {
-        toggleOpenCourse(code, (wasOpen) => {
-          track({
-            action: "click",
-            target: `course-box-${code}`,
-            effect: `${wasOpen ? "close" : "open"}-course-box`,
+const MainBlockOuter: FC<Pick<IExternalEvaluation, "code">> = memo(
+  ({ children, code }) => {
+    const config = useContext(ConfigContext);
+    const bg = useColorModeValue(config.COURSE_BOX_BACKGROUND_COLOR, "#1A202C");
+    return (
+      <Flex
+        w="100%"
+        h="100%"
+        pt={2}
+        pl={2}
+        pos="relative"
+        className="mainBlock"
+        cursor="pointer"
+        borderRadius="5px 0px 0x 5px"
+        bg={bg}
+        onClick={() => {
+          toggleOpenCourse(code, (wasOpen) => {
+            track({
+              action: "click",
+              target: `course-box-${code}`,
+              effect: `${wasOpen ? "close" : "open"}-course-box`,
+            });
           });
-        });
-      }}
-    >
-      {children}
-    </Flex>
-  );
-});
+        }}
+      >
+        {children}
+      </Flex>
+    );
+  }
+);
 
 const NameComponent: FC<
   Pick<IExternalEvaluation, "code" | "name"> & {
@@ -409,7 +407,7 @@ export function ExternalEvaluationBox({
       borderColor={borderColor}
       isFutureCourseFulfilled={isFutureCourseFulfilled}
     >
-      <MainBlockOuter code={code} semestersTaken={semestersTaken}>
+      <MainBlockOuter code={code}>
         <NameComponent code={code} name={name} isOpen={isOpen} />
 
         <AnimatePresence>
@@ -426,14 +424,16 @@ export function ExternalEvaluationBox({
               code={code}
               state={taken[0]?.state}
             >
-              {taken.map(({ currentDistribution, topic, grade }) => (
-                <HistogramEvaluation
-                  bandColors={bandColors}
-                  currentDistribution={currentDistribution}
-                  grade={grade}
-                  topic={topic ?? ""}
-                />
-              ))}
+              {taken.map(
+                ({ currentDistribution, topic, grade, bandColors }) => (
+                  <HistogramEvaluation
+                    bandColors={bandColors}
+                    currentDistribution={currentDistribution}
+                    grade={grade}
+                    topic={topic ?? ""}
+                  />
+                )
+              )}
             </HistogramsComponent>
           )}
           {isPossibleToTakeForeplan && user?.config.FOREPLAN_COURSE_STATS && (

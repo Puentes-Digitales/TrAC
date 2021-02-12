@@ -6,3 +6,4 @@ export * from "./HistogramGrouped";
 export * from "./HistogramsComponent";
 export * from "./HistogramEvaluation";
 export * from "./HistogramExternalEvaluation";
+export * from "./HistogramGradesLetter";

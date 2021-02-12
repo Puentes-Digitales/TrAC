@@ -263,6 +263,7 @@ export const baseConfig = {
   MIN_GRADE: 1,
   MIN_GRADE_EXTERNAL_EVALUATION: 0,
   MAX_GRADE_EXTERNAL_EVALUATION: 100,
+  LIST_GRADES: ["A", "B", "C", "D"],
   MIN_PASS_SCALE_COLOR: "#b0ffa1",
   NO_CURRICULUMS_LABEL: "Sin planes",
   NO_HISTORIC_DATA: "No hay datos a mostrar",
