@@ -1,5 +1,4 @@
 import React, { FC, memo, useContext, useMemo } from "react";
-import { css } from "@emotion/react";
 
 import {
   Badge,
@@ -9,25 +8,44 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-import { motion } from "framer-motion";
-
 import { termTypeToNumber } from "../../../constants";
 import { ConfigContext } from "../../context/Config";
 import { CoursesDashboardStore } from "../../context/CoursesDashboard";
 
-function SingleBar({ height }: { height?: number }) {
+function SingleBar({ height }: { height: number }) {
   const { GROUPED_HISTOGRAM_BAR } = useContext(ConfigContext);
   const fill = GROUPED_HISTOGRAM_BAR;
+  const textColor = useColorModeValue("black", "white");
+  const heightBar = Math.sqrt(height) * 4 > 50 ? 50 : Math.sqrt(height) * 4;
+  const textPosY =
+    50 - (Math.sqrt(height) * 4 > 50 ? 50 : Math.sqrt(height) * 4);
 
+  const textPosX = 20 - height.toString().length * 4;
   return (
-    <motion.rect
-      className="ignore_dark_mode"
-      width={40}
-      height={height}
-      animate={{ fill }}
-      transition={{ duration: 1 }}
-      fill={fill}
-    />
+    <>
+      <rect
+        className="ignore_dark_mode"
+        width={40}
+        height={heightBar}
+        fill={fill}
+      />
+      <g
+        css={{
+          transform: "rotate(180deg) translate(1%,65%) scaleX(-1)",
+          transformOrigin: "0% 65%",
+        }}
+      >
+        <text
+          x={textPosX}
+          y={textPosY}
+          fontWeight="bold"
+          font-size="15"
+          fill={textColor}
+        >
+          {height}
+        </text>
+      </g>
+    </>
   );
 }
 
@@ -73,76 +91,67 @@ export const GroupedTakenSemesterBox: FC<{
     };
   }, [comments]);
 
-  const textColor = useColorModeValue("black", "white");
   const badgeBgColor = useColorModeValue(undefined, "#202020");
-  const svgCSS = css`
-    tspan {
-      fill: ${textColor};
-    }
-  `;
   return (
     <Stack ml={config.TAKEN_SEMESTER_BOX_MARGIN_SIDES}>
-      <svg width={80} height={150} css={svgCSS}>
-        <svg x={20} y={30}>
+      <svg width={80} height={80}>
+        <svg x={20} y={10}>
           <g
             css={{
-              transform: "rotate(180deg) translate(1%,21%) scaleX(-1)",
-              transformOrigin: "50% 50%",
+              transform: "rotate(180deg) translate(0%,85%) scaleX(-1)",
+              transformOrigin: "0% 85%",
             }}
           >
-            {<SingleBar height={n_students} />}
+            <SingleBar height={n_students} />
           </g>
         </svg>
       </svg>
-
-      {
-        <Box
-          textAlign="center"
-          border={config.TAKEN_SEMESTER_BOX_BORDER}
-          fontFamily="Lato"
-          borderColor={borderColor}
-          borderRadius={config.TAKEN_SEMESTER_BOX_BORDER_RADIUS}
-          backgroundColor={config.TAKEN_SEMESTER_BOX_BACKGROUND_COLOR}
-          p={config.TAKEN_SEMESTER_BOX_PADDING}
-          ml={config.TAKEN_SEMESTER_BOX_MARGIN_SIDES}
-          mr={config.TAKEN_SEMESTER_BOX_MARGIN_SIDES}
-          fontSize={config.TAKEN_SEMESTER_BOX_FONT_SIZE}
-          cursor="pointer"
-          className="unselectable"
-          transition={config.TAKEN_SEMESTER_BOX_TRANSITION}
-          whiteSpace="nowrap"
-          alignItems="center"
-          display="flex"
-          onClick={() => {
-            CoursesDashboardStore.actions.toggleExplicitSemester({
-              term,
-              year,
-            });
-          }}
-          color={config.TAKEN_SEMESTER_BOX_TEXT_COLOR}
-          height={config.TAKEN_SEMESTER_BOX_HEIGHT}
-        >
-          {comments ? (
-            <Stack spacing={0}>
-              <Box>
-                <b>{`${termTypeToNumber(term)}S ${year}`}</b>
-              </Box>
-              <Box>
-                <Badge
-                  bg={badgeBgColor}
-                  borderRadius="4px"
-                  fontSize="0.5em"
-                  {...badgeProps}
-                >
-                  {comments}
-                </Badge>
-              </Box>
-            </Stack>
-          ) : (
-            <b>{`${termTypeToNumber(term)}S ${year}`}</b>
-          )}
-        </Box>
-      }
+      <Box
+        textAlign="center"
+        border={config.TAKEN_SEMESTER_BOX_BORDER}
+        fontFamily="Lato"
+        borderColor={borderColor}
+        borderRadius={config.TAKEN_SEMESTER_BOX_BORDER_RADIUS}
+        backgroundColor={config.TAKEN_SEMESTER_BOX_BACKGROUND_COLOR}
+        p={config.TAKEN_SEMESTER_BOX_PADDING}
+        ml={config.TAKEN_SEMESTER_BOX_MARGIN_SIDES}
+        mr={config.TAKEN_SEMESTER_BOX_MARGIN_SIDES}
+        fontSize={config.TAKEN_SEMESTER_BOX_FONT_SIZE}
+        cursor="pointer"
+        className="unselectable"
+        transition={config.TAKEN_SEMESTER_BOX_TRANSITION}
+        whiteSpace="nowrap"
+        alignItems="center"
+        display="flex"
+        onClick={() => {
+          CoursesDashboardStore.actions.toggleExplicitSemester({
+            term,
+            year,
+          });
+        }}
+        color={config.TAKEN_SEMESTER_BOX_TEXT_COLOR}
+        height={config.TAKEN_SEMESTER_BOX_HEIGHT}
+      >
+        {comments ? (
+          <Stack spacing={0}>
+            <Box>
+              <b>{`${termTypeToNumber(term)}S ${year}`}</b>
+            </Box>
+            <Box>
+              <Badge
+                bg={badgeBgColor}
+                borderRadius="4px"
+                fontSize="0.5em"
+                {...badgeProps}
+              >
+                {comments}
+              </Badge>
+            </Box>
+          </Stack>
+        ) : (
+          <b>{`${termTypeToNumber(term)}S ${year}`}</b>
+        )}
+      </Box>
     </Stack>
   );
 });
