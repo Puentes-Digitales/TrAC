@@ -94,7 +94,7 @@ const transitionCSS = css`
   transition: "all 0.4s ease-in-out";
 `;
 
-const xTranslateMultiplier = 72.7;
+const xTranslateMultiplier = 72;
 const xTranslateAdded = 70;
 
 export const TimeLine: FC<{

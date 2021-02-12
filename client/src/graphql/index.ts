@@ -949,7 +949,9 @@ export type StudentsFilterListQuery = {
     Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
       programs: Array<Pick<Program, "id" | "name">>;
       admission: Pick<Admission, "type_admission">;
-      terms: Array<Pick<Term, "year" | "term" | "semestral_grade">>;
+      terms: Array<
+        Pick<Term, "year" | "term" | "semestral_grade" | "comments">
+      >;
     }
   >;
 };
@@ -2631,6 +2633,7 @@ export const StudentsFilterListDocument = gql`
         year
         term
         semestral_grade
+        comments
       }
     }
   }

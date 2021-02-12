@@ -65,6 +65,7 @@ import { SearchBar } from "./SearchBar";
 import { SemestersList } from "./SemestersList";
 import { GroupedSemestersList } from "./GroupedSemesterList";
 import { TakenSemesterBox } from "./TakenSemesterBox";
+import { GroupedTakenSemesterBox } from "./GroupedTakenSemesterBox";
 import { TimeLine } from "./Timeline/Timeline";
 import { GroupedTimeLine } from "./Timeline/GroupedTimeline";
 import { ProgressStudent } from "./ProgressStudent";
@@ -805,15 +806,19 @@ export function Dashboard() {
           );
         }
 
-        if (chosenCurriculum && chosenCohort) {
-          const cumulated = dataStudentFilterList?.students_filter.map(
+        if (
+          chosenCurriculum &&
+          chosenCohort &&
+          dataStudentFilterList != undefined
+        ) {
+          const cumulated = dataStudentFilterList.students_filter.map(
             (student) =>
               student.terms
                 .map((semester) => semester.semestral_grade)
                 .reverse()
           );
 
-          const filteredCumulated = dataStudentFilterList?.students_filter.map(
+          const filteredCumulated = dataStudentFilterList.students_filter.map(
             (student) =>
               student.start_year == toInteger(chosenCohort)
                 ? chosenAdmissionType
@@ -837,46 +842,50 @@ export function Dashboard() {
             });
 
           const filteredMaxTerm = filteredCumulated
-            ?.map((v) => {
+            .map((v) => {
               return v.length;
             })
             .reduce((a, b) => {
               return Math.max(a, b);
             });
 
-          const grades = [];
-          for (let i = 0; i < maxTerm!; i++) {
-            grades.push(cumulated?.map((v) => (v[i] ? v[i] : 0)));
+          const grades = new Array();
+          for (let i = 0; i < maxTerm; i++) {
+            grades.push(cumulated.map((v) => v[i] ?? 0));
           }
 
-          const filteredGrades = [];
-          for (let i = 0; i < filteredMaxTerm!; i++) {
-            filteredGrades.push(
-              filteredCumulated?.map((v) => (v[i] ? v[i] : 0))
-            );
+          const filteredGrades = new Array();
+          for (let i = 0; i < filteredMaxTerm; i++) {
+            filteredGrades.push(filteredCumulated.map((v) => v[i] ?? 0));
           }
 
-          const avgGrades = grades!.map((arr) => {
+          const avgGrades = grades.map((arr) => {
             return (
-              arr!.reduce((a, b) => {
+              arr.reduce((a: number, b: number) => {
                 if (a && b) return a + b;
                 if (!a) return b;
                 if (!b) return a;
-              })! / (arr!.filter((ele) => ele).length || 1)
+                return;
+              }) / (arr.filter((ele: number) => ele).length || 1)
             );
           });
+
+          console.log(avgGrades);
+
+          const n_students_per_semester: number[] = [];
 
           const filteredAvgGrades = filteredGrades!.map((arr) => {
+            n_students_per_semester.push(
+              arr.filter((ele: number) => ele).length
+            );
             return (
-              arr!.reduce((a, b) => {
+              arr.reduce((a: number, b: number) => {
                 if (a && b) return a + b;
                 if (!a) return b;
                 if (!b) return a;
-              })! / (arr!.filter((ele) => ele).length || 1)
+              }, 0) / (arr.filter((ele: number) => ele).length || 1)
             );
           });
-
-          console.log(filteredCumulated);
 
           TimeLineComponent = (
             <GroupedTimeLine
@@ -884,25 +893,32 @@ export function Dashboard() {
               filteredGrades={filteredAvgGrades}
             />
           );
-        }
 
-        // TakenSemestersComponent = (
-        //   <Flex alignItems="center" justifyContent="center" mt={0} mb={3}>
-        //     {studentData.terms
-        //       .slice()
-        //       .reverse()
-        //       .map(({ term, year, comments }, key) => {
-        //         return (
-        //           <TakenSemesterBox
-        //             key={key}
-        //             term={term}
-        //             year={year}
-        //             comments={comments}
-        //           />
-        //         );
-        //       })}
-        //   </Flex>
-        // );
+          const studentTerms = dataStudentFilterList!.students_filter.filter(
+            (student) => student.terms.length == filteredMaxTerm
+          );
+
+          studentTerms[0]
+            ? (TakenSemestersComponent = (
+                <Flex alignItems="center" justifyContent="center" mt={0} mb={3}>
+                  {studentTerms[0].terms
+                    .slice()
+                    .reverse()
+                    .map(({ term, year, comments }, key) => {
+                      return (
+                        <GroupedTakenSemesterBox
+                          key={key}
+                          term={term}
+                          n_students={n_students_per_semester[key] ?? 0}
+                          year={year}
+                          comments={comments}
+                        />
+                      );
+                    })}
+                </Flex>
+              ))
+            : (TakenSemestersComponent = null);
+        }
       }
     }
 
@@ -919,6 +935,7 @@ export function Dashboard() {
   }, [
     searchStudentData,
     searchProgramData,
+    dataStudentFilterList,
     chosenCurriculum,
     chosenAdmissionType,
     chosenCohort,

@@ -238,6 +238,7 @@ export const baseConfig = {
   HELP_ENABLED: false,
   HISTOGRAM_BAR_ACTIVE: "rgb(122,122,122)",
   HISTOGRAM_BAR_INACTIVE: "rgb(191,191,191)",
+  GROUPED_HISTOGRAM_BAR: "rgb(173,66,244)",
   HISTORIC_GRADES: "Calificaciones históricas",
   GROUPED_GRADES: "Calificaciones grupo",
   INACTIVE_COURSE_BOX_COLOR: "#A0AEC0",
