@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { some, truncate } from "lodash";
+import { some, truncate, sortBy } from "lodash";
 import dynamic from "next/dynamic";
 import React, { FC, memo, useContext, useMemo } from "react";
 
@@ -424,7 +424,7 @@ export function ExternalEvaluationBox({
               code={code}
               state={taken[0]?.state}
             >
-              {taken.map(
+              {sortBy(taken, ({ topic }) => topic).map(
                 ({ currentDistribution, topic, grade, bandColors }) => (
                   <HistogramEvaluation
                     bandColors={bandColors}
