@@ -3,6 +3,7 @@ import { PerformanceLoadUnit, StateCourse, TermType } from "./";
 import type {
   SearchProgramMutation,
   SearchStudentMutation,
+  StudentsFilterListQuery,
   PerformanceByLoad,
 } from "../src/graphql";
 
@@ -12,6 +13,9 @@ const data: {
   };
   searchStudentData: {
     student: NonNullable<SearchStudentMutation["student"]>;
+  };
+  searchStudentListData: {
+    students_filter: StudentsFilterListQuery["students_filter"];
   };
   performanceByLoad: PerformanceByLoad[];
 } = {
@@ -15426,6 +15430,260 @@ const data: {
       },
     },
   },
+  searchStudentListData: {
+    students_filter: [
+      {
+        id: "e078c7de4d67798a915801ba7e2539fb",
+        programs: [
+          {
+            id: "1708",
+            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
+          },
+        ],
+        curriculums: ["2017"],
+        start_year: 2017,
+        mention: "",
+        admission: { type_admission: "PACE" },
+        terms: [
+          {
+            year: 2017,
+            term: TermType.First,
+            semestral_grade: 4.6,
+            comments: "2017-1",
+          },
+          {
+            year: 2017,
+            term: TermType.Second,
+            semestral_grade: 5.6,
+            comments: "2017-2",
+          },
+          {
+            year: 2018,
+            term: TermType.First,
+            semestral_grade: 5.6,
+            comments: "2018-1",
+          },
+          {
+            year: 2018,
+            term: TermType.Second,
+            semestral_grade: 5.3,
+            comments: "2018-2",
+          },
+          {
+            year: 2019,
+            term: TermType.First,
+            semestral_grade: 4.3,
+            comments: "2019-1",
+          },
+        ],
+      },
+      {
+        id: "993567bb136c986c3e18669a748e26b1",
+        programs: [
+          {
+            id: "1708",
+            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
+          },
+        ],
+        curriculums: ["2017"],
+        start_year: 2017,
+        mention: "",
+        admission: { type_admission: "PACE" },
+        terms: [
+          {
+            year: 2017,
+            term: TermType.First,
+            semestral_grade: 1.6,
+            comments: "2017-1",
+          },
+          {
+            year: 2017,
+            term: TermType.Second,
+            semestral_grade: 6.1,
+            comments: "2017-2",
+          },
+          {
+            year: 2018,
+            term: TermType.First,
+            semestral_grade: 4.6,
+            comments: "2018-1",
+          },
+          {
+            year: 2018,
+            term: TermType.Second,
+            semestral_grade: 3.7,
+            comments: "2018-2",
+          },
+          {
+            year: 2019,
+            term: TermType.First,
+            semestral_grade: 1.8,
+            comments: "2019-1",
+          },
+        ],
+      },
+      {
+        id: "6fdb8a7f5bbaf0c68dbca0f5462e866a",
+        programs: [
+          {
+            id: "1708",
+            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
+          },
+        ],
+        curriculums: ["2017"],
+        start_year: 2017,
+        mention: "",
+        admission: { type_admission: "PSU" },
+        terms: [
+          {
+            year: 2017,
+            term: TermType.First,
+            semestral_grade: 3.6,
+            comments: "2017-1",
+          },
+          {
+            year: 2017,
+            term: TermType.Second,
+            semestral_grade: 6.8,
+            comments: "2017-2",
+          },
+          {
+            year: 2018,
+            term: TermType.First,
+            semestral_grade: 4.1,
+            comments: "2018-1",
+          },
+          {
+            year: 2018,
+            term: TermType.Second,
+            semestral_grade: 7.0,
+            comments: "2018-2",
+          },
+          {
+            year: 2019,
+            term: TermType.First,
+            semestral_grade: 4.1,
+            comments: "2019-1",
+          },
+        ],
+      },
+      {
+        id: "e078c7de4d67798a915801ba7e2539fb",
+        programs: [
+          {
+            id: "1708",
+            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
+          },
+        ],
+        curriculums: ["2015"],
+        start_year: 2016,
+        mention: "",
+        admission: { type_admission: "PACE" },
+        terms: [
+          {
+            year: 2016,
+            term: TermType.First,
+            semestral_grade: 4.9,
+            comments: "",
+          },
+          {
+            year: 2016,
+            term: TermType.Second,
+            semestral_grade: 5.8,
+            comments: "2017-2",
+          },
+          {
+            year: 2017,
+            term: TermType.First,
+            semestral_grade: 4.6,
+            comments: "",
+          },
+          {
+            year: 2017,
+            term: TermType.Second,
+            semestral_grade: 5.6,
+            comments: "",
+          },
+          {
+            year: 2018,
+            term: TermType.First,
+            semestral_grade: 5.6,
+            comments: "",
+          },
+          {
+            year: 2018,
+            term: TermType.Second,
+            semestral_grade: 5.1,
+            comments: "",
+          },
+          {
+            year: 2019,
+            term: TermType.First,
+            semestral_grade: 4.7,
+            comments: "",
+          },
+        ],
+      },
+      {
+        id: "6fdb8a7f5bbaf0c68dbca0f5462e866a",
+        programs: [
+          {
+            id: "1708",
+            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
+          },
+        ],
+        curriculums: ["2015"],
+        start_year: 2016,
+        mention: "",
+        admission: { type_admission: "PSU" },
+        terms: [
+          {
+            year: 2016,
+            term: TermType.First,
+            semestral_grade: 2.6,
+            comments: "",
+          },
+          {
+            year: 2016,
+            term: TermType.Second,
+            semestral_grade: 6.8,
+            comments: "",
+          },
+          {
+            year: 2017,
+            term: TermType.First,
+            semestral_grade: 2.6,
+            comments: "",
+          },
+          {
+            year: 2017,
+            term: TermType.Second,
+            semestral_grade: 6.8,
+            comments: "2017-2",
+          },
+          {
+            year: 2018,
+            term: TermType.First,
+            semestral_grade: 4.1,
+            comments: "",
+          },
+          {
+            year: 2018,
+            term: TermType.Second,
+            semestral_grade: 1.0,
+            comments: "",
+          },
+          {
+            year: 2019,
+            term: TermType.First,
+            semestral_grade: 3.1,
+            comments: "",
+          },
+        ],
+      },
+    ],
+  },
+
   performanceByLoad: [
     {
       // LOW CREDITS - LOW PERFORMANCE
