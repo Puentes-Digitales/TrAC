@@ -75,6 +75,8 @@ export type IGroupedExternalEvaluation = {
   name: string;
   agroupedDistribution?: IDistribution[];
   taken: ITopicExternalEvaluation[];
+  n_total: number;
+  n_passed: number;
   bandColors: { min: number; max: number; color: string }[];
 };
 
