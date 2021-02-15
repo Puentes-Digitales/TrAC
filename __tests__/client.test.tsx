@@ -1,16 +1,16 @@
-import "@testing-library/jest-dom/extend-expect";
+import "@evaluationing-library/jest-dom/extend-expect";
 
 import React from "react";
 import waitForExpect from "wait-for-expect";
 
-import { MockedProvider } from "@apollo/react-testing";
+import { MockedProvider } from "@apollo/react-evaluationing";
 import {
   act,
   cleanup,
   render,
   screen,
   fireEvent,
-} from "@testing-library/react";
+} from "@evaluationing-library/react";
 
 import { UserType } from "../client/constants";
 import { baseConfig } from "../client/constants/baseConfig";
@@ -43,7 +43,7 @@ afterEach(async () => {
 });
 
 describe("unlock", () => {
-  test("renders correctly", async () => {
+  evaluation("renders correctly", async () => {
     await act(async () => {
       const { getByText } = render(
         <MockedProvider
@@ -96,7 +96,7 @@ describe("unlock", () => {
 });
 
 describe("login", () => {
-  test("renders correctly", async () => {
+  evaluation("renders correctly", async () => {
     await act(async () => {
       const { getByText } = render(
         <MockedProvider
@@ -131,7 +131,7 @@ describe("login", () => {
 });
 
 describe("admin", () => {
-  test("renders correctly", async () => {
+  evaluation("renders correctly", async () => {
     await act(async () => {
       const { getByText } = render(
         <MockedProvider
@@ -184,42 +184,42 @@ describe("admin", () => {
   });
 });
 
-describe("Test <AdmissionDropout />", () => {
-  test("Test Snapshot", () => {
+describe("evaluation <AdmissionDropout />", () => {
+  evaluation("evaluation Snapshot", () => {
     const tree = render(
       <ComplementaryInfo
         type_admission="PSU"
-        initial_test={10}
-        final_test={20}
+        initial_evaluation={10}
+        final_evaluation={20}
         educational_system="Publico"
         institution="Escuela"
         months_to_first_job={6}
       />
     );
-    fireEvent.click(screen.getByTestId("BoxContainer"));
+    fireEvent.click(screen.getByevaluationId("BoxContainer"));
     expect(tree).toMatchSnapshot();
   });
 });
 
-test("test props en <AdmissionDropout />", () => {
+evaluation("evaluation props en <AdmissionDropout />", () => {
   const type_admission = "PSU";
-  const initial_test = 10;
-  const final_test = 20;
+  const initial_evaluation = 10;
+  const final_evaluation = 20;
   const educational_system = "Publico";
   const institution = "Escuela";
   const months_to_first_job = 6;
 
-  const { getByText, getByTestId } = render(
+  const { getByText, getByevaluationId } = render(
     <ComplementaryInfo
       type_admission={type_admission}
-      initial_test={initial_test}
-      final_test={final_test}
+      initial_evaluation={initial_evaluation}
+      final_evaluation={final_evaluation}
       educational_system={educational_system}
       institution={institution}
       months_to_first_job={months_to_first_job}
     />
   );
-  fireEvent.click(getByTestId("BoxContainer"));
+  fireEvent.click(getByevaluationId("BoxContainer"));
   expect(getByText("Tipo de ingreso: PSU".trim())).toBeInTheDocument();
   expect(getByText("Sistema educacional: Publico".trim())).toBeInTheDocument();
   expect(
@@ -227,26 +227,26 @@ test("test props en <AdmissionDropout />", () => {
   ).toBeInTheDocument();
 });
 
-test("test null props complementary component", () => {
+evaluation("evaluation null props complementary component", () => {
   const type_admission = null;
-  const initial_test = null;
-  const final_test = null;
+  const initial_evaluation = null;
+  const final_evaluation = null;
   const educational_system = "Publico";
   const institution = null;
   const months_to_first_job = null;
 
-  const { getByText, getByTestId, queryAllByText } = render(
+  const { getByText, getByevaluationId, queryAllByText } = render(
     <ComplementaryInfo
       type_admission={type_admission}
-      initial_test={initial_test}
-      final_test={final_test}
+      initial_evaluation={initial_evaluation}
+      final_evaluation={final_evaluation}
       educational_system={educational_system}
       institution={institution}
       months_to_first_job={months_to_first_job}
     />
   );
 
-  fireEvent.click(getByTestId("BoxContainer"));
+  fireEvent.click(getByevaluationId("BoxContainer"));
   const inst_value = queryAllByText("Tipo de ingreso:");
   expect(inst_value).toHaveLength(0);
   const education_system_value = queryAllByText(

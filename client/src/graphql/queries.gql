@@ -229,8 +229,8 @@ mutation searchStudent($student_id: String, $program_id: String) {
     admission {
       active
       type_admission
-      initial_test
-      final_test
+      initial_evaluation
+      final_evaluation
     }
     employed {
       employed
@@ -268,8 +268,8 @@ query studentsList($program_id: String!) {
     admission {
       active
       type_admission
-      initial_test
-      final_test
+      initial_evaluation
+      final_evaluation
     }
   }
 }
