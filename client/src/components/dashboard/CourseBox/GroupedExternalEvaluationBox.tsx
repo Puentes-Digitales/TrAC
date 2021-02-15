@@ -257,8 +257,9 @@ export function GroupedExternalEvaluationBox({
   code,
   name,
   bandColors,
-  agroupedDistribution,
   taken,
+  n_total,
+  n_passed,
 }: IGroupedExternalEvaluation) {
   const config = useContext(ConfigContext);
 
@@ -311,8 +312,8 @@ export function GroupedExternalEvaluationBox({
       </MainBlockOuter>
       <SecondaryBlockOuter
         bandColors={bandColors}
-        n_passed={5}
-        n_total={10}
+        n_passed={n_passed}
+        n_total={n_total}
         borderColor={borderColor}
       ></SecondaryBlockOuter>
     </OuterCourseBox>

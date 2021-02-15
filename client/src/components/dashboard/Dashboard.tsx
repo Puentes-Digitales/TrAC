@@ -565,6 +565,7 @@ export function Dashboard() {
                               grade,
                               topic,
                               currentDistribution,
+                              bandColors,
                             } of takenExternalEvaluations) {
                               if (courseCode === code) {
                                 taken.push({
@@ -575,6 +576,7 @@ export function Dashboard() {
                                   grade,
                                   topic,
                                   currentDistribution,
+                                  bandColors,
                                 });
                               }
                             }
@@ -691,12 +693,19 @@ export function Dashboard() {
                         value.cohort == chosenCohort &&
                         value.external_evaluation_id == code
                     );
+                    console.log(externalEvaluationFilter);
 
                     return {
                       code,
                       name,
                       bandColors,
                       taken: externalEvaluationFilter,
+                      n_passed: externalEvaluationFilter[0]
+                        ? externalEvaluationFilter[0].n_pass
+                        : 0,
+                      n_total: externalEvaluationFilter[0]
+                        ? externalEvaluationFilter[0].n_students
+                        : 0,
                     };
                   }
                 ),

@@ -9,11 +9,7 @@ import { AxisBottom, AxisLeft, AxisScale } from "@vx/axis";
 
 import { IDistribution } from "../../../../../interfaces";
 import { ConfigContext } from "../../../context/Config";
-import {
-  averageTwo,
-  scaleEvaluationAxisX,
-  scaleColorX,
-} from "./HistogramHelpers";
+import { scaleEvaluationGradeAxisX } from "./HistogramHelpers";
 
 function SingleBar({
   grey,
@@ -43,17 +39,18 @@ function SingleBar({
 }
 
 const AxisNumbers = (() => {
+  const format = ["D", "C", "B", "A"];
   return (
     <AxisBottom
-      scale={scaleEvaluationAxisX as AxisScale}
-      left={5}
+      scale={scaleEvaluationGradeAxisX as AxisScale}
+      left={-10}
       top={80}
-      hideAxisLine={false}
+      hideAxisLine={true}
       hideTicks={true}
       tickLength={2}
-      numTicks={5}
+      numTicks={3}
       tickFormat={(n) => {
-        return (n.valueOf() ?? n).toString();
+        return format[n / 10 - 1];
       }}
     />
   );
@@ -67,16 +64,14 @@ function XAxis({
   const AxisColor = useMemo(
     () =>
       bandColors.map(({ min, color }, key) => {
-        const previousMax: number | undefined = bandColors[key - 1]?.max;
-
-        let x = scaleColorX(averageTwo(previousMax, min)) / 20;
+        let x = key * 42;
 
         return (
           <rect
             key={key}
-            x={8 + (x ?? 0)}
+            x={5 + (x ?? 0)}
             y={80}
-            width={90}
+            width={42}
             height={7}
             fill={color}
           />
@@ -92,7 +87,7 @@ function XAxis({
   );
 }
 
-export function HistogramExternalEvaluation({
+export function HistogramGradesLetter({
   distribution,
   label,
   grade,
@@ -100,7 +95,7 @@ export function HistogramExternalEvaluation({
 }: {
   distribution: IDistribution[];
   label?: string;
-  grade?: number;
+  grade?: string;
   bandColors: { min: number; max: number; color: string }[];
 }) {
   const barsScale = useCallback(
@@ -119,14 +114,28 @@ export function HistogramExternalEvaluation({
   const greyN = useMemo(() => {
     if (grade !== undefined) {
       return distribution.findIndex(({ label }, key: number) => {
+        let value = -1;
+        switch (grade) {
+          case "A":
+            value = 100;
+            break;
+          case "B":
+            value = 74;
+            break;
+          case "C":
+            value = 49;
+            break;
+          case "D":
+            value = 1;
+        }
         const [min, max] = label.split("-").map(toInteger); // TODO: Adapt to pass/fail histogram type
         if (
           min != undefined &&
           max != undefined &&
-          grade >= min &&
-          grade <= max
+          value >= min &&
+          value <= max
         ) {
-          if (grade === max && distribution[key + 1]) {
+          if (value === max && distribution[key + 1]) {
             return false;
           }
           return true;
@@ -173,9 +182,10 @@ export function HistogramExternalEvaluation({
         <text y={20} x={30} fontWeight="bold" fill={textColor}>
           {truncate(label, { length: 35 }) ?? "Undefined"}
         </text>
+        {grade}
         {grade && (
           <text y={40} x={30} fontWeight="bold" fill={textColor}>
-            Nota: {grade} %
+            Nota: {grade}
           </text>
         )}
 

@@ -9134,94 +9134,29 @@ const data: {
                   name: "PRUEBA INICIAL DIAGNÓSTICA",
                   bandColors: [
                     {
-                      min: 1,
-                      max: 3.4999,
+                      min: 0,
+                      max: 20,
                       color: "#d6604d",
                     },
                     {
-                      min: 3.5,
-                      max: 3.9999,
+                      min: 20,
+                      max: 40,
                       color: "#f48873",
                     },
                     {
-                      min: 4,
-                      max: 4.4999,
+                      min: 40,
+                      max: 60,
                       color: "#a7dc78",
                     },
                     {
-                      min: 4.5,
-                      max: 7,
+                      min: 60,
+                      max: 100,
                       color: "#66b43e",
                     },
                   ],
                 },
               ],
               courses: [
-                {
-                  code: "EID-17",
-                  name: "PRUEBA INICIAL DIAGNÓSTICA",
-                  credits: [
-                    {
-                      label: "Créditos",
-                      value: 0,
-                    },
-                    {
-                      label: "SCT",
-                      value: -1,
-                    },
-                  ],
-                  mention: "",
-                  flow: [],
-                  requisites: [],
-                  historicalDistribution: [
-                    {
-                      label: "1-2",
-                      value: 56,
-                    },
-                    {
-                      label: "2-3",
-                      value: 233,
-                    },
-                    {
-                      label: "3-4",
-                      value: 942,
-                    },
-                    {
-                      label: "4-5",
-                      value: 1111,
-                    },
-                    {
-                      label: "5-6",
-                      value: 788,
-                    },
-                    {
-                      label: "6-7",
-                      value: 111,
-                    },
-                  ],
-                  bandColors: [
-                    {
-                      min: 1,
-                      max: 3.4999,
-                      color: "#d6604d",
-                    },
-                    {
-                      min: 3.5,
-                      max: 3.9999,
-                      color: "#f48873",
-                    },
-                    {
-                      min: 4,
-                      max: 4.4999,
-                      color: "#a7dc78",
-                    },
-                    {
-                      min: 4.5,
-                      max: 7,
-                      color: "#66b43e",
-                    },
-                  ],
-                },
                 {
                   code: "BAIN065-14",
                   name: "ÁLGEBRA PARA INGENIERÍA",
@@ -12024,97 +11959,32 @@ const data: {
               externalEvaluations: [
                 {
                   code: "END-17",
-                  name: "PRUEBA NACIONAL DIAGNÓSTICA",
+                  name: "PRUEBA INICIAL DIAGNÓSTICA",
                   bandColors: [
                     {
-                      min: 1,
-                      max: 3.4999,
+                      min: 0,
+                      max: 20,
                       color: "#d6604d",
                     },
                     {
-                      min: 3.5,
-                      max: 3.9999,
+                      min: 20,
+                      max: 40,
                       color: "#f48873",
                     },
                     {
-                      min: 4,
-                      max: 4.4999,
+                      min: 40,
+                      max: 60,
                       color: "#a7dc78",
                     },
                     {
-                      min: 4.5,
-                      max: 7,
+                      min: 60,
+                      max: 100,
                       color: "#66b43e",
                     },
                   ],
                 },
               ],
               courses: [
-                {
-                  code: "END-17",
-                  name: "PRUEBA NACIONAL DIAGNÓSTICA",
-                  credits: [
-                    {
-                      label: "Créditos",
-                      value: 0,
-                    },
-                    {
-                      label: "SCT",
-                      value: -1,
-                    },
-                  ],
-                  mention: "",
-                  flow: [],
-                  requisites: [],
-                  historicalDistribution: [
-                    {
-                      label: "1-2",
-                      value: 56,
-                    },
-                    {
-                      label: "2-3",
-                      value: 111,
-                    },
-                    {
-                      label: "3-4",
-                      value: 775,
-                    },
-                    {
-                      label: "4-5",
-                      value: 2000,
-                    },
-                    {
-                      label: "5-6",
-                      value: 122,
-                    },
-                    {
-                      label: "6-7",
-                      value: 566,
-                    },
-                  ],
-                  bandColors: [
-                    {
-                      min: 1,
-                      max: 3.4999,
-                      color: "#d6604d",
-                    },
-                    {
-                      min: 3.5,
-                      max: 3.9999,
-                      color: "#f48873",
-                    },
-                    {
-                      min: 4,
-                      max: 4.4999,
-                      color: "#a7dc78",
-                    },
-                    {
-                      min: 4.5,
-                      max: 7,
-                      color: "#66b43e",
-                    },
-                  ],
-                },
                 {
                   code: "ELECT101",
                   name: "OPTATIVO DE ESPECIALIZACIÓN II",
@@ -13298,20 +13168,168 @@ const data: {
           cumulated_grade: 0,
           program_grade: 4.31,
           comments: "",
-          takenExternalEvaluations: [],
-          takenCourses: [
+          takenExternalEvaluations: [
             {
-              id: 123123,
+              id: 1231231,
               code: "END-17",
-              equiv: "",
               name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
-              registration: "REGISTRADA",
-              grade: 0,
-              state: StateCourse.Pending,
-              parallelGroup: 0,
-              currentDistribution: [],
-              bandColors: [],
+              registration: "CURSADA",
+              topic: "Lectura",
+              grade: "71",
+              state: StateCourse.Passed,
+              currentDistribution: [
+                {
+                  label: "0-20",
+                  value: 1,
+                },
+                {
+                  label: "20-40",
+                  value: 1,
+                },
+                {
+                  label: "40-60",
+                  value: 7,
+                },
+                {
+                  label: "60-80",
+                  value: 10,
+                },
+                {
+                  label: "80-100",
+                  value: 10,
+                },
+              ],
+              bandColors: [
+                {
+                  min: 0,
+                  max: 20,
+                  color: "#d6604d",
+                },
+                {
+                  min: 20,
+                  max: 40,
+                  color: "#f48873",
+                },
+                {
+                  min: 40,
+                  max: 60,
+                  color: "#a7dc78",
+                },
+                {
+                  min: 60,
+                  max: 100,
+                  color: "#66b43e",
+                },
+              ],
             },
+            {
+              id: 1231231,
+              code: "END-17",
+              name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
+              registration: "CURSADA",
+              topic: "Comunicación oral",
+              grade: "20",
+              state: StateCourse.Passed,
+              currentDistribution: [
+                {
+                  label: "0-20",
+                  value: 3,
+                },
+                {
+                  label: "20-40",
+                  value: 5,
+                },
+                {
+                  label: "40-60",
+                  value: 3,
+                },
+                {
+                  label: "60-80",
+                  value: 15,
+                },
+                {
+                  label: "80-100",
+                  value: 11,
+                },
+              ],
+              bandColors: [
+                {
+                  min: 0,
+                  max: 20,
+                  color: "#d6604d",
+                },
+                {
+                  min: 20,
+                  max: 40,
+                  color: "#f48873",
+                },
+                {
+                  min: 40,
+                  max: 60,
+                  color: "#a7dc78",
+                },
+                {
+                  min: 60,
+                  max: 100,
+                  color: "#66b43e",
+                },
+              ],
+            },
+            {
+              id: 1231235,
+              code: "END-17",
+              name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
+              registration: "CURSADA",
+              topic: "Escritura",
+              grade: "30",
+              state: StateCourse.Passed,
+              currentDistribution: [
+                {
+                  label: "0-20",
+                  value: 2,
+                },
+                {
+                  label: "20-40",
+                  value: 5,
+                },
+                {
+                  label: "40-60",
+                  value: 8,
+                },
+                {
+                  label: "60-80",
+                  value: 3,
+                },
+                {
+                  label: "80-100",
+                  value: 2,
+                },
+              ],
+              bandColors: [
+                {
+                  min: 0,
+                  max: 20,
+                  color: "#d6604d",
+                },
+                {
+                  min: 20,
+                  max: 40,
+                  color: "#f48873",
+                },
+                {
+                  min: 40,
+                  max: 60,
+                  color: "#a7dc78",
+                },
+                {
+                  min: 60,
+                  max: 100,
+                  color: "#66b43e",
+                },
+              ],
+            },
+          ],
+          takenCourses: [
             {
               id: 647897,
               code: "INFO229-17",
@@ -14931,66 +14949,168 @@ const data: {
           cumulated_grade: 6.02,
           program_grade: 4.31,
           comments: "",
-          takenExternalEvaluations: [],
-          takenCourses: [
+          takenExternalEvaluations: [
             {
-              id: 123567,
+              id: 1231231,
               code: "EID-17",
-              equiv: "",
-              name: "PRUEBA INICIAL DIAGNÓSTICA",
+              name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
               registration: "CURSADA",
-              grade: 6.5,
+              topic: "Lectura",
+              grade: "30",
               state: StateCourse.Passed,
-              parallelGroup: 1,
               currentDistribution: [
                 {
-                  label: "1-2",
-                  value: 10,
+                  label: "0-20",
+                  value: 3,
                 },
                 {
-                  label: "2-3",
-                  value: 5,
+                  label: "20-40",
+                  value: 6,
                 },
                 {
-                  label: "3-4",
-                  value: 0,
+                  label: "40-60",
+                  value: 7,
                 },
                 {
-                  label: "4-5",
-                  value: 5,
+                  label: "60-80",
+                  value: 2,
                 },
                 {
-                  label: "5-6",
-                  value: 9,
-                },
-                {
-                  label: "6-7",
-                  value: 24,
+                  label: "80-100",
+                  value: 3,
                 },
               ],
               bandColors: [
                 {
-                  min: 1,
-                  max: 3.4999,
+                  min: 0,
+                  max: 20,
                   color: "#d6604d",
                 },
                 {
-                  min: 3.5,
-                  max: 3.9999,
+                  min: 20,
+                  max: 40,
                   color: "#f48873",
                 },
                 {
-                  min: 4,
-                  max: 4.4999,
+                  min: 40,
+                  max: 60,
                   color: "#a7dc78",
                 },
                 {
-                  min: 4.5,
-                  max: 7,
+                  min: 60,
+                  max: 100,
                   color: "#66b43e",
                 },
               ],
             },
+            {
+              id: 1231231,
+              code: "EID-17",
+              name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
+              registration: "CURSADA",
+              topic: "Comunicación oral",
+              grade: "70",
+              state: StateCourse.Passed,
+              currentDistribution: [
+                {
+                  label: "0-20",
+                  value: 5,
+                },
+                {
+                  label: "20-40",
+                  value: 7,
+                },
+                {
+                  label: "40-60",
+                  value: 8,
+                },
+                {
+                  label: "60-80",
+                  value: 19,
+                },
+                {
+                  label: "80-100",
+                  value: 1,
+                },
+              ],
+              bandColors: [
+                {
+                  min: 0,
+                  max: 20,
+                  color: "#d6604d",
+                },
+                {
+                  min: 20,
+                  max: 40,
+                  color: "#f48873",
+                },
+                {
+                  min: 40,
+                  max: 60,
+                  color: "#a7dc78",
+                },
+                {
+                  min: 60,
+                  max: 100,
+                  color: "#66b43e",
+                },
+              ],
+            },
+            {
+              id: 1231235,
+              code: "EID-17",
+              name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
+              registration: "CURSADA",
+              topic: "Escritura",
+              grade: "55",
+              state: StateCourse.Passed,
+              currentDistribution: [
+                {
+                  label: "0-20",
+                  value: 5,
+                },
+                {
+                  label: "20-40",
+                  value: 4,
+                },
+                {
+                  label: "40-60",
+                  value: 6,
+                },
+                {
+                  label: "60-80",
+                  value: 1,
+                },
+                {
+                  label: "80-100",
+                  value: 4,
+                },
+              ],
+              bandColors: [
+                {
+                  min: 0,
+                  max: 20,
+                  color: "#d6604d",
+                },
+                {
+                  min: 20,
+                  max: 40,
+                  color: "#f48873",
+                },
+                {
+                  min: 40,
+                  max: 60,
+                  color: "#a7dc78",
+                },
+                {
+                  min: 60,
+                  max: 100,
+                  color: "#66b43e",
+                },
+              ],
+            },
+          ],
+          takenCourses: [
             {
               id: 454944,
               code: "INFO073-17",

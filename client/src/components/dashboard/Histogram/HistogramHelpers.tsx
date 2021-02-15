@@ -8,3 +8,4 @@ export const scaleColorX = scaleLinear();
 
 export const scaleAxisX = scaleLinear();
 export const scaleEvaluationAxisX = scaleLinear();
+export const scaleEvaluationGradeAxisX = scaleLinear();

@@ -303,7 +303,7 @@ export interface IStudentExternalEvaluation {
   topic: string;
   registration: string;
   state: string;
-  grade: number;
+  grade: string;
   p_group: number;
   comments: string;
   duplicates: number;
