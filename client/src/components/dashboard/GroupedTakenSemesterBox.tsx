@@ -117,7 +117,6 @@ export const GroupedTakenSemesterBox: FC<{
         ml={config.TAKEN_SEMESTER_BOX_MARGIN_SIDES}
         mr={config.TAKEN_SEMESTER_BOX_MARGIN_SIDES}
         fontSize={config.TAKEN_SEMESTER_BOX_FONT_SIZE}
-        cursor="pointer"
         className="unselectable"
         transition={config.TAKEN_SEMESTER_BOX_TRANSITION}
         whiteSpace="nowrap"

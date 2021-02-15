@@ -437,6 +437,10 @@ export function Dashboard() {
       ? mockData?.default.searchProgramData.program
       : searchProgramData?.program;
 
+    const studentListData = mock
+      ? mockData?.default.searchStudentListData
+      : dataStudentFilterList;
+
     if (studentData && !grouped) {
       const {
         cumulated_grade,
@@ -813,30 +817,29 @@ export function Dashboard() {
           );
         }
 
-        if (
-          chosenCurriculum &&
-          chosenCohort &&
-          dataStudentFilterList != undefined
-        ) {
-          const cumulated = dataStudentFilterList.students_filter.map(
-            (student) =>
-              student.terms
-                .map((semester) => semester.semestral_grade)
-                .reverse()
+        if (chosenCurriculum && chosenCohort && studentListData) {
+          const cumulated = studentListData.students_filter.map((student) =>
+            student.curriculums[0] == chosenCurriculum
+              ? student.terms
+                  .map((semester) => semester.semestral_grade)
+                  .reverse()
+              : []
           );
 
-          const filteredCumulated = dataStudentFilterList.students_filter.map(
+          const filteredCumulated = studentListData.students_filter.map(
             (student) =>
-              student.start_year == toInteger(chosenCohort)
-                ? chosenAdmissionType
-                  ? student.admission.type_admission == chosenAdmissionType
-                    ? student.terms
+              student.curriculums.includes(chosenCurriculum)
+                ? student.start_year == toInteger(chosenCohort)
+                  ? chosenAdmissionType
+                    ? student.admission.type_admission == chosenAdmissionType
+                      ? student.terms
+                          .map((semester) => semester.semestral_grade)
+                          .reverse()
+                      : []
+                    : student.terms
                         .map((semester) => semester.semestral_grade)
                         .reverse()
-                    : []
-                  : student.terms
-                      .map((semester) => semester.semestral_grade)
-                      .reverse()
+                  : []
                 : []
           );
 
@@ -877,8 +880,6 @@ export function Dashboard() {
             );
           });
 
-          console.log(avgGrades);
-
           const n_students_per_semester: number[] = [];
 
           const filteredAvgGrades = filteredGrades!.map((arr) => {
@@ -901,7 +902,7 @@ export function Dashboard() {
             />
           );
 
-          const studentTerms = dataStudentFilterList!.students_filter.filter(
+          const studentTerms = studentListData!.students_filter.filter(
             (student) => student.terms.length == filteredMaxTerm
           );
 
