@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { some, truncate } from "lodash";
+import { some, truncate, sortBy } from "lodash";
 import React, { FC, memo, useContext, useMemo } from "react";
+import { Badge } from "@chakra-ui/react";
 
 import {
   Box,
@@ -27,66 +28,67 @@ import type {
 export type CurrentTakenData = Partial<IGroupedExternalEvaluation>;
 
 const OuterCourseBox: FC<
-  Pick<
-    IGroupedExternalEvaluation,
-    "code" | "taken" | "agroupedDistribution"
-  > & {
+  Pick<IGroupedExternalEvaluation, "code" | "taken"> & {
     isOpen: boolean;
     borderColor: string;
   }
-> = memo(
-  ({ children, code, taken, borderColor, isOpen, agroupedDistribution }) => {
-    const config = useContext(ConfigContext);
-    const takenSize = taken.length;
-    const activeCourse = CoursesDashboardStore.hooks.useActiveCourse(code);
+> = memo(({ children, code, taken, borderColor, isOpen }) => {
+  const config = useContext(ConfigContext);
+  let takenSize = 0;
+  taken.map(({ distribution }) => {
+    if (some(distribution, ({ value }) => value)) {
+      takenSize = takenSize + 1;
+    }
+  });
 
-    const { height, width } = useMemo(() => {
-      let height: number | undefined = undefined;
-      let width: number | undefined = undefined;
-      if (isOpen) {
-        if (some(agroupedDistribution, ({ value }) => value)) {
-          width = 350;
-          height = 220 + (takenSize - 1) * 130;
-        }
-      } else {
-        width = 180;
-        height = 120;
+  const activeCourse = CoursesDashboardStore.hooks.useActiveCourse(code);
+
+  const { height, width } = useMemo(() => {
+    let height: number | undefined = undefined;
+    let width: number | undefined = undefined;
+    if (isOpen) {
+      if (takenSize > 0) {
+        width = 350;
+        height = 220 + (takenSize - 1) * 130;
       }
-      if (!width) {
-        width = 220;
-      }
-      if (!height) {
-        height = 140;
-      }
+    } else {
+      width = 180;
+      height = 120;
+    }
+    if (!width) {
+      width = 220;
+    }
+    if (!height) {
+      height = 140;
+    }
 
-      return { height, width };
-    }, [isOpen, agroupedDistribution]);
+    return { height, width };
+  }, [isOpen, takenSize]);
 
-    const borderWidth = activeCourse
-      ? config.COURSE_BOX_BORDER_WIDTH_ACTIVE
-      : config.COURSE_BOX_BORDER_WIDTH_INACTIVE;
+  const borderWidth = activeCourse
+    ? config.COURSE_BOX_BORDER_WIDTH_ACTIVE
+    : config.COURSE_BOX_BORDER_WIDTH_INACTIVE;
 
-    const boxShadow = `0px 0px 0px ${borderWidth} ${borderColor}`;
+  const boxShadow = `0px 0px 0px ${borderWidth} ${borderColor}`;
 
-    const color = useColorModeValue(config.COURSE_BOX_TEXT_COLOR, "white");
-    return (
-      <Flex
-        m={1}
-        color={color}
-        width={width}
-        height={height}
-        borderRadius={5}
-        boxShadow={boxShadow}
-        transition={config.COURSE_BOX_ALL_TRANSITION_DURATION}
-        className="unselectable courseBox"
-        padding={0}
-        overflow="hidden"
-      >
-        {children}
-      </Flex>
-    );
-  }
-);
+  const color = useColorModeValue(config.COURSE_BOX_TEXT_COLOR, "white");
+  return (
+    <Flex
+      m={1}
+      color={color}
+      width={width}
+      height={height}
+      borderRadius={5}
+      boxShadow={boxShadow}
+      transition={config.COURSE_BOX_ALL_TRANSITION_DURATION}
+      className="unselectable courseBox"
+      padding={0}
+      overflow="hidden"
+    >
+      {children}
+    </Flex>
+  );
+});
 
 const MainBlockOuter: FC<Pick<IExternalEvaluation, "code">> = memo(
   ({ children, code }) => {
@@ -137,13 +139,11 @@ const NameComponent: FC<
   );
 });
 
-const SecondaryBlockOuter: FC<
-  Pick<IExternalEvaluation, "bandColors"> & {
-    n_total: number;
-    n_passed: number;
-    borderColor: string;
-  }
-> = memo(({ children, borderColor, n_total, n_passed }) => {
+const SecondaryBlockOuter: FC<{
+  n_total: number;
+  n_passed: number;
+  borderColor: string;
+}> = memo(({ children, borderColor, n_total, n_passed }) => {
   const config = useContext(ConfigContext);
 
   const { colorMode } = useColorMode();
@@ -256,7 +256,6 @@ export const currentDistributionLabel = ({
 export function GroupedExternalEvaluationBox({
   code,
   name,
-  bandColors,
   taken,
   n_total,
   n_passed,
@@ -290,7 +289,6 @@ export function GroupedExternalEvaluationBox({
       code={code}
       isOpen={isOpen}
       borderColor={borderColor}
-      agroupedDistribution={taken[0]?.distribution ?? []}
       taken={taken}
     >
       <MainBlockOuter code={code}>
@@ -299,19 +297,25 @@ export function GroupedExternalEvaluationBox({
         <AnimatePresence>
           {isOpen && (
             <HistogramsComponent key="histogramsComponent" code={code}>
-              {taken.map(({ distribution, topic }) => (
-                <HistogramEvaluation
-                  bandColors={bandColors}
-                  currentDistribution={distribution}
-                  topic={topic ?? ""}
-                />
-              ))}
+              {taken.length > 0 ? (
+                sortBy(
+                  taken,
+                  ({ topic }) => topic
+                ).map(({ distribution, topic, color_bands }) => (
+                  <HistogramEvaluation
+                    bandColors={color_bands ?? []}
+                    currentDistribution={distribution ?? []}
+                    topic={topic ?? ""}
+                  />
+                ))
+              ) : (
+                <Badge>{config.NO_HISTORIC_DATA}</Badge>
+              )}
             </HistogramsComponent>
           )}
         </AnimatePresence>
       </MainBlockOuter>
       <SecondaryBlockOuter
-        bandColors={bandColors}
         n_passed={n_passed}
         n_total={n_total}
         borderColor={borderColor}

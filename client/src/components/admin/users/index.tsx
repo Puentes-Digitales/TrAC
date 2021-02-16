@@ -157,12 +157,11 @@ export const Users: FC<{
 
       <Flex>{pagination}</Flex>
 
-      <Flex>
+      <Flex fontSize=".9em">
         <Table
-          padded
           selectable
           celled
-          size="large"
+          size="small"
           textAlign="center"
           sortable
           stackable

@@ -73,8 +73,8 @@ export const Config: FC = ({ children }) => {
     ]);
 
   scaleEvaluationGradeAxisX
-    .range([configState.MIN_GRADE_EXTERNAL_EVALUATION, 160])
-    .domain([configState.MIN_GRADE_EXTERNAL_EVALUATION, 40]);
+    .range([configState.MIN_GRADE_EXTERNAL_EVALUATION, 215])
+    .domain([configState.MIN_GRADE_EXTERNAL_EVALUATION, 42]);
 
   GradeScale.range([40, 170]).domain([
     configState.MAX_GRADE,
