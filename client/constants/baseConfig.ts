@@ -43,8 +43,10 @@ export const baseConfig = {
   GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM:
     "Tasa de ocupación en sistema educativo:",
   COMPLEMENTARY_INFORMATION_PERCENT_MARK: "%",
-  COMPLEMENTARY_INFORMATION_INITIAL_TEST: "Evaluación inicial diagnóstica: ",
-  COMPLEMENTARY_INFORMATION_FINAL_TEST: "Evaluación nacional diagnóstica: ",
+  COMPLEMENTARY_INFORMATION_INITIAL_EVALUATION:
+    "Evaluación inicial diagnóstica: ",
+  COMPLEMENTARY_INFORMATION_FINAL_EVALUATION:
+    "Evaluación nacional diagnóstica: ",
   COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION: "Nombre de institución:",
   COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS: "Meses hasta encontrar trabajo:",
   COMPLEMENTARY_INFORMATION_TEXT_COLOR: "black",

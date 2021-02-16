@@ -511,8 +511,8 @@ export function Dashboard() {
         ComplementaryInfoComponent = (
           <ComplementaryInfo
             type_admission={studentData.admission.type_admission}
-            initial_test={studentData.admission.initial_test}
-            final_test={studentData.admission.final_test}
+            initial_evaluation={studentData.admission.initial_evaluation}
+            final_evaluation={studentData.admission.final_evaluation}
             educational_system={studentData.employed.educational_system}
             institution={studentData.employed.institution}
             months_to_first_job={studentData.employed.months_to_first_job}

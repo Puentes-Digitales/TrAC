@@ -189,8 +189,8 @@ describe("Test <AdmissionDropout />", () => {
     const tree = render(
       <ComplementaryInfo
         type_admission="PSU"
-        initial_test={10}
-        final_test={20}
+        initial_evaluation={10}
+        final_evaluation={20}
         educational_system="Publico"
         institution="Escuela"
         months_to_first_job={6}
@@ -203,8 +203,8 @@ describe("Test <AdmissionDropout />", () => {
 
 test("test props en <AdmissionDropout />", () => {
   const type_admission = "PSU";
-  const initial_test = 10;
-  const final_test = 20;
+  const initial_evaluation = 10;
+  const final_evaluation = 20;
   const educational_system = "Publico";
   const institution = "Escuela";
   const months_to_first_job = 6;
@@ -212,8 +212,8 @@ test("test props en <AdmissionDropout />", () => {
   const { getByText, getByTestId } = render(
     <ComplementaryInfo
       type_admission={type_admission}
-      initial_test={initial_test}
-      final_test={final_test}
+      initial_evaluation={initial_evaluation}
+      final_evaluation={final_evaluation}
       educational_system={educational_system}
       institution={institution}
       months_to_first_job={months_to_first_job}
@@ -229,8 +229,8 @@ test("test props en <AdmissionDropout />", () => {
 
 test("test null props complementary component", () => {
   const type_admission = null;
-  const initial_test = null;
-  const final_test = null;
+  const initial_evaluation = null;
+  const final_evaluation = null;
   const educational_system = "Publico";
   const institution = null;
   const months_to_first_job = null;
@@ -238,8 +238,8 @@ test("test null props complementary component", () => {
   const { getByText, getByTestId, queryAllByText } = render(
     <ComplementaryInfo
       type_admission={type_admission}
-      initial_test={initial_test}
-      final_test={final_test}
+      initial_evaluation={initial_evaluation}
+      final_evaluation={final_evaluation}
       educational_system={educational_system}
       institution={institution}
       months_to_first_job={months_to_first_job}

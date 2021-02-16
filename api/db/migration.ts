@@ -579,8 +579,8 @@ const migration = async () => {
           table.text("student_id").notNullable().primary();
           table.boolean("active").notNullable().defaultTo(true);
           table.text("type_admission").notNullable();
-          table.float("initial_test", 4);
-          table.float("final_test", 4);
+          table.float("initial_evaluation", 4);
+          table.float("final_evaluation", 4);
         });
         await StudentAdmissionTable().insert(
           (await import("./mockData/student_admission.json")).default
