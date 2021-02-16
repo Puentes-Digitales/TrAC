@@ -67,7 +67,7 @@ export const ComplementaryInfo: FC<{
           color={COMPLEMENTARY_INFORMATION_TEXT_COLOR}
           cursor="pointer"
           transition="box-shadow 0.4s ease-in-out"
-          data-evaluationid="BoxContainer"
+          data-testid="BoxContainer"
         >
           <Stack className="unselectable" isInline pt={10} pb={10}>
             <Text
@@ -125,7 +125,7 @@ export const ComplementaryInfo: FC<{
 
                   {institution && (
                     <Text
-                      data-evaluationid="inst"
+                      data-testid="inst"
                       width="350px"
                       pl={5}
                       pb={0}

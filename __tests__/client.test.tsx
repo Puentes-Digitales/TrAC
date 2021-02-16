@@ -1,16 +1,16 @@
-import "@evaluationing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom/extend-expect";
 
 import React from "react";
 import waitForExpect from "wait-for-expect";
 
-import { MockedProvider } from "@apollo/react-evaluationing";
+import { MockedProvider } from "@apollo/react-testing";
 import {
   act,
   cleanup,
   render,
   screen,
   fireEvent,
-} from "@evaluationing-library/react";
+} from "@testing-library/react";
 
 import { UserType } from "../client/constants";
 import { baseConfig } from "../client/constants/baseConfig";
@@ -43,7 +43,7 @@ afterEach(async () => {
 });
 
 describe("unlock", () => {
-  evaluation("renders correctly", async () => {
+  test("renders correctly", async () => {
     await act(async () => {
       const { getByText } = render(
         <MockedProvider
@@ -96,7 +96,7 @@ describe("unlock", () => {
 });
 
 describe("login", () => {
-  evaluation("renders correctly", async () => {
+  test("renders correctly", async () => {
     await act(async () => {
       const { getByText } = render(
         <MockedProvider
@@ -131,7 +131,7 @@ describe("login", () => {
 });
 
 describe("admin", () => {
-  evaluation("renders correctly", async () => {
+  test("renders correctly", async () => {
     await act(async () => {
       const { getByText } = render(
         <MockedProvider
@@ -184,8 +184,8 @@ describe("admin", () => {
   });
 });
 
-describe("evaluation <AdmissionDropout />", () => {
-  evaluation("evaluation Snapshot", () => {
+describe("Test <AdmissionDropout />", () => {
+  test("Test Snapshot", () => {
     const tree = render(
       <ComplementaryInfo
         type_admission="PSU"
@@ -196,12 +196,12 @@ describe("evaluation <AdmissionDropout />", () => {
         months_to_first_job={6}
       />
     );
-    fireEvent.click(screen.getByevaluationId("BoxContainer"));
+    fireEvent.click(screen.getByTestId("BoxContainer"));
     expect(tree).toMatchSnapshot();
   });
 });
 
-evaluation("evaluation props en <AdmissionDropout />", () => {
+test("test props en <AdmissionDropout />", () => {
   const type_admission = "PSU";
   const initial_evaluation = 10;
   const final_evaluation = 20;
@@ -209,7 +209,7 @@ evaluation("evaluation props en <AdmissionDropout />", () => {
   const institution = "Escuela";
   const months_to_first_job = 6;
 
-  const { getByText, getByevaluationId } = render(
+  const { getByText, getByTestId } = render(
     <ComplementaryInfo
       type_admission={type_admission}
       initial_evaluation={initial_evaluation}
@@ -219,7 +219,7 @@ evaluation("evaluation props en <AdmissionDropout />", () => {
       months_to_first_job={months_to_first_job}
     />
   );
-  fireEvent.click(getByevaluationId("BoxContainer"));
+  fireEvent.click(getByTestId("BoxContainer"));
   expect(getByText("Tipo de ingreso: PSU".trim())).toBeInTheDocument();
   expect(getByText("Sistema educacional: Publico".trim())).toBeInTheDocument();
   expect(
@@ -227,7 +227,7 @@ evaluation("evaluation props en <AdmissionDropout />", () => {
   ).toBeInTheDocument();
 });
 
-evaluation("evaluation null props complementary component", () => {
+test("test null props complementary component", () => {
   const type_admission = null;
   const initial_evaluation = null;
   const final_evaluation = null;
@@ -235,7 +235,7 @@ evaluation("evaluation null props complementary component", () => {
   const institution = null;
   const months_to_first_job = null;
 
-  const { getByText, getByevaluationId, queryAllByText } = render(
+  const { getByText, getByTestId, queryAllByText } = render(
     <ComplementaryInfo
       type_admission={type_admission}
       initial_evaluation={initial_evaluation}
@@ -246,7 +246,7 @@ evaluation("evaluation null props complementary component", () => {
     />
   );
 
-  fireEvent.click(getByevaluationId("BoxContainer"));
+  fireEvent.click(getByTestId("BoxContainer"));
   const inst_value = queryAllByText("Tipo de ingreso:");
   expect(inst_value).toHaveLength(0);
   const education_system_value = queryAllByText(
