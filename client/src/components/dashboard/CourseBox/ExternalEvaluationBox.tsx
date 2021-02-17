@@ -324,7 +324,6 @@ export function ExternalEvaluationBox({
   taken,
 }: IExternalEvaluation) {
   const config = useContext(ConfigContext);
-  console.log(taken);
   const semestersTaken = useMemo(() => {
     const semestersTaken = taken.map(({ term, year }) => {
       return { term, year };

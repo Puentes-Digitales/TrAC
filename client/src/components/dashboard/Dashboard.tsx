@@ -696,7 +696,6 @@ export function Dashboard() {
                         value.cohort == chosenCohort &&
                         value.external_evaluation_id == code
                     );
-                    console.log(externalEvaluationFilter);
 
                     return {
                       code,
@@ -893,33 +892,39 @@ export function Dashboard() {
             );
           });
 
+          const studentTerms = studentListData!.students_filter.filter(
+            (student) => student.terms.length == filteredMaxTerm
+          )[0]?.terms;
+
+          const takenTerms = studentTerms?.map((i) => {
+            return { year: i.year, term: i.term };
+          });
+
           TimeLineComponent = (
             <GroupedTimeLine
               programGrades={avgGrades}
               filteredGrades={filteredAvgGrades}
+              takenSemesters={takenTerms?.slice().reverse() ?? []}
             />
           );
 
-          const studentTerms = studentListData!.students_filter.filter(
-            (student) => student.terms.length == filteredMaxTerm
-          );
-
-          studentTerms[0]
+          studentTerms
             ? (TakenSemestersComponent = (
                 <Flex alignItems="center" justifyContent="center" mt={0} mb={3}>
-                  {studentTerms[0].terms
+                  {studentTerms
                     .slice()
                     .reverse()
                     .map(({ term, year, comments }, key) => {
-                      return (
-                        <GroupedTakenSemesterBox
-                          key={key}
-                          term={term}
-                          n_students={n_students_per_semester[key] ?? 0}
-                          year={year}
-                          comments={comments}
-                        />
-                      );
+                      if (n_students_per_semester[key])
+                        return (
+                          <GroupedTakenSemesterBox
+                            key={key}
+                            term={term}
+                            n_students={n_students_per_semester[key] ?? 0}
+                            year={year}
+                            comments={comments}
+                          />
+                        );
                     })}
                 </Flex>
               ))
