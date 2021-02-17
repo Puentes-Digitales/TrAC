@@ -103,6 +103,8 @@ export function HistogramExternalEvaluation({
   grade?: number;
   bandColors: { min: number; max: number; color: string }[];
 }) {
+  const { GRADE_STUDENT_LABEL } = useContext(ConfigContext);
+
   const barsScale = useCallback(
     scaleLinear()
       .domain([0, Math.max(...distribution.map(({ value }) => value))])
@@ -171,11 +173,11 @@ export function HistogramExternalEvaluation({
 
       <svg x={0}>
         <text y={20} x={30} fontWeight="bold" fill={textColor}>
-          {truncate(label, { length: 35 }) ?? "Undefined"}
+          {truncate(label, { length: 45 }) ?? "Undefined"}
         </text>
         {grade && (
           <text y={40} x={30} fontWeight="bold" fill={textColor}>
-            Nota: {grade} %
+            {GRADE_STUDENT_LABEL}: {grade} %
           </text>
         )}
 

@@ -77,13 +77,12 @@ export type IGroupedExternalEvaluation = {
   taken: ITopicExternalEvaluation[];
   n_total: number;
   n_passed: number;
-  bandColors: { min: number; max: number; color: string }[];
 };
 
 export type ITopicExternalEvaluation = {
   topic?: string;
   distribution?: IDistribution[];
-  bandColors?: { min: number; max: number; color: string }[];
+  color_bands?: { min: number; max: number; color: string }[];
 };
 
 export * from "./utils";

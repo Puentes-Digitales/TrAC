@@ -8,7 +8,6 @@ import React, {
 } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
 import { useUpdateEffect } from "react-use";
-
 import { Box, Flex, Stack } from "@chakra-ui/react";
 
 import { ITakenCourse, ITakenExternalEvaluation } from "../../../../interfaces";
@@ -688,7 +687,7 @@ export function Dashboard() {
               const semester = {
                 n: va.id,
                 externalEvaluations: va.externalEvaluations.map(
-                  ({ code, name, bandColors }) => {
+                  ({ code, name }) => {
                     const externalEvaluationFilter = programData.externalEvaluationGroupedStats.filter(
                       (value) =>
                         value.curriculum == curriculumId &&
@@ -702,7 +701,6 @@ export function Dashboard() {
                     return {
                       code,
                       name,
-                      bandColors,
                       taken: externalEvaluationFilter,
                       n_passed: externalEvaluationFilter[0]
                         ? externalEvaluationFilter[0].n_pass

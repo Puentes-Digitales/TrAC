@@ -275,6 +275,7 @@ export const baseConfig = {
   PARALLEL_GROUP_LABEL_COLOR: "black",
   PASS_GRADE: 4,
   PLACEHOLDER_SEARCH_STUDENT: "ID del estudiante",
+  GRADE_STUDENT_LABEL: "Logrado",
   PROGRAM_GRADE_COLOR: "rgb(102,102,102)",
   PROGRAM_GRADE_LABEL: "PGA de carrera",
   CURRICULUM_GRADE_LABEL: "PGA de plan",

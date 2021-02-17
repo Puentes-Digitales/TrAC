@@ -1,6 +1,7 @@
 import { some } from "lodash";
-import React from "react";
-
+import React, { useContext } from "react";
+import { Badge } from "@chakra-ui/react";
+import { ConfigContext } from "../../../context/Config";
 import { IExternalEvaluation } from "../../../../../interfaces";
 import { CurrentTakenData } from "../CourseBox/ExternalEvaluationBox";
 import { HistogramExternalEvaluation } from "./HistogramExternalEvaluation";
@@ -11,12 +12,13 @@ export function HistogramEvaluation({
   topic,
   grade,
   bandColors,
-}: Pick<IExternalEvaluation, "topic"> &
-  Pick<CurrentTakenData, "currentDistribution" | "grade" | "bandColors">) {
-  return (
-    (currentDistribution &&
-      some(currentDistribution, ({ value }) => value) &&
-      (currentDistribution.length <= 4 ? (
+}: Pick<IExternalEvaluation, "topic" | "bandColors"> &
+  Pick<CurrentTakenData, "currentDistribution" | "grade">) {
+  const config = useContext(ConfigContext);
+
+  return currentDistribution ? (
+    some(currentDistribution, ({ value }) => value) ? (
+      currentDistribution.length <= 4 ? (
         <HistogramGradesLetter
           key="now"
           label={topic}
@@ -32,7 +34,11 @@ export function HistogramEvaluation({
           grade={grade ? parseInt(grade) : undefined}
           bandColors={bandColors ? bandColors : []}
         />
-      ))) ||
-    null
+      )
+    ) : (
+      <Badge>{config.NO_HISTORIC_DATA}</Badge>
+    )
+  ) : (
+    <Badge>{config.NO_HISTORIC_DATA}</Badge>
   );
 }

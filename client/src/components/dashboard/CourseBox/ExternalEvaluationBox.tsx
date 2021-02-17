@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { some, truncate, sortBy } from "lodash";
 import dynamic from "next/dynamic";
+import { Badge } from "@chakra-ui/react";
+
 import React, { FC, memo, useContext, useMemo } from "react";
 
 import {
@@ -88,14 +90,13 @@ const OuterCourseBox: FC<
     isOpen: boolean;
     borderColor: string;
     semestersTaken: ITakenSemester[];
-  } & Pick<CurrentTakenData, "currentDistribution"> & {
-      isFutureCourseFulfilled: boolean;
-    }
+  } & {
+    isFutureCourseFulfilled: boolean;
+  }
 > = memo(
   ({
     children,
     code,
-    currentDistribution,
     semestersTaken,
     taken,
     borderColor,
@@ -103,13 +104,19 @@ const OuterCourseBox: FC<
     isFutureCourseFulfilled,
   }) => {
     const config = useContext(ConfigContext);
-    const takenSize = taken.length;
     const activeCourse = CoursesDashboardStore.hooks.useActiveCourse(code);
     const explicitSemester = CoursesDashboardStore.hooks.useExplicitSemester();
 
     const isExplicitSemester = CoursesDashboardStore.hooks.useCheckExplicitSemester(
       semestersTaken
     );
+
+    let takenSize = 0;
+    taken.map(({ currentDistribution }) => {
+      if (some(currentDistribution, ({ value }) => value)) {
+        takenSize = takenSize + 1;
+      }
+    });
 
     const opacity = useMemo(() => {
       if (activeCourse) {
@@ -128,7 +135,7 @@ const OuterCourseBox: FC<
       let height: number | undefined = undefined;
       let width: number | undefined = undefined;
       if (isOpen) {
-        if (some(currentDistribution, ({ value }) => value)) {
+        if (takenSize > 0) {
           width = 350;
           height = 220 + (takenSize - 1) * 130;
         }
@@ -144,7 +151,7 @@ const OuterCourseBox: FC<
       }
 
       return { height, width };
-    }, [isOpen, currentDistribution]);
+    }, [isOpen, takenSize]);
 
     const borderWidth =
       activeCourse || isFutureCourseFulfilled
@@ -315,10 +322,9 @@ export function ExternalEvaluationBox({
   code,
   name,
   taken,
-  bandColors,
 }: IExternalEvaluation) {
   const config = useContext(ConfigContext);
-
+  console.log(taken);
   const semestersTaken = useMemo(() => {
     const semestersTaken = taken.map(({ term, year }) => {
       return { term, year };
@@ -339,7 +345,7 @@ export function ExternalEvaluationBox({
     fetchPolicy: "cache-only",
   });
 
-  const { state, registration, currentDistribution } = useMemo<
+  const { state, registration } = useMemo<
     Partial<ITakenExternalEvaluation>
   >(() => {
     if (explicitSemester) {
@@ -400,7 +406,6 @@ export function ExternalEvaluationBox({
   return (
     <OuterCourseBox
       code={code}
-      currentDistribution={currentDistribution}
       taken={taken}
       isOpen={isOpen}
       semestersTaken={semestersTaken}
@@ -424,15 +429,20 @@ export function ExternalEvaluationBox({
               code={code}
               state={taken[0]?.state}
             >
-              {sortBy(taken, ({ topic }) => topic).map(
-                ({ currentDistribution, topic, grade, bandColors }) => (
+              {taken.length > 0 ? (
+                sortBy(
+                  taken,
+                  ({ topic }) => topic
+                ).map(({ currentDistribution, topic, grade, bandColors }) => (
                   <HistogramEvaluation
                     bandColors={bandColors}
-                    currentDistribution={currentDistribution}
+                    currentDistribution={currentDistribution ?? []}
                     grade={grade}
                     topic={topic ?? ""}
                   />
-                )
+                ))
+              ) : (
+                <Badge>{config.NO_HISTORIC_DATA}</Badge>
               )}
             </HistogramsComponent>
           )}

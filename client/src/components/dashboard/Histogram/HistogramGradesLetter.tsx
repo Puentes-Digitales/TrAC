@@ -28,7 +28,7 @@ function SingleBar({
   return (
     <motion.rect
       className="ignore_dark_mode"
-      width={40}
+      width={52}
       x={x}
       height={height}
       animate={{ fill }}
@@ -43,14 +43,14 @@ const AxisNumbers = (() => {
   return (
     <AxisBottom
       scale={scaleEvaluationGradeAxisX as AxisScale}
-      left={-10}
+      left={-15}
       top={80}
       hideAxisLine={true}
       hideTicks={true}
       tickLength={2}
       numTicks={3}
       tickFormat={(n) => {
-        return format[n / 10 - 1];
+        return format[((n - 10) % 40) / 10];
       }}
     />
   );
@@ -63,15 +63,15 @@ function XAxis({
 }) {
   const AxisColor = useMemo(
     () =>
-      bandColors.map(({ min, color }, key) => {
-        let x = key * 42;
+      bandColors.map(({ color }, key) => {
+        let x = key * 54;
 
         return (
           <rect
             key={key}
             x={5 + (x ?? 0)}
-            y={80}
-            width={42}
+            y={79}
+            width={54}
             height={7}
             fill={color}
           />
@@ -98,6 +98,8 @@ export function HistogramGradesLetter({
   grade?: string;
   bandColors: { min: number; max: number; color: string }[];
 }) {
+  const { GRADE_STUDENT_LABEL } = useContext(ConfigContext);
+
   const barsScale = useCallback(
     scaleLinear()
       .domain([0, Math.max(...distribution.map(({ value }) => value))])
@@ -168,7 +170,7 @@ export function HistogramGradesLetter({
           {distribution.map(({ value }, key) => {
             return (
               <SingleBar
-                x={5 + 21 * key}
+                x={4 + 27 * key}
                 key={key}
                 grey={key === greyN}
                 height={barsScale(value)}
@@ -180,12 +182,12 @@ export function HistogramGradesLetter({
 
       <svg x={0}>
         <text y={20} x={30} fontWeight="bold" fill={textColor}>
-          {truncate(label, { length: 35 }) ?? "Undefined"}
+          {truncate(label, { length: 45 }) ?? "Undefined"}
         </text>
         {grade}
         {grade && (
           <text y={40} x={30} fontWeight="bold" fill={textColor}>
-            Nota: {grade}
+            {GRADE_STUDENT_LABEL}: {grade}
           </text>
         )}
 
