@@ -673,20 +673,15 @@ const migration = async () => {
         await dbData.schema.createTable(
           EXTERNAL_EVALUATION_GROUPED_STATS_TABLE,
           (table) => {
+            table.integer("id", 8).notNullable().primary();
             table.text("external_evaluation_id").notNullable();
             table.text("topic").notNullable();
             table.text("program_id").notNullable();
             table.text("curriculum").notNullable();
             table.text("type_admission").notNullable();
             table.text("cohort").notNullable();
-            table.primary([
-              "external_evaluation_id",
-              "topic",
-              "cohort",
-              "type_admission",
-              "program_id",
-              "curriculum",
-            ]);
+            table.integer("year", 4).notNullable();
+            table.integer("term", 4).notNullable();
             table.integer("n_students").notNullable();
             table.integer("n_total", 8).notNullable();
             table.integer("n_finished", 8).notNullable();
@@ -718,18 +713,14 @@ const migration = async () => {
     .then(async (exists) => {
       if (!exists) {
         await dbData.schema.createTable(COURSE_GROUPED_STATS_TABLE, (table) => {
+          table.integer("id", 8).notNullable().primary();
           table.text("course_id").notNullable();
           table.text("program_id").notNullable();
           table.text("curriculum").notNullable();
           table.text("type_admission").notNullable();
           table.text("cohort").notNullable();
-          table.primary([
-            "course_id",
-            "cohort",
-            "type_admission",
-            "program_id",
-            "curriculum",
-          ]);
+          table.integer("year", 4).notNullable();
+          table.integer("term", 4).notNullable();
           table.integer("n_students").notNullable();
           table.integer("n_total", 8).notNullable();
           table.integer("n_finished", 8).notNullable();

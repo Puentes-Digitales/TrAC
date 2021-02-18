@@ -4,6 +4,9 @@ import { DistributionValue, BandColor } from "./distribution";
 @ObjectType()
 export class ExternalEvaluationGroupedStats {
   @Field()
+  id: number;
+
+  @Field()
   external_evaluation_id: string;
 
   @Field()
@@ -20,6 +23,12 @@ export class ExternalEvaluationGroupedStats {
 
   @Field()
   cohort: string;
+
+  @Field()
+  year: number;
+
+  @Field()
+  term: number;
 
   @Field()
   n_students: number;

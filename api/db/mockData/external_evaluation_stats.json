@@ -1,6 +1,6 @@
 [
   {
-    "external_evaluation_taken": "EID-13",
+    "external_evaluation_taken": "EID",
     "year": 2013,
     "topic": "Lenguaje",
     "term": 1,
@@ -18,7 +18,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "EID-13",
+    "external_evaluation_taken": "EID",
     "year": 2013,
     "topic": "Ciencias Naturales",
     "term": 1,
@@ -36,7 +36,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "EID-13",
+    "external_evaluation_taken": "EID",
     "year": 2013,
     "topic": "Matematica",
     "term": 1,
@@ -54,7 +54,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "EID-13",
+    "external_evaluation_taken": "EID",
     "year": 2013,
     "topic": "Ciencias Sociales",
     "term": 1,
@@ -72,7 +72,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "EID-13",
+    "external_evaluation_taken": "EID",
     "year": 2013,
     "topic": "Resolución de situaciones pedagógicas",
     "term": 1,
@@ -90,7 +90,7 @@
     "color_bands": "0,25,#d6604d;25,50,#f48873;50,75,#a7dc78;75,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "END-13",
+    "external_evaluation_taken": "END",
     "year": 2016,
     "topic": "Lenguaje",
     "term": 1,
@@ -108,7 +108,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "END-13",
+    "external_evaluation_taken": "END",
     "year": 2016,
     "topic": "Ciencias Naturales",
     "term": 1,
@@ -126,7 +126,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "END-13",
+    "external_evaluation_taken": "END",
     "year": 2016,
     "topic": "Matematica",
     "term": 1,
@@ -144,7 +144,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "END-13",
+    "external_evaluation_taken": "END",
     "year": 2016,
     "topic": "Ciencias Sociales",
     "term": 1,
@@ -162,7 +162,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "END-13",
+    "external_evaluation_taken": "END",
     "year": 2016,
     "topic": "Resolución de situaciones pedagógicas",
     "term": 1,
@@ -180,7 +180,7 @@
     "color_bands": "0,25,#d6604d;25,50,#f48873;50,75,#a7dc78;75,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "EID-15",
+    "external_evaluation_taken": "EID",
     "year": 2015,
     "topic": "Lectura",
     "term": 1,
@@ -198,7 +198,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "EID-15",
+    "external_evaluation_taken": "EID",
     "year": 2015,
     "topic": "Resolución de situaciones pedagógicas",
     "term": 1,
@@ -216,7 +216,7 @@
     "color_bands": "0,25,#d6604d;25,50,#f48873;50,75,#a7dc78;75,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "END-15",
+    "external_evaluation_taken": "END",
     "year": 2018,
     "topic": "Resolución de situaciones pedagógicas",
     "term": 1,
@@ -234,7 +234,7 @@
     "color_bands": "0,25,#d6604d;25,50,#f48873;50,75,#a7dc78;75,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "EID-15",
+    "external_evaluation_taken": "EID",
     "year": 2015,
     "topic": "Escritura",
     "term": 1,
@@ -252,7 +252,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "EID-15",
+    "external_evaluation_taken": "EID",
     "year": 2015,
     "topic": "Comunicación oral",
     "term": 1,
@@ -270,7 +270,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "END-15",
+    "external_evaluation_taken": "END",
     "year": 2018,
     "topic": "Lectura",
     "term": 1,
@@ -288,7 +288,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "END-15",
+    "external_evaluation_taken": "END",
     "year": 2018,
     "topic": "Escritura",
     "term": 1,
@@ -306,7 +306,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "END-15",
+    "external_evaluation_taken": "END",
     "year": 2018,
     "topic": "Comunicación oral",
     "term": 1,
@@ -324,7 +324,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "EID-17",
+    "external_evaluation_taken": "EID",
     "year": 2017,
     "topic": "Lectura",
     "term": 1,
@@ -342,7 +342,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "EID-17",
+    "external_evaluation_taken": "EID",
     "year": 2017,
     "topic": "Escritura",
     "term": 1,
@@ -360,7 +360,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "EID-17",
+    "external_evaluation_taken": "EID",
     "year": 2017,
     "topic": "Comunicación oral",
     "term": 1,
@@ -378,7 +378,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "END-17",
+    "external_evaluation_taken": "END",
     "year": 2019,
     "topic": "Lectura",
     "term": 1,
@@ -396,7 +396,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "END-17",
+    "external_evaluation_taken": "END",
     "year": 2019,
     "topic": "Escritura",
     "term": 1,
@@ -414,7 +414,7 @@
     "color_bands": "0,20,#d6604d;20,40,#f48873;40,60,#a7dc78;60,100,#66b43e"
   },
   {
-    "external_evaluation_taken": "END-17",
+    "external_evaluation_taken": "END",
     "year": 2019,
     "topic": "Comunicación oral",
     "term": 1,
