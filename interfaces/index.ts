@@ -85,4 +85,9 @@ export type ITopicExternalEvaluation = {
   color_bands?: { min: number; max: number; color: string }[];
 };
 
+export type IImagesID = {
+  id: string;
+  value: string;
+};
+
 export * from "./utils";

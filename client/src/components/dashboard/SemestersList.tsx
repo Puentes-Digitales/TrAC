@@ -76,7 +76,7 @@ export const SemestersList: FC<{
       vertical={false}
       activationDistance={5}
     >
-      <Stack isInline paddingLeft="5px">
+      <Stack isInline paddingLeft="5px" id="Malla">
         {semesters.map(({ courses, externalEvaluations, n }, key) => {
           return (
             <Semester
