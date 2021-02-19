@@ -640,7 +640,6 @@ export function Dashboard() {
                       (value) =>
                         value.curriculum == curriculumId &&
                         value.type_admission == chosenAdmissionType &&
-                        value.program_id == programData.id &&
                         value.cohort == chosenCohort &&
                         value.course_id == code
                     );
@@ -683,14 +682,12 @@ export function Dashboard() {
           (value) =>
             value.curriculum == chosenCurriculum &&
             value.type_admission == chosenAdmissionType &&
-            value.program_id == programData.id &&
             value.cohort == chosenCohort
         );
         const filteredEmpleabilityData = programData.groupedEmployed.filter(
           (value) =>
             value.curriculum == chosenCurriculum &&
             value.type_admission == chosenAdmissionType &&
-            value.program_id == programData.id &&
             value.cohort == chosenCohort
         );
         if (chosenCurriculum != "") {
@@ -775,48 +772,34 @@ export function Dashboard() {
     !!searchProgramData?.program && !searchStudentData?.student;
 
   const searchResult = useMemo(() => {
-    const filtered_curriculums =
-      searchProgramData?.program?.courseGroupedStats
-        ?.map((i) =>
-          chosenAdmissionType == i.type_admission && chosenCohort == i.cohort
-            ? i.curriculum
-            : ""
-        )
-        .filter((v, i, obj) => obj.indexOf(v) === i) ?? [];
-
-    const filtered_admission_types =
-      searchProgramData?.program?.courseGroupedStats
-        ?.map((i) =>
-          chosenCurriculum == i.curriculum && chosenCohort == i.cohort
-            ? i.type_admission
-            : ""
-        )
-        .filter((v, i, obj) => obj.indexOf(v) === i) ?? [];
-
-    const filtered_cohorts =
-      searchProgramData?.program?.courseGroupedStats
-        ?.map((i) =>
-          chosenCurriculum == i.curriculum &&
-          chosenAdmissionType == i.type_admission
-            ? i.cohort
-            : ""
-        )
-        .filter((v, i, obj) => obj.indexOf(v) === i) ?? [];
     return {
       curriculums:
-        filtered_curriculums.length == 2
-          ? [filtered_curriculums.sort().pop() ?? ""]
-          : filtered_curriculums,
+        searchProgramData?.program?.courseGroupedStats
+          ?.map((i) =>
+            chosenAdmissionType == i.type_admission && chosenCohort == i.cohort
+              ? i.curriculum
+              : ""
+          )
+          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
 
       admission_types:
-        filtered_admission_types.length == 2
-          ? [filtered_admission_types.sort().pop() ?? ""]
-          : filtered_admission_types,
+        searchProgramData?.program?.courseGroupedStats
+          ?.map((i) =>
+            chosenCurriculum == i.curriculum && chosenCohort == i.cohort
+              ? i.type_admission
+              : ""
+          )
+          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
 
       cohorts:
-        filtered_cohorts.length == 2
-          ? [filtered_cohorts.sort().pop() ?? ""]
-          : filtered_cohorts,
+        searchProgramData?.program?.courseGroupedStats
+          ?.map((i) =>
+            chosenCurriculum == i.curriculum &&
+            chosenAdmissionType == i.type_admission
+              ? i.cohort
+              : ""
+          )
+          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
       student:
         user?.type === UserType.Director
           ? searchStudentData?.student?.id
