@@ -56,10 +56,30 @@ export const GroupedTakenSemesterBox: FC<{
   comments?: string;
 }> = memo(({ year, term, n_students, comments }) => {
   const config = useContext(ConfigContext);
+  const semestersTaken = CoursesDashboardStore.hooks.useActiveSemestersTaken();
+
+  const explicitSemester = CoursesDashboardStore.hooks.useExplicitSemester();
+
+  const isExplicitSemester = CoursesDashboardStore.hooks.useCheckExplicitSemester(
+    { term, year },
+    [term, year]
+  );
+
+  // console.log(semestersTaken);
+  // console.log(explicitSemester);
+  // console.log(isExplicitSemester);
+  // console.log("############################");
 
   const borderColor = useMemo(() => {
+    if (
+      isExplicitSemester ||
+      (explicitSemester === undefined &&
+        semestersTaken?.find((v) => year === v.year && term == v.term))
+    ) {
+      return config.TAKEN_SEMESTER_BOX_ACTIVE;
+    }
     return config.TAKEN_SEMESTER_BOX_INACTIVE;
-  }, [term, year, n_students, config]);
+  }, [explicitSemester, term, year, isExplicitSemester, n_students, config]);
 
   const badgeProps = useMemo<BadgeProps>(() => {
     if (!comments) {
@@ -117,6 +137,7 @@ export const GroupedTakenSemesterBox: FC<{
         ml={config.TAKEN_SEMESTER_BOX_MARGIN_SIDES}
         mr={config.TAKEN_SEMESTER_BOX_MARGIN_SIDES}
         fontSize={config.TAKEN_SEMESTER_BOX_FONT_SIZE}
+        cursor="pointer"
         className="unselectable"
         transition={config.TAKEN_SEMESTER_BOX_TRANSITION}
         whiteSpace="nowrap"

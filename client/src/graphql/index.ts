@@ -61,6 +61,7 @@ export type CourseGroupedStats = {
   course_id: Scalars["String"];
   curriculum: Scalars["String"];
   distribution: Array<DistributionValue>;
+  id: Scalars["Float"];
   n_drop: Scalars["Float"];
   n_fail: Scalars["Float"];
   n_finished: Scalars["Float"];
@@ -68,7 +69,9 @@ export type CourseGroupedStats = {
   n_students: Scalars["Float"];
   n_total: Scalars["Float"];
   program_id: Scalars["String"];
+  term: Scalars["Float"];
   type_admission: Scalars["String"];
+  year: Scalars["Float"];
 };
 
 export type Credit = {
@@ -118,6 +121,7 @@ export type ExternalEvaluationGroupedStats = {
   curriculum: Scalars["String"];
   distribution: Array<DistributionValue>;
   external_evaluation_id: Scalars["String"];
+  id: Scalars["Float"];
   n_drop: Scalars["Float"];
   n_fail: Scalars["Float"];
   n_finished: Scalars["Float"];
@@ -125,8 +129,10 @@ export type ExternalEvaluationGroupedStats = {
   n_students: Scalars["Float"];
   n_total: Scalars["Float"];
   program_id: Scalars["String"];
+  term: Scalars["Float"];
   topic: Scalars["String"];
   type_admission: Scalars["String"];
+  year: Scalars["Float"];
 };
 
 export type FeedbackAnswer = {
@@ -758,11 +764,14 @@ export type SearchProgramMutation = {
     courseGroupedStats: Array<
       Pick<
         CourseGroupedStats,
+        | "id"
         | "program_id"
+        | "course_id"
         | "curriculum"
         | "type_admission"
         | "cohort"
-        | "course_id"
+        | "year"
+        | "term"
         | "n_students"
         | "n_total"
         | "n_finished"
@@ -777,12 +786,15 @@ export type SearchProgramMutation = {
     externalEvaluationGroupedStats: Array<
       Pick<
         ExternalEvaluationGroupedStats,
+        | "id"
+        | "external_evaluation_id"
+        | "topic"
         | "program_id"
         | "curriculum"
         | "type_admission"
         | "cohort"
-        | "topic"
-        | "external_evaluation_id"
+        | "year"
+        | "term"
         | "n_students"
         | "n_total"
         | "n_finished"
@@ -2154,11 +2166,14 @@ export const SearchProgramDocument = gql`
         employed_rate_educational_system
       }
       courseGroupedStats {
+        id
         program_id
+        course_id
         curriculum
         type_admission
         cohort
-        course_id
+        year
+        term
         n_students
         n_total
         n_finished
@@ -2176,12 +2191,15 @@ export const SearchProgramDocument = gql`
         }
       }
       externalEvaluationGroupedStats {
+        id
+        external_evaluation_id
+        topic
         program_id
         curriculum
         type_admission
         cohort
-        topic
-        external_evaluation_id
+        year
+        term
         n_students
         n_total
         n_finished

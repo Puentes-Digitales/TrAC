@@ -18,6 +18,7 @@ import {
   StateCourse,
   STUDENT_NOT_FOUND,
   UserType,
+  termTypeToNumber,
 } from "../../../constants";
 import { ConfigContext } from "../../context/Config";
 import { CoursesDashbordManager } from "../../context/CoursesDashboard";
@@ -68,15 +69,19 @@ import { GroupedTakenSemesterBox } from "./GroupedTakenSemesterBox";
 import { TimeLine } from "./Timeline/Timeline";
 import { GroupedTimeLine } from "./Timeline/GroupedTimeline";
 import { ProgressStudent } from "./ProgressStudent";
+import { CoursesDashboardStore } from "../../context/CoursesDashboard";
 import { GroupedComplementaryInfo } from "./GroupedComplementaryInfo";
 
 export function Dashboard() {
   const mock = useIsMockActive();
+  const grouped = useGroupedActive();
   const chosenCurriculum = useChosenCurriculum();
   const program = useProgram();
   const chosenAdmissionType = useChosenAdmissionType();
   const chosenCohort = useChosenCohort();
-  const grouped = useGroupedActive();
+  const explicitSemester = CoursesDashboardStore.hooks
+    .useExplicitSemester()
+    ?.split("—");
   const { user } = useUser();
   const [mockData, setMockData] = useState<
     typeof import("../../../constants/mockData")
@@ -684,6 +689,15 @@ export function Dashboard() {
           })
           .map(({ semesters: curriculumSemesters, id: curriculumId }) => {
             const semesters = curriculumSemesters.map((va) => {
+              const foundData = explicitSemester
+                ? {
+                    year: toInteger(explicitSemester[1]),
+                    term: termTypeToNumber(explicitSemester[0]),
+                  }
+                : {
+                    year: programData.courseGroupedStats[1]?.year,
+                    term: programData.courseGroupedStats[1]?.term,
+                  };
               const semester = {
                 n: va.id,
                 externalEvaluations: va.externalEvaluations.map(
@@ -694,7 +708,9 @@ export function Dashboard() {
                         value.type_admission == chosenAdmissionType &&
                         value.program_id == programData.id &&
                         value.cohort == chosenCohort &&
-                        value.external_evaluation_id == code
+                        value.external_evaluation_id == code &&
+                        value.year == foundData.year &&
+                        value.term == foundData.term
                     );
 
                     return {
@@ -726,7 +742,9 @@ export function Dashboard() {
                         value.type_admission == chosenAdmissionType &&
                         value.program_id == programData.id &&
                         value.cohort == chosenCohort &&
-                        value.course_id == code
+                        value.course_id == code &&
+                        value.year == foundData.year &&
+                        value.term == foundData.term
                     );
 
                     return {
@@ -892,33 +910,39 @@ export function Dashboard() {
             );
           });
 
+          const studentTerms = studentListData!.students_filter.filter(
+            (student) => student.terms.length == filteredMaxTerm
+          )[0]?.terms;
+
+          const takenTerms = studentTerms?.map((i) => {
+            return { year: i.year, term: i.term };
+          });
+
           TimeLineComponent = (
             <GroupedTimeLine
               programGrades={avgGrades}
               filteredGrades={filteredAvgGrades}
+              takenSemesters={takenTerms?.slice().reverse() ?? []}
             />
           );
 
-          const studentTerms = studentListData!.students_filter.filter(
-            (student) => student.terms.length == filteredMaxTerm
-          );
-
-          studentTerms[0]
+          studentTerms
             ? (TakenSemestersComponent = (
                 <Flex alignItems="center" justifyContent="center" mt={0} mb={3}>
-                  {studentTerms[0].terms
+                  {studentTerms
                     .slice()
                     .reverse()
                     .map(({ term, year, comments }, key) => {
-                      return (
-                        <GroupedTakenSemesterBox
-                          key={key}
-                          term={term}
-                          n_students={n_students_per_semester[key] ?? 0}
-                          year={year}
-                          comments={comments}
-                        />
-                      );
+                      if (n_students_per_semester[key])
+                        return (
+                          <GroupedTakenSemesterBox
+                            key={key}
+                            term={term}
+                            n_students={n_students_per_semester[key] ?? 0}
+                            year={year}
+                            comments={comments}
+                          />
+                        );
                     })}
                 </Flex>
               ))
@@ -944,8 +968,9 @@ export function Dashboard() {
     chosenCurriculum,
     chosenAdmissionType,
     chosenCohort,
-    grouped,
+    explicitSemester,
     mock,
+    grouped,
     mockData,
   ]);
 

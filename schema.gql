@@ -44,6 +44,7 @@ type CourseGroupedStats {
   course_id: String!
   curriculum: String!
   distribution: [DistributionValue!]!
+  id: Float!
   n_drop: Float!
   n_fail: Float!
   n_finished: Float!
@@ -51,7 +52,9 @@ type CourseGroupedStats {
   n_students: Float!
   n_total: Float!
   program_id: String!
+  term: Float!
   type_admission: String!
+  year: Float!
 }
 
 type Credit {
@@ -114,6 +117,7 @@ type ExternalEvaluationGroupedStats {
   curriculum: String!
   distribution: [DistributionValue!]!
   external_evaluation_id: String!
+  id: Float!
   n_drop: Float!
   n_fail: Float!
   n_finished: Float!
@@ -121,8 +125,10 @@ type ExternalEvaluationGroupedStats {
   n_students: Float!
   n_total: Float!
   program_id: String!
+  term: Float!
   topic: String!
   type_admission: String!
+  year: Float!
 }
 
 type FeedbackAnswer {

@@ -271,11 +271,14 @@ export const StudentGroupedEmployedTable = () =>
 // --------------------------------------------------------------------------
 
 export interface ICourseGroupedStats {
+  id: number;
   course_id: string;
   program_id: string;
   curriculum: string;
   type_admission: string;
   cohort: string;
+  year: number;
+  term: number;
   n_students: number;
   n_total: number;
   n_finished: number;
@@ -355,12 +358,15 @@ export const ExternalEvaluationStatsTable = () =>
 
 // -------------------------------------------------------------------------------------
 export interface IExternalEvaluationGroupedStats {
+  id: number;
   external_evaluation_id: string;
   topic: string;
   program_id: string;
   curriculum: string;
   type_admission: string;
   cohort: string;
+  year: number;
+  term: number;
   n_students: number;
   p_group: number;
   n_total: number;

@@ -74,11 +74,14 @@ mutation searchProgram($id: String, $student_id: String) {
       employed_rate_educational_system
     }
     courseGroupedStats {
+      id
       program_id
+      course_id
       curriculum
       type_admission
       cohort
-      course_id
+      year
+      term
       n_students
       n_total
       n_finished
@@ -96,12 +99,15 @@ mutation searchProgram($id: String, $student_id: String) {
       }
     }
     externalEvaluationGroupedStats {
+      id
+      external_evaluation_id
+      topic
       program_id
       curriculum
       type_admission
       cohort
-      topic
-      external_evaluation_id
+      year
+      term
       n_students
       n_total
       n_finished
