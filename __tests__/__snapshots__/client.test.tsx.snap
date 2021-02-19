@@ -41,10 +41,10 @@ Object {
           data-testid="BoxContainer"
         >
           <div
-            class="chakra-stack unselectable css-11nyuxh"
+            class="chakra-stack unselectable css-iquqh5"
           >
             <p
-              class="chakra-text verticalText css-z8wucs"
+              class="chakra-text verticalText css-1mwd8m3"
             >
               Información Complementaria
             </p>
@@ -52,35 +52,35 @@ Object {
               style="opacity: 0;"
             >
               <p
-                class="chakra-text css-3sxhk6"
+                class="chakra-text css-1yyofq7"
               >
                 Tipo de ingreso: 
                  
                 PSU
               </p>
               <p
-                class="chakra-text css-3sxhk6"
+                class="chakra-text css-1yyofq7"
               >
                 Evaluación inicial diagnóstica: 
                  
                 10
               </p>
               <p
-                class="chakra-text css-3sxhk6"
+                class="chakra-text css-1yyofq7"
               >
                 Evaluación nacional diagnóstica: 
                  
                 20
               </p>
               <p
-                class="chakra-text css-1gctqyf"
+                class="chakra-text css-tcsrcc"
               >
                 Sistema educacional:
                  
                 Publico
               </p>
               <p
-                class="chakra-text css-8ofoln"
+                class="chakra-text css-13kiv3l"
                 data-testid="inst"
               >
                 Nombre de institución:
@@ -88,7 +88,7 @@ Object {
                 Escuela
               </p>
               <p
-                class="chakra-text css-3sxhk6"
+                class="chakra-text css-1yyofq7"
               >
                 Meses hasta encontrar trabajo:
                  
@@ -109,10 +109,10 @@ Object {
         data-testid="BoxContainer"
       >
         <div
-          class="chakra-stack unselectable css-11nyuxh"
+          class="chakra-stack unselectable css-iquqh5"
         >
           <p
-            class="chakra-text verticalText css-z8wucs"
+            class="chakra-text verticalText css-1mwd8m3"
           >
             Información Complementaria
           </p>
@@ -120,35 +120,35 @@ Object {
             style="opacity: 0;"
           >
             <p
-              class="chakra-text css-3sxhk6"
+              class="chakra-text css-1yyofq7"
             >
               Tipo de ingreso: 
                
               PSU
             </p>
             <p
-              class="chakra-text css-3sxhk6"
+              class="chakra-text css-1yyofq7"
             >
               Evaluación inicial diagnóstica: 
                
               10
             </p>
             <p
-              class="chakra-text css-3sxhk6"
+              class="chakra-text css-1yyofq7"
             >
               Evaluación nacional diagnóstica: 
                
               20
             </p>
             <p
-              class="chakra-text css-1gctqyf"
+              class="chakra-text css-tcsrcc"
             >
               Sistema educacional:
                
               Publico
             </p>
             <p
-              class="chakra-text css-8ofoln"
+              class="chakra-text css-13kiv3l"
               data-testid="inst"
             >
               Nombre de institución:
@@ -156,7 +156,7 @@ Object {
               Escuela
             </p>
             <p
-              class="chakra-text css-3sxhk6"
+              class="chakra-text css-1yyofq7"
             >
               Meses hasta encontrar trabajo:
                
