@@ -706,7 +706,6 @@ export function Dashboard() {
                       (value) =>
                         value.curriculum == curriculumId &&
                         value.type_admission == chosenAdmissionType &&
-                        value.program_id == programData.id &&
                         value.cohort == chosenCohort &&
                         value.external_evaluation_id == code &&
                         value.year == foundData.year &&
@@ -740,7 +739,6 @@ export function Dashboard() {
                       (value) =>
                         value.curriculum == curriculumId &&
                         value.type_admission == chosenAdmissionType &&
-                        value.program_id == programData.id &&
                         value.cohort == chosenCohort &&
                         value.course_id == code &&
                         value.year == foundData.year &&
@@ -785,14 +783,12 @@ export function Dashboard() {
           (value) =>
             value.curriculum == chosenCurriculum &&
             value.type_admission == chosenAdmissionType &&
-            value.program_id == programData.id &&
             value.cohort == chosenCohort
         );
         const filteredEmpleabilityData = programData.groupedEmployed.filter(
           (value) =>
             value.curriculum == chosenCurriculum &&
             value.type_admission == chosenAdmissionType &&
-            value.program_id == programData.id &&
             value.cohort == chosenCohort
         );
 
@@ -1005,14 +1001,7 @@ export function Dashboard() {
               ? i.curriculum
               : ""
           )
-          .filter((v, i, obj) => obj.indexOf(v) === i)
-          .map((v, i, obj) => {
-            if (obj.length == 2) {
-              obj.sort().shift();
-              return obj;
-            }
-            return obj;
-          })[0] ?? [],
+          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
 
       admission_types:
         searchProgramData?.program?.courseGroupedStats
@@ -1021,16 +1010,9 @@ export function Dashboard() {
               ? i.type_admission
               : ""
           )
-          .filter((v, i, obj) => obj.indexOf(v) === i)
-          .map((v, i, obj) => {
-            if (obj.length == 2) {
-              obj.sort().shift();
-              return obj;
-            }
-            return obj;
-          })[0] ?? [],
+          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
 
-      cohort:
+      cohorts:
         searchProgramData?.program?.courseGroupedStats
           ?.map((i) =>
             chosenCurriculum == i.curriculum &&
@@ -1038,14 +1020,7 @@ export function Dashboard() {
               ? i.cohort
               : ""
           )
-          .filter((v, i, obj) => obj.indexOf(v) === i)
-          .map((v, i, obj) => {
-            if (obj.length == 2) {
-              obj.sort().shift();
-              return obj;
-            }
-            return obj;
-          })[0] ?? [],
+          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
       student:
         user?.type === UserType.Director
           ? searchStudentData?.student?.id

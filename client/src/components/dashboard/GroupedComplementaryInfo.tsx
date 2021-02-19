@@ -78,7 +78,13 @@ export const GroupedComplementaryInfo: FC<{
           transition="box-shadow 0.2s ease-in-out"
           data-testid="BoxContainer"
         >
-          <Stack className="unselectable" isInline pt={10} pb={10}>
+          <Stack
+            className="unselectable"
+            isInline
+            pt={10}
+            pb={10}
+            fontFamily="Lato"
+          >
             <Text
               minWidth="90px"
               height="150px"
@@ -86,7 +92,6 @@ export const GroupedComplementaryInfo: FC<{
               ml={4}
               textAlign="center"
               fontWeight="bold"
-              fontFamily="Lato"
               className="verticalText"
               fontSize="1.1em"
             >
@@ -105,14 +110,14 @@ export const GroupedComplementaryInfo: FC<{
                   }}
                 >
                   {total_students && (
-                    <Text width="350px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text width="290px" pl={5} pb={0} mb={0}>
                       {GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS}{" "}
                       {total_students}
                     </Text>
                   )}
 
                   {timely_university_degree_rate && (
-                    <Text width="350px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text width="290px" pl={5} pb={0} mb={0}>
                       {
                         GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE
                       }{" "}
@@ -122,7 +127,7 @@ export const GroupedComplementaryInfo: FC<{
                   )}
 
                   {university_degree_rate && (
-                    <Text width="350px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text width="290px" pl={5} pb={0} mb={0}>
                       {GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE}{" "}
                       {university_degree_rate}
                       {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
@@ -130,7 +135,7 @@ export const GroupedComplementaryInfo: FC<{
                   )}
 
                   {average_time_university_degree && (
-                    <Text width="350px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text width="290px" pl={5} pb={0} mb={0}>
                       {
                         GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE
                       }{" "}
@@ -140,21 +145,21 @@ export const GroupedComplementaryInfo: FC<{
                   )}
 
                   {retention_rate && (
-                    <Text width="350px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text width="290px" pl={5} pb={0} mb={0}>
                       {GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE}{" "}
                       {retention_rate}
                       {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
                     </Text>
                   )}
                   {empleability_rate && (
-                    <Text width="350px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text width="290px" pl={5} pb={0} mb={0}>
                       {GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE}{" "}
                       {empleability_rate}
                       {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
                     </Text>
                   )}
                   {average_time_finding_job && (
-                    <Text width="370px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text width="350px" pl={5} pb={0} mb={0}>
                       {
                         GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB
                       }{" "}
@@ -163,7 +168,7 @@ export const GroupedComplementaryInfo: FC<{
                     </Text>
                   )}
                   {empleability_rate_educational_system && (
-                    <Text width="350px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text width="350px" pl={5} pb={0} mb={0}>
                       {
                         GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM
                       }{" "}
