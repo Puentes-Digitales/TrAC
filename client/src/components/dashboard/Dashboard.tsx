@@ -696,7 +696,6 @@ export function Dashboard() {
                         value.cohort == chosenCohort &&
                         value.external_evaluation_id == code
                     );
-                    console.log(externalEvaluationFilter);
 
                     return {
                       code,
@@ -1157,13 +1156,16 @@ export function Dashboard() {
           {GroupedPerformanceInfoComponent}
           {ComplementaryInfoComponent}
           {ProgressStudentComponent}
-          <Box>
-            {TimeLineComponent}
 
-            <Stack isInline pl="45px">
-              {TakenSemestersComponent}
-            </Stack>
-          </Box>
+          {TimeLineComponent && (
+            <Box id="Gráfico Avance">
+              {TimeLineComponent}
+
+              <Stack isInline pl="45px">
+                {TakenSemestersComponent}
+              </Stack>
+            </Box>
+          )}
           <Box pt="70px">
             {DropoutComponent}
             <Stack isInline pt="10px">
