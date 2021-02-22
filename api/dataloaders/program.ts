@@ -208,6 +208,9 @@ export const StudentGroupedComplementaryDataLoader = new DataLoader(
     );
   },
   {
+    cacheKeyFn: ({ program_id }) => {
+      return program_id;
+    },
     cacheMap: new LRUMap(1000),
   }
 );
@@ -227,6 +230,9 @@ export const StudentGroupedEmployedDataLoader = new DataLoader(
     );
   },
   {
+    cacheKeyFn: ({ program_id }) => {
+      return program_id;
+    },
     cacheMap: new LRUMap(1000),
   }
 );
@@ -282,6 +288,9 @@ export const CourseGroupedStatsDataLoader = new DataLoader(
     );
   },
   {
+    cacheKeyFn: ({ program_id }) => {
+      return program_id;
+    },
     cacheMap: new LRUMap(1000),
   }
 );
