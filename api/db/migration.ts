@@ -181,6 +181,7 @@ const migration = async () => {
             SHOW_STUDENT_COMPLEMENTARY_INFORMATION: true,
             SHOW_GROUPED_COMPLEMENTARY_INFO: true,
             SHOW_DROPOUT: true,
+            SHOW_DOWNLOAD: true,
             SHOW_PROGRESS_STUDENT_CYCLE: true,
             SHOW_STUDENT_LIST: true,
             FOREPLAN: true,
