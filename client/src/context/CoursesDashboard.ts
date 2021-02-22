@@ -212,30 +212,39 @@ export const CoursesDashbordManager: FC<{ distinct?: string }> = memo(
     const {
       program,
       student,
-
       chosenCurriculum,
+      chosenAdmissionType,
+      chosenCohort,
     } = useDashboardInputState();
 
     const state = CoursesDashboardStore.useStore();
 
     const [key, setKey] = useState(
       rememberCourseDashboardDataKey +
-        `${chosenCurriculum || ""}${program || ""}${student || ""}${
-          mock ? 1 : 0
-        }`
+        `${chosenCurriculum || ""}${chosenAdmissionType || ""}${
+          chosenCohort || ""
+        }${program || ""}${student || ""}${mock ? 1 : 0}`
     );
 
     useDebounce(
       () => {
         setKey(
           rememberCourseDashboardDataKey +
-            `${chosenCurriculum || ""}${program || ""}${student || ""}${
-              mock ? 1 : 0
-            }`
+            `${chosenCurriculum || ""}${chosenAdmissionType || ""}${
+              chosenCohort || ""
+            }${program || ""}${student || ""}${mock ? 1 : 0}`
         );
       },
       500,
-      [chosenCurriculum, program, student, mock, setKey]
+      [
+        chosenCurriculum,
+        chosenAdmissionType,
+        chosenCohort,
+        program,
+        student,
+        mock,
+        setKey,
+      ]
     );
 
     const {

@@ -231,6 +231,9 @@ export const StudentListFilterDataLoader = new DataLoader(
     );
   },
   {
+    cacheKeyFn: ({ program_id, curriculum }) => {
+      return program_id + curriculum;
+    },
     cacheMap: new LRUMap(1000),
   }
 );

@@ -130,16 +130,6 @@ const MainBlockOuter: FC<Pick<ICourse, "code" | "flow" | "requisites">> = memo(
         bg={bg}
         onClick={() => {
           toggleOpenCourse(code, (wasOpen) => {
-            if (!wasOpen) {
-              CoursesDashboardStore.actions.addCourse({
-                course: code,
-                flow,
-                requisites,
-              });
-            } else {
-              CoursesDashboardStore.actions.removeCourse(code);
-            }
-
             track({
               action: "click",
               target: `course-box-${code}`,
