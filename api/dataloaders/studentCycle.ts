@@ -28,8 +28,10 @@ export const StudentListCyclesDataLoader = new DataLoader(
       })
     );
   },
-
   {
+    cacheKeyFn: ({ program_id, curriculum }) => {
+      return program_id + curriculum;
+    },
     cacheMap: new LRUMap(1000),
   }
 );
@@ -52,8 +54,10 @@ export const StudentCourseListDataLoader = new DataLoader(
       })
     );
   },
-
   {
+    cacheKeyFn: ({ program_id, curriculum, course_cat }) => {
+      return program_id + curriculum + course_cat;
+    },
     cacheMap: new LRUMap(1000),
   }
 );
@@ -95,8 +99,10 @@ export const StudentCycleApprovedCourseDataLoader = new DataLoader(
       })
     );
   },
-
   {
+    cacheKeyFn: ({ program_id, curriculum, student_id, course_cat }) => {
+      return program_id + curriculum + student_id + course_cat;
+    },
     cacheMap: new LRUMap(1000),
   }
 );
