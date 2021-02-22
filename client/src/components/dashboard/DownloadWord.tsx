@@ -1,14 +1,23 @@
-import React, { FC, memo } from "react";
+import React, { FC, memo, useEffect, useState } from "react";
 import { saveAs } from "file-saver";
 import { Packer } from "docx";
 import { DocumentCreator } from "../../utils/createWord";
 import { Button } from "@chakra-ui/react";
 import domtoimage from "dom-to-image";
 import { IImagesID } from "../../../../interfaces";
+import { setTrackingData, track } from "../../context/Tracking";
 import JSZip from "jszip";
 export const DownloadWord: FC<{
   student_id?: string | null;
 }> = memo(({ student_id }) => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setTrackingData({
+      showingDownloadButton: show,
+    });
+  }, [show]);
+
   const ids = [
     "Progreso del estudiante",
     "Información Complementaria",
@@ -77,6 +86,15 @@ export const DownloadWord: FC<{
     });
     zip.remove("Malla.jpeg");
     lista = [];
+
+    setShow((show) => !show);
+    track({
+      action: "click",
+      effect: show
+        ? "close-studentComplementaryInfo"
+        : "open-studentComplementaryInfo",
+      target: "studentComplementaryInfo",
+    });
   };
 
   return (
