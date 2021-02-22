@@ -65,11 +65,6 @@ export const GroupedTakenSemesterBox: FC<{
     [term, year]
   );
 
-  // console.log(semestersTaken);
-  // console.log(explicitSemester);
-  // console.log(isExplicitSemester);
-  // console.log("############################");
-
   const borderColor = useMemo(() => {
     if (
       isExplicitSemester ||
