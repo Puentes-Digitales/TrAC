@@ -78,7 +78,7 @@ export const SearchBar: FC<{
   searchResult?: {
     curriculums: string[];
     admission_types: string[];
-    cohort: string[];
+    cohorts: string[];
     student?: string;
     program_id?: string;
     program_name?: string;
@@ -146,14 +146,14 @@ export const SearchBar: FC<{
 
   useEffect(() => {
     if (
-      (chosenCohort === undefined && (searchResult?.cohort.length ?? 0) > 0) ||
-      !searchResult?.cohort.includes(chosenCohort ?? "")
+      (chosenCohort === undefined && (searchResult?.cohorts.length ?? 0) > 0) ||
+      !searchResult?.cohorts.includes(chosenCohort ?? "")
     ) {
       DashboardInputActions.setChosenCohort(
-        searchResult?.cohort.sort().slice()[0]
+        searchResult?.cohorts.sort().slice()[0]
       );
     }
-  }, [chosenCohort, searchResult?.cohort]);
+  }, [chosenCohort, searchResult?.cohorts]);
 
   useEffect(() => {
     setGroupedActive(false);
@@ -567,7 +567,7 @@ export const SearchBar: FC<{
               />
               <Select
                 options={
-                  searchResult?.cohort
+                  searchResult?.cohorts
                     .sort()
                     .slice()
                     .reverse()

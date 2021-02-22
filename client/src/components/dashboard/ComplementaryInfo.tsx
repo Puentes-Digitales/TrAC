@@ -84,7 +84,6 @@ export const ComplementaryInfo: FC<{
               ml={4}
               textAlign="center"
               fontWeight="bold"
-              fontFamily="Lato"
               className="verticalText"
               fontSize="1.1em"
             >

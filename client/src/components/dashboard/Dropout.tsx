@@ -54,7 +54,13 @@ export const Dropout: FC<{
         cursor="pointer"
         transition="box-shadow 0.2s ease-in-out"
       >
-        <Stack className="unselectable" isInline pt={10} pb={10}>
+        <Stack
+          className="unselectable"
+          isInline
+          pt={10}
+          pb={10}
+          fontFamily="Lato"
+        >
           <Text
             minWidth="55px"
             height="120px"
@@ -62,7 +68,6 @@ export const Dropout: FC<{
             ml={4}
             textAlign="center"
             fontWeight="bold"
-            fontFamily="Lato"
             className="verticalText"
             fontSize="1.2em"
           >
@@ -80,20 +85,14 @@ export const Dropout: FC<{
                   opacity: 0,
                 }}
               >
-                <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                <Text width="290px" pl={5} pb={0} mb={0}>
                   {DROPOUT_PREDICTION_DESCRIPTION}
                 </Text>
-                <Text
-                  fontSize="2.5em"
-                  fontWeight="bold"
-                  ml={5}
-                  mb={0}
-                  fontFamily="Lato"
-                >
+                <Text fontSize="2.5em" fontWeight="bold" ml={5} mb={0}>
                   {probability}
                 </Text>
                 {DROPOUT_PREDICTION_ACCURACY_ENABLED && (
-                  <Text ml={5} fontFamily="Lato">
+                  <Text ml={5}>
                     ({DROPOUT_PREDICTION_ACCURACY} <b>{accuracy ?? "-"}</b>)
                   </Text>
                 )}
