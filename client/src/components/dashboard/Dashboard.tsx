@@ -711,7 +711,7 @@ export function Dashboard() {
                         value.year == foundData.year &&
                         value.term == foundData.term
                     );
-
+                    console.log(externalEvaluationFilter);
                     return {
                       code,
                       name,
