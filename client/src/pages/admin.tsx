@@ -1,8 +1,7 @@
 import React, { FC, useEffect, useMemo } from "react";
 import { Message } from "semantic-ui-react";
 import { useRememberState } from "use-remember-state";
-import ScrollContainer from "react-indiana-drag-scroll";
-import { Flex, Stack, useColorMode } from "@chakra-ui/react";
+import { Stack, useColorMode } from "@chakra-ui/react";
 import { IS_NOT_TEST } from "../../constants";
 import { AdminConfig } from "../components/admin/BaseConfig";
 import { AdminData } from "../components/admin/data/index";
@@ -93,14 +92,12 @@ const Admin: FC = () => {
   }, [colorMode, toggleColorMode]);
 
   return (
-    <ScrollContainer activationDistance={5} hideScrollbars={false}>
+    <>
       <Stack alignItems="center" spacing="1em" padding="5px">
-        <Flex>
-          <AdminMenu active={active} setActive={setActive} />
-        </Flex>
-        {ActiveTab}
+        <AdminMenu active={active} setActive={setActive} />
       </Stack>
-    </ScrollContainer>
+      {ActiveTab}
+    </>
   );
 };
 
