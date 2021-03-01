@@ -669,6 +669,7 @@ export function Dashboard() {
           ? curriculumId === chosenCurriculum
           : true;
       });
+
       if (data && studentData) {
         SemestersComponent = (
           <SemestersList
@@ -711,7 +712,6 @@ export function Dashboard() {
                         value.year == foundData.year &&
                         value.term == foundData.term
                     );
-                    console.log(externalEvaluationFilter);
                     return {
                       code,
                       name,
@@ -994,33 +994,30 @@ export function Dashboard() {
 
   const searchResult = useMemo(() => {
     return {
-      curriculums:
-        searchProgramData?.program?.courseGroupedStats
-          ?.map((i) =>
-            chosenAdmissionType == i.type_admission && chosenCohort == i.cohort
-              ? i.curriculum
-              : ""
-          )
-          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
+      curriculums: uniq(
+        searchProgramData?.program?.courseGroupedStats?.map((i) =>
+          chosenAdmissionType == i.type_admission && chosenCohort == i.cohort
+            ? i.curriculum
+            : ""
+        )
+      ),
 
-      admission_types:
-        searchProgramData?.program?.courseGroupedStats
-          ?.map((i) =>
-            chosenCurriculum == i.curriculum && chosenCohort == i.cohort
-              ? i.type_admission
-              : ""
-          )
-          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
+      admission_types: uniq(
+        searchProgramData?.program?.courseGroupedStats?.map((i) =>
+          chosenCurriculum == i.curriculum && chosenCohort == i.cohort
+            ? i.type_admission
+            : ""
+        )
+      ),
 
-      cohorts:
-        searchProgramData?.program?.courseGroupedStats
-          ?.map((i) =>
-            chosenCurriculum == i.curriculum &&
-            chosenAdmissionType == i.type_admission
-              ? i.cohort
-              : ""
-          )
-          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
+      cohorts: uniq(
+        searchProgramData?.program?.courseGroupedStats?.map((i) =>
+          chosenCurriculum == i.curriculum &&
+          chosenAdmissionType == i.type_admission
+            ? i.cohort
+            : ""
+        )
+      ),
       student:
         user?.type === UserType.Director
           ? searchStudentData?.student?.id
