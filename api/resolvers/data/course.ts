@@ -3,7 +3,7 @@ import { FieldResolver, Resolver, Root } from "type-graphql";
 
 import { baseConfig } from "../../../client/constants/baseConfig";
 import {
-  CourseAndStructureDataLoader,
+  CourseStructureDataLoader,
   CourseFlowDataLoader,
   CourseRequisitesLoader,
   CourseStatsDataLoader,
@@ -47,8 +47,8 @@ export class CourseResolver {
     { id, code }: PartialCourse
   ): Promise<$PropertyType<Course, "name">> {
     return (
-      (await CourseAndStructureDataLoader.load({ id, code }))?.courseTable
-        ?.name ?? ""
+      (await CourseStructureDataLoader.load({ id, code }))?.courseTable?.name ??
+      ""
     );
   }
 
@@ -57,7 +57,7 @@ export class CourseResolver {
     @Root() { id, code }: PartialCourse
   ): Promise<$PropertyType<Course, "credits">> {
     const courseData = (
-      await CourseAndStructureDataLoader.load({
+      await CourseStructureDataLoader.load({
         id,
         code,
       })
@@ -75,7 +75,7 @@ export class CourseResolver {
   ): Promise<$PropertyType<Course, "mention">> {
     return (
       (
-        await CourseAndStructureDataLoader.load({
+        await CourseStructureDataLoader.load({
           id,
           code,
         })
@@ -107,12 +107,12 @@ export class CourseResolver {
     const reducedHistogramData =
       histogramData?.reduce<Record<number, { label: string; value: number }>>(
         (acum, { histogram, histogram_labels }, key) => {
-          const histogramValues = histogram.split(",").map(toInteger);
           const histogramLabels = key === 0 ? histogram_labels.split(",") : [];
+          const histogramValues = histogram.split(",").map(toInteger);
 
           for (let i = 0; i < histogramValues.length; i++) {
             acum[i] = {
-              label: acum[i]?.label ?? histogramLabels[i],
+              label: acum[i]?.label ?? histogramLabels[i] ?? "",
               value: (acum[i]?.value ?? 0) + (histogramValues[i] ?? 0),
             };
           }
@@ -139,7 +139,7 @@ export class CourseResolver {
       return {
         min: toNumber(min),
         max: toNumber(max),
-        color,
+        color: color ?? "",
       };
     });
 

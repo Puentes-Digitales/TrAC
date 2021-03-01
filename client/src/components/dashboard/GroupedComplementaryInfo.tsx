@@ -53,6 +53,7 @@ export const GroupedComplementaryInfo: FC<{
     return (
       <Flex alignItems="center" ml="1em">
         <Flex
+          id="Información Complementaria"
           backgroundColor={COMPLEMENTARY_INFORMATION_BACKGROUND_COLOR}
           boxShadow={
             show
@@ -74,7 +75,7 @@ export const GroupedComplementaryInfo: FC<{
           }}
           color={COMPLEMENTARY_INFORMATION_TEXT_COLOR}
           cursor="pointer"
-          transition="box-shadow 0.4s ease-in-out"
+          transition="box-shadow 0.2s ease-in-out"
           data-testid="BoxContainer"
         >
           <Stack

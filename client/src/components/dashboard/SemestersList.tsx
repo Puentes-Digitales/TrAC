@@ -9,13 +9,17 @@ import {
 
 import { Stack } from "@chakra-ui/react";
 
-import { ICourse } from "../../../../interfaces";
+import { ICourse, IExternalEvaluation } from "../../../../interfaces";
 import { IS_TOUCH_DEVICE } from "../../../constants";
 import { ConfigContext } from "../../context/Config";
 import { Semester } from "./Semester";
 
 export const SemestersList: FC<{
-  semesters: { n: number; courses: ICourse[] }[];
+  semesters: {
+    n: number;
+    courses: ICourse[];
+    externalEvaluations: IExternalEvaluation[];
+  }[];
 }> = memo(({ semesters }) => {
   const { width } = useWindowSize();
   const { DASHBOARD_SEMESTERS_LIST_MOBILE_BREAKPOINT } = useContext(
@@ -24,13 +28,14 @@ export const SemestersList: FC<{
   const isMobile = width < DASHBOARD_SEMESTERS_LIST_MOBILE_BREAKPOINT;
 
   const SemestersComponent = useMemo(() => {
-    return semesters.map(({ n, courses }) => (
+    return semesters.map(({ n, courses, externalEvaluations }) => (
       <Semester
         position="absolute"
         left={190 * (n - 1)}
         top={0}
         width={1090}
         courses={courses}
+        externalEvaluations={externalEvaluations}
         key={n}
         n={n}
         zIndex={semesters.length - n}
@@ -71,9 +76,16 @@ export const SemestersList: FC<{
       vertical={false}
       activationDistance={5}
     >
-      <Stack isInline paddingLeft="5px">
-        {semesters.map(({ courses, n }, key) => {
-          return <Semester key={key} courses={courses} n={n} />;
+      <Stack isInline paddingLeft="5px" id="Malla">
+        {semesters.map(({ courses, externalEvaluations, n }, key) => {
+          return (
+            <Semester
+              key={key}
+              courses={courses}
+              externalEvaluations={externalEvaluations}
+              n={n}
+            />
+          );
         })}
       </Stack>
     </ScrollContainer>

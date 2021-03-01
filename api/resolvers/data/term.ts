@@ -4,6 +4,7 @@ import { defaultTermType } from "../../../client/constants";
 import {
   ProgramGradeDataLoader,
   TakenCoursesDataLoader,
+  TakenExternalEvaluationDataLoader,
   TermDataLoader,
 } from "../../dataloaders/term";
 import { Term } from "../../entities/data/term";
@@ -12,6 +13,7 @@ import { assertIsDefined } from "../../utils/assert";
 import type { $PropertyType } from "utility-types";
 
 import type { PartialTakenCourse } from "./takenCourse";
+import type { PartialTakenExternalEvaluation } from "./takenExternalEvaluation";
 
 export type PartialTerm = Pick<Term, "id">;
 
@@ -145,6 +147,33 @@ export class TermResolver {
     return takenCoursesData.map(
       ({ id, course_taken, course_equiv, elect_equiv }) => {
         return { id, code: course_taken, equiv: course_equiv || elect_equiv };
+      }
+    );
+  }
+
+  @FieldResolver()
+  async takenExternalEvaluations(
+    @Root()
+    { id }: PartialTerm
+  ): Promise<PartialTakenExternalEvaluation[]> {
+    assertIsDefined(id, `id needs to be available for Terms field resolvers`);
+    const studentTermData = await TermDataLoader.load(id);
+    assertIsDefined(
+      studentTermData,
+      `Taken courses could not be found for ${id} term`
+    );
+
+    const takenExternalEvaluationsData = await TakenExternalEvaluationDataLoader.load(
+      {
+        year: studentTermData.year,
+        term: studentTermData.term,
+        student_id: studentTermData.student_id,
+      }
+    );
+
+    return takenExternalEvaluationsData.map(
+      ({ id, external_evaluation_taken }) => {
+        return { id, code: external_evaluation_taken };
       }
     );
   }

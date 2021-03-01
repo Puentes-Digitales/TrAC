@@ -64,7 +64,8 @@
     "resolveJsonModule": true,
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
-    "importsNotUsedAsValues": "error"
+    "importsNotUsedAsValues": "error",
+    "noUncheckedIndexedAccess": true
   },
   "include": ["**/*.ts", "../app.ts", "../*.d.ts", "**/*.tsx"],
   "exclude": ["node_modules/**", "client"]

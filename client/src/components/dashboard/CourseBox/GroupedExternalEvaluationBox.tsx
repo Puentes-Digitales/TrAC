@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { some, truncate } from "lodash";
+import { some, truncate, sortBy } from "lodash";
 import React, { FC, memo, useContext, useMemo } from "react";
+import { Badge } from "@chakra-ui/react";
 
 import {
   Box,
@@ -17,104 +18,80 @@ import {
   toggleOpenCourse,
 } from "../../../context/CoursesDashboard";
 import { track } from "../../../context/Tracking";
-import {
-  HistogramHistoric,
-  HistogramsComponent,
-  HistogramGrouped,
-} from "../Histogram";
+import { HistogramsComponent, HistogramEvaluation } from "../Histogram";
 
 import type {
-  ICourse,
-  IGroupedCourse,
-  ITakenCourse,
+  IGroupedExternalEvaluation,
+  IExternalEvaluation,
 } from "../../../../../interfaces";
 
-export type CurrentTakenData = Partial<ITakenCourse>;
+export type CurrentTakenData = Partial<IGroupedExternalEvaluation>;
 
 const OuterCourseBox: FC<
-  Pick<ICourse, "code" | "historicDistribution"> & {
+  Pick<IGroupedExternalEvaluation, "code" | "taken"> & {
     isOpen: boolean;
     borderColor: string;
-  } & Pick<IGroupedCourse, "agroupedDistribution">
-> = memo(
-  ({
-    children,
-    code,
-    historicDistribution,
-    borderColor,
-    isOpen,
-    agroupedDistribution,
-  }) => {
-    const config = useContext(ConfigContext);
-
-    const activeCourse = CoursesDashboardStore.hooks.useActiveCourse(code);
-
-    const { height, width } = useMemo(() => {
-      let height: number | undefined = undefined;
-      let width: number | undefined = undefined;
-      if (isOpen) {
-        if (
-          agroupedDistribution &&
-          some(agroupedDistribution, ({ value }) => value)
-        ) {
-          width = 350;
-          if (
-            historicDistribution &&
-            some(historicDistribution, ({ value }) => value)
-          ) {
-            height = 350;
-          } else {
-            height = 350 - 130;
-          }
-        } else if (
-          historicDistribution &&
-          some(historicDistribution, ({ value }) => value)
-        ) {
-          width = 350;
-          height = 350 - 130;
-        }
-      } else {
-        width = 180;
-        height = 120;
-      }
-      if (!width) {
-        width = 220;
-      }
-      if (!height) {
-        height = 140;
-      }
-
-      return { height, width };
-    }, [isOpen, historicDistribution, agroupedDistribution]);
-
-    const borderWidth = activeCourse
-      ? config.COURSE_BOX_BORDER_WIDTH_ACTIVE
-      : config.COURSE_BOX_BORDER_WIDTH_INACTIVE;
-
-    const boxShadow = `0px 0px 0px ${borderWidth} ${borderColor}`;
-
-    const color = useColorModeValue(config.COURSE_BOX_TEXT_COLOR, "white");
-    return (
-      <Flex
-        m={1}
-        color={color}
-        width={width}
-        height={height}
-        borderRadius={5}
-        boxShadow={boxShadow}
-        transition={config.COURSE_BOX_ALL_TRANSITION_DURATION}
-        className="unselectable courseBox"
-        padding={0}
-        overflow="hidden"
-      >
-        {children}
-      </Flex>
-    );
   }
-);
+> = memo(({ children, code, taken, borderColor, isOpen }) => {
+  const config = useContext(ConfigContext);
+  let takenSize = 0;
+  taken.map(({ distribution }) => {
+    if (some(distribution, ({ value }) => value)) {
+      takenSize = takenSize + 1;
+    }
+  });
 
-const MainBlockOuter: FC<Pick<ICourse, "code" | "flow" | "requisites">> = memo(
-  ({ children, code, flow, requisites }) => {
+  const activeCourse = CoursesDashboardStore.hooks.useActiveCourse(code);
+
+  const { height, width } = useMemo(() => {
+    let height: number | undefined = undefined;
+    let width: number | undefined = undefined;
+    if (isOpen) {
+      if (takenSize > 0) {
+        width = 350;
+        height = 220 + (takenSize - 1) * 130;
+      }
+    } else {
+      width = 180;
+      height = 120;
+    }
+    if (!width) {
+      width = 220;
+    }
+    if (!height) {
+      height = 140;
+    }
+
+    return { height, width };
+  }, [isOpen, takenSize]);
+
+  const borderWidth = activeCourse
+    ? config.COURSE_BOX_BORDER_WIDTH_ACTIVE
+    : config.COURSE_BOX_BORDER_WIDTH_INACTIVE;
+
+  const boxShadow = `0px 0px 0px ${borderWidth} ${borderColor}`;
+
+  const color = useColorModeValue(config.COURSE_BOX_TEXT_COLOR, "white");
+  return (
+    <Flex
+      m={1}
+      color={color}
+      width={width}
+      height={height}
+      borderRadius={5}
+      boxShadow={boxShadow}
+      transition={config.COURSE_BOX_ALL_TRANSITION_DURATION}
+      className="unselectable courseBox"
+      padding={0}
+      overflow="hidden"
+    >
+      {children}
+    </Flex>
+  );
+});
+
+const MainBlockOuter: FC<Pick<IExternalEvaluation, "code">> = memo(
+  ({ children, code }) => {
     const config = useContext(ConfigContext);
     const bg = useColorModeValue(config.COURSE_BOX_BACKGROUND_COLOR, "#1A202C");
     return (
@@ -145,7 +122,7 @@ const MainBlockOuter: FC<Pick<ICourse, "code" | "flow" | "requisites">> = memo(
 );
 
 const NameComponent: FC<
-  Pick<ICourse, "code" | "name"> & {
+  Pick<IExternalEvaluation, "code" | "name"> & {
     isOpen: boolean;
   }
 > = memo(({ code, name, isOpen }) => {
@@ -162,13 +139,11 @@ const NameComponent: FC<
   );
 });
 
-const SecondaryBlockOuter: FC<
-  Pick<ICourse, "bandColors"> & {
-    n_total: number;
-    n_passed: number;
-    borderColor: string;
-  }
-> = memo(({ children, borderColor, n_total, n_passed }) => {
+const SecondaryBlockOuter: FC<{
+  n_total: number;
+  n_passed: number;
+  borderColor: string;
+}> = memo(({ children, borderColor, n_total, n_passed }) => {
   const config = useContext(ConfigContext);
 
   const { colorMode } = useColorMode();
@@ -208,30 +183,7 @@ const SecondaryBlockOuter: FC<
   );
 });
 
-const CreditsComponent: FC<Pick<ICourse, "credits">> = memo(({ credits }) => {
-  return (
-    <motion.div
-      key="credits"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      <Box pos="absolute" bottom="10px" left="10px">
-        {credits.map(({ label, value }, key) => {
-          return (
-            value !== -1 && (
-              <Text fontSize="9px" key={key}>
-                <b>{`${label}: ${value}`}</b>
-              </Text>
-            )
-          );
-        })}
-      </Box>
-    </motion.div>
-  );
-});
-
-export const ReqCircleComponent: FC<Pick<ICourse, "code">> = memo(
+export const ReqCircleComponent: FC<Pick<IExternalEvaluation, "code">> = memo(
   ({ code }) => {
     const config = useContext(ConfigContext);
     const activeRequisites = CoursesDashboardStore.hooks.useActiveRequisites(
@@ -301,19 +253,13 @@ export const currentDistributionLabel = ({
   return `${label} ${term} ${year}`;
 };
 
-export function GroupedCourseBox({
+export function GroupedExternalEvaluationBox({
   code,
+  name,
+  taken,
   n_total,
   n_passed,
-  name,
-  credits,
-  historicDistribution,
-  agroupedDistribution,
-  bandColors,
-  requisites,
-  agroupedBandColors,
-  flow,
-}: IGroupedCourse) {
+}: IGroupedExternalEvaluation) {
   const config = useContext(ConfigContext);
 
   const activeCourse = CoursesDashboardStore.hooks.useActiveCourse(code);
@@ -341,35 +287,35 @@ export function GroupedCourseBox({
   return (
     <OuterCourseBox
       code={code}
-      historicDistribution={historicDistribution}
       isOpen={isOpen}
       borderColor={borderColor}
-      agroupedDistribution={agroupedDistribution}
+      taken={taken}
     >
-      <MainBlockOuter flow={flow} requisites={requisites} code={code}>
+      <MainBlockOuter code={code}>
         <NameComponent code={code} name={name} isOpen={isOpen} />
 
         <AnimatePresence>
-          {!isOpen && <CreditsComponent key="credits" credits={credits} />}
-
-          <ReqCircleComponent key="reqCircle" code={code} />
-
           {isOpen && (
             <HistogramsComponent key="histogramsComponent" code={code}>
-              <HistogramGrouped
-                agroupedDistribution={agroupedDistribution}
-                bandColors={agroupedBandColors}
-              />
-              <HistogramHistoric
-                historicDistribution={historicDistribution}
-                bandColors={bandColors}
-              />
+              {taken.length > 0 ? (
+                sortBy(
+                  taken,
+                  ({ topic }) => topic
+                ).map(({ distribution, topic, color_bands }) => (
+                  <HistogramEvaluation
+                    bandColors={color_bands ?? []}
+                    currentDistribution={distribution ?? []}
+                    topic={topic ?? ""}
+                  />
+                ))
+              ) : (
+                <Badge>{config.NO_HISTORIC_DATA}</Badge>
+              )}
             </HistogramsComponent>
           )}
         </AnimatePresence>
       </MainBlockOuter>
       <SecondaryBlockOuter
-        bandColors={bandColors}
         n_passed={n_passed}
         n_total={n_total}
         borderColor={borderColor}

@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { range, uniq } from "lodash";
 import dynamic from "next/dynamic";
 import Router from "next/router";
+import { DownloadWord } from "./DownloadWord";
 import { generate } from "randomstring";
 import React, {
   ChangeEvent,
@@ -262,6 +263,9 @@ export const SearchBar: FC<{
         {isDirector && <GrupedMode />}
 
         {user?.admin && <MockingMode />}
+        {(student_id || groupedActive) && user?.config?.SHOW_DOWNLOAD && (
+          <DownloadWord />
+        )}
         {isDirector && !groupedActive && user?.config?.SHOW_STUDENT_LIST && (
           <StudentList
             program_id={program?.value}

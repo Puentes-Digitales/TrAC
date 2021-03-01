@@ -25,8 +25,8 @@ export type Scalars = {
 
 export type Admission = {
   active: Scalars["Boolean"];
-  final_test?: Maybe<Scalars["Float"]>;
-  initial_test?: Maybe<Scalars["Float"]>;
+  final_evaluation?: Maybe<Scalars["Float"]>;
+  initial_evaluation?: Maybe<Scalars["Float"]>;
   type_admission: Scalars["String"];
 };
 
@@ -61,6 +61,7 @@ export type CourseGroupedStats = {
   course_id: Scalars["String"];
   curriculum: Scalars["String"];
   distribution: Array<DistributionValue>;
+  id: Scalars["Float"];
   n_drop: Scalars["Float"];
   n_fail: Scalars["Float"];
   n_finished: Scalars["Float"];
@@ -68,7 +69,9 @@ export type CourseGroupedStats = {
   n_students: Scalars["Float"];
   n_total: Scalars["Float"];
   program_id: Scalars["String"];
+  term: Scalars["Float"];
   type_admission: Scalars["String"];
+  year: Scalars["Float"];
 };
 
 export type Credit = {
@@ -109,6 +112,27 @@ export type ExternalEvaluation = {
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
+  year: Scalars["Float"];
+};
+
+export type ExternalEvaluationGroupedStats = {
+  cohort: Scalars["String"];
+  color_bands: Array<BandColor>;
+  curriculum: Scalars["String"];
+  distribution: Array<DistributionValue>;
+  external_evaluation_id: Scalars["String"];
+  id: Scalars["Float"];
+  n_drop: Scalars["Float"];
+  n_fail: Scalars["Float"];
+  n_finished: Scalars["Float"];
+  n_pass: Scalars["Float"];
+  n_students: Scalars["Float"];
+  n_total: Scalars["Float"];
+  program_id: Scalars["String"];
+  term: Scalars["Float"];
+  topic: Scalars["String"];
+  type_admission: Scalars["String"];
+  year: Scalars["Float"];
 };
 
 export type FeedbackAnswer = {
@@ -337,6 +361,7 @@ export type Program = {
   courseGroupedStats: Array<CourseGroupedStats>;
   curriculums: Array<Curriculum>;
   desc: Scalars["String"];
+  externalEvaluationGroupedStats: Array<ExternalEvaluationGroupedStats>;
   groupedComplementary: Array<GroupedComplementary>;
   groupedEmployed: Array<GroupedEmployed>;
   id: Scalars["String"];
@@ -442,12 +467,12 @@ export type TakenExternalEvaluation = {
   bandColors: Array<BandColor>;
   code: Scalars["String"];
   currentDistribution: Array<DistributionValue>;
-  grade: Scalars["Float"];
+  grade: Scalars["String"];
   id: Scalars["Int"];
   name: Scalars["String"];
-  parallelGroup: Scalars["Int"];
   registration: Scalars["String"];
   state: StateCourse;
+  topic: Scalars["String"];
 };
 
 export type Term = {
@@ -739,11 +764,37 @@ export type SearchProgramMutation = {
     courseGroupedStats: Array<
       Pick<
         CourseGroupedStats,
+        | "id"
+        | "program_id"
+        | "course_id"
+        | "curriculum"
+        | "type_admission"
+        | "cohort"
+        | "year"
+        | "term"
+        | "n_students"
+        | "n_total"
+        | "n_finished"
+        | "n_pass"
+        | "n_drop"
+        | "n_fail"
+      > & {
+        distribution: Array<Pick<DistributionValue, "label" | "value">>;
+        color_bands: Array<Pick<BandColor, "min" | "max" | "color">>;
+      }
+    >;
+    externalEvaluationGroupedStats: Array<
+      Pick<
+        ExternalEvaluationGroupedStats,
+        | "id"
+        | "external_evaluation_id"
+        | "topic"
         | "program_id"
         | "curriculum"
         | "type_admission"
         | "cohort"
-        | "course_id"
+        | "year"
+        | "term"
         | "n_students"
         | "n_total"
         | "n_finished"
@@ -767,6 +818,11 @@ export type SearchProgramMutation = {
                 historicalDistribution: Array<
                   Pick<DistributionValue, "label" | "value">
                 >;
+                bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
+              }
+            >;
+            externalEvaluations: Array<
+              Pick<ExternalEvaluation, "code" | "name"> & {
                 bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
               }
             >;
@@ -825,6 +881,23 @@ export type SearchStudentMutation = {
               bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
             }
           >;
+          takenExternalEvaluations: Array<
+            Pick<
+              TakenExternalEvaluation,
+              | "id"
+              | "code"
+              | "topic"
+              | "name"
+              | "registration"
+              | "state"
+              | "grade"
+            > & {
+              currentDistribution: Array<
+                Pick<DistributionValue, "label" | "value">
+              >;
+              bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
+            }
+          >;
         }
       >;
       dropout?: Maybe<
@@ -832,7 +905,7 @@ export type SearchStudentMutation = {
       >;
       admission: Pick<
         Admission,
-        "active" | "type_admission" | "initial_test" | "final_test"
+        "active" | "type_admission" | "initial_evaluation" | "final_evaluation"
       >;
       employed: Pick<
         Employed,
@@ -872,7 +945,7 @@ export type StudentsListQuery = {
       dropout?: Maybe<Pick<Dropout, "prob_dropout" | "explanation">>;
       admission: Pick<
         Admission,
-        "active" | "type_admission" | "initial_test" | "final_test"
+        "active" | "type_admission" | "initial_evaluation" | "final_evaluation"
       >;
     }
   >;
@@ -887,6 +960,10 @@ export type StudentsFilterListQuery = {
   students_filter: Array<
     Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
       programs: Array<Pick<Program, "id" | "name">>;
+      admission: Pick<Admission, "type_admission">;
+      terms: Array<
+        Pick<Term, "year" | "term" | "semestral_grade" | "comments">
+      >;
     }
   >;
 };
@@ -2089,11 +2166,40 @@ export const SearchProgramDocument = gql`
         employed_rate_educational_system
       }
       courseGroupedStats {
+        id
+        program_id
+        course_id
+        curriculum
+        type_admission
+        cohort
+        year
+        term
+        n_students
+        n_total
+        n_finished
+        n_pass
+        n_drop
+        n_fail
+        distribution {
+          label
+          value
+        }
+        color_bands {
+          min
+          max
+          color
+        }
+      }
+      externalEvaluationGroupedStats {
+        id
+        external_evaluation_id
+        topic
         program_id
         curriculum
         type_admission
         cohort
-        course_id
+        year
+        term
         n_students
         n_total
         n_finished
@@ -2132,6 +2238,15 @@ export const SearchProgramDocument = gql`
               label
               value
             }
+            bandColors {
+              min
+              max
+              color
+            }
+          }
+          externalEvaluations {
+            code
+            name
             bandColors {
               min
               max
@@ -2227,6 +2342,24 @@ export const SearchStudentDocument = gql`
             color
           }
         }
+        takenExternalEvaluations {
+          id
+          code
+          topic
+          name
+          registration
+          state
+          grade
+          currentDistribution {
+            label
+            value
+          }
+          bandColors {
+            min
+            max
+            color
+          }
+        }
       }
       dropout {
         prob_dropout
@@ -2236,8 +2369,8 @@ export const SearchStudentDocument = gql`
       admission {
         active
         type_admission
-        initial_test
-        final_test
+        initial_evaluation
+        final_evaluation
       }
       employed {
         employed
@@ -2445,8 +2578,8 @@ export const StudentsListDocument = gql`
       admission {
         active
         type_admission
-        initial_test
-        final_test
+        initial_evaluation
+        final_evaluation
       }
     }
   }
@@ -2511,6 +2644,15 @@ export const StudentsFilterListDocument = gql`
       curriculums
       start_year
       mention
+      admission {
+        type_admission
+      }
+      terms {
+        year
+        term
+        semestral_grade
+        comments
+      }
     }
   }
 `;

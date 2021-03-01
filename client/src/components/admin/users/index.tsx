@@ -157,12 +157,11 @@ export const Users: FC<{
 
       <Flex>{pagination}</Flex>
 
-      <Flex>
+      <Flex fontSize=".9em">
         <Table
-          padded
           selectable
           celled
-          size="large"
+          size="small"
           textAlign="center"
           sortable
           stackable
@@ -216,7 +215,7 @@ export const Users: FC<{
                   "config.SHOW_STUDENT_COMPLEMENTARY_INFORMATION"
                 )}
               >
-                show_student_complementary_information
+                show_student_grouped_complementary_info
               </Table.HeaderCell>
               <Table.HeaderCell
                 sorted={
@@ -246,6 +245,14 @@ export const Users: FC<{
                 onClick={handleSort("config.SHOW_PROGRESS_STUDENT_CYCLE")}
               >
                 show_progress_student_cycle
+              </Table.HeaderCell>
+              <Table.HeaderCell
+                sorted={
+                  column === "config.SHOW_DOWNLOAD" ? direction : undefined
+                }
+                onClick={handleSort("config.SHOW_DOWNLOAD")}
+              >
+                show_download
               </Table.HeaderCell>
               <Table.HeaderCell
                 sorted={
@@ -369,6 +376,16 @@ export const Users: FC<{
                               circular
                               name={
                                 configObj?.SHOW_STUDENT_LIST
+                                  ? "check circle outline"
+                                  : "times circle outline"
+                              }
+                            />
+                          </Table.Cell>
+                          <Table.Cell onClick={configOnClick} width={1}>
+                            <Icon
+                              circular
+                              name={
+                                configObj?.SHOW_DOWNLOAD
                                   ? "check circle outline"
                                   : "times circle outline"
                               }

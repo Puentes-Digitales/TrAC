@@ -9,8 +9,8 @@ export class Admission {
   type_admission: string;
 
   @Field({ nullable: true })
-  initial_test: number;
+  initial_evaluation: number;
 
   @Field({ nullable: true })
-  final_test?: number;
+  final_evaluation?: number;
 }

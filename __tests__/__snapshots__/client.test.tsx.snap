@@ -37,14 +37,15 @@ Object {
         class="css-xtzu7m"
       >
         <div
-          class="css-qfh9pt"
+          class="css-1b6jfu7"
           data-testid="BoxContainer"
+          id="Información Complementaria"
         >
           <div
             class="chakra-stack unselectable css-iquqh5"
           >
             <p
-              class="chakra-text verticalText css-1mwd8m3"
+              class="chakra-text verticalText css-1568c7u"
             >
               Información Complementaria
             </p>
@@ -73,14 +74,14 @@ Object {
                 20
               </p>
               <p
-                class="chakra-text css-tcsrcc"
+                class="chakra-text css-1yyofq7"
               >
                 Sistema educacional:
                  
                 Publico
               </p>
               <p
-                class="chakra-text css-13kiv3l"
+                class="chakra-text css-1yyofq7"
                 data-testid="inst"
               >
                 Nombre de institución:
@@ -105,14 +106,15 @@ Object {
       class="css-xtzu7m"
     >
       <div
-        class="css-qfh9pt"
+        class="css-1b6jfu7"
         data-testid="BoxContainer"
+        id="Información Complementaria"
       >
         <div
           class="chakra-stack unselectable css-iquqh5"
         >
           <p
-            class="chakra-text verticalText css-1mwd8m3"
+            class="chakra-text verticalText css-1568c7u"
           >
             Información Complementaria
           </p>
@@ -141,14 +143,14 @@ Object {
               20
             </p>
             <p
-              class="chakra-text css-tcsrcc"
+              class="chakra-text css-1yyofq7"
             >
               Sistema educacional:
                
               Publico
             </p>
             <p
-              class="chakra-text css-13kiv3l"
+              class="chakra-text css-1yyofq7"
               data-testid="inst"
             >
               Nombre de institución:
