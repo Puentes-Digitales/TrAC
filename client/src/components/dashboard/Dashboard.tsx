@@ -1153,9 +1153,13 @@ export function Dashboard() {
 
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
-          {GroupedPerformanceInfoComponent}
-          {ComplementaryInfoComponent}
-          {ProgressStudentComponent}
+          <Stack pt="25px">
+            <Flex>
+              {GroupedPerformanceInfoComponent}
+              {ComplementaryInfoComponent}
+              {ProgressStudentComponent}
+            </Flex>
+          </Stack>
 
           {TimeLineComponent && (
             <Box id="Gráfico Avance">
@@ -1166,9 +1170,9 @@ export function Dashboard() {
               </Stack>
             </Box>
           )}
-          <Box pt="70px">
+          <Box pt="25px">
             {DropoutComponent}
-            <Stack isInline pt="10px">
+            <Stack isInline pt="55px">
               {ForePlanSwitchComponent}
             </Stack>
           </Box>
