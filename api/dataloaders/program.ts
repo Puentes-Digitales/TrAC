@@ -1,5 +1,6 @@
 import DataLoader from "dataloader";
-import { defaultsDeep, Dictionary, keyBy } from "lodash";
+import { defaultsDeep, Dictionary, keyBy, toInteger, toNumber } from "lodash";
+
 import { LRUMap } from "lru_map";
 
 import {
@@ -7,7 +8,8 @@ import {
   ExternalEvaluationStructureTable,
   ProgramTable,
   StudentProgramTable,
-  StudentGroupedComplementaryTable,
+  GroupedComplementaryInformationTable,
+  StudentGroupedEmployedTable,
   PROGRAM_STRUCTURE_TABLE,
   CourseGroupedStatsTable,
 } from "../db/tables";
@@ -199,13 +201,38 @@ export const StudentGroupedComplementaryDataLoader = new DataLoader(
   ) => {
     return await Promise.all(
       keys.map(({ program_id }) => {
-        return StudentGroupedComplementaryTable().where({
+        return GroupedComplementaryInformationTable().where({
           program_id: program_id,
         });
       })
     );
   },
   {
+    cacheKeyFn: ({ program_id }) => {
+      return program_id;
+    },
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentGroupedEmployedDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ program_id }) => {
+        return StudentGroupedEmployedTable().where({
+          program_id: program_id,
+        });
+      })
+    );
+  },
+  {
+    cacheKeyFn: ({ program_id }) => {
+      return program_id;
+    },
     cacheMap: new LRUMap(1000),
   }
 );
@@ -217,14 +244,53 @@ export const CourseGroupedStatsDataLoader = new DataLoader(
     }[]
   ) => {
     return await Promise.all(
-      keys.map(({ program_id }) => {
-        return CourseGroupedStatsTable().where({
+      keys.map(async ({ program_id }) => {
+        const data = await CourseGroupedStatsTable().where({
           program_id: program_id,
         });
+
+        const groupedData = data.map((value) => {
+          const histogramValues = value["histogram"].split(",").map(toInteger);
+          const histogramLabels = value["histogram_labels"].split(",");
+          const dist = histogramValues.map((value, key) => {
+            return {
+              label: histogramLabels[key] ?? `${key}`,
+              value,
+            };
+          });
+          const colorbands = value["color_bands"].split(";").map((value) => {
+            const [min, max, color] = value.split(",");
+            return {
+              min: toNumber(min),
+              max: toNumber(max),
+              color,
+            };
+          });
+
+          return {
+            course_id: value["course_id"],
+            program_id: value["program_id"],
+            curriculum: value["curriculum"],
+            type_admission: value["type_admission"],
+            cohort: value["cohort"],
+            n_students: value["n_students"],
+            n_total: value["n_total"],
+            n_finished: value["n_finished"],
+            n_pass: value["n_pass"],
+            n_fail: value["n_fail"],
+            n_drop: value["n_drop"],
+            distribution: dist,
+            color_bands: colorbands,
+          };
+        });
+        return groupedData;
       })
     );
   },
   {
+    cacheKeyFn: ({ program_id }) => {
+      return program_id;
+    },
     cacheMap: new LRUMap(1000),
   }
 );

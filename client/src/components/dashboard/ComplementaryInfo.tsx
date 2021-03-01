@@ -69,7 +69,13 @@ export const ComplementaryInfo: FC<{
           transition="box-shadow 0.4s ease-in-out"
           data-testid="BoxContainer"
         >
-          <Stack className="unselectable" isInline pt={10} pb={10}>
+          <Stack
+            className="unselectable"
+            isInline
+            pt={10}
+            pb={10}
+            fontFamily="Lato"
+          >
             <Text
               minWidth="90px"
               height="120px"
@@ -77,7 +83,6 @@ export const ComplementaryInfo: FC<{
               ml={4}
               textAlign="center"
               fontWeight="bold"
-              fontFamily="Lato"
               className="verticalText"
               fontSize="1.1em"
             >
@@ -96,47 +101,40 @@ export const ComplementaryInfo: FC<{
                   }}
                 >
                   {type_admission && (
-                    <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text width="290px" pl={5} pb={0} mb={0}>
                       {COMPLEMENTARY_INFORMATION_TYPE_ADMISSION}{" "}
                       {type_admission}
                     </Text>
                   )}
 
                   {initial_test && (
-                    <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text width="290px" pl={5} pb={0} mb={0}>
                       {COMPLEMENTARY_INFORMATION_INITIAL_TEST} {initial_test}
                     </Text>
                   )}
 
                   {final_test && (
-                    <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text width="290px" pl={5} pb={0} mb={0}>
                       {COMPLEMENTARY_INFORMATION_FINAL_TEST} {final_test}
                     </Text>
                   )}
 
                   {educational_system && (
-                    <Text width="320px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text width="320px" pl={5} pb={0} mb={0}>
                       {COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM}{" "}
                       {educational_system}
                     </Text>
                   )}
 
                   {institution && (
-                    <Text
-                      data-testid="inst"
-                      width="350px"
-                      pl={5}
-                      pb={0}
-                      mb={0}
-                      fontFamily="Lato"
-                    >
+                    <Text data-testid="inst" width="350px" pl={5} pb={0} mb={0}>
                       {COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION}{" "}
                       {institution}
                     </Text>
                   )}
 
                   {months_to_first_job && (
-                    <Text width="290px" pl={5} pb={0} mb={0} fontFamily="Lato">
+                    <Text width="290px" pl={5} pb={0} mb={0}>
                       {COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS}{" "}
                       {months_to_first_job}
                     </Text>

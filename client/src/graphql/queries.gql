@@ -62,20 +62,38 @@ mutation searchProgram($id: String, $student_id: String) {
       university_degree_rate
       retention_rate
     }
+
+    groupedEmployed {
+      employed_rate
+      total_students
+      average_time_job_finding
+      program_id
+      curriculum
+      type_admission
+      cohort
+      employed_rate_educational_system
+    }
     courseGroupedStats {
       program_id
       curriculum
       type_admission
       cohort
-      id
+      course_id
+      n_students
       n_total
       n_finished
       n_pass
       n_drop
       n_fail
-      histogram
-      histogram_labels
-      color_bands
+      distribution {
+        label
+        value
+      }
+      color_bands {
+        min
+        max
+        color
+      }
     }
     curriculums {
       id

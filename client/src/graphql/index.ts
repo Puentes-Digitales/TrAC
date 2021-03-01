@@ -57,15 +57,15 @@ export type Course = {
 
 export type CourseGroupedStats = {
   cohort: Scalars["String"];
-  color_bands: Scalars["String"];
+  color_bands: Array<BandColor>;
+  course_id: Scalars["String"];
   curriculum: Scalars["String"];
-  histogram: Scalars["String"];
-  histogram_labels: Scalars["String"];
-  id: Scalars["String"];
+  distribution: Array<DistributionValue>;
   n_drop: Scalars["Float"];
   n_fail: Scalars["Float"];
   n_finished: Scalars["Float"];
   n_pass: Scalars["Float"];
+  n_students: Scalars["Float"];
   n_total: Scalars["Float"];
   program_id: Scalars["String"];
   type_admission: Scalars["String"];
@@ -175,6 +175,17 @@ export type GroupedComplementary = {
   total_students: Scalars["Float"];
   type_admission: Scalars["String"];
   university_degree_rate: Scalars["Float"];
+};
+
+export type GroupedEmployed = {
+  average_time_job_finding: Scalars["Float"];
+  cohort: Scalars["String"];
+  curriculum: Scalars["String"];
+  employed_rate: Scalars["Float"];
+  employed_rate_educational_system: Scalars["Float"];
+  program_id: Scalars["String"];
+  total_students: Scalars["Float"];
+  type_admission: Scalars["String"];
 };
 
 export type IndirectTakeCourse = {
@@ -327,6 +338,7 @@ export type Program = {
   curriculums: Array<Curriculum>;
   desc: Scalars["String"];
   groupedComplementary: Array<GroupedComplementary>;
+  groupedEmployed: Array<GroupedEmployed>;
   id: Scalars["String"];
   lastGPA: Scalars["Float"];
   name: Scalars["String"];
@@ -711,6 +723,19 @@ export type SearchProgramMutation = {
         | "retention_rate"
       >
     >;
+    groupedEmployed: Array<
+      Pick<
+        GroupedEmployed,
+        | "employed_rate"
+        | "total_students"
+        | "average_time_job_finding"
+        | "program_id"
+        | "curriculum"
+        | "type_admission"
+        | "cohort"
+        | "employed_rate_educational_system"
+      >
+    >;
     courseGroupedStats: Array<
       Pick<
         CourseGroupedStats,
@@ -718,16 +743,17 @@ export type SearchProgramMutation = {
         | "curriculum"
         | "type_admission"
         | "cohort"
-        | "id"
+        | "course_id"
+        | "n_students"
         | "n_total"
         | "n_finished"
         | "n_pass"
         | "n_drop"
         | "n_fail"
-        | "histogram"
-        | "histogram_labels"
-        | "color_bands"
-      >
+      > & {
+        distribution: Array<Pick<DistributionValue, "label" | "value">>;
+        color_bands: Array<Pick<BandColor, "min" | "max" | "color">>;
+      }
     >;
     curriculums: Array<
       Pick<Curriculum, "id"> & {
@@ -2052,20 +2078,37 @@ export const SearchProgramDocument = gql`
         university_degree_rate
         retention_rate
       }
+      groupedEmployed {
+        employed_rate
+        total_students
+        average_time_job_finding
+        program_id
+        curriculum
+        type_admission
+        cohort
+        employed_rate_educational_system
+      }
       courseGroupedStats {
         program_id
         curriculum
         type_admission
         cohort
-        id
+        course_id
+        n_students
         n_total
         n_finished
         n_pass
         n_drop
         n_fail
-        histogram
-        histogram_labels
-        color_bands
+        distribution {
+          label
+          value
+        }
+        color_bands {
+          min
+          max
+          color
+        }
       }
       curriculums {
         id

@@ -17,7 +17,11 @@ import {
   toggleOpenCourse,
 } from "../../../context/CoursesDashboard";
 import { track } from "../../../context/Tracking";
-import { HistogramHistoric, HistogramsComponent } from "../Histogram";
+import {
+  HistogramHistoric,
+  HistogramsComponent,
+  HistogramGrouped,
+} from "../Histogram";
 
 import type {
   ICourse,
@@ -31,61 +35,83 @@ const OuterCourseBox: FC<
   Pick<ICourse, "code" | "historicDistribution"> & {
     isOpen: boolean;
     borderColor: string;
-  }
-> = memo(({ children, code, historicDistribution, borderColor, isOpen }) => {
-  const config = useContext(ConfigContext);
+  } & Pick<IGroupedCourse, "agroupedDistribution">
+> = memo(
+  ({
+    children,
+    code,
+    historicDistribution,
+    borderColor,
+    isOpen,
+    agroupedDistribution,
+  }) => {
+    const config = useContext(ConfigContext);
 
-  const activeCourse = CoursesDashboardStore.hooks.useActiveCourse(code);
+    const activeCourse = CoursesDashboardStore.hooks.useActiveCourse(code);
 
-  const { height, width } = useMemo(() => {
-    let height: number | undefined = undefined;
-    let width: number | undefined = undefined;
-    if (isOpen) {
-      if (
-        historicDistribution &&
-        some(historicDistribution, ({ value }) => value)
-      ) {
-        width = 350;
-        height = 350 - 130;
+    const { height, width } = useMemo(() => {
+      let height: number | undefined = undefined;
+      let width: number | undefined = undefined;
+      if (isOpen) {
+        if (
+          agroupedDistribution &&
+          some(agroupedDistribution, ({ value }) => value)
+        ) {
+          width = 350;
+          if (
+            historicDistribution &&
+            some(historicDistribution, ({ value }) => value)
+          ) {
+            height = 350;
+          } else {
+            height = 350 - 130;
+          }
+        } else if (
+          historicDistribution &&
+          some(historicDistribution, ({ value }) => value)
+        ) {
+          width = 350;
+          height = 350 - 130;
+        }
+      } else {
+        width = 180;
+        height = 120;
       }
-    } else {
-      width = 180;
-      height = 120;
-    }
-    if (!width) {
-      width = 220;
-    }
-    if (!height) {
-      height = 140;
-    }
+      if (!width) {
+        width = 220;
+      }
+      if (!height) {
+        height = 140;
+      }
 
-    return { height, width };
-  }, [isOpen, historicDistribution]);
+      return { height, width };
+    }, [isOpen, historicDistribution, agroupedDistribution]);
 
-  const borderWidth = activeCourse
-    ? config.COURSE_BOX_BORDER_WIDTH_ACTIVE
-    : config.COURSE_BOX_BORDER_WIDTH_INACTIVE;
+    const borderWidth = activeCourse
+      ? config.COURSE_BOX_BORDER_WIDTH_ACTIVE
+      : config.COURSE_BOX_BORDER_WIDTH_INACTIVE;
 
-  const boxShadow = `0px 0px 0px ${borderWidth} ${borderColor}`;
+    const boxShadow = `0px 0px 0px ${borderWidth} ${borderColor}`;
 
-  const color = useColorModeValue(config.COURSE_BOX_TEXT_COLOR, "white");
-  return (
-    <Flex
-      m={1}
-      color={color}
-      width={width}
-      height={height}
-      borderRadius={5}
-      boxShadow={boxShadow}
-      transition={config.COURSE_BOX_ALL_TRANSITION_DURATION}
-      className="unselectable courseBox"
-      padding={0}
-      overflow="hidden"
-    >
-      {children}
-    </Flex>
-  );
-});
+    const color = useColorModeValue(config.COURSE_BOX_TEXT_COLOR, "white");
+    return (
+      <Flex
+        m={1}
+        color={color}
+        width={width}
+        height={height}
+        borderRadius={5}
+        boxShadow={boxShadow}
+        transition={config.COURSE_BOX_ALL_TRANSITION_DURATION}
+        className="unselectable courseBox"
+        padding={0}
+        overflow="hidden"
+      >
+        {children}
+      </Flex>
+    );
+  }
+);
 
 const MainBlockOuter: FC<Pick<ICourse, "code" | "flow" | "requisites">> = memo(
   ({ children, code, flow, requisites }) => {
@@ -133,11 +159,12 @@ const NameComponent: FC<
     isOpen: boolean;
   }
 > = memo(({ code, name, isOpen }) => {
-  // const config = useContext(ConfigContext);
   return (
     <Stack spacing={1}>
       <Flex alignItems="center"></Flex>
-
+      <Text m={0} whiteSpace="nowrap">
+        <b>{code}</b>
+      </Text>
       <Text fontSize={9} maxWidth="150px" pr={1}>
         {truncate(name, { length: isOpen ? 60 : 35 })}
       </Text>
@@ -156,17 +183,19 @@ const SecondaryBlockOuter: FC<
 
   const { colorMode } = useColorMode();
 
+  const grouped_box = config.GROPUED_COURSE_BOX_COLORS;
+
   const stateColor = useMemo(() => {
-    if (n_passed == 0) {
-      return "#f2f0f7";
-    } else if (n_passed < n_total * 0.25) {
-      return "#cbc9e2";
-    } else if (n_passed < n_total * 0.5) {
-      return "#9e9ac8";
-    } else if (n_passed < n_total * 0.75) {
-      return "#756bb1";
+    if (grouped_box[0] && n_passed == grouped_box[0].val) {
+      return grouped_box[0].color;
+    } else if (grouped_box[1] && n_passed < n_total * grouped_box[1].val) {
+      return grouped_box[1].color;
+    } else if (grouped_box[2] && n_passed < n_total * grouped_box[2].val) {
+      return grouped_box[2]?.color;
+    } else if (grouped_box[3] && n_passed < n_total * grouped_box[3]?.val) {
+      return grouped_box[3]?.color;
     } else {
-      return "#54278f";
+      return grouped_box[4]?.color;
     }
   }, [colorMode, config, n_total, n_passed]);
 
@@ -289,8 +318,10 @@ export function GroupedCourseBox({
   name,
   credits,
   historicDistribution,
+  agroupedDistribution,
   bandColors,
   requisites,
+  agroupedBandColors,
   flow,
 }: IGroupedCourse) {
   const config = useContext(ConfigContext);
@@ -323,6 +354,7 @@ export function GroupedCourseBox({
       historicDistribution={historicDistribution}
       isOpen={isOpen}
       borderColor={borderColor}
+      agroupedDistribution={agroupedDistribution}
     >
       <MainBlockOuter flow={flow} requisites={requisites} code={code}>
         <NameComponent code={code} name={name} isOpen={isOpen} />
@@ -334,6 +366,10 @@ export function GroupedCourseBox({
 
           {isOpen && (
             <HistogramsComponent key="histogramsComponent" code={code}>
+              <HistogramGrouped
+                agroupedDistribution={agroupedDistribution}
+                bandColors={agroupedBandColors}
+              />
               <HistogramHistoric
                 historicDistribution={historicDistribution}
                 bandColors={bandColors}

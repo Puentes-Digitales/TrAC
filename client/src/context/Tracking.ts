@@ -9,6 +9,8 @@ type TrackingTemplateData = {
   program?: string;
   program_menu?: string;
   curriculum?: string;
+  admission_type?: string;
+  cohort?: string;
   student?: string;
   showingProgress?: boolean;
   showingPrediction?: boolean;
@@ -73,11 +75,14 @@ export const TrackingManager: FC = memo(() => {
       program,
       program_menu,
       curriculum,
+      admission_type,
+      cohort,
       student,
       showingProgress,
       showingPrediction,
       showingProgressStudenCycle,
       showingStudentComplementaryInformation,
+      showingGroupedComplementaryInfo,
       coursesOpen,
       action,
       effect,
@@ -89,12 +94,16 @@ export const TrackingManager: FC = memo(() => {
     }: TrackingTemplateData) => {
       return `program=${program || null},program-menu=${
         program_menu || null
-      },curriculum=${curriculum || null},student=${
-        student || null
-      },showing-progress=${showingProgress ? 1 : 0},showing-prediction=${
+      },curriculum=${curriculum || null},admission_type=${
+        admission_type || null
+      },cohort=${cohort || null},student=${student || null},showing-progress=${
+        showingProgress ? 1 : 0
+      },showing-prediction=${
         showingPrediction ? 1 : 0
       },showing-student-complementary-information=${
         showingStudentComplementaryInformation ? 1 : 0
+      },showing-grouped-complementary-info=${
+        showingGroupedComplementaryInfo ? 1 : 0
       },showing-progress-student-cycle=${
         showingProgressStudenCycle ? 1 : 0
       },courses-open=${coursesOpen || null},user-config=${

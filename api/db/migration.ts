@@ -65,6 +65,8 @@ const migration = async () => {
     FeedbackFormQuestionTable,
     FeedbackFormTable,
     FeedbackResultTable,
+    GroupedComplementaryInformationTable,
+    GROUPED_COMPLEMENTARY_INFORMATION_TABLE,
     PARAMETER_TABLE,
     ParameterTable,
     PERFORMANCE_BY_LOAD_TABLE,
@@ -81,10 +83,10 @@ const migration = async () => {
     EXTERNAL_EVALUATION_TABLE,
     EXTERNAL_EVALUATION_STATS_TABLE,
     STUDENT_CLUSTER_TABLE,
-    STUDENT_GROUPED_COMPLEMENTARY_TABLE,
     STUDENT_COURSE_TABLE,
     STUDENT_DROPOUT_TABLE,
     STUDENT_EMPLOYED_TABLE,
+    STUDENT_GROUPED_EMPLOYED_TABLE,
     STUDENT_PROGRAM_TABLE,
     STUDENT_TABLE,
     STUDENT_TERM_TABLE,
@@ -94,10 +96,10 @@ const migration = async () => {
     ExternalEvaluationStatsTable,
     StudentClusterTable,
     StudentCourseTable,
-    StudentGroupedComplementaryTable,
     StudentDropoutTable,
     StudentEmployedTable,
     StudentProgramTable,
+    StudentGroupedEmployedTable,
     StudentTable,
     StudentTermTable,
     TRACKING_TABLE,
@@ -175,6 +177,7 @@ const migration = async () => {
           config: {
             ...baseUserConfig,
             SHOW_STUDENT_COMPLEMENTARY_INFORMATION: true,
+            SHOW_GROUPED_COMPLEMENTARY_INFO: true,
             SHOW_DROPOUT: true,
             SHOW_PROGRESS_STUDENT_CYCLE: true,
             SHOW_STUDENT_LIST: true,
@@ -336,12 +339,12 @@ const migration = async () => {
       }
     });
 
-  const studentGroupedComplementaryStructure = dbData.schema
-    .hasTable(STUDENT_GROUPED_COMPLEMENTARY_TABLE)
+  const groupedComplementaryInformationStructure = dbData.schema
+    .hasTable(GROUPED_COMPLEMENTARY_INFORMATION_TABLE)
     .then(async (exists) => {
       if (!exists) {
         await dbData.schema.createTable(
-          STUDENT_GROUPED_COMPLEMENTARY_TABLE,
+          GROUPED_COMPLEMENTARY_INFORMATION_TABLE,
           (table) => {
             table.integer("id", 8).notNullable().primary();
             table.text("program_id").notNullable();
@@ -355,11 +358,42 @@ const migration = async () => {
             table.float("timely_university_degree_rate", 3).notNullable();
           }
         );
-        await StudentGroupedComplementaryTable().insert(
+        await GroupedComplementaryInformationTable().insert(
           (
-            await import(
-              "./mockData/student_grouped_complementary_information.json"
-            )
+            await import("./mockData/grouped_complementary_information.json")
+          ).default.map(({ program_id, curriculum, cohort, ...rest }) => {
+            return {
+              ...rest,
+              program_id: program_id.toString(),
+              curriculum: curriculum.toString(),
+              cohort: cohort.toString(),
+            };
+          })
+        );
+      }
+    });
+
+  const studentGroupedEmployedStructure = dbData.schema
+    .hasTable(STUDENT_GROUPED_EMPLOYED_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(
+          STUDENT_GROUPED_EMPLOYED_TABLE,
+          (table) => {
+            table.integer("id", 8).notNullable().primary();
+            table.text("program_id").notNullable();
+            table.text("curriculum").notNullable();
+            table.text("type_admission").notNullable();
+            table.text("cohort").notNullable();
+            table.integer("total_students", 6).notNullable();
+            table.float("employed_rate", 3).notNullable();
+            table.float("average_time_job_finding", 3).notNullable();
+            table.float("employed_rate_educational_system", 3).notNullable();
+          }
+        );
+        await StudentGroupedEmployedTable().insert(
+          (
+            await import("./mockData/student_grouped_employed.json")
           ).default.map(({ program_id, curriculum, cohort, ...rest }) => {
             return {
               ...rest,
@@ -633,18 +667,19 @@ const migration = async () => {
     .then(async (exists) => {
       if (!exists) {
         await dbData.schema.createTable(COURSE_GROUPED_STATS_TABLE, (table) => {
-          table.text("id").notNullable();
+          table.text("course_id").notNullable();
           table.text("program_id").notNullable();
           table.text("curriculum").notNullable();
           table.text("type_admission").notNullable();
           table.text("cohort").notNullable();
           table.primary([
-            "id",
+            "course_id",
             "cohort",
             "type_admission",
             "program_id",
             "curriculum",
           ]);
+          table.integer("n_students").notNullable();
           table.integer("n_total", 8).notNullable();
           table.integer("n_finished", 8).notNullable();
           table.integer("n_pass", 8).notNullable();
@@ -929,6 +964,7 @@ const migration = async () => {
     course,
     courseStats,
     courseGroupedStats,
+    groupedComplementaryInformationStructure,
     param,
     program,
     programStructure,
@@ -936,7 +972,7 @@ const migration = async () => {
     student,
     studentAdmission,
     studentExternalEvaluation,
-    studentGroupedComplementaryStructure,
+    studentGroupedEmployedStructure,
     externalEvaluation,
     externalEvaluationStats,
     studentCourse,
