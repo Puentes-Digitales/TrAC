@@ -501,13 +501,19 @@ export function Dashboard() {
       );
       if (user?.config?.FOREPLAN)
         ForePlanSwitchComponent = <ForeplanModeSwitch />;
-      if (studentData.dropout?.active && user?.config?.SHOW_DROPOUT) {
+      if (
+        studentData.dropout?.active &&
+        studentData.dropout.prob_dropout &&
+        user?.config?.SHOW_DROPOUT
+      ) {
         DropoutComponent = (
           <Dropout
             probability={studentData.dropout.prob_dropout}
             accuracy={studentData.dropout.model_accuracy}
           />
         );
+      } else {
+        DropoutComponent = null;
       }
       if (
         studentData.admission?.active &&
@@ -1150,29 +1156,29 @@ export function Dashboard() {
 
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
-          <Stack pt="25px">
+          <Box pt={25}>
             <Flex>
               {GroupedPerformanceInfoComponent}
               {ComplementaryInfoComponent}
               {ProgressStudentComponent}
             </Flex>
-          </Stack>
+          </Box>
 
           {TimeLineComponent && (
             <Box id="Gráfico Avance">
               {TimeLineComponent}
 
-              <Stack isInline pl="45px">
+              <Stack isInline pl={45}>
                 {TakenSemestersComponent}
               </Stack>
             </Box>
           )}
-          <Box pt="25px">
+          <Stack pt={25}>
             {DropoutComponent}
-            <Stack isInline pt="55px">
+            <Stack pt={DropoutComponent ? 55 : 245}>
               {ForePlanSwitchComponent}
             </Stack>
-          </Box>
+          </Stack>
         </Flex>
       </ScrollContainer>
 
