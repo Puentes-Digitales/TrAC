@@ -133,6 +133,9 @@ const migration = async () => {
         table.text("student_id").notNullable().defaultTo("");
       });
 
+      const mockStudent = (await import("./mockData/student.json")).default[0]
+        ?.id;
+
       await UserTable().insert({
         email: "admin@admin.dev",
         password: sha1("admin").toString(),
@@ -140,7 +143,7 @@ const migration = async () => {
         locked: false,
         admin: true,
         type: UserType.Director,
-        student_id: (await import("./mockData/student.json")).default[0].id,
+        student_id: mockStudent ?? "",
       });
     }
   });

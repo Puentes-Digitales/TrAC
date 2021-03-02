@@ -168,7 +168,7 @@ export class TakenCourseResolver {
       return {
         min: toNumber(min),
         max: toNumber(max),
-        color,
+        color: color ?? "",
       };
     });
 

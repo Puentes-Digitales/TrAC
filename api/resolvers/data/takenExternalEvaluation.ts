@@ -125,7 +125,7 @@ export class TakenExternalEvaluationResolver {
       return {
         min: toNumber(min),
         max: toNumber(max),
-        color,
+        color: color ?? "",
       };
     });
 

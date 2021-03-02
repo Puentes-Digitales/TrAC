@@ -161,27 +161,27 @@ export const CurriculumsDataLoader = new DataLoader(
             },
           });
 
-          acum[curriculum].semesters[semester].courses.push({
-            id,
-            code: course_id,
-          });
-
+          if (acum[curriculum] && acum[curriculum]!.semesters[semester])
+            acum[curriculum]!.semesters[semester]!.courses.push({
+              id,
+              code: course_id,
+            });
           return acum;
         }, {});
 
-        for (let i in curriculums) {
-          for (let j in curriculums[i].semesters) {
+        Object.values(curriculums).map((curr) =>
+          Object.values(curr.semesters).map((semester) =>
             data2.map((val, index) => {
-              if (val.curriculum == i && val.semester.toString() == j) {
-                curriculums[i].semesters[j].externalEvaluations.push({
+              if (val.curriculum == curr.id && val.semester == semester.id) {
+                semester.externalEvaluations.push({
                   id: val.id,
                   code: val.external_evaluation_id,
                 });
                 data2.splice(index, 1);
               }
-            });
-          }
-        }
+            })
+          )
+        );
 
         return Object.values(curriculums).map(({ id, semesters }) => {
           return {
@@ -285,7 +285,7 @@ export const CourseGroupedStatsDataLoader = new DataLoader(
             return {
               min: toNumber(min),
               max: toNumber(max),
-              color,
+              color: color ?? "",
             };
           });
 
@@ -343,7 +343,7 @@ export const ExternalEvaluationGroupedStatsDataLoader = new DataLoader(
             return {
               min: toNumber(min),
               max: toNumber(max),
-              color,
+              color: color ?? "",
             };
           });
 
