@@ -260,7 +260,7 @@ export const SearchBar: FC<{
         alignItems="center"
         className="stack"
       >
-        {isDirector && <GrupedMode />}
+        {isDirector && user?.config?.SHOW_GROUPED_VIEW && <GrupedMode />}
 
         {user?.admin && <MockingMode />}
         {(student_id || groupedActive) && user?.config?.SHOW_DOWNLOAD && (
