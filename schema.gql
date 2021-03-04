@@ -348,7 +348,7 @@ type Student {
   admission: Admission!
   curriculums: [String!]!
   dropout: Dropout
-  employed: Employed!
+  employed: Employed
   id: ID!
   mention: String!
   n_courses_cycles: [Float!]!
