@@ -25,8 +25,6 @@ export type Scalars = {
 
 export type Admission = {
   active: Scalars["Boolean"];
-  final_evaluation?: Maybe<Scalars["Float"]>;
-  initial_evaluation?: Maybe<Scalars["Float"]>;
   type_admission: Scalars["String"];
 };
 
@@ -903,10 +901,7 @@ export type SearchStudentMutation = {
       dropout?: Maybe<
         Pick<Dropout, "prob_dropout" | "model_accuracy" | "active">
       >;
-      admission: Pick<
-        Admission,
-        "active" | "type_admission" | "initial_evaluation" | "final_evaluation"
-      >;
+      admission: Pick<Admission, "active" | "type_admission">;
       employed?: Maybe<
         Pick<
           Employed,
@@ -945,10 +940,7 @@ export type StudentsListQuery = {
   students: Array<
     Pick<Student, "id" | "progress" | "start_year"> & {
       dropout?: Maybe<Pick<Dropout, "prob_dropout" | "explanation">>;
-      admission: Pick<
-        Admission,
-        "active" | "type_admission" | "initial_evaluation" | "final_evaluation"
-      >;
+      admission: Pick<Admission, "active" | "type_admission">;
     }
   >;
 };
@@ -2371,8 +2363,6 @@ export const SearchStudentDocument = gql`
       admission {
         active
         type_admission
-        initial_evaluation
-        final_evaluation
       }
       employed {
         employed
@@ -2580,8 +2570,6 @@ export const StudentsListDocument = gql`
       admission {
         active
         type_admission
-        initial_evaluation
-        final_evaluation
       }
     }
   }
