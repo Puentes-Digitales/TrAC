@@ -523,8 +523,6 @@ export function Dashboard() {
         ComplementaryInfoComponent = (
           <ComplementaryInfo
             type_admission={studentData.admission.type_admission}
-            initial_evaluation={studentData.admission.initial_evaluation}
-            final_evaluation={studentData.admission.final_evaluation}
             educational_system={studentData.employed?.educational_system}
             institution={studentData.employed?.institution}
             months_to_first_job={studentData.employed?.months_to_first_job}
@@ -703,8 +701,15 @@ export function Dashboard() {
                     term: termTypeToNumber(explicitSemester[0]),
                   }
                 : {
-                    year: programData.courseGroupedStats[1]?.year,
-                    term: programData.courseGroupedStats[1]?.term,
+                    year: programData.courseGroupedStats
+                      .filter((course) => course.curriculum == curriculumId)
+                      .map((course) => course.year)
+                      .reduce((a, b) => Math.max(a, b)),
+                    term: programData.courseGroupedStats.filter(
+                      (course) =>
+                        course.curriculum == chosenCurriculum &&
+                        course.cohort == chosenCohort
+                    )[0]?.term,
                   };
               const semester = {
                 n: va.id,
@@ -752,7 +757,7 @@ export function Dashboard() {
                         value.year >=
                           (chosenCohort != ""
                             ? toInteger(chosenCohort)
-                            : value.year + 1)
+                            : value.year)
                     );
 
                     const courseSelected = filteredData.filter(
@@ -860,55 +865,84 @@ export function Dashboard() {
         }
 
         if (chosenCurriculum && chosenCohort && studentListData) {
-          const cumulated = studentListData.students_filter.map((student) =>
-            student.curriculums[0] == chosenCurriculum
-              ? student.terms
-                  .map((semester) => semester.semestral_grade)
-                  .reverse()
-              : []
+          const allStudents = studentListData.students_filter
+            .filter((stu) => stu.curriculums.includes(chosenCurriculum))
+            .map((stu) => {
+              return {
+                id: stu.id,
+                curriculums: stu.curriculums,
+                start_year: stu.start_year,
+                mention: stu.mention,
+                programs: stu.programs,
+                admission: stu.admission,
+                terms: stu.terms.filter(
+                  (term) => term.year >= toInteger(chosenCurriculum)
+                ),
+              };
+            });
+          const allStudentsGrades = allStudents.map((stu) =>
+            stu.terms
+              .map((semester) => {
+                if (semester.year >= toInteger(chosenCohort))
+                  return semester.semestral_grade;
+              })
+              .reverse()
           );
 
-          const filteredCumulated = studentListData.students_filter.map(
-            (student) =>
-              student.curriculums.includes(chosenCurriculum)
-                ? student.start_year == toInteger(chosenCohort)
-                  ? chosenAdmissionType
-                    ? student.admission.type_admission == chosenAdmissionType
-                      ? student.terms
-                          .map((semester) => semester.semestral_grade)
-                          .reverse()
-                      : []
-                    : student.terms
-                        .map((semester) => semester.semestral_grade)
-                        .reverse()
-                  : []
-                : []
+          const filteredStudents = studentListData.students_filter
+            .filter(
+              (stu) =>
+                stu.curriculums.includes(chosenCurriculum) &&
+                stu.start_year == toInteger(chosenCohort)
+            )
+            .map((stu) => {
+              return {
+                id: stu.id,
+                curriculums: stu.curriculums,
+                start_year: stu.start_year,
+                mention: stu.mention,
+                programs: stu.programs,
+                admission: stu.admission,
+                terms: stu.terms.filter(
+                  (term) => term.year >= toInteger(chosenCohort)
+                ),
+              };
+            });
+          const filteredStudentsGrades = filteredStudents.map((stu) =>
+            stu.terms
+              .map((semester) => {
+                if (semester.year >= toInteger(chosenCohort))
+                  return semester.semestral_grade;
+              })
+              .reverse()
           );
 
-          const maxTerm = cumulated
-            ?.map((v) => {
-              return v.length;
-            })
-            .reduce((a, b) => {
-              return Math.max(a, b);
-            });
+          const maxTerm =
+            allStudents.length != 0
+              ? allStudents
+                  ?.map((v) => v.terms.length)
+                  .reduce((a, b) => {
+                    return Math.max(a, b);
+                  })
+              : 0;
 
-          const filteredMaxTerm = filteredCumulated
-            .map((v) => {
-              return v.length;
-            })
-            .reduce((a, b) => {
-              return Math.max(a, b);
-            });
+          const filteredMaxTerm =
+            filteredStudents.length != 0
+              ? filteredStudents
+                  .map((v) => v.terms.length)
+                  .reduce((a, b) => {
+                    return Math.max(a, b);
+                  })
+              : 0;
 
           const grades = new Array();
           for (let i = 0; i < maxTerm; i++) {
-            grades.push(cumulated.map((v) => v[i] ?? 0));
+            grades.push(allStudentsGrades.map((v) => v[i] ?? 0));
           }
 
           const filteredGrades = new Array();
           for (let i = 0; i < filteredMaxTerm; i++) {
-            filteredGrades.push(filteredCumulated.map((v) => v[i] ?? 0));
+            filteredGrades.push(filteredStudentsGrades.map((v) => v[i] ?? 0));
           }
 
           const avgGrades = grades.map((arr) => {
@@ -937,7 +971,7 @@ export function Dashboard() {
             );
           });
 
-          const studentTerms = studentListData!.students_filter.filter(
+          const studentTerms = filteredStudents.filter(
             (student) => student.terms.length == filteredMaxTerm
           )[0]?.terms;
 
@@ -959,7 +993,7 @@ export function Dashboard() {
                   {studentTerms
                     .slice()
                     .reverse()
-                    .map(({ term, year, comments }, key) => {
+                    .map(({ term, year }, key) => {
                       if (n_students_per_semester[key])
                         return (
                           <GroupedTakenSemesterBox
@@ -967,7 +1001,7 @@ export function Dashboard() {
                             term={term}
                             n_students={n_students_per_semester[key] ?? 0}
                             year={year}
-                            comments={comments}
+                            comments={""}
                           />
                         );
                     })}

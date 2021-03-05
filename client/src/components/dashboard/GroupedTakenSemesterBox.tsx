@@ -39,7 +39,7 @@ function SingleBar({ height }: { height: number }) {
           x={textPosX}
           y={textPosY}
           fontWeight="bold"
-          font-size="15"
+          fontSize="15"
           fill={textColor}
         >
           {height}

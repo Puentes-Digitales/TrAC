@@ -15772,8 +15772,6 @@ const data: {
       },
       admission: {
         type_admission: "PSU",
-        initial_evaluation: 10,
-        final_evaluation: null,
         active: true,
       },
       employed: {

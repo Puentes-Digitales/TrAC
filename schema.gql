@@ -5,8 +5,6 @@
 
 type Admission {
   active: Boolean!
-  final_evaluation: Float
-  initial_evaluation: Float
   type_admission: String!
 }
 
