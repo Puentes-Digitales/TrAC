@@ -524,9 +524,9 @@ export function Dashboard() {
             type_admission={studentData.admission.type_admission}
             initial_evaluation={studentData.admission.initial_evaluation}
             final_evaluation={studentData.admission.final_evaluation}
-            educational_system={studentData.employed.educational_system}
-            institution={studentData.employed.institution}
-            months_to_first_job={studentData.employed.months_to_first_job}
+            educational_system={studentData.employed?.educational_system}
+            institution={studentData.employed?.institution}
+            months_to_first_job={studentData.employed?.months_to_first_job}
           />
         );
       }
