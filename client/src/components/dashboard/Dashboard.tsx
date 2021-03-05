@@ -517,6 +517,7 @@ export function Dashboard() {
       }
       if (
         studentData.admission?.active &&
+        studentData.employed &&
         user?.config?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION
       ) {
         ComplementaryInfoComponent = (
@@ -532,8 +533,8 @@ export function Dashboard() {
       }
       if (
         user?.config?.SHOW_PROGRESS_STUDENT_CYCLE &&
-        studentData.n_courses_cycles != undefined &&
-        studentData.n_cycles != undefined
+        studentData.n_courses_cycles.length > 0 &&
+        studentData.n_cycles.length > 0
       ) {
         ProgressStudentComponent = (
           <ProgressStudent
@@ -747,9 +748,33 @@ export function Dashboard() {
                         value.type_admission == chosenAdmissionType &&
                         value.cohort == chosenCohort &&
                         value.course_id == code &&
-                        value.year == foundData.year &&
-                        value.term == foundData.term
+                        value.year <= foundData.year! &&
+                        value.year >=
+                          (chosenCohort != ""
+                            ? toInteger(chosenCohort)
+                            : value.year + 1)
                     );
+
+                    const courseSelected = filteredData.filter(
+                      (value) =>
+                        value.year === foundData.year &&
+                        value.term === foundData.term
+                    );
+
+                    let numStudentsApproveed = 0;
+                    filteredData.map((value) => {
+                      if (value.year < foundData.year!) {
+                        numStudentsApproveed =
+                          numStudentsApproveed + value.n_pass;
+                      }
+                      if (
+                        value.year == foundData.year &&
+                        value.term <= foundData.term!
+                      ) {
+                        numStudentsApproveed =
+                          numStudentsApproveed + value.n_pass;
+                      }
+                    });
 
                     return {
                       code,
@@ -763,13 +788,13 @@ export function Dashboard() {
                       }),
                       historicDistribution: historicalDistribution,
                       bandColors,
-                      n_passed: filteredData[0] ? filteredData[0].n_pass : 0,
+                      n_passed: numStudentsApproveed,
                       n_total: filteredData[0] ? filteredData[0].n_students : 0,
-                      agroupedDistribution: filteredData[0]
-                        ? filteredData[0].distribution
+                      agroupedDistribution: courseSelected[0]
+                        ? courseSelected[0].distribution
                         : [],
-                      agroupedBandColors: filteredData[0]
-                        ? filteredData[0].color_bands
+                      agroupedBandColors: courseSelected[0]
+                        ? courseSelected[0].color_bands
                         : [],
                     };
                   }
