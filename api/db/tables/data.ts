@@ -220,8 +220,6 @@ export interface IStudentAdmission {
   student_id: string;
   active: boolean;
   type_admission: string;
-  initial_evaluation: number;
-  final_evaluation?: number;
 }
 
 export const STUDENT_ADMISSION_TABLE = "student_admission";
