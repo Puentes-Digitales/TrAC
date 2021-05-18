@@ -95,7 +95,8 @@ export const SearchBar: FC<{
     const groupedActive = useGroupedActive();
     return (
       <Button
-        basic
+        cursor="pointer"
+        colorScheme="blue"
         onClick={async (ev) => {
           setGroupedActive(!groupedActive);
           setTrackingData({ student: undefined });
@@ -109,7 +110,7 @@ export const SearchBar: FC<{
         }}
         color={groupedActive ? "blue" : "red"}
       >
-        {groupedActive ? "Grouped ON" : "Grouped OFF"}
+        {groupedActive ? GROUPED_ON : GROUPED_OFF}
       </Button>
     );
   });
@@ -177,6 +178,8 @@ export const SearchBar: FC<{
     PLACEHOLDER_SEARCH_STUDENT,
     LOGOUT_CONFIRMATION_LABEL,
     HELP_ENABLED,
+    GROUPED_ON,
+    GROUPED_OFF,
   } = useContext(ConfigContext);
 
   const {

@@ -42,6 +42,8 @@ export const baseConfig = {
     "Tiempo promedio en encontrar empleo:",
   GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM:
     "Tasa de ocupación en sistema educativo:",
+  GROUPED_OFF: "No agrupado ",
+  GROUPED_ON: "Agrupado ",
   COMPLEMENTARY_INFORMATION_PERCENT_MARK: "%",
   COMPLEMENTARY_INFORMATION_INITIAL_EVALUATION:
     "Evaluación inicial diagnóstica: ",
