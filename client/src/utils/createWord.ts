@@ -1,14 +1,14 @@
 import { AlignmentType, Document, HeadingLevel, Media, Paragraph } from "docx";
 
 import { IImagesID } from "../../../interfaces";
-
+import { baseConfig } from "../../constants/baseConfig";
 export class DocumentCreator {
   public create(link: IImagesID[]): Document {
     const document = new Document();
     document.addSection({
       children: [
         new Paragraph({
-          text: "Informe del Estudiante",
+          text: baseConfig.STUDENT_REPORT,
           heading: HeadingLevel.TITLE,
         }),
         ...link
@@ -46,7 +46,7 @@ export class DocumentCreatorAgrouped {
     document.addSection({
       children: [
         new Paragraph({
-          text: "Informe Informacion Agrupada",
+          text: baseConfig.GROUPED_REPORT_INFORMATION,
           heading: HeadingLevel.TITLE,
         }),
         ...link

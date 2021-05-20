@@ -44,6 +44,7 @@ export const baseConfig = {
     "Tasa de ocupación en sistema educativo:",
   GROUPED_OFF: "No agrupado ",
   GROUPED_ON: "Agrupado ",
+  GROUPED_REPORT_INFORMATION: "Informe Información Agrupada",
   COMPLEMENTARY_INFORMATION_PERCENT_MARK: "%",
   COMPLEMENTARY_INFORMATION_INITIAL_EVALUATION:
     "Evaluación inicial diagnóstica: ",
@@ -313,6 +314,7 @@ export const baseConfig = {
   STATE_PENDING_LABEL_MINI: "Pen",
   STUDENT_LABEL: "Estudiante",
   STUDENT_LIST_TITLE: "Lista de estudiantes",
+  STUDENT_REPORT: "Informe de Estudiantes",
   TAKEN_SEMESTER_BOX_ACTIVE: "yellow.400",
   TAKEN_SEMESTER_BOX_BACKGROUND_COLOR: "rgb(245,245,245)",
   TAKEN_SEMESTER_BOX_BORDER: "3px solid",
