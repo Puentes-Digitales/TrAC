@@ -1224,7 +1224,7 @@ export function Dashboard() {
           </Box>
 
           {TimeLineComponent && (
-            <Box id="Gráfico Avance">
+            <Box id="graphic_advance">
               {TimeLineComponent}
 
               <Stack isInline pl={45}>

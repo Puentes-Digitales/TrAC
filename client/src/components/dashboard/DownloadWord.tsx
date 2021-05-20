@@ -30,7 +30,7 @@ export const DownloadWord: FC<{
   const ids = [
     "student_progress",
     "complementary_information",
-    "Gráfico Avance",
+    "graphic_advance",
     "Malla",
     "Percentil Riesgo",
   ];
@@ -71,7 +71,7 @@ export const DownloadWord: FC<{
       ids.map(async (id) => {
         let input = document.getElementById(id);
         if (typeof input !== "undefined" && input !== null) {
-          if (id === "Gráfico Avance") {
+          if (id === "graphic_advance") {
             const value = await domtoimage.toPng(input, { bgcolor: "white" });
             lista.push({ id, value });
           } else if (id === "Malla") {
