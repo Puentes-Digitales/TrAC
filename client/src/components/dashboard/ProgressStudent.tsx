@@ -34,7 +34,7 @@ export const ProgressStudent: FC<{
         color="black"
         transition="box-shadow 0.4s ease-in-out"
         data-testid="BoxContainer"
-        id="Progreso del estudiante"
+        id="student_progress"
       >
         <Stack className="unselectable" isInline pl={5} pt={5} pb={5} pr={3}>
           <Box>

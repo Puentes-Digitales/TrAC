@@ -28,7 +28,7 @@ export const DownloadWord: FC<{
   }, [show]);
 
   const ids = [
-    "Progreso del estudiante",
+    "student_progress",
     "Información Complementaria",
     "Gráfico Avance",
     "Malla",
