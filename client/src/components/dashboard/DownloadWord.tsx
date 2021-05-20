@@ -11,6 +11,7 @@ import { useGroupedActive } from "../../context/DashboardInput";
 import { IImagesID } from "../../../../interfaces";
 import { setTrackingData, track } from "../../context/Tracking";
 import { useColorMode } from "@chakra-ui/react";
+import { baseConfig } from "../../../constants/baseConfig";
 
 import JSZip from "jszip";
 export const DownloadWord: FC<{
@@ -47,14 +48,17 @@ export const DownloadWord: FC<{
     }
     idClicks.map(async (id) => {
       let input = document.getElementById(id);
-      console.log(input);
+      console.log("AQUI EL INPUT", input);
+
       if (typeof input !== "undefined" && input !== null) {
+        console.log(input.className);
         if (
           input.className == "css-1mm8dcq" ||
           input.className == "css-1pjrc6s" ||
           input.className == "css-np2p2s"
         ) {
           input.click();
+          console.log("ENTRA AL IF");
         }
       }
     });
@@ -133,7 +137,7 @@ export const DownloadWord: FC<{
       colorScheme="blue"
       onClick={groupedActive ? sendWordAgrouped : sendWord}
     >
-      Download Word
+      {baseConfig.DOWNLOAD_WORD}
     </Button>
   );
 });

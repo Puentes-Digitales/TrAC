@@ -53,6 +53,7 @@ export const baseConfig = {
   COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION: "Nombre de institución:",
   COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS: "Meses hasta encontrar trabajo:",
   COMPLEMENTARY_INFORMATION_TEXT_COLOR: "black",
+  DOWNLOAD_WORD: "Descargar Informe",
   GROPUED_COURSE_BOX_COLORS: [
     {
       val: 0,
