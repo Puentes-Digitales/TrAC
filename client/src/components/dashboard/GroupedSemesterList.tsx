@@ -79,7 +79,7 @@ export const GroupedSemestersList: FC<{
       vertical={false}
       activationDistance={5}
     >
-      <Stack isInline paddingLeft="5px" id="Malla">
+      <Stack isInline paddingLeft="5px" id="course_plan">
         {semesters.map(({ courses, n, externalEvaluations }, key) => {
           return (
             <GroupedSemester

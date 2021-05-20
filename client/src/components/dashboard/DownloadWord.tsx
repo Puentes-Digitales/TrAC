@@ -31,7 +31,7 @@ export const DownloadWord: FC<{
     "student_progress",
     "complementary_information",
     "graphic_advance",
-    "Malla",
+    "course_plan",
     "Percentil Riesgo",
   ];
 
@@ -74,7 +74,7 @@ export const DownloadWord: FC<{
           if (id === "graphic_advance") {
             const value = await domtoimage.toPng(input, { bgcolor: "white" });
             lista.push({ id, value });
-          } else if (id === "Malla") {
+          } else if (id === "course_plan") {
             const value = await domtoimage.toPng(input);
             const value2 = await domtoimage.toBlob(input);
             zip.file("Malla.jpeg", value2, { base64: true });

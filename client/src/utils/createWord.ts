@@ -21,7 +21,7 @@ export class DocumentCreator {
                 heading: HeadingLevel.HEADING_2,
               })
             );
-            if (cur.id == "Malla") {
+            if (cur.id == "course_plan") {
               arr.push(
                 new Paragraph(Media.addImage(document, cur.value, 650, 400))
               );
