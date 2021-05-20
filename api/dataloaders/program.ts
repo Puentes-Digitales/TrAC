@@ -169,19 +169,21 @@ export const CurriculumsDataLoader = new DataLoader(
           return acum;
         }, {});
 
-        Object.values(curriculums).map((curr) =>
-          Object.values(curr.semesters).map((semester) =>
-            data2.map((val, index) => {
-              if (val.curriculum == curr.id && val.semester == semester.id) {
+        for (const curr of Object.values(curriculums)) {
+          for (const semester of Object.values(curr.semesters)) {
+            for (let index = 0; index < data2.length; ++index) {
+              const val = data2[index]!;
+              if (val.curriculum === curr.id && val.semester === semester.id) {
                 semester.externalEvaluations.push({
                   id: val.id,
                   code: val.external_evaluation_id,
                 });
                 data2.splice(index, 1);
+                index--;
               }
-            })
-          )
-        );
+            }
+          }
+        }
 
         return Object.values(curriculums).map(({ id, semesters }) => {
           return {
