@@ -39,7 +39,7 @@ Object {
         <div
           class="css-1b6jfu7"
           data-testid="BoxContainer"
-          id="Información Complementaria"
+          id="complementary_information"
         >
           <div
             class="chakra-stack unselectable css-iquqh5"
@@ -94,7 +94,7 @@ Object {
       <div
         class="css-1b6jfu7"
         data-testid="BoxContainer"
-        id="Información Complementaria"
+        id="complementary_information"
       >
         <div
           class="chakra-stack unselectable css-iquqh5"
