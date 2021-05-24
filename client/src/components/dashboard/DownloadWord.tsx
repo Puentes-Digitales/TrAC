@@ -32,13 +32,13 @@ export const DownloadWord: FC<{
     "complementary_information",
     "graphic_advance",
     "course_plan",
-    "Percentil Riesgo",
+    "danger_percentile",
   ];
 
   var zip = new JSZip();
   let lista: IImagesID[] = [];
 
-  const idClicks = ["Percentil Riesgo", "complementary_information"];
+  const idClicks = ["danger_percentile", "complementary_information"];
 
   const doClick = async () => {
     if (colorMode === "dark") {
