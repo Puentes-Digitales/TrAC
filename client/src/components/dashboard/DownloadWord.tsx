@@ -42,23 +42,14 @@ export const DownloadWord: FC<{
 
   const doClick = async () => {
     if (colorMode === "dark") {
-      console.log("color");
       let toggle = document.getElementById("toggleTheme");
       toggle!.click();
     }
     idClicks.map(async (id) => {
       let input = document.getElementById(id);
-      console.log("AQUI EL INPUT", input);
-
       if (typeof input !== "undefined" && input !== null) {
-        console.log(input.className);
-        if (
-          input.className == "css-1mm8dcq" ||
-          input.className == "css-1pjrc6s" ||
-          input.className == "css-np2p2s"
-        ) {
+        if (show === false) {
           input.click();
-          console.log("ENTRA AL IF");
         }
       }
     });
@@ -73,15 +64,15 @@ export const DownloadWord: FC<{
         if (typeof input !== "undefined" && input !== null) {
           if (id === "graphic_advance") {
             const value = await domtoimage.toPng(input, { bgcolor: "white" });
-            lista.push({ id, value });
+            lista.push({ id: baseConfig.GRAPHIC_ADVANCE, value });
           } else if (id === "course_plan") {
             const value = await domtoimage.toPng(input);
             const value2 = await domtoimage.toBlob(input);
             zip.file("Malla.jpeg", value2, { base64: true });
-            lista.push({ id, value });
+            lista.push({ id: baseConfig.COURSE_PLAN, value });
           } else {
             const value = await domtoimage.toPng(input);
-            lista.push({ id, value });
+            lista.push({ id: baseConfig.COMPLEMENTARY_INFORMATION, value });
           }
         }
       })

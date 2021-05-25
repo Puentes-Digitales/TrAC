@@ -1,4 +1,6 @@
 export const baseConfig = {
+  GRAPHIC_ADVANCE: "Gráfico Avance",
+  COURSE_PLAN: "Malla",
   ACTIVE_COURSE_BOX_COLOR: "#718096",
   CANCELED_HISTORIC_TOOLTIP_LABEL: "Anulada",
   CHECK_STUDENT_FROM_LIST_LABEL: "Ver estudiante",
