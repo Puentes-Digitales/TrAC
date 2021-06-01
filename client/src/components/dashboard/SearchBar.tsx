@@ -15,6 +15,7 @@ import React, {
   useState,
 } from "react";
 import Select from "react-select";
+import { Button as Button2 } from "@chakra-ui/react";
 import { Button, Icon } from "semantic-ui-react";
 import pixelWidth from "string-pixel-width";
 import { useRememberState } from "use-remember-state";
@@ -94,9 +95,10 @@ export const SearchBar: FC<{
   const GrupedMode: FC = memo(() => {
     const groupedActive = useGroupedActive();
     return (
-      <Button
+      <Button2
         cursor="pointer"
         colorScheme="blue"
+        mr={3}
         onClick={async (ev) => {
           setGroupedActive(!groupedActive);
           setTrackingData({ student: undefined });
@@ -108,10 +110,9 @@ export const SearchBar: FC<{
             });
           }
         }}
-        color={groupedActive ? "blue" : "red"}
       >
         {groupedActive ? GROUPED_ON : GROUPED_OFF}
-      </Button>
+      </Button2>
     );
   });
 
