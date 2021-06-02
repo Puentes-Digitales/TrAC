@@ -155,12 +155,15 @@ const OuterCourseBox: FC<
 
     const borderWidth =
       activeCourse || isFutureCourseFulfilled
-        ? config.COURSE_BOX_BORDER_WIDTH_ACTIVE
-        : config.COURSE_BOX_BORDER_WIDTH_INACTIVE;
+        ? config.EXTERNAL_EVALUATION_BOX_BORDER_WIDTH_ACTIVE
+        : config.EXTERNAL_EVALUATION_BOX_BORDER_WIDTH_INACTIVE;
 
     const boxShadow = `0px 0px 0px ${borderWidth} ${borderColor}`;
 
-    const color = useColorModeValue(config.COURSE_BOX_TEXT_COLOR, "white");
+    const color = useColorModeValue(
+      config.EXTERNAL_EVALUATION_BOX_TEXT_COLOR,
+      "white"
+    );
     return (
       <Flex
         m={1}
@@ -170,7 +173,7 @@ const OuterCourseBox: FC<
         borderRadius={5}
         opacity={opacity}
         boxShadow={boxShadow}
-        transition={config.COURSE_BOX_ALL_TRANSITION_DURATION}
+        transition={config.EXTERNAL_EVALUATION_BOX_ALL_TRANSITION_DURATION}
         className="unselectable courseBox"
         padding={0}
         overflow="hidden"
@@ -184,7 +187,10 @@ const OuterCourseBox: FC<
 const MainBlockOuter: FC<Pick<IExternalEvaluation, "code">> = memo(
   ({ children, code }) => {
     const config = useContext(ConfigContext);
-    const bg = useColorModeValue(config.COURSE_BOX_BACKGROUND_COLOR, "#1A202C");
+    const bg = useColorModeValue(
+      config.EXTERNAL_EVALUATION_BOX_BACKGROUND_COLOR,
+      "#1A202C"
+    );
     return (
       <Flex
         w="100%"
@@ -257,7 +263,7 @@ const SecondaryBlockOuter: FC<
       }
       default: {
         return colorMode === "light"
-          ? config.COURSE_BOX_BACKGROUND_COLOR
+          ? config.EXTERNAL_EVALUATION_BOX_BACKGROUND_COLOR
           : config.STATE_COURSE_DEFAULT_DARK_COLOR;
       }
     }
@@ -370,7 +376,7 @@ export function ExternalEvaluationBox({
 
   const borderColor = (() => {
     if (activeCourse) {
-      return config.ACTIVE_COURSE_BOX_COLOR;
+      return config.ACTIVE_EXTERNAL_EVALUATION_BOX_COLOR;
     }
 
     if (isFutureCourseFulfilled) {
@@ -378,15 +384,15 @@ export function ExternalEvaluationBox({
     }
 
     if (activeFlow) {
-      return config.FLOW_COURSE_BOX_COLOR;
+      return config.FLOW_EXTERNAL_EVALUATION_BOX_COLOR;
     }
     if (activeRequisites) {
-      return config.REQUISITE_COURSE_BOX_COLOR;
+      return config.REQUISITE_EXTERNAL_EVALUATION_BOX_COLOR;
     }
     if (explicitSemester) {
-      return config.EXPLICIT_SEMESTER_COURSE_BOX_COLOR;
+      return config.EXPLICIT_SEMESTER_EXTERNAL_EVALUATION_BOX_COLOR;
     }
-    return config.INACTIVE_COURSE_BOX_COLOR;
+    return config.INACTIVE_EXTERNAL_EVALUATION_BOX_COLOR;
   })();
 
   const shouldPredictCourseState = useMemo(() => {
