@@ -250,21 +250,21 @@ const SecondaryBlockOuter: FC<
   const stateColor = useMemo(() => {
     switch (state) {
       case StateCourse.Passed: {
-        return config.STATE_COLOR_PASS_FALLBACK;
+        return config.STATE_COLOR_PASS_FALLBACK_EXTERNAL_EVALUATION;
       }
       case StateCourse.Current: {
-        return config.STATE_COURSE_CURRENT_COLOR;
+        return config.STATE_COURSE_CURRENT_COLOR_EXTERNAL_EVALUATION;
       }
       case StateCourse.Canceled: {
-        return config.STATE_COURSE_CANCELED_COLOR;
+        return config.STATE_COURSE_CANCELED_COLOR_EXTERNAL_EVALUATION;
       }
       case StateCourse.Pending: {
-        return config.STATE_COURSE_PENDING_COLOR;
+        return config.STATE_COURSE_PENDING_COLOR_EXTERNAL_EVALUATION;
       }
       default: {
         return colorMode === "light"
           ? config.EXTERNAL_EVALUATION_BOX_BACKGROUND_COLOR
-          : config.STATE_COURSE_DEFAULT_DARK_COLOR;
+          : config.STATE_COURSE_DEFAULT_DARK_COLOR_EXTERNAL_EVALUATION;
       }
     }
   }, [state, colorMode, config]);
