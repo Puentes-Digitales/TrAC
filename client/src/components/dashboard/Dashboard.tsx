@@ -501,33 +501,38 @@ export function Dashboard() {
       );
       if (user?.config?.FOREPLAN)
         ForePlanSwitchComponent = <ForeplanModeSwitch />;
-      if (studentData.dropout?.active && user?.config?.SHOW_DROPOUT) {
+      if (
+        studentData.dropout?.active &&
+        studentData.dropout.prob_dropout &&
+        user?.config?.SHOW_DROPOUT
+      ) {
         DropoutComponent = (
           <Dropout
             probability={studentData.dropout.prob_dropout}
             accuracy={studentData.dropout.model_accuracy}
           />
         );
+      } else {
+        DropoutComponent = null;
       }
       if (
         studentData.admission?.active &&
+        studentData.employed &&
         user?.config?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION
       ) {
         ComplementaryInfoComponent = (
           <ComplementaryInfo
             type_admission={studentData.admission.type_admission}
-            initial_evaluation={studentData.admission.initial_evaluation}
-            final_evaluation={studentData.admission.final_evaluation}
-            educational_system={studentData.employed.educational_system}
-            institution={studentData.employed.institution}
-            months_to_first_job={studentData.employed.months_to_first_job}
+            educational_system={studentData.employed?.educational_system}
+            institution={studentData.employed?.institution}
+            months_to_first_job={studentData.employed?.months_to_first_job}
           />
         );
       }
       if (
         user?.config?.SHOW_PROGRESS_STUDENT_CYCLE &&
-        studentData.n_courses_cycles != undefined &&
-        studentData.n_cycles != undefined
+        studentData.n_courses_cycles.length > 0 &&
+        studentData.n_cycles.length > 0
       ) {
         ProgressStudentComponent = (
           <ProgressStudent
@@ -669,6 +674,7 @@ export function Dashboard() {
           ? curriculumId === chosenCurriculum
           : true;
       });
+
       if (data && studentData) {
         SemestersComponent = (
           <SemestersList
@@ -695,8 +701,15 @@ export function Dashboard() {
                     term: termTypeToNumber(explicitSemester[0]),
                   }
                 : {
-                    year: programData.courseGroupedStats[1]?.year,
-                    term: programData.courseGroupedStats[1]?.term,
+                    year: programData.courseGroupedStats
+                      .filter((course) => course.curriculum == curriculumId)
+                      .map((course) => course.year)
+                      .reduce((a, b) => Math.max(a, b)),
+                    term: programData.courseGroupedStats.filter(
+                      (course) =>
+                        course.curriculum == chosenCurriculum &&
+                        course.cohort == chosenCohort
+                    )[0]?.term,
                   };
               const semester = {
                 n: va.id,
@@ -711,7 +724,6 @@ export function Dashboard() {
                         value.year == foundData.year &&
                         value.term == foundData.term
                     );
-                    console.log(externalEvaluationFilter);
                     return {
                       code,
                       name,
@@ -741,9 +753,33 @@ export function Dashboard() {
                         value.type_admission == chosenAdmissionType &&
                         value.cohort == chosenCohort &&
                         value.course_id == code &&
-                        value.year == foundData.year &&
-                        value.term == foundData.term
+                        value.year <= foundData.year! &&
+                        value.year >=
+                          (chosenCohort != ""
+                            ? toInteger(chosenCohort)
+                            : value.year)
                     );
+
+                    const courseSelected = filteredData.filter(
+                      (value) =>
+                        value.year === foundData.year &&
+                        value.term === foundData.term
+                    );
+
+                    let numStudentsApproveed = 0;
+                    filteredData.map((value) => {
+                      if (value.year < foundData.year!) {
+                        numStudentsApproveed =
+                          numStudentsApproveed + value.n_pass;
+                      }
+                      if (
+                        value.year == foundData.year &&
+                        value.term <= foundData.term!
+                      ) {
+                        numStudentsApproveed =
+                          numStudentsApproveed + value.n_pass;
+                      }
+                    });
 
                     return {
                       code,
@@ -757,13 +793,13 @@ export function Dashboard() {
                       }),
                       historicDistribution: historicalDistribution,
                       bandColors,
-                      n_passed: filteredData[0] ? filteredData[0].n_pass : 0,
+                      n_passed: numStudentsApproveed,
                       n_total: filteredData[0] ? filteredData[0].n_students : 0,
-                      agroupedDistribution: filteredData[0]
-                        ? filteredData[0].distribution
+                      agroupedDistribution: courseSelected[0]
+                        ? courseSelected[0].distribution
                         : [],
-                      agroupedBandColors: filteredData[0]
-                        ? filteredData[0].color_bands
+                      agroupedBandColors: courseSelected[0]
+                        ? courseSelected[0].color_bands
                         : [],
                     };
                   }
@@ -829,55 +865,84 @@ export function Dashboard() {
         }
 
         if (chosenCurriculum && chosenCohort && studentListData) {
-          const cumulated = studentListData.students_filter.map((student) =>
-            student.curriculums[0] == chosenCurriculum
-              ? student.terms
-                  .map((semester) => semester.semestral_grade)
-                  .reverse()
-              : []
+          const allStudents = studentListData.students_filter
+            .filter((stu) => stu.curriculums.includes(chosenCurriculum))
+            .map((stu) => {
+              return {
+                id: stu.id,
+                curriculums: stu.curriculums,
+                start_year: stu.start_year,
+                mention: stu.mention,
+                programs: stu.programs,
+                admission: stu.admission,
+                terms: stu.terms.filter(
+                  (term) => term.year >= toInteger(chosenCurriculum)
+                ),
+              };
+            });
+          const allStudentsGrades = allStudents.map((stu) =>
+            stu.terms
+              .map((semester) => {
+                if (semester.year >= toInteger(chosenCohort))
+                  return semester.semestral_grade;
+              })
+              .reverse()
           );
 
-          const filteredCumulated = studentListData.students_filter.map(
-            (student) =>
-              student.curriculums.includes(chosenCurriculum)
-                ? student.start_year == toInteger(chosenCohort)
-                  ? chosenAdmissionType
-                    ? student.admission.type_admission == chosenAdmissionType
-                      ? student.terms
-                          .map((semester) => semester.semestral_grade)
-                          .reverse()
-                      : []
-                    : student.terms
-                        .map((semester) => semester.semestral_grade)
-                        .reverse()
-                  : []
-                : []
+          const filteredStudents = studentListData.students_filter
+            .filter(
+              (stu) =>
+                stu.curriculums.includes(chosenCurriculum) &&
+                stu.start_year == toInteger(chosenCohort)
+            )
+            .map((stu) => {
+              return {
+                id: stu.id,
+                curriculums: stu.curriculums,
+                start_year: stu.start_year,
+                mention: stu.mention,
+                programs: stu.programs,
+                admission: stu.admission,
+                terms: stu.terms.filter(
+                  (term) => term.year >= toInteger(chosenCohort)
+                ),
+              };
+            });
+          const filteredStudentsGrades = filteredStudents.map((stu) =>
+            stu.terms
+              .map((semester) => {
+                if (semester.year >= toInteger(chosenCohort))
+                  return semester.semestral_grade;
+              })
+              .reverse()
           );
 
-          const maxTerm = cumulated
-            ?.map((v) => {
-              return v.length;
-            })
-            .reduce((a, b) => {
-              return Math.max(a, b);
-            });
+          const maxTerm =
+            allStudents.length != 0
+              ? allStudents
+                  ?.map((v) => v.terms.length)
+                  .reduce((a, b) => {
+                    return Math.max(a, b);
+                  })
+              : 0;
 
-          const filteredMaxTerm = filteredCumulated
-            .map((v) => {
-              return v.length;
-            })
-            .reduce((a, b) => {
-              return Math.max(a, b);
-            });
+          const filteredMaxTerm =
+            filteredStudents.length != 0
+              ? filteredStudents
+                  .map((v) => v.terms.length)
+                  .reduce((a, b) => {
+                    return Math.max(a, b);
+                  })
+              : 0;
 
           const grades = new Array();
           for (let i = 0; i < maxTerm; i++) {
-            grades.push(cumulated.map((v) => v[i] ?? 0));
+            grades.push(allStudentsGrades.map((v) => v[i] ?? 0));
           }
 
           const filteredGrades = new Array();
           for (let i = 0; i < filteredMaxTerm; i++) {
-            filteredGrades.push(filteredCumulated.map((v) => v[i] ?? 0));
+            filteredGrades.push(filteredStudentsGrades.map((v) => v[i] ?? 0));
           }
 
           const avgGrades = grades.map((arr) => {
@@ -906,7 +971,7 @@ export function Dashboard() {
             );
           });
 
-          const studentTerms = studentListData!.students_filter.filter(
+          const studentTerms = filteredStudents.filter(
             (student) => student.terms.length == filteredMaxTerm
           )[0]?.terms;
 
@@ -928,7 +993,7 @@ export function Dashboard() {
                   {studentTerms
                     .slice()
                     .reverse()
-                    .map(({ term, year, comments }, key) => {
+                    .map(({ term, year }, key) => {
                       if (n_students_per_semester[key])
                         return (
                           <GroupedTakenSemesterBox
@@ -936,7 +1001,7 @@ export function Dashboard() {
                             term={term}
                             n_students={n_students_per_semester[key] ?? 0}
                             year={year}
-                            comments={comments}
+                            comments={""}
                           />
                         );
                     })}
@@ -994,33 +1059,30 @@ export function Dashboard() {
 
   const searchResult = useMemo(() => {
     return {
-      curriculums:
-        searchProgramData?.program?.courseGroupedStats
-          ?.map((i) =>
-            chosenAdmissionType == i.type_admission && chosenCohort == i.cohort
-              ? i.curriculum
-              : ""
-          )
-          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
+      curriculums: uniq(
+        searchProgramData?.program?.courseGroupedStats?.map((i) =>
+          chosenAdmissionType == i.type_admission && chosenCohort == i.cohort
+            ? i.curriculum
+            : ""
+        )
+      ),
 
-      admission_types:
-        searchProgramData?.program?.courseGroupedStats
-          ?.map((i) =>
-            chosenCurriculum == i.curriculum && chosenCohort == i.cohort
-              ? i.type_admission
-              : ""
-          )
-          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
+      admission_types: uniq(
+        searchProgramData?.program?.courseGroupedStats?.map((i) =>
+          chosenCurriculum == i.curriculum && chosenCohort == i.cohort
+            ? i.type_admission
+            : ""
+        )
+      ),
 
-      cohorts:
-        searchProgramData?.program?.courseGroupedStats
-          ?.map((i) =>
-            chosenCurriculum == i.curriculum &&
-            chosenAdmissionType == i.type_admission
-              ? i.cohort
-              : ""
-          )
-          .filter((v, i, obj) => obj.indexOf(v) === i) ?? [],
+      cohorts: uniq(
+        searchProgramData?.program?.courseGroupedStats?.map((i) =>
+          chosenCurriculum == i.curriculum &&
+          chosenAdmissionType == i.type_admission
+            ? i.cohort
+            : ""
+        )
+      ),
       student:
         user?.type === UserType.Director
           ? searchStudentData?.student?.id
@@ -1153,25 +1215,29 @@ export function Dashboard() {
 
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
-          {GroupedPerformanceInfoComponent}
-          {ComplementaryInfoComponent}
-          {ProgressStudentComponent}
+          <Box pt={25}>
+            <Flex>
+              {GroupedPerformanceInfoComponent}
+              {ComplementaryInfoComponent}
+              {ProgressStudentComponent}
+            </Flex>
+          </Box>
 
           {TimeLineComponent && (
-            <Box id="Gráfico Avance">
+            <Box id="graphic_advance">
               {TimeLineComponent}
 
-              <Stack isInline pl="45px">
+              <Stack isInline pl={45}>
                 {TakenSemestersComponent}
               </Stack>
             </Box>
           )}
-          <Box pt="70px">
+          <Stack pt={25}>
             {DropoutComponent}
-            <Stack isInline pt="10px">
+            <Stack pt={DropoutComponent ? 55 : 245}>
               {ForePlanSwitchComponent}
             </Stack>
-          </Box>
+          </Stack>
         </Flex>
       </ScrollContainer>
 

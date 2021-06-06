@@ -16,7 +16,7 @@ import {
 } from "../db/tables";
 
 import type { Curriculum } from "../entities/data/program";
-
+import { assertIsDefined } from "../utils/assert";
 export const ProgramDataLoader = new DataLoader(
   async (ids: readonly string[]) => {
     const dataDict: Dictionary<IProgram | undefined> = keyBy(
@@ -169,19 +169,21 @@ export const CurriculumsDataLoader = new DataLoader(
           return acum;
         }, {});
 
-        Object.values(curriculums).map((curr) =>
-          Object.values(curr.semesters).map((semester) =>
-            data2.map((val, index) => {
-              if (val.curriculum == curr.id && val.semester == semester.id) {
+        for (const curr of Object.values(curriculums)) {
+          for (const semester of Object.values(curr.semesters)) {
+            for (let index = 0; index < data2.length; ++index) {
+              const val = data2[index]!;
+              if (val.curriculum === curr.id && val.semester === semester.id) {
                 semester.externalEvaluations.push({
                   id: val.id,
                   code: val.external_evaluation_id,
                 });
                 data2.splice(index, 1);
+                index--;
               }
-            })
-          )
-        );
+            }
+          }
+        }
 
         return Object.values(curriculums).map(({ id, semesters }) => {
           return {
@@ -271,43 +273,35 @@ export const CourseGroupedStatsDataLoader = new DataLoader(
           program_id: program_id,
         });
 
-        const groupedData = data.map((value) => {
-          const histogramValues = value["histogram"].split(",").map(toInteger);
-          const histogramLabels = value["histogram_labels"].split(",");
-          const dist = histogramValues.map((value, key) => {
-            return {
-              label: histogramLabels[key] ?? `${key}`,
-              value,
-            };
-          });
-          const colorbands = value["color_bands"].split(";").map((value) => {
-            const [min, max, color] = value.split(",");
-            return {
-              min: toNumber(min),
-              max: toNumber(max),
-              color: color ?? "",
-            };
-          });
+        const groupedData = data.map(
+          ({ histogram, histogram_labels, color_bands, ...rest }) => {
+            const histogramValues = histogram.split(",").map(toInteger);
+            const histogramLabels = histogram_labels.split(",");
+            const dist = histogramValues.map((value, key) => {
+              return {
+                label: histogramLabels[key] ?? `${key}`,
+                value,
+              };
+            });
+            const colorbands = color_bands.split(";").map((value) => {
+              const [min, max, color] = value.split(",");
+              assertIsDefined(min, `Undefined color band minimum value`);
+              assertIsDefined(max, `Undefined color band maximum value`);
+              assertIsDefined(color, `Undefined color for band value`);
+              return {
+                min: toNumber(min),
+                max: toNumber(max),
+                color: color,
+              };
+            });
 
-          return {
-            id: value["id"],
-            course_id: value["course_id"],
-            program_id: value["program_id"],
-            curriculum: value["curriculum"],
-            type_admission: value["type_admission"],
-            cohort: value["cohort"],
-            year: value["year"],
-            term: value["term"],
-            n_students: value["n_students"],
-            n_total: value["n_total"],
-            n_finished: value["n_finished"],
-            n_pass: value["n_pass"],
-            n_fail: value["n_fail"],
-            n_drop: value["n_drop"],
-            distribution: dist,
-            color_bands: colorbands,
-          };
-        });
+            return {
+              ...rest,
+              distribution: dist,
+              color_bands: colorbands,
+            };
+          }
+        );
         return groupedData;
       })
     );
@@ -329,44 +323,35 @@ export const ExternalEvaluationGroupedStatsDataLoader = new DataLoader(
           program_id: program_id,
         });
 
-        const groupedData = data.map((value) => {
-          const histogramValues = value["histogram"].split(",").map(toInteger);
-          const histogramLabels = value["histogram_labels"].split(",");
-          const dist = histogramValues.map((value, key) => {
-            return {
-              label: histogramLabels[key] ?? `${key}`,
-              value,
-            };
-          });
-          const colorbands = value["color_bands"].split(";").map((value) => {
-            const [min, max, color] = value.split(",");
-            return {
-              min: toNumber(min),
-              max: toNumber(max),
-              color: color ?? "",
-            };
-          });
+        const groupedData = data.map(
+          ({ histogram, histogram_labels, color_bands, ...rest }) => {
+            const histogramValues = histogram.split(",").map(toInteger);
+            const histogramLabels = histogram_labels.split(",");
+            const dist = histogramValues.map((value, key) => {
+              return {
+                label: histogramLabels[key] ?? `${key}`,
+                value,
+              };
+            });
+            const colorbands = color_bands.split(";").map((value) => {
+              const [min, max, color] = value.split(",");
+              assertIsDefined(min, `Undefined color band minimum value`);
+              assertIsDefined(max, `Undefined color band maximum value`);
+              assertIsDefined(color, `Undefined color for band value`);
+              return {
+                min: toNumber(min),
+                max: toNumber(max),
+                color: color,
+              };
+            });
 
-          return {
-            id: value["id"],
-            external_evaluation_id: value["external_evaluation_id"],
-            topic: value["topic"],
-            program_id: value["program_id"],
-            curriculum: value["curriculum"],
-            type_admission: value["type_admission"],
-            cohort: value["cohort"],
-            year: value["year"],
-            term: value["term"],
-            n_students: value["n_students"],
-            n_total: value["n_total"],
-            n_finished: value["n_finished"],
-            n_pass: value["n_pass"],
-            n_fail: value["n_fail"],
-            n_drop: value["n_drop"],
-            distribution: dist,
-            color_bands: colorbands,
-          };
-        });
+            return {
+              ...rest,
+              distribution: dist,
+              color_bands: colorbands,
+            };
+          }
+        );
         return groupedData;
       })
     );

@@ -25,8 +25,6 @@ export type Scalars = {
 
 export type Admission = {
   active: Scalars["Boolean"];
-  final_evaluation?: Maybe<Scalars["Float"]>;
-  initial_evaluation?: Maybe<Scalars["Float"]>;
   type_admission: Scalars["String"];
 };
 
@@ -437,7 +435,7 @@ export type Student = {
   admission: Admission;
   curriculums: Array<Scalars["String"]>;
   dropout?: Maybe<Dropout>;
-  employed: Employed;
+  employed?: Maybe<Employed>;
   id: Scalars["ID"];
   mention: Scalars["String"];
   n_courses_cycles: Array<Scalars["Float"]>;
@@ -903,16 +901,15 @@ export type SearchStudentMutation = {
       dropout?: Maybe<
         Pick<Dropout, "prob_dropout" | "model_accuracy" | "active">
       >;
-      admission: Pick<
-        Admission,
-        "active" | "type_admission" | "initial_evaluation" | "final_evaluation"
-      >;
-      employed: Pick<
-        Employed,
-        | "employed"
-        | "institution"
-        | "educational_system"
-        | "months_to_first_job"
+      admission: Pick<Admission, "active" | "type_admission">;
+      employed?: Maybe<
+        Pick<
+          Employed,
+          | "employed"
+          | "institution"
+          | "educational_system"
+          | "months_to_first_job"
+        >
       >;
     }
   >;
@@ -943,10 +940,7 @@ export type StudentsListQuery = {
   students: Array<
     Pick<Student, "id" | "progress" | "start_year"> & {
       dropout?: Maybe<Pick<Dropout, "prob_dropout" | "explanation">>;
-      admission: Pick<
-        Admission,
-        "active" | "type_admission" | "initial_evaluation" | "final_evaluation"
-      >;
+      admission: Pick<Admission, "active" | "type_admission">;
     }
   >;
 };
@@ -2369,8 +2363,6 @@ export const SearchStudentDocument = gql`
       admission {
         active
         type_admission
-        initial_evaluation
-        final_evaluation
       }
       employed {
         employed
@@ -2578,8 +2570,6 @@ export const StudentsListDocument = gql`
       admission {
         active
         type_admission
-        initial_evaluation
-        final_evaluation
       }
     }
   }

@@ -11,16 +11,12 @@ export const ComplementaryInfo: FC<{
   institution?: string | null;
   months_to_first_job?: number | null;
   type_admission?: string | null;
-  initial_evaluation?: number | null;
-  final_evaluation?: number | null;
 }> = memo(
   ({
     educational_system,
     institution,
     months_to_first_job,
     type_admission,
-    initial_evaluation,
-    final_evaluation,
   }) => {
     const {
       COMPLEMENTARY_INFORMATION,
@@ -28,8 +24,6 @@ export const ComplementaryInfo: FC<{
       COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM,
       COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION,
       COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS,
-      COMPLEMENTARY_INFORMATION_FINAL_EVALUATION,
-      COMPLEMENTARY_INFORMATION_INITIAL_EVALUATION,
       COMPLEMENTARY_INFORMATION_TEXT_COLOR,
       COMPLEMENTARY_INFORMATION_TYPE_ADMISSION,
     } = useContext(ConfigContext);
@@ -45,7 +39,7 @@ export const ComplementaryInfo: FC<{
     return (
       <Flex alignItems="center" ml="1em">
         <Flex
-          id="Información Complementaria"
+          id="complementary_information"
           backgroundColor={COMPLEMENTARY_INFORMATION_BACKGROUND_COLOR}
           boxShadow={
             show
@@ -105,20 +99,6 @@ export const ComplementaryInfo: FC<{
                     <Text width="290px" pl={5} pb={0} mb={0}>
                       {COMPLEMENTARY_INFORMATION_TYPE_ADMISSION}{" "}
                       {type_admission}
-                    </Text>
-                  )}
-
-                  {initial_evaluation && (
-                    <Text width="290px" pl={5} pb={0} mb={0}>
-                      {COMPLEMENTARY_INFORMATION_INITIAL_EVALUATION}{" "}
-                      {initial_evaluation}
-                    </Text>
-                  )}
-
-                  {final_evaluation && (
-                    <Text width="290px" pl={5} pb={0} mb={0}>
-                      {COMPLEMENTARY_INFORMATION_FINAL_EVALUATION}{" "}
-                      {final_evaluation}
                     </Text>
                   )}
 
