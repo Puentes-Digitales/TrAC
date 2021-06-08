@@ -1,5 +1,5 @@
 import DataLoader from "dataloader";
-import { defaultsDeep, Dictionary, keyBy, toInteger, toNumber } from "lodash";
+import { defaultsDeep, Dictionary, keyBy, toInteger } from "lodash";
 
 import { LRUMap } from "lru_map";
 
@@ -16,7 +16,7 @@ import {
 } from "../db/tables";
 
 import type { Curriculum } from "../entities/data/program";
-import { assertIsDefined } from "../utils/assert";
+import { getColorBands } from "../utils/colorBands";
 export const ProgramDataLoader = new DataLoader(
   async (ids: readonly string[]) => {
     const dataDict: Dictionary<IProgram | undefined> = keyBy(
@@ -283,17 +283,7 @@ export const CourseGroupedStatsDataLoader = new DataLoader(
                 value,
               };
             });
-            const colorbands = color_bands.split(";").map((value) => {
-              const [min, max, color] = value.split(",");
-              assertIsDefined(min, `Undefined color band minimum value`);
-              assertIsDefined(max, `Undefined color band maximum value`);
-              assertIsDefined(color, `Undefined color for band value`);
-              return {
-                min: toNumber(min),
-                max: toNumber(max),
-                color: color,
-              };
-            });
+            const colorbands = getColorBands(color_bands);
 
             return {
               ...rest,
@@ -333,17 +323,7 @@ export const ExternalEvaluationGroupedStatsDataLoader = new DataLoader(
                 value,
               };
             });
-            const colorbands = color_bands.split(";").map((value) => {
-              const [min, max, color] = value.split(",");
-              assertIsDefined(min, `Undefined color band minimum value`);
-              assertIsDefined(max, `Undefined color band maximum value`);
-              assertIsDefined(color, `Undefined color for band value`);
-              return {
-                min: toNumber(min),
-                max: toNumber(max),
-                color: color,
-              };
-            });
+            const colorbands = getColorBands(color_bands);
 
             return {
               ...rest,

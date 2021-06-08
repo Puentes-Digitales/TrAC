@@ -1,4 +1,4 @@
-import { toInteger, toNumber } from "lodash";
+import { toInteger } from "lodash";
 import { FieldResolver, Resolver, Root } from "type-graphql";
 
 import {
@@ -8,6 +8,7 @@ import {
 import { ExternalEvaluation } from "../../entities/data/externalEvaluation";
 
 import type { $PropertyType } from "utility-types";
+import { getColorBands } from "../../utils/colorBands";
 
 export type PartialExternalEvaluation = Pick<ExternalEvaluation, "id" | "code">;
 
@@ -81,14 +82,7 @@ export class ExternalEvaluationResolver {
       return [];
     }
 
-    const bandColors = bandColorsData.color_bands.split(";").map((value) => {
-      const [min, max, color] = value.split(",");
-      return {
-        min: toNumber(min),
-        max: toNumber(max),
-        color: color ?? "",
-      };
-    });
+    const bandColors = getColorBands(bandColorsData.color_bands);
 
     return bandColors;
   }
