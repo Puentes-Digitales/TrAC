@@ -1,4 +1,4 @@
-import { compact, toInteger, toNumber } from "lodash";
+import { compact, toInteger } from "lodash";
 import { FieldResolver, Resolver, Root } from "type-graphql";
 
 import { defaultStateCourse } from "../../../client/constants";
@@ -13,6 +13,7 @@ import { assertIsDefined } from "../../utils/assert";
 import { clearErrorArray } from "../../utils/clearErrorArray";
 
 import type { $PropertyType } from "utility-types";
+import { getColorBands } from "../../utils/colorBands";
 
 export type PartialTakenCourse = Pick<TakenCourse, "id" | "code" | "equiv">;
 
@@ -163,17 +164,7 @@ export class TakenCourseResolver {
       return [];
     }
 
-    const bandColors = bandColorsData.color_bands.split(";").map((value) => {
-      const [min, max, color] = value.split(",");
-      assertIsDefined(min, `Undefined color band minimum value`);
-      assertIsDefined(max, `Undefined color band maximum value`);
-      assertIsDefined(color, `Undefined color for band value`);
-      return {
-        min: toNumber(min),
-        max: toNumber(max),
-        color: color,
-      };
-    });
+    const bandColors = getColorBands(bandColorsData.color_bands);
 
     return bandColors;
   }

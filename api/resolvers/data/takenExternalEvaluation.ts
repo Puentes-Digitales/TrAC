@@ -1,5 +1,5 @@
 import { FieldResolver, Resolver, Root } from "type-graphql";
-import { compact, toNumber, toInteger } from "lodash";
+import { compact, toInteger } from "lodash";
 import { clearErrorArray } from "../../utils/clearErrorArray";
 import { defaultStateCourse } from "../../../client/constants";
 import { ExternalEvaluationDataLoader } from "../../dataloaders/externalEvaluation";
@@ -12,6 +12,7 @@ import { TakenExternalEvaluation } from "../../entities/data/takenExternalEvalua
 import { assertIsDefined } from "../../utils/assert";
 
 import type { $PropertyType } from "utility-types";
+import { getColorBands } from "../../utils/colorBands";
 
 export type PartialTakenExternalEvaluation = Pick<
   TakenExternalEvaluation,
@@ -120,14 +121,7 @@ export class TakenExternalEvaluationResolver {
       return [];
     }
 
-    const bandColors = bandColorsData.color_bands.split(";").map((value) => {
-      const [min, max, color] = value.split(",");
-      return {
-        min: toNumber(min),
-        max: toNumber(max),
-        color: color ?? "",
-      };
-    });
+    const bandColors = getColorBands(bandColorsData.color_bands);
 
     return bandColors;
   }
