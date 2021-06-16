@@ -48,9 +48,9 @@ export const DownloadWord: FC<{
     idClicks.map(async (id) => {
       let input = document.getElementById(id);
       if (typeof input !== "undefined" && input !== null) {
-        if (show === false) {
-          input.click();
-        }
+        input.firstChild?.lastChild?.firstChild?.firstChild === null
+          ? input.click()
+          : null;
       }
     });
     await new Promise((r) => setTimeout(r, 1000));
