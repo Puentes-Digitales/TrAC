@@ -39,6 +39,7 @@ export const ComplementaryInfo: FC<{
     return (
       <Flex alignItems="center" ml="1em">
         <Flex
+          collapsed={`${!show}`}
           id="complementary_information"
           backgroundColor={COMPLEMENTARY_INFORMATION_BACKGROUND_COLOR}
           boxShadow={
@@ -50,7 +51,6 @@ export const ComplementaryInfo: FC<{
           alignItems="center"
           onClick={() => {
             setShow((show) => !show);
-
             track({
               action: "click",
               effect: show
