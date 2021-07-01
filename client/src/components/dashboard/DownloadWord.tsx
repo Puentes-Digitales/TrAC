@@ -9,7 +9,7 @@ import { Button } from "@chakra-ui/react";
 import domtoimage from "dom-to-image";
 import { useGroupedActive } from "../../context/DashboardInput";
 import { IImagesID } from "../../../../interfaces";
-import { setTrackingData, track } from "../../context/Tracking";
+import { setTrackingData, track, TrackingStore } from "../../context/Tracking";
 import { useColorMode } from "@chakra-ui/react";
 import { baseConfig } from "../../../constants/baseConfig";
 
@@ -20,6 +20,7 @@ export const DownloadWord: FC<{
   const [show, setShow] = useState(false);
   const groupedActive = useGroupedActive();
   const { colorMode } = useColorMode();
+  const state = TrackingStore.useStore();
 
   useEffect(() => {
     setTrackingData({
@@ -39,6 +40,10 @@ export const DownloadWord: FC<{
   let lista: IImagesID[] = [];
 
   const idClicks = ["danger_percentile", "complementary_information"];
+  const input_click = async (
+    condition: boolean | undefined,
+    ifTrue: HTMLElement
+  ) => (condition === false ? ifTrue.click() : null);
 
   const doClick = async () => {
     if (colorMode === "dark") {
@@ -48,7 +53,15 @@ export const DownloadWord: FC<{
     idClicks.map(async (id) => {
       let input = document.getElementById(id);
       if (typeof input !== "undefined" && input !== null) {
-        input.getAttribute("collapsed") === "true" ? input.click() : null;
+        switch (id) {
+          case "danger_percentile":
+            input_click(state.showingPrediction, input);
+            break;
+          case "complementary_information":
+            input_click(state.showingStudentComplementaryInformation, input);
+            input_click(state.showingGroupedComplementaryInfo, input);
+            break;
+        }
       }
     });
     await new Promise((r) => setTimeout(r, 1000));

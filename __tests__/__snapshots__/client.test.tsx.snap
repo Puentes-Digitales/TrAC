@@ -38,7 +38,6 @@ Object {
       >
         <div
           class="css-1b6jfu7"
-          collapsed="false"
           data-testid="BoxContainer"
           id="complementary_information"
         >
@@ -94,7 +93,6 @@ Object {
     >
       <div
         class="css-1b6jfu7"
-        collapsed="false"
         data-testid="BoxContainer"
         id="complementary_information"
       >

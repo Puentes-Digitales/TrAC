@@ -39,7 +39,6 @@ export const ComplementaryInfo: FC<{
     return (
       <Flex alignItems="center" ml="1em">
         <Flex
-          collapsed={`${!show}`}
           id="complementary_information"
           backgroundColor={COMPLEMENTARY_INFORMATION_BACKGROUND_COLOR}
           boxShadow={

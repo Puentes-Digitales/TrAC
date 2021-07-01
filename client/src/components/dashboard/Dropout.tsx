@@ -32,7 +32,6 @@ export const Dropout: FC<{
   return (
     <Flex alignItems="center" ml="1em">
       <Flex
-        collapsed={`${!show}`}
         id="danger_percentile"
         backgroundColor={DROPOUT_BACKGROUND_COLOR}
         boxShadow={
