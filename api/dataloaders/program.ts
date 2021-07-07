@@ -102,29 +102,40 @@ export const CurriculumsDataLoader = new DataLoader(
   ) => {
     return await Promise.all(
       keys.map(async ({ program_id, curriculumsIds }) => {
-        const data = curriculumsIds
-          ? await ProgramStructureTable()
-              .select("id", "curriculum", "semester", "course_id")
-              .where({ program_id })
-              .whereIn(
-                "curriculum",
-                curriculumsIds.map(({ id }) => id)
-              )
-          : await ProgramStructureTable()
-              .select("id", "curriculum", "semester", "course_id")
-              .where({ program_id });
-
-        const data2 = curriculumsIds
-          ? await ExternalEvaluationStructureTable()
-              .select("id", "curriculum", "semester", "external_evaluation_id")
-              .where({ program_id })
-              .whereIn(
-                "curriculum",
-                curriculumsIds.map(({ id }) => id)
-              )
-          : await ExternalEvaluationStructureTable()
-              .select("id", "curriculum", "semester", "external_evaluation_id")
-              .where({ program_id });
+        const [data, data2] = await Promise.all([
+          curriculumsIds
+            ? ProgramStructureTable()
+                .select("id", "curriculum", "semester", "course_id")
+                .where({ program_id })
+                .whereIn(
+                  "curriculum",
+                  curriculumsIds.map(({ id }) => id)
+                )
+            : ProgramStructureTable()
+                .select("id", "curriculum", "semester", "course_id")
+                .where({ program_id }),
+          curriculumsIds
+            ? ExternalEvaluationStructureTable()
+                .select(
+                  "id",
+                  "curriculum",
+                  "semester",
+                  "external_evaluation_id"
+                )
+                .where({ program_id })
+                .whereIn(
+                  "curriculum",
+                  curriculumsIds.map(({ id }) => id)
+                )
+            : ExternalEvaluationStructureTable()
+                .select(
+                  "id",
+                  "curriculum",
+                  "semester",
+                  "external_evaluation_id"
+                )
+                .where({ program_id }),
+        ]);
 
         const curriculums = data.reduce<
           Record<

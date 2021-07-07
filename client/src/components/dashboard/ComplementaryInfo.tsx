@@ -50,7 +50,6 @@ export const ComplementaryInfo: FC<{
           alignItems="center"
           onClick={() => {
             setShow((show) => !show);
-
             track({
               action: "click",
               effect: show
