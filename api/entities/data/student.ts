@@ -52,8 +52,8 @@ export class Student {
   admission: Admission;
 
   // student_employed
-  @Field()
-  employed: Employed;
+  @Field({ nullable: true })
+  employed?: Employed;
 
   @Field(() => [String])
   n_cycles: string[];

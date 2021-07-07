@@ -1,21 +1,22 @@
 import DataLoader from "dataloader";
-import { defaultsDeep, Dictionary, keyBy, toInteger, toNumber } from "lodash";
+import { defaultsDeep, Dictionary, keyBy, toInteger } from "lodash";
 
 import { LRUMap } from "lru_map";
 
 import {
   IProgram,
   ExternalEvaluationStructureTable,
+  ExternalEvaluationGroupedStatsTable,
   ProgramTable,
   StudentProgramTable,
   GroupedComplementaryInformationTable,
   StudentGroupedEmployedTable,
-  PROGRAM_STRUCTURE_TABLE,
   CourseGroupedStatsTable,
+  ProgramStructureTable,
 } from "../db/tables";
 
 import type { Curriculum } from "../entities/data/program";
-
+import { getColorBands } from "../utils/colorBands";
 export const ProgramDataLoader = new DataLoader(
   async (ids: readonly string[]) => {
     const dataDict: Dictionary<IProgram | undefined> = keyBy(
@@ -101,31 +102,41 @@ export const CurriculumsDataLoader = new DataLoader(
   ) => {
     return await Promise.all(
       keys.map(async ({ program_id, curriculumsIds }) => {
-        const data = curriculumsIds
-          ? await ExternalEvaluationStructureTable()
-              .select("id", "curriculum", "semester", "external_evaluation_id")
-              .unionAll(function () {
-                this.select("id", "curriculum", "semester", "course_id")
-                  .from(PROGRAM_STRUCTURE_TABLE)
-                  .where({ program_id })
-                  .whereIn(
-                    "curriculum",
-                    curriculumsIds.map(({ id }) => id)
-                  );
-              })
-              .where({ program_id })
-              .whereIn(
-                "curriculum",
-                curriculumsIds.map(({ id }) => id)
-              )
-          : await ExternalEvaluationStructureTable()
-              .select("id", "curriculum", "semester", "external_evaluation_id")
-              .unionAll(function () {
-                this.select("id", "curriculum", "semester", "course_id")
-                  .from(PROGRAM_STRUCTURE_TABLE)
-                  .where({ program_id });
-              })
-              .where({ program_id });
+        const [data, data2] = await Promise.all([
+          curriculumsIds
+            ? ProgramStructureTable()
+                .select("id", "curriculum", "semester", "course_id")
+                .where({ program_id })
+                .whereIn(
+                  "curriculum",
+                  curriculumsIds.map(({ id }) => id)
+                )
+            : ProgramStructureTable()
+                .select("id", "curriculum", "semester", "course_id")
+                .where({ program_id }),
+          curriculumsIds
+            ? ExternalEvaluationStructureTable()
+                .select(
+                  "id",
+                  "curriculum",
+                  "semester",
+                  "external_evaluation_id"
+                )
+                .where({ program_id })
+                .whereIn(
+                  "curriculum",
+                  curriculumsIds.map(({ id }) => id)
+                )
+            : ExternalEvaluationStructureTable()
+                .select(
+                  "id",
+                  "curriculum",
+                  "semester",
+                  "external_evaluation_id"
+                )
+                .where({ program_id }),
+        ]);
+
         const curriculums = data.reduce<
           Record<
             string /*Curriculum id (program_structure => curriculum)*/,
@@ -139,11 +150,15 @@ export const CurriculumsDataLoader = new DataLoader(
                     id: number /* Course-semester-curriculum id (program_structure => id) */;
                     code: string /* Course id (program_structure => course_id) */;
                   }[];
+                  externalEvaluations: {
+                    id: number;
+                    code: string;
+                  }[];
                 }
               >;
             }
           >
-        >((acum, { curriculum, semester, external_evaluation_id, id }) => {
+        >((acum, { curriculum, semester, course_id, id }) => {
           defaultsDeep(acum, {
             [curriculum]: {
               id: curriculum,
@@ -151,28 +166,48 @@ export const CurriculumsDataLoader = new DataLoader(
                 [semester]: {
                   id: semester,
                   courses: [],
+                  externalEvaluations: [],
                 },
               },
             },
           });
 
-          acum[curriculum].semesters[semester].courses.push({
-            id,
-            code: external_evaluation_id,
-          });
-
+          if (acum[curriculum] && acum[curriculum]!.semesters[semester])
+            acum[curriculum]!.semesters[semester]!.courses.push({
+              id,
+              code: course_id,
+            });
           return acum;
         }, {});
+
+        for (const curr of Object.values(curriculums)) {
+          for (const semester of Object.values(curr.semesters)) {
+            for (let index = 0; index < data2.length; ++index) {
+              const val = data2[index]!;
+              if (val.curriculum === curr.id && val.semester === semester.id) {
+                semester.externalEvaluations.push({
+                  id: val.id,
+                  code: val.external_evaluation_id,
+                });
+                data2.splice(index, 1);
+                index--;
+              }
+            }
+          }
+        }
 
         return Object.values(curriculums).map(({ id, semesters }) => {
           return {
             id,
-            semesters: Object.values(semesters).map(({ id, courses }) => {
-              return {
-                id,
-                courses,
-              };
-            }),
+            semesters: Object.values(semesters).map(
+              ({ id, courses, externalEvaluations }) => {
+                return {
+                  id,
+                  courses,
+                  externalEvaluations,
+                };
+              }
+            ),
           };
         });
       })
@@ -249,40 +284,65 @@ export const CourseGroupedStatsDataLoader = new DataLoader(
           program_id: program_id,
         });
 
-        const groupedData = data.map((value) => {
-          const histogramValues = value["histogram"].split(",").map(toInteger);
-          const histogramLabels = value["histogram_labels"].split(",");
-          const dist = histogramValues.map((value, key) => {
-            return {
-              label: histogramLabels[key] ?? `${key}`,
-              value,
-            };
-          });
-          const colorbands = value["color_bands"].split(";").map((value) => {
-            const [min, max, color] = value.split(",");
-            return {
-              min: toNumber(min),
-              max: toNumber(max),
-              color,
-            };
-          });
+        const groupedData = data.map(
+          ({ histogram, histogram_labels, color_bands, ...rest }) => {
+            const histogramValues = histogram.split(",").map(toInteger);
+            const histogramLabels = histogram_labels.split(",");
+            const dist = histogramValues.map((value, key) => {
+              return {
+                label: histogramLabels[key] ?? `${key}`,
+                value,
+              };
+            });
+            const colorbands = getColorBands(color_bands);
 
-          return {
-            course_id: value["course_id"],
-            program_id: value["program_id"],
-            curriculum: value["curriculum"],
-            type_admission: value["type_admission"],
-            cohort: value["cohort"],
-            n_students: value["n_students"],
-            n_total: value["n_total"],
-            n_finished: value["n_finished"],
-            n_pass: value["n_pass"],
-            n_fail: value["n_fail"],
-            n_drop: value["n_drop"],
-            distribution: dist,
-            color_bands: colorbands,
-          };
+            return {
+              ...rest,
+              distribution: dist,
+              color_bands: colorbands,
+            };
+          }
+        );
+        return groupedData;
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const ExternalEvaluationGroupedStatsDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(async ({ program_id }) => {
+        const data = await ExternalEvaluationGroupedStatsTable().where({
+          program_id: program_id,
         });
+
+        const groupedData = data.map(
+          ({ histogram, histogram_labels, color_bands, ...rest }) => {
+            const histogramValues = histogram.split(",").map(toInteger);
+            const histogramLabels = histogram_labels.split(",");
+            const dist = histogramValues.map((value, key) => {
+              return {
+                label: histogramLabels[key] ?? `${key}`,
+                value,
+              };
+            });
+            const colorbands = getColorBands(color_bands);
+
+            return {
+              ...rest,
+              distribution: dist,
+              color_bands: colorbands,
+            };
+          }
+        );
         return groupedData;
       })
     );

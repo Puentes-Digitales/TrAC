@@ -53,6 +53,7 @@ export const GroupedComplementaryInfo: FC<{
     return (
       <Flex alignItems="center" ml="1em">
         <Flex
+          id="complementary_information"
           backgroundColor={COMPLEMENTARY_INFORMATION_BACKGROUND_COLOR}
           boxShadow={
             show
@@ -74,7 +75,7 @@ export const GroupedComplementaryInfo: FC<{
           }}
           color={COMPLEMENTARY_INFORMATION_TEXT_COLOR}
           cursor="pointer"
-          transition="box-shadow 0.4s ease-in-out"
+          transition="box-shadow 0.2s ease-in-out"
           data-testid="BoxContainer"
         >
           <Stack
@@ -134,7 +135,7 @@ export const GroupedComplementaryInfo: FC<{
                   )}
 
                   {average_time_university_degree && (
-                    <Text width="290px" pl={5} pb={0} mb={0}>
+                    <Text width="320px" pl={5} pb={0} mb={0}>
                       {
                         GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE
                       }{" "}
@@ -158,7 +159,7 @@ export const GroupedComplementaryInfo: FC<{
                     </Text>
                   )}
                   {average_time_finding_job && (
-                    <Text width="350px" pl={5} pb={0} mb={0}>
+                    <Text width="290px" pl={5} pb={0} mb={0}>
                       {
                         GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB
                       }{" "}
@@ -167,7 +168,7 @@ export const GroupedComplementaryInfo: FC<{
                     </Text>
                   )}
                   {empleability_rate_educational_system && (
-                    <Text width="350px" pl={5} pb={0} mb={0}>
+                    <Text width="290px" pl={5} pb={0} mb={0}>
                       {
                         GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM
                       }{" "}

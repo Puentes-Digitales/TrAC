@@ -32,6 +32,7 @@ export const Dropout: FC<{
   return (
     <Flex alignItems="center" ml="1em">
       <Flex
+        id="danger_percentile"
         backgroundColor={DROPOUT_BACKGROUND_COLOR}
         boxShadow={
           show
@@ -51,7 +52,7 @@ export const Dropout: FC<{
         }}
         color={DROPOUT_TEXT_COLOR}
         cursor="pointer"
-        transition="box-shadow 0.4s ease-in-out"
+        transition="box-shadow 0.2s ease-in-out"
       >
         <Stack
           className="unselectable"

@@ -2,12 +2,15 @@ import { Field, ObjectType } from "type-graphql";
 import { DistributionValue, BandColor } from "./distribution";
 
 @ObjectType()
-export class CourseGroupedStats {
+export class ExternalEvaluationGroupedStats {
   @Field()
   id: number;
 
   @Field()
-  course_id: string;
+  external_evaluation_id: string;
+
+  @Field()
+  topic: string;
 
   @Field()
   program_id: string;

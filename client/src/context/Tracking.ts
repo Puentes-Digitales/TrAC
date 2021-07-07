@@ -12,6 +12,7 @@ type TrackingTemplateData = {
   admission_type?: string;
   cohort?: string;
   student?: string;
+  showingDownloadButton?: boolean;
   showingProgress?: boolean;
   showingPrediction?: boolean;
   showingProgressStudenCycle?: boolean;
@@ -78,6 +79,7 @@ export const TrackingManager: FC = memo(() => {
       admission_type,
       cohort,
       student,
+      showingDownloadButton,
       showingProgress,
       showingPrediction,
       showingProgressStudenCycle,
@@ -100,6 +102,8 @@ export const TrackingManager: FC = memo(() => {
         showingProgress ? 1 : 0
       },showing-prediction=${
         showingPrediction ? 1 : 0
+      },showing-download-button=${
+        showingDownloadButton ? 1 : 0
       },showing-student-complementary-information=${
         showingStudentComplementaryInformation ? 1 : 0
       },showing-grouped-complementary-info=${

@@ -18,6 +18,9 @@ export class ExternalEvaluation {
   @Field()
   name: string;
 
+  @Field()
+  year: number;
+
   // external_evaluation_structure => mention
   @Field()
   mention: string;

@@ -6,7 +6,7 @@ import {
   ExternalEvaluationStatsTable,
   ExternalEvaluationTable,
   IExternalEvaluation,
-  ProgramStructureTable,
+  ExternalEvaluationStructureTable,
 } from "../db/tables";
 import { clearErrorArray } from "../utils/clearErrorArray";
 
@@ -25,7 +25,7 @@ export const ExternalEvaluationDataLoader = new DataLoader(
   }
 );
 
-export const ExternalEvaluationAndStructureDataLoader = new DataLoader(
+export const ExternalEvaluationStructureDataLoader = new DataLoader(
   async (keys: readonly { id: number; code: string }[]) => {
     const [
       ExternalEvaluationTableData,
@@ -33,7 +33,7 @@ export const ExternalEvaluationAndStructureDataLoader = new DataLoader(
     ] = await Promise.all([
       ExternalEvaluationDataLoader.loadMany(keys.map(({ code }) => code)),
 
-      ProgramStructureTable()
+      ExternalEvaluationStructureTable()
         .select("*")
         .whereIn(
           "id",

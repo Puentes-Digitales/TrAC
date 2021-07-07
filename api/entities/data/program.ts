@@ -3,6 +3,7 @@ import { Field, Int, ObjectType } from "type-graphql";
 import { Course } from "./course";
 import { CourseGroupedStats } from "./courseGroupedStats";
 import { ExternalEvaluation } from "./externalEvaluation";
+import { ExternalEvaluationGroupedStats } from "./externalEvaluationGroupedStats";
 
 import { GroupedComplementary } from "./groupedComplementary";
 import { GroupedEmployed } from "./groupedEmployed";
@@ -66,4 +67,7 @@ export class Program {
 
   @Field(() => [GroupedEmployed])
   groupedEmployed: GroupedEmployed[];
+
+  @Field(() => [ExternalEvaluationGroupedStats])
+  externalEvaluationGroupedStats: ExternalEvaluationGroupedStats[];
 }

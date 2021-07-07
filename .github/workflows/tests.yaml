@@ -15,7 +15,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - run: npm install -g pnpm
+      - run: npm install -g pnpm@5.18.3
       - run: pnpm i --frozen-lockfile
         env:
           NODE_ENV: test

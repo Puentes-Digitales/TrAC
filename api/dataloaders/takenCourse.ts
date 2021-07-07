@@ -6,8 +6,6 @@ import {
   CourseStatsTable,
   ICourseStats,
   IStudentCourse,
-  STUDENT_EXTERNAL_EVALUATION_TABLE,
-  EXTERNAL_EVALUATION_STATS_TABLE,
   StudentCourseTable,
 } from "../db/tables";
 
@@ -15,32 +13,6 @@ export const StudentCourseDataLoader = new DataLoader(
   async (ids: readonly number[]) => {
     const dataDict: Dictionary<IStudentCourse | undefined> = keyBy(
       await StudentCourseTable().select("*").whereIn("id", ids),
-      "id"
-    );
-
-    return ids.map((id) => {
-      return dataDict[id];
-    });
-  },
-  {
-    cacheMap: new LRUMap(1000),
-  }
-);
-
-export const StudentExternalEvaluationCourseDataLoader = new DataLoader(
-  async (ids: readonly number[]) => {
-    const dataDict: Dictionary<
-      Pick<IStudentCourse, "id" | "year" | "term" | "p_group"> | undefined
-    > = keyBy(
-      await StudentCourseTable()
-        .select("id", "year", "term", "p_group")
-        .unionAll(function () {
-          this.select("id", "year", "term", "p_group")
-            .from(STUDENT_EXTERNAL_EVALUATION_TABLE)
-            .whereIn("id", ids),
-            "id";
-        })
-        .whereIn("id", ids),
       "id"
     );
 
@@ -66,16 +38,6 @@ export const CourseStatsByStateDataLoader = new DataLoader(
       keys.map(({ course_taken, year, term, p_group }) => {
         return CourseStatsTable()
           .select("histogram", "histogram_labels", "color_bands")
-          .unionAll(function () {
-            this.select("histogram", "histogram_labels", "color_bands")
-              .where({
-                external_evaluation_taken: course_taken,
-                year: year,
-                term: term,
-                p_group: p_group,
-              })
-              .from(EXTERNAL_EVALUATION_STATS_TABLE);
-          })
           .where({
             course_taken,
             year,
@@ -101,12 +63,6 @@ export const CourseStatsByCourseTakenDataLoader = new DataLoader(
     > = keyBy(
       await CourseStatsTable()
         .select("color_bands", "course_taken")
-        .unionAll(function () {
-          this.select("color_bands", "external_evaluation_taken")
-            .from(EXTERNAL_EVALUATION_STATS_TABLE)
-            .whereIn("external_evaluation_taken", codes),
-            "external_evaluation_taken";
-        })
         .whereIn("course_taken", codes),
       "course_taken"
     );

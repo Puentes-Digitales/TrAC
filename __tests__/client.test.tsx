@@ -189,8 +189,6 @@ describe("Test <AdmissionDropout />", () => {
     const tree = render(
       <ComplementaryInfo
         type_admission="PSU"
-        initial_test={10}
-        final_test={20}
         educational_system="Publico"
         institution="Escuela"
         months_to_first_job={6}
@@ -203,8 +201,6 @@ describe("Test <AdmissionDropout />", () => {
 
 test("test props en <AdmissionDropout />", () => {
   const type_admission = "PSU";
-  const initial_test = 10;
-  const final_test = 20;
   const educational_system = "Publico";
   const institution = "Escuela";
   const months_to_first_job = 6;
@@ -212,8 +208,6 @@ test("test props en <AdmissionDropout />", () => {
   const { getByText, getByTestId } = render(
     <ComplementaryInfo
       type_admission={type_admission}
-      initial_test={initial_test}
-      final_test={final_test}
       educational_system={educational_system}
       institution={institution}
       months_to_first_job={months_to_first_job}
@@ -222,15 +216,10 @@ test("test props en <AdmissionDropout />", () => {
   fireEvent.click(getByTestId("BoxContainer"));
   expect(getByText("Tipo de ingreso: PSU".trim())).toBeInTheDocument();
   expect(getByText("Sistema educacional: Publico".trim())).toBeInTheDocument();
-  expect(
-    getByText("Evaluación nacional diagnóstica: 20".trim())
-  ).toBeInTheDocument();
 });
 
 test("test null props complementary component", () => {
   const type_admission = null;
-  const initial_test = null;
-  const final_test = null;
   const educational_system = "Publico";
   const institution = null;
   const months_to_first_job = null;
@@ -238,8 +227,6 @@ test("test null props complementary component", () => {
   const { getByText, getByTestId, queryAllByText } = render(
     <ComplementaryInfo
       type_admission={type_admission}
-      initial_test={initial_test}
-      final_test={final_test}
       educational_system={educational_system}
       institution={institution}
       months_to_first_job={months_to_first_job}

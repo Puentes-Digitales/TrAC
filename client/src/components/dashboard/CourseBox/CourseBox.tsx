@@ -204,10 +204,10 @@ const OuterCourseBox: FC<
 );
 
 const MainBlockOuter: FC<
-  Pick<ICourse, "code" | "flow" | "requisites"> & {
+  Pick<ICourse, "code" | "flow" | "requisites" | "taken"> & {
     semestersTaken: ITakenSemester[];
   }
-> = memo(({ children, code, flow, requisites, semestersTaken }) => {
+> = memo(({ children, code, flow, requisites, taken, semestersTaken }) => {
   const config = useContext(ConfigContext);
   const bg = useColorModeValue(config.COURSE_BOX_BACKGROUND_COLOR, "#1A202C");
   return (
@@ -236,7 +236,7 @@ const MainBlockOuter: FC<
 
           track({
             action: "click",
-            target: `course-box-${code}`,
+            target: `course-box-${taken[0]?.equiv || code}`,
             effect: `${wasOpen ? "close" : "open"}-course-box`,
           });
         });
@@ -614,6 +614,7 @@ export function CourseBox({
         flow={flow}
         requisites={requisites}
         code={code}
+        taken={taken!}
         semestersTaken={semestersTaken}
       >
         <NameComponent

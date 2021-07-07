@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { range, uniq } from "lodash";
 import dynamic from "next/dynamic";
 import Router from "next/router";
+import { DownloadWord } from "./DownloadWord";
 import { generate } from "randomstring";
 import React, {
   ChangeEvent,
@@ -14,6 +15,7 @@ import React, {
   useState,
 } from "react";
 import Select from "react-select";
+import { Button as Button2 } from "@chakra-ui/react";
 import { Button, Icon } from "semantic-ui-react";
 import pixelWidth from "string-pixel-width";
 import { useRememberState } from "use-remember-state";
@@ -93,8 +95,10 @@ export const SearchBar: FC<{
   const GrupedMode: FC = memo(() => {
     const groupedActive = useGroupedActive();
     return (
-      <Button
-        basic
+      <Button2
+        cursor="pointer"
+        colorScheme="blue"
+        mr={3}
         onClick={async (ev) => {
           setGroupedActive(!groupedActive);
           setTrackingData({ student: undefined });
@@ -106,10 +110,9 @@ export const SearchBar: FC<{
             });
           }
         }}
-        color={groupedActive ? "blue" : "red"}
       >
-        {groupedActive ? "Grouped ON" : "Grouped OFF"}
-      </Button>
+        {groupedActive ? GROUPED_ON : GROUPED_OFF}
+      </Button2>
     );
   });
 
@@ -176,6 +179,8 @@ export const SearchBar: FC<{
     PLACEHOLDER_SEARCH_STUDENT,
     LOGOUT_CONFIRMATION_LABEL,
     HELP_ENABLED,
+    GROUPED_ON,
+    GROUPED_OFF,
   } = useContext(ConfigContext);
 
   const {
@@ -259,9 +264,12 @@ export const SearchBar: FC<{
         alignItems="center"
         className="stack"
       >
-        {isDirector && <GrupedMode />}
+        {isDirector && user?.config?.SHOW_GROUPED_VIEW && <GrupedMode />}
 
         {user?.admin && <MockingMode />}
+        {(student_id || groupedActive) && user?.config?.SHOW_DOWNLOAD && (
+          <DownloadWord />
+        )}
         {isDirector && !groupedActive && user?.config?.SHOW_STUDENT_LIST && (
           <StudentList
             program_id={program?.value}

@@ -495,7 +495,7 @@
     "year": 2017,
     "term": 1,
     "situation": "REGULAR",
-    "t_gpa": 6.02,
+    "t_gpa": 6.67,
     "c_gpa": 6.02,
     "comments": "",
     "program_id": 1708,
@@ -509,7 +509,7 @@
     "year": 2017,
     "term": 2,
     "situation": "REGULAR",
-    "t_gpa": 5.89,
+    "t_gpa": 5.19,
     "c_gpa": 5.95,
     "comments": "",
     "program_id": 1708,
@@ -523,7 +523,7 @@
     "year": 2018,
     "term": 1,
     "situation": "REGULAR",
-    "t_gpa": 3.61,
+    "t_gpa": 1.61,
     "c_gpa": 5.15,
     "comments": "",
     "program_id": 1708,
@@ -537,7 +537,7 @@
     "year": 2018,
     "term": 2,
     "situation": "REGULAR",
-    "t_gpa": 5.25,
+    "t_gpa": 3.25,
     "c_gpa": 5.66,
     "comments": "",
     "program_id": 1708,
@@ -551,7 +551,7 @@
     "year": 2019,
     "term": 1,
     "situation": "REGULAR",
-    "t_gpa": 4.85,
+    "t_gpa": 4.15,
     "c_gpa": 5.49,
     "comments": "",
     "program_id": 1708,
@@ -574,34 +574,6 @@
     "mention": ""
   },
   {
-    "id": 24446,
-    "student_id": "c381c9bba3e870e0698d9dfa51619c1f",
-    "year": 2015,
-    "term": 1,
-    "situation": "REGULAR",
-    "t_gpa": 4.23,
-    "c_gpa": 4.74,
-    "comments": "",
-    "program_id": 1708,
-    "curriculum": 2015,
-    "start_year": 2015,
-    "mention": ""
-  },
-  {
-    "id": 26870,
-    "student_id": "c381c9bba3e870e0698d9dfa51619c1f",
-    "year": 2015,
-    "term": 2,
-    "situation": "REGULAR",
-    "t_gpa": 3.91,
-    "c_gpa": 4.5,
-    "comments": "",
-    "program_id": 1708,
-    "curriculum": 2015,
-    "start_year": 2015,
-    "mention": ""
-  },
-  {
     "id": 26564,
     "student_id": "c381c9bba3e870e0698d9dfa51619c1f",
     "year": 2016,
@@ -612,7 +584,7 @@
     "comments": "",
     "program_id": 1708,
     "curriculum": 2015,
-    "start_year": 2015,
+    "start_year": 2016,
     "mention": ""
   },
   {
@@ -626,7 +598,7 @@
     "comments": "",
     "program_id": 1708,
     "curriculum": 2015,
-    "start_year": 2015,
+    "start_year": 2016,
     "mention": ""
   },
   {
@@ -640,7 +612,7 @@
     "comments": "",
     "program_id": 1708,
     "curriculum": 2015,
-    "start_year": 2015,
+    "start_year": 2016,
     "mention": ""
   },
   {
@@ -654,7 +626,7 @@
     "comments": "",
     "program_id": 1708,
     "curriculum": 2015,
-    "start_year": 2015,
+    "start_year": 2016,
     "mention": ""
   },
   {
@@ -668,7 +640,7 @@
     "comments": "",
     "program_id": 1708,
     "curriculum": 2015,
-    "start_year": 2015,
+    "start_year": 2016,
     "mention": ""
   },
   {
@@ -696,7 +668,7 @@
     "comments": "",
     "program_id": 1708,
     "curriculum": 2015,
-    "start_year": 2015,
+    "start_year": 2016,
     "mention": ""
   },
   {
@@ -704,13 +676,13 @@
     "student_id": "c381c9bba3e870e0698d9dfa51619c1f",
     "year": 2019,
     "term": 2,
-    "situation": "REGULAR",
-    "t_gpa": 5.32,
-    "c_gpa": 4.82,
+    "situation": "",
+    "t_gpa": 0,
+    "c_gpa": 0,
     "comments": "",
     "program_id": 1708,
     "curriculum": 2015,
-    "start_year": 2015,
+    "start_year": 2016,
     "mention": ""
   }
 ]

@@ -1,18 +1,18 @@
-import { compact, toInteger, toNumber } from "lodash";
 import { FieldResolver, Resolver, Root } from "type-graphql";
-
+import { compact, toInteger } from "lodash";
+import { clearErrorArray } from "../../utils/clearErrorArray";
 import { defaultStateCourse } from "../../../client/constants";
 import { ExternalEvaluationDataLoader } from "../../dataloaders/externalEvaluation";
 import {
-  ExternalEvaluationStatsByExternalEvaluationTakenDataLoader,
-  ExternalEvaluationStatsByStateDataLoader,
   StudentExternalEvaluationDataLoader,
+  ExternalEvaluationStatsByStateDataLoader,
+  ExternalEvaluationStatsByExternalEvaluationTakenDataLoader,
 } from "../../dataloaders/takenExternalEvaluation";
 import { TakenExternalEvaluation } from "../../entities/data/takenExternalEvaluation";
 import { assertIsDefined } from "../../utils/assert";
-import { clearErrorArray } from "../../utils/clearErrorArray";
 
 import type { $PropertyType } from "utility-types";
+import { getColorBands } from "../../utils/colorBands";
 
 export type PartialTakenExternalEvaluation = Pick<
   TakenExternalEvaluation,
@@ -39,6 +39,23 @@ export class TakenExternalEvaluationResolver {
     return nameData.name ?? nameData.id;
   }
   @FieldResolver()
+  async topic(
+    @Root()
+    { id }: PartialTakenExternalEvaluation
+  ): Promise<$PropertyType<TakenExternalEvaluation, "topic">> {
+    assertIsDefined(
+      id,
+      `id needs to be available for Taken Course field resolvers`
+    );
+    const topicData = await StudentExternalEvaluationDataLoader.load(id);
+    assertIsDefined(
+      topicData,
+      `Registration could not be found for ${id} taken course`
+    );
+
+    return topicData.topic;
+  }
+  @FieldResolver()
   async registration(
     @Root()
     { id }: PartialTakenExternalEvaluation
@@ -53,22 +70,6 @@ export class TakenExternalEvaluationResolver {
       `Registration could not be found for ${id} taken course`
     );
     return registrationData.registration;
-  }
-  @FieldResolver()
-  async grade(
-    @Root()
-    { id }: PartialTakenExternalEvaluation
-  ): Promise<$PropertyType<TakenExternalEvaluation, "grade">> {
-    assertIsDefined(
-      id,
-      `id and code needs to be available for Taken Course field resolvers`
-    );
-    const gradeData = await StudentExternalEvaluationDataLoader.load(id);
-    assertIsDefined(
-      gradeData,
-      `Grade could not be found for ${id} taken course`
-    );
-    return gradeData.grade;
   }
   @FieldResolver()
   async state(
@@ -86,24 +87,45 @@ export class TakenExternalEvaluationResolver {
     );
     return defaultStateCourse(stateData.state);
   }
+
   @FieldResolver()
-  async parallelGroup(
+  async grade(
     @Root()
     { id }: PartialTakenExternalEvaluation
-  ) {
+  ): Promise<$PropertyType<TakenExternalEvaluation, "grade">> {
     assertIsDefined(
       id,
-      `id needs to be available for Taken Course field resolvers`
+      `id and code needs to be available for Taken Course field resolvers`
     );
-    const parallelGroupData = await StudentExternalEvaluationDataLoader.load(
-      id
-    );
+    const gradeData = await StudentExternalEvaluationDataLoader.load(id);
     assertIsDefined(
-      parallelGroupData,
-      `Parallel group could not be found for ${id} taken course`
+      gradeData,
+      `Grade could not be found for ${id} taken course`
     );
-    return parallelGroupData.p_group;
+    return gradeData.grade;
   }
+
+  @FieldResolver()
+  async bandColors(
+    @Root() { code }: PartialTakenExternalEvaluation
+  ): Promise<$PropertyType<TakenExternalEvaluation, "bandColors">> {
+    const bandColorsData = compact(
+      clearErrorArray(
+        await ExternalEvaluationStatsByExternalEvaluationTakenDataLoader.loadMany(
+          compact([code])
+        )
+      )
+    )[0];
+
+    if (bandColorsData === undefined) {
+      return [];
+    }
+
+    const bandColors = getColorBands(bandColorsData.color_bands);
+
+    return bandColors;
+  }
+
   @FieldResolver()
   async currentDistribution(
     @Root()
@@ -130,9 +152,9 @@ export class TakenExternalEvaluationResolver {
       year: dataTakenCourse.year,
       term: dataTakenCourse.term,
       p_group: dataTakenCourse.p_group,
+      topic: dataTakenCourse.topic,
     });
-
-    if (histogramData === undefined) {
+    if (!histogramData) {
       return [];
     }
 
@@ -140,43 +162,20 @@ export class TakenExternalEvaluationResolver {
       histogramData,
       `Stats Data of the taken course ${id} ${code} could not be found!`
     );
+    if (histogramData[0]) {
+      const histogramValues = histogramData[0].histogram
+        .split(",")
+        .map(toInteger);
+      const histogramLabels = histogramData[0].histogram_labels.split(",");
 
-    const histogramValues = histogramData.histogram.split(",").map(toInteger);
-    const histogramLabels = histogramData.histogram_labels.split(",");
-
-    return histogramValues.map((value, key) => {
-      return {
-        label: histogramLabels[key] ?? `${key}`,
-        value,
-      };
-    });
-  }
-
-  @FieldResolver()
-  async bandColors(
-    @Root() { code }: PartialTakenExternalEvaluation
-  ): Promise<$PropertyType<TakenExternalEvaluation, "bandColors">> {
-    const bandColorsData = compact(
-      clearErrorArray(
-        await ExternalEvaluationStatsByExternalEvaluationTakenDataLoader.loadMany(
-          compact([code])
-        )
-      )
-    )[0];
-
-    if (bandColorsData === undefined) {
-      return [];
+      return histogramValues.map((value, key) => {
+        return {
+          label: histogramLabels[key] ?? `${key}`,
+          value,
+        };
+      });
     }
 
-    const bandColors = bandColorsData.color_bands.split(";").map((value) => {
-      const [min, max, color] = value.split(",");
-      return {
-        min: toNumber(min),
-        max: toNumber(max),
-        color,
-      };
-    });
-
-    return bandColors;
+    return [];
   }
 }
