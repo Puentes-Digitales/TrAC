@@ -42,7 +42,7 @@ Object {
           id="complementary_information"
         >
           <div
-            class="chakra-stack unselectable css-iquqh5"
+            class="chakra-stack unselectable css-16rokbl"
           >
             <p
               class="chakra-text verticalText css-1568c7u"
@@ -52,35 +52,227 @@ Object {
             <div
               style="opacity: 0;"
             >
-              <p
-                class="chakra-text css-1yyofq7"
+              <div
+                class="css-1nm7xg4"
               >
-                Tipo de ingreso: 
-                 
-                PSU
-              </p>
-              <p
-                class="chakra-text css-1yyofq7"
+                <p
+                  class="chakra-text css-0"
+                >
+                  Tipo de ingreso: 
+                   
+                  PSU
+                </p>
+                <svg
+                  aria-controls="popover-content-2"
+                  aria-expanded="false"
+                  aria-haspopup="dialog"
+                  class="chakra-icon css-psva3u"
+                  focusable="false"
+                  id="popover-trigger-2"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path
+                      d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+                      fill="none"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+                      fill="currentColor"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      fill="none"
+                      r="11.25"
+                      stroke-miterlimit="10"
+                    />
+                  </g>
+                </svg>
+                <div
+                  class="css-0"
+                  style="visibility: hidden; position: absolute; left: 0px; top: 0px;"
+                >
+                  <section
+                    class="chakra-popover__content css-12m4mu6"
+                    id="popover-content-2"
+                    role="tooltip"
+                    style="transform-origin: left center; opacity: 0; visibility: hidden; transform: scale(0.95) translateZ(0);"
+                    tabindex="-1"
+                  />
+                </div>
+              </div>
+              <div
+                class="css-1nm7xg4"
               >
-                Sistema educacional:
-                 
-                Publico
-              </p>
-              <p
-                class="chakra-text css-1yyofq7"
+                <p
+                  class="chakra-text css-0"
+                >
+                  Sistema educacional:
+                   
+                  Publico
+                </p>
+                <svg
+                  aria-controls="popover-content-4"
+                  aria-expanded="false"
+                  aria-haspopup="dialog"
+                  class="chakra-icon css-psva3u"
+                  focusable="false"
+                  id="popover-trigger-4"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path
+                      d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+                      fill="none"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+                      fill="currentColor"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      fill="none"
+                      r="11.25"
+                      stroke-miterlimit="10"
+                    />
+                  </g>
+                </svg>
+                <div
+                  class="css-0"
+                  style="visibility: hidden; position: absolute; left: 0px; top: 0px;"
+                >
+                  <section
+                    class="chakra-popover__content css-12m4mu6"
+                    id="popover-content-4"
+                    role="tooltip"
+                    style="transform-origin: left center; opacity: 0; visibility: hidden; transform: scale(0.95) translateZ(0);"
+                    tabindex="-1"
+                  />
+                </div>
+              </div>
+              <div
+                class="css-1nm7xg4"
                 data-testid="inst"
               >
-                Nombre de institución:
-                 
-                Escuela
-              </p>
-              <p
-                class="chakra-text css-1yyofq7"
+                <p
+                  class="chakra-text css-0"
+                >
+                  Nombre de institución:
+                   
+                  Escuela
+                </p>
+                <svg
+                  aria-controls="popover-content-6"
+                  aria-expanded="false"
+                  aria-haspopup="dialog"
+                  class="chakra-icon css-psva3u"
+                  focusable="false"
+                  id="popover-trigger-6"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path
+                      d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+                      fill="none"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+                      fill="currentColor"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      fill="none"
+                      r="11.25"
+                      stroke-miterlimit="10"
+                    />
+                  </g>
+                </svg>
+                <div
+                  class="css-0"
+                  style="visibility: hidden; position: absolute; left: 0px; top: 0px;"
+                >
+                  <section
+                    class="chakra-popover__content css-12m4mu6"
+                    id="popover-content-6"
+                    role="tooltip"
+                    style="transform-origin: left center; opacity: 0; visibility: hidden; transform: scale(0.95) translateZ(0);"
+                    tabindex="-1"
+                  />
+                </div>
+              </div>
+              <div
+                class="css-1nm7xg4"
               >
-                Meses hasta encontrar trabajo:
-                 
-                6
-              </p>
+                <p
+                  class="chakra-text css-0"
+                >
+                  Meses hasta encontrar trabajo:
+                   
+                  6
+                </p>
+                <svg
+                  aria-controls="popover-content-8"
+                  aria-expanded="false"
+                  aria-haspopup="dialog"
+                  class="chakra-icon css-psva3u"
+                  focusable="false"
+                  id="popover-trigger-8"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path
+                      d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+                      fill="none"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+                      fill="currentColor"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      fill="none"
+                      r="11.25"
+                      stroke-miterlimit="10"
+                    />
+                  </g>
+                </svg>
+                <div
+                  class="css-0"
+                  style="visibility: hidden; position: absolute; left: 0px; top: 0px;"
+                >
+                  <section
+                    class="chakra-popover__content css-12m4mu6"
+                    id="popover-content-8"
+                    role="tooltip"
+                    style="transform-origin: left center; opacity: 0; visibility: hidden; transform: scale(0.95) translateZ(0);"
+                    tabindex="-1"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -97,7 +289,7 @@ Object {
         id="complementary_information"
       >
         <div
-          class="chakra-stack unselectable css-iquqh5"
+          class="chakra-stack unselectable css-16rokbl"
         >
           <p
             class="chakra-text verticalText css-1568c7u"
@@ -107,35 +299,227 @@ Object {
           <div
             style="opacity: 0;"
           >
-            <p
-              class="chakra-text css-1yyofq7"
+            <div
+              class="css-1nm7xg4"
             >
-              Tipo de ingreso: 
-               
-              PSU
-            </p>
-            <p
-              class="chakra-text css-1yyofq7"
+              <p
+                class="chakra-text css-0"
+              >
+                Tipo de ingreso: 
+                 
+                PSU
+              </p>
+              <svg
+                aria-controls="popover-content-2"
+                aria-expanded="false"
+                aria-haspopup="dialog"
+                class="chakra-icon css-psva3u"
+                focusable="false"
+                id="popover-trigger-2"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+                    fill="none"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+                    fill="currentColor"
+                    stroke-linecap="round"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    fill="none"
+                    r="11.25"
+                    stroke-miterlimit="10"
+                  />
+                </g>
+              </svg>
+              <div
+                class="css-0"
+                style="visibility: hidden; position: absolute; left: 0px; top: 0px;"
+              >
+                <section
+                  class="chakra-popover__content css-12m4mu6"
+                  id="popover-content-2"
+                  role="tooltip"
+                  style="transform-origin: left center; opacity: 0; visibility: hidden; transform: scale(0.95) translateZ(0);"
+                  tabindex="-1"
+                />
+              </div>
+            </div>
+            <div
+              class="css-1nm7xg4"
             >
-              Sistema educacional:
-               
-              Publico
-            </p>
-            <p
-              class="chakra-text css-1yyofq7"
+              <p
+                class="chakra-text css-0"
+              >
+                Sistema educacional:
+                 
+                Publico
+              </p>
+              <svg
+                aria-controls="popover-content-4"
+                aria-expanded="false"
+                aria-haspopup="dialog"
+                class="chakra-icon css-psva3u"
+                focusable="false"
+                id="popover-trigger-4"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+                    fill="none"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+                    fill="currentColor"
+                    stroke-linecap="round"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    fill="none"
+                    r="11.25"
+                    stroke-miterlimit="10"
+                  />
+                </g>
+              </svg>
+              <div
+                class="css-0"
+                style="visibility: hidden; position: absolute; left: 0px; top: 0px;"
+              >
+                <section
+                  class="chakra-popover__content css-12m4mu6"
+                  id="popover-content-4"
+                  role="tooltip"
+                  style="transform-origin: left center; opacity: 0; visibility: hidden; transform: scale(0.95) translateZ(0);"
+                  tabindex="-1"
+                />
+              </div>
+            </div>
+            <div
+              class="css-1nm7xg4"
               data-testid="inst"
             >
-              Nombre de institución:
-               
-              Escuela
-            </p>
-            <p
-              class="chakra-text css-1yyofq7"
+              <p
+                class="chakra-text css-0"
+              >
+                Nombre de institución:
+                 
+                Escuela
+              </p>
+              <svg
+                aria-controls="popover-content-6"
+                aria-expanded="false"
+                aria-haspopup="dialog"
+                class="chakra-icon css-psva3u"
+                focusable="false"
+                id="popover-trigger-6"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+                    fill="none"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+                    fill="currentColor"
+                    stroke-linecap="round"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    fill="none"
+                    r="11.25"
+                    stroke-miterlimit="10"
+                  />
+                </g>
+              </svg>
+              <div
+                class="css-0"
+                style="visibility: hidden; position: absolute; left: 0px; top: 0px;"
+              >
+                <section
+                  class="chakra-popover__content css-12m4mu6"
+                  id="popover-content-6"
+                  role="tooltip"
+                  style="transform-origin: left center; opacity: 0; visibility: hidden; transform: scale(0.95) translateZ(0);"
+                  tabindex="-1"
+                />
+              </div>
+            </div>
+            <div
+              class="css-1nm7xg4"
             >
-              Meses hasta encontrar trabajo:
-               
-              6
-            </p>
+              <p
+                class="chakra-text css-0"
+              >
+                Meses hasta encontrar trabajo:
+                 
+                6
+              </p>
+              <svg
+                aria-controls="popover-content-8"
+                aria-expanded="false"
+                aria-haspopup="dialog"
+                class="chakra-icon css-psva3u"
+                focusable="false"
+                id="popover-trigger-8"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+                    fill="none"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+                    fill="currentColor"
+                    stroke-linecap="round"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    fill="none"
+                    r="11.25"
+                    stroke-miterlimit="10"
+                  />
+                </g>
+              </svg>
+              <div
+                class="css-0"
+                style="visibility: hidden; position: absolute; left: 0px; top: 0px;"
+              >
+                <section
+                  class="chakra-popover__content css-12m4mu6"
+                  id="popover-content-8"
+                  role="tooltip"
+                  style="transform-origin: left center; opacity: 0; visibility: hidden; transform: scale(0.95) translateZ(0);"
+                  tabindex="-1"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
