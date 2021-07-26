@@ -33,6 +33,7 @@ import {
   Text,
   Tooltip,
   useDisclosure,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 
@@ -274,6 +275,7 @@ export const StudentList: FC<{
     return studentListChunks[pageSelected - 1];
   }, [studentListChunks, pageSelected]);
 
+  const textColor = useColorModeValue("black", "white");
   return (
     <>
       <Button
@@ -420,10 +422,11 @@ export const StudentList: FC<{
                                     width="fit-content"
                                     zIndex={100}
                                     padding="5px"
+                                    textAlign="justify"
                                   >
                                     <PopoverArrow />
                                     <PopoverBody>
-                                      <Text>
+                                      <Text color={textColor}>
                                         {explanation.charAt(0).toUpperCase() +
                                           explanation.slice(1)}
                                       </Text>
