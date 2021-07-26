@@ -74,6 +74,7 @@ const migration = async () => {
     PERSISTENCE_TABLE,
     PROGRAM_STRUCTURE_TABLE,
     EXTERNAL_EVALUATION_STRUCTURE_TABLE,
+    EXTERNAL_EVALUATION_GROUPED_STATS_TABLE,
     PROGRAM_TABLE,
     ProgramStructureTable,
     ExternalEvaluationStructureTable,
@@ -94,6 +95,7 @@ const migration = async () => {
     StudentExternalEvaluationTable,
     ExternalEvaluationTable,
     ExternalEvaluationStatsTable,
+    ExternalEvaluationGroupedStatsTable,
     StudentClusterTable,
     StudentCourseTable,
     StudentDropoutTable,
@@ -131,6 +133,9 @@ const migration = async () => {
         table.text("student_id").notNullable().defaultTo("");
       });
 
+      const mockStudent = (await import("./mockData/student.json")).default[0]
+        ?.id;
+
       await UserTable().insert({
         email: "admin@admin.dev",
         password: sha1("admin").toString(),
@@ -138,7 +143,7 @@ const migration = async () => {
         locked: false,
         admin: true,
         type: UserType.Director,
-        student_id: (await import("./mockData/student.json")).default[0].id,
+        student_id: mockStudent ?? "",
       });
     }
   });
@@ -176,9 +181,11 @@ const migration = async () => {
           email: "admin@admin.dev",
           config: {
             ...baseUserConfig,
+            SHOW_GROUPED_VIEW: true,
             SHOW_STUDENT_COMPLEMENTARY_INFORMATION: true,
             SHOW_GROUPED_COMPLEMENTARY_INFO: true,
             SHOW_DROPOUT: true,
+            SHOW_DOWNLOAD: true,
             SHOW_PROGRESS_STUDENT_CYCLE: true,
             SHOW_STUDENT_LIST: true,
             FOREPLAN: true,
@@ -577,8 +584,8 @@ const migration = async () => {
           table.text("student_id").notNullable().primary();
           table.boolean("active").notNullable().defaultTo(true);
           table.text("type_admission").notNullable();
-          table.float("initial_test", 4);
-          table.float("final_test", 4);
+          table.float("initial_evaluation", 4);
+          table.float("final_evaluation", 4);
         });
         await StudentAdmissionTable().insert(
           (await import("./mockData/student_admission.json")).default
@@ -598,9 +605,10 @@ const migration = async () => {
             table.integer("term").notNullable();
             table.text("student_id").notNullable();
             table.text("external_evaluation_taken").notNullable();
+            table.text("topic").notNullable();
             table.text("registration").notNullable();
             table.text("state").notNullable();
-            table.float("grade", 4).notNullable();
+            table.text("grade").notNullable();
             table.integer("p_group").notNullable();
             table.text("comments");
             table.integer("duplicates").notNullable();
@@ -642,6 +650,7 @@ const migration = async () => {
             table.text("external_evaluation_taken").notNullable();
             table.integer("year", 4).notNullable();
             table.integer("term", 4).notNullable();
+            table.text("topic").notNullable();
             table.integer("p_group", 2).notNullable();
             table.integer("n_total", 8).notNullable();
             table.integer("n_finished", 8).notNullable();
@@ -662,23 +671,61 @@ const migration = async () => {
       }
     });
 
+  const externalEvaluationGroupedStats = dbData.schema
+    .hasTable(EXTERNAL_EVALUATION_GROUPED_STATS_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(
+          EXTERNAL_EVALUATION_GROUPED_STATS_TABLE,
+          (table) => {
+            table.integer("id", 8).notNullable().primary();
+            table.text("external_evaluation_id").notNullable();
+            table.text("topic").notNullable();
+            table.text("program_id").notNullable();
+            table.text("curriculum").notNullable();
+            table.text("type_admission").notNullable();
+            table.text("cohort").notNullable();
+            table.integer("year", 4).notNullable();
+            table.integer("term", 4).notNullable();
+            table.integer("n_students").notNullable();
+            table.integer("n_total", 8).notNullable();
+            table.integer("n_finished", 8).notNullable();
+            table.integer("n_pass", 8).notNullable();
+            table.integer("n_fail", 8).notNullable();
+            table.integer("n_drop", 8).notNullable();
+            table.text("histogram").notNullable();
+            table.text("histogram_labels").notNullable();
+            table.text("color_bands").notNullable();
+          }
+        );
+        await ExternalEvaluationGroupedStatsTable().insert(
+          (
+            await import("./mockData/external_evaluation_grouped_stats.json")
+          ).default.map(({ program_id, curriculum, cohort, ...rest }) => {
+            return {
+              ...rest,
+              program_id: program_id.toString(),
+              curriculum: curriculum.toString(),
+              cohort: cohort.toString(),
+            };
+          })
+        );
+      }
+    });
+
   const courseGroupedStats = dbData.schema
     .hasTable(COURSE_GROUPED_STATS_TABLE)
     .then(async (exists) => {
       if (!exists) {
         await dbData.schema.createTable(COURSE_GROUPED_STATS_TABLE, (table) => {
+          table.integer("id", 8).notNullable().primary();
           table.text("course_id").notNullable();
           table.text("program_id").notNullable();
           table.text("curriculum").notNullable();
           table.text("type_admission").notNullable();
           table.text("cohort").notNullable();
-          table.primary([
-            "course_id",
-            "cohort",
-            "type_admission",
-            "program_id",
-            "curriculum",
-          ]);
+          table.integer("year", 4).notNullable();
+          table.integer("term", 4).notNullable();
           table.integer("n_students").notNullable();
           table.integer("n_total", 8).notNullable();
           table.integer("n_finished", 8).notNullable();
@@ -975,6 +1022,7 @@ const migration = async () => {
     studentGroupedEmployedStructure,
     externalEvaluation,
     externalEvaluationStats,
+    externalEvaluationGroupedStats,
     studentCourse,
     studentDropout,
     studentEmployed,

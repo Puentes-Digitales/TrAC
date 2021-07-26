@@ -220,8 +220,6 @@ export interface IStudentAdmission {
   student_id: string;
   active: boolean;
   type_admission: string;
-  initial_test: number;
-  final_test?: number;
 }
 
 export const STUDENT_ADMISSION_TABLE = "student_admission";
@@ -271,11 +269,14 @@ export const StudentGroupedEmployedTable = () =>
 // --------------------------------------------------------------------------
 
 export interface ICourseGroupedStats {
+  id: number;
   course_id: string;
   program_id: string;
   curriculum: string;
   type_admission: string;
   cohort: string;
+  year: number;
+  term: number;
   n_students: number;
   n_total: number;
   n_finished: number;
@@ -300,9 +301,10 @@ export interface IStudentExternalEvaluation {
   term: number;
   student_id: string;
   external_evaluation_taken: string;
+  topic: string;
   registration: string;
   state: string;
-  grade: number;
+  grade: string;
   p_group: number;
   comments: string;
   duplicates: number;
@@ -333,6 +335,7 @@ export interface IExternalEvaluationStats {
   external_evaluation_taken: string;
   year: number;
   term: number;
+  topic: string;
   p_group: number;
   n_total: number;
   n_finished: number;
@@ -350,6 +353,37 @@ export const EXTERNAL_EVALUATION_STATS_TABLE = "external_evaluation_stats";
 
 export const ExternalEvaluationStatsTable = () =>
   dbData<IExternalEvaluationStats>(EXTERNAL_EVALUATION_STATS_TABLE);
+
+// -------------------------------------------------------------------------------------
+export interface IExternalEvaluationGroupedStats {
+  id: number;
+  external_evaluation_id: string;
+  topic: string;
+  program_id: string;
+  curriculum: string;
+  type_admission: string;
+  cohort: string;
+  year: number;
+  term: number;
+  n_students: number;
+  p_group: number;
+  n_total: number;
+  n_finished: number;
+  n_pass: number;
+  n_fail: number;
+  n_drop: number;
+  histogram: string;
+  histogram_labels: string;
+  color_bands: string;
+}
+
+export const EXTERNAL_EVALUATION_GROUPED_STATS_TABLE =
+  "external_evaluation_grouped_stats";
+
+export const ExternalEvaluationGroupedStatsTable = () =>
+  dbData<IExternalEvaluationGroupedStats>(
+    EXTERNAL_EVALUATION_GROUPED_STATS_TABLE
+  );
 // -------------------------------------------------------------------------------------
 
 export interface IPerformanceByLoad {

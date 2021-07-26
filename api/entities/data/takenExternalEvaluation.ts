@@ -20,27 +20,23 @@ export class TakenExternalEvaluation
   @Field()
   name: string;
 
+  @Field()
+  topic: string;
+
   // student_external_evaluation => registration
   @Field()
   registration: string;
-
-  // student_external_evaluation => grade
-  @Field()
-  grade: number;
 
   // student_external_evaluation => state
   @Field(() => StateCourse)
   state: StateCourse;
 
-  // student_external_evaluation => p_group
-  @Field(() => Int)
-  parallelGroup: number;
+  @Field()
+  grade: string;
 
-  // external_evaluation_stats => histogram , histogram_labels
-  @Field(() => [DistributionValue])
-  currentDistribution: DistributionValue[];
-
-  // LOGIC, CHOOSE ACCORDINGLY => external_evaluation_stats => color_bands
   @Field(() => [BandColor])
   bandColors: BandColor[];
+
+  @Field(() => [DistributionValue])
+  currentDistribution: DistributionValue[];
 }

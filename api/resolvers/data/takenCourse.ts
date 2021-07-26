@@ -1,4 +1,4 @@
-import { compact, toInteger, toNumber } from "lodash";
+import { compact, toInteger } from "lodash";
 import { FieldResolver, Resolver, Root } from "type-graphql";
 
 import { defaultStateCourse } from "../../../client/constants";
@@ -6,14 +6,14 @@ import { CourseDataLoader } from "../../dataloaders/course";
 import {
   CourseStatsByCourseTakenDataLoader,
   CourseStatsByStateDataLoader,
-  StudentExternalEvaluationCourseDataLoader,
+  StudentCourseDataLoader,
 } from "../../dataloaders/takenCourse";
-import { StudentExternalEvaluationAndCourseDataLoader } from "../../dataloaders/takenExternalEvaluation";
 import { TakenCourse } from "../../entities/data/takenCourse";
 import { assertIsDefined } from "../../utils/assert";
 import { clearErrorArray } from "../../utils/clearErrorArray";
 
 import type { $PropertyType } from "utility-types";
+import { getColorBands } from "../../utils/colorBands";
 
 export type PartialTakenCourse = Pick<TakenCourse, "id" | "code" | "equiv">;
 
@@ -45,9 +45,7 @@ export class TakenCourseResolver {
       id,
       `id needs to be available for Taken Course field resolvers`
     );
-    const registrationData = await StudentExternalEvaluationAndCourseDataLoader.load(
-      id
-    );
+    const registrationData = await StudentCourseDataLoader.load(id);
     assertIsDefined(
       registrationData,
       `Registration could not be found for ${id} taken course`
@@ -63,9 +61,7 @@ export class TakenCourseResolver {
       id,
       `id and code needs to be available for Taken Course field resolvers`
     );
-    const gradeData = await StudentExternalEvaluationAndCourseDataLoader.load(
-      id
-    );
+    const gradeData = await StudentCourseDataLoader.load(id);
     assertIsDefined(
       gradeData,
       `Grade could not be found for ${id} taken course`
@@ -81,9 +77,7 @@ export class TakenCourseResolver {
       id,
       `id needs to be available for Taken Course field resolvers`
     );
-    const stateData = await StudentExternalEvaluationAndCourseDataLoader.load(
-      id
-    );
+    const stateData = await StudentCourseDataLoader.load(id);
     assertIsDefined(
       stateData,
       `State could not be found for ${id} taken course`
@@ -99,9 +93,7 @@ export class TakenCourseResolver {
       id,
       `id needs to be available for Taken Course field resolvers`
     );
-    const parallelGroupData = await StudentExternalEvaluationAndCourseDataLoader.load(
-      id
-    );
+    const parallelGroupData = await StudentCourseDataLoader.load(id);
     assertIsDefined(
       parallelGroupData,
       `Parallel group could not be found for ${id} taken course`
@@ -122,9 +114,7 @@ export class TakenCourseResolver {
       `code needs to be available for Taken Course field resolvers`
     );
 
-    const dataTakenCourse = await StudentExternalEvaluationCourseDataLoader.load(
-      id
-    );
+    const dataTakenCourse = await StudentCourseDataLoader.load(id);
 
     assertIsDefined(
       dataTakenCourse,
@@ -174,14 +164,7 @@ export class TakenCourseResolver {
       return [];
     }
 
-    const bandColors = bandColorsData.color_bands.split(";").map((value) => {
-      const [min, max, color] = value.split(",");
-      return {
-        min: toNumber(min),
-        max: toNumber(max),
-        color,
-      };
-    });
+    const bandColors = getColorBands(bandColorsData.color_bands);
 
     return bandColors;
   }

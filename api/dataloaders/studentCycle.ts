@@ -20,6 +20,7 @@ export const StudentListCyclesDataLoader = new DataLoader(
         return ProgramStructureTable()
           .distinct("course_cat")
           .whereNot("course_cat", "")
+          .whereNot("course_cat", " ")
           .where({
             program_id: program_id,
             curriculum: curriculum,

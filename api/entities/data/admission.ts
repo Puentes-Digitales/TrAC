@@ -7,10 +7,4 @@ export class Admission {
 
   @Field()
   type_admission: string;
-
-  @Field({ nullable: true })
-  initial_test: number;
-
-  @Field({ nullable: true })
-  final_test?: number;
 }

@@ -2,7 +2,6 @@ import React, { FC, memo, useContext, useEffect } from "react";
 import { Progress } from "semantic-ui-react";
 import { Flex, Stack, Text, Box } from "@chakra-ui/react";
 import { setTrackingData } from "../../context/Tracking";
-
 import { ConfigContext } from "../../context/Config";
 
 export const ProgressStudent: FC<{
@@ -35,6 +34,7 @@ export const ProgressStudent: FC<{
         color="black"
         transition="box-shadow 0.4s ease-in-out"
         data-testid="BoxContainer"
+        id="student_progress"
       >
         <Stack className="unselectable" isInline pl={5} pt={5} pb={5} pr={3}>
           <Box>

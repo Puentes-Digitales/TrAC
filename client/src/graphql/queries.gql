@@ -74,11 +74,14 @@ mutation searchProgram($id: String, $student_id: String) {
       employed_rate_educational_system
     }
     courseGroupedStats {
+      id
       program_id
+      course_id
       curriculum
       type_admission
       cohort
-      course_id
+      year
+      term
       n_students
       n_total
       n_finished
@@ -95,6 +98,33 @@ mutation searchProgram($id: String, $student_id: String) {
         color
       }
     }
+    externalEvaluationGroupedStats {
+      id
+      external_evaluation_id
+      topic
+      program_id
+      curriculum
+      type_admission
+      cohort
+      year
+      term
+      n_students
+      n_total
+      n_finished
+      n_pass
+      n_drop
+      n_fail
+      distribution {
+        label
+        value
+      }
+      color_bands {
+        min
+        max
+        color
+      }
+    }
+
     curriculums {
       id
       semesters {
@@ -117,6 +147,15 @@ mutation searchProgram($id: String, $student_id: String) {
             label
             value
           }
+          bandColors {
+            min
+            max
+            color
+          }
+        }
+        externalEvaluations {
+          code
+          name
           bandColors {
             min
             max
@@ -169,6 +208,24 @@ mutation searchStudent($student_id: String, $program_id: String) {
           color
         }
       }
+      takenExternalEvaluations {
+        id
+        code
+        topic
+        name
+        registration
+        state
+        grade
+        currentDistribution {
+          label
+          value
+        }
+        bandColors {
+          min
+          max
+          color
+        }
+      }
     }
     dropout {
       prob_dropout
@@ -178,8 +235,6 @@ mutation searchStudent($student_id: String, $program_id: String) {
     admission {
       active
       type_admission
-      initial_test
-      final_test
     }
     employed {
       employed
@@ -217,8 +272,6 @@ query studentsList($program_id: String!) {
     admission {
       active
       type_admission
-      initial_test
-      final_test
     }
   }
 }
@@ -233,6 +286,15 @@ query studentsFilterList($program_id: String!, $curriculum: String!) {
     curriculums
     start_year
     mention
+    admission {
+      type_admission
+    }
+    terms {
+      year
+      term
+      semestral_grade
+      comments
+    }
   }
 }
 

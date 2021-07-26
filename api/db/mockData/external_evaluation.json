@@ -1,6 +1,6 @@
 [
   {
-    "id": "EID-17",
+    "id": "EID",
     "name": "EVALUACIÓN INICIAL DIAGNOSTICA",
     "description": "",
     "tags": "",
@@ -10,47 +10,7 @@
     "grade_pass_min": 4
   },
   {
-    "id": "END-17",
-    "name": "EVALUACIÓN NACIONAL DIAGNOSTICA",
-    "description": "",
-    "tags": "",
-    "grading": "scale",
-    "grade_min": 1,
-    "grade_max": 7,
-    "grade_pass_min": 4
-  },
-  {
-    "id": "EID-15",
-    "name": "EVALUACIÓN INICIAL DIAGNOSTICA",
-    "description": "",
-    "tags": "",
-    "grading": "scale",
-    "grade_min": 1,
-    "grade_max": 7,
-    "grade_pass_min": 4
-  },
-  {
-    "id": "END-15",
-    "name": "EVALUACIÓN NACIONAL DIAGNOSTICA",
-    "description": "",
-    "tags": "",
-    "grading": "scale",
-    "grade_min": 1,
-    "grade_max": 7,
-    "grade_pass_min": 4
-  },
-  {
-    "id": "EID-13",
-    "name": "EVALUACIÓN INICIAL DIAGNOSTICA",
-    "description": "",
-    "tags": "",
-    "grading": "scale",
-    "grade_min": 1,
-    "grade_max": 7,
-    "grade_pass_min": 4
-  },
-  {
-    "id": "END-13",
+    "id": "END",
     "name": "EVALUACIÓN NACIONAL DIAGNOSTICA",
     "description": "",
     "tags": "",

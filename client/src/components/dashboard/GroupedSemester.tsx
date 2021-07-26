@@ -2,9 +2,13 @@ import React, { FC, useContext } from "react";
 
 import { Stack, StackProps, Text } from "@chakra-ui/react";
 
-import { IGroupedCourse } from "../../../../interfaces";
+import {
+  IGroupedCourse,
+  IGroupedExternalEvaluation,
+} from "../../../../interfaces";
 import { ConfigContext } from "../../context/Config";
 import { GroupedCourseBox } from "./CourseBox/GroupedCourseBox";
+import { GroupedExternalEvaluationBox } from "./CourseBox/GroupedExternalEvaluationBox";
 
 const toRoman = (num: number, first = false): string => {
   if (first && num === 0) {
@@ -37,9 +41,16 @@ const toRoman = (num: number, first = false): string => {
 export const GroupedSemester: FC<
   {
     courses: IGroupedCourse[];
+    externalEvaluations: IGroupedExternalEvaluation[];
     n: number;
   } & StackProps
-> = ({ courses: semester, n, mr, ...stackProps }) => {
+> = ({
+  courses: semesterCourse,
+  externalEvaluations: semesterExternalEvaluation,
+  n,
+  mr,
+  ...stackProps
+}) => {
   const { SEMESTER_HEADER_TEXT_COLOR, SEMESTER_HEADER_FONT_SIZE } = useContext(
     ConfigContext
   );
@@ -53,7 +64,16 @@ export const GroupedSemester: FC<
       >
         <b>{toRoman(n, true)}</b>
       </Text>
-      {semester.map((course) => (
+
+      {semesterExternalEvaluation &&
+        semesterExternalEvaluation.map((externalEvaluations) => (
+          <GroupedExternalEvaluationBox
+            key={externalEvaluations.code}
+            {...externalEvaluations}
+          />
+        ))}
+
+      {semesterCourse.map((course) => (
         <GroupedCourseBox key={course.code} {...course} />
       ))}
     </Stack>
