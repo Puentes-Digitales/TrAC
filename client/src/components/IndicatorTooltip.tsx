@@ -21,6 +21,7 @@ export const IndicatorTooltip: FC<{
         <Icon ml={"4px"} mb={0} mt={"2px"} size="13px" cursor="help" />
       </PopoverTrigger>
       <PopoverContent
+        justify="center"
         width="fit-content"
         padding="5px"
         color={textColor}
