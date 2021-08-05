@@ -9485,7 +9485,7 @@ const data: {
           id: "2017",
           semesters: [
             {
-              id: 1,
+              id: 0,
               externalEvaluations: [
                 {
                   code: "EID-17",
@@ -9514,6 +9514,11 @@ const data: {
                   ],
                 },
               ],
+              courses: [],
+            },
+            {
+              id: 1,
+              externalEvaluations: [],
               courses: [
                 {
                   code: "BAIN065-14",
