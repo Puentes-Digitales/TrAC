@@ -191,6 +191,22 @@ export const CurriculumsDataLoader = new DataLoader(
                 });
                 data2.splice(index, 1);
                 index--;
+              } else if (val.semester === 0) {
+                /* TODO: generalize, reorder for's  */
+                curr.semesters = Object.assign(curr.semesters, {
+                  0: {
+                    id: 0,
+                    courses: [],
+                    externalEvaluations: [
+                      {
+                        id: val.id,
+                        code: val.external_evaluation_id,
+                      },
+                    ],
+                  },
+                });
+                data2.splice(index, 1);
+                index--;
               }
             }
           }
