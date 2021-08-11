@@ -193,7 +193,7 @@ export const CurriculumsDataLoader = new DataLoader(
                 index--;
               } else if (val.semester === 0) {
                 /* TODO: generalize, reorder for's  */
-                curr.semesters = Object.assign(curr.semesters, {
+                Object.assign(curr.semesters, {
                   0: {
                     id: 0,
                     courses: [],
