@@ -21,7 +21,6 @@ export const SemestersList: FC<{
     externalEvaluations: IExternalEvaluation[];
   }[];
 }> = memo(({ semesters }) => {
-  console.log("6", "semesters", semesters);
   const { width } = useWindowSize();
   const { DASHBOARD_SEMESTERS_LIST_MOBILE_BREAKPOINT } = useContext(
     ConfigContext

@@ -436,17 +436,14 @@ export function Dashboard() {
         ? undefined
         : mockData?.default.searchStudentData.student
       : searchStudentData?.student;
-    console.log("1", "studentData", studentData);
 
     const programData = mock
       ? mockData?.default.searchProgramData.program
       : searchProgramData?.program;
-    console.log("2", "programData", programData);
 
     const studentListData = mock
       ? mockData?.default.searchStudentListData
       : dataStudentFilterList;
-    console.log("3", "studentListData", studentListData);
 
     if (studentData && !grouped) {
       const {
@@ -673,13 +670,11 @@ export function Dashboard() {
             return { id: curriculumId, semesters };
           }) ?? [];
 
-      console.log("4", "curriculums", curriculums);
       const data = curriculums.find(({ id: curriculumId }) => {
         return !mock && chosenCurriculum
           ? curriculumId === chosenCurriculum
           : true;
       });
-      console.log("5", "data", data);
 
       if (data && studentData) {
         SemestersComponent = (
