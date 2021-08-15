@@ -261,10 +261,12 @@ test("test null props complementary component", async () => {
 describe("indicatorTooltip", () => {
   test("render correctly", async () => {
     await act(async () => {
-      const { getByTestId } = render(<IndicatorTooltip tooltipShow="any" />);
+      const { getByTestId, getByText } = render(
+        <IndicatorTooltip tooltipShow="any" />
+      );
       await waitForExpect(() => {
         fireEvent.mouseEnter(getByTestId("test-tooltip"));
-        expect(getByTestId("test-tooltip")).toBeInTheDocument();
+        expect(getByText("any")).toBeInTheDocument();
       });
     });
   });
