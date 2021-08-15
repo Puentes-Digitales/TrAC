@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import React, { FC, memo, useEffect, useState } from "react";
 import {
   Text,
   Icon,
@@ -8,6 +8,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   useColorModeValue,
+  Portal,
 } from "@chakra-ui/react";
 
 export const IndicatorTooltip: FC<{
@@ -18,20 +19,29 @@ export const IndicatorTooltip: FC<{
   return tooltipShow ? (
     <Popover trigger="hover" isLazy placement="right">
       <PopoverTrigger>
-        <Icon ml={"4px"} mb={0} mt={"2px"} size="13px" cursor="help" />
+        <Icon
+          data-testid="test-tooltip"
+          ml={"4px"}
+          mb={0}
+          mt={"2px"}
+          size="13px"
+          cursor="help"
+        />
       </PopoverTrigger>
-      <PopoverContent
-        justify="center"
-        width="fit-content"
-        padding="5px"
-        color={textColor}
-        alignItems="center"
-      >
-        <PopoverArrow />
-        <PopoverBody>
-          <Text>{tooltipShow}</Text>
-        </PopoverBody>
-      </PopoverContent>
+      <Portal>
+        <PopoverContent
+          justify="center"
+          width="fit-content"
+          padding="5px"
+          color={textColor}
+          alignItems="center"
+        >
+          <PopoverArrow />
+          <PopoverBody>
+            <Text>{tooltipShow}</Text>
+          </PopoverBody>
+        </PopoverContent>
+      </Portal>
     </Popover>
   ) : null;
 });
