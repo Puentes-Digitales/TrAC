@@ -326,6 +326,9 @@ export const SearchBar: FC<{
 
         {HELP_ENABLED && <Help />}
 
+        <Button css={marginLeft5px} primary size="large" icon>
+          <Icon name="info circle" />
+        </Button>
         <Button
           css={marginLeft5px}
           negative
