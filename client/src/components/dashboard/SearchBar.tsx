@@ -329,6 +329,9 @@ export const SearchBar: FC<{
         <Button css={marginLeft5px} primary size="large" icon>
           <Icon name="info circle" />
         </Button>
+
+        <Button>Admin Panel</Button>
+
         <Button
           css={marginLeft5px}
           negative

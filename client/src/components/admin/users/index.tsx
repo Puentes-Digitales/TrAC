@@ -136,7 +136,6 @@ export const Users: FC<{
             </Message>
           </Stack>
         )}
-
         <Stack mt="10px">
           <Button
             color="teal"
@@ -150,6 +149,21 @@ export const Users: FC<{
           >
             <Icon name="refresh" />
             Refetch
+          </Button>
+        </Stack>
+
+        <Stack mt="10px">
+          <Button
+            color="red"
+            icon
+            labelPosition="left"
+            onClick={() => {
+              console.log("click on notification button");
+            }}
+            loading={loading}
+            disabled={loading}
+          >
+            Send notification
           </Button>
         </Stack>
 
