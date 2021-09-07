@@ -330,7 +330,13 @@ export const SearchBar: FC<{
           <Icon name="info circle" />
         </Button>
 
-        <Button>Admin Panel</Button>
+        <Button
+          onClick={async () => {
+            Router.push("./admin");
+          }}
+        >
+          Admin Panel
+        </Button>
 
         <Button
           css={marginLeft5px}

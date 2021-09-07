@@ -246,6 +246,7 @@ type Mutation {
   login(email: EmailAddress!, password: String!): AuthResult!
   logout: Boolean!
   mailAllLockedUsers: [JSONObject!]!
+  NotificateUsers: [JSONObject!]!
   performanceLoadAdvices(
     program_id: String
     student_id: String

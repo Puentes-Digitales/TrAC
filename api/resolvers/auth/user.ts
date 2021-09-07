@@ -32,7 +32,7 @@ import {
   User,
   UserProgram,
 } from "../../entities/auth/user";
-import { sendMail, UnlockMail } from "../../services/mail";
+import { sendMail, UnlockMail, NotificationMail } from "../../services/mail";
 import { assertIsDefined } from "../../utils/assert";
 import { checkHasStudentData } from "./auth";
 
@@ -293,6 +293,24 @@ export class UserResolver {
         };
       }),
     };
+  }
+
+  @Authorized([ADMIN])
+  @Mutation(() => [GraphQLJSONObject])
+  async NotificateUsers(): Promise<Record<string, any>> {
+    const users = await UserTable().select("email");
+    const NotificationMailResults: Record<string, any>[] = [];
+    for (const { email } of users) {
+      const result = await sendMail({
+        to: email,
+        message: NotificationMail({
+          email,
+        }),
+        subject: "Notificacion de datos ",
+      });
+      NotificationMailResults.push(result);
+    }
+    return NotificationMailResults;
   }
 
   @Authorized([ADMIN])

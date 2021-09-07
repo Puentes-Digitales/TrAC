@@ -49,3 +49,33 @@ export const UnlockMail = ({
     </div>
   );
 };
+
+export const NotificationMail = ({ email }: { email: string }): string => {
+  const link = `google.com`;
+
+  return renderToStaticMarkup(
+    <div>
+      <h2>NotificationMail</h2>
+      <br />
+      <p>Mail de notificación</p>
+      <br />
+      <p>
+        Haga click{" "}
+        <a href={link}>
+          <b>aquí</b>
+        </a>{" "}
+        Para obtener más información
+      </p>
+      <br />
+      <p>
+        O abra este link en su navegador: {"   "}
+        <b>{link}</b>
+      </p>
+      <br />
+      <p>
+        Si tiene algún problema o alguna pregunta, puede contactarnos al correo:{" "}
+        <b>{EMAIL_ADDRESS}</b>
+      </p>
+    </div>
+  );
+};

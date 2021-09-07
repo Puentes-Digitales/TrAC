@@ -9,6 +9,7 @@ import { Flex, Stack } from "@chakra-ui/react";
 import { UserConfig } from "../../../../constants/userConfig";
 import {
   useMailAllLockedUsersAdminMutation,
+  useNotificateUsersAdminMutation,
   UserAdminInfoFragment,
   UserType,
 } from "../../../graphql";
@@ -62,6 +63,15 @@ export const Users: FC<{
       loading: loadingMailLockedUsers,
     },
   ] = useMailAllLockedUsersAdminMutation();
+
+  const [
+    mailNotificationUsers,
+    {
+      data: dataNotificationUsers,
+      error: errorNotificationUserss,
+      loading: loadingNotificationUsers,
+    },
+  ] = useNotificateUsersAdminMutation();
 
   const { pagination, selectedData } = usePagination({
     name: "admin_sorted_users",
@@ -158,7 +168,7 @@ export const Users: FC<{
             icon
             labelPosition="left"
             onClick={() => {
-              console.log("click on notification button");
+              mailNotificationUsers();
             }}
             loading={loading}
             disabled={loading}

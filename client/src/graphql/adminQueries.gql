@@ -54,7 +54,9 @@ mutation lockMailUserAdmin($email: EmailAddress!) {
     }
   }
 }
-
+mutation NotificateUsersAdmin {
+  NotificateUsers
+}
 mutation mailAllLockedUsersAdmin {
   mailAllLockedUsers
 }

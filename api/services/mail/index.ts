@@ -99,3 +99,4 @@ export async function sendMail({
 }
 
 export { UnlockMail } from "./mail";
+export { NotificationMail } from "./mail";
