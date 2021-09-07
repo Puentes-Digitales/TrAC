@@ -169,9 +169,11 @@ export const Users: FC<{
             labelPosition="left"
             onClick={() => {
               mailNotificationUsers();
+              console.log(errorNotificationUserss?.message);
+              console.log(dataNotificationUsers);
             }}
-            loading={loading}
-            disabled={loading}
+            loading={loadingNotificationUsers}
+            disabled={loadingNotificationUsers}
           >
             Send notification
           </Button>
