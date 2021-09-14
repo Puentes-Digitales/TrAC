@@ -69,6 +69,8 @@ const migration = async () => {
     GROUPED_COMPLEMENTARY_INFORMATION_TABLE,
     PARAMETER_TABLE,
     ParameterTable,
+    PARAMETER_DATE_TABLE,
+    ParameterDateTable,
     PERFORMANCE_BY_LOAD_TABLE,
     PerformanceByLoadTable,
     PERSISTENCE_TABLE,
@@ -111,6 +113,8 @@ const migration = async () => {
     UserProgramsTable,
     USERS_TABLE,
     UserTable,
+    UploadedDataTable,
+    UPLOADED_DATA_TABLE,
   } = await import("./tables");
 
   const users = dbAuth.schema.hasTable(USERS_TABLE).then(async (exists) => {
@@ -290,6 +294,50 @@ const migration = async () => {
       );
     }
   });
+
+  const parameter_date = dbData.schema
+    .hasTable(PARAMETER_DATE_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(PARAMETER_DATE_TABLE, (table) => {
+          table.integer("id");
+          table.text("date");
+        });
+        await ParameterDateTable().insert(
+          (await import("./mockData/parameter_data.json")).default.map(
+            ({ id, date }) => {
+              return {
+                id,
+                date,
+              };
+            }
+          )
+        );
+      }
+    });
+
+  const Uploaded_data = dbData.schema
+    .hasTable(UPLOADED_DATA_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(UPLOADED_DATA_TABLE, (table) => {
+          table.integer("id");
+          table.timestamp("loading_date");
+          table.boolean("notified");
+        });
+        await UploadedDataTable().insert(
+          (await import("./mockData/uploaded_data.json")).default.map(
+            ({ id, loading_date, notified }) => {
+              return {
+                id,
+                loading_date: new Date(loading_date),
+                notified,
+              };
+            }
+          )
+        );
+      }
+    });
 
   const program = dbData.schema.hasTable(PROGRAM_TABLE).then(async (exists) => {
     if (!exists) {
@@ -1013,6 +1061,8 @@ const migration = async () => {
     courseGroupedStats,
     groupedComplementaryInformationStructure,
     param,
+    parameter_date,
+    Uploaded_data,
     program,
     programStructure,
     externalEvaluationStructure,

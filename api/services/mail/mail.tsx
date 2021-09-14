@@ -56,6 +56,7 @@ export const NotificationMail = ({ email }: { email: string }): string => {
   return renderToStaticMarkup(
     <div>
       <h2>NotificationMail</h2>
+      <h3>Fecha última carga de datos</h3>
       <br />
       <p>Mail de notificación</p>
       <br />
