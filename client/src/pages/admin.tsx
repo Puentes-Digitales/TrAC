@@ -9,6 +9,7 @@ import { AdminFeedback } from "../components/admin/feedback";
 import { AdminMenu } from "../components/admin/Menu";
 import { Programs } from "../components/admin/programs";
 import { AdminTrack } from "../components/admin/track";
+import { AdminNotifications } from "../components/admin/notifications";
 import { Users } from "../components/admin/users";
 import { LoadingPage } from "../components/Loading";
 import { useAllUsersAdminQuery } from "../graphql";
@@ -21,6 +22,7 @@ export enum AdminMenuTypes {
   data = "data",
   feedback = "feedback",
   track = "track",
+  notifications = "notifications",
 }
 
 const Admin: FC = () => {
@@ -67,6 +69,8 @@ const Admin: FC = () => {
         return <AdminFeedback />;
       case AdminMenuTypes.track:
         return <AdminTrack />;
+      case AdminMenuTypes.notifications:
+        return <AdminNotifications />;
       default:
         return null;
     }

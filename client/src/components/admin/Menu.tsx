@@ -18,7 +18,8 @@ export const AdminMenu: FC<{
       case AdminMenuTypes.data:
       case AdminMenuTypes.feedback:
       case AdminMenuTypes.track:
-      case AdminMenuTypes.programs: {
+      case AdminMenuTypes.programs:
+      case AdminMenuTypes.notifications: {
         setActive(name);
         return;
       }
@@ -71,6 +72,14 @@ export const AdminMenu: FC<{
       >
         <Icon name="database" />
         Data
+      </Menu.Item>
+      <Menu.Item
+        name={AdminMenuTypes.notifications}
+        active={active === AdminMenuTypes.notifications}
+        onClick={handleClick}
+      >
+        <Icon name="mail" />
+        Notifications
       </Menu.Item>
       <Menu.Item
         name={AdminMenuTypes.feedback}
