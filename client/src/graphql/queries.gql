@@ -297,6 +297,13 @@ query studentsFilterList($program_id: String!, $curriculum: String!) {
     }
   }
 }
+query parameters {
+  parameters {
+    id
+    loading_type
+    loading_date
+  }
+}
 
 mutation performanceLoadAdvices($student_id: String, $program_id: String) {
   performanceLoadAdvices(student_id: $student_id, program_id: $program_id) {
