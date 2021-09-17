@@ -328,6 +328,12 @@ export type MutationUpsertUsersArgs = {
   users: Array<UpsertedUser>;
 };
 
+export type Parameter = {
+  id: Scalars["Int"];
+  loading_date: Scalars["DateTime"];
+  loading_type: Scalars["String"];
+};
+
 export type PerformanceByLoad = {
   adviceParagraph: Scalars["String"];
   adviceTitle: Scalars["String"];
@@ -375,6 +381,7 @@ export type Query = {
   feedbackResults: Array<FeedbackResult>;
   getPersistenceValue?: Maybe<Persistence>;
   myPrograms: Array<Program>;
+  parameters: Array<Parameter>;
   programs: Array<Program>;
   students: Array<Student>;
   students_filter: Array<Student>;
