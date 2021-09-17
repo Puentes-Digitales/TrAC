@@ -41,7 +41,8 @@ export const CourseStatsTable = () => dbData<ICourseStats>(COURSE_STATS_TABLE);
 // -------------------------------------------------------------------------------------
 
 export interface IParameter {
-  passing_grade: number;
+  id: number;
+  loading_type: string;
   loading_date: Date;
 }
 

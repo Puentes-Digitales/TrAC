@@ -275,14 +275,16 @@ const migration = async () => {
   const param = dbData.schema.hasTable(PARAMETER_TABLE).then(async (exists) => {
     if (!exists) {
       await dbData.schema.createTable(PARAMETER_TABLE, (table) => {
-        table.float("passing_grade", 8);
-        table.timestamp("loading_date");
+        table.integer("id", 8).notNullable().primary();
+        table.text("loading_type").notNullable();
+        table.timestamp("loading_date").notNullable();
       });
       await ParameterTable().insert(
         (await import("./mockData/parameter.json")).default.map(
-          ({ passing_grade, loading_date }) => {
+          ({ id, loading_type, loading_date }) => {
             return {
-              passing_grade,
+              id,
+              loading_type,
               loading_date: new Date(loading_date),
             };
           }
