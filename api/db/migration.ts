@@ -87,7 +87,7 @@ const migration = async () => {
     STUDENT_COURSE_TABLE,
     STUDENT_DROPOUT_TABLE,
     STUDENT_EMPLOYED_TABLE,
-    STUDENT_GROUPED_EMPLOYED_TABLE,
+    GROUPED_EMPLOYED_TABLE,
     STUDENT_PROGRAM_TABLE,
     STUDENT_TABLE,
     STUDENT_TERM_TABLE,
@@ -101,7 +101,7 @@ const migration = async () => {
     StudentDropoutTable,
     StudentEmployedTable,
     StudentProgramTable,
-    StudentGroupedEmployedTable,
+    GroupedEmployedTable,
     StudentTable,
     StudentTermTable,
     TRACKING_TABLE,
@@ -380,35 +380,32 @@ const migration = async () => {
       }
     });
 
-  const studentGroupedEmployedStructure = dbData.schema
-    .hasTable(STUDENT_GROUPED_EMPLOYED_TABLE)
+  const groupedEmployedStructure = dbData.schema
+    .hasTable(GROUPED_EMPLOYED_TABLE)
     .then(async (exists) => {
       if (!exists) {
-        await dbData.schema.createTable(
-          STUDENT_GROUPED_EMPLOYED_TABLE,
-          (table) => {
-            table.integer("id", 8).notNullable().primary();
-            table.text("program_id").notNullable();
-            table.text("curriculum").notNullable();
-            table.text("type_admission").notNullable();
-            table.text("cohort").notNullable();
-            table.integer("total_students", 6).notNullable();
-            table.float("employed_rate", 3).notNullable();
-            table.float("average_time_job_finding", 3).notNullable();
-            table.float("employed_rate_educational_system", 3).notNullable();
-          }
-        );
-        await StudentGroupedEmployedTable().insert(
-          (
-            await import("./mockData/student_grouped_employed.json")
-          ).default.map(({ program_id, curriculum, cohort, ...rest }) => {
-            return {
-              ...rest,
-              program_id: program_id.toString(),
-              curriculum: curriculum.toString(),
-              cohort: cohort.toString(),
-            };
-          })
+        await dbData.schema.createTable(GROUPED_EMPLOYED_TABLE, (table) => {
+          table.integer("id", 8).notNullable().primary();
+          table.text("program_id").notNullable();
+          table.text("curriculum").notNullable();
+          table.text("type_admission").notNullable();
+          table.text("cohort").notNullable();
+          table.integer("total_students", 6).notNullable();
+          table.float("employed_rate", 3).notNullable();
+          table.float("average_time_job_finding", 3).notNullable();
+          table.float("employed_rate_educational_system", 3).notNullable();
+        });
+        await GroupedEmployedTable().insert(
+          (await import("./mockData/grouped_employed.json")).default.map(
+            ({ program_id, curriculum, cohort, ...rest }) => {
+              return {
+                ...rest,
+                program_id: program_id.toString(),
+                curriculum: curriculum.toString(),
+                cohort: cohort.toString(),
+              };
+            }
+          )
         );
       }
     });
@@ -1019,7 +1016,7 @@ const migration = async () => {
     student,
     studentAdmission,
     studentExternalEvaluation,
-    studentGroupedEmployedStructure,
+    groupedEmployedStructure,
     externalEvaluation,
     externalEvaluationStats,
     externalEvaluationGroupedStats,

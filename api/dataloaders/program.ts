@@ -10,7 +10,7 @@ import {
   ProgramTable,
   StudentProgramTable,
   GroupedComplementaryInformationTable,
-  StudentGroupedEmployedTable,
+  GroupedEmployedTable,
   CourseGroupedStatsTable,
   ProgramStructureTable,
 } from "../db/tables";
@@ -266,7 +266,7 @@ export const StudentGroupedComplementaryDataLoader = new DataLoader(
   }
 );
 
-export const StudentGroupedEmployedDataLoader = new DataLoader(
+export const GroupedEmployedDataLoader = new DataLoader(
   async (
     keys: readonly {
       program_id: string;
@@ -274,7 +274,7 @@ export const StudentGroupedEmployedDataLoader = new DataLoader(
   ) => {
     return await Promise.all(
       keys.map(({ program_id }) => {
-        return StudentGroupedEmployedTable().where({
+        return GroupedEmployedTable().where({
           program_id: program_id,
         });
       })

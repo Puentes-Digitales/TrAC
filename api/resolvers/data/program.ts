@@ -27,7 +27,7 @@ import {
   StudentProgramDataLoader,
   CourseGroupedStatsDataLoader,
   StudentGroupedComplementaryDataLoader,
-  StudentGroupedEmployedDataLoader,
+  GroupedEmployedDataLoader,
 } from "../../dataloaders/program";
 import { ProgramTable, UserProgramsTable } from "../../db/tables";
 import { Program } from "../../entities/data/program";
@@ -242,7 +242,7 @@ export class ProgramResolver {
       id,
       "The id needs to be available for the program fields resolvers"
     );
-    return await StudentGroupedEmployedDataLoader.load({
+    return await GroupedEmployedDataLoader.load({
       program_id: id,
     });
   }
