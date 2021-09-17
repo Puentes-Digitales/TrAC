@@ -837,23 +837,22 @@ export function Dashboard() {
           );
         }
         if (
-          filteredEmpleabilityData[0] &&
-          filteredComplementaryData[0] &&
+          (filteredEmpleabilityData[0] || filteredComplementaryData[0]) &&
           user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO
         ) {
           GroupedPerformanceInfoComponent = (
             <GroupedComplementaryInfo
-              total_students={filteredComplementaryData[0].total_students}
+              total_students={filteredComplementaryData[0]?.total_students}
               university_degree_rate={
-                filteredComplementaryData[0].university_degree_rate
+                filteredComplementaryData[0]?.university_degree_rate
               }
               average_time_university_degree={
-                filteredComplementaryData[0].average_time_university_degree
+                filteredComplementaryData[0]?.average_time_university_degree
               }
               timely_university_degree_rate={
-                filteredComplementaryData[0].timely_university_degree_rate
+                filteredComplementaryData[0]?.timely_university_degree_rate
               }
-              retention_rate={filteredComplementaryData[0].retention_rate}
+              retention_rate={filteredComplementaryData[0]?.retention_rate}
               empleability_rate={filteredEmpleabilityData[0]?.employed_rate}
               average_time_finding_job={
                 filteredEmpleabilityData[0]?.average_time_job_finding
