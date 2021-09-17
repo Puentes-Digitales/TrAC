@@ -15,8 +15,6 @@ import { useUpdateEffect } from "react-use";
 import { Pagination, Progress, Table, TableCell } from "semantic-ui-react";
 import { useRememberState } from "use-remember-state";
 import {
-  Center,
-  Box,
   Button,
   Drawer,
   DrawerBody,
@@ -37,7 +35,6 @@ import {
   Tooltip,
   useDisclosure,
   useColorModeValue,
-  Select,
 } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 
@@ -310,37 +307,19 @@ export const StudentList: FC<{
           <DrawerHeader height={20} display="flex" alignItems="center">
             {STUDENT_LIST_TITLE} {loadingData && <Spinner ml={3} />}
           </DrawerHeader>
-          <Box>
-            <Select
-              pl={6}
-              height="3rem"
-              width="35%"
-              position="absolute"
-              placeholder="Todos"
-              size="lg"
-              color="Black"
-              bg="white"
-            >
-              <option value="1">Pendientes de titulación</option>
-              <option value="2">Avance menor al umbral (50%)</option>
-              <option value="3">Asignatura por tercera vez</option>
-            </Select>
-            <Center>
-              <Pagination
-                css={[textAlignCenter, { alignSelf: "center" }]}
-                totalPages={studentListChunks.length}
-                activePage={pageSelected}
-                onPageChange={(_, { activePage }) => {
-                  track({
-                    action: "click",
-                    target: `student-list-pagination`,
-                    effect: `set-student-list-page-to-${activePage}`,
-                  });
-                  setPageSelected(toInteger(activePage));
-                }}
-              />
-            </Center>
-          </Box>
+          <Pagination
+            css={[textAlignCenter, { alignSelf: "center" }]}
+            totalPages={studentListChunks.length}
+            activePage={pageSelected}
+            onPageChange={(_, { activePage }) => {
+              track({
+                action: "click",
+                target: `student-list-pagination`,
+                effect: `set-student-list-page-to-${activePage}`,
+              });
+              setPageSelected(toInteger(activePage));
+            }}
+          />
           <DrawerBody>
             <Table sortable celled fixed>
               <TableHeader
