@@ -7,6 +7,8 @@ import {
   PopoverHeader,
   PopoverTrigger,
   PopoverArrow,
+  UnorderedList,
+  ListItem,
 } from "@chakra-ui/react";
 import React, { FC, memo } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
@@ -39,7 +41,12 @@ export const Parameter: FC<{
     | { id: number; loading_type: string; loading_date: string }
     | undefined
   )[] = [];
-  let types: string[] = ["L1", "L2", "L3", "L4"];
+  let types: string[] = [
+    "Datos agrupados",
+    "Datos empleabilidad",
+    "Datos académicos",
+    "Datos externos",
+  ];
   types.forEach((element) =>
     last_loading_date.push(
       parameters_date?.find((params) => params.loading_type == element)
@@ -62,15 +69,17 @@ export const Parameter: FC<{
           Fecha de última carga de datos
         </PopoverHeader>
         <PopoverBody>
-          {last_loading_date?.map((date) => {
-            return date ? (
-              <li key={date.id}>
-                {date.loading_type}
-                {": "}
-                {date.loading_date}
-              </li>
-            ) : null;
-          })}
+          <UnorderedList>
+            {last_loading_date?.map((date) => {
+              return date ? (
+                <ListItem key={date.id}>
+                  {date.loading_type}
+                  {": "}
+                  {date.loading_date}
+                </ListItem>
+              ) : null;
+            })}
+          </UnorderedList>
         </PopoverBody>
       </PopoverContent>
     </Popover>
