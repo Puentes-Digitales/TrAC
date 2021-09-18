@@ -19,23 +19,34 @@ export const Parameter: FC<{
 }> = memo(({ show }) => {
   const { data: parameters } = useParametersQuery();
   const dateFormatStringTemplate = "dd-MM-yyyy";
-  console.log(parameters);
-  const last_loading_date = parameters?.parameters?.map((params) => {
-    console.log(params.id);
-    console.log(params.loading_type);
-    console.log(params.loading_date);
-    return {
-      id: params.id,
-      loading_type: params.loading_type,
-      loading_date: format(
-        new Date(params.loading_date),
-        dateFormatStringTemplate,
-        {
-          timeZone: "America/Santiago",
-        }
-      ),
-    };
-  });
+  const parameters_date = parameters?.parameters
+    ?.map((params) => {
+      return {
+        id: params.id,
+        loading_type: params.loading_type,
+        loading_date: format(
+          new Date(params.loading_date),
+          dateFormatStringTemplate,
+          {
+            timeZone: "America/Santiago",
+          }
+        ),
+      };
+    })
+    .reverse();
+
+  const last_loading_date: (
+    | { id: number; loading_type: string; loading_date: string }
+    | undefined
+  )[] = [];
+  let types: string[] = ["L1", "L2", "L3", "L4"];
+  types.forEach((element) =>
+    last_loading_date.push(
+      parameters_date?.find((params) => params.loading_type == element)
+    )
+  );
+
+  console.log("parameters_date ", last_loading_date);
 
   return show ? (
     <Popover trigger="hover" isLazy placement="bottom">
@@ -52,13 +63,13 @@ export const Parameter: FC<{
         </PopoverHeader>
         <PopoverBody>
           {last_loading_date?.map((date) => {
-            return (
+            return date ? (
               <li key={date.id}>
                 {date.loading_type}
                 {": "}
                 {date.loading_date}
               </li>
-            );
+            ) : null;
           })}
         </PopoverBody>
       </PopoverContent>
