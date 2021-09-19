@@ -49,7 +49,6 @@ export const UnlockMail = ({
     </div>
   );
 };
-
 export const NotificationMail = ({ email }: { email: string }): string => {
   const link = `google.com`;
 
