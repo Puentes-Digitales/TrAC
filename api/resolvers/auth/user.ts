@@ -24,7 +24,6 @@ import {
   UserConfigurationTable,
   UserProgramsTable,
   UserTable,
-  UploadedDataTable,
 } from "../../db/tables";
 import {
   LockedUserResult,
@@ -301,19 +300,7 @@ export class UserResolver {
   @Mutation(() => [GraphQLJSONObject])
   async NotificateUsers(): Promise<Record<string, any>> {
     const users = await UserTable().select("email");
-    console.log("Here comes date");
-    const datee = await UploadedDataTable().select("loading_date");
-    /*const dateToString = new String(datee);*/
-    console.log(typeof datee);
-    console.log(datee[1]);
     const NotificationMailResults: Record<string, any>[] = [];
-    const ActualDate = new Date();
-    for (const { loading_date } of datee) {
-      const DateAux = new Date(loading_date);
-      if (DateAux.getTime() < ActualDate.getTime()) {
-        console.log("fecha menor");
-      }
-    }
     for (const { email } of users) {
       const result = await sendMail({
         to: email,

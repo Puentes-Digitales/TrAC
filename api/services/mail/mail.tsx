@@ -50,31 +50,19 @@ export const UnlockMail = ({
   );
 };
 export const NotificationMail = ({ email }: { email: string }): string => {
-  const link = `google.com`;
-
   return renderToStaticMarkup(
     <div>
-      <h2>NotificationMail</h2>
-      <h3>Fecha última carga de datos</h3>
-      <br />
-      <p>Mail de notificación</p>
-      <br />
-      <p>
-        Haga click{" "}
-        <a href={link}>
-          <b>aquí</b>
-        </a>{" "}
-        Para obtener más información
-      </p>
-      <br />
-      <p>
-        O abra este link en su navegador: {"   "}
-        <b>{link}</b>
-      </p>
-      <br />
+      <h2>Notificación actualización de datos TrAC-FID</h2>
+      <h3>Estimado/a Director/a :</h3>
+      <p>Se ha realizado una actualización en los datos de TrAC-FID</p>
       <p>
         Si tiene algún problema o alguna pregunta, puede contactarnos al correo:{" "}
         <b>{EMAIL_ADDRESS}</b>
+      </p>
+      <p>Saludos cordiales, Equipo TrAC-FID</p>
+      <p>
+        Por favor no responda este email. Este correo fue generado de manera
+        automática por TrAC-FID y enviado a {email}.
       </p>
     </div>
   );
