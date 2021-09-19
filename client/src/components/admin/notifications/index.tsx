@@ -3,9 +3,7 @@ import { Button, Icon } from "semantic-ui-react";
 import { useNotificateUsersAdminMutation } from "../../../graphql";
 import { Stack } from "@chakra-ui/react";
 
-export const AdminNotifications: FC<{
-  loading_date: { id: string; notified: string; loading_date: string[] }[];
-}> = ({ loading_date }) => {
+export const AdminNotifications: FC = () => {
   const [
     mailNotificationUsers,
     {
