@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
-import { Button, Icon, Message, MessageHeader } from "semantic-ui-react";
+import { Button, Icon, Message } from "semantic-ui-react";
 import { useNotificateUsersAdminMutation } from "../../../graphql";
 import { Stack } from "@chakra-ui/react";
 import { Confirm } from "../../Confirm";
-import { whiteSpacePreLine, width50percent } from "../../../utils/cssConstants";
+import { whiteSpacePreLine } from "../../../utils/cssConstants";
 
 export const AdminNotifications: FC = () => {
   const [openMailMessage, setOpenMailMessage] = useState(false);
