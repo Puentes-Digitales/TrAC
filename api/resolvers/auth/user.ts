@@ -24,6 +24,7 @@ import {
   UserConfigurationTable,
   UserProgramsTable,
   UserTable,
+  NotificationsDataTable,
 } from "../../db/tables";
 import {
   LockedUserResult,
@@ -302,14 +303,21 @@ export class UserResolver {
     const users = await UserTable().select("email");
     const NotificationMailResults: Record<string, any>[] = [];
     for (const { email } of users) {
+      const msg = NotificationMail({
+        email,
+      });
       const result = await sendMail({
         to: email,
-        message: NotificationMail({
-          email,
-        }),
+        message: msg,
         subject: "Notificacion de datos ",
       });
       NotificationMailResults.push(result);
+      console.log(email);
+      await NotificationsDataTable().insert({
+        email,
+        content: msg,
+        date: new Date(),
+      });
     }
     return NotificationMailResults;
   }
