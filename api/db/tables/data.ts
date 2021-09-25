@@ -51,16 +51,6 @@ export const ParameterTable = () => dbData<IParameter>(PARAMETER_TABLE);
 
 // -------------------------------------------------------------------------------------
 
-export interface IParameterDate {
-  id: number;
-  date: string;
-}
-
-export const PARAMETER_DATE_TABLE = "parameter_date";
-export const ParameterDateTable = () =>
-  dbData<IParameterDate>(PARAMETER_DATE_TABLE);
-
-// -------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------
 
 export interface IUploadedDataTable {
