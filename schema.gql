@@ -266,6 +266,13 @@ type Mutation {
   upsertUsers(users: [UpsertedUser!]!): [User!]!
 }
 
+type Notifications {
+  content: String!
+  date: String!
+  email: String!
+  id: Int!
+}
+
 type PerformanceByLoad {
   adviceParagraph: String!
   adviceTitle: String!
@@ -317,6 +324,7 @@ type Query {
   feedbackResults(user_ids: [String!]): [FeedbackResult!]!
   getPersistenceValue(key: String!): Persistence
   myPrograms: [Program!]!
+  NotificationsData: [Notifications!]!
   programs: [Program!]!
   students(last_n_years: Int = 2, program_id: String!): [Student!]!
   students_filter(curriculum: String!, program_id: String!): [Student!]!

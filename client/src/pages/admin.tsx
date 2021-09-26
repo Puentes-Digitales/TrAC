@@ -14,6 +14,7 @@ import { Users } from "../components/admin/users";
 import { LoadingPage } from "../components/Loading";
 import { useAllUsersAdminQuery } from "../graphql";
 import { useUser } from "../utils/useUser";
+import { useNotificationsDataAdminQuery } from "../graphql";
 
 export enum AdminMenuTypes {
   users = "users",
@@ -34,6 +35,8 @@ const Admin: FC = () => {
   const { data, loading, error, refetch } = useAllUsersAdminQuery({
     notifyOnNetworkStatusChange: true,
   });
+
+  const { data: NotificationsQueryData } = useNotificationsDataAdminQuery();
 
   useEffect(() => {
     if (IS_NOT_TEST && data) {
@@ -70,7 +73,17 @@ const Admin: FC = () => {
       case AdminMenuTypes.track:
         return <AdminTrack />;
       case AdminMenuTypes.notifications:
-        return <AdminNotifications />;
+        return (
+          <AdminNotifications
+            notifications={
+              NotificationsQueryData?.NotificationsData.map(
+                ({ id, email, content, date }) => {
+                  return { id, email, content, date };
+                }
+              ) || []
+            }
+          />
+        );
       default:
         return null;
     }

@@ -57,6 +57,15 @@ mutation lockMailUserAdmin($email: EmailAddress!) {
 mutation NotificateUsersAdmin {
   NotificateUsers
 }
+
+query NotificationsDataAdmin {
+  NotificationsData {
+    id
+    email
+    content
+    date
+  }
+}
 mutation mailAllLockedUsersAdmin {
   mailAllLockedUsers
 }

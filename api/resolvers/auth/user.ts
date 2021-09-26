@@ -24,7 +24,6 @@ import {
   UserConfigurationTable,
   UserProgramsTable,
   UserTable,
-  NotificationsDataTable,
 } from "../../db/tables";
 import {
   LockedUserResult,
@@ -33,7 +32,7 @@ import {
   User,
   UserProgram,
 } from "../../entities/auth/user";
-import { sendMail, UnlockMail, NotificationMail } from "../../services/mail";
+import { sendMail, UnlockMail } from "../../services/mail";
 import { assertIsDefined } from "../../utils/assert";
 import { checkHasStudentData } from "./auth";
 
@@ -295,31 +294,6 @@ export class UserResolver {
         };
       }),
     };
-  }
-
-  @Authorized([ADMIN])
-  @Mutation(() => [GraphQLJSONObject])
-  async NotificateUsers(): Promise<Record<string, any>> {
-    const users = await UserTable().select("email");
-    const NotificationMailResults: Record<string, any>[] = [];
-    for (const { email } of users) {
-      const msg = NotificationMail({
-        email,
-      });
-      const result = await sendMail({
-        to: email,
-        message: msg,
-        subject: "Notificacion de datos ",
-      });
-      NotificationMailResults.push(result);
-      console.log(email);
-      await NotificationsDataTable().insert({
-        email,
-        content: msg,
-        date: new Date(),
-      });
-    }
-    return NotificationMailResults;
   }
 
   @Authorized([ADMIN])

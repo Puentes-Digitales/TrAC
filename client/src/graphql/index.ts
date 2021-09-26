@@ -329,6 +329,13 @@ export type MutationUpsertUsersArgs = {
   users: Array<UpsertedUser>;
 };
 
+export type Notifications = {
+  content: Scalars["String"];
+  date: Scalars["String"];
+  email: Scalars["String"];
+  id: Scalars["Int"];
+};
+
 export type PerformanceByLoad = {
   adviceParagraph: Scalars["String"];
   adviceTitle: Scalars["String"];
@@ -376,6 +383,7 @@ export type Query = {
   feedbackResults: Array<FeedbackResult>;
   getPersistenceValue?: Maybe<Persistence>;
   myPrograms: Array<Program>;
+  NotificationsData: Array<Notifications>;
   programs: Array<Program>;
   students: Array<Student>;
   students_filter: Array<Student>;
@@ -611,6 +619,16 @@ export type NotificateUsersAdminMutationVariables = Exact<{
 }>;
 
 export type NotificateUsersAdminMutation = Pick<Mutation, "NotificateUsers">;
+
+export type NotificationsDataAdminQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type NotificationsDataAdminQuery = {
+  NotificationsData: Array<
+    Pick<Notifications, "id" | "email" | "content" | "date">
+  >;
+};
 
 export type MailAllLockedUsersAdminMutationVariables = Exact<{
   [key: string]: never;
@@ -1508,6 +1526,64 @@ export type NotificateUsersAdminMutationResult = Apollo.MutationResult<Notificat
 export type NotificateUsersAdminMutationOptions = Apollo.BaseMutationOptions<
   NotificateUsersAdminMutation,
   NotificateUsersAdminMutationVariables
+>;
+export const NotificationsDataAdminDocument = gql`
+  query NotificationsDataAdmin {
+    NotificationsData {
+      id
+      email
+      content
+      date
+    }
+  }
+`;
+
+/**
+ * __useNotificationsDataAdminQuery__
+ *
+ * To run a query within a React component, call `useNotificationsDataAdminQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNotificationsDataAdminQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNotificationsDataAdminQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useNotificationsDataAdminQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    NotificationsDataAdminQuery,
+    NotificationsDataAdminQueryVariables
+  >
+) {
+  return Apollo.useQuery<
+    NotificationsDataAdminQuery,
+    NotificationsDataAdminQueryVariables
+  >(NotificationsDataAdminDocument, baseOptions);
+}
+export function useNotificationsDataAdminLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    NotificationsDataAdminQuery,
+    NotificationsDataAdminQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<
+    NotificationsDataAdminQuery,
+    NotificationsDataAdminQueryVariables
+  >(NotificationsDataAdminDocument, baseOptions);
+}
+export type NotificationsDataAdminQueryHookResult = ReturnType<
+  typeof useNotificationsDataAdminQuery
+>;
+export type NotificationsDataAdminLazyQueryHookResult = ReturnType<
+  typeof useNotificationsDataAdminLazyQuery
+>;
+export type NotificationsDataAdminQueryResult = Apollo.QueryResult<
+  NotificationsDataAdminQuery,
+  NotificationsDataAdminQueryVariables
 >;
 export const MailAllLockedUsersAdminDocument = gql`
   mutation mailAllLockedUsersAdmin {
