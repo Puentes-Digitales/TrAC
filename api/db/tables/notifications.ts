@@ -10,3 +10,13 @@ export const NOTIFICATIONS_DATA_TABLE = "notifications_data";
 
 export const NotificationsDataTable = () =>
   dbData<INotificationsData>(NOTIFICATIONS_DATA_TABLE);
+
+export interface IMessageContent {
+  id: number;
+  description: string;
+  content: string;
+}
+export const MESSAGE_CONTENT_TABLE = "message_content";
+
+export const MessageContentTable = () =>
+  dbData<IMessageContent>(MESSAGE_CONTENT_TABLE);

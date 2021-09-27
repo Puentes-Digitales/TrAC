@@ -1,5 +1,9 @@
 import { Mutation, Resolver, Query, Authorized } from "type-graphql";
-import { NotificationsDataTable, UserTable } from "../../db/tables";
+import {
+  NotificationsDataTable,
+  UserTable,
+  /*MessageContentTable,*/
+} from "../../db/tables";
 import { GraphQLJSONObject } from "graphql-type-json";
 import { ADMIN } from "../../constants";
 import { NotificationMail } from "../../services/mail";
@@ -21,7 +25,7 @@ export class NotificationsResolver {
       const result = await sendMail({
         to: email,
         message: msg,
-        subject: "Notificacion de datos ",
+        subject: "Novedades en TrAC-FID",
       });
       NotificationMailResults.push(result);
       await NotificationsDataTable().insert({

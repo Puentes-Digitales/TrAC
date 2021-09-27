@@ -14,3 +14,24 @@ export class Notifications {
   @Field()
   date: string;
 }
+
+@ObjectType()
+export class Risk {
+  @Field(() => Int)
+  id: number;
+
+  @Field()
+  description: string;
+
+  @Field()
+  content: string;
+}
+
+@ObjectType()
+export class RiskMessageContent {
+  @Field(() => Int)
+  id: number;
+
+  @Field(() => [String])
+  names: string[];
+}
