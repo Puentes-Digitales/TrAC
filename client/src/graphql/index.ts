@@ -240,6 +240,7 @@ export type Mutation = {
   NotificateUsers: Array<Scalars["JSONObject"]>;
   performanceLoadAdvices: Array<PerformanceByLoad>;
   program: Program;
+  ReNotificateUsers: Array<Scalars["JSONObject"]>;
   resetDataLoadersCache: Scalars["Int"];
   resetPersistence: Scalars["Int"];
   setPersistenceValue: Persistence;
@@ -294,6 +295,11 @@ export type MutationPerformanceLoadAdvicesArgs = {
 export type MutationProgramArgs = {
   id?: Maybe<Scalars["String"]>;
   student_id?: Maybe<Scalars["String"]>;
+};
+
+export type MutationReNotificateUsersArgs = {
+  content: Scalars["String"];
+  email: Scalars["String"];
 };
 
 export type MutationResetPersistenceArgs = {
@@ -630,6 +636,16 @@ export type NotificateUsersAdminMutationVariables = Exact<{
 }>;
 
 export type NotificateUsersAdminMutation = Pick<Mutation, "NotificateUsers">;
+
+export type ReNotificateUsersAdminMutationVariables = Exact<{
+  content: Scalars["String"];
+  email: Scalars["String"];
+}>;
+
+export type ReNotificateUsersAdminMutation = Pick<
+  Mutation,
+  "ReNotificateUsers"
+>;
 
 export type NotificationsDataAdminQueryVariables = Exact<{
   [key: string]: never;
@@ -1537,6 +1553,53 @@ export type NotificateUsersAdminMutationResult = Apollo.MutationResult<Notificat
 export type NotificateUsersAdminMutationOptions = Apollo.BaseMutationOptions<
   NotificateUsersAdminMutation,
   NotificateUsersAdminMutationVariables
+>;
+export const ReNotificateUsersAdminDocument = gql`
+  mutation ReNotificateUsersAdmin($content: String!, $email: String!) {
+    ReNotificateUsers(content: $content, email: $email)
+  }
+`;
+export type ReNotificateUsersAdminMutationFn = Apollo.MutationFunction<
+  ReNotificateUsersAdminMutation,
+  ReNotificateUsersAdminMutationVariables
+>;
+
+/**
+ * __useReNotificateUsersAdminMutation__
+ *
+ * To run a mutation, you first call `useReNotificateUsersAdminMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useReNotificateUsersAdminMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [reNotificateUsersAdminMutation, { data, loading, error }] = useReNotificateUsersAdminMutation({
+ *   variables: {
+ *      content: // value for 'content'
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useReNotificateUsersAdminMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    ReNotificateUsersAdminMutation,
+    ReNotificateUsersAdminMutationVariables
+  >
+) {
+  return Apollo.useMutation<
+    ReNotificateUsersAdminMutation,
+    ReNotificateUsersAdminMutationVariables
+  >(ReNotificateUsersAdminDocument, baseOptions);
+}
+export type ReNotificateUsersAdminMutationHookResult = ReturnType<
+  typeof useReNotificateUsersAdminMutation
+>;
+export type ReNotificateUsersAdminMutationResult = Apollo.MutationResult<ReNotificateUsersAdminMutation>;
+export type ReNotificateUsersAdminMutationOptions = Apollo.BaseMutationOptions<
+  ReNotificateUsersAdminMutation,
+  ReNotificateUsersAdminMutationVariables
 >;
 export const NotificationsDataAdminDocument = gql`
   query NotificationsDataAdmin {

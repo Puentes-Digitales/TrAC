@@ -1,4 +1,4 @@
-import { dbData } from "../";
+import { dbConfig, dbData } from "../";
 
 export interface INotificationsData {
   id: number;
@@ -19,4 +19,4 @@ export interface IMessageContent {
 export const MESSAGE_CONTENT_TABLE = "message_content";
 
 export const MessageContentTable = () =>
-  dbData<IMessageContent>(MESSAGE_CONTENT_TABLE);
+  dbConfig<IMessageContent>(MESSAGE_CONTENT_TABLE);

@@ -252,6 +252,7 @@ type Mutation {
     student_id: String
   ): [PerformanceByLoad!]!
   program(id: String, student_id: String): Program!
+  ReNotificateUsers(content: String!, email: String!): [JSONObject!]!
   resetDataLoadersCache: Int!
   resetPersistence(user: String!): Int!
   setPersistenceValue(data: JSONObject!, key: String!): Persistence!

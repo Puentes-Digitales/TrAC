@@ -1041,32 +1041,20 @@ const migration = async () => {
           table.text("content").notNullable();
           table.text("date").notNullable();
         });
-        /*await NotificationsDataTable().insert(
-          (await import("./mockData/notifications_data.json")).default.map(
-            ({ id, email, content, date }) => {
-              return {
-                id,
-                email,
-                content,
-                date: new Date(date),
-              };
-            }
-          )
-        );*/
       }
     });
 
-  const MessageContent = dbData.schema
+  const MessageContent = dbConfig.schema
     .hasTable(MESSAGE_CONTENT_TABLE)
     .then(async (exists) => {
       if (!exists) {
-        await dbData.schema.createTable(MESSAGE_CONTENT_TABLE, (table) => {
+        await dbConfig.schema.createTable(MESSAGE_CONTENT_TABLE, (table) => {
           table.integer("id").primary();
           table.text("description").notNullable();
           table.text("content").notNullable();
         });
         await MessageContentTable().insert(
-          (await import("./mockData/message_content.json")).default.map(
+          (await import("./config/message_content.json")).default.map(
             ({ id, description, content }) => {
               return {
                 id,

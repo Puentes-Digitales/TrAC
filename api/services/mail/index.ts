@@ -72,7 +72,7 @@ export async function sendMail({
   message,
 }: {
   to: string;
-  subject: string;
+  subject: string | undefined;
   message: string;
 }) {
   if (

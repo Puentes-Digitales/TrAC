@@ -1,4 +1,4 @@
-import { Mutation, Resolver, Query, Authorized } from "type-graphql";
+import { Arg, Mutation, Resolver, Query, Authorized } from "type-graphql";
 import {
   NotificationsDataTable,
   UserTable,
@@ -35,6 +35,22 @@ export class NotificationsResolver {
       });
     }
     return NotificationMailResults;
+  }
+
+  @Authorized([ADMIN])
+  @Mutation(() => [GraphQLJSONObject])
+  async ReNotificateUsers(
+    @Arg("email") email: string,
+    @Arg("content") content: string
+  ): Promise<Record<string, any>> {
+    const ReNotificationMailResults: Record<string, any>[] = [];
+    const result = await sendMail({
+      to: email,
+      message: content,
+      subject: "Novedades en TrAC-FID",
+    });
+    ReNotificationMailResults.push(result);
+    return ReNotificationMailResults;
   }
 
   @Authorized([ADMIN])

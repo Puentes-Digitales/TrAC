@@ -58,6 +58,10 @@ mutation NotificateUsersAdmin {
   NotificateUsers
 }
 
+mutation ReNotificateUsersAdmin($content: String!, $email: String!) {
+  ReNotificateUsers(content: $content, email: $email)
+}
+
 query NotificationsDataAdmin {
   NotificationsData {
     id

@@ -38,6 +38,10 @@ const Admin: FC = () => {
 
   const { data: NotificationsQueryData } = useNotificationsDataAdminQuery();
 
+  /*const NotificationsQueryData = useMemo(() => {
+    return useNotificationsDataAdminQuery();
+  }, [studentListChunks, pageSelected, statusProgress]);*/
+
   useEffect(() => {
     if (IS_NOT_TEST && data) {
       console.log("data_all_users_admin", data);
@@ -87,7 +91,7 @@ const Admin: FC = () => {
       default:
         return null;
     }
-  }, [active, data, loading]);
+  }, [active, data, loading, NotificationsQueryData]);
 
   if (error) {
     console.error(JSON.stringify(error, null, 2));

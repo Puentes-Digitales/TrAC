@@ -18,10 +18,5 @@
     "id": 4,
     "description": "default",
     "content": "Se ha realizado una actualización en los datos de TrAC-FID"
-  },
-  {
-    "id": 5,
-    "description": "student_pending_of_graduation",
-    "content": "Según nuestros datos, los estudiantes pendientes de titulación son:"
   }
 ]

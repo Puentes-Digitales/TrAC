@@ -52,7 +52,7 @@ export const UnlockMail = ({
 export const NotificationMail = ({ email }: { email: string }): string => {
   return renderToStaticMarkup(
     <div>
-      <h2>Notificación actualización de datos TrAC-FID</h2>
+      <h2>Novedades en TrAC-FID</h2>
       <h3>Estimado/a Director/a :</h3>
       <p>Se ha realizado una actualización en los datos de TrAC-FID</p>
       <p>

@@ -2,12 +2,12 @@ import React, { FC, useState, useEffect } from "react";
 import { sortBy } from "lodash";
 import { Button, Icon, Message, Table } from "semantic-ui-react";
 import { useNotificateUsersAdminMutation } from "../../../graphql";
-import { Stack } from "@chakra-ui/react";
+import { Flex, Stack } from "@chakra-ui/react";
 import { Confirm } from "../../Confirm";
 import { whiteSpacePreLine } from "../../../utils/cssConstants";
 import { useRememberState } from "use-remember-state";
 import { usePagination } from "../Pagination";
-/*import { UpdateNotifications } from "./UpdateNotifications";*/
+import { ResendNotification } from "./resendNotification";
 
 export const AdminNotifications: FC<{
   notifications: { id: number; email: string; content: string; date: string }[];
@@ -43,9 +43,8 @@ export const AdminNotifications: FC<{
   const { pagination, selectedData } = usePagination({
     name: "trac_admin_sorted_notifications",
     data: sortedNotifications,
-    n: 15,
+    n: 5,
   });
-  console.log(pagination, selectedData);
 
   const [openMailMessage, setOpenMailMessage] = useState(false);
 
@@ -110,6 +109,7 @@ export const AdminNotifications: FC<{
         </Stack>
       )}
       <Stack mt="10px" alignItems="center">
+        <Flex>{pagination}</Flex>
         <Table
           padded
           selectable
@@ -149,12 +149,14 @@ export const AdminNotifications: FC<{
 
           <Table.Body>
             {selectedData.map(({ id, email, content, date }, key) => (
-              <Table.Row className="cursorPointer">
-                <Table.Cell>{id}</Table.Cell>
-                <Table.Cell>{email}</Table.Cell>
-                <Table.Cell>{content}</Table.Cell>
-                <Table.Cell>{date}</Table.Cell>
-              </Table.Row>
+              <ResendNotification key={key} notification={{ email, content }}>
+                <Table.Row className="cursorPointer">
+                  <Table.Cell>{id}</Table.Cell>
+                  <Table.Cell>{email}</Table.Cell>
+                  <Table.Cell>{content}</Table.Cell>
+                  <Table.Cell>{date}</Table.Cell>
+                </Table.Row>
+              </ResendNotification>
             ))}
           </Table.Body>
         </Table>
