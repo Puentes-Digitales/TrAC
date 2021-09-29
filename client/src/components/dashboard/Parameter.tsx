@@ -53,7 +53,7 @@ export const Parameter: FC<{
     )
   );
 
-  console.log("parameters_date ", last_loading_date);
+  //console.log("parameters_date ", last_loading_date);
 
   return show ? (
     <Popover trigger="hover" isLazy placement="bottom">
