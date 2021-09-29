@@ -41,7 +41,8 @@ export const CourseStatsTable = () => dbData<ICourseStats>(COURSE_STATS_TABLE);
 // -------------------------------------------------------------------------------------
 
 export interface IParameter {
-  passing_grade: number;
+  id: number;
+  loading_type: string;
   loading_date: Date;
 }
 
@@ -265,7 +266,7 @@ export const GroupedComplementaryInformationTable = () =>
 
 // --------------------------------------------------------------------------
 
-export interface IStudentGroupedEmployed {
+export interface IGroupedEmployed {
   id: number;
   program_id: string;
   curriculum: string;
@@ -277,9 +278,9 @@ export interface IStudentGroupedEmployed {
   employed_rate_educational_system: number;
 }
 
-export const STUDENT_GROUPED_EMPLOYED_TABLE = "student_grouped_employed";
-export const StudentGroupedEmployedTable = () =>
-  dbData<IStudentGroupedEmployed>(STUDENT_GROUPED_EMPLOYED_TABLE);
+export const GROUPED_EMPLOYED_TABLE = "grouped_employed";
+export const GroupedEmployedTable = () =>
+  dbData<IGroupedEmployed>(GROUPED_EMPLOYED_TABLE);
 
 // --------------------------------------------------------------------------
 

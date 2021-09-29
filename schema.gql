@@ -277,6 +277,10 @@ type Notifications {
   date: String!
   email: String!
   id: Int!
+type Parameter {
+  id: Int!
+  loading_date: DateTime!
+  loading_type: String!
 }
 
 type PerformanceByLoad {
@@ -331,6 +335,7 @@ type Query {
   getPersistenceValue(key: String!): Persistence
   myPrograms: [Program!]!
   NotificationsData: [Notifications!]!
+  parameters: [Parameter!]!
   programs: [Program!]!
   students(last_n_years: Int = 2, program_id: String!): [Student!]!
   students_filter(curriculum: String!, program_id: String!): [Student!]!

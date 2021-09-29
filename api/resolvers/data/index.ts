@@ -6,3 +6,4 @@ export * from "./student";
 export * from "./takenCourse";
 export * from "./takenExternalEvaluation";
 export * from "./term";
+export * from "./parameter";

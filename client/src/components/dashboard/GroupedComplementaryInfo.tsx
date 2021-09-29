@@ -140,7 +140,7 @@ export const GroupedComplementaryInfo: FC<{
                         {
                           GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE
                         }{" "}
-                        {total_students}
+                        {timely_university_degree_rate}
                         {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
                       </Text>
                       <IndicatorTooltip
@@ -157,7 +157,7 @@ export const GroupedComplementaryInfo: FC<{
                         {
                           GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE
                         }{" "}
-                        {total_students}
+                        {university_degree_rate}
                         {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
                       </Text>
                       <IndicatorTooltip
@@ -174,7 +174,8 @@ export const GroupedComplementaryInfo: FC<{
                         {
                           GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE
                         }{" "}
-                        {total_students} {COMPLEMENTARY_INFORMATION_YEAR_TEXT}
+                        {average_time_university_degree}{" "}
+                        {COMPLEMENTARY_INFORMATION_YEAR_TEXT}
                       </Text>
                       <IndicatorTooltip
                         tooltipShow={
@@ -188,7 +189,7 @@ export const GroupedComplementaryInfo: FC<{
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
                       <Text>
                         {GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE}{" "}
-                        {total_students}
+                        {retention_rate}
                         {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
                       </Text>
                       <IndicatorTooltip
@@ -202,7 +203,7 @@ export const GroupedComplementaryInfo: FC<{
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
                       <Text>
                         {GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE}{" "}
-                        {total_students}
+                        {empleability_rate}
                         {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
                       </Text>
                       <IndicatorTooltip
@@ -218,7 +219,8 @@ export const GroupedComplementaryInfo: FC<{
                         {
                           GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB
                         }{" "}
-                        {total_students} {COMPLEMENTARY_INFORMATION_YEAR_TEXT}
+                        {average_time_finding_job}{" "}
+                        {COMPLEMENTARY_INFORMATION_YEAR_TEXT}
                       </Text>
                       <IndicatorTooltip
                         tooltipShow={
@@ -233,7 +235,7 @@ export const GroupedComplementaryInfo: FC<{
                         {
                           GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM
                         }{" "}
-                        {total_students}
+                        {empleability_rate_educational_system}
                         {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
                       </Text>
                       <IndicatorTooltip

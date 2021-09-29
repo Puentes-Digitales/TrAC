@@ -1,6 +1,42 @@
 [
   {
-    "passing_grade": 4,
-    "loading_date": "2019-09-23 10:19:58"
+    "id": 1,
+    "loading_type": "Datos académicos",
+    "loading_date": "2019-09-21 00:00:00"
+  },
+  {
+    "id": 2,
+    "loading_type": "Datos agrupados",
+    "loading_date": "2019-09-22 00:00:00"
+  },
+  {
+    "id": 3,
+    "loading_type": "Datos empleabilidad",
+    "loading_date": "2019-09-23 00:00:00"
+  },
+  {
+    "id": 4,
+    "loading_type": "Datos externos",
+    "loading_date": "2019-09-24 00:00:00"
+  },
+  {
+    "id": 5,
+    "loading_type": "Datos académicos",
+    "loading_date": "2019-09-25 00:00:00"
+  },
+  {
+    "id": 6,
+    "loading_type": "Datos agrupados",
+    "loading_date": "2019-09-26 00:00:00"
+  },
+  {
+    "id": 7,
+    "loading_type": "Datos empleabilidad",
+    "loading_date": "2019-09-27 00:00:00"
+  },
+  {
+    "id": 8,
+    "loading_type": "Datos académicos",
+    "loading_date": "2019-09-28 00:00:00"
   }
 ]
