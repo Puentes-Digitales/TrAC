@@ -246,11 +246,18 @@ type Mutation {
   login(email: EmailAddress!, password: String!): AuthResult!
   logout: Boolean!
   mailAllLockedUsers: [JSONObject!]!
+  NotificateUsers(
+    body: String!
+    footer: String!
+    header: String!
+    subject: String!
+  ): [JSONObject!]!
   performanceLoadAdvices(
     program_id: String
     student_id: String
   ): [PerformanceByLoad!]!
   program(id: String, student_id: String): Program!
+  ReNotificateUsers(content: String!, email: String!): [JSONObject!]!
   resetDataLoadersCache: Int!
   resetPersistence(user: String!): Int!
   setPersistenceValue(data: JSONObject!, key: String!): Persistence!
@@ -265,6 +272,11 @@ type Mutation {
   upsertUsers(users: [UpsertedUser!]!): [User!]!
 }
 
+type Notifications {
+  content: String!
+  date: String!
+  email: String!
+  id: Int!
 type Parameter {
   id: Int!
   loading_date: DateTime!
@@ -322,6 +334,7 @@ type Query {
   feedbackResults(user_ids: [String!]): [FeedbackResult!]!
   getPersistenceValue(key: String!): Persistence
   myPrograms: [Program!]!
+  NotificationsData: [Notifications!]!
   parameters: [Parameter!]!
   programs: [Program!]!
   riskNotification(

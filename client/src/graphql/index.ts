@@ -237,8 +237,10 @@ export type Mutation = {
   login: AuthResult;
   logout: Scalars["Boolean"];
   mailAllLockedUsers: Array<Scalars["JSONObject"]>;
+  NotificateUsers: Array<Scalars["JSONObject"]>;
   performanceLoadAdvices: Array<PerformanceByLoad>;
   program: Program;
+  ReNotificateUsers: Array<Scalars["JSONObject"]>;
   resetDataLoadersCache: Scalars["Int"];
   resetPersistence: Scalars["Int"];
   setPersistenceValue: Persistence;
@@ -285,6 +287,13 @@ export type MutationLoginArgs = {
   password: Scalars["String"];
 };
 
+export type MutationNotificateUsersArgs = {
+  body: Scalars["String"];
+  footer: Scalars["String"];
+  header: Scalars["String"];
+  subject: Scalars["String"];
+};
+
 export type MutationPerformanceLoadAdvicesArgs = {
   program_id?: Maybe<Scalars["String"]>;
   student_id?: Maybe<Scalars["String"]>;
@@ -293,6 +302,11 @@ export type MutationPerformanceLoadAdvicesArgs = {
 export type MutationProgramArgs = {
   id?: Maybe<Scalars["String"]>;
   student_id?: Maybe<Scalars["String"]>;
+};
+
+export type MutationReNotificateUsersArgs = {
+  content: Scalars["String"];
+  email: Scalars["String"];
 };
 
 export type MutationResetPersistenceArgs = {
@@ -326,6 +340,13 @@ export type MutationUpdateUserProgramsArgs = {
 
 export type MutationUpsertUsersArgs = {
   users: Array<UpsertedUser>;
+};
+
+export type Notifications = {
+  content: Scalars["String"];
+  date: Scalars["String"];
+  email: Scalars["String"];
+  id: Scalars["Int"];
 };
 
 export type Parameter = {
@@ -381,6 +402,7 @@ export type Query = {
   feedbackResults: Array<FeedbackResult>;
   getPersistenceValue?: Maybe<Persistence>;
   myPrograms: Array<Program>;
+  NotificationsData: Array<Notifications>;
   parameters: Array<Parameter>;
   programs: Array<Program>;
   riskNotification: Array<RiskNotification>;
@@ -626,6 +648,35 @@ export type LockMailUserAdminMutation = {
   lockMailUser: Pick<LockedUserResult, "mailResult"> & {
     users: Array<UserAdminInfoFragment>;
   };
+};
+
+export type NotificateUsersAdminMutationVariables = Exact<{
+  body: Scalars["String"];
+  footer: Scalars["String"];
+  header: Scalars["String"];
+  subject: Scalars["String"];
+}>;
+
+export type NotificateUsersAdminMutation = Pick<Mutation, "NotificateUsers">;
+
+export type ReNotificateUsersAdminMutationVariables = Exact<{
+  content: Scalars["String"];
+  email: Scalars["String"];
+}>;
+
+export type ReNotificateUsersAdminMutation = Pick<
+  Mutation,
+  "ReNotificateUsers"
+>;
+
+export type NotificationsDataAdminQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type NotificationsDataAdminQuery = {
+  NotificationsData: Array<
+    Pick<Notifications, "id" | "email" | "content" | "date">
+  >;
 };
 
 export type MailAllLockedUsersAdminMutationVariables = Exact<{
@@ -1499,6 +1550,170 @@ export type LockMailUserAdminMutationResult = Apollo.MutationResult<LockMailUser
 export type LockMailUserAdminMutationOptions = Apollo.BaseMutationOptions<
   LockMailUserAdminMutation,
   LockMailUserAdminMutationVariables
+>;
+export const NotificateUsersAdminDocument = gql`
+  mutation NotificateUsersAdmin(
+    $body: String!
+    $footer: String!
+    $header: String!
+    $subject: String!
+  ) {
+    NotificateUsers(
+      header: $header
+      body: $body
+      footer: $footer
+      subject: $subject
+    )
+  }
+`;
+export type NotificateUsersAdminMutationFn = Apollo.MutationFunction<
+  NotificateUsersAdminMutation,
+  NotificateUsersAdminMutationVariables
+>;
+
+/**
+ * __useNotificateUsersAdminMutation__
+ *
+ * To run a mutation, you first call `useNotificateUsersAdminMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useNotificateUsersAdminMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [notificateUsersAdminMutation, { data, loading, error }] = useNotificateUsersAdminMutation({
+ *   variables: {
+ *      body: // value for 'body'
+ *      footer: // value for 'footer'
+ *      header: // value for 'header'
+ *      subject: // value for 'subject'
+ *   },
+ * });
+ */
+export function useNotificateUsersAdminMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    NotificateUsersAdminMutation,
+    NotificateUsersAdminMutationVariables
+  >
+) {
+  return Apollo.useMutation<
+    NotificateUsersAdminMutation,
+    NotificateUsersAdminMutationVariables
+  >(NotificateUsersAdminDocument, baseOptions);
+}
+export type NotificateUsersAdminMutationHookResult = ReturnType<
+  typeof useNotificateUsersAdminMutation
+>;
+export type NotificateUsersAdminMutationResult = Apollo.MutationResult<NotificateUsersAdminMutation>;
+export type NotificateUsersAdminMutationOptions = Apollo.BaseMutationOptions<
+  NotificateUsersAdminMutation,
+  NotificateUsersAdminMutationVariables
+>;
+export const ReNotificateUsersAdminDocument = gql`
+  mutation ReNotificateUsersAdmin($content: String!, $email: String!) {
+    ReNotificateUsers(content: $content, email: $email)
+  }
+`;
+export type ReNotificateUsersAdminMutationFn = Apollo.MutationFunction<
+  ReNotificateUsersAdminMutation,
+  ReNotificateUsersAdminMutationVariables
+>;
+
+/**
+ * __useReNotificateUsersAdminMutation__
+ *
+ * To run a mutation, you first call `useReNotificateUsersAdminMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useReNotificateUsersAdminMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [reNotificateUsersAdminMutation, { data, loading, error }] = useReNotificateUsersAdminMutation({
+ *   variables: {
+ *      content: // value for 'content'
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useReNotificateUsersAdminMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    ReNotificateUsersAdminMutation,
+    ReNotificateUsersAdminMutationVariables
+  >
+) {
+  return Apollo.useMutation<
+    ReNotificateUsersAdminMutation,
+    ReNotificateUsersAdminMutationVariables
+  >(ReNotificateUsersAdminDocument, baseOptions);
+}
+export type ReNotificateUsersAdminMutationHookResult = ReturnType<
+  typeof useReNotificateUsersAdminMutation
+>;
+export type ReNotificateUsersAdminMutationResult = Apollo.MutationResult<ReNotificateUsersAdminMutation>;
+export type ReNotificateUsersAdminMutationOptions = Apollo.BaseMutationOptions<
+  ReNotificateUsersAdminMutation,
+  ReNotificateUsersAdminMutationVariables
+>;
+export const NotificationsDataAdminDocument = gql`
+  query NotificationsDataAdmin {
+    NotificationsData {
+      id
+      email
+      content
+      date
+    }
+  }
+`;
+
+/**
+ * __useNotificationsDataAdminQuery__
+ *
+ * To run a query within a React component, call `useNotificationsDataAdminQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNotificationsDataAdminQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNotificationsDataAdminQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useNotificationsDataAdminQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    NotificationsDataAdminQuery,
+    NotificationsDataAdminQueryVariables
+  >
+) {
+  return Apollo.useQuery<
+    NotificationsDataAdminQuery,
+    NotificationsDataAdminQueryVariables
+  >(NotificationsDataAdminDocument, baseOptions);
+}
+export function useNotificationsDataAdminLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    NotificationsDataAdminQuery,
+    NotificationsDataAdminQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<
+    NotificationsDataAdminQuery,
+    NotificationsDataAdminQueryVariables
+  >(NotificationsDataAdminDocument, baseOptions);
+}
+export type NotificationsDataAdminQueryHookResult = ReturnType<
+  typeof useNotificationsDataAdminQuery
+>;
+export type NotificationsDataAdminLazyQueryHookResult = ReturnType<
+  typeof useNotificationsDataAdminLazyQuery
+>;
+export type NotificationsDataAdminQueryResult = Apollo.QueryResult<
+  NotificationsDataAdminQuery,
+  NotificationsDataAdminQueryVariables
 >;
 export const MailAllLockedUsersAdminDocument = gql`
   mutation mailAllLockedUsersAdmin {

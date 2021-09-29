@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "email": "test1@test.com",
+    "content": "Dear Principal, this is mail content and notifications ",
+    "date": "2019-09-23 10:19:58"
+  },
+  {
+    "id": 2,
+    "email": "test2@test.com",
+    "content": "Dear Principal, this is mail content and notifications ",
+    "date": "2019-09-23 10:19:58"
+  },
+  {
+    "id": 3,
+    "email": "test4@test.com",
+    "content": "Dear Principal, this is mail content and notifications ",
+    "date": "2019-09-23 10:19:58"
+  },
+  {
+    "id": 4,
+    "email": "test5@test.com",
+    "content": "Dear Principal, this is mail content and notifications ",
+    "date": "2019-09-23 10:19:58"
+  }
+]

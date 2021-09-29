@@ -75,6 +75,8 @@ const migration = async () => {
     PROGRAM_STRUCTURE_TABLE,
     EXTERNAL_EVALUATION_STRUCTURE_TABLE,
     EXTERNAL_EVALUATION_GROUPED_STATS_TABLE,
+    NOTIFICATIONS_DATA_TABLE,
+    /*NotificationsDataTable,*/
     PROGRAM_TABLE,
     ProgramStructureTable,
     ExternalEvaluationStructureTable,
@@ -1001,6 +1003,19 @@ const migration = async () => {
       }
     });
 
+  const NotificationsData = dbData.schema
+    .hasTable(NOTIFICATIONS_DATA_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(NOTIFICATIONS_DATA_TABLE, (table) => {
+          table.increments().primary();
+          table.text("email").notNullable();
+          table.text("content").notNullable();
+          table.text("date").notNullable();
+        });
+      }
+    });
+
   await Promise.all([
     users,
     usersPrograms,
@@ -1015,6 +1030,7 @@ const migration = async () => {
     program,
     programStructure,
     externalEvaluationStructure,
+    NotificationsData,
     student,
     studentAdmission,
     studentExternalEvaluation,
