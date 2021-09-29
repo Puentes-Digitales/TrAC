@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useContext } from "react";
 import { sortBy } from "lodash";
 import { Button, Icon, Message, Table } from "semantic-ui-react";
 import { useNotificateUsersAdminMutation } from "../../../graphql";
@@ -8,10 +8,18 @@ import { whiteSpacePreLine } from "../../../utils/cssConstants";
 import { useRememberState } from "use-remember-state";
 import { usePagination } from "../Pagination";
 import { ResendNotification } from "./resendNotification";
+import { ConfigContext } from "../../../context/Config";
 
 export const AdminNotifications: FC<{
   notifications: { id: number; email: string; content: string; date: string }[];
 }> = ({ notifications }) => {
+  const config = useContext(ConfigContext);
+
+  const messageHeader = config.HEADER;
+  const messageFooter = config.FOOTER;
+  const messageBody = config.DEFAULT;
+  const messageSubject = config.SUBJECT;
+
   const [column, setColumn] = useRememberState(
     "TracAdminNotificationsColumn",
     ""
@@ -68,7 +76,14 @@ export const AdminNotifications: FC<{
             color="orange"
             onClick={async () => {
               try {
-                mailNotificationUsers();
+                mailNotificationUsers({
+                  variables: {
+                    header: messageHeader,
+                    footer: messageFooter,
+                    subject: messageSubject,
+                    body: messageBody,
+                  },
+                });
               } catch (err) {
                 console.error(JSON.stringify(err, null, 2));
               }

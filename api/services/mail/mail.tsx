@@ -1,16 +1,10 @@
 import React from "react";
+
 import { renderToStaticMarkup } from "react-dom/server";
 import { requireEnv } from "require-env-variable";
-import { baseConfig } from "../../../client/constants/baseConfig";
-
 import { IS_PRODUCTION } from "../../../client/constants";
 
 const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS_REPLY_TO;
-const header = baseConfig.HEADER;
-const footer = baseConfig.FOOTER;
-const subject = baseConfig.SUBJECT;
-const defaultMessage = baseConfig.DEFAULT;
-
 const DOMAIN = IS_PRODUCTION
   ? requireEnv("DOMAIN").DOMAIN
   : "http://localhost:3000";
@@ -54,16 +48,28 @@ export const UnlockMail = ({
     </div>
   );
 };
-export const NotificationMail = ({ email }: { email: string }): string => {
+export const NotificationMail = ({
+  email,
+  header,
+  footer,
+  subject,
+  body,
+}: {
+  email: string;
+  header: string;
+  footer: string;
+  body: string;
+  subject: string;
+}): string => {
+  console.log(subject);
   return renderToStaticMarkup(
     <div>
       <h2>{subject}</h2>
       <h3>{header}</h3>
-      <p>{defaultMessage}</p>
+      <p>{body}</p>
       <p>
         {footer} <b>{EMAIL_ADDRESS}</b>
       </p>
-      <p>Saludos cordiales, Equipo TrAC-FID</p>
       <p>
         Por favor no responda este email. Este correo fue generado de manera
         automática por TrAC-FID y enviado a {email}.

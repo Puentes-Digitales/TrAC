@@ -54,8 +54,18 @@ mutation lockMailUserAdmin($email: EmailAddress!) {
     }
   }
 }
-mutation NotificateUsersAdmin {
-  NotificateUsers
+mutation NotificateUsersAdmin(
+  $body: String!
+  $footer: String!
+  $header: String!
+  $subject: String!
+) {
+  NotificateUsers(
+    header: $header
+    body: $body
+    footer: $footer
+    subject: $subject
+  )
 }
 
 mutation ReNotificateUsersAdmin($content: String!, $email: String!) {

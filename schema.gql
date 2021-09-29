@@ -246,7 +246,12 @@ type Mutation {
   login(email: EmailAddress!, password: String!): AuthResult!
   logout: Boolean!
   mailAllLockedUsers: [JSONObject!]!
-  NotificateUsers: [JSONObject!]!
+  NotificateUsers(
+    body: String!
+    footer: String!
+    header: String!
+    subject: String!
+  ): [JSONObject!]!
   performanceLoadAdvices(
     program_id: String
     student_id: String

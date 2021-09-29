@@ -287,6 +287,13 @@ export type MutationLoginArgs = {
   password: Scalars["String"];
 };
 
+export type MutationNotificateUsersArgs = {
+  body: Scalars["String"];
+  footer: Scalars["String"];
+  header: Scalars["String"];
+  subject: Scalars["String"];
+};
+
 export type MutationPerformanceLoadAdvicesArgs = {
   program_id?: Maybe<Scalars["String"]>;
   student_id?: Maybe<Scalars["String"]>;
@@ -621,7 +628,10 @@ export type LockMailUserAdminMutation = {
 };
 
 export type NotificateUsersAdminMutationVariables = Exact<{
-  [key: string]: never;
+  body: Scalars["String"];
+  footer: Scalars["String"];
+  header: Scalars["String"];
+  subject: Scalars["String"];
 }>;
 
 export type NotificateUsersAdminMutation = Pick<Mutation, "NotificateUsers">;
@@ -1499,8 +1509,18 @@ export type LockMailUserAdminMutationOptions = Apollo.BaseMutationOptions<
   LockMailUserAdminMutationVariables
 >;
 export const NotificateUsersAdminDocument = gql`
-  mutation NotificateUsersAdmin {
-    NotificateUsers
+  mutation NotificateUsersAdmin(
+    $body: String!
+    $footer: String!
+    $header: String!
+    $subject: String!
+  ) {
+    NotificateUsers(
+      header: $header
+      body: $body
+      footer: $footer
+      subject: $subject
+    )
   }
 `;
 export type NotificateUsersAdminMutationFn = Apollo.MutationFunction<
@@ -1521,6 +1541,10 @@ export type NotificateUsersAdminMutationFn = Apollo.MutationFunction<
  * @example
  * const [notificateUsersAdminMutation, { data, loading, error }] = useNotificateUsersAdminMutation({
  *   variables: {
+ *      body: // value for 'body'
+ *      footer: // value for 'footer'
+ *      header: // value for 'header'
+ *      subject: // value for 'subject'
  *   },
  * });
  */
