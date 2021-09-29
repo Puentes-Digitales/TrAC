@@ -342,18 +342,17 @@ export type MutationUpsertUsersArgs = {
   users: Array<UpsertedUser>;
 };
 
-
 export type Notifications = {
   content: Scalars["String"];
   date: Scalars["String"];
   email: Scalars["String"];
   id: Scalars["Int"];
+};
 
 export type Parameter = {
   id: Scalars["Int"];
   loading_date: Scalars["DateTime"];
   loading_type: Scalars["String"];
-
 };
 
 export type PerformanceByLoad = {
