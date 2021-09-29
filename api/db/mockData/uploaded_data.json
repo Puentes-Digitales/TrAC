@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "loading_date": "2021-09-12 10:19:58",
+    "notified": false
+  },
+  {
+    "id": 1,
+    "loading_date": "2021-09-10 10:19:58",
+    "notified": false
+  },
+  {
+    "id": 2,
+    "loading_date": "2019-09-23 10:19:58",
+    "notified": true
+  },
+  {
+    "id": 3,
+    "loading_date": "2021-09-05 10:19:58",
+    "notified": false
+  },
+  {
+    "id": 4,
+    "loading_date": "2021-09-11 10:19:58",
+    "notified": true
+  },
+  {
+    "id": 5,
+    "loading_date": "2021-09-13 10:19:58",
+    "notified": false
+  }
+]

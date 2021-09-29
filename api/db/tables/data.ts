@@ -51,7 +51,6 @@ export const PARAMETER_TABLE = "parameter";
 export const ParameterTable = () => dbData<IParameter>(PARAMETER_TABLE);
 
 // -------------------------------------------------------------------------------------
-
 export interface IProgram {
   id: string;
   name: string;
@@ -87,7 +86,23 @@ export const PROGRAM_STRUCTURE_TABLE = "program_structure";
 export const ProgramStructureTable = () =>
   dbData<IProgramStructure>(PROGRAM_STRUCTURE_TABLE);
 
-// -------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------#############################
+
+export interface RiskNotification {
+  student_id: string;
+  program_id: string;
+  curriculum: number;
+  risk_type: string;
+  details: string;
+  notifed: boolean;
+}
+
+export const RISK_NOTIFICATION_TABLE = "risk_notification";
+
+export const RiskNotificationTable = () =>
+  dbData<RiskNotification>(RISK_NOTIFICATION_TABLE);
+
+// -------------------------------------------------------------------------------------##############################
 
 export interface IExternalEvaluationStructure {
   id: number;

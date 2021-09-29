@@ -9,10 +9,12 @@ import { AdminFeedback } from "../components/admin/feedback";
 import { AdminMenu } from "../components/admin/Menu";
 import { Programs } from "../components/admin/programs";
 import { AdminTrack } from "../components/admin/track";
+import { AdminNotifications } from "../components/admin/notifications";
 import { Users } from "../components/admin/users";
 import { LoadingPage } from "../components/Loading";
 import { useAllUsersAdminQuery } from "../graphql";
 import { useUser } from "../utils/useUser";
+import { useNotificationsDataAdminQuery } from "../graphql";
 
 export enum AdminMenuTypes {
   users = "users",
@@ -21,6 +23,7 @@ export enum AdminMenuTypes {
   data = "data",
   feedback = "feedback",
   track = "track",
+  notifications = "notifications",
 }
 
 const Admin: FC = () => {
@@ -32,6 +35,12 @@ const Admin: FC = () => {
   const { data, loading, error, refetch } = useAllUsersAdminQuery({
     notifyOnNetworkStatusChange: true,
   });
+
+  const { data: NotificationsQueryData } = useNotificationsDataAdminQuery();
+
+  /*const NotificationsQueryData = useMemo(() => {
+    return useNotificationsDataAdminQuery();
+  }, [studentListChunks, pageSelected, statusProgress]);*/
 
   useEffect(() => {
     if (IS_NOT_TEST && data) {
@@ -67,10 +76,22 @@ const Admin: FC = () => {
         return <AdminFeedback />;
       case AdminMenuTypes.track:
         return <AdminTrack />;
+      case AdminMenuTypes.notifications:
+        return (
+          <AdminNotifications
+            notifications={
+              NotificationsQueryData?.NotificationsData.map(
+                ({ id, email, content, date }) => {
+                  return { id, email, content, date };
+                }
+              ) || []
+            }
+          />
+        );
       default:
         return null;
     }
-  }, [active, data, loading]);
+  }, [active, data, loading, NotificationsQueryData]);
 
   if (error) {
     console.error(JSON.stringify(error, null, 2));

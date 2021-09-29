@@ -76,7 +76,6 @@ export const Programs: FC<{
               </Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-
           <Table.Body>
             {selectedData.map(({ email = "", programs = [] }, key) => (
               <UpdatePrograms key={key} program={{ email, programs }}>

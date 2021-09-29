@@ -136,7 +136,6 @@ export const Users: FC<{
             </Message>
           </Stack>
         )}
-
         <Stack mt="10px">
           <Button
             color="teal"
@@ -155,7 +154,6 @@ export const Users: FC<{
 
         <Flex>{pagination}</Flex>
       </Stack>
-
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex fontSize=".9em">
           <Table
