@@ -77,8 +77,6 @@ const migration = async () => {
     EXTERNAL_EVALUATION_GROUPED_STATS_TABLE,
     NOTIFICATIONS_DATA_TABLE,
     /*NotificationsDataTable,*/
-    MessageContentTable,
-    MESSAGE_CONTENT_TABLE,
     PROGRAM_TABLE,
     ProgramStructureTable,
     ExternalEvaluationStructureTable,
@@ -1044,29 +1042,6 @@ const migration = async () => {
       }
     });
 
-  const MessageContent = dbConfig.schema
-    .hasTable(MESSAGE_CONTENT_TABLE)
-    .then(async (exists) => {
-      if (!exists) {
-        await dbConfig.schema.createTable(MESSAGE_CONTENT_TABLE, (table) => {
-          table.integer("id").primary();
-          table.text("description").notNullable();
-          table.text("content").notNullable();
-        });
-        await MessageContentTable().insert(
-          (await import("./config/message_content.json")).default.map(
-            ({ id, description, content }) => {
-              return {
-                id,
-                description,
-                content,
-              };
-            }
-          )
-        );
-      }
-    });
-
   await Promise.all([
     users,
     usersPrograms,
@@ -1083,7 +1058,6 @@ const migration = async () => {
     programStructure,
     externalEvaluationStructure,
     NotificationsData,
-    MessageContent,
     student,
     studentAdmission,
     studentExternalEvaluation,

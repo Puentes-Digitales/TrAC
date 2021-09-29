@@ -431,17 +431,6 @@ export type QueryUserPersistencesArgs = {
   user: Scalars["String"];
 };
 
-export type Risk = {
-  content: Scalars["String"];
-  description: Scalars["String"];
-  id: Scalars["Int"];
-};
-
-export type RiskMessageContent = {
-  id: Scalars["Int"];
-  names: Array<Scalars["String"]>;
-};
-
 export type Semester = {
   courses: Array<Course>;
   externalEvaluations: Array<ExternalEvaluation>;

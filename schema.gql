@@ -335,17 +335,6 @@ type Query {
   users: [User!]!
 }
 
-type Risk {
-  content: String!
-  description: String!
-  id: Int!
-}
-
-type RiskMessageContent {
-  id: Int!
-  names: [String!]!
-}
-
 type Semester {
   courses: [Course!]!
   externalEvaluations: [ExternalEvaluation!]!

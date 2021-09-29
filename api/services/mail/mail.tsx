@@ -1,10 +1,15 @@
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { requireEnv } from "require-env-variable";
+import { baseConfig } from "../../../client/constants/baseConfig";
 
 import { IS_PRODUCTION } from "../../../client/constants";
 
 const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS_REPLY_TO;
+const header = baseConfig.HEADER;
+const footer = baseConfig.FOOTER;
+const subject = baseConfig.SUBJECT;
+const defaultMessage = baseConfig.DEFAULT;
 
 const DOMAIN = IS_PRODUCTION
   ? requireEnv("DOMAIN").DOMAIN
@@ -52,12 +57,11 @@ export const UnlockMail = ({
 export const NotificationMail = ({ email }: { email: string }): string => {
   return renderToStaticMarkup(
     <div>
-      <h2>Novedades en TrAC-FID</h2>
-      <h3>Estimado/a Director/a :</h3>
-      <p>Se ha realizado una actualización en los datos de TrAC-FID</p>
+      <h2>{subject}</h2>
+      <h3>{header}</h3>
+      <p>{defaultMessage}</p>
       <p>
-        Si tiene algún problema o alguna pregunta, puede contactarnos al correo:{" "}
-        <b>{EMAIL_ADDRESS}</b>
+        {footer} <b>{EMAIL_ADDRESS}</b>
       </p>
       <p>Saludos cordiales, Equipo TrAC-FID</p>
       <p>
