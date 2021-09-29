@@ -50,20 +50,6 @@ export const PARAMETER_TABLE = "parameter";
 export const ParameterTable = () => dbData<IParameter>(PARAMETER_TABLE);
 
 // -------------------------------------------------------------------------------------
-
-// -------------------------------------------------------------------------------------
-
-export interface IUploadedDataTable {
-  id: number;
-  loading_date: Date;
-  notified: boolean;
-}
-
-export const UPLOADED_DATA_TABLE = "uploaded_data";
-export const UploadedDataTable = () =>
-  dbData<IUploadedDataTable>(UPLOADED_DATA_TABLE);
-
-// -------------------------------------------------------------------------------------
 export interface IProgram {
   id: string;
   name: string;
