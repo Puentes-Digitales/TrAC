@@ -426,18 +426,3 @@ export const StudentClusterTable = () =>
   dbData<IStudentCluster>(STUDENT_CLUSTER_TABLE);
 
 // --------------------------------------------------------------------------
-export interface IRiskNotification {
-  student_id: string;
-  course_id: string;
-  program_id: string;
-  curriculum: string;
-  risk_type: string;
-  details: string;
-  notified: boolean;
-}
-
-export const RISK_NOTIFICATION_TABLE = "risk_notification";
-
-export const RiskNotificationTable = () =>
-  dbData<IRiskNotification>(RISK_NOTIFICATION_TABLE);
-// --------------------------------------------------------------------------
