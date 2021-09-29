@@ -372,3 +372,13 @@ query unansweredForm {
 mutation answerFeedbackForm($answer: FeedbackAnswerInput!) {
   answerFeedbackForm(answer: $answer)
 }
+
+query riskNotication($program_id: String!, $risk_type: String!) {
+  riskNotification(program_id: $program_id, risk_type: $risk_type) {
+    student_id
+    course_id
+    program_id
+    curriculum
+    risk_type
+  }
+}

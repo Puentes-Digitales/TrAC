@@ -405,6 +405,7 @@ export type Query = {
   NotificationsData: Array<Notifications>;
   parameters: Array<Parameter>;
   programs: Array<Program>;
+  riskNotification: Array<RiskNotification>;
   students: Array<Student>;
   students_filter: Array<Student>;
   trackInfo: Array<Track>;
@@ -426,6 +427,11 @@ export type QueryGetPersistenceValueArgs = {
   key: Scalars["String"];
 };
 
+export type QueryRiskNotificationArgs = {
+  program_id: Scalars["String"];
+  risk_type: Scalars["String"];
+};
+
 export type QueryStudentsArgs = {
   last_n_years?: Maybe<Scalars["Int"]>;
   program_id: Scalars["String"];
@@ -443,6 +449,16 @@ export type QueryTrackInfoArgs = {
 
 export type QueryUserPersistencesArgs = {
   user: Scalars["String"];
+};
+
+export type RiskNotification = {
+  course_id: Scalars["String"];
+  curriculum: Scalars["String"];
+  details: Scalars["String"];
+  notified: Scalars["Boolean"];
+  program_id: Scalars["String"];
+  risk_type: Scalars["String"];
+  student_id: Scalars["String"];
 };
 
 export type Semester = {
@@ -1108,6 +1124,20 @@ export type AnswerFeedbackFormMutationVariables = Exact<{
 }>;
 
 export type AnswerFeedbackFormMutation = Pick<Mutation, "answerFeedbackForm">;
+
+export type RiskNoticationQueryVariables = Exact<{
+  program_id: Scalars["String"];
+  risk_type: Scalars["String"];
+}>;
+
+export type RiskNoticationQuery = {
+  riskNotification: Array<
+    Pick<
+      RiskNotification,
+      "student_id" | "course_id" | "program_id" | "curriculum" | "risk_type"
+    >
+  >;
+};
 
 export type LoginTestMutationVariables = Exact<{
   email: Scalars["EmailAddress"];
@@ -3359,6 +3389,67 @@ export type AnswerFeedbackFormMutationResult = Apollo.MutationResult<AnswerFeedb
 export type AnswerFeedbackFormMutationOptions = Apollo.BaseMutationOptions<
   AnswerFeedbackFormMutation,
   AnswerFeedbackFormMutationVariables
+>;
+export const RiskNoticationDocument = gql`
+  query riskNotication($program_id: String!, $risk_type: String!) {
+    riskNotification(program_id: $program_id, risk_type: $risk_type) {
+      student_id
+      course_id
+      program_id
+      curriculum
+      risk_type
+    }
+  }
+`;
+
+/**
+ * __useRiskNoticationQuery__
+ *
+ * To run a query within a React component, call `useRiskNoticationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRiskNoticationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRiskNoticationQuery({
+ *   variables: {
+ *      program_id: // value for 'program_id'
+ *      risk_type: // value for 'risk_type'
+ *   },
+ * });
+ */
+export function useRiskNoticationQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    RiskNoticationQuery,
+    RiskNoticationQueryVariables
+  >
+) {
+  return Apollo.useQuery<RiskNoticationQuery, RiskNoticationQueryVariables>(
+    RiskNoticationDocument,
+    baseOptions
+  );
+}
+export function useRiskNoticationLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    RiskNoticationQuery,
+    RiskNoticationQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<RiskNoticationQuery, RiskNoticationQueryVariables>(
+    RiskNoticationDocument,
+    baseOptions
+  );
+}
+export type RiskNoticationQueryHookResult = ReturnType<
+  typeof useRiskNoticationQuery
+>;
+export type RiskNoticationLazyQueryHookResult = ReturnType<
+  typeof useRiskNoticationLazyQuery
+>;
+export type RiskNoticationQueryResult = Apollo.QueryResult<
+  RiskNoticationQuery,
+  RiskNoticationQueryVariables
 >;
 export const LoginTestDocument = gql`
   mutation LoginTest($email: EmailAddress!, $password: String!) {
