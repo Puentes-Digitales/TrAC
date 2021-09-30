@@ -56,6 +56,8 @@ mutation lockMailUserAdmin($email: EmailAddress!) {
 }
 mutation NotificateUsersAdmin(
   $body: String!
+  $closing: String!
+  $farewell: String!
   $footer: String!
   $header: String!
   $subject: String!
@@ -65,9 +67,10 @@ mutation NotificateUsersAdmin(
     body: $body
     footer: $footer
     subject: $subject
+    farewell: $farewell
+    closing: $closing
   )
 }
-
 mutation ReNotificateUsersAdmin($content: String!, $email: String!) {
   ReNotificateUsers(content: $content, email: $email)
 }

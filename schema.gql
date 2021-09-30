@@ -248,6 +248,8 @@ type Mutation {
   mailAllLockedUsers: [JSONObject!]!
   NotificateUsers(
     body: String!
+    closing: String!
+    farewell: String!
     footer: String!
     header: String!
     subject: String!

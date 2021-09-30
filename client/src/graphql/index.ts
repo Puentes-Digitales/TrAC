@@ -289,6 +289,8 @@ export type MutationLoginArgs = {
 
 export type MutationNotificateUsersArgs = {
   body: Scalars["String"];
+  closing: Scalars["String"];
+  farewell: Scalars["String"];
   footer: Scalars["String"];
   header: Scalars["String"];
   subject: Scalars["String"];
@@ -652,6 +654,8 @@ export type LockMailUserAdminMutation = {
 
 export type NotificateUsersAdminMutationVariables = Exact<{
   body: Scalars["String"];
+  closing: Scalars["String"];
+  farewell: Scalars["String"];
   footer: Scalars["String"];
   header: Scalars["String"];
   subject: Scalars["String"];
@@ -1554,6 +1558,8 @@ export type LockMailUserAdminMutationOptions = Apollo.BaseMutationOptions<
 export const NotificateUsersAdminDocument = gql`
   mutation NotificateUsersAdmin(
     $body: String!
+    $closing: String!
+    $farewell: String!
     $footer: String!
     $header: String!
     $subject: String!
@@ -1563,6 +1569,8 @@ export const NotificateUsersAdminDocument = gql`
       body: $body
       footer: $footer
       subject: $subject
+      farewell: $farewell
+      closing: $closing
     )
   }
 `;
@@ -1585,6 +1593,8 @@ export type NotificateUsersAdminMutationFn = Apollo.MutationFunction<
  * const [notificateUsersAdminMutation, { data, loading, error }] = useNotificateUsersAdminMutation({
  *   variables: {
  *      body: // value for 'body'
+ *      closing: // value for 'closing'
+ *      farewell: // value for 'farewell'
  *      footer: // value for 'footer'
  *      header: // value for 'header'
  *      subject: // value for 'subject'

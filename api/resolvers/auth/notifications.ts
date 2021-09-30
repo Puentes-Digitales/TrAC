@@ -20,6 +20,8 @@ export class NotificationsResolver {
   async NotificateUsers(
     @Arg("header") header: string,
     @Arg("footer") footer: string,
+    @Arg("closing") closing: string,
+    @Arg("farewell") farewell: string,
     @Arg("subject") subject: string,
     @Arg("body") body: string
   ): Promise<Record<string, any>> {
@@ -32,7 +34,17 @@ export class NotificationsResolver {
         footer: footer,
         subject: subject,
         body: body,
+        closing: closing,
+        farewell: farewell,
       });
+      const messageContent = {
+        header: header,
+        footer: footer,
+        subject: subject,
+        body: body,
+        closing: closing,
+        farewell: farewell,
+      };
       const result = await sendMail({
         to: email,
         message: msg,
@@ -41,7 +53,7 @@ export class NotificationsResolver {
       NotificationMailResults.push(result);
       await NotificationsDataTable().insert({
         email,
-        content: msg,
+        content: messageContent,
         date: new Date(),
       });
     }
@@ -54,12 +66,25 @@ export class NotificationsResolver {
     @Arg("email") email: string,
     @Arg("content") content: string
   ): Promise<Record<string, any>> {
+    const data = JSON.parse(content);
+    const msg = NotificationMail({
+      email: email,
+      header: data.header,
+      footer: data.footer,
+      subject: data.subject,
+      body: data.body,
+      closing: data.closing,
+      farewell: data.farewell,
+    });
+
     const ReNotificationMailResults: Record<string, any>[] = [];
+
     const result = await sendMail({
       to: email,
-      message: content,
+      message: msg,
       subject: "Novedades en TrAC-FID",
     });
+
     ReNotificationMailResults.push(result);
     return ReNotificationMailResults;
   }
