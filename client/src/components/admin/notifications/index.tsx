@@ -9,16 +9,17 @@ import { useRememberState } from "use-remember-state";
 import { usePagination } from "../Pagination";
 import { ResendNotification } from "./resendNotification";
 import { ConfigContext } from "../../../context/Config";
+import { format } from "date-fns-tz";
 
 export const AdminNotifications: FC<{
-  notifications: { id: number; email: string; content: string; date: string }[];
+  notifications: {
+    id: number;
+    email: string;
+    content: string;
+    date: string;
+  }[];
 }> = ({ notifications }) => {
   const config = useContext(ConfigContext);
-
-  const messageHeader = config.HEADER;
-  const messageFooter = config.FOOTER;
-  const messageBody = config.DEFAULT;
-  const messageSubject = config.SUBJECT;
 
   const [column, setColumn] = useRememberState(
     "TracAdminNotificationsColumn",
@@ -65,6 +66,8 @@ export const AdminNotifications: FC<{
     },
   ] = useNotificateUsersAdminMutation();
 
+  const dateFormatStringTemplate = "dd-MM-yyyy";
+
   return (
     <Stack alignItems="center" spacing="1pm">
       <Stack mt="10px">
@@ -78,10 +81,12 @@ export const AdminNotifications: FC<{
               try {
                 mailNotificationUsers({
                   variables: {
-                    header: messageHeader,
-                    footer: messageFooter,
-                    subject: messageSubject,
-                    body: messageBody,
+                    header: config.MESSAGE_HEADER,
+                    footer: config.MESSAGE_FOOTER,
+                    subject: config.MESSAGE_SUBJECT,
+                    body: config.DEFAULT_MESSAGE,
+                    farewell: config.MESSAGE_FAREWELL,
+                    closing: config.MESSAGE_CLOSING,
                   },
                 });
               } catch (err) {
@@ -163,16 +168,47 @@ export const AdminNotifications: FC<{
           </Table.Header>
 
           <Table.Body>
-            {selectedData.map(({ id, email, content, date }, key) => (
-              <ResendNotification key={key} notification={{ email, content }}>
-                <Table.Row className="cursorPointer">
-                  <Table.Cell>{id}</Table.Cell>
-                  <Table.Cell>{email}</Table.Cell>
-                  <Table.Cell>{content}</Table.Cell>
-                  <Table.Cell>{date}</Table.Cell>
-                </Table.Row>
-              </ResendNotification>
-            ))}
+            {selectedData.map(({ id, email, content, date }, key) => {
+              const data = JSON.parse(content);
+              const messageDate = format(
+                new Date(date),
+                dateFormatStringTemplate,
+                {
+                  timeZone: "America/Santiago",
+                }
+              );
+              return (
+                <ResendNotification
+                  key={key}
+                  notification={{ email, content: content }}
+                >
+                  <Table.Row className="cursorPointer">
+                    <Table.Cell>{id}</Table.Cell>
+                    <Table.Cell>{email} </Table.Cell>
+                    <Table.Cell>
+                      <p>
+                        <b>Subject:</b> {data.subject}
+                      </p>
+                      <p>
+                        <b>Header:</b> {data.header}
+                      </p>
+                      <p>
+                        <b>Body: </b> {data.body}
+                      </p>
+                      <b>Farewell:</b> {data.farewell}
+                      <p>
+                        <b>Closing:</b> {data.closing} soportelala@inf.uach.cl
+                      </p>
+                      <p>
+                        <b>Footer</b>:{data.footer}
+                        {email}
+                      </p>
+                    </Table.Cell>
+                    <Table.Cell>{messageDate}</Table.Cell>
+                  </Table.Row>
+                </ResendNotification>
+              );
+            })}
           </Table.Body>
         </Table>
       </Stack>

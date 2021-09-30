@@ -3,7 +3,7 @@ import { dbData } from "../";
 export interface INotificationsData {
   id: number;
   email: string;
-  content: string;
+  content: object;
   date: Date;
 }
 export const NOTIFICATIONS_DATA_TABLE = "notifications_data";
