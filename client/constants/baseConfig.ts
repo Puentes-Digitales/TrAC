@@ -393,11 +393,14 @@ export const baseConfig = {
   HELP_POPOVER_HOVER_TEXT: "Ayuda",
   HELP_MODAL_HEADER_TEXT: "Ayuda",
   VERSION_CONFIG: "1",
-  HEADER: "Estimado/a Director/a",
-  FOOTER:
-    "Si tiene algún problema o alguna pregunta,puede contactarnos al correo support@example.cl /n Saludos cordiales, Equipo TrAC-FID /n Por favor no responda este email. Este correo fue generado de manera automática por TrAC-FID y enviado a : ",
-  SUBJECT: "Novedades en TrAC-FID",
-  DEFAULT: "Se ha actualizado la base de datos de TrAC-FID",
+  MESSAGE_HEADER: "Estimado/a Director/a",
+  MESSAGE_CLOSING:
+    "Si tiene algún problema o alguna pregunta,puede contactarnos al correo: ",
+  MESSAGE_FAREWELL: "Saludos cordiales, Equipo TrAC-FID",
+  MESSAGE_FOOTER:
+    "Por favor no responda este email. Este correo fue generado de manera automática por TrAC-FID y enviado a : ",
+  MESSAGE_SUBJECT: "Novedades en TrAC-FID",
+  DEFAULT_MESSAGE: "Se ha actualizado la base de datos de TrAC-FID",
 };
 
 export const baseConfigAdmin: typeof baseConfig &

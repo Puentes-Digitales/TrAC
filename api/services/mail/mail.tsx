@@ -54,25 +54,29 @@ export const NotificationMail = ({
   footer,
   subject,
   body,
+  farewell,
+  closing,
 }: {
   email: string;
   header: string;
   footer: string;
   body: string;
   subject: string;
+  farewell: string;
+  closing: string;
 }): string => {
-  console.log(subject);
   return renderToStaticMarkup(
     <div>
       <h2>{subject}</h2>
       <h3>{header}</h3>
       <p>{body}</p>
+      <p>{farewell}</p>
       <p>
-        {footer} <b>{EMAIL_ADDRESS}</b>
+        {closing} <b>{EMAIL_ADDRESS}</b>
       </p>
       <p>
-        Por favor no responda este email. Este correo fue generado de manera
-        automática por TrAC-FID y enviado a {email}.
+        {footer}
+        {email}.
       </p>
     </div>
   );
