@@ -277,6 +277,8 @@ type Notifications {
   date: String!
   email: String!
   id: Int!
+}
+
 type Parameter {
   id: Int!
   loading_date: DateTime!

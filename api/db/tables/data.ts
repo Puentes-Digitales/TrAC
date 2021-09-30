@@ -88,19 +88,20 @@ export const ProgramStructureTable = () =>
 
 // -------------------------------------------------------------------------------------#############################
 
-export interface RiskNotification {
+export interface IRiskNotification {
   student_id: string;
+  course_id: string;
   program_id: string;
-  curriculum: number;
+  curriculum: string;
   risk_type: string;
   details: string;
-  notifed: boolean;
+  notified: boolean;
 }
 
 export const RISK_NOTIFICATION_TABLE = "risk_notification";
 
 export const RiskNotificationTable = () =>
-  dbData<RiskNotification>(RISK_NOTIFICATION_TABLE);
+  dbData<IRiskNotification>(RISK_NOTIFICATION_TABLE);
 
 // -------------------------------------------------------------------------------------##############################
 
