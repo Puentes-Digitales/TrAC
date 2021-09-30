@@ -113,6 +113,8 @@ const migration = async () => {
     UserProgramsTable,
     USERS_TABLE,
     UserTable,
+    RISK_NOTIFICATION_TABLE,
+    RiskNotificationTable,
   } = await import("./tables");
 
   const users = dbAuth.schema.hasTable(USERS_TABLE).then(async (exists) => {
@@ -1016,6 +1018,43 @@ const migration = async () => {
       }
     });
 
+  const RiskNotification = dbData.schema
+    .hasTable(RISK_NOTIFICATION_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(RISK_NOTIFICATION_TABLE, (table) => {
+          table.text("student_id").notNullable();
+          table.text("course_id").notNullable();
+          table.text("program_id").notNullable();
+          table.text("curriculum").notNullable();
+          table.text("risk_type").notNullable();
+          table.text("details");
+          table.boolean("notified");
+        });
+        await RiskNotificationTable().insert(
+          (await import("./mockData/riskNotification.json")).default.map(
+            ({
+              student_id,
+              course_id,
+              program_id,
+              curriculum,
+              risk_type,
+              details,
+              notified,
+            }) => {
+              return {
+                student_id,
+                course_id,
+                program_id,
+                curriculum,
+                risk_type,
+              };
+            }
+          )
+        );
+      }
+    });
+
   await Promise.all([
     users,
     usersPrograms,
@@ -1049,6 +1088,7 @@ const migration = async () => {
     feedbackForm,
     feedbackFormQuestion,
     feedbackResult,
+    RiskNotification,
   ]);
 
   await Promise.all([

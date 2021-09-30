@@ -401,6 +401,12 @@ export const baseConfig = {
     "Por favor no responda este email. Este correo fue generado de manera automática por TrAC-FID y enviado a : ",
   MESSAGE_SUBJECT: "Novedades en TrAC-FID",
   DEFAULT_MESSAGE: "Se ha actualizado la base de datos de TrAC-FID",
+  NO_INFORMATION_TO_DEPLOY: "No hay información para monstar",
+  RISK_ALL: "Todos",
+  RISK_STUDENT_PENDING_OF_GRADUATION: "Pendientes de Titulación ",
+  RISK_LOW_PASSING_RATE_COURSES: "Avance menor al umbral (50%)",
+  RISK_LOW_PROGRESSING_RATE: "Anulaciones sobre el umbral",
+  RISK_THIRD_ATTEMPT: "Asignaturas por tercera vez",
 };
 
 export const baseConfigAdmin: typeof baseConfig &
