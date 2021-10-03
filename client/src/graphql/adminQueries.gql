@@ -61,6 +61,7 @@ mutation NotificateUsersAdmin(
   $footer: String!
   $header: String!
   $subject: String!
+  $parameters: String!
 ) {
   NotificateUsers(
     header: $header
@@ -69,10 +70,23 @@ mutation NotificateUsersAdmin(
     subject: $subject
     farewell: $farewell
     closing: $closing
+    parameters: $parameters
   )
 }
-mutation ReNotificateUsersAdmin($content: String!, $email: String!) {
-  ReNotificateUsers(content: $content, email: $email)
+mutation ReNotificateUsersAdmin(
+  $content: String!
+  $email: String!
+  $parameters: String!
+  $counter: Float!
+  $id: Float!
+) {
+  ReNotificateUsers(
+    content: $content
+    email: $email
+    parameters: $parameters
+    counter: $counter
+    id: $id
+  )
 }
 
 query NotificationsDataAdmin {
@@ -81,6 +95,8 @@ query NotificationsDataAdmin {
     email
     content
     date
+    parameters
+    counter
   }
 }
 mutation mailAllLockedUsersAdmin {

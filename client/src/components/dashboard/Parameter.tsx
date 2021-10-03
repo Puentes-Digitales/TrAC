@@ -13,7 +13,6 @@ import {
 import React, { FC, memo } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useParametersQuery } from "../../graphql";
-
 import { format } from "date-fns-tz";
 
 export const Parameter: FC<{

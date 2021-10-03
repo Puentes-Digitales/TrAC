@@ -81,8 +81,15 @@ const Admin: FC = () => {
           <AdminNotifications
             notifications={
               NotificationsQueryData?.NotificationsData.map(
-                ({ id, email, content, date }) => {
-                  return { id, email, content, date };
+                ({ id, email, content, date, parameters, counter }) => {
+                  return {
+                    id,
+                    email,
+                    content,
+                    date,
+                    emailParameters: parameters,
+                    counter: counter,
+                  };
                 }
               ) || []
             }

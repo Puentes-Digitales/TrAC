@@ -1013,7 +1013,9 @@ const migration = async () => {
           table.increments().primary();
           table.text("email").notNullable();
           table.text("content").notNullable();
+          table.text("parameters").notNullable();
           table.text("date").notNullable();
+          table.integer("counter").notNullable();
         });
       }
     });

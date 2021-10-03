@@ -252,6 +252,7 @@ type Mutation {
     farewell: String!
     footer: String!
     header: String!
+    parameters: String!
     subject: String!
   ): [JSONObject!]!
   performanceLoadAdvices(
@@ -259,7 +260,13 @@ type Mutation {
     student_id: String
   ): [PerformanceByLoad!]!
   program(id: String, student_id: String): Program!
-  ReNotificateUsers(content: String!, email: String!): [JSONObject!]!
+  ReNotificateUsers(
+    content: String!
+    counter: Float!
+    email: String!
+    id: Float!
+    parameters: String!
+  ): [JSONObject!]!
   resetDataLoadersCache: Int!
   resetPersistence(user: String!): Int!
   setPersistenceValue(data: JSONObject!, key: String!): Persistence!
@@ -276,9 +283,11 @@ type Mutation {
 
 type Notifications {
   content: String!
+  counter: Float!
   date: String!
   email: String!
   id: Int!
+  parameters: String!
 }
 
 type Parameter {
