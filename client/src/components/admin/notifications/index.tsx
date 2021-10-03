@@ -147,7 +147,7 @@ export const AdminNotifications: FC<{
               disabled={loadingNotificationUsers}
             >
               <Icon name="mail" />
-              Send notification
+              Check notifications
             </Button>
           </Confirm>
         </Stack>
@@ -175,15 +175,9 @@ export const AdminNotifications: FC<{
                 {dataNotificationUsers &&
                 dataNotificationUsers.NotificateUsers.length > 0 ? (
                   <Message.List>
-                    {dataNotificationUsers.NotificateUsers.length === 0 ? (
-                      <Message.Item>
-                        {" "}
-                        Please use resend notification function, notifications
-                        with last parameters date has been sent to all users
-                      </Message.Item>
-                    ) : (
-                      <Message.Item> Done</Message.Item>
-                    )}
+                    <Message.Item>
+                      Notifications sent, please reload page to reload table{" "}
+                    </Message.Item>
                   </Message.List>
                 ) : (
                   <Message.List>
