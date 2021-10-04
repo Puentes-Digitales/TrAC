@@ -56,6 +56,10 @@ export const NotificationMail = ({
   body,
   farewell,
   closing,
+  external,
+  academic,
+  grouped,
+  empleability,
 }: {
   email: string;
   header: string;
@@ -64,12 +68,24 @@ export const NotificationMail = ({
   subject: string;
   farewell: string;
   closing: string;
+  external: string;
+  academic: string;
+  grouped: string;
+  empleability: string;
 }): string => {
   return renderToStaticMarkup(
     <div>
       <h2>{subject}</h2>
       <h3>{header}</h3>
       <p>{body}</p>
+      <b>Datos externos :</b>
+      <p> Fecha de actualización: {external}</p>
+      <b>Datos academicos: </b>
+      <p>Fecha de actualización: {academic}</p>
+      <b>Datos agrupados: </b>
+      <p>Fecha de actualización: {grouped}</p>
+      <b>Datoa de empleabilidad: </b>
+      <p>Fecha de actualización: {empleability}</p>
       <p>{farewell}</p>
       <p>
         {closing} <b>{EMAIL_ADDRESS}</b>

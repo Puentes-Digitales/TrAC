@@ -6,21 +6,26 @@ import { Stack } from "@chakra-ui/react";
 import { whiteSpacePreLine } from "../../../utils/cssConstants";
 
 export const ResendNotification: FC<{
-  notification: { email: string; content: string };
+  notification: {
+    id: number;
+    email: string;
+    content: string;
+    parameters: string;
+    counter: number;
+  };
   children: JSX.Element;
 }> = ({ children, notification }) => {
   const [open, setOpen] = useState(false);
-
   const [
     reMailNotificationUsers,
     {
       data: dataNotificationUsers,
-      error: errorNotificationUsers,
-      loading: loadingNotificationUsers,
+      error: errorReNotificationUsers,
+      loading: loadingReNotificationUsers,
     },
   ] = useReNotificateUsersAdminMutation();
 
-  const [openMailMessage, setOpenMailMessage] = useState(false);
+  const [openReMailMessage, setOpenReMailMessage] = useState(false);
 
   return (
     <Modal
@@ -46,28 +51,31 @@ export const ResendNotification: FC<{
                     try {
                       reMailNotificationUsers({
                         variables: {
+                          id: notification.id,
                           content: notification.content,
                           email: notification.email,
+                          parameters: notification.parameters,
+                          counter: notification.counter,
                         },
                       });
                     } catch (err) {
                       console.error(JSON.stringify(err, null, 2));
                     }
-                    setOpenMailMessage(true);
+                    setOpenReMailMessage(true);
                   }}
-                  loading={loadingNotificationUsers}
-                  disabled={loadingNotificationUsers}
+                  loading={loadingReNotificationUsers}
+                  disabled={loadingReNotificationUsers}
                 >
                   <Icon name="mail" />
                   ReSend notification
                 </Button>
               </Confirm>
             </Stack>
-            {openMailMessage && (
+            {openReMailMessage && (
               <Stack>
                 <Message
-                  success={!errorNotificationUsers ? true : undefined}
-                  error={!!errorNotificationUsers ? true : undefined}
+                  success={!errorReNotificationUsers ? true : undefined}
+                  error={!!errorReNotificationUsers ? true : undefined}
                   icon
                   compact
                   size="small"
@@ -75,13 +83,14 @@ export const ResendNotification: FC<{
                 >
                   <Icon
                     name="close"
-                    onClick={() => setOpenMailMessage(false)}
+                    onClick={() => setOpenReMailMessage(false)}
                   />
                   <Message.Content>
-                    {errorNotificationUsers && (
+                    {errorReNotificationUsers && (
                       <Message.Header>Error!</Message.Header>
                     )}
-                    {errorNotificationUsers && errorNotificationUsers.message}
+                    {errorReNotificationUsers &&
+                      errorReNotificationUsers.message}
                     {dataNotificationUsers &&
                     dataNotificationUsers.ReNotificateUsers.length > 0 ? (
                       <Message.List>Done</Message.List>
