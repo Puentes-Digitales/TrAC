@@ -12,5 +12,11 @@ export class Notifications {
   content: string;
 
   @Field()
+  parameters: string;
+
+  @Field()
   date: string;
+
+  @Field()
+  counter: number;
 }

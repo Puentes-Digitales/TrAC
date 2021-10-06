@@ -293,6 +293,7 @@ export type MutationNotificateUsersArgs = {
   farewell: Scalars["String"];
   footer: Scalars["String"];
   header: Scalars["String"];
+  parameters: Scalars["String"];
   subject: Scalars["String"];
 };
 
@@ -308,7 +309,10 @@ export type MutationProgramArgs = {
 
 export type MutationReNotificateUsersArgs = {
   content: Scalars["String"];
+  counter: Scalars["Float"];
   email: Scalars["String"];
+  id: Scalars["Float"];
+  parameters: Scalars["String"];
 };
 
 export type MutationResetPersistenceArgs = {
@@ -346,9 +350,11 @@ export type MutationUpsertUsersArgs = {
 
 export type Notifications = {
   content: Scalars["String"];
+  counter: Scalars["Float"];
   date: Scalars["String"];
   email: Scalars["String"];
   id: Scalars["Int"];
+  parameters: Scalars["String"];
 };
 
 export type Parameter = {
@@ -659,6 +665,7 @@ export type NotificateUsersAdminMutationVariables = Exact<{
   footer: Scalars["String"];
   header: Scalars["String"];
   subject: Scalars["String"];
+  parameters: Scalars["String"];
 }>;
 
 export type NotificateUsersAdminMutation = Pick<Mutation, "NotificateUsers">;
@@ -666,6 +673,9 @@ export type NotificateUsersAdminMutation = Pick<Mutation, "NotificateUsers">;
 export type ReNotificateUsersAdminMutationVariables = Exact<{
   content: Scalars["String"];
   email: Scalars["String"];
+  parameters: Scalars["String"];
+  counter: Scalars["Float"];
+  id: Scalars["Float"];
 }>;
 
 export type ReNotificateUsersAdminMutation = Pick<
@@ -679,7 +689,10 @@ export type NotificationsDataAdminQueryVariables = Exact<{
 
 export type NotificationsDataAdminQuery = {
   NotificationsData: Array<
-    Pick<Notifications, "id" | "email" | "content" | "date">
+    Pick<
+      Notifications,
+      "id" | "email" | "content" | "date" | "parameters" | "counter"
+    >
   >;
 };
 
@@ -1563,6 +1576,7 @@ export const NotificateUsersAdminDocument = gql`
     $footer: String!
     $header: String!
     $subject: String!
+    $parameters: String!
   ) {
     NotificateUsers(
       header: $header
@@ -1571,6 +1585,7 @@ export const NotificateUsersAdminDocument = gql`
       subject: $subject
       farewell: $farewell
       closing: $closing
+      parameters: $parameters
     )
   }
 `;
@@ -1598,6 +1613,7 @@ export type NotificateUsersAdminMutationFn = Apollo.MutationFunction<
  *      footer: // value for 'footer'
  *      header: // value for 'header'
  *      subject: // value for 'subject'
+ *      parameters: // value for 'parameters'
  *   },
  * });
  */
@@ -1621,8 +1637,20 @@ export type NotificateUsersAdminMutationOptions = Apollo.BaseMutationOptions<
   NotificateUsersAdminMutationVariables
 >;
 export const ReNotificateUsersAdminDocument = gql`
-  mutation ReNotificateUsersAdmin($content: String!, $email: String!) {
-    ReNotificateUsers(content: $content, email: $email)
+  mutation ReNotificateUsersAdmin(
+    $content: String!
+    $email: String!
+    $parameters: String!
+    $counter: Float!
+    $id: Float!
+  ) {
+    ReNotificateUsers(
+      content: $content
+      email: $email
+      parameters: $parameters
+      counter: $counter
+      id: $id
+    )
   }
 `;
 export type ReNotificateUsersAdminMutationFn = Apollo.MutationFunction<
@@ -1645,6 +1673,9 @@ export type ReNotificateUsersAdminMutationFn = Apollo.MutationFunction<
  *   variables: {
  *      content: // value for 'content'
  *      email: // value for 'email'
+ *      parameters: // value for 'parameters'
+ *      counter: // value for 'counter'
+ *      id: // value for 'id'
  *   },
  * });
  */
@@ -1674,6 +1705,8 @@ export const NotificationsDataAdminDocument = gql`
       email
       content
       date
+      parameters
+      counter
     }
   }
 `;

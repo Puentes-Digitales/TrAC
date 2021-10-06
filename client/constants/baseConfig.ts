@@ -395,10 +395,10 @@ export const baseConfig = {
   VERSION_CONFIG: "1",
   MESSAGE_HEADER: "Estimado/a Director/a",
   MESSAGE_CLOSING:
-    "Si tiene algún problema o alguna pregunta,puede contactarnos al correo: ",
+    "Si tiene algún problema o alguna pregunta, puede contactarnos al correo: ",
   MESSAGE_FAREWELL: "Saludos cordiales, Equipo TrAC-FID",
   MESSAGE_FOOTER:
-    "Por favor no responda este email. Este correo fue generado de manera automática por TrAC-FID y enviado a : ",
+    " Por favor no responda este email. Este correo fue generado de manera automática por TrAC-FID y enviado a : ",
   MESSAGE_SUBJECT: "Novedades en TrAC-FID",
   DEFAULT_MESSAGE: "Se ha actualizado la base de datos de TrAC-FID",
   NO_INFORMATION_TO_DEPLOY: "No hay información para monstar",
