@@ -10,10 +10,11 @@ import {
   UnorderedList,
   ListItem,
 } from "@chakra-ui/react";
-import React, { FC, memo } from "react";
+import React, { FC, memo, useContext } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useParametersQuery } from "../../graphql";
 import { format } from "date-fns-tz";
+import { ConfigContext } from "../../context/Config";
 
 export const Parameter: FC<{
   show?: string | null;
@@ -35,16 +36,21 @@ export const Parameter: FC<{
       };
     })
     .reverse();
-
+  const {
+    GROUPED_DATA,
+    EMPLOYABILITY_DATA,
+    ACADEMIC_DATA,
+    EXTERNAL_DATA,
+  } = useContext(ConfigContext);
   const last_loading_date: (
     | { id: number; loading_type: string; loading_date: string }
     | undefined
   )[] = [];
   let types: string[] = [
-    "Datos agrupados",
-    "Datos empleabilidad",
-    "Datos académicos",
-    "Datos externos",
+    GROUPED_DATA,
+    EMPLOYABILITY_DATA,
+    ACADEMIC_DATA,
+    EXTERNAL_DATA,
   ];
   types.forEach((element) =>
     last_loading_date.push(

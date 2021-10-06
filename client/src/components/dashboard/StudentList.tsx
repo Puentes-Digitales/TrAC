@@ -327,7 +327,7 @@ export const StudentList: FC<{
   }, [studentListChunks, pageSelected, riskType]);
 
   useEffect(() => {
-    console.log(riskType);
+    //console.log(riskType);
   }, [riskType]);
 
   const TableHeader: FC<{

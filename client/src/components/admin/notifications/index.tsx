@@ -104,10 +104,10 @@ export const AdminNotifications: FC<{
     | undefined
   )[] = [];
   let types: string[] = [
-    "Datos agrupados",
-    "Datos empleabilidad",
-    "Datos académicos",
-    "Datos externos",
+    config.GROUPED_DATA,
+    config.EMPLOYABILITY_DATA,
+    config.ACADEMIC_DATA,
+    config.EXTERNAL_DATA,
   ];
   types.forEach((element) =>
     last_loading_date.push(
