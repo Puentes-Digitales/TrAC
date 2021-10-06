@@ -89,10 +89,6 @@ export const StudentList: FC<{
     },
     skip: !program_id,
   });
-  var [statusProgress, setStatusProgress] = useRememberState(
-    "status_progress_selected",
-    0
-  );
 
   const { data: studentPendingOfGraduation } = useRiskNoticationQuery({
     variables: {
@@ -100,12 +96,12 @@ export const StudentList: FC<{
       risk_type: "student_pending_of_graduation",
     },
   });
-  const { data: lowPassingRateCourses } = useRiskNoticationQuery({
+  /*const { data: lowPassingRateCourses } = useRiskNoticationQuery({
     variables: {
       program_id: program_id || "",
       risk_type: "low_passing_rate_courses",
     },
-  });
+  });*/
   const { data: lowProgressingRate } = useRiskNoticationQuery({
     variables: {
       program_id: program_id || "",
@@ -119,9 +115,29 @@ export const StudentList: FC<{
     },
   });
 
+  const {
+    STUDENT_LIST_TITLE,
+    RISK_HIGH_COLOR,
+    RISK_HIGH_THRESHOLD,
+    RISK_MEDIUM_COLOR,
+    RISK_MEDIUM_THRESHOLD,
+    RISK_LOW_COLOR,
+    CHECK_STUDENT_FROM_LIST_LABEL,
+    NO_INFORMATION_TO_DEPLOY,
+    RISK_ALL,
+    RISK_STUDENT_PENDING_OF_GRADUATION,
+    RISK_LOW_PASSING_RATE_COURSES,
+    //RISK_LOW_PROGRESSING_RATE,
+    RISK_THIRD_ATTEMPT,
+  } = useContext(ConfigContext);
+
+  var [riskType, setRiskType] = useRememberState(
+    "status_progress_selected",
+    RISK_ALL
+  );
   const studentListData = useMemo(() => {
-    switch (statusProgress) {
-      case 0:
+    switch (riskType) {
+      case RISK_ALL:
         return (
           dataStudentList?.students.map(
             ({ id, start_year, progress, dropout }) => {
@@ -135,7 +151,7 @@ export const StudentList: FC<{
             }
           ) ?? []
         );
-      case 1:
+      case RISK_STUDENT_PENDING_OF_GRADUATION:
         return (
           studentPendingOfGraduation?.riskNotification.map(
             ({ student_id, program_id, course_id, curriculum, risk_type }) => {
@@ -150,21 +166,7 @@ export const StudentList: FC<{
             }
           ) ?? []
         );
-      case 2:
-        return (
-          lowPassingRateCourses?.riskNotification.map(
-            ({ student_id, program_id, course_id, curriculum, risk_type }) => {
-              return {
-                student_id: student_id,
-                dropout_probability: -1,
-                progress: -1,
-                start_year: parseInt(curriculum),
-                explanation: " " + risk_type,
-              };
-            }
-          ) ?? []
-        );
-      case 3:
+      case RISK_LOW_PASSING_RATE_COURSES:
         return (
           lowProgressingRate?.riskNotification.map(
             ({ student_id, program_id, course_id, curriculum, risk_type }) => {
@@ -178,7 +180,8 @@ export const StudentList: FC<{
             }
           ) ?? []
         );
-      case 4:
+
+      case RISK_THIRD_ATTEMPT:
         return (
           thirdAttempt?.riskNotification.map(
             ({ student_id, program_id, course_id, curriculum, risk_type }) => {
@@ -192,6 +195,23 @@ export const StudentList: FC<{
             }
           ) ?? []
         );
+
+      /*
+        case 4:
+        return (
+          lowPassingRateCourses?.riskNotification.map(
+            ({ student_id, program_id, course_id, curriculum, risk_type }) => {
+              return {
+                student_id: student_id,
+                dropout_probability: -1,
+                progress: -1,
+                start_year: parseInt(curriculum),
+                explanation: " " + risk_type,
+              };
+            }
+          ) ?? []
+        );
+        */
       default:
       //console.log('.');
     }
@@ -199,7 +219,7 @@ export const StudentList: FC<{
     dataStudentList,
     studentPendingOfGraduation,
     mockData,
-    statusProgress,
+    riskType,
     program_id,
   ]);
 
@@ -271,11 +291,11 @@ export const StudentList: FC<{
     if (pageSelected > studentListChunks.length) {
       setPageSelected(1);
     }
-  }, [studentListChunks, pageSelected, statusProgress]);
+  }, [studentListChunks, pageSelected, riskType]);
 
   useEffect(() => {
     setStudentListChunks(chunk(sortedStudentList, nStudentPerChunk));
-  }, [sortedStudentList, setStudentListChunks, statusProgress]);
+  }, [sortedStudentList, setStudentListChunks, riskType]);
 
   const showDropout = useMemo(() => {
     return (
@@ -285,22 +305,6 @@ export const StudentList: FC<{
       })
     );
   }, [user, studentListData]);
-
-  const {
-    STUDENT_LIST_TITLE,
-    RISK_HIGH_COLOR,
-    RISK_HIGH_THRESHOLD,
-    RISK_MEDIUM_COLOR,
-    RISK_MEDIUM_THRESHOLD,
-    RISK_LOW_COLOR,
-    CHECK_STUDENT_FROM_LIST_LABEL,
-    NO_INFORMATION_TO_DEPLOY,
-    RISK_ALL,
-    RISK_STUDENT_PENDING_OF_GRADUATION,
-    RISK_LOW_PASSING_RATE_COURSES,
-    RISK_LOW_PROGRESSING_RATE,
-    RISK_THIRD_ATTEMPT,
-  } = useContext(ConfigContext);
 
   const handleSort = useCallback(
     (clickedColumn: columnNames) => () => {
@@ -320,11 +324,11 @@ export const StudentList: FC<{
 
   const selectedStudents = useMemo(() => {
     return studentListChunks[pageSelected - 1];
-  }, [studentListChunks, pageSelected, statusProgress]);
+  }, [studentListChunks, pageSelected, riskType]);
 
   useEffect(() => {
-    //console.log(pageSelected);
-  }, [statusProgress]);
+    console.log(riskType);
+  }, [riskType]);
 
   const TableHeader: FC<{
     columnSort: columnNames[];
@@ -357,7 +361,7 @@ export const StudentList: FC<{
           >
             {ENTRY_YEAR_LABEL}
           </Table.HeaderCell>
-          {statusProgress < 1 && (
+          {riskType === RISK_ALL && (
             <Table.HeaderCell
               width={5}
               sorted={columnSort[0] === "progress" ? directionSort : undefined}
@@ -418,10 +422,8 @@ export const StudentList: FC<{
           </DrawerHeader>
           <Box>
             <Select
-              value={statusProgress}
-              onChange={(e) =>
-                setStatusProgress(parseInt(e.currentTarget.value))
-              }
+              value={riskType}
+              onChange={(e) => setRiskType(e.currentTarget.value)}
               pl={6}
               height="2.5rem"
               width="25%"
@@ -430,11 +432,15 @@ export const StudentList: FC<{
               color="Black"
               bg="white"
             >
-              <option value={0}>{RISK_ALL}</option>
-              <option value={1}>{RISK_STUDENT_PENDING_OF_GRADUATION} </option>
-              <option value={2}>{RISK_LOW_PASSING_RATE_COURSES}</option>
-              <option value={3}>{RISK_LOW_PROGRESSING_RATE}</option>
-              <option value={4}>{RISK_THIRD_ATTEMPT}</option>
+              <option value={RISK_ALL}>{RISK_ALL}</option>
+              <option value={RISK_STUDENT_PENDING_OF_GRADUATION}>
+                {RISK_STUDENT_PENDING_OF_GRADUATION}
+              </option>
+              <option value={RISK_LOW_PASSING_RATE_COURSES}>
+                {RISK_LOW_PASSING_RATE_COURSES}
+              </option>
+              <option value={RISK_THIRD_ATTEMPT}>{RISK_THIRD_ATTEMPT}</option>
+              {/* <option value={RISK_LOW_PROGRESSING_RATE}>{RISK_LOW_PROGRESSING_RATE}</option> */}
             </Select>
             <Center>
               <Pagination
@@ -521,7 +527,7 @@ export const StudentList: FC<{
                           <Table.Cell>
                             <Text>{start_year}</Text>
                           </Table.Cell>
-                          {statusProgress < 1 && (
+                          {riskType === RISK_ALL && (
                             <Table.Cell verticalAlign="middle">
                               <Progress
                                 css={[
