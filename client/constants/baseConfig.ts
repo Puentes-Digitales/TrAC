@@ -407,6 +407,10 @@ export const baseConfig = {
   RISK_LOW_PASSING_RATE_COURSES: "Avance menor al umbral (50%)",
   RISK_LOW_PROGRESSING_RATE: "Anulaciones sobre el umbral",
   RISK_THIRD_ATTEMPT: "Asignaturas por tercera vez",
+  GROUPED_DATA: "Datos agrupados",
+  EMPLOYABILITY_DATA: "Datos empleabilidad",
+  ACADEMIC_DATA: "Datos académicos",
+  EXTERNAL_DATA: "Datos externos",
 };
 
 export const baseConfigAdmin: typeof baseConfig &
