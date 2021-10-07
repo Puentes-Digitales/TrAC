@@ -411,6 +411,7 @@ export const baseConfig = {
   EMPLOYABILITY_DATA: "Datos empleabilidad",
   ACADEMIC_DATA: "Datos académicos",
   EXTERNAL_DATA: "Datos externos",
+  LAST_UPDATE_DATA: "Fecha de última carga de datos",
 };
 
 export const baseConfigAdmin: typeof baseConfig &
