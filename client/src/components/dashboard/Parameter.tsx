@@ -41,6 +41,7 @@ export const Parameter: FC<{
     EMPLOYABILITY_DATA,
     ACADEMIC_DATA,
     EXTERNAL_DATA,
+    LAST_UPDATE_DATA,
   } = useContext(ConfigContext);
   const last_loading_date: (
     | { id: number; loading_type: string; loading_date: string }
@@ -70,9 +71,7 @@ export const Parameter: FC<{
       <PopoverContent>
         <PopoverCloseButton />
         <PopoverArrow />
-        <PopoverHeader fontWeight="bold">
-          Fecha de última carga de datos
-        </PopoverHeader>
+        <PopoverHeader fontWeight="bold">{LAST_UPDATE_DATA}</PopoverHeader>
         <PopoverBody>
           <UnorderedList>
             {last_loading_date?.map((date) => {
