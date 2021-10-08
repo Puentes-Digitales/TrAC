@@ -120,7 +120,7 @@ export const GroupedComplementaryInfo: FC<{
                     opacity: 0,
                   }}
                 >
-                  {total_students && (
+                  {typeof total_students === "number" && (
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
                       <Text>
                         {GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS}{" "}
@@ -134,7 +134,7 @@ export const GroupedComplementaryInfo: FC<{
                     </Flex>
                   )}
 
-                  {timely_university_degree_rate && (
+                  {typeof timely_university_degree_rate === "number" && (
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
                       <Text>
                         {
@@ -151,7 +151,7 @@ export const GroupedComplementaryInfo: FC<{
                     </Flex>
                   )}
 
-                  {university_degree_rate && (
+                  {typeof university_degree_rate === "number" && (
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
                       <Text>
                         {
@@ -168,7 +168,7 @@ export const GroupedComplementaryInfo: FC<{
                     </Flex>
                   )}
 
-                  {average_time_university_degree && (
+                  {typeof average_time_university_degree === "number" && (
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
                       <Text>
                         {
@@ -185,7 +185,7 @@ export const GroupedComplementaryInfo: FC<{
                     </Flex>
                   )}
 
-                  {retention_rate && (
+                  {typeof retention_rate === "number" && (
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
                       <Text>
                         {GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE}{" "}
@@ -199,7 +199,8 @@ export const GroupedComplementaryInfo: FC<{
                       ></IndicatorTooltip>
                     </Flex>
                   )}
-                  {empleability_rate && (
+
+                  {typeof empleability_rate === "number" && (
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
                       <Text>
                         {GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE}{" "}
@@ -213,7 +214,8 @@ export const GroupedComplementaryInfo: FC<{
                       ></IndicatorTooltip>
                     </Flex>
                   )}
-                  {average_time_finding_job && (
+
+                  {typeof average_time_finding_job === "number" && (
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
                       <Text>
                         {
@@ -229,7 +231,8 @@ export const GroupedComplementaryInfo: FC<{
                       ></IndicatorTooltip>
                     </Flex>
                   )}
-                  {empleability_rate_educational_system && (
+
+                  {typeof empleability_rate_educational_system === "number" && (
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
                       <Text>
                         {
