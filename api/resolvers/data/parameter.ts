@@ -8,6 +8,6 @@ export class ParameterResolver {
   @Authorized()
   @Query(() => [Parameter])
   async parameters() {
-    return await ParameterTable().select("*");
+    return await ParameterTable().distinctOn("loading_type");
   }
 }

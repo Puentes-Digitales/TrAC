@@ -36,30 +36,7 @@ export const Parameter: FC<{
       };
     })
     .reverse();
-  const {
-    GROUPED_DATA,
-    EMPLOYABILITY_DATA,
-    ACADEMIC_DATA,
-    EXTERNAL_DATA,
-    LAST_UPDATE_DATA,
-  } = useContext(ConfigContext);
-  const last_loading_date: (
-    | { id: number; loading_type: string; loading_date: string }
-    | undefined
-  )[] = [];
-  let types: string[] = [
-    GROUPED_DATA,
-    EMPLOYABILITY_DATA,
-    ACADEMIC_DATA,
-    EXTERNAL_DATA,
-  ];
-  types.forEach((element) =>
-    last_loading_date.push(
-      parameters_date?.find((params) => params.loading_type == element)
-    )
-  );
-
-  //console.log("parameters_date ", last_loading_date);
+  const { LAST_UPDATE_DATA } = useContext(ConfigContext);
 
   return show ? (
     <Popover trigger="hover" isLazy placement="bottom">
@@ -74,7 +51,7 @@ export const Parameter: FC<{
         <PopoverHeader fontWeight="bold">{LAST_UPDATE_DATA}</PopoverHeader>
         <PopoverBody>
           <UnorderedList>
-            {last_loading_date?.map((date) => {
+            {parameters_date?.map((date) => {
               return date ? (
                 <ListItem key={date.id}>
                   {date.loading_type}
