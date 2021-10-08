@@ -38,10 +38,5 @@
     "id": 8,
     "loading_type": "Datos académicos",
     "loading_date": "2019-09-29 00:00:00"
-  },
-  {
-    "id": 9,
-    "loading_type": "Datos xx",
-    "loading_date": "2019-09-28 00:00:00"
   }
 ]

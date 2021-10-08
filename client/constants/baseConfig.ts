@@ -412,6 +412,7 @@ export const baseConfig = {
   ACADEMIC_DATA: "Datos académicos",
   EXTERNAL_DATA: "Datos externos",
   LAST_UPDATE_DATA: "Fecha de última carga de datos",
+  SHOW_PARAMETER: true,
 };
 
 export const baseConfigAdmin: typeof baseConfig &
