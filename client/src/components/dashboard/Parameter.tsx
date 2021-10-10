@@ -17,8 +17,8 @@ import { format } from "date-fns-tz";
 import { ConfigContext } from "../../context/Config";
 
 export const Parameter: FC<{
-  show?: string | null;
-}> = memo(({ show }) => {
+  mockIsActive?: boolean;
+}> = memo(({ mockIsActive }) => {
   const { data: parameters } = useParametersQuery();
   const dateFormatStringTemplate = "dd-MM-yyyy";
   const parameters_date = parameters?.parameters
@@ -38,7 +38,30 @@ export const Parameter: FC<{
     .reverse();
   const { LAST_UPDATE_DATA } = useContext(ConfigContext);
 
-  return show ? (
+  let data_mock = [
+    {
+      id: 1,
+      loading_type: "Datos mock",
+      loading_date: "2019-09-25",
+    },
+    {
+      id: 2,
+      loading_type: "Datos agrupados",
+      loading_date: "2019-09-26",
+    },
+    {
+      id: 3,
+      loading_type: "Datos empleabilidad",
+      loading_date: "2019-09-27",
+    },
+    {
+      id: 4,
+      loading_type: "Datos académicos",
+      loading_date: "2019-09-22",
+    },
+  ];
+
+  return (
     <Popover trigger="hover" isLazy placement="bottom">
       <PopoverTrigger>
         <Button mr="4px" ml="2px" colorScheme="blue" size="md" p="10px">
@@ -51,18 +74,28 @@ export const Parameter: FC<{
         <PopoverHeader fontWeight="bold">{LAST_UPDATE_DATA}</PopoverHeader>
         <PopoverBody>
           <UnorderedList>
-            {parameters_date?.map((date) => {
-              return date ? (
-                <ListItem key={date.id}>
-                  {date.loading_type}
-                  {": "}
-                  {date.loading_date}
-                </ListItem>
-              ) : null;
-            })}
+            {!mockIsActive
+              ? parameters_date?.map((data) => {
+                  return data ? (
+                    <ListItem key={data.loading_type}>
+                      {data.loading_type}
+                      {": "}
+                      {data.loading_date}
+                    </ListItem>
+                  ) : null;
+                })
+              : data_mock.map((data) => {
+                  return data ? (
+                    <ListItem key={data.loading_type}>
+                      {data.loading_type}
+                      {": "}
+                      {data.loading_date}
+                    </ListItem>
+                  ) : null;
+                })}
           </UnorderedList>
         </PopoverBody>
       </PopoverContent>
     </Popover>
-  ) : null;
+  );
 });

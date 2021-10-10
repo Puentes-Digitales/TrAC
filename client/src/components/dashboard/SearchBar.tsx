@@ -183,6 +183,7 @@ export const SearchBar: FC<{
     HELP_ENABLED,
     GROUPED_ON,
     GROUPED_OFF,
+    SHOW_PARAMETER,
   } = useContext(ConfigContext);
 
   const {
@@ -327,7 +328,7 @@ export const SearchBar: FC<{
         )}
 
         {HELP_ENABLED && <Help />}
-        <Parameter show="si" />
+        {isDirector && SHOW_PARAMETER && <Parameter mockIsActive={mock} />}
         <Button
           css={marginLeft5px}
           negative
@@ -375,7 +376,6 @@ export const SearchBar: FC<{
     groupedActive,
     onSearch,
     HELP_ENABLED,
-    groupedActive,
   ]);
 
   useEffect(() => {
