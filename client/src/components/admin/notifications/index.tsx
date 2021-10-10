@@ -1,10 +1,7 @@
 import React, { FC, useState, useEffect, useContext } from "react";
 import { sortBy } from "lodash";
 import { Button, Icon, Message, Table } from "semantic-ui-react";
-import {
-  useNotificateUsersAdminMutation,
-  useParametersQuery,
-} from "../../../graphql";
+import { useNotificateUsersAdminMutation } from "../../../graphql";
 import { Flex, Stack } from "@chakra-ui/react";
 import { Confirm } from "../../Confirm";
 import { whiteSpacePreLine } from "../../../utils/cssConstants";
@@ -82,38 +79,7 @@ export const AdminNotifications: FC<{
     },
   ] = useNotificateUsersAdminMutation();
 
-  const { data: parameters } = useParametersQuery();
   const dateFormatStringTemplate = "dd-MM-yyyy";
-  const parameters_date = parameters?.parameters
-    ?.map((params) => {
-      return {
-        id: params.id,
-        loading_type: params.loading_type,
-        loading_date: format(
-          new Date(params.loading_date),
-          dateFormatStringTemplate,
-          {
-            timeZone: "America/Santiago",
-          }
-        ),
-      };
-    })
-    .reverse();
-  const last_loading_date: (
-    | { id: number; loading_type: string; loading_date: string }
-    | undefined
-  )[] = [];
-  let types: string[] = [
-    config.GROUPED_DATA,
-    config.EMPLOYABILITY_DATA,
-    config.ACADEMIC_DATA,
-    config.EXTERNAL_DATA,
-  ];
-  types.forEach((element) =>
-    last_loading_date.push(
-      parameters_date?.find((params) => params.loading_type == element)
-    )
-  );
 
   return (
     <>
@@ -135,7 +101,6 @@ export const AdminNotifications: FC<{
                       body: config.DEFAULT_MESSAGE,
                       farewell: config.MESSAGE_FAREWELL,
                       closing: config.MESSAGE_CLOSING,
-                      parameters: JSON.stringify(last_loading_date),
                     },
                   });
                   setOpenNotificationMailMessage(true);
@@ -147,7 +112,7 @@ export const AdminNotifications: FC<{
               disabled={loadingNotificationUsers}
             >
               <Icon name="mail" />
-              Check notifications
+              check notifications
             </Button>
           </Confirm>
         </Stack>
@@ -176,19 +141,18 @@ export const AdminNotifications: FC<{
                 dataNotificationUsers.NotificateUsers.length > 0 ? (
                   <Message.List>
                     <Message.Item>
-                      Notifications sent, please reload page to reload table{" "}
+                      Notifications sent, please reload page to reload table.
                     </Message.Item>
                   </Message.List>
                 ) : (
                   <Message.List>
                     {dataNotificationUsers?.NotificateUsers.length === 0 ? (
                       <Message.Item>
-                        {" "}
                         Please use resend notification function, notifications
-                        with last parameters date has been sent to all users
+                        with last parameters date has been sent to all users.
                       </Message.Item>
                     ) : (
-                      <Message.Item> Notificating</Message.Item>
+                      <Message.Item>Notificating</Message.Item>
                     )}
                   </Message.List>
                 )}
@@ -255,7 +219,7 @@ export const AdminNotifications: FC<{
                 ) => {
                   const data = JSON.parse(content);
                   const parametersData = JSON.parse(emailParameters);
-                  console.log(parametersData);
+
                   const messageDate = format(
                     new Date(date),
                     dateFormatStringTemplate,
@@ -274,7 +238,7 @@ export const AdminNotifications: FC<{
                         counter: counter,
                       }}
                     >
-                      <Table.Row className="cursorPointer">
+                      <Table.Row className="cursorPointer" align="left">
                         <Table.Cell>{id}</Table.Cell>
                         <Table.Cell>{email} </Table.Cell>
                         <Table.Cell>
@@ -290,7 +254,7 @@ export const AdminNotifications: FC<{
                           <b>Farewell: </b> {data.farewell}
                           <p>
                             <b>Closing: </b> {data.closing}{" "}
-                            soportelala@inf.uach.cl
+                            {config.NOTIFICATIONS_EMAIL_ADDRESS}
                           </p>
                           <p>
                             <b>Footer</b>:{data.footer}
@@ -298,27 +262,21 @@ export const AdminNotifications: FC<{
                           </p>
                         </Table.Cell>
                         <Table.Cell>
-                          <p>
-                            {" "}
-                            <b>{parametersData[0].loading_type} </b>:{" "}
-                          </p>
-                          {parametersData[0].loading_date}
-
-                          <p>
-                            {" "}
-                            <b>{parametersData[1].loading_type} </b>:{" "}
-                          </p>
-                          {parametersData[1].loading_date}
-                          <p>
-                            {" "}
-                            <b>{parametersData[2].loading_type} </b>:{" "}
-                          </p>
-                          {parametersData[2].loading_date}
-                          <p>
-                            {" "}
-                            <b>{parametersData[3].loading_type} </b>:{" "}
-                          </p>
-                          {parametersData[3].loading_date}
+                          {parametersData?.map(
+                            (item: {
+                              id: React.Key | null | undefined;
+                              loading_type: any;
+                              date: any;
+                            }) => {
+                              return date ? (
+                                <p key={item.id}>
+                                  <b>{item.loading_type}</b>
+                                  {": "}
+                                  {item.date}
+                                </p>
+                              ) : null;
+                            }
+                          )}
                         </Table.Cell>
                         <Table.Cell>{messageDate}</Table.Cell>
                         <Table.Cell>{counter}</Table.Cell>

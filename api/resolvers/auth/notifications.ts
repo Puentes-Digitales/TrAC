@@ -3,14 +3,16 @@ import { Arg, Mutation, Resolver, Query, Authorized } from "type-graphql";
 import {
   NotificationsDataTable,
   UserTable,
-  /*ParameterTable,
-  MessageContentTable,*/
+  ParameterTable,
+  /*MessageContentTable,*/
 } from "../../db/tables";
 import { GraphQLJSONObject } from "graphql-type-json";
 import { ADMIN } from "../../constants";
 import { NotificationMail } from "../../services/mail";
 import { sendMail } from "../../services/mail";
 import { Notifications } from "../../entities/auth/notifications";
+
+import { format } from "date-fns-tz";
 
 @Resolver(() => Notifications)
 export class NotificationsResolver {
@@ -22,23 +24,34 @@ export class NotificationsResolver {
     @Arg("closing") closing: string,
     @Arg("farewell") farewell: string,
     @Arg("subject") subject: string,
-    @Arg("body") body: string,
-    @Arg("parameters") parameters: string
+    @Arg("body") body: string
   ): Promise<Record<string, any>> {
-    const users = await UserTable().select("email");
+    const users = await UserTable().select("*");
     const NotificationMailResults: Record<string, any>[] = [];
-    for (const { email } of users) {
+
+    const parametersDate = await ParameterTable().distinctOn("loading_type");
+
+    const dateFormatStringTemplate = "dd-MM-yyyy";
+
+    const dates = parametersDate.map(({ id, loading_type, loading_date }) => {
+      const date = format(new Date(loading_date), dateFormatStringTemplate, {
+        timeZone: "America/Santiago",
+      });
+      return { id, loading_type, date };
+    });
+
+    const parametersInfo = JSON.stringify(dates);
+
+    for (const { email, type } of users) {
       const emailParameters = await NotificationsDataTable()
         .select("parameters")
         .where({ email: email })
         .first()
         .orderBy("id", "desc");
-      if (!(emailParameters?.parameters === parameters)) {
-        const param = JSON.parse(parameters);
-        const externalDate: string = param[3].loading_date;
-        const academicDate: string = param[2].loading_date;
-        const groupedDate: string = param[0].loading_date;
-        const empleabilityDate: string = param[1].loading_date;
+      if (
+        !(emailParameters?.parameters === parametersInfo) &&
+        type === "Director"
+      ) {
         const msg = NotificationMail({
           email: email,
           header: header,
@@ -47,10 +60,7 @@ export class NotificationsResolver {
           body: body,
           closing: closing,
           farewell: farewell,
-          external: externalDate,
-          academic: academicDate,
-          grouped: groupedDate,
-          empleability: empleabilityDate,
+          parameters: parametersInfo,
         });
         const messageContent = {
           header: header,
@@ -60,18 +70,20 @@ export class NotificationsResolver {
           closing: closing,
           farewell: farewell,
         };
+
         const result = await sendMail({
           to: email,
           message: msg,
           subject: subject,
         });
+
         NotificationMailResults.push(result);
         const counter = 1;
         await NotificationsDataTable().insert({
           email,
           content: messageContent,
           date: new Date(),
-          parameters: parameters,
+          parameters: parametersInfo,
           counter: counter,
         });
       }
@@ -89,7 +101,6 @@ export class NotificationsResolver {
     @Arg("counter") counter: number
   ): Promise<Record<string, any>> {
     const data = JSON.parse(content);
-    const parameteresDate = JSON.parse(parameters);
 
     const msg = NotificationMail({
       email: email,
@@ -99,10 +110,7 @@ export class NotificationsResolver {
       body: data.body,
       closing: data.closing,
       farewell: data.farewell,
-      external: parameteresDate[3].loading_date,
-      academic: parameteresDate[2].loading_date,
-      grouped: parameteresDate[0].loading_date,
-      empleability: parameteresDate[1].loading_date,
+      parameters: parameters,
     });
 
     const ReNotificationMailResults: Record<string, any>[] = [];

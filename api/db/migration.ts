@@ -76,7 +76,6 @@ const migration = async () => {
     EXTERNAL_EVALUATION_STRUCTURE_TABLE,
     EXTERNAL_EVALUATION_GROUPED_STATS_TABLE,
     NOTIFICATIONS_DATA_TABLE,
-    /*NotificationsDataTable,*/
     PROGRAM_TABLE,
     ProgramStructureTable,
     ExternalEvaluationStructureTable,
@@ -1014,7 +1013,7 @@ const migration = async () => {
           table.text("email").notNullable();
           table.text("content").notNullable();
           table.text("parameters").notNullable();
-          table.text("date").notNullable();
+          table.timestamp("date", { useTz: true }).notNullable();
           table.integer("counter").notNullable();
         });
       }
