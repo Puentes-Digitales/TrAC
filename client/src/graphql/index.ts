@@ -293,7 +293,6 @@ export type MutationNotificateUsersArgs = {
   farewell: Scalars["String"];
   footer: Scalars["String"];
   header: Scalars["String"];
-  parameters: Scalars["String"];
   subject: Scalars["String"];
 };
 
@@ -351,7 +350,7 @@ export type MutationUpsertUsersArgs = {
 export type Notifications = {
   content: Scalars["String"];
   counter: Scalars["Float"];
-  date: Scalars["String"];
+  date: Scalars["DateTime"];
   email: Scalars["String"];
   id: Scalars["Int"];
   parameters: Scalars["String"];
@@ -665,7 +664,6 @@ export type NotificateUsersAdminMutationVariables = Exact<{
   footer: Scalars["String"];
   header: Scalars["String"];
   subject: Scalars["String"];
-  parameters: Scalars["String"];
 }>;
 
 export type NotificateUsersAdminMutation = Pick<Mutation, "NotificateUsers">;
@@ -1576,7 +1574,6 @@ export const NotificateUsersAdminDocument = gql`
     $footer: String!
     $header: String!
     $subject: String!
-    $parameters: String!
   ) {
     NotificateUsers(
       header: $header
@@ -1585,7 +1582,6 @@ export const NotificateUsersAdminDocument = gql`
       subject: $subject
       farewell: $farewell
       closing: $closing
-      parameters: $parameters
     )
   }
 `;
@@ -1613,7 +1609,6 @@ export type NotificateUsersAdminMutationFn = Apollo.MutationFunction<
  *      footer: // value for 'footer'
  *      header: // value for 'header'
  *      subject: // value for 'subject'
- *      parameters: // value for 'parameters'
  *   },
  * });
  */

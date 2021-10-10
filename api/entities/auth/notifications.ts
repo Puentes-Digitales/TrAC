@@ -15,7 +15,7 @@ export class Notifications {
   parameters: string;
 
   @Field()
-  date: string;
+  date: Date;
 
   @Field()
   counter: number;

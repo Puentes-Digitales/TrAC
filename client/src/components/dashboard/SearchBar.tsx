@@ -357,6 +357,13 @@ export const SearchBar: FC<{
           <Icon name="power off" />
           {LOGOUT_BUTTON_LABEL}
         </Button>
+        <Button
+          onClick={async () => {
+            Router.push("./admin");
+          }}
+        >
+          Admin Panel
+        </Button>
       </Flex>
     );
   }, [

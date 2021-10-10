@@ -61,3 +61,4 @@ jspm_packages/
 
 dist
 
+client/src/components/dashboard/SearchBar.tsx

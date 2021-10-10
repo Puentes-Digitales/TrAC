@@ -412,6 +412,7 @@ export const baseConfig = {
   ACADEMIC_DATA: "Datos académicos",
   EXTERNAL_DATA: "Datos externos",
   LAST_UPDATE_DATA: "Fecha de última carga de datos",
+  NOTIFICATIONS_EMAIL_ADDRESS: "soportelala@inf.uach.cl",
 };
 
 export const baseConfigAdmin: typeof baseConfig &

@@ -252,7 +252,6 @@ type Mutation {
     farewell: String!
     footer: String!
     header: String!
-    parameters: String!
     subject: String!
   ): [JSONObject!]!
   performanceLoadAdvices(
@@ -284,7 +283,7 @@ type Mutation {
 type Notifications {
   content: String!
   counter: Float!
-  date: String!
+  date: DateTime!
   email: String!
   id: Int!
   parameters: String!
