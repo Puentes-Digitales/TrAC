@@ -96,6 +96,7 @@ export const StudentCycleApprovedCourseDataLoader = new DataLoader(
             course_cat: course_cat,
             state: "A",
             student_id: student_id,
+            registration: "CURSADA",
           });
       })
     );
