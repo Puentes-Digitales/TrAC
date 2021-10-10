@@ -227,10 +227,6 @@ export const AdminNotifications: FC<{
                       timeZone: "America/Santiago",
                     }
                   );
-                  /*
-                  const messageDate = new Date(date);*/
-                  console.log(messageDate);
-                  console.log(date);
                   return (
                     <ResendNotification
                       key={key}
