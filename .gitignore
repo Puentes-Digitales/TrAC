@@ -60,5 +60,3 @@ jspm_packages/
 .next
 
 dist
-
-client/src/components/dashboard/SearchBar.tsx
