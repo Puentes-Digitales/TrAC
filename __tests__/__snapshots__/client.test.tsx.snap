@@ -1,196 +1,200 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test <AdmissionDropout /> Test Snapshot 1`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div
-      id="chakra-toast-portal"
+<div
+  class="css-1b6jfu7"
+  data-testid="BoxContainer"
+  id="complementary_information"
+>
+  <div
+    class="chakra-stack unselectable css-16rokbl"
+  >
+    <p
+      class="chakra-text verticalText css-1568c7u"
     >
-      <ul
-        id="chakra-toast-manager-top"
-        style="position: fixed; z-index: 5500; pointer-events: none; display: flex; flex-direction: column; margin: 0px auto; top: 0px; right: 0px; left: 0px;"
-      />
-      <ul
-        id="chakra-toast-manager-top-left"
-        style="position: fixed; z-index: 5500; pointer-events: none; display: flex; flex-direction: column; top: 0px; left: 0px;"
-      />
-      <ul
-        id="chakra-toast-manager-top-right"
-        style="position: fixed; z-index: 5500; pointer-events: none; display: flex; flex-direction: column; top: 0px; right: 0px;"
-      />
-      <ul
-        id="chakra-toast-manager-bottom-left"
-        style="position: fixed; z-index: 5500; pointer-events: none; display: flex; flex-direction: column; bottom: 0px; left: 0px;"
-      />
-      <ul
-        id="chakra-toast-manager-bottom"
-        style="position: fixed; z-index: 5500; pointer-events: none; display: flex; flex-direction: column; margin: 0px auto; bottom: 0px; right: 0px; left: 0px;"
-      />
-      <ul
-        id="chakra-toast-manager-bottom-right"
-        style="position: fixed; z-index: 5500; pointer-events: none; display: flex; flex-direction: column; bottom: 0px; right: 0px;"
-      />
-    </div>
-    <div>
-      <div
-        class="css-xtzu7m"
-      >
-        <div
-          class="css-1b6jfu7"
-          data-testid="BoxContainer"
-          id="complementary_information"
-        >
-          <div
-            class="chakra-stack unselectable css-iquqh5"
-          >
-            <p
-              class="chakra-text verticalText css-1568c7u"
-            >
-              Información Complementaria
-            </p>
-            <div
-              style="opacity: 0;"
-            >
-              <p
-                class="chakra-text css-1yyofq7"
-              >
-                Tipo de ingreso: 
-                 
-                PSU
-              </p>
-              <p
-                class="chakra-text css-1yyofq7"
-              >
-                Sistema educacional:
-                 
-                Publico
-              </p>
-              <p
-                class="chakra-text css-1yyofq7"
-                data-testid="inst"
-              >
-                Nombre de institución:
-                 
-                Escuela
-              </p>
-              <p
-                class="chakra-text css-1yyofq7"
-              >
-                Meses hasta encontrar trabajo:
-                 
-                6
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
+      Información Complementaria
+    </p>
     <div
-      class="css-xtzu7m"
+      style="opacity: 0;"
     >
       <div
-        class="css-1b6jfu7"
-        data-testid="BoxContainer"
-        id="complementary_information"
+        class="css-1nm7xg4"
       >
-        <div
-          class="chakra-stack unselectable css-iquqh5"
+        <p
+          class="chakra-text css-0"
         >
-          <p
-            class="chakra-text verticalText css-1568c7u"
+          Tipo de ingreso: 
+           
+          PSU
+        </p>
+        <svg
+          aria-controls="popover-content-2"
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          class="chakra-icon css-psva3u"
+          data-testid="test-tooltip"
+          focusable="false"
+          id="popover-trigger-2"
+          viewBox="0 0 24 24"
+        >
+          <g
+            stroke="currentColor"
+            stroke-width="1.5"
           >
-            Información Complementaria
-          </p>
-          <div
-            style="opacity: 0;"
+            <path
+              d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+              fill="none"
+              stroke-linecap="round"
+            />
+            <path
+              d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+              fill="currentColor"
+              stroke-linecap="round"
+            />
+            <circle
+              cx="12"
+              cy="12"
+              fill="none"
+              r="11.25"
+              stroke-miterlimit="10"
+            />
+          </g>
+        </svg>
+      </div>
+      <div
+        class="css-1nm7xg4"
+      >
+        <p
+          class="chakra-text css-0"
+        >
+          Sistema educacional:
+           
+          Publico
+        </p>
+        <svg
+          aria-controls="popover-content-4"
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          class="chakra-icon css-psva3u"
+          data-testid="test-tooltip"
+          focusable="false"
+          id="popover-trigger-4"
+          viewBox="0 0 24 24"
+        >
+          <g
+            stroke="currentColor"
+            stroke-width="1.5"
           >
-            <p
-              class="chakra-text css-1yyofq7"
-            >
-              Tipo de ingreso: 
-               
-              PSU
-            </p>
-            <p
-              class="chakra-text css-1yyofq7"
-            >
-              Sistema educacional:
-               
-              Publico
-            </p>
-            <p
-              class="chakra-text css-1yyofq7"
-              data-testid="inst"
-            >
-              Nombre de institución:
-               
-              Escuela
-            </p>
-            <p
-              class="chakra-text css-1yyofq7"
-            >
-              Meses hasta encontrar trabajo:
-               
-              6
-            </p>
-          </div>
-        </div>
+            <path
+              d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+              fill="none"
+              stroke-linecap="round"
+            />
+            <path
+              d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+              fill="currentColor"
+              stroke-linecap="round"
+            />
+            <circle
+              cx="12"
+              cy="12"
+              fill="none"
+              r="11.25"
+              stroke-miterlimit="10"
+            />
+          </g>
+        </svg>
+      </div>
+      <div
+        class="css-1nm7xg4"
+        data-testid="inst"
+      >
+        <p
+          class="chakra-text css-0"
+        >
+          Nombre de institución:
+           
+          Escuela
+        </p>
+        <svg
+          aria-controls="popover-content-6"
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          class="chakra-icon css-psva3u"
+          data-testid="test-tooltip"
+          focusable="false"
+          id="popover-trigger-6"
+          viewBox="0 0 24 24"
+        >
+          <g
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path
+              d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+              fill="none"
+              stroke-linecap="round"
+            />
+            <path
+              d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+              fill="currentColor"
+              stroke-linecap="round"
+            />
+            <circle
+              cx="12"
+              cy="12"
+              fill="none"
+              r="11.25"
+              stroke-miterlimit="10"
+            />
+          </g>
+        </svg>
+      </div>
+      <div
+        class="css-1nm7xg4"
+      >
+        <p
+          class="chakra-text css-0"
+        >
+          Meses hasta encontrar trabajo:
+           
+          6
+        </p>
+        <svg
+          aria-controls="popover-content-8"
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          class="chakra-icon css-psva3u"
+          data-testid="test-tooltip"
+          focusable="false"
+          id="popover-trigger-8"
+          viewBox="0 0 24 24"
+        >
+          <g
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path
+              d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+              fill="none"
+              stroke-linecap="round"
+            />
+            <path
+              d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+              fill="currentColor"
+              stroke-linecap="round"
+            />
+            <circle
+              cx="12"
+              cy="12"
+              fill="none"
+              r="11.25"
+              stroke-miterlimit="10"
+            />
+          </g>
+        </svg>
       </div>
     </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+  </div>
+</div>
 `;

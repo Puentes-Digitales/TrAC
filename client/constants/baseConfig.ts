@@ -1,4 +1,25 @@
 export const baseConfig = {
+  COMPLEMENTARY_INFORMATION_TYPE_ADMISSION_TOOLTIP:
+    "Información del indicador 1",
+  COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM_TOOLTIP:
+    "Información del indicador 2",
+  COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION_TOOLTIP:
+    "Información del indicador 3",
+  COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS_TOOLTIP:
+    "Información del indicador 4",
+
+  GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS_TOOLTIP: "IA1",
+  GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE_TOOLTIP:
+    "IA2",
+  GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE_TOOLTIP: "IA3",
+  GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE_TOOLTIP:
+    "IA4",
+  GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE_TOOLTIP: "IA8",
+  GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_TOOLTIP: "IA5",
+  GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB_TOOLTIP: "IA6",
+  GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM_TOOLTIP:
+    "IA7",
+
   ACTIVE_EXTERNAL_EVALUATION_BOX_COLOR: "#718096",
   INACTIVE_EXTERNAL_EVALUATION_BOX_COLOR: "#F8690C",
   EXTERNAL_EVALUATION_BOX_ALL_TRANSITION_DURATION: "all 0.5s",
@@ -372,6 +393,27 @@ export const baseConfig = {
   HELP_POPOVER_HOVER_TEXT: "Ayuda",
   HELP_MODAL_HEADER_TEXT: "Ayuda",
   VERSION_CONFIG: "1",
+  MESSAGE_HEADER: "Estimado/a Director/a",
+  MESSAGE_CLOSING:
+    "Si tiene algún problema o alguna pregunta, puede contactarnos al correo: ",
+  MESSAGE_FAREWELL: "Saludos cordiales, Equipo TrAC-FID",
+  MESSAGE_FOOTER:
+    " Por favor no responda este email. Este correo fue generado de manera automática por TrAC-FID y enviado a : ",
+  MESSAGE_SUBJECT: "Novedades en TrAC-FID",
+  DEFAULT_MESSAGE: "Se ha actualizado la base de datos de TrAC-FID",
+  NO_INFORMATION_TO_DEPLOY: "No hay información para monstar",
+  RISK_ALL: "Todos",
+  RISK_STUDENT_PENDING_OF_GRADUATION: "Pendientes de Titulación ",
+  RISK_LOW_PASSING_RATE_COURSES: "Avance menor al umbral (50%)",
+  RISK_LOW_PROGRESSING_RATE: "Anulaciones sobre el umbral",
+  RISK_THIRD_ATTEMPT: "Asignaturas por tercera vez",
+  GROUPED_DATA: "Datos agrupados",
+  EMPLOYABILITY_DATA: "Datos empleabilidad",
+  ACADEMIC_DATA: "Datos académicos",
+  EXTERNAL_DATA: "Datos externos",
+  LAST_UPDATE_DATA: "Fecha de última carga de datos",
+  NOTIFICATIONS_EMAIL_ADDRESS: "soportelala@inf.uach.cl",
+  SHOW_PARAMETER: true,
 };
 
 export const baseConfigAdmin: typeof baseConfig &

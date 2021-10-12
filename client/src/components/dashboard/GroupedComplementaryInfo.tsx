@@ -5,6 +5,7 @@ import { Flex, Stack, Text } from "@chakra-ui/react";
 
 import { ConfigContext } from "../../context/Config";
 import { setTrackingData, track } from "../../context/Tracking";
+import { IndicatorTooltip } from "../IndicatorTooltip";
 
 export const GroupedComplementaryInfo: FC<{
   total_students?: number | null;
@@ -40,6 +41,15 @@ export const GroupedComplementaryInfo: FC<{
       GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE,
       GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB,
       GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM,
+
+      GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS_TOOLTIP,
+      GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE_TOOLTIP,
+      GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE_TOOLTIP,
+      GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE_TOOLTIP,
+      GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_TOOLTIP,
+      GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB_TOOLTIP,
+      GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM_TOOLTIP,
+      GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE_TOOLTIP,
     } = useContext(ConfigContext);
 
     const [show, setShow] = useState(false);
@@ -79,6 +89,7 @@ export const GroupedComplementaryInfo: FC<{
           data-testid="BoxContainer"
         >
           <Stack
+            alignItems="center"
             className="unselectable"
             isInline
             pt={10}
@@ -109,72 +120,133 @@ export const GroupedComplementaryInfo: FC<{
                     opacity: 0,
                   }}
                 >
-                  {total_students && (
-                    <Text width="290px" pl={5} pb={0} mb={0}>
-                      {GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS}{" "}
-                      {total_students}
-                    </Text>
+                  {typeof total_students === "number" && (
+                    <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
+                      <Text>
+                        {GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS}{" "}
+                        {total_students}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
                   )}
 
-                  {timely_university_degree_rate && (
-                    <Text width="290px" pl={5} pb={0} mb={0}>
-                      {
-                        GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE
-                      }{" "}
-                      {timely_university_degree_rate}
-                      {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
-                    </Text>
+                  {typeof timely_university_degree_rate === "number" && (
+                    <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
+                      <Text>
+                        {
+                          GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE
+                        }{" "}
+                        {timely_university_degree_rate}
+                        {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
                   )}
 
-                  {university_degree_rate && (
-                    <Text width="290px" pl={5} pb={0} mb={0}>
-                      {GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE}{" "}
-                      {university_degree_rate}
-                      {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
-                    </Text>
+                  {typeof university_degree_rate === "number" && (
+                    <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
+                      <Text>
+                        {
+                          GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE
+                        }{" "}
+                        {university_degree_rate}
+                        {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
                   )}
 
-                  {average_time_university_degree && (
-                    <Text width="320px" pl={5} pb={0} mb={0}>
-                      {
-                        GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE
-                      }{" "}
-                      {average_time_university_degree}{" "}
-                      {COMPLEMENTARY_INFORMATION_YEAR_TEXT}
-                    </Text>
+                  {typeof average_time_university_degree === "number" && (
+                    <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
+                      <Text>
+                        {
+                          GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE
+                        }{" "}
+                        {average_time_university_degree}{" "}
+                        {COMPLEMENTARY_INFORMATION_YEAR_TEXT}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
                   )}
 
-                  {retention_rate && (
-                    <Text width="290px" pl={5} pb={0} mb={0}>
-                      {GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE}{" "}
-                      {retention_rate}
-                      {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
-                    </Text>
+                  {typeof retention_rate === "number" && (
+                    <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
+                      <Text>
+                        {GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE}{" "}
+                        {retention_rate}
+                        {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
                   )}
-                  {empleability_rate && (
-                    <Text width="290px" pl={5} pb={0} mb={0}>
-                      {GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE}{" "}
-                      {empleability_rate}
-                      {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
-                    </Text>
+
+                  {typeof empleability_rate === "number" && (
+                    <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
+                      <Text>
+                        {GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE}{" "}
+                        {empleability_rate}
+                        {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
                   )}
-                  {average_time_finding_job && (
-                    <Text width="290px" pl={5} pb={0} mb={0}>
-                      {
-                        GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB
-                      }{" "}
-                      {average_time_finding_job}{" "}
-                      {COMPLEMENTARY_INFORMATION_YEAR_TEXT}
-                    </Text>
+
+                  {typeof average_time_finding_job === "number" && (
+                    <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
+                      <Text>
+                        {
+                          GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB
+                        }{" "}
+                        {average_time_finding_job}{" "}
+                        {COMPLEMENTARY_INFORMATION_YEAR_TEXT}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
                   )}
-                  {empleability_rate_educational_system && (
-                    <Text width="290px" pl={5} pb={0} mb={0}>
-                      {
-                        GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM
-                      }{" "}
-                      {empleability_rate_educational_system}
-                      {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
-                    </Text>
+
+                  {typeof empleability_rate_educational_system === "number" && (
+                    <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
+                      <Text>
+                        {
+                          GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM
+                        }{" "}
+                        {empleability_rate_educational_system}
+                        {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
                   )}
                 </motion.div>
               )}

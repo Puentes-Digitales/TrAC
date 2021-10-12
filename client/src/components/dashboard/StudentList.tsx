@@ -14,6 +14,8 @@ import { useUpdateEffect } from "react-use";
 import { Pagination, Progress, Table, TableCell } from "semantic-ui-react";
 import { useRememberState } from "use-remember-state";
 import {
+  Center,
+  Box,
   Button,
   Drawer,
   DrawerBody,
@@ -33,13 +35,14 @@ import {
   Text,
   Tooltip,
   useDisclosure,
+  Select,
 } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 
 import { IS_DEVELOPMENT } from "../../../constants";
 import { ConfigContext } from "../../context/Config";
 import { track } from "../../context/Tracking";
-import { useStudentsListQuery } from "../../graphql";
+import { useStudentsListQuery, useRiskNoticationQuery } from "../../graphql";
 import { marginZero, textAlignCenter } from "../../utils/cssConstants";
 import { useUser } from "../../utils/useUser";
 
@@ -55,63 +58,7 @@ const progressSmallText = css`
   }
 `;
 
-const TableHeader: FC<{
-  columnSort: columnNames[];
-  directionSort: "ascending" | "descending" | undefined;
-  handleSort: (clickedColumn: columnNames) => () => void;
-  showDropout: boolean;
-}> = memo(({ columnSort, directionSort, handleSort, showDropout }) => {
-  const {
-    STUDENT_LABEL,
-    ENTRY_YEAR_LABEL,
-    PROGRESS_LABEL,
-    RISK_LABEL,
-  } = useContext(ConfigContext);
-
-  return (
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell width={2} />
-        <Table.HeaderCell
-          width={4}
-          sorted={columnSort[0] === "student_id" ? directionSort : undefined}
-          onClick={handleSort("student_id")}
-        >
-          {STUDENT_LABEL}
-        </Table.HeaderCell>
-        <Table.HeaderCell
-          width={2}
-          sorted={columnSort[0] === "start_year" ? directionSort : undefined}
-          onClick={handleSort("start_year")}
-        >
-          {ENTRY_YEAR_LABEL}
-        </Table.HeaderCell>
-        <Table.HeaderCell
-          width={5}
-          sorted={columnSort[0] === "progress" ? directionSort : undefined}
-          onClick={handleSort("progress")}
-        >
-          {PROGRESS_LABEL}
-        </Table.HeaderCell>
-        {showDropout && (
-          <Table.HeaderCell
-            sorted={
-              columnSort[0] === "dropout_probability"
-                ? directionSort
-                : undefined
-            }
-            onClick={handleSort("dropout_probability")}
-            width={4}
-          >
-            {RISK_LABEL}
-          </Table.HeaderCell>
-        )}
-      </Table.Row>
-    </Table.Header>
-  );
-});
-
-const nStudentPerChunk = 25;
+const nStudentPerChunk = 25; // normally 25
 
 const initialOpen = (() => {
   if (IS_DEVELOPMENT && typeof window !== "undefined") {
@@ -143,23 +90,138 @@ export const StudentList: FC<{
     skip: !program_id,
   });
 
+  const { data: studentPendingOfGraduation } = useRiskNoticationQuery({
+    variables: {
+      program_id: program_id || "",
+      risk_type: "student_pending_of_graduation",
+    },
+  });
+  /*const { data: lowPassingRateCourses } = useRiskNoticationQuery({
+    variables: {
+      program_id: program_id || "",
+      risk_type: "low_passing_rate_courses",
+    },
+  });*/
+  const { data: lowProgressingRate } = useRiskNoticationQuery({
+    variables: {
+      program_id: program_id || "",
+      risk_type: "low_progressing_rate",
+    },
+  });
+  const { data: thirdAttempt } = useRiskNoticationQuery({
+    variables: {
+      program_id: program_id || "",
+      risk_type: "third_attempt",
+    },
+  });
+
+  const {
+    STUDENT_LIST_TITLE,
+    RISK_HIGH_COLOR,
+    RISK_HIGH_THRESHOLD,
+    RISK_MEDIUM_COLOR,
+    RISK_MEDIUM_THRESHOLD,
+    RISK_LOW_COLOR,
+    CHECK_STUDENT_FROM_LIST_LABEL,
+    NO_INFORMATION_TO_DEPLOY,
+    RISK_ALL,
+    RISK_STUDENT_PENDING_OF_GRADUATION,
+    RISK_LOW_PASSING_RATE_COURSES,
+    //RISK_LOW_PROGRESSING_RATE,
+    RISK_THIRD_ATTEMPT,
+  } = useContext(ConfigContext);
+
+  var [riskType, setRiskType] = useRememberState(
+    "status_progress_selected",
+    RISK_ALL
+  );
   const studentListData = useMemo(() => {
-    return (
-      mockData ||
-      (dataStudentList?.students.map(
-        ({ id, start_year, progress, dropout }) => {
-          return {
-            student_id: id,
-            dropout_probability: dropout?.prob_dropout ?? -1,
-            progress: progress * 100,
-            start_year,
-            explanation: dropout?.explanation ?? "",
-          };
-        }
-      ) ??
-        [])
-    );
-  }, [dataStudentList, mockData]);
+    switch (riskType) {
+      case RISK_ALL:
+        return (
+          dataStudentList?.students.map(
+            ({ id, start_year, progress, dropout }) => {
+              return {
+                student_id: id,
+                dropout_probability: dropout?.prob_dropout ?? -1,
+                progress: progress * 100,
+                start_year,
+                explanation: dropout?.explanation ?? "",
+              };
+            }
+          ) ?? []
+        );
+      case RISK_STUDENT_PENDING_OF_GRADUATION:
+        return (
+          studentPendingOfGraduation?.riskNotification.map(
+            ({ student_id, program_id, course_id, curriculum, risk_type }) => {
+              return {
+                student_id: student_id,
+                dropout_probability: -1,
+                progress: -1,
+                start_year: parseInt(curriculum),
+                explanation:
+                  "Estudiantes pendientes de titulacion " + risk_type,
+              };
+            }
+          ) ?? []
+        );
+      case RISK_LOW_PASSING_RATE_COURSES:
+        return (
+          lowProgressingRate?.riskNotification.map(
+            ({ student_id, program_id, course_id, curriculum, risk_type }) => {
+              return {
+                student_id: student_id,
+                dropout_probability: -1,
+                progress: -1,
+                start_year: parseInt(curriculum),
+                explanation: " " + risk_type,
+              };
+            }
+          ) ?? []
+        );
+
+      case RISK_THIRD_ATTEMPT:
+        return (
+          thirdAttempt?.riskNotification.map(
+            ({ student_id, program_id, course_id, curriculum, risk_type }) => {
+              return {
+                student_id: student_id,
+                dropout_probability: -1,
+                progress: -1,
+                start_year: parseInt(curriculum),
+                explanation: " " + risk_type,
+              };
+            }
+          ) ?? []
+        );
+
+      /*
+        case 4:
+        return (
+          lowPassingRateCourses?.riskNotification.map(
+            ({ student_id, program_id, course_id, curriculum, risk_type }) => {
+              return {
+                student_id: student_id,
+                dropout_probability: -1,
+                progress: -1,
+                start_year: parseInt(curriculum),
+                explanation: " " + risk_type,
+              };
+            }
+          ) ?? []
+        );
+        */
+      default:
+      //console.log('.');
+    }
+  }, [
+    dataStudentList,
+    studentPendingOfGraduation,
+    mockData,
+    riskType,
+    program_id,
+  ]);
 
   const { user } = useUser();
 
@@ -229,11 +291,11 @@ export const StudentList: FC<{
     if (pageSelected > studentListChunks.length) {
       setPageSelected(1);
     }
-  }, [studentListChunks, pageSelected]);
+  }, [studentListChunks, pageSelected, riskType]);
 
   useEffect(() => {
     setStudentListChunks(chunk(sortedStudentList, nStudentPerChunk));
-  }, [sortedStudentList, setStudentListChunks]);
+  }, [sortedStudentList, setStudentListChunks, riskType]);
 
   const showDropout = useMemo(() => {
     return (
@@ -243,16 +305,6 @@ export const StudentList: FC<{
       })
     );
   }, [user, studentListData]);
-
-  const {
-    STUDENT_LIST_TITLE,
-    RISK_HIGH_COLOR,
-    RISK_HIGH_THRESHOLD,
-    RISK_MEDIUM_COLOR,
-    RISK_MEDIUM_THRESHOLD,
-    RISK_LOW_COLOR,
-    CHECK_STUDENT_FROM_LIST_LABEL,
-  } = useContext(ConfigContext);
 
   const handleSort = useCallback(
     (clickedColumn: columnNames) => () => {
@@ -272,7 +324,70 @@ export const StudentList: FC<{
 
   const selectedStudents = useMemo(() => {
     return studentListChunks[pageSelected - 1];
-  }, [studentListChunks, pageSelected]);
+  }, [studentListChunks, pageSelected, riskType]);
+
+  useEffect(() => {
+    //console.log(riskType);
+  }, [riskType]);
+
+  const TableHeader: FC<{
+    columnSort: columnNames[];
+    directionSort: "ascending" | "descending" | undefined;
+    handleSort: (clickedColumn: columnNames) => () => void;
+    showDropout: boolean;
+  }> = memo(({ columnSort, directionSort, handleSort, showDropout }) => {
+    const {
+      STUDENT_LABEL,
+      ENTRY_YEAR_LABEL,
+      PROGRESS_LABEL,
+      RISK_LABEL,
+    } = useContext(ConfigContext);
+
+    return (
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell width={2} />
+          <Table.HeaderCell
+            width={4}
+            sorted={columnSort[0] === "student_id" ? directionSort : undefined}
+            onClick={handleSort("student_id")}
+          >
+            {STUDENT_LABEL}
+          </Table.HeaderCell>
+          <Table.HeaderCell
+            width={2}
+            sorted={columnSort[0] === "start_year" ? directionSort : undefined}
+            onClick={handleSort("start_year")}
+          >
+            {ENTRY_YEAR_LABEL}
+          </Table.HeaderCell>
+          {riskType === RISK_ALL && (
+            <Table.HeaderCell
+              width={5}
+              sorted={columnSort[0] === "progress" ? directionSort : undefined}
+              onClick={handleSort("progress")}
+            >
+              {PROGRESS_LABEL}
+            </Table.HeaderCell>
+          )}
+
+          {showDropout && (
+            <Table.HeaderCell
+              sorted={
+                columnSort[0] === "dropout_probability"
+                  ? directionSort
+                  : undefined
+              }
+              onClick={handleSort("dropout_probability")}
+              width={4}
+            >
+              {RISK_LABEL}
+            </Table.HeaderCell>
+          )}
+        </Table.Row>
+      </Table.Header>
+    );
+  });
 
   return (
     <>
@@ -299,26 +414,52 @@ export const StudentList: FC<{
         preserveScrollBarGap={false}
       >
         <DrawerOverlay />
+
         <DrawerContent>
           <DrawerCloseButton shadow="md" borderWidth="1px" borderRadius="5px" />
           <DrawerHeader height={20} display="flex" alignItems="center">
             {STUDENT_LIST_TITLE} {loadingData && <Spinner ml={3} />}
           </DrawerHeader>
-
-          <Pagination
-            css={[textAlignCenter, { alignSelf: "center" }]}
-            totalPages={studentListChunks.length}
-            activePage={pageSelected}
-            onPageChange={(_, { activePage }) => {
-              track({
-                action: "click",
-                target: `student-list-pagination`,
-                effect: `set-student-list-page-to-${activePage}`,
-              });
-              setPageSelected(toInteger(activePage));
-            }}
-          />
-
+          <Box>
+            <Select
+              value={riskType}
+              onChange={(e) => setRiskType(e.currentTarget.value)}
+              pl={6}
+              height="2.5rem"
+              width="25%"
+              position="absolute"
+              size="lg"
+              color="Black"
+              bg="white"
+            >
+              <option value={RISK_ALL}>{RISK_ALL}</option>
+              <option value={RISK_STUDENT_PENDING_OF_GRADUATION}>
+                {RISK_STUDENT_PENDING_OF_GRADUATION}
+              </option>
+              <option value={RISK_LOW_PASSING_RATE_COURSES}>
+                {RISK_LOW_PASSING_RATE_COURSES}
+              </option>
+              <option value={RISK_THIRD_ATTEMPT}>{RISK_THIRD_ATTEMPT}</option>
+              {/* <option value={RISK_LOW_PROGRESSING_RATE}>{RISK_LOW_PROGRESSING_RATE}</option> */}
+            </Select>
+            <Center>
+              <Pagination
+                css={[textAlignCenter, { alignSelf: "center" }]}
+                totalPages={studentListChunks.length}
+                activePage={pageSelected}
+                boundaryRange={1}
+                size="mini"
+                onPageChange={(_, { activePage }) => {
+                  track({
+                    action: "click",
+                    target: `student-list-pagination`,
+                    effect: `set-student-list-page-to-${activePage}`,
+                  });
+                  setPageSelected(toInteger(activePage));
+                }}
+              />
+            </Center>
+          </Box>
           <DrawerBody>
             <Table sortable celled fixed>
               <TableHeader
@@ -328,116 +469,133 @@ export const StudentList: FC<{
                 showDropout={showDropout}
               />
               <Table.Body>
-                {selectedStudents?.map(
-                  (
-                    {
-                      student_id,
-                      dropout_probability,
-                      start_year,
-                      progress,
-                      explanation,
-                    },
-                    key
-                  ) => {
-                    let color: string;
-                    if (dropout_probability > RISK_HIGH_THRESHOLD) {
-                      color = RISK_HIGH_COLOR;
-                    } else if (dropout_probability > RISK_MEDIUM_THRESHOLD) {
-                      color = RISK_MEDIUM_COLOR;
-                    } else {
-                      color = RISK_LOW_COLOR;
-                    }
-                    const integerProgress = toInteger(progress);
-                    const checkStudentLabel = `${CHECK_STUDENT_FROM_LIST_LABEL} ${student_id}`;
-                    return (
-                      <Table.Row key={key} verticalAlign="middle">
-                        <TableCell textAlign="center">
-                          {1 + key + (pageSelected - 1) * nStudentPerChunk}
-                        </TableCell>
-                        <Table.Cell
-                          className="cursorPointer"
-                          onClick={() => {
-                            searchStudent(student_id);
-                            onClose();
-                          }}
-                        >
-                          <Tooltip
-                            aria-label={checkStudentLabel}
-                            label={checkStudentLabel}
-                            zIndex={10000}
-                            placement="top"
-                            textAlign="center"
-                          >
-                            <Text>{truncate(student_id, { length: 16 })}</Text>
-                          </Tooltip>
-                        </Table.Cell>
-                        <Table.Cell>
-                          <Text>{start_year}</Text>
-                        </Table.Cell>
-                        <Table.Cell verticalAlign="middle">
-                          <Progress
-                            css={[
-                              marginZero,
-                              progressTextShadow,
-                              integerProgress >= 10 &&
-                                integerProgress < 20 &&
-                                progressSmallText,
-                            ]}
-                            progress
-                            percent={integerProgress}
-                          />
-                        </Table.Cell>
-                        {showDropout && (
-                          <Table.Cell>
-                            <Stack
-                              isInline
-                              shouldWrapChildren
-                              alignItems="center"
-                            >
-                              <Text
-                                margin={0}
-                                textShadow="0.5px 0.5px 0px #a1a1a1"
-                                color={
-                                  dropout_probability !== -1 ? color : undefined
-                                }
-                                fontWeight="bold"
-                              >
-                                {dropout_probability !== -1
-                                  ? `${toInteger(dropout_probability)}`
-                                  : "-"}
-                              </Text>
-                              {explanation ? (
-                                <Popover trigger="hover" isLazy>
-                                  <PopoverTrigger>
-                                    <Icon
-                                      display="flex"
-                                      name="info-outline"
-                                      size="13px"
-                                      cursor="help"
-                                    />
-                                  </PopoverTrigger>
-                                  <PopoverContent
-                                    width="fit-content"
-                                    zIndex={100}
-                                    padding="5px"
-                                  >
-                                    <PopoverArrow />
-                                    <PopoverBody>
-                                      <Text>
-                                        {explanation.charAt(0).toUpperCase() +
-                                          explanation.slice(1)}
-                                      </Text>
-                                    </PopoverBody>
-                                  </PopoverContent>
-                                </Popover>
-                              ) : null}
-                            </Stack>
-                          </Table.Cell>
-                        )}
-                      </Table.Row>
-                    );
-                  }
+                {!selectedStudents?.length && (
+                  <Table.Row>
+                    <TableCell />
+                    <Table.Cell>
+                      <Text>{NO_INFORMATION_TO_DEPLOY}</Text>
+                    </Table.Cell>
+                    <TableCell />
+                  </Table.Row>
                 )}
+                {selectedStudents?.length &&
+                  selectedStudents?.map(
+                    (
+                      {
+                        student_id,
+                        dropout_probability,
+                        start_year,
+                        progress,
+                        explanation,
+                      },
+                      key
+                    ) => {
+                      let color: string;
+                      if (dropout_probability > RISK_HIGH_THRESHOLD) {
+                        color = RISK_HIGH_COLOR;
+                      } else if (dropout_probability > RISK_MEDIUM_THRESHOLD) {
+                        color = RISK_MEDIUM_COLOR;
+                      } else {
+                        color = RISK_LOW_COLOR;
+                      }
+                      const integerProgress = toInteger(progress);
+                      const checkStudentLabel = `${CHECK_STUDENT_FROM_LIST_LABEL} ${student_id}`;
+                      return (
+                        <Table.Row key={key} verticalAlign="middle">
+                          <TableCell textAlign="center">
+                            {1 + key + (pageSelected - 1) * nStudentPerChunk}
+                          </TableCell>
+                          <Table.Cell
+                            className="cursorPointer"
+                            onClick={() => {
+                              searchStudent(student_id);
+                              onClose();
+                            }}
+                          >
+                            <Tooltip
+                              aria-label={checkStudentLabel}
+                              label={checkStudentLabel}
+                              zIndex={10000}
+                              placement="top"
+                              textAlign="center"
+                            >
+                              <Text>
+                                {truncate(student_id, { length: 16 })}
+                              </Text>
+                            </Tooltip>
+                          </Table.Cell>
+                          <Table.Cell>
+                            <Text>{start_year}</Text>
+                          </Table.Cell>
+                          {riskType === RISK_ALL && (
+                            <Table.Cell verticalAlign="middle">
+                              <Progress
+                                css={[
+                                  marginZero,
+                                  progressTextShadow,
+                                  integerProgress >= 10 &&
+                                    integerProgress < 20 &&
+                                    progressSmallText,
+                                ]}
+                                progress
+                                percent={integerProgress}
+                              />
+                            </Table.Cell>
+                          )}
+
+                          {showDropout && (
+                            <Table.Cell>
+                              <Stack
+                                isInline
+                                shouldWrapChildren
+                                alignItems="center"
+                              >
+                                <Text
+                                  margin={0}
+                                  textShadow="0.5px 0.5px 0px #a1a1a1"
+                                  color={
+                                    dropout_probability !== -1
+                                      ? color
+                                      : undefined
+                                  }
+                                  fontWeight="bold"
+                                >
+                                  {dropout_probability !== -1
+                                    ? `${toInteger(dropout_probability)}`
+                                    : "-"}
+                                </Text>
+                                {explanation ? (
+                                  <Popover trigger="hover" isLazy>
+                                    <PopoverTrigger>
+                                      <Icon
+                                        display="flex"
+                                        name="info-outline"
+                                        size="13px"
+                                        cursor="help"
+                                      />
+                                    </PopoverTrigger>
+                                    <PopoverContent
+                                      width="fit-content"
+                                      zIndex={100}
+                                      padding="5px"
+                                    >
+                                      <PopoverArrow />
+                                      <PopoverBody>
+                                        <Text>
+                                          {explanation.charAt(0).toUpperCase() +
+                                            explanation.slice(1)}
+                                        </Text>
+                                      </PopoverBody>
+                                    </PopoverContent>
+                                  </Popover>
+                                ) : null}
+                              </Stack>
+                            </Table.Cell>
+                          )}
+                        </Table.Row>
+                      );
+                    }
+                  )}
               </Table.Body>
             </Table>
           </DrawerBody>

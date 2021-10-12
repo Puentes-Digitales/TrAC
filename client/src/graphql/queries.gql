@@ -297,6 +297,13 @@ query studentsFilterList($program_id: String!, $curriculum: String!) {
     }
   }
 }
+query parameters {
+  parameters {
+    id
+    loading_type
+    loading_date
+  }
+}
 
 mutation performanceLoadAdvices($student_id: String, $program_id: String) {
   performanceLoadAdvices(student_id: $student_id, program_id: $program_id) {
@@ -364,4 +371,14 @@ query unansweredForm {
 
 mutation answerFeedbackForm($answer: FeedbackAnswerInput!) {
   answerFeedbackForm(answer: $answer)
+}
+
+query riskNotication($program_id: String!, $risk_type: String!) {
+  riskNotification(program_id: $program_id, risk_type: $risk_type) {
+    student_id
+    course_id
+    program_id
+    curriculum
+    risk_type
+  }
 }

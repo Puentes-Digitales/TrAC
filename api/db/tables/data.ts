@@ -41,7 +41,8 @@ export const CourseStatsTable = () => dbData<ICourseStats>(COURSE_STATS_TABLE);
 // -------------------------------------------------------------------------------------
 
 export interface IParameter {
-  passing_grade: number;
+  id: number;
+  loading_type: string;
   loading_date: Date;
 }
 
@@ -50,7 +51,6 @@ export const PARAMETER_TABLE = "parameter";
 export const ParameterTable = () => dbData<IParameter>(PARAMETER_TABLE);
 
 // -------------------------------------------------------------------------------------
-
 export interface IProgram {
   id: string;
   name: string;
@@ -86,7 +86,24 @@ export const PROGRAM_STRUCTURE_TABLE = "program_structure";
 export const ProgramStructureTable = () =>
   dbData<IProgramStructure>(PROGRAM_STRUCTURE_TABLE);
 
-// -------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------#############################
+
+export interface IRiskNotification {
+  student_id: string;
+  course_id: string;
+  program_id: string;
+  curriculum: string;
+  risk_type: string;
+  details: string;
+  notified: boolean;
+}
+
+export const RISK_NOTIFICATION_TABLE = "risk_notification";
+
+export const RiskNotificationTable = () =>
+  dbData<IRiskNotification>(RISK_NOTIFICATION_TABLE);
+
+// -------------------------------------------------------------------------------------##############################
 
 export interface IExternalEvaluationStructure {
   id: number;
@@ -250,7 +267,7 @@ export const GroupedComplementaryInformationTable = () =>
 
 // --------------------------------------------------------------------------
 
-export interface IStudentGroupedEmployed {
+export interface IGroupedEmployed {
   id: number;
   program_id: string;
   curriculum: string;
@@ -262,9 +279,9 @@ export interface IStudentGroupedEmployed {
   employed_rate_educational_system: number;
 }
 
-export const STUDENT_GROUPED_EMPLOYED_TABLE = "student_grouped_employed";
-export const StudentGroupedEmployedTable = () =>
-  dbData<IStudentGroupedEmployed>(STUDENT_GROUPED_EMPLOYED_TABLE);
+export const GROUPED_EMPLOYED_TABLE = "grouped_employed";
+export const GroupedEmployedTable = () =>
+  dbData<IGroupedEmployed>(GROUPED_EMPLOYED_TABLE);
 
 // --------------------------------------------------------------------------
 
@@ -423,3 +440,5 @@ export const STUDENT_CLUSTER_TABLE = "student_cluster";
 
 export const StudentClusterTable = () =>
   dbData<IStudentCluster>(STUDENT_CLUSTER_TABLE);
+
+// --------------------------------------------------------------------------

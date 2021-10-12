@@ -54,7 +54,49 @@ mutation lockMailUserAdmin($email: EmailAddress!) {
     }
   }
 }
+mutation NotificateUsersAdmin(
+  $body: String!
+  $closing: String!
+  $farewell: String!
+  $footer: String!
+  $header: String!
+  $subject: String!
+) {
+  NotificateUsers(
+    header: $header
+    body: $body
+    footer: $footer
+    subject: $subject
+    farewell: $farewell
+    closing: $closing
+  )
+}
+mutation ReNotificateUsersAdmin(
+  $content: String!
+  $email: String!
+  $parameters: String!
+  $counter: Float!
+  $id: Float!
+) {
+  ReNotificateUsers(
+    content: $content
+    email: $email
+    parameters: $parameters
+    counter: $counter
+    id: $id
+  )
+}
 
+query NotificationsDataAdmin {
+  NotificationsData {
+    id
+    email
+    content
+    date
+    parameters
+    counter
+  }
+}
 mutation mailAllLockedUsersAdmin {
   mailAllLockedUsers
 }

@@ -17,6 +17,7 @@ import {
   StudentProgramTable,
   StudentTable,
   StudentTermTable,
+  RiskNotificationTable,
 } from "../db/tables";
 import { TermDataLoader } from "./term";
 
@@ -233,6 +234,30 @@ export const StudentListFilterDataLoader = new DataLoader(
   {
     cacheKeyFn: ({ program_id, curriculum }) => {
       return program_id + curriculum;
+    },
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const RiskNotificationDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      student_id: string;
+      risk_type: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ student_id, risk_type }) => {
+        return RiskNotificationTable().select("*").where({
+          student_id,
+          risk_type,
+        });
+      })
+    );
+  },
+  {
+    cacheKeyFn: ({ student_id, risk_type }) => {
+      return student_id + risk_type;
     },
     cacheMap: new LRUMap(1000),
   }

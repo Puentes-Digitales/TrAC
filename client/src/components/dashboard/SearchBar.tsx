@@ -52,6 +52,8 @@ import { marginLeft5px } from "../../utils/cssConstants";
 import { useUser } from "../../utils/useUser";
 import { Help } from "../Help";
 
+import { Parameter } from "../dashboard/Parameter";
+
 import type { $ElementType } from "utility-types";
 const StudentList = dynamic(() => import("./StudentList"));
 
@@ -181,6 +183,7 @@ export const SearchBar: FC<{
     HELP_ENABLED,
     GROUPED_ON,
     GROUPED_OFF,
+    SHOW_PARAMETER,
   } = useContext(ConfigContext);
 
   const {
@@ -325,11 +328,11 @@ export const SearchBar: FC<{
         )}
 
         {HELP_ENABLED && <Help />}
-
+        {isDirector && SHOW_PARAMETER && <Parameter mockIsActive={mock} />}
         <Button
           css={marginLeft5px}
           negative
-          size="large"
+          size="medium"
           disabled={logoutLoading}
           loading={logoutLoading}
           onClick={async () => {
@@ -373,7 +376,6 @@ export const SearchBar: FC<{
     groupedActive,
     onSearch,
     HELP_ENABLED,
-    groupedActive,
   ]);
 
   useEffect(() => {

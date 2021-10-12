@@ -5,6 +5,7 @@ import { Flex, Stack, Text } from "@chakra-ui/react";
 
 import { ConfigContext } from "../../context/Config";
 import { setTrackingData, track } from "../../context/Tracking";
+import { IndicatorTooltip } from "../IndicatorTooltip";
 
 export const ComplementaryInfo: FC<{
   educational_system?: string | null;
@@ -26,6 +27,10 @@ export const ComplementaryInfo: FC<{
       COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS,
       COMPLEMENTARY_INFORMATION_TEXT_COLOR,
       COMPLEMENTARY_INFORMATION_TYPE_ADMISSION,
+      COMPLEMENTARY_INFORMATION_TYPE_ADMISSION_TOOLTIP,
+      COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM_TOOLTIP,
+      COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION_TOOLTIP,
+      COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS_TOOLTIP,
     } = useContext(ConfigContext);
 
     const [show, setShow] = useState(false);
@@ -64,6 +69,7 @@ export const ComplementaryInfo: FC<{
           data-testid="BoxContainer"
         >
           <Stack
+            alignItems="center"
             className="unselectable"
             isInline
             pt={10}
@@ -95,31 +101,66 @@ export const ComplementaryInfo: FC<{
                   }}
                 >
                   {type_admission && (
-                    <Text width="290px" pl={5} pb={0} mb={0}>
-                      {COMPLEMENTARY_INFORMATION_TYPE_ADMISSION}{" "}
-                      {type_admission}
-                    </Text>
+                    <Flex minWidth="max-content" pr={5} pl={0} pt={1} pb={1}>
+                      <Text>
+                        {COMPLEMENTARY_INFORMATION_TYPE_ADMISSION}{" "}
+                        {type_admission}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          COMPLEMENTARY_INFORMATION_TYPE_ADMISSION_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
                   )}
 
                   {educational_system && (
-                    <Text width="290px" pl={5} pb={0} mb={0}>
-                      {COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM}{" "}
-                      {educational_system}
-                    </Text>
+                    <Flex minWidth="max-content" pr={5} pl={0} pt={1} pb={1}>
+                      <Text>
+                        {COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM}{" "}
+                        {educational_system}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
                   )}
 
                   {institution && (
-                    <Text data-testid="inst" width="290px" pl={5} pb={0} mb={0}>
-                      {COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION}{" "}
-                      {institution}
-                    </Text>
+                    <Flex
+                      minWidth="max-content"
+                      data-testid="inst"
+                      pr={5}
+                      pl={0}
+                      pt={1}
+                      pb={1}
+                    >
+                      <Text>
+                        {COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION}{" "}
+                        {institution}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
                   )}
 
                   {months_to_first_job && (
-                    <Text width="290px" pl={5} pb={0} mb={0}>
-                      {COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS}{" "}
-                      {months_to_first_job}
-                    </Text>
+                    <Flex minWidth="max-content" pr={5} pl={0} pt={1} pb={1}>
+                      <Text>
+                        {COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS}{" "}
+                        {months_to_first_job}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
                   )}
                 </motion.div>
               )}

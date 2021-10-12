@@ -38,6 +38,7 @@ import { checkHasStudentData } from "./auth";
 
 import type { IContext } from "../../interfaces";
 import type { ArrayPropertyType } from "../../../interfaces/utils";
+/*import { id } from "date-fns/locale";*/
 export type PartialUser = Pick<User, "email"> & Partial<User>;
 @Resolver(() => User)
 export class UserResolver {

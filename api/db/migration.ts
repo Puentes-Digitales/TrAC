@@ -75,6 +75,7 @@ const migration = async () => {
     PROGRAM_STRUCTURE_TABLE,
     EXTERNAL_EVALUATION_STRUCTURE_TABLE,
     EXTERNAL_EVALUATION_GROUPED_STATS_TABLE,
+    NOTIFICATIONS_DATA_TABLE,
     PROGRAM_TABLE,
     ProgramStructureTable,
     ExternalEvaluationStructureTable,
@@ -87,7 +88,7 @@ const migration = async () => {
     STUDENT_COURSE_TABLE,
     STUDENT_DROPOUT_TABLE,
     STUDENT_EMPLOYED_TABLE,
-    STUDENT_GROUPED_EMPLOYED_TABLE,
+    GROUPED_EMPLOYED_TABLE,
     STUDENT_PROGRAM_TABLE,
     STUDENT_TABLE,
     STUDENT_TERM_TABLE,
@@ -101,7 +102,7 @@ const migration = async () => {
     StudentDropoutTable,
     StudentEmployedTable,
     StudentProgramTable,
-    StudentGroupedEmployedTable,
+    GroupedEmployedTable,
     StudentTable,
     StudentTermTable,
     TRACKING_TABLE,
@@ -111,6 +112,8 @@ const migration = async () => {
     UserProgramsTable,
     USERS_TABLE,
     UserTable,
+    RISK_NOTIFICATION_TABLE,
+    RiskNotificationTable,
   } = await import("./tables");
 
   const users = dbAuth.schema.hasTable(USERS_TABLE).then(async (exists) => {
@@ -275,14 +278,16 @@ const migration = async () => {
   const param = dbData.schema.hasTable(PARAMETER_TABLE).then(async (exists) => {
     if (!exists) {
       await dbData.schema.createTable(PARAMETER_TABLE, (table) => {
-        table.float("passing_grade", 8);
-        table.timestamp("loading_date");
+        table.integer("id", 8).notNullable().primary();
+        table.text("loading_type").notNullable();
+        table.timestamp("loading_date").notNullable();
       });
       await ParameterTable().insert(
         (await import("./mockData/parameter.json")).default.map(
-          ({ passing_grade, loading_date }) => {
+          ({ id, loading_type, loading_date }) => {
             return {
-              passing_grade,
+              id,
+              loading_type,
               loading_date: new Date(loading_date),
             };
           }
@@ -380,35 +385,32 @@ const migration = async () => {
       }
     });
 
-  const studentGroupedEmployedStructure = dbData.schema
-    .hasTable(STUDENT_GROUPED_EMPLOYED_TABLE)
+  const groupedEmployedStructure = dbData.schema
+    .hasTable(GROUPED_EMPLOYED_TABLE)
     .then(async (exists) => {
       if (!exists) {
-        await dbData.schema.createTable(
-          STUDENT_GROUPED_EMPLOYED_TABLE,
-          (table) => {
-            table.integer("id", 8).notNullable().primary();
-            table.text("program_id").notNullable();
-            table.text("curriculum").notNullable();
-            table.text("type_admission").notNullable();
-            table.text("cohort").notNullable();
-            table.integer("total_students", 6).notNullable();
-            table.float("employed_rate", 3).notNullable();
-            table.float("average_time_job_finding", 3).notNullable();
-            table.float("employed_rate_educational_system", 3).notNullable();
-          }
-        );
-        await StudentGroupedEmployedTable().insert(
-          (
-            await import("./mockData/student_grouped_employed.json")
-          ).default.map(({ program_id, curriculum, cohort, ...rest }) => {
-            return {
-              ...rest,
-              program_id: program_id.toString(),
-              curriculum: curriculum.toString(),
-              cohort: cohort.toString(),
-            };
-          })
+        await dbData.schema.createTable(GROUPED_EMPLOYED_TABLE, (table) => {
+          table.integer("id", 8).notNullable().primary();
+          table.text("program_id").notNullable();
+          table.text("curriculum").notNullable();
+          table.text("type_admission").notNullable();
+          table.text("cohort").notNullable();
+          table.integer("total_students", 6).notNullable();
+          table.float("employed_rate", 3).notNullable();
+          table.float("average_time_job_finding", 3).notNullable();
+          table.float("employed_rate_educational_system", 3).notNullable();
+        });
+        await GroupedEmployedTable().insert(
+          (await import("./mockData/grouped_employed.json")).default.map(
+            ({ program_id, curriculum, cohort, ...rest }) => {
+              return {
+                ...rest,
+                program_id: program_id.toString(),
+                curriculum: curriculum.toString(),
+                cohort: cohort.toString(),
+              };
+            }
+          )
         );
       }
     });
@@ -1002,6 +1004,58 @@ const migration = async () => {
       }
     });
 
+  const NotificationsData = dbData.schema
+    .hasTable(NOTIFICATIONS_DATA_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(NOTIFICATIONS_DATA_TABLE, (table) => {
+          table.increments().primary();
+          table.text("email").notNullable();
+          table.text("content").notNullable();
+          table.text("parameters").notNullable();
+          table.timestamp("date", { useTz: true }).notNullable();
+          table.integer("counter").notNullable();
+        });
+      }
+    });
+
+  const RiskNotification = dbData.schema
+    .hasTable(RISK_NOTIFICATION_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(RISK_NOTIFICATION_TABLE, (table) => {
+          table.text("student_id").notNullable();
+          table.text("course_id").notNullable();
+          table.text("program_id").notNullable();
+          table.text("curriculum").notNullable();
+          table.text("risk_type").notNullable();
+          table.text("details");
+          table.boolean("notified");
+        });
+        await RiskNotificationTable().insert(
+          (await import("./mockData/riskNotification.json")).default.map(
+            ({
+              student_id,
+              course_id,
+              program_id,
+              curriculum,
+              risk_type,
+              details,
+              notified,
+            }) => {
+              return {
+                student_id,
+                course_id,
+                program_id,
+                curriculum,
+                risk_type,
+              };
+            }
+          )
+        );
+      }
+    });
+
   await Promise.all([
     users,
     usersPrograms,
@@ -1016,10 +1070,11 @@ const migration = async () => {
     program,
     programStructure,
     externalEvaluationStructure,
+    NotificationsData,
     student,
     studentAdmission,
     studentExternalEvaluation,
-    studentGroupedEmployedStructure,
+    groupedEmployedStructure,
     externalEvaluation,
     externalEvaluationStats,
     externalEvaluationGroupedStats,
@@ -1034,6 +1089,7 @@ const migration = async () => {
     feedbackForm,
     feedbackFormQuestion,
     feedbackResult,
+    RiskNotification,
   ]);
 
   await Promise.all([

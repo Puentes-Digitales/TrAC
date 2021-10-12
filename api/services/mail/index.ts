@@ -72,7 +72,7 @@ export async function sendMail({
   message,
 }: {
   to: string;
-  subject: string;
+  subject: string | undefined;
   message: string;
 }) {
   if (
@@ -99,3 +99,4 @@ export async function sendMail({
 }
 
 export { UnlockMail } from "./mail";
+export { NotificationMail } from "./mail";

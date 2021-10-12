@@ -24,6 +24,8 @@ import AdminPage from "../client/src/pages/admin";
 import LoginPage from "../client/src/pages/login";
 import UnlockPage from "../client/src/pages/unlock/[email]/[unlockKey]";
 import ComplementaryInfo from "../client/src/components/dashboard/ComplementaryInfo";
+import { IndicatorTooltip } from "../client/src/components/IndicatorTooltip";
+import { Popover } from "@chakra-ui/react";
 Object.defineProperty(window, "matchMedia", {
   writable: true,
   value: jest.fn().mockImplementation((query) => ({
@@ -185,61 +187,89 @@ describe("admin", () => {
 });
 
 describe("Test <AdmissionDropout />", () => {
-  test("Test Snapshot", () => {
-    const tree = render(
-      <ComplementaryInfo
-        type_admission="PSU"
-        educational_system="Publico"
-        institution="Escuela"
-        months_to_first_job={6}
-      />
-    );
-    fireEvent.click(screen.getByTestId("BoxContainer"));
-    expect(tree).toMatchSnapshot();
+  test("Test Snapshot", async () => {
+    await act(async () => {
+      const { getByTestId } = render(
+        <ComplementaryInfo
+          type_admission="PSU"
+          educational_system="Publico"
+          institution="Escuela"
+          months_to_first_job={6}
+        />
+      );
+
+      await waitForExpect(() => {
+        fireEvent.click(getByTestId("BoxContainer"));
+        expect(getByTestId("BoxContainer")).toMatchSnapshot();
+      });
+    });
   });
 });
 
-test("test props en <AdmissionDropout />", () => {
+test("test props en <AdmissionDropout />", async () => {
   const type_admission = "PSU";
   const educational_system = "Publico";
   const institution = "Escuela";
   const months_to_first_job = 6;
 
-  const { getByText, getByTestId } = render(
-    <ComplementaryInfo
-      type_admission={type_admission}
-      educational_system={educational_system}
-      institution={institution}
-      months_to_first_job={months_to_first_job}
-    />
-  );
-  fireEvent.click(getByTestId("BoxContainer"));
-  expect(getByText("Tipo de ingreso: PSU".trim())).toBeInTheDocument();
-  expect(getByText("Sistema educacional: Publico".trim())).toBeInTheDocument();
+  await act(async () => {
+    const { getByText, getByTestId } = render(
+      <ComplementaryInfo
+        type_admission={type_admission}
+        educational_system={educational_system}
+        institution={institution}
+        months_to_first_job={months_to_first_job}
+      />
+    );
+    await waitForExpect(() => {
+      fireEvent.click(getByTestId("BoxContainer"));
+      expect(getByText("Tipo de ingreso: PSU".trim())).toBeInTheDocument();
+      expect(
+        getByText("Sistema educacional: Publico".trim())
+      ).toBeInTheDocument();
+    });
+  });
 });
 
-test("test null props complementary component", () => {
+test("test null props complementary component", async () => {
   const type_admission = null;
   const educational_system = "Publico";
   const institution = null;
   const months_to_first_job = null;
 
-  const { getByText, getByTestId, queryAllByText } = render(
-    <ComplementaryInfo
-      type_admission={type_admission}
-      educational_system={educational_system}
-      institution={institution}
-      months_to_first_job={months_to_first_job}
-    />
-  );
+  await act(async () => {
+    const { getByTestId, queryAllByText } = render(
+      <ComplementaryInfo
+        type_admission={type_admission}
+        educational_system={educational_system}
+        institution={institution}
+        months_to_first_job={months_to_first_job}
+      ></ComplementaryInfo>
+    );
+    await waitForExpect(() => {
+      fireEvent.click(getByTestId("BoxContainer"));
+      const inst_value = queryAllByText("Tipo de ingreso:");
+      expect(inst_value).toHaveLength(0);
+      const education_system_value = queryAllByText(
+        "Sistema educacional: Publico".trim()
+      );
+      expect(education_system_value).toHaveLength(1);
+    });
+  });
+});
 
-  fireEvent.click(getByTestId("BoxContainer"));
-  const inst_value = queryAllByText("Tipo de ingreso:");
-  expect(inst_value).toHaveLength(0);
-  const education_system_value = queryAllByText(
-    "Sistema educacional: Publico".trim()
-  );
-  expect(education_system_value).toHaveLength(1);
+describe("indicatorTooltip", () => {
+  test("render correctly", async () => {
+    await act(async () => {
+      const { getByTestId, getByText } = render(
+        <IndicatorTooltip tooltipShow="any" />
+      );
+      await waitForExpect(() => {
+        fireEvent.mouseEnter(getByTestId("test-tooltip"));
+        expect(getByText("any")).toBeInTheDocument();
+      });
+    });
+  });
 });
 
 export {};
