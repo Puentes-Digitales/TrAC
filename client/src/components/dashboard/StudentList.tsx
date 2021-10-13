@@ -76,6 +76,7 @@ export type StudentListInfo = {
   start_year: number;
   explanation: string;
   progress: number;
+  course_id: string;
 };
 
 export const StudentList: FC<{
@@ -126,9 +127,10 @@ export const StudentList: FC<{
     NO_INFORMATION_TO_DEPLOY,
     RISK_ALL,
     RISK_STUDENT_PENDING_OF_GRADUATION,
-    RISK_LOW_PASSING_RATE_COURSES,
-    //RISK_LOW_PROGRESSING_RATE,
+    //RISK_LOW_PASSING_RATE_COURSES,
+    RISK_LOW_PROGRESSING_RATE,
     RISK_THIRD_ATTEMPT,
+    COURSE_LABEL,
   } = useContext(ConfigContext);
 
   var [riskType, setRiskType] = useRememberState(
@@ -147,6 +149,7 @@ export const StudentList: FC<{
                 progress: progress * 100,
                 start_year,
                 explanation: dropout?.explanation ?? "",
+                course_id: "",
               };
             }
           ) ?? []
@@ -166,7 +169,7 @@ export const StudentList: FC<{
             }
           ) ?? []
         );
-      case RISK_LOW_PASSING_RATE_COURSES:
+      case RISK_LOW_PROGRESSING_RATE:
         return (
           lowProgressingRate?.riskNotification.map(
             ({ student_id, program_id, course_id, curriculum, risk_type }) => {
@@ -191,6 +194,7 @@ export const StudentList: FC<{
                 progress: -1,
                 start_year: parseInt(curriculum),
                 explanation: " " + risk_type,
+                course_id: course_id,
               };
             }
           ) ?? []
@@ -370,6 +374,15 @@ export const StudentList: FC<{
               {PROGRESS_LABEL}
             </Table.HeaderCell>
           )}
+          {riskType == RISK_THIRD_ATTEMPT && (
+            <Table.HeaderCell
+              width={5}
+              sorted={columnSort[0] === "course_id" ? directionSort : undefined}
+              onClick={handleSort("course_id")}
+            >
+              {COURSE_LABEL}
+            </Table.HeaderCell>
+          )}
 
           {showDropout && (
             <Table.HeaderCell
@@ -436,8 +449,8 @@ export const StudentList: FC<{
               <option value={RISK_STUDENT_PENDING_OF_GRADUATION}>
                 {RISK_STUDENT_PENDING_OF_GRADUATION}
               </option>
-              <option value={RISK_LOW_PASSING_RATE_COURSES}>
-                {RISK_LOW_PASSING_RATE_COURSES}
+              <option value={RISK_LOW_PROGRESSING_RATE}>
+                {RISK_LOW_PROGRESSING_RATE}
               </option>
               <option value={RISK_THIRD_ATTEMPT}>{RISK_THIRD_ATTEMPT}</option>
               {/* <option value={RISK_LOW_PROGRESSING_RATE}>{RISK_LOW_PROGRESSING_RATE}</option> */}
@@ -487,6 +500,7 @@ export const StudentList: FC<{
                         start_year,
                         progress,
                         explanation,
+                        course_id,
                       },
                       key
                     ) => {
@@ -540,6 +554,11 @@ export const StudentList: FC<{
                                 progress
                                 percent={integerProgress}
                               />
+                            </Table.Cell>
+                          )}
+                          {riskType == RISK_THIRD_ATTEMPT && (
+                            <Table.Cell verticalAlign="middle">
+                              <Text>{truncate(course_id, { length: 16 })}</Text>
                             </Table.Cell>
                           )}
 

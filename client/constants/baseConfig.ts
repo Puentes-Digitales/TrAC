@@ -404,8 +404,8 @@ export const baseConfig = {
   NO_INFORMATION_TO_DEPLOY: "No hay información para monstar",
   RISK_ALL: "Todos",
   RISK_STUDENT_PENDING_OF_GRADUATION: "Pendientes de Titulación ",
-  RISK_LOW_PASSING_RATE_COURSES: "Avance menor al umbral (50%)",
-  RISK_LOW_PROGRESSING_RATE: "Anulaciones sobre el umbral",
+  RISK_LOW_PASSING_RATE_COURSES: "Anulaciones sobre el umbral",
+  RISK_LOW_PROGRESSING_RATE: "Avance menor al umbral (50%)",
   RISK_THIRD_ATTEMPT: "Asignaturas por tercera vez",
   GROUPED_DATA: "Datos agrupados",
   EMPLOYABILITY_DATA: "Datos empleabilidad",
@@ -414,6 +414,7 @@ export const baseConfig = {
   LAST_UPDATE_DATA: "Fecha de última carga de datos",
   NOTIFICATIONS_EMAIL_ADDRESS: "soportelala@inf.uach.cl",
   SHOW_PARAMETER: true,
+  COURSE_LABEL: "Ramo",
 };
 
 export const baseConfigAdmin: typeof baseConfig &
