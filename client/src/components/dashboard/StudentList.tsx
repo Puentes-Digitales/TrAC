@@ -374,13 +374,7 @@ export const StudentList: FC<{
             </Table.HeaderCell>
           )}
           {riskType == RISK_THIRD_ATTEMPT && (
-            <Table.HeaderCell
-              width={5}
-              sorted={columnSort[0] === "course_id" ? directionSort : undefined}
-              onClick={handleSort("course_id")}
-            >
-              {COURSE_LABEL}
-            </Table.HeaderCell>
+            <Table.HeaderCell width={5}>{COURSE_LABEL}</Table.HeaderCell>
           )}
 
           {showDropout && (
