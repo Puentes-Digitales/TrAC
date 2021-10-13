@@ -68,7 +68,7 @@ const initialOpen = (() => {
   return false;
 })();
 
-export type columnNames = keyof StudentListInfo;
+export type columnNames = keyof RiskInfo;
 
 export type StudentListInfo = {
   student_id: string;
@@ -78,6 +78,14 @@ export type StudentListInfo = {
   progress: number;
 };
 
+export type RiskInfo = {
+  student_id: string;
+  dropout_probability: number;
+  start_year: number;
+  explanation: string;
+  progress: number;
+  course_id: string;
+};
 export const StudentList: FC<{
   mockData?: StudentListInfo[];
   program_id?: string;
@@ -164,6 +172,7 @@ export const StudentList: FC<{
                 start_year: parseInt(curriculum),
                 explanation:
                   "Estudiantes pendientes de titulacion " + risk_type,
+                course_id: "",
               };
             }
           ) ?? []
@@ -178,6 +187,7 @@ export const StudentList: FC<{
                 progress: -1,
                 start_year: parseInt(curriculum),
                 explanation: " " + risk_type,
+                course_id: "",
               };
             }
           ) ?? []
@@ -374,7 +384,13 @@ export const StudentList: FC<{
             </Table.HeaderCell>
           )}
           {riskType == RISK_THIRD_ATTEMPT && (
-            <Table.HeaderCell width={5}>{COURSE_LABEL}</Table.HeaderCell>
+            <Table.HeaderCell
+              width={5}
+              sorted={columnSort[0] === "course_id" ? directionSort : undefined}
+              onClick={handleSort("course_id")}
+            >
+              {COURSE_LABEL}
+            </Table.HeaderCell>
           )}
 
           {showDropout && (
@@ -493,6 +509,7 @@ export const StudentList: FC<{
                         start_year,
                         progress,
                         explanation,
+                        course_id,
                       },
                       key
                     ) => {
@@ -550,9 +567,7 @@ export const StudentList: FC<{
                           )}
                           {riskType == RISK_THIRD_ATTEMPT && (
                             <Table.Cell verticalAlign="middle">
-                              <Text>
-                                {truncate("Test course data", { length: 16 })}
-                              </Text>
+                              <Text>{truncate(course_id, { length: 16 })}</Text>
                             </Table.Cell>
                           )}
 
