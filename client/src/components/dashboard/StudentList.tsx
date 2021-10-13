@@ -76,7 +76,6 @@ export type StudentListInfo = {
   start_year: number;
   explanation: string;
   progress: number;
-  course_id: string;
 };
 
 export const StudentList: FC<{
@@ -500,7 +499,6 @@ export const StudentList: FC<{
                         start_year,
                         progress,
                         explanation,
-                        course_id,
                       },
                       key
                     ) => {
@@ -558,7 +556,9 @@ export const StudentList: FC<{
                           )}
                           {riskType == RISK_THIRD_ATTEMPT && (
                             <Table.Cell verticalAlign="middle">
-                              <Text>{truncate(course_id, { length: 16 })}</Text>
+                              <Text>
+                                {truncate("Test course data", { length: 16 })}
+                              </Text>
                             </Table.Cell>
                           )}
 
