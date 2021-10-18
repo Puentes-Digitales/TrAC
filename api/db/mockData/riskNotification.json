@@ -3,7 +3,8 @@
     "student_id": "e078c7de4d67798a915801ba7e2539fb  ",
     "course_id": "INFO253-08",
     "program_id": "1708",
-    "curriculum": "2017",
+    "curriculum": "2015",
+    "cohorte": "2015",
     "risk_type": "student_pending_of_graduation",
     "details": null,
     "notified": null
@@ -12,7 +13,8 @@
     "student_id": "d8e9b1f97ec3bc542b7d018b5f9e4224",
     "course_id": "INFO253-08",
     "program_id": "1708",
-    "curriculum": "2017",
+    "curriculum": "2015",
+    "cohorte": "2016",
     "risk_type": "student_pending_of_graduation",
     "details": null,
     "notified": null
@@ -21,7 +23,8 @@
     "student_id": "c381c9bba3e870e0698d9dfa51619c1f",
     "course_id": "INFO253-08",
     "program_id": "1708",
-    "curriculum": "2017",
+    "curriculum": "2015",
+    "cohorte": "2016",
     "risk_type": "student_pending_of_graduation",
     "details": null,
     "notified": null
@@ -30,7 +33,8 @@
     "student_id": "993567bb136c986c3e18669a748e26b1",
     "course_id": "INFO253-08",
     "program_id": "1708",
-    "curriculum": "2017",
+    "curriculum": "2015",
+    "cohorte": "2016",
     "risk_type": "student_pending_of_graduation",
     "details": null,
     "notified": null
@@ -39,7 +43,8 @@
     "student_id": "6fdb8a7f5bbaf0c68dbca0f5462e866a",
     "course_id": "INFO253-08",
     "program_id": "1708",
-    "curriculum": "2017",
+    "curriculum": "2015",
+    "cohorte": "2015",
     "risk_type": "student_pending_of_graduation",
     "details": null,
     "notified": null
@@ -48,7 +53,8 @@
     "student_id": "c381c9bba3e870e0698d9dfa51619c1f",
     "course_id": "INFO253-08",
     "program_id": "1708",
-    "curriculum": "2017",
+    "curriculum": "2015",
+    "cohorte": "2015",
     "risk_type": "low_progressing_rate",
     "details": null,
     "notified": null
@@ -57,7 +63,8 @@
     "student_id": "993567bb136c986c3e18669a748e26b1",
     "course_id": "INFO253-08",
     "program_id": "1708",
-    "curriculum": "2017",
+    "curriculum": "2015",
+    "cohorte": "2016",
     "risk_type": "low_progressing_rate",
     "details": null,
     "notified": null
@@ -66,7 +73,8 @@
     "student_id": "6fdb8a7f5bbaf0c68dbca0f5462e866a",
     "course_id": "INFO253-08",
     "program_id": "1708",
-    "curriculum": "2017",
+    "curriculum": "2015",
+    "cohorte": "2016",
     "risk_type": "low_progressing_rate",
     "details": null,
     "notified": null
@@ -75,7 +83,8 @@
     "student_id": "c381c9bba3e870e0698d9dfa51619c1f",
     "course_id": "INFO253-08",
     "program_id": "1708",
-    "curriculum": "2017",
+    "curriculum": "2015",
+    "cohorte": "2016",
     "risk_type": "third_attempt",
     "details": null,
     "notified": null
@@ -84,7 +93,8 @@
     "student_id": "993567bb136c986c3e18669a748e26b1",
     "course_id": "INFO253-08",
     "program_id": "1708",
-    "curriculum": "2017",
+    "curriculum": "2015",
+    "cohorte": "2016",
     "risk_type": "third_attempt",
     "details": null,
     "notified": null

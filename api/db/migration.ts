@@ -1028,6 +1028,7 @@ const migration = async () => {
           table.text("course_id").notNullable();
           table.text("program_id").notNullable();
           table.text("curriculum").notNullable();
+          table.text("cohorte").notNullable();
           table.text("risk_type").notNullable();
           table.text("details");
           table.boolean("notified");
@@ -1039,6 +1040,7 @@ const migration = async () => {
               course_id,
               program_id,
               curriculum,
+              cohorte,
               risk_type,
               details,
               notified,
@@ -1048,6 +1050,7 @@ const migration = async () => {
                 course_id,
                 program_id,
                 curriculum,
+                cohorte,
                 risk_type,
               };
             }
