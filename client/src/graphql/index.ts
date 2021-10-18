@@ -459,6 +459,7 @@ export type QueryUserPersistencesArgs = {
 };
 
 export type RiskNotification = {
+  cohorte: Scalars["String"];
   course_id: Scalars["String"];
   curriculum: Scalars["String"];
   details: Scalars["String"];
@@ -1149,7 +1150,12 @@ export type RiskNoticationQuery = {
   riskNotification: Array<
     Pick<
       RiskNotification,
-      "student_id" | "course_id" | "program_id" | "curriculum" | "risk_type"
+      | "student_id"
+      | "course_id"
+      | "program_id"
+      | "curriculum"
+      | "cohorte"
+      | "risk_type"
     >
   >;
 };
@@ -3435,6 +3441,7 @@ export const RiskNoticationDocument = gql`
       course_id
       program_id
       curriculum
+      cohorte
       risk_type
     }
   }
