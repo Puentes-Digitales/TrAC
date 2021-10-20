@@ -80,7 +80,6 @@ const migration = async () => {
     ProgramStructureTable,
     ExternalEvaluationStructureTable,
     ProgramTable,
-    STUDENT_ADMISSION_TABLE,
     STUDENT_EXTERNAL_EVALUATION_TABLE,
     EXTERNAL_EVALUATION_TABLE,
     EXTERNAL_EVALUATION_STATS_TABLE,
@@ -92,7 +91,6 @@ const migration = async () => {
     STUDENT_PROGRAM_TABLE,
     STUDENT_TABLE,
     STUDENT_TERM_TABLE,
-    StudentAdmissionTable,
     StudentExternalEvaluationTable,
     ExternalEvaluationTable,
     ExternalEvaluationStatsTable,
@@ -578,23 +576,6 @@ const migration = async () => {
       }
     });
 
-  const studentAdmission = dbData.schema
-    .hasTable(STUDENT_ADMISSION_TABLE)
-    .then(async (exists) => {
-      if (!exists) {
-        await dbData.schema.createTable(STUDENT_ADMISSION_TABLE, (table) => {
-          table.text("student_id").notNullable().primary();
-          table.boolean("active").notNullable().defaultTo(true);
-          table.text("type_admission").notNullable();
-          table.float("initial_evaluation", 4);
-          table.float("final_evaluation", 4);
-        });
-        await StudentAdmissionTable().insert(
-          (await import("./mockData/student_admission.json")).default
-        );
-      }
-    });
-
   const studentExternalEvaluation = dbData.schema
     .hasTable(STUDENT_EXTERNAL_EVALUATION_TABLE)
     .then(async (exists) => {
@@ -1072,7 +1053,6 @@ const migration = async () => {
     externalEvaluationStructure,
     NotificationsData,
     student,
-    studentAdmission,
     studentExternalEvaluation,
     groupedEmployedStructure,
     externalEvaluation,
