@@ -1144,6 +1144,7 @@ PORT=3000
 # The target db user is always "postgres"
 POSTGRES_HOST=localhost
 # POSTGRES_PASSWORD=asvpvmhbqmipzojxfzdqsgovhxqzdpgueixyylkyorxpctfjeqmytfvceuheqi
+# COMPOSE_PROJECT_NAME=Trac-Fid
 
 
 # By default in production environment the GraphQL Playground Altair https://altair.sirmuel.design/ & Voyager are disabled.
