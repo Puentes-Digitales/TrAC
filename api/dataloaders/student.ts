@@ -12,12 +12,14 @@ import {
   STUDENT_TABLE,
   StudentAdmissionTable,
   StudentDropoutTable,
-  STUDENT_ADMISSION_TABLE,
+  //STUDENT_ADMISSION_TABLE,
+  STUDENT_DROPOUT_TABLE,
   StudentEmployedTable,
   StudentProgramTable,
   StudentTable,
   StudentTermTable,
   RiskNotificationTable,
+  //IStudentProgram,
 } from "../db/tables";
 import { TermDataLoader } from "./term";
 
@@ -219,10 +221,10 @@ export const StudentListFilterDataLoader = new DataLoader(
             `${STUDENT_PROGRAM_TABLE}.student_id`,
             `${STUDENT_TABLE}.id`
           )
-          .join<IStudent>(
-            STUDENT_ADMISSION_TABLE,
+          .leftJoin<IStudent>(
+            STUDENT_DROPOUT_TABLE,
             `${STUDENT_PROGRAM_TABLE}.student_id`,
-            `${STUDENT_ADMISSION_TABLE}.student_id`
+            `${STUDENT_DROPOUT_TABLE}.student_id`
           )
           .where({
             program_id,
@@ -233,6 +235,7 @@ export const StudentListFilterDataLoader = new DataLoader(
   },
   {
     cacheKeyFn: ({ program_id, curriculum }) => {
+      console.log("entró al cacheKeyFn");
       return program_id + curriculum;
     },
     cacheMap: new LRUMap(1000),
