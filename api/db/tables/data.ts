@@ -184,6 +184,7 @@ export interface IStudentProgram {
   program_id: string;
   curriculum: string;
   start_year: number;
+  type_admission: string;
   mention: string;
   last_term: number;
   n_courses: number;
