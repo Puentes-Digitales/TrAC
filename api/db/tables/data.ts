@@ -236,11 +236,10 @@ export const StudentEmployedTable = () =>
 // --------------------------------------------------------------------------
 export interface IStudentAdmission {
   student_id: string;
-  active: boolean;
   type_admission: string;
 }
 
-export const STUDENT_ADMISSION_TABLE = "student_admission";
+export const STUDENT_ADMISSION_TABLE = "student_program";
 
 export const StudentAdmissionTable = () =>
   dbData<IStudentAdmission>(STUDENT_ADMISSION_TABLE);
