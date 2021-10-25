@@ -243,6 +243,7 @@ export const STUDENT_ADMISSION_TABLE = "student_program";
 
 export const StudentAdmissionTable = () =>
   dbData<IStudentAdmission>(STUDENT_ADMISSION_TABLE);
+
 // --------------------------------------------------------------------------
 
 export interface IGroupedComplementaryInformation {

@@ -152,7 +152,7 @@ export function Dashboard() {
 
   useUpdateEffect(() => {
     if (IS_NOT_TEST && user?.admin) {
-      console.log({
+      console.log("IS_NO_TEST##########", {
         searchProgramData,
         searchStudentData,
         dataPerformanceByLoad,
@@ -516,8 +516,7 @@ export function Dashboard() {
         DropoutComponent = null;
       }
       if (
-        studentData.admission?.active &&
-        studentData.employed &&
+        (studentData.admission?.type_admission || studentData.employed) &&
         user?.config?.SHOW_STUDENT_COMPLEMENTARY_INFORMATION
       ) {
         ComplementaryInfoComponent = (
@@ -880,6 +879,7 @@ export function Dashboard() {
                 ),
               };
             });
+          console.log("all students", allStudents);
           const allStudentsGrades = allStudents.map((stu) =>
             stu.terms
               .map((semester) => {
