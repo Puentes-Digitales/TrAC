@@ -6,6 +6,7 @@ import {
   IProgram,
   IStudent,
   IStudentDropout,
+  //IStudentProgram,
   IStudentAdmission,
   IStudentEmployed,
   STUDENT_PROGRAM_TABLE,
@@ -13,7 +14,7 @@ import {
   StudentAdmissionTable,
   StudentDropoutTable,
   //STUDENT_ADMISSION_TABLE,
-  STUDENT_DROPOUT_TABLE,
+  //STUDENT_DROPOUT_TABLE,
   StudentEmployedTable,
   StudentProgramTable,
   StudentTable,
@@ -220,11 +221,6 @@ export const StudentListFilterDataLoader = new DataLoader(
             STUDENT_TABLE,
             `${STUDENT_PROGRAM_TABLE}.student_id`,
             `${STUDENT_TABLE}.id`
-          )
-          .leftJoin<IStudent>(
-            STUDENT_DROPOUT_TABLE,
-            `${STUDENT_PROGRAM_TABLE}.student_id`,
-            `${STUDENT_DROPOUT_TABLE}.student_id`
           )
           .where({
             program_id,
