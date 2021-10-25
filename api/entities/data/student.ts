@@ -48,7 +48,7 @@ export class Student {
   dropout?: Dropout;
 
   // student_admission
-  @Field({ nullable: true })
+  @Field()
   admission: Admission;
 
   // student_employed
