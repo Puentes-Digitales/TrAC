@@ -2,7 +2,7 @@ FROM node:14-alpine
 
 WORKDIR /home/trac
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@5.18.3
 
 COPY package.json pnpm-lock.yaml ./
 

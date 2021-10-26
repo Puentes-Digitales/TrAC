@@ -231,7 +231,6 @@ export const StudentListFilterDataLoader = new DataLoader(
   },
   {
     cacheKeyFn: ({ program_id, curriculum }) => {
-      console.log("entró al cacheKeyFn");
       return program_id + curriculum;
     },
     cacheMap: new LRUMap(1000),

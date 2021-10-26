@@ -152,7 +152,7 @@ export function Dashboard() {
 
   useUpdateEffect(() => {
     if (IS_NOT_TEST && user?.admin) {
-      console.log("IS_NO_TEST##########", {
+      console.log({
         searchProgramData,
         searchStudentData,
         dataPerformanceByLoad,
@@ -879,7 +879,6 @@ export function Dashboard() {
                 ),
               };
             });
-          console.log("all students", allStudents);
           const allStudentsGrades = allStudents.map((stu) =>
             stu.terms
               .map((semester) => {
