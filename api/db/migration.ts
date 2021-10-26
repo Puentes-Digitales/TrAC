@@ -523,6 +523,7 @@ const migration = async () => {
           table.text("curriculum").notNullable();
           table.primary(["student_id", "program_id", "curriculum"]);
           table.integer("start_year", 4).notNullable();
+          table.text("type_admission").notNullable();
           table.text("mention").notNullable();
           table.integer("last_term", 4).notNullable();
           table.integer("n_courses", 8).notNullable();
