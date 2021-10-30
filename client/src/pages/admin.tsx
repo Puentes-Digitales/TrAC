@@ -111,7 +111,7 @@ const Admin: FC = () => {
 
   const { colorMode, toggleColorMode } = useColorMode();
 
-  console.log(888, colorMode);
+  //console.log(888, colorMode);
 
   useEffect(() => {
     if (colorMode === "dark") {

@@ -4,7 +4,6 @@
 # -----------------------------------------------
 
 type Admission {
-  active: Boolean!
   type_admission: String!
 }
 
@@ -334,6 +333,7 @@ type Program {
   id: String!
   lastGPA: Float!
   name: String!
+  type_admission: String!
 }
 
 type Query {

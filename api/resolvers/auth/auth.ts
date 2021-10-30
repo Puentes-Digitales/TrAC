@@ -58,7 +58,7 @@ export class AuthResolver {
     res.setCookie("authorization", token, {
       path: "/",
       httpOnly: true,
-      secure: IS_PRODUCTION,
+      secure: false,
       expires: IS_DEVELOPMENT
         ? addWeeks(Date.now(), 12)
         : addMilliseconds(

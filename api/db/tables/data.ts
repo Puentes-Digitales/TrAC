@@ -184,6 +184,7 @@ export interface IStudentProgram {
   program_id: string;
   curriculum: string;
   start_year: number;
+  type_admission: string;
   mention: string;
   last_term: number;
   n_courses: number;
@@ -235,14 +236,14 @@ export const StudentEmployedTable = () =>
 // --------------------------------------------------------------------------
 export interface IStudentAdmission {
   student_id: string;
-  active: boolean;
   type_admission: string;
 }
 
-export const STUDENT_ADMISSION_TABLE = "student_admission";
+export const STUDENT_ADMISSION_TABLE = "student_program";
 
 export const StudentAdmissionTable = () =>
   dbData<IStudentAdmission>(STUDENT_ADMISSION_TABLE);
+
 // --------------------------------------------------------------------------
 
 export interface IGroupedComplementaryInformation {
