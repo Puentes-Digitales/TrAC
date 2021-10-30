@@ -401,7 +401,7 @@ export const baseConfig = {
     " Por favor no responda este email. Este correo fue generado de manera automática por TrAC-FID y enviado a : ",
   MESSAGE_SUBJECT: "Novedades en TrAC-FID",
   DEFAULT_MESSAGE: "Se ha actualizado la base de datos de TrAC-FID",
-  NO_INFORMATION_TO_DEPLOY: "No hay información para monstar",
+  NO_INFORMATION_TO_DEPLOY: "No hay información para mostrar",
   RISK_ALL: "Todos",
   RISK_STUDENT_PENDING_OF_GRADUATION: "Pendientes de Titulación ",
   RISK_LOW_PASSING_RATE_COURSES: "Anulaciones sobre el umbral",

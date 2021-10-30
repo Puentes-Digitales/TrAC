@@ -1,42 +1,42 @@
 [
   {
     "id": 1,
-    "loading_type": "Datos académicos",
+    "loading_type": "Situación académica",
     "loading_date": "2019-09-21 00:00:00"
   },
   {
     "id": 2,
-    "loading_type": "Datos agrupados",
+    "loading_type": "Malla",
     "loading_date": "2019-09-22 00:00:00"
   },
   {
     "id": 3,
-    "loading_type": "Datos empleabilidad",
+    "loading_type": "Indicadores agrupados",
     "loading_date": "2019-09-23 00:00:00"
   },
   {
     "id": 4,
-    "loading_type": "Datos externos",
+    "loading_type": "Asignaturas inscritas",
     "loading_date": "2019-09-24 00:00:00"
   },
   {
     "id": 5,
-    "loading_type": "Datos académicos",
+    "loading_type": "Asignaturas cursadas",
     "loading_date": "2019-09-25 00:00:00"
   },
   {
     "id": 6,
-    "loading_type": "Datos agrupados",
+    "loading_type": "Empleabilidad",
     "loading_date": "2019-09-26 00:00:00"
   },
   {
     "id": 7,
-    "loading_type": "Datos empleabilidad",
+    "loading_type": "Evaluación inicial",
     "loading_date": "2019-09-27 00:00:00"
   },
   {
     "id": 8,
-    "loading_type": "Datos académicos",
+    "loading_type": "Evaluación nacional",
     "loading_date": "2019-09-29 00:00:00"
   }
 ]
