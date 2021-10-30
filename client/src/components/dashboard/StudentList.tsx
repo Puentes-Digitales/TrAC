@@ -137,7 +137,7 @@ export const StudentList: FC<{
     //RISK_LOW_PASSING_RATE_COURSES,
     RISK_LOW_PROGRESSING_RATE,
     RISK_THIRD_ATTEMPT,
-    COURSE_LABEL,
+    //COURSE_LABEL,
   } = useContext(ConfigContext);
 
   var [riskType, setRiskType] = useRememberState(
@@ -383,15 +383,6 @@ export const StudentList: FC<{
               {PROGRESS_LABEL}
             </Table.HeaderCell>
           )}
-          {riskType == RISK_THIRD_ATTEMPT && (
-            <Table.HeaderCell
-              width={5}
-              sorted={columnSort[0] === "course_id" ? directionSort : undefined}
-              onClick={handleSort("course_id")}
-            >
-              {COURSE_LABEL}
-            </Table.HeaderCell>
-          )}
 
           {showDropout && (
             <Table.HeaderCell
@@ -543,7 +534,7 @@ export const StudentList: FC<{
                               textAlign="center"
                             >
                               <Text>
-                                {truncate(student_id, { length: 16 })}
+                                {truncate(student_id, { length: 35 })}
                               </Text>
                             </Tooltip>
                           </Table.Cell>
@@ -563,11 +554,6 @@ export const StudentList: FC<{
                                 progress
                                 percent={integerProgress}
                               />
-                            </Table.Cell>
-                          )}
-                          {riskType == RISK_THIRD_ATTEMPT && (
-                            <Table.Cell verticalAlign="middle">
-                              <Text>{truncate(course_id, { length: 16 })}</Text>
                             </Table.Cell>
                           )}
 
