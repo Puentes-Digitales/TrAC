@@ -55,6 +55,9 @@ export class Program {
   @Field()
   lastGPA: number;
 
+  @Field()
+  type_admission: string;
+
   // program_structure => curriculum
   @Field(() => [Curriculum])
   curriculums: Curriculum[];

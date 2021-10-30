@@ -80,7 +80,6 @@ const migration = async () => {
     ProgramStructureTable,
     ExternalEvaluationStructureTable,
     ProgramTable,
-    STUDENT_ADMISSION_TABLE,
     STUDENT_EXTERNAL_EVALUATION_TABLE,
     EXTERNAL_EVALUATION_TABLE,
     EXTERNAL_EVALUATION_STATS_TABLE,
@@ -92,7 +91,6 @@ const migration = async () => {
     STUDENT_PROGRAM_TABLE,
     STUDENT_TABLE,
     STUDENT_TERM_TABLE,
-    StudentAdmissionTable,
     StudentExternalEvaluationTable,
     ExternalEvaluationTable,
     ExternalEvaluationStatsTable,
@@ -525,6 +523,7 @@ const migration = async () => {
           table.text("curriculum").notNullable();
           table.primary(["student_id", "program_id", "curriculum"]);
           table.integer("start_year", 4).notNullable();
+          table.text("type_admission").notNullable();
           table.text("mention").notNullable();
           table.integer("last_term", 4).notNullable();
           table.integer("n_courses", 8).notNullable();
@@ -574,23 +573,6 @@ const migration = async () => {
               };
             }
           )
-        );
-      }
-    });
-
-  const studentAdmission = dbData.schema
-    .hasTable(STUDENT_ADMISSION_TABLE)
-    .then(async (exists) => {
-      if (!exists) {
-        await dbData.schema.createTable(STUDENT_ADMISSION_TABLE, (table) => {
-          table.text("student_id").notNullable().primary();
-          table.boolean("active").notNullable().defaultTo(true);
-          table.text("type_admission").notNullable();
-          table.float("initial_evaluation", 4);
-          table.float("final_evaluation", 4);
-        });
-        await StudentAdmissionTable().insert(
-          (await import("./mockData/student_admission.json")).default
         );
       }
     });
@@ -1075,7 +1057,6 @@ const migration = async () => {
     externalEvaluationStructure,
     NotificationsData,
     student,
-    studentAdmission,
     studentExternalEvaluation,
     groupedEmployedStructure,
     externalEvaluation,
@@ -1144,7 +1125,7 @@ PORT=3000
 # The target db user is always "postgres"
 POSTGRES_HOST=localhost
 # POSTGRES_PASSWORD=asvpvmhbqmipzojxfzdqsgovhxqzdpgueixyylkyorxpctfjeqmytfvceuheqi
-
+# COMPOSE_PROJECT_NAME=Trac-Fid
 
 # By default in production environment the GraphQL Playground Altair https://altair.sirmuel.design/ & Voyager are disabled.
 # Specify this environment variable to show them anyways, it's recommended to be either recommended or commented

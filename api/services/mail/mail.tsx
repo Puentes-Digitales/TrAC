@@ -74,10 +74,6 @@ export const NotificationMail = ({
       <h2>{subject}</h2>
       <h3>{header}</h3>
       <p>{body}</p>
-      <p>{farewell}</p>
-      <p>
-        {closing} <b>{EMAIL_ADDRESS}</b>
-      </p>
       <ul>
         {parametersDate?.map(
           (date: {
@@ -95,6 +91,10 @@ export const NotificationMail = ({
           }
         )}
       </ul>
+      <p>{farewell}</p>
+      <p>
+        {closing} <b>{EMAIL_ADDRESS}</b>
+      </p>
       <p>
         {footer}
         {email}.
