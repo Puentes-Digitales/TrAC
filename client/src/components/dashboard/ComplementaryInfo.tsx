@@ -149,7 +149,7 @@ export const ComplementaryInfo: FC<{
                     </Flex>
                   )}
 
-                  {months_to_first_job && (
+                  {typeof months_to_first_job == "number" ? (
                     <Flex minWidth="max-content" pr={5} pl={0} pt={1} pb={1}>
                       <Text>
                         {COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS}{" "}
@@ -161,7 +161,7 @@ export const ComplementaryInfo: FC<{
                         }
                       ></IndicatorTooltip>
                     </Flex>
-                  )}
+                  ) : null}
                 </motion.div>
               )}
             </AnimatePresence>
