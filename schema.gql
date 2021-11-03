@@ -362,7 +362,7 @@ type Query {
 }
 
 type riskNotification {
-  cohorte: String!
+  cohort: String!
   course_id: String!
   curriculum: String!
   details: String!

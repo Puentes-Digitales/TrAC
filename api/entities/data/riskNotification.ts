@@ -15,7 +15,7 @@ export class riskNotification {
   curriculum: string;
 
   @Field()
-  cohorte: string;
+  cohort: string;
 
   @Field()
   risk_type: string;

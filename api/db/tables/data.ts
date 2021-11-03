@@ -93,7 +93,7 @@ export interface IRiskNotification {
   course_id: string;
   program_id: string;
   curriculum: string;
-  cohoter: string;
+  cohort: string;
   risk_type: string;
   details: string;
   notified: boolean;

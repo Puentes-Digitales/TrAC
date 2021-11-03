@@ -164,12 +164,12 @@ export const StudentList: FC<{
       case RISK_STUDENT_PENDING_OF_GRADUATION:
         return (
           studentPendingOfGraduation?.riskNotification.map(
-            ({ student_id, program_id, course_id, cohorte, risk_type }) => {
+            ({ student_id, program_id, course_id, cohort, risk_type }) => {
               return {
                 student_id: student_id,
                 dropout_probability: -1,
                 progress: -1,
-                start_year: parseInt(cohorte),
+                start_year: parseInt(cohort),
                 explanation:
                   "Estudiantes pendientes de titulacion " + risk_type,
                 course_id: "",
@@ -180,12 +180,12 @@ export const StudentList: FC<{
       case RISK_LOW_PROGRESSING_RATE:
         return (
           lowProgressingRate?.riskNotification.map(
-            ({ student_id, program_id, course_id, cohorte, risk_type }) => {
+            ({ student_id, program_id, course_id, cohort, risk_type }) => {
               return {
                 student_id: student_id,
                 dropout_probability: -1,
                 progress: -1,
-                start_year: parseInt(cohorte),
+                start_year: parseInt(cohort),
                 explanation: " " + risk_type,
                 course_id: "",
               };
@@ -196,12 +196,12 @@ export const StudentList: FC<{
       case RISK_THIRD_ATTEMPT:
         return (
           thirdAttempt?.riskNotification.map(
-            ({ student_id, program_id, course_id, cohorte, risk_type }) => {
+            ({ student_id, program_id, course_id, cohort, risk_type }) => {
               return {
                 student_id: student_id,
                 dropout_probability: -1,
                 progress: -1,
-                start_year: parseInt(cohorte),
+                start_year: parseInt(cohort),
                 explanation: " " + risk_type,
                 course_id: course_id,
               };
@@ -213,12 +213,12 @@ export const StudentList: FC<{
         case 4:
         return (
           lowPassingRateCourses?.riskNotification.map(
-            ({ student_id, program_id, course_id, cohorte, risk_type }) => {
+            ({ student_id, program_id, course_id, cohort, risk_type }) => {
               return {
                 student_id: student_id,
                 dropout_probability: -1,
                 progress: -1,
-                start_year: parseInt(cohorte),
+                start_year: parseInt(cohort),
                 explanation: " " + risk_type,
               };
             }
