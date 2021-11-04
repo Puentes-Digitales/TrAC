@@ -92,11 +92,11 @@ export const StudentCycleApprovedCourseDataLoader = new DataLoader(
           })
           .where({
             program_id: program_id,
+            comments: program_id,
             curriculum: curriculum,
             course_cat: course_cat,
             state: "A",
             student_id: student_id,
-            registration: "CURSADA",
           });
       })
     );
