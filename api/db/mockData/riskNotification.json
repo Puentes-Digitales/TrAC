@@ -4,7 +4,7 @@
     "course_id": "INFO253-08",
     "program_id": "1708",
     "curriculum": "2015",
-    "cohorte": "2015",
+    "cohorte": "2017",
     "risk_type": "student_pending_of_graduation",
     "details": null,
     "notified": null
@@ -14,7 +14,7 @@
     "course_id": "INFO253-08",
     "program_id": "1708",
     "curriculum": "2015",
-    "cohorte": "2016",
+    "cohorte": "2017",
     "risk_type": "student_pending_of_graduation",
     "details": null,
     "notified": null
@@ -34,7 +34,7 @@
     "course_id": "INFO253-08",
     "program_id": "1708",
     "curriculum": "2015",
-    "cohorte": "2016",
+    "cohorte": "2017",
     "risk_type": "student_pending_of_graduation",
     "details": null,
     "notified": null
@@ -64,7 +64,7 @@
     "course_id": "INFO253-08",
     "program_id": "1708",
     "curriculum": "2015",
-    "cohorte": "2016",
+    "cohorte": "2017",
     "risk_type": "low_progressing_rate",
     "details": null,
     "notified": null
@@ -94,7 +94,7 @@
     "course_id": "INFO253-08",
     "program_id": "1708",
     "curriculum": "2015",
-    "cohorte": "2016",
+    "cohorte": "2017",
     "risk_type": "third_attempt",
     "details": null,
     "notified": null
