@@ -276,7 +276,7 @@ const migration = async () => {
   const param = dbData.schema.hasTable(PARAMETER_TABLE).then(async (exists) => {
     if (!exists) {
       await dbData.schema.createTable(PARAMETER_TABLE, (table) => {
-        table.integer("id", 8).notNullable().primary();
+        table.increments("id");
         table.text("loading_type").notNullable();
         table.timestamp("loading_date").notNullable();
       });
