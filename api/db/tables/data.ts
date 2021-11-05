@@ -224,7 +224,7 @@ export interface IStudentEmployed {
   student_id: string;
   employed: boolean;
   institution: string;
-  educational_system: string;
+  educational_system: boolean;
   months_to_first_job: number;
   description: string;
 }

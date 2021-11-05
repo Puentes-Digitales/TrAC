@@ -95,8 +95,8 @@ export type Dropout = {
 
 export type Employed = {
   description?: Maybe<Scalars["String"]>;
-  educational_system?: Maybe<Scalars["String"]>;
-  employed: Scalars["Boolean"];
+  educational_system?: Maybe<Scalars["Boolean"]>;
+  employed?: Maybe<Scalars["Boolean"]>;
   institution?: Maybe<Scalars["String"]>;
   months_to_first_job?: Maybe<Scalars["Float"]>;
 };
