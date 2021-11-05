@@ -377,6 +377,7 @@ query riskNotication($program_id: String!, $risk_type: String!) {
     course_id
     program_id
     curriculum
+    cohort
     risk_type
   }
 }
