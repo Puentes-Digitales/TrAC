@@ -88,8 +88,8 @@ scalar EmailAddress
 
 type Employed {
   description: String
-  educational_system: String
-  employed: Boolean!
+  educational_system: Boolean
+  employed: Boolean
   institution: String
   months_to_first_job: Float
 }

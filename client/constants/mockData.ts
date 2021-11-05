@@ -15780,7 +15780,7 @@ const data: {
       },
       employed: {
         employed: true,
-        educational_system: "Sistema educacional chileno",
+        educational_system: true,
         institution: "Liceo Recto Armando Robles",
         months_to_first_job: 15,
       },

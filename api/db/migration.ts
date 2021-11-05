@@ -388,15 +388,15 @@ const migration = async () => {
     .then(async (exists) => {
       if (!exists) {
         await dbData.schema.createTable(GROUPED_EMPLOYED_TABLE, (table) => {
-          table.integer("id", 8).notNullable().primary();
+          table.increments("id");
           table.text("program_id").notNullable();
-          table.text("curriculum").notNullable();
-          table.text("type_admission").notNullable();
-          table.text("cohort").notNullable();
-          table.integer("total_students", 6).notNullable();
-          table.float("employed_rate", 3).notNullable();
-          table.float("average_time_job_finding", 3).notNullable();
-          table.float("employed_rate_educational_system", 3).notNullable();
+          table.text("curriculum");
+          table.text("type_admission");
+          table.text("cohort");
+          table.integer("total_students", 6);
+          table.float("employed_rate", 3);
+          table.float("average_time_job_finding", 3);
+          table.float("employed_rate_educational_system", 3);
         });
         await GroupedEmployedTable().insert(
           (await import("./mockData/grouped_employed.json")).default.map(
@@ -741,9 +741,11 @@ const migration = async () => {
       if (!exists) {
         await dbData.schema.createTable(STUDENT_EMPLOYED_TABLE, (table) => {
           table.text("student_id").notNullable().primary();
-          table.boolean("employed").defaultTo(false).notNullable();
+          table.text("program_id").notNullable();
+          table.integer("finish_year");
+          table.boolean("employed");
           table.text("institution");
-          table.text("educational_system");
+          table.boolean("educational_system");
           table.integer("months_to_first_job");
           table.text("description");
         });

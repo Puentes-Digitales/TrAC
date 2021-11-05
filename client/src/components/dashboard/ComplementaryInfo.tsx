@@ -8,19 +8,28 @@ import { setTrackingData, track } from "../../context/Tracking";
 import { IndicatorTooltip } from "../IndicatorTooltip";
 
 export const ComplementaryInfo: FC<{
-  educational_system?: string | null;
+  employed?: boolean | null;
+  educational_system?: boolean | null;
   institution?: string | null;
   months_to_first_job?: number | null;
   type_admission?: string | null;
 }> = memo(
   ({
+    employed,
     educational_system,
     institution,
     months_to_first_job,
     type_admission,
   }) => {
     const {
+      NO_INFORMATION,
+      EMPLOYED_TRUE,
+      EMPLOYED_FALSE,
+      EDUCATIONAL_SYSTEM_TRUE,
+      EDUCATIONAL_SYSTEM_FALSE,
       COMPLEMENTARY_INFORMATION,
+      COMPLEMENTARY_INFORMATION_EMPLOYED_TOOLTIP,
+      COMPLEMENTARY_INFORMATION_EMPLOYED,
       COMPLEMENTARY_INFORMATION_BACKGROUND_COLOR,
       COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM,
       COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION,
@@ -114,11 +123,27 @@ export const ComplementaryInfo: FC<{
                     </Flex>
                   )}
 
-                  {educational_system && (
+                  {typeof employed == "boolean" && (
+                    <Flex minWidth="max-content" pr={5} pl={0} pt={1} pb={1}>
+                      <Text>
+                        {COMPLEMENTARY_INFORMATION_EMPLOYED}{" "}
+                        {employed == true ? EMPLOYED_TRUE : EMPLOYED_FALSE}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={COMPLEMENTARY_INFORMATION_EMPLOYED_TOOLTIP}
+                      ></IndicatorTooltip>
+                    </Flex>
+                  )}
+
+                  {typeof employed == "boolean" && (
                     <Flex minWidth="max-content" pr={5} pl={0} pt={1} pb={1}>
                       <Text>
                         {COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM}{" "}
-                        {educational_system}
+                        {typeof educational_system == "boolean"
+                          ? educational_system == true
+                            ? EDUCATIONAL_SYSTEM_TRUE
+                            : EDUCATIONAL_SYSTEM_FALSE
+                          : NO_INFORMATION}
                       </Text>
                       <IndicatorTooltip
                         tooltipShow={
@@ -128,7 +153,7 @@ export const ComplementaryInfo: FC<{
                     </Flex>
                   )}
 
-                  {institution && (
+                  {typeof employed == "boolean" && (
                     <Flex
                       minWidth="max-content"
                       data-testid="inst"
@@ -139,7 +164,9 @@ export const ComplementaryInfo: FC<{
                     >
                       <Text>
                         {COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION}{" "}
-                        {institution}
+                        {typeof institution == "string"
+                          ? institution
+                          : NO_INFORMATION}
                       </Text>
                       <IndicatorTooltip
                         tooltipShow={
@@ -149,11 +176,13 @@ export const ComplementaryInfo: FC<{
                     </Flex>
                   )}
 
-                  {typeof months_to_first_job == "number" ? (
+                  {typeof employed == "boolean" ? (
                     <Flex minWidth="max-content" pr={5} pl={0} pt={1} pb={1}>
                       <Text>
                         {COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS}{" "}
-                        {months_to_first_job}
+                        {typeof months_to_first_job == "number"
+                          ? months_to_first_job
+                          : NO_INFORMATION}
                       </Text>
                       <IndicatorTooltip
                         tooltipShow={

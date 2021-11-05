@@ -192,7 +192,7 @@ describe("Test <AdmissionDropout />", () => {
       const { getByTestId } = render(
         <ComplementaryInfo
           type_admission="PSU"
-          educational_system="Publico"
+          educational_system={true}
           institution="Escuela"
           months_to_first_job={6}
         />
@@ -207,14 +207,16 @@ describe("Test <AdmissionDropout />", () => {
 });
 
 test("test props en <AdmissionDropout />", async () => {
+  const employed = true;
   const type_admission = "PSU";
-  const educational_system = "Publico";
+  const educational_system = true;
   const institution = "Escuela";
   const months_to_first_job = 6;
 
   await act(async () => {
     const { getByText, getByTestId } = render(
       <ComplementaryInfo
+        employed={employed}
         type_admission={type_admission}
         educational_system={educational_system}
         institution={institution}
@@ -224,22 +226,22 @@ test("test props en <AdmissionDropout />", async () => {
     await waitForExpect(() => {
       fireEvent.click(getByTestId("BoxContainer"));
       expect(getByText("Tipo de ingreso: PSU".trim())).toBeInTheDocument();
-      expect(
-        getByText("Sistema educacional: Publico".trim())
-      ).toBeInTheDocument();
+      expect(getByText("Sistema educacional: Si".trim())).toBeInTheDocument();
     });
   });
 });
 
 test("test null props complementary component", async () => {
+  const employed = true;
   const type_admission = null;
-  const educational_system = "Publico";
+  const educational_system = true;
   const institution = null;
   const months_to_first_job = null;
 
   await act(async () => {
     const { getByTestId, queryAllByText } = render(
       <ComplementaryInfo
+        employed={employed}
         type_admission={type_admission}
         educational_system={educational_system}
         institution={institution}
@@ -251,7 +253,7 @@ test("test null props complementary component", async () => {
       const inst_value = queryAllByText("Tipo de ingreso:");
       expect(inst_value).toHaveLength(0);
       const education_system_value = queryAllByText(
-        "Sistema educacional: Publico".trim()
+        "Sistema educacional: Si".trim()
       );
       expect(education_system_value).toHaveLength(1);
     });

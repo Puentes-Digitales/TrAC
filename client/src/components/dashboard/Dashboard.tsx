@@ -521,6 +521,7 @@ export function Dashboard() {
       ) {
         ComplementaryInfoComponent = (
           <ComplementaryInfo
+            employed={studentData.employed?.employed}
             type_admission={studentData.admission.type_admission}
             educational_system={studentData.employed?.educational_system}
             institution={studentData.employed?.institution}
