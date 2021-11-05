@@ -68,7 +68,7 @@ const initialOpen = (() => {
   return false;
 })();
 
-export type columnNames = keyof StudentListInfo;
+export type columnNames = keyof RiskInfo;
 
 export type StudentListInfo = {
   student_id: string;
@@ -78,6 +78,14 @@ export type StudentListInfo = {
   progress: number;
 };
 
+export type RiskInfo = {
+  student_id: string;
+  dropout_probability: number;
+  start_year: number;
+  explanation: string;
+  progress: number;
+  course_id: string;
+};
 export const StudentList: FC<{
   mockData?: StudentListInfo[];
   program_id?: string;
@@ -126,9 +134,10 @@ export const StudentList: FC<{
     NO_INFORMATION_TO_DEPLOY,
     RISK_ALL,
     RISK_STUDENT_PENDING_OF_GRADUATION,
-    RISK_LOW_PASSING_RATE_COURSES,
-    //RISK_LOW_PROGRESSING_RATE,
+    //RISK_LOW_PASSING_RATE_COURSES,
+    RISK_LOW_PROGRESSING_RATE,
     RISK_THIRD_ATTEMPT,
+    //COURSE_LABEL,
   } = useContext(ConfigContext);
 
   var [riskType, setRiskType] = useRememberState(
@@ -147,6 +156,7 @@ export const StudentList: FC<{
                 progress: progress * 100,
                 start_year,
                 explanation: dropout?.explanation ?? "",
+                course_id: "",
               };
             }
           ) ?? []
@@ -154,28 +164,30 @@ export const StudentList: FC<{
       case RISK_STUDENT_PENDING_OF_GRADUATION:
         return (
           studentPendingOfGraduation?.riskNotification.map(
-            ({ student_id, program_id, course_id, curriculum, risk_type }) => {
+            ({ student_id, program_id, course_id, cohort, risk_type }) => {
               return {
                 student_id: student_id,
                 dropout_probability: -1,
                 progress: -1,
-                start_year: parseInt(curriculum),
+                start_year: parseInt(cohort),
                 explanation:
                   "Estudiantes pendientes de titulacion " + risk_type,
+                course_id: "",
               };
             }
           ) ?? []
         );
-      case RISK_LOW_PASSING_RATE_COURSES:
+      case RISK_LOW_PROGRESSING_RATE:
         return (
           lowProgressingRate?.riskNotification.map(
-            ({ student_id, program_id, course_id, curriculum, risk_type }) => {
+            ({ student_id, program_id, course_id, cohort, risk_type }) => {
               return {
                 student_id: student_id,
                 dropout_probability: -1,
                 progress: -1,
-                start_year: parseInt(curriculum),
+                start_year: parseInt(cohort),
                 explanation: " " + risk_type,
+                course_id: "",
               };
             }
           ) ?? []
@@ -184,13 +196,14 @@ export const StudentList: FC<{
       case RISK_THIRD_ATTEMPT:
         return (
           thirdAttempt?.riskNotification.map(
-            ({ student_id, program_id, course_id, curriculum, risk_type }) => {
+            ({ student_id, program_id, course_id, cohort, risk_type }) => {
               return {
                 student_id: student_id,
                 dropout_probability: -1,
                 progress: -1,
-                start_year: parseInt(curriculum),
+                start_year: parseInt(cohort),
                 explanation: " " + risk_type,
+                course_id: course_id,
               };
             }
           ) ?? []
@@ -200,12 +213,12 @@ export const StudentList: FC<{
         case 4:
         return (
           lowPassingRateCourses?.riskNotification.map(
-            ({ student_id, program_id, course_id, curriculum, risk_type }) => {
+            ({ student_id, program_id, course_id, cohort, risk_type }) => {
               return {
                 student_id: student_id,
                 dropout_probability: -1,
                 progress: -1,
-                start_year: parseInt(curriculum),
+                start_year: parseInt(cohort),
                 explanation: " " + risk_type,
               };
             }
@@ -327,7 +340,7 @@ export const StudentList: FC<{
   }, [studentListChunks, pageSelected, riskType]);
 
   useEffect(() => {
-    //console.log(riskType);
+    //console.log(studentPendingOfGraduation);
   }, [riskType]);
 
   const TableHeader: FC<{
@@ -436,8 +449,8 @@ export const StudentList: FC<{
               <option value={RISK_STUDENT_PENDING_OF_GRADUATION}>
                 {RISK_STUDENT_PENDING_OF_GRADUATION}
               </option>
-              <option value={RISK_LOW_PASSING_RATE_COURSES}>
-                {RISK_LOW_PASSING_RATE_COURSES}
+              <option value={RISK_LOW_PROGRESSING_RATE}>
+                {RISK_LOW_PROGRESSING_RATE}
               </option>
               <option value={RISK_THIRD_ATTEMPT}>{RISK_THIRD_ATTEMPT}</option>
               {/* <option value={RISK_LOW_PROGRESSING_RATE}>{RISK_LOW_PROGRESSING_RATE}</option> */}
@@ -487,6 +500,7 @@ export const StudentList: FC<{
                         start_year,
                         progress,
                         explanation,
+                        course_id,
                       },
                       key
                     ) => {
@@ -520,7 +534,7 @@ export const StudentList: FC<{
                               textAlign="center"
                             >
                               <Text>
-                                {truncate(student_id, { length: 16 })}
+                                {truncate(student_id, { length: 35 })}
                               </Text>
                             </Tooltip>
                           </Table.Cell>
