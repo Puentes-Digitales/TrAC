@@ -31,6 +31,7 @@ export const GroupedComplementaryInfo: FC<{
       COMPLEMENTARY_INFORMATION_BACKGROUND_COLOR,
       COMPLEMENTARY_INFORMATION_TEXT_COLOR,
       GROUPED_COMPLEMENTARY_INFORMATION,
+      COMPLEMENTARY_INFORMATION_MONTHS_TEXT,
       COMPLEMENTARY_INFORMATION_SEMESTER_TEXT,
       COMPLEMENTARY_INFORMATION_PERCENT_MARK,
       GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS,
@@ -222,7 +223,7 @@ export const GroupedComplementaryInfo: FC<{
                           GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB
                         }{" "}
                         {average_time_finding_job}{" "}
-                        {COMPLEMENTARY_INFORMATION_YEAR_TEXT}
+                        {COMPLEMENTARY_INFORMATION_MONTHS_TEXT}
                       </Text>
                       <IndicatorTooltip
                         tooltipShow={
