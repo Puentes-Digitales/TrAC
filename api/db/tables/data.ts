@@ -257,6 +257,7 @@ export interface IGroupedComplementaryInformation {
   retention_rate: number;
   average_time_university_degree: number;
   timely_university_degree_rate: number;
+  inactive_time_rate: number;
 }
 
 export const GROUPED_COMPLEMENTARY_INFORMATION_TABLE =
