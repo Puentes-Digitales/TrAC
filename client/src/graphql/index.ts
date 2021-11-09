@@ -193,7 +193,7 @@ export type GroupedComplementary = {
   inactive_time_rate?: Maybe<Scalars["Float"]>;
   program_id: Scalars["String"];
   retention_rate: Scalars["Float"];
-  timely_university_degree_rate: Scalars["Float"];
+  timely_university_degree_rate?: Maybe<Scalars["Float"]>;
   total_students: Scalars["Float"];
   type_admission: Scalars["String"];
   university_degree_rate: Scalars["Float"];
@@ -834,6 +834,7 @@ export type SearchProgramMutation = {
         | "cohort"
         | "university_degree_rate"
         | "retention_rate"
+        | "inactive_time_rate"
       >
     >;
     groupedEmployed: Array<

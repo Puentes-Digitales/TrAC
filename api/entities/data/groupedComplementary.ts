@@ -26,8 +26,8 @@ export class GroupedComplementary {
   @Field()
   average_time_university_degree?: number;
 
-  @Field()
-  timely_university_degree_rate?: number;
+  @Field({ nullable: true })
+  timely_university_degree_rate: number;
 
   @Field({ nullable: true })
   inactive_time_rate: number;
