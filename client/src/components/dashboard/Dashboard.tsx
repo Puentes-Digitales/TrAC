@@ -860,6 +860,9 @@ export function Dashboard() {
               empleability_rate_educational_system={
                 filteredEmpleabilityData[0]?.employed_rate_educational_system
               }
+              inactive_time_rate={
+                filteredEmpleabilityData[0]?.inactive_time_rate
+              }
             />
           );
         }
