@@ -861,7 +861,7 @@ export function Dashboard() {
                 filteredEmpleabilityData[0]?.employed_rate_educational_system
               }
               inactive_time_rate={
-                filteredEmpleabilityData[0]?.inactive_time_rate
+                filteredComplementaryData[0]?.inactive_time_rate
               }
             />
           );
