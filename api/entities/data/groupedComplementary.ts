@@ -17,15 +17,15 @@ export class GroupedComplementary {
   @Field()
   total_students: number;
 
-  @Field()
+  @Field({ nullable: true })
   university_degree_rate: number;
 
   @Field()
   retention_rate: number;
 
-  @Field()
+  @Field({ nullable: true })
   average_time_university_degree?: number;
 
-  @Field()
+  @Field({ nullable: true })
   timely_university_degree_rate?: number;
 }
