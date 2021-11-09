@@ -188,6 +188,7 @@ type GroupedComplementary {
   average_time_university_degree: Float!
   cohort: String!
   curriculum: String!
+  inactive_time_rate: Float
   program_id: String!
   retention_rate: Float!
   timely_university_degree_rate: Float!
