@@ -259,7 +259,7 @@ export const GroupedComplementaryInfo: FC<{
                         {
                           GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_INACTIVE_TIME_RATE
                         }{" "}
-                        {inactive_time_rate}
+                        {inactive_time_rate}{" "}
                         {COMPLEMENTARY_INFORMATION_SEMESTER_TEXT}
                       </Text>
                       <IndicatorTooltip
