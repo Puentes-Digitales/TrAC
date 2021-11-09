@@ -28,4 +28,7 @@ export class GroupedComplementary {
 
   @Field()
   timely_university_degree_rate?: number;
+
+  @Field({ nullable: true })
+  inactive_time_rate: number;
 }
