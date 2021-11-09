@@ -41,23 +41,48 @@ export const Parameter: FC<{
   let data_mock = [
     {
       id: 1,
-      loading_type: "Datos mock",
-      loading_date: "2019-09-25",
+      loading_type: "Situación académica",
+      loading_date: "2019-09-01",
     },
     {
       id: 2,
-      loading_type: "Datos agrupados",
-      loading_date: "2019-09-26",
+      loading_type: "Malla:",
+      loading_date: "2019-09-02",
     },
     {
       id: 3,
-      loading_type: "Datos empleabilidad",
-      loading_date: "2019-09-27",
+      loading_type: "Indicadores agrupados",
+      loading_date: "2019-09-03",
     },
     {
       id: 4,
-      loading_type: "Datos académicos",
-      loading_date: "2019-09-22",
+      loading_type: "Asignaturas inscritas",
+      loading_date: "2019-09-03",
+    },
+    {
+      id: 5,
+      loading_type: "Asignaturas cursadas",
+      loading_date: "2019-09-05",
+    },
+    {
+      id: 6,
+      loading_type: "Mock",
+      loading_date: "2019-09-06",
+    },
+    {
+      id: 6,
+      loading_type: "Empleabilidad",
+      loading_date: "2019-09-07",
+    },
+    {
+      id: 7,
+      loading_type: "Evaluación inicial",
+      loading_date: "2019-09-07",
+    },
+    {
+      id: 8,
+      loading_type: "Evaluación nacional",
+      loading_date: "2019-09-08",
     },
   ];
 
@@ -71,7 +96,10 @@ export const Parameter: FC<{
       <PopoverContent>
         <PopoverCloseButton />
         <PopoverArrow />
-        <PopoverHeader fontWeight="bold">{LAST_UPDATE_DATA}</PopoverHeader>
+        <PopoverHeader fontWeight="bold">
+          {LAST_UPDATE_DATA}
+          {":"}
+        </PopoverHeader>
         <PopoverBody>
           <UnorderedList>
             {!mockIsActive
@@ -80,7 +108,7 @@ export const Parameter: FC<{
                     <ListItem key={data.loading_type}>
                       {data.loading_type}
                       {": "}
-                      {data.loading_date}
+                      <b>{data.loading_date}</b>
                     </ListItem>
                   ) : null;
                 })
@@ -89,7 +117,7 @@ export const Parameter: FC<{
                     <ListItem key={data.loading_type}>
                       {data.loading_type}
                       {": "}
-                      {data.loading_date}
+                      <b>{data.loading_date}</b>
                     </ListItem>
                   ) : null;
                 })}

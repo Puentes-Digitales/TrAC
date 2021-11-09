@@ -187,7 +187,7 @@ export type FeedbackResult = {
 };
 
 export type GroupedComplementary = {
-  average_time_university_degree: Scalars["Float"];
+  average_time_university_degree?: Maybe<Scalars["Float"]>;
   cohort: Scalars["String"];
   curriculum: Scalars["String"];
   inactive_time_rate?: Maybe<Scalars["Float"]>;
@@ -196,7 +196,7 @@ export type GroupedComplementary = {
   timely_university_degree_rate?: Maybe<Scalars["Float"]>;
   total_students: Scalars["Float"];
   type_admission: Scalars["String"];
-  university_degree_rate: Scalars["Float"];
+  university_degree_rate?: Maybe<Scalars["Float"]>;
 };
 
 export type GroupedEmployed = {
@@ -460,6 +460,7 @@ export type QueryUserPersistencesArgs = {
 };
 
 export type RiskNotification = {
+  cohort: Scalars["String"];
   course_id: Scalars["String"];
   curriculum: Scalars["String"];
   details: Scalars["String"];
@@ -1151,7 +1152,12 @@ export type RiskNoticationQuery = {
   riskNotification: Array<
     Pick<
       RiskNotification,
-      "student_id" | "course_id" | "program_id" | "curriculum" | "risk_type"
+      | "student_id"
+      | "course_id"
+      | "program_id"
+      | "curriculum"
+      | "cohort"
+      | "risk_type"
     >
   >;
 };
@@ -3435,6 +3441,7 @@ export const RiskNoticationDocument = gql`
       course_id
       program_id
       curriculum
+      cohort
       risk_type
     }
   }
