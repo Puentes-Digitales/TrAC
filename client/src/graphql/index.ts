@@ -2444,6 +2444,7 @@ export const SearchProgramDocument = gql`
         cohort
         university_degree_rate
         retention_rate
+        inactive_time_rate
       }
       groupedEmployed {
         employed_rate
