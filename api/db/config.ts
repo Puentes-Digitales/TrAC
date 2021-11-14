@@ -22,7 +22,7 @@ export const baseDBConfig: Config = IS_NOT_TEST
 
 export const dbNames = {
   auth: "auth-lala",
-  data: "bs-3",
+  data: "data-lala",
   tracking: "tracking",
   config: "config",
 };
