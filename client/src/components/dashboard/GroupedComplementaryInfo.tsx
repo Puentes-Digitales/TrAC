@@ -189,6 +189,22 @@ export const GroupedComplementaryInfo: FC<{
                       ></IndicatorTooltip>
                     </Flex>
                   )}
+                  {typeof inactive_time_rate === "number" && (
+                    <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
+                      <Text>
+                        {
+                          GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_INACTIVE_TIME_RATE
+                        }{" "}
+                        {inactive_time_rate}{" "}
+                        {COMPLEMENTARY_INFORMATION_SEMESTER_TEXT}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_INACTIVE_TIME_RATE_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
+                  )}
 
                   {typeof retention_rate === "number" && (
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
@@ -249,22 +265,6 @@ export const GroupedComplementaryInfo: FC<{
                       <IndicatorTooltip
                         tooltipShow={
                           GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM_TOOLTIP
-                        }
-                      ></IndicatorTooltip>
-                    </Flex>
-                  )}
-                  {typeof inactive_time_rate === "number" && (
-                    <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
-                      <Text>
-                        {
-                          GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_INACTIVE_TIME_RATE
-                        }{" "}
-                        {inactive_time_rate}{" "}
-                        {COMPLEMENTARY_INFORMATION_SEMESTER_TEXT}
-                      </Text>
-                      <IndicatorTooltip
-                        tooltipShow={
-                          GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_INACTIVE_TIME_RATE_TOOLTIP
                         }
                       ></IndicatorTooltip>
                     </Flex>
