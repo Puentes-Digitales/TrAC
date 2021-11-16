@@ -8,8 +8,11 @@ import {
   StudentCourseTable,
   StudentTermTable,
   StudentExternalEvaluationTable,
+  IProgramStructure,
+  PROGRAM_STRUCTURE_TABLE,
+  STUDENT_COURSE_TABLE,
 } from "../db/tables";
-
+import { StudentViaProgramsDataLoader } from "../dataloaders/student";
 export const TermDataLoader = new DataLoader(
   async (ids: readonly number[]) => {
     const dataDict: Dictionary<IStudentTerm | undefined> = keyBy(
@@ -49,24 +52,80 @@ export const ProgramGradeDataLoader = new DataLoader(
 
 export const TakenCoursesDataLoader = new DataLoader(
   async (
-    ids: readonly { year: number; term: number; student_id: string }[]
+    ids: readonly {
+      year: number;
+      term: number;
+      student_id: string;
+      mention: string;
+    }[]
   ) => {
     return await Promise.all(
-      ids.map(async ({ year, term, student_id }) => {
-        const takenCoursesData = await StudentCourseTable()
-          .select("id", "course_taken", "course_equiv", "elect_equiv")
-          .where({
-            year,
-            term,
-            student_id,
-          })
-          .orderBy([
-            { column: "course_taken", order: "desc" },
-            { column: "year", order: "desc" },
-            { column: "term", order: "desc" },
-            { column: "state", order: "asc" },
-          ]);
-        return takenCoursesData;
+      ids.map(async ({ year, term, student_id, mention }) => {
+        const studentData = await StudentViaProgramsDataLoader.load(student_id);
+        let mentionStudent: string = studentData?.mention ?? "";
+        if (mentionStudent != "") {
+          console.log("con mencion");
+          const takenCoursesData = await StudentCourseTable()
+            .select(
+              `${STUDENT_COURSE_TABLE}.id`,
+              "course_taken",
+              "course_equiv",
+              "elect_equiv",
+              "mention"
+            )
+            .leftJoin<IProgramStructure>(PROGRAM_STRUCTURE_TABLE, function () {
+              this.on(
+                `${PROGRAM_STRUCTURE_TABLE}.course_id`,
+                `${STUDENT_COURSE_TABLE}.course_taken`
+              );
+              this.orOn(
+                `${PROGRAM_STRUCTURE_TABLE}.course_id`,
+                `${STUDENT_COURSE_TABLE}.elect_equiv`
+              );
+              this.orOn(
+                `${PROGRAM_STRUCTURE_TABLE}.course_id`,
+                `${STUDENT_COURSE_TABLE}.course_equiv`
+              );
+            })
+            .where({
+              year,
+              term,
+              student_id,
+              mention: mentionStudent,
+            })
+            .orWhere({
+              year,
+              term,
+              student_id,
+              mention: "",
+            })
+            .orderBy([
+              { column: "course_taken", order: "desc" },
+              { column: "year", order: "desc" },
+              { column: "term", order: "desc" },
+              { column: "state", order: "asc" },
+            ]);
+          console.log(takenCoursesData);
+          return takenCoursesData;
+        } else {
+          console.log("sin mencion");
+          const takenCoursesData = await StudentCourseTable()
+            .select("id", "course_taken", "course_equiv", "elect_equiv")
+            .where({
+              year,
+              term,
+              student_id,
+            })
+
+            .orderBy([
+              { column: "course_taken", order: "desc" },
+              { column: "year", order: "desc" },
+              { column: "term", order: "desc" },
+              { column: "state", order: "asc" },
+            ]);
+          console.log(takenCoursesData);
+          return takenCoursesData;
+        }
       })
     );
   },

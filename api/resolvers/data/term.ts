@@ -142,6 +142,7 @@ export class TermResolver {
       year: studentTermData.year,
       term: studentTermData.term,
       student_id: studentTermData.student_id,
+      mention: "",
     });
 
     return takenCoursesData.map(
