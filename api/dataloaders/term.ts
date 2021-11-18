@@ -64,7 +64,6 @@ export const TakenCoursesDataLoader = new DataLoader(
         const studentData = await StudentViaProgramsDataLoader.load(student_id);
         let mentionStudent: string = studentData?.mention ?? "";
         if (mentionStudent != "") {
-          console.log("con mencion");
           const takenCoursesData = await StudentCourseTable()
             .select(
               `${STUDENT_COURSE_TABLE}.id`,
@@ -105,10 +104,9 @@ export const TakenCoursesDataLoader = new DataLoader(
               { column: "term", order: "desc" },
               { column: "state", order: "asc" },
             ]);
-          console.log(takenCoursesData);
+          //console.log(takenCoursesData);
           return takenCoursesData;
         } else {
-          console.log("sin mencion");
           const takenCoursesData = await StudentCourseTable()
             .select("id", "course_taken", "course_equiv", "elect_equiv")
             .where({
@@ -123,7 +121,7 @@ export const TakenCoursesDataLoader = new DataLoader(
               { column: "term", order: "desc" },
               { column: "state", order: "asc" },
             ]);
-          console.log(takenCoursesData);
+          //console.log(takenCoursesData);
           return takenCoursesData;
         }
       })

@@ -98,22 +98,28 @@ export const StudentProgramCurriculumsDataLoader = new DataLoader(
 
 export const CurriculumsDataLoader = new DataLoader(
   async (
-    keys: readonly { program_id: string; curriculumsIds: Curriculum[] }[]
+    keys: readonly {
+      program_id: string;
+      curriculumsIds: Curriculum[];
+      mention: string;
+    }[]
   ) => {
     return await Promise.all(
-      keys.map(async ({ program_id, curriculumsIds }) => {
+      keys.map(async ({ program_id, curriculumsIds, mention }) => {
         const [data, data2] = await Promise.all([
           curriculumsIds
             ? ProgramStructureTable()
                 .select("id", "curriculum", "semester", "course_id")
-                .where({ program_id })
+                .where({ program_id, mention: mention })
+                .orWhere({ program_id, mention: "" })
                 .whereIn(
                   "curriculum",
                   curriculumsIds.map(({ id }) => id)
                 )
             : ProgramStructureTable()
                 .select("id", "curriculum", "semester", "course_id")
-                .where({ program_id }),
+                .where({ program_id, mention: mention })
+                .orWhere({ program_id, mention: "" }),
           curriculumsIds
             ? ExternalEvaluationStructureTable()
                 .select(

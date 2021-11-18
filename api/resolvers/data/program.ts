@@ -29,6 +29,8 @@ import {
   StudentGroupedComplementaryDataLoader,
   GroupedEmployedDataLoader,
 } from "../../dataloaders/program";
+import { StudentViaProgramsDataLoader } from "../../dataloaders/student";
+
 import { ProgramTable, UserProgramsTable } from "../../db/tables";
 import { Program } from "../../entities/data/program";
 
@@ -310,7 +312,8 @@ export class ProgramResolver {
     {
       id: program_id,
       curriculums: curriculumsIds,
-    }: Pick<Program, "id" | "curriculums">
+    }: Pick<Program, "id" | "curriculums">,
+    @Arg("student_id", { nullable: true }) student_id?: string
   ): Promise<
     IfImplements<
       {
@@ -328,10 +331,17 @@ export class ProgramResolver {
       program_id,
       "The id needs to be available for the program fields resolvers"
     );
+    let a = "AUDICIÓN Y LENGUAJE"; //+ student_id;
+    let auxStudentId = "" + student_id;
+    const studentData = await StudentViaProgramsDataLoader.load(auxStudentId);
+    let mentionStudent: string = studentData?.mention ?? "";
+    console.log(mentionStudent);
+    console.log(student_id);
 
     const data = await CurriculumsDataLoader.load({
       program_id,
       curriculumsIds,
+      mention: a,
     });
 
     return data;

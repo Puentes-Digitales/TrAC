@@ -402,6 +402,10 @@ export type Program = {
   type_admission: Scalars["String"];
 };
 
+export type ProgramCurriculumsArgs = {
+  student_id?: Maybe<Scalars["String"]>;
+};
+
 export type Query = {
   /** Check unlockKey combination, if it's valid, returns null, if it's invalid, returns an error message. */
   checkUnlockKey?: Maybe<Scalars["String"]>;
