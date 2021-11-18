@@ -42,18 +42,18 @@ export const GroupedComplementaryInfo: FC<{
       GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE,
       GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE,
       GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE,
-      GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB,
+      GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_AVERAGE_TIME_FINDING_JOB,
       GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM,
-      GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_INACTIVE_TIME_RATE,
+      GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE,
 
       GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS_TOOLTIP,
       GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE_TOOLTIP,
       GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE_TOOLTIP,
       GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE_TOOLTIP,
       GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_TOOLTIP,
-      GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB_TOOLTIP,
+      GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_AVERAGE_TIME_FINDING_JOB_TOOLTIP,
       GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM_TOOLTIP,
-      GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_INACTIVE_TIME_RATE_TOOLTIP,
+      GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE_TOOLTIP,
       GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE_TOOLTIP,
     } = useContext(ConfigContext);
 
@@ -192,15 +192,13 @@ export const GroupedComplementaryInfo: FC<{
                   {typeof inactive_time_rate === "number" && (
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
                       <Text>
-                        {
-                          GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_INACTIVE_TIME_RATE
-                        }{" "}
+                        {GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE}{" "}
                         {inactive_time_rate}{" "}
                         {COMPLEMENTARY_INFORMATION_SEMESTER_TEXT}
                       </Text>
                       <IndicatorTooltip
                         tooltipShow={
-                          GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_INACTIVE_TIME_RATE_TOOLTIP
+                          GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE_TOOLTIP
                         }
                       ></IndicatorTooltip>
                     </Flex>
@@ -240,14 +238,14 @@ export const GroupedComplementaryInfo: FC<{
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
                       <Text>
                         {
-                          GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB
+                          GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_AVERAGE_TIME_FINDING_JOB
                         }{" "}
                         {average_time_finding_job}{" "}
                         {COMPLEMENTARY_INFORMATION_MONTHS_TEXT}
                       </Text>
                       <IndicatorTooltip
                         tooltipShow={
-                          GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB_TOOLTIP
+                          GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_AVERAGE_TIME_FINDING_JOB_TOOLTIP
                         }
                       ></IndicatorTooltip>
                     </Flex>
