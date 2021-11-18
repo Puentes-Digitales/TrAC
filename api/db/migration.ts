@@ -585,7 +585,7 @@ const migration = async () => {
         await dbData.schema.createTable(
           STUDENT_EXTERNAL_EVALUATION_TABLE,
           (table) => {
-            table.integer("id").notNullable().primary();
+            table.increments("id");
             table.integer("year").notNullable();
             table.integer("term").notNullable();
             table.text("student_id").notNullable();
@@ -593,7 +593,7 @@ const migration = async () => {
             table.text("topic").notNullable();
             table.text("registration").notNullable();
             table.text("state").notNullable();
-            table.text("grade").notNullable();
+            table.float("grade").notNullable();
             table.integer("p_group").notNullable();
             table.text("comments");
             table.integer("duplicates").notNullable();
@@ -633,6 +633,7 @@ const migration = async () => {
           EXTERNAL_EVALUATION_STATS_TABLE,
           (table) => {
             table.text("external_evaluation_taken").notNullable();
+            table.increments("id");
             table.integer("year", 4).notNullable();
             table.integer("term", 4).notNullable();
             table.text("topic").notNullable();
@@ -645,7 +646,6 @@ const migration = async () => {
             table.text("histogram").notNullable();
             table.float("avg_grade").notNullable();
             table.integer("n_grades", 4).notNullable();
-            table.integer("id", 8).primary().notNullable();
             table.text("histogram_labels").notNullable();
             table.text("color_bands").notNullable();
           }
