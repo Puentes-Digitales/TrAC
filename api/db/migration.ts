@@ -365,7 +365,8 @@ const migration = async () => {
             table.float("university_degree_rate", 3).notNullable();
             table.float("retention_rate", 3).notNullable();
             table.float("average_time_university_degree", 3).notNullable();
-            table.float("timely_university_degree_rate", 3).notNullable();
+            table.float("timely_university_degree_rate", 3);
+            table.float("inactive_time_rate", 3);
           }
         );
         await GroupedComplementaryInformationTable().insert(

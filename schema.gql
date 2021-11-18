@@ -185,15 +185,16 @@ type FeedbackResult {
 }
 
 type GroupedComplementary {
-  average_time_university_degree: Float!
+  average_time_university_degree: Float
   cohort: String!
   curriculum: String!
+  inactive_time_rate: Float
   program_id: String!
   retention_rate: Float!
-  timely_university_degree_rate: Float!
+  timely_university_degree_rate: Float
   total_students: Float!
   type_admission: String!
-  university_degree_rate: Float!
+  university_degree_rate: Float
 }
 
 type GroupedEmployed {

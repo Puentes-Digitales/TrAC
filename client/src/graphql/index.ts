@@ -187,15 +187,16 @@ export type FeedbackResult = {
 };
 
 export type GroupedComplementary = {
-  average_time_university_degree: Scalars["Float"];
+  average_time_university_degree?: Maybe<Scalars["Float"]>;
   cohort: Scalars["String"];
   curriculum: Scalars["String"];
+  inactive_time_rate?: Maybe<Scalars["Float"]>;
   program_id: Scalars["String"];
   retention_rate: Scalars["Float"];
-  timely_university_degree_rate: Scalars["Float"];
+  timely_university_degree_rate?: Maybe<Scalars["Float"]>;
   total_students: Scalars["Float"];
   type_admission: Scalars["String"];
-  university_degree_rate: Scalars["Float"];
+  university_degree_rate?: Maybe<Scalars["Float"]>;
 };
 
 export type GroupedEmployed = {
@@ -834,6 +835,7 @@ export type SearchProgramMutation = {
         | "cohort"
         | "university_degree_rate"
         | "retention_rate"
+        | "inactive_time_rate"
       >
     >;
     groupedEmployed: Array<
@@ -2450,6 +2452,7 @@ export const SearchProgramDocument = gql`
         cohort
         university_degree_rate
         retention_rate
+        inactive_time_rate
       }
       groupedEmployed {
         employed_rate
