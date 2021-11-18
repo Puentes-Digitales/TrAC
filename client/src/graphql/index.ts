@@ -519,7 +519,7 @@ export type TakenExternalEvaluation = {
   bandColors: Array<BandColor>;
   code: Scalars["String"];
   currentDistribution: Array<DistributionValue>;
-  grade: Scalars["String"];
+  grade: Scalars["Float"];
   id: Scalars["Int"];
   name: Scalars["String"];
   registration: Scalars["String"];

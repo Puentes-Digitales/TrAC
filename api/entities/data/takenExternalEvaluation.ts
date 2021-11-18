@@ -32,7 +32,7 @@ export class TakenExternalEvaluation
   state: StateCourse;
 
   @Field()
-  grade: string;
+  grade: number;
 
   @Field(() => [BandColor])
   bandColors: BandColor[];
