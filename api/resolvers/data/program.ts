@@ -47,6 +47,11 @@ import type {
 import type { PartialCourse } from "./course";
 import type { PartialExternalEvaluation } from "./externalEvaluation";
 export type PartialProgram = Pick<Program, "id">;
+export type partialProgramPlusStudentId = {
+  student_id: string;
+  id: string;
+  curriculums: any[];
+};
 
 @Resolver(() => Program)
 export class ProgramResolver {
@@ -306,14 +311,35 @@ export class ProgramResolver {
     return last_gpa_data.last_gpa;
   }
 
+  /**
+   * 
+  @FieldResolver()
+  async curriculums(
+    @Root() { id, programs }: PartialStudent
+  ): Promise<$PropertyType<Student, "curriculums">> {
+    return uniq(
+      (await StudentTermsDataLoader.load({ student_id: id, programs })).map(
+        ({ curriculum }) => curriculum
+      )
+    );
+  }
+  Pick<Program, "id"> & {
+      curriculums?: Pick<ArrayPropertyType<Program, "curriculums">, "id">[];
+    }
+
+    @Arg("student_id", { nullable: true }) student_id: string
+    { id: student_id, mention: mention }: Pick<Student, "id" | "mention">
+
+
+   */
   @FieldResolver()
   async curriculums(
     @Root()
     {
       id: program_id,
       curriculums: curriculumsIds,
-    }: Pick<Program, "id" | "curriculums">,
-    @Arg("student_id", { nullable: true }) student_id?: string
+      student_id: student_id,
+    }: Pick<partialProgramPlusStudentId, "id" | "curriculums" | "student_id">
   ): Promise<
     IfImplements<
       {
@@ -331,16 +357,19 @@ export class ProgramResolver {
       program_id,
       "The id needs to be available for the program fields resolvers"
     );
+
+    //let student_id = "a";
     let a = "AUDICIÓN Y LENGUAJE"; //+ student_id;
     let auxStudentId = "" + student_id;
     const studentData = await StudentViaProgramsDataLoader.load(auxStudentId);
     let mentionStudent: string = studentData?.mention ?? "";
+    console.log(curriculumsIds);
+    console.log(program_id);
     console.log(mentionStudent);
     console.log(student_id);
-
     const data = await CurriculumsDataLoader.load({
-      program_id,
-      curriculumsIds,
+      program_id: program_id,
+      curriculumsIds: curriculumsIds,
       mention: a,
     });
 

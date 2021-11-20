@@ -118,8 +118,7 @@ export const CurriculumsDataLoader = new DataLoader(
                 )
             : ProgramStructureTable()
                 .select("id", "curriculum", "semester", "course_id")
-                .where({ program_id, mention: mention })
-                .orWhere({ program_id, mention: "" }),
+                .where({ program_id, mention: mention }),
           curriculumsIds
             ? ExternalEvaluationStructureTable()
                 .select(
