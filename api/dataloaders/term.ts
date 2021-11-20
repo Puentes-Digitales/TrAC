@@ -63,6 +63,7 @@ export const TakenCoursesDataLoader = new DataLoader(
       ids.map(async ({ year, term, student_id, mention }) => {
         const studentData = await StudentViaProgramsDataLoader.load(student_id);
         let mentionStudent: string = studentData?.mention ?? "";
+        let currriculumStudent: string = studentData?.curriculum ?? "";
         if (mentionStudent != "") {
           const takenCoursesData = await StudentCourseTable()
             .select(
@@ -72,7 +73,7 @@ export const TakenCoursesDataLoader = new DataLoader(
               "elect_equiv",
               "mention"
             )
-            .leftJoin<IProgramStructure>(PROGRAM_STRUCTURE_TABLE, function () {
+            .innerJoin<IProgramStructure>(PROGRAM_STRUCTURE_TABLE, function () {
               this.on(
                 `${PROGRAM_STRUCTURE_TABLE}.course_id`,
                 `${STUDENT_COURSE_TABLE}.course_taken`
@@ -91,12 +92,14 @@ export const TakenCoursesDataLoader = new DataLoader(
               term,
               student_id,
               mention: mentionStudent,
+              curriculum: currriculumStudent,
             })
             .orWhere({
               year,
               term,
               student_id,
               mention: "",
+              curriculum: currriculumStudent,
             })
             .orderBy([
               { column: "course_taken", order: "desc" },
@@ -104,7 +107,6 @@ export const TakenCoursesDataLoader = new DataLoader(
               { column: "term", order: "desc" },
               { column: "state", order: "asc" },
             ]);
-          //console.log(takenCoursesData);
           return takenCoursesData;
         } else {
           const takenCoursesData = await StudentCourseTable()
@@ -121,7 +123,6 @@ export const TakenCoursesDataLoader = new DataLoader(
               { column: "term", order: "desc" },
               { column: "state", order: "asc" },
             ]);
-          //console.log(takenCoursesData);
           return takenCoursesData;
         }
       })
