@@ -5,13 +5,7 @@ import { Badge } from "@chakra-ui/react";
 
 import React, { FC, memo, useContext, useMemo } from "react";
 
-import {
-  Flex,
-  Stack,
-  Text,
-  useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 
 import { StateCourse } from "../../../../constants";
 import { ConfigContext } from "../../../context/Config";
@@ -245,29 +239,7 @@ const SecondaryBlockOuter: FC<
 > = memo(({ children, borderColor, state }) => {
   const config = useContext(ConfigContext);
 
-  const { colorMode } = useColorMode();
-
-  const stateColor = useMemo(() => {
-    switch (state) {
-      case StateCourse.Passed: {
-        return config.STATE_COLOR_PASS_FALLBACK_EXTERNAL_EVALUATION;
-      }
-      case StateCourse.Current: {
-        return config.STATE_COURSE_CURRENT_COLOR_EXTERNAL_EVALUATION;
-      }
-      case StateCourse.Canceled: {
-        return config.STATE_COURSE_CANCELED_COLOR_EXTERNAL_EVALUATION;
-      }
-      case StateCourse.Pending: {
-        return config.STATE_COURSE_PENDING_COLOR_EXTERNAL_EVALUATION;
-      }
-      default: {
-        return colorMode === "light"
-          ? config.EXTERNAL_EVALUATION_BOX_BACKGROUND_COLOR
-          : config.STATE_COURSE_DEFAULT_DARK_COLOR_EXTERNAL_EVALUATION;
-      }
-    }
-  }, [state, colorMode, config]);
+  const stateColor = config.STATE_COURSE_DEFAULT_COLOR_EXTERNAL_EVALUATION;
 
   return (
     <Flex
@@ -407,7 +379,7 @@ export function ExternalEvaluationBox({
 
     return true;
   }, [isForeplanActive, code, taken, user]);
-
+  console.log("external evaluation", "taken", taken);
   return (
     <OuterCourseBox
       code={code}
