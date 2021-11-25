@@ -93,10 +93,14 @@ export async function sendMail({
       from,
       replyTo,
       subject: subject,
-      html: message,
+      html: message /*
+      mailSettings: {
+        sandboxMode: {
+          enable: true,
+        },
+      },*/,
     })
   )[0];
 }
 
-export { UnlockMail } from "./mail";
-export { NotificationMail } from "./mail";
+export { UnlockMail, NotificationMail, RiskNotificationMail } from "./mail";
