@@ -994,6 +994,7 @@ const migration = async () => {
           table.text("email").notNullable();
           table.text("content").notNullable();
           table.text("parameters").notNullable();
+          table.text("risks").nullable();
           table.timestamp("date", { useTz: true }).notNullable();
           table.integer("counter").notNullable();
         });
