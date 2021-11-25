@@ -5,7 +5,13 @@ import { Badge } from "@chakra-ui/react";
 
 import React, { FC, memo, useContext, useMemo } from "react";
 
-import { Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react";
+import {
+  Flex,
+  Stack,
+  Text,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
 import { StateCourse } from "../../../../constants";
 import { ConfigContext } from "../../../context/Config";
@@ -239,7 +245,23 @@ const SecondaryBlockOuter: FC<
 > = memo(({ children, borderColor, state }) => {
   const config = useContext(ConfigContext);
 
-  const stateColor = config.STATE_COURSE_DEFAULT_COLOR_EXTERNAL_EVALUATION;
+  const { colorMode } = useColorMode();
+
+  const stateColor = useMemo(() => {
+    switch (state) {
+      case StateCourse.Passed: {
+        return config.STATE_COURSE_DEFAULT_COLOR_EXTERNAL_EVALUATION;
+      }
+      case StateCourse.Failed: {
+        return config.STATE_COURSE_DEFAULT_COLOR_EXTERNAL_EVALUATION;
+      }
+      default: {
+        return colorMode === "light"
+          ? config.STATE_COURSE_DEFAULT_LIGHT_COLOR_EXTERNAL_EVALUATION
+          : config.STATE_COURSE_DEFAULT_DARK_COLOR_EXTERNAL_EVALUATION;
+      }
+    }
+  }, [state, colorMode, config]);
 
   return (
     <Flex
