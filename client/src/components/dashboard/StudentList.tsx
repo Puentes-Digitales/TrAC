@@ -54,7 +54,7 @@ const progressTextShadow = css`
 
 const progressSmallText = css`
   .progress {
-    fontsize: 10px !important;
+    font-size: 10px !important;
   }
 `;
 
@@ -85,6 +85,9 @@ export type RiskInfo = {
   explanation: string;
   progress: number;
   course_id: string;
+  rate: number;
+  year: string;
+  term: string;
 };
 export const StudentList: FC<{
   mockData?: StudentListInfo[];
@@ -104,12 +107,6 @@ export const StudentList: FC<{
       risk_type: "student_pending_of_graduation",
     },
   });
-  /*const { data: lowPassingRateCourses } = useRiskNoticationQuery({
-    variables: {
-      program_id: program_id || "",
-      risk_type: "low_passing_rate_courses",
-    },
-  });*/
   const { data: lowProgressingRate } = useRiskNoticationQuery({
     variables: {
       program_id: program_id || "",
@@ -120,6 +117,18 @@ export const StudentList: FC<{
     variables: {
       program_id: program_id || "",
       risk_type: "third_attempt",
+    },
+  });
+  const { data: lowPassingRateCourses } = useRiskNoticationQuery({
+    variables: {
+      program_id: program_id || "",
+      risk_type: "low_passing_rate_courses",
+    },
+  });
+  const { data: highDropRate } = useRiskNoticationQuery({
+    variables: {
+      program_id: program_id || "",
+      risk_type: "high_drop_rate",
     },
   });
 
@@ -134,16 +143,25 @@ export const StudentList: FC<{
     NO_INFORMATION_TO_DEPLOY,
     RISK_ALL,
     RISK_STUDENT_PENDING_OF_GRADUATION,
-    //RISK_LOW_PASSING_RATE_COURSES,
+    RISK_LOW_PASSING_RATE_COURSES,
     RISK_LOW_PROGRESSING_RATE,
     RISK_THIRD_ATTEMPT,
-    //COURSE_LABEL,
+    RISK_LOW_HIGH_DROP_RATE,
+    COURSE_LABEL,
+    YEAR_LABEL,
+    TERM_LABEL,
   } = useContext(ConfigContext);
 
   var [riskType, setRiskType] = useRememberState(
-    "status_progress_selected",
+    "risk_type_selected",
     RISK_ALL
   );
+
+  var [courseRisk, setCourseRisk] = useRememberState(
+    "course_risk_selected",
+    false
+  );
+
   const studentListData = useMemo(() => {
     switch (riskType) {
       case RISK_ALL:
@@ -157,6 +175,9 @@ export const StudentList: FC<{
                 start_year,
                 explanation: dropout?.explanation ?? "",
                 course_id: "",
+                rate: 0,
+                year: "",
+                term: "",
               };
             }
           ) ?? []
@@ -164,15 +185,17 @@ export const StudentList: FC<{
       case RISK_STUDENT_PENDING_OF_GRADUATION:
         return (
           studentPendingOfGraduation?.riskNotification.map(
-            ({ student_id, program_id, course_id, cohort, risk_type }) => {
+            ({ student_id, cohort, risk_type }) => {
               return {
                 student_id: student_id,
                 dropout_probability: -1,
                 progress: -1,
                 start_year: parseInt(cohort),
-                explanation:
-                  "Estudiantes pendientes de titulacion " + risk_type,
+                explanation: risk_type,
                 course_id: "",
+                rate: 0,
+                year: "",
+                term: "",
               };
             }
           ) ?? []
@@ -180,14 +203,17 @@ export const StudentList: FC<{
       case RISK_LOW_PROGRESSING_RATE:
         return (
           lowProgressingRate?.riskNotification.map(
-            ({ student_id, program_id, course_id, cohort, risk_type }) => {
+            ({ student_id, cohort, risk_type }) => {
               return {
                 student_id: student_id,
                 dropout_probability: -1,
                 progress: -1,
                 start_year: parseInt(cohort),
-                explanation: " " + risk_type,
+                explanation: risk_type,
                 course_id: "",
+                rate: 0,
+                year: "",
+                term: "",
               };
             }
           ) ?? []
@@ -196,35 +222,67 @@ export const StudentList: FC<{
       case RISK_THIRD_ATTEMPT:
         return (
           thirdAttempt?.riskNotification.map(
-            ({ student_id, program_id, course_id, cohort, risk_type }) => {
+            ({ student_id, course_id, cohort, risk_type }) => {
               return {
                 student_id: student_id,
                 dropout_probability: -1,
                 progress: -1,
                 start_year: parseInt(cohort),
-                explanation: " " + risk_type,
+                explanation: risk_type,
                 course_id: course_id,
+                rate: 0,
+                year: "",
+                term: "",
               };
             }
           ) ?? []
         );
 
-      /*
-        case 4:
+      case RISK_LOW_PASSING_RATE_COURSES:
         return (
           lowPassingRateCourses?.riskNotification.map(
-            ({ student_id, program_id, course_id, cohort, risk_type }) => {
+            ({ course_id, cohort, risk_type, details }) => {
+              let cDetails = JSON.parse(details);
+              let yearTerm = cDetails.semester;
+              let year = yearTerm.substring(0, 4);
+              let term = yearTerm.substring(4, 5);
               return {
-                student_id: student_id,
+                student_id: cDetails.failing_rate,
                 dropout_probability: -1,
                 progress: -1,
                 start_year: parseInt(cohort),
-                explanation: " " + risk_type,
+                explanation: risk_type,
+                course_id: course_id,
+                rate: cDetails.failing_rate,
+                year: year,
+                term: term,
               };
             }
           ) ?? []
         );
-        */
+      case RISK_LOW_HIGH_DROP_RATE:
+        return (
+          highDropRate?.riskNotification.map(
+            ({ course_id, cohort, risk_type, details }) => {
+              let cDetails = JSON.parse(details);
+              let yearTerm = cDetails.semester;
+              let year = yearTerm.substring(0, 4);
+              let term = yearTerm.substring(4, 5);
+              return {
+                student_id: cDetails.droping_rate,
+                dropout_probability: -1,
+                progress: -1,
+                start_year: parseInt(cohort),
+                explanation: risk_type,
+                course_id: course_id,
+                rate: cDetails.droping_rate,
+                year: year,
+                term: term,
+              };
+            }
+          ) ?? []
+        );
+
       default:
       //console.log('.');
     }
@@ -234,6 +292,7 @@ export const StudentList: FC<{
     mockData,
     riskType,
     program_id,
+    courseRisk,
   ]);
 
   const { user } = useUser();
@@ -304,11 +363,11 @@ export const StudentList: FC<{
     if (pageSelected > studentListChunks.length) {
       setPageSelected(1);
     }
-  }, [studentListChunks, pageSelected, riskType]);
+  }, [studentListChunks, pageSelected, riskType, courseRisk]);
 
   useEffect(() => {
     setStudentListChunks(chunk(sortedStudentList, nStudentPerChunk));
-  }, [sortedStudentList, setStudentListChunks, riskType]);
+  }, [sortedStudentList, setStudentListChunks, riskType, courseRisk]);
 
   const showDropout = useMemo(() => {
     return (
@@ -337,11 +396,15 @@ export const StudentList: FC<{
 
   const selectedStudents = useMemo(() => {
     return studentListChunks[pageSelected - 1];
-  }, [studentListChunks, pageSelected, riskType]);
+  }, [studentListChunks, pageSelected, riskType, courseRisk]);
 
   useEffect(() => {
-    //console.log(studentPendingOfGraduation);
-  }, [riskType]);
+    if (courseRisk) {
+      setRiskType(RISK_ALL);
+    } else {
+      setRiskType(RISK_LOW_PASSING_RATE_COURSES);
+    }
+  }, [courseRisk]);
 
   const TableHeader: FC<{
     columnSort: columnNames[];
@@ -360,42 +423,86 @@ export const StudentList: FC<{
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell width={2} />
-          <Table.HeaderCell
-            width={4}
-            sorted={columnSort[0] === "student_id" ? directionSort : undefined}
-            onClick={handleSort("student_id")}
-          >
-            {STUDENT_LABEL}
-          </Table.HeaderCell>
-          <Table.HeaderCell
-            width={2}
-            sorted={columnSort[0] === "start_year" ? directionSort : undefined}
-            onClick={handleSort("start_year")}
-          >
-            {ENTRY_YEAR_LABEL}
-          </Table.HeaderCell>
-          {riskType === RISK_ALL && (
-            <Table.HeaderCell
-              width={5}
-              sorted={columnSort[0] === "progress" ? directionSort : undefined}
-              onClick={handleSort("progress")}
-            >
-              {PROGRESS_LABEL}
-            </Table.HeaderCell>
+          {courseRisk && (
+            <>
+              <Table.HeaderCell
+                width={4}
+                sorted={
+                  columnSort[0] === "student_id" ? directionSort : undefined
+                }
+                onClick={handleSort("student_id")}
+              >
+                {STUDENT_LABEL}
+              </Table.HeaderCell>
+              <Table.HeaderCell
+                width={2}
+                sorted={
+                  columnSort[0] === "start_year" ? directionSort : undefined
+                }
+                onClick={handleSort("start_year")}
+              >
+                {ENTRY_YEAR_LABEL}
+              </Table.HeaderCell>
+              {riskType === RISK_ALL && (
+                <Table.HeaderCell
+                  width={5}
+                  sorted={
+                    columnSort[0] === "progress" ? directionSort : undefined
+                  }
+                  onClick={handleSort("progress")}
+                >
+                  {PROGRESS_LABEL}
+                </Table.HeaderCell>
+              )}
+              {showDropout && (
+                <Table.HeaderCell
+                  sorted={
+                    columnSort[0] === "dropout_probability"
+                      ? directionSort
+                      : undefined
+                  }
+                  onClick={handleSort("dropout_probability")}
+                  width={4}
+                >
+                  {RISK_LABEL}
+                </Table.HeaderCell>
+              )}
+            </>
           )}
+          {!courseRisk && (
+            <>
+              <Table.HeaderCell
+                width={3}
+                sorted={
+                  columnSort[0] === "course_id" ? directionSort : undefined
+                }
+                onClick={handleSort("course_id")}
+              >
+                {COURSE_LABEL}
+              </Table.HeaderCell>
 
-          {showDropout && (
-            <Table.HeaderCell
-              sorted={
-                columnSort[0] === "dropout_probability"
-                  ? directionSort
-                  : undefined
-              }
-              onClick={handleSort("dropout_probability")}
-              width={4}
-            >
-              {RISK_LABEL}
-            </Table.HeaderCell>
+              <Table.HeaderCell
+                width={2}
+                sorted={columnSort[0] === "year" ? directionSort : undefined}
+                onClick={handleSort("year")}
+              >
+                {YEAR_LABEL}
+              </Table.HeaderCell>
+              <Table.HeaderCell
+                width={2}
+                sorted={columnSort[0] === "term" ? directionSort : undefined}
+                onClick={handleSort("term")}
+              >
+                {TERM_LABEL}
+              </Table.HeaderCell>
+              <Table.HeaderCell
+                width={5}
+                sorted={columnSort[0] === "rate" ? directionSort : undefined}
+                onClick={handleSort("rate")}
+              >
+                {PROGRESS_LABEL}
+              </Table.HeaderCell>
+            </>
           )}
         </Table.Row>
       </Table.Header>
@@ -433,6 +540,25 @@ export const StudentList: FC<{
           <DrawerHeader height={20} display="flex" alignItems="center">
             {STUDENT_LIST_TITLE} {loadingData && <Spinner ml={3} />}
           </DrawerHeader>
+
+          <Center>
+            <Button
+              m={1}
+              color="black"
+              cursor="pointer"
+              pl={6}
+              height="2.0rem"
+              width="25%"
+              colorScheme={courseRisk ? "blue" : "red"}
+              position="relative"
+              left="270px"
+              onClick={() => {
+                setCourseRisk(!courseRisk);
+              }}
+            >
+              {courseRisk ? "Riesgos por estudiantes" : "Riesgos por cursos  "}
+            </Button>
+          </Center>
           <Box>
             <Select
               value={riskType}
@@ -445,15 +571,30 @@ export const StudentList: FC<{
               color="Black"
               bg="white"
             >
-              <option value={RISK_ALL}>{RISK_ALL}</option>
-              <option value={RISK_STUDENT_PENDING_OF_GRADUATION}>
-                {RISK_STUDENT_PENDING_OF_GRADUATION}
-              </option>
-              <option value={RISK_LOW_PROGRESSING_RATE}>
-                {RISK_LOW_PROGRESSING_RATE}
-              </option>
-              <option value={RISK_THIRD_ATTEMPT}>{RISK_THIRD_ATTEMPT}</option>
-              {/* <option value={RISK_LOW_PROGRESSING_RATE}>{RISK_LOW_PROGRESSING_RATE}</option> */}
+              {courseRisk && (
+                <>
+                  <option value={RISK_ALL}>{RISK_ALL}</option>
+                  <option value={RISK_STUDENT_PENDING_OF_GRADUATION}>
+                    {RISK_STUDENT_PENDING_OF_GRADUATION}
+                  </option>
+                  <option value={RISK_LOW_PROGRESSING_RATE}>
+                    {RISK_LOW_PROGRESSING_RATE}
+                  </option>
+                  <option value={RISK_THIRD_ATTEMPT}>
+                    {RISK_THIRD_ATTEMPT}
+                  </option>
+                </>
+              )}
+              {!courseRisk && (
+                <>
+                  <option value={RISK_LOW_PASSING_RATE_COURSES}>
+                    {RISK_LOW_PASSING_RATE_COURSES}
+                  </option>
+                  <option value={RISK_LOW_HIGH_DROP_RATE}>
+                    {RISK_LOW_HIGH_DROP_RATE}
+                  </option>
+                </>
+              )}
             </Select>
             <Center>
               <Pagination
@@ -501,6 +642,9 @@ export const StudentList: FC<{
                         progress,
                         explanation,
                         course_id,
+                        rate,
+                        year,
+                        term,
                       },
                       key
                     ) => {
@@ -513,98 +657,150 @@ export const StudentList: FC<{
                         color = RISK_LOW_COLOR;
                       }
                       const integerProgress = toInteger(progress);
+                      const integerRate = toInteger(rate);
                       const checkStudentLabel = `${CHECK_STUDENT_FROM_LIST_LABEL} ${student_id}`;
                       return (
                         <Table.Row key={key} verticalAlign="middle">
                           <TableCell textAlign="center">
                             {1 + key + (pageSelected - 1) * nStudentPerChunk}
                           </TableCell>
-                          <Table.Cell
-                            className="cursorPointer"
-                            onClick={() => {
-                              searchStudent(student_id);
-                              onClose();
-                            }}
-                          >
-                            <Tooltip
-                              aria-label={checkStudentLabel}
-                              label={checkStudentLabel}
-                              zIndex={10000}
-                              placement="top"
-                              textAlign="center"
-                            >
-                              <Text>
-                                {truncate(student_id, { length: 35 })}
-                              </Text>
-                            </Tooltip>
-                          </Table.Cell>
-                          <Table.Cell>
-                            <Text>{start_year}</Text>
-                          </Table.Cell>
-                          {riskType === RISK_ALL && (
-                            <Table.Cell verticalAlign="middle">
-                              <Progress
-                                css={[
-                                  marginZero,
-                                  progressTextShadow,
-                                  integerProgress >= 10 &&
-                                    integerProgress < 20 &&
-                                    progressSmallText,
-                                ]}
-                                progress
-                                percent={integerProgress}
-                              />
-                            </Table.Cell>
-                          )}
-
-                          {showDropout && (
-                            <Table.Cell>
-                              <Stack
-                                isInline
-                                shouldWrapChildren
-                                alignItems="center"
+                          {courseRisk && (
+                            <>
+                              <Table.Cell
+                                className="cursorPointer"
+                                onClick={() => {
+                                  searchStudent(student_id);
+                                  onClose();
+                                }}
                               >
-                                <Text
-                                  margin={0}
-                                  textShadow="0.5px 0.5px 0px #a1a1a1"
-                                  color={
-                                    dropout_probability !== -1
-                                      ? color
-                                      : undefined
-                                  }
-                                  fontWeight="bold"
+                                <Tooltip
+                                  aria-label={checkStudentLabel}
+                                  label={checkStudentLabel}
+                                  zIndex={10000}
+                                  placement="top"
+                                  textAlign="center"
                                 >
-                                  {dropout_probability !== -1
-                                    ? `${toInteger(dropout_probability)}`
-                                    : "-"}
-                                </Text>
-                                {explanation ? (
-                                  <Popover trigger="hover" isLazy>
-                                    <PopoverTrigger>
-                                      <Icon
-                                        display="flex"
-                                        name="info-outline"
-                                        size="13px"
-                                        cursor="help"
-                                      />
-                                    </PopoverTrigger>
-                                    <PopoverContent
-                                      width="fit-content"
-                                      zIndex={100}
-                                      padding="5px"
+                                  <Text>
+                                    {truncate(student_id, { length: 35 })}
+                                  </Text>
+                                </Tooltip>
+                              </Table.Cell>
+                              <Table.Cell>
+                                <Text>{start_year}</Text>
+                              </Table.Cell>
+                              {riskType === RISK_ALL && (
+                                <Table.Cell verticalAlign="middle">
+                                  <Progress
+                                    css={[
+                                      marginZero,
+                                      progressTextShadow,
+                                      integerProgress >= 10 &&
+                                        integerProgress < 20 &&
+                                        progressSmallText,
+                                    ]}
+                                    progress
+                                    percent={integerProgress}
+                                  />
+                                </Table.Cell>
+                              )}
+                              {showDropout && (
+                                <Table.Cell>
+                                  <Stack
+                                    isInline
+                                    shouldWrapChildren
+                                    alignItems="center"
+                                  >
+                                    <Text
+                                      margin={0}
+                                      textShadow="0.5px 0.5px 0px #a1a1a1"
+                                      color={
+                                        dropout_probability !== -1
+                                          ? color
+                                          : undefined
+                                      }
+                                      fontWeight="bold"
                                     >
-                                      <PopoverArrow />
-                                      <PopoverBody>
-                                        <Text>
-                                          {explanation.charAt(0).toUpperCase() +
-                                            explanation.slice(1)}
-                                        </Text>
-                                      </PopoverBody>
-                                    </PopoverContent>
-                                  </Popover>
-                                ) : null}
-                              </Stack>
-                            </Table.Cell>
+                                      {dropout_probability !== -1
+                                        ? `${toInteger(dropout_probability)}`
+                                        : "-"}
+                                    </Text>
+                                    {explanation ? (
+                                      <Popover trigger="hover" isLazy>
+                                        <PopoverTrigger>
+                                          <Icon
+                                            display="flex"
+                                            name="info-outline"
+                                            size="13px"
+                                            cursor="help"
+                                          />
+                                        </PopoverTrigger>
+                                        <PopoverContent
+                                          width="fit-content"
+                                          zIndex={100}
+                                          padding="5px"
+                                        >
+                                          <PopoverArrow />
+                                          <PopoverBody>
+                                            <Text>
+                                              {explanation
+                                                .charAt(0)
+                                                .toUpperCase() +
+                                                explanation.slice(1)}
+                                            </Text>
+                                          </PopoverBody>
+                                        </PopoverContent>
+                                      </Popover>
+                                    ) : null}
+                                  </Stack>
+                                </Table.Cell>
+                              )}
+                            </>
+                          )}
+                          {!courseRisk && (
+                            <>
+                              <Table.Cell verticalAlign="middle">
+                                <Tooltip
+                                  zIndex={10000}
+                                  placement="top"
+                                  textAlign="center"
+                                >
+                                  <Text>
+                                    {truncate(course_id, { length: 35 })}
+                                  </Text>
+                                </Tooltip>
+                              </Table.Cell>
+                              <Table.Cell verticalAlign="middle">
+                                <Tooltip
+                                  zIndex={10000}
+                                  placement="top"
+                                  textAlign="center"
+                                >
+                                  <Text>{truncate(year, { length: 35 })}</Text>
+                                </Tooltip>
+                              </Table.Cell>
+                              <Table.Cell verticalAlign="middle">
+                                <Tooltip
+                                  zIndex={10000}
+                                  placement="top"
+                                  textAlign="center"
+                                >
+                                  <Text>{truncate(term, { length: 35 })}</Text>
+                                </Tooltip>
+                              </Table.Cell>
+                              <Table.Cell verticalAlign="middle">
+                                <Progress
+                                  css={[
+                                    marginZero,
+                                    progressTextShadow,
+                                    integerProgress >= 10 &&
+                                      integerProgress < 20 &&
+                                      progressSmallText,
+                                  ]}
+                                  progress
+                                  percent={integerRate}
+                                />
+                              </Table.Cell>
+                            </>
                           )}
                         </Table.Row>
                       );
