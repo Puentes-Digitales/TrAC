@@ -416,7 +416,8 @@ export const baseConfig = {
   NO_INFORMATION_TO_DEPLOY: "No hay información para mostrar",
   RISK_ALL: "Todos",
   RISK_STUDENT_PENDING_OF_GRADUATION: "Pendientes de Titulación ",
-  RISK_LOW_PASSING_RATE_COURSES: "Anulaciones sobre el umbral",
+  RISK_LOW_PASSING_RATE_COURSES: "Cursos con bajo nivel de aprobación",
+  RISK_LOW_HIGH_DROP_RATE: "Anulaciones sobre el umbral",
   RISK_LOW_PROGRESSING_RATE: "Avance menor al umbral (50%)",
   RISK_THIRD_ATTEMPT: "Asignaturas por tercera vez",
   GROUPED_DATA: "Datos agrupados",
@@ -427,6 +428,8 @@ export const baseConfig = {
   NOTIFICATIONS_EMAIL_ADDRESS: "soportelala@inf.uach.cl",
   SHOW_PARAMETER: true,
   COURSE_LABEL: "Ramo",
+  YEAR_LABEL: "Año",
+  TERM_LABEL: "Semestre",
 };
 
 export const baseConfigAdmin: typeof baseConfig &
