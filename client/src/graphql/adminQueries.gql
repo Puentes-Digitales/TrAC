@@ -61,6 +61,10 @@ mutation NotificateUsersAdmin(
   $footer: String!
   $header: String!
   $subject: String!
+  $riskBody: String!
+  $riskTitle: String!
+  $riskGif: String!
+  $riskFooter: String!
 ) {
   NotificateUsers(
     header: $header
@@ -69,6 +73,10 @@ mutation NotificateUsersAdmin(
     subject: $subject
     farewell: $farewell
     closing: $closing
+    riskBody: $riskBody
+    riskTitle: $riskTitle
+    riskGif: $riskGif
+    riskFooter: $riskFooter
   )
 }
 mutation ReNotificateUsersAdmin(

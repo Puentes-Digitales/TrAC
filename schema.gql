@@ -251,6 +251,10 @@ type Mutation {
     farewell: String!
     footer: String!
     header: String!
+    riskBody: String!
+    riskFooter: String!
+    riskGif: String!
+    riskTitle: String!
     subject: String!
   ): [JSONObject!]!
   performanceLoadAdvices(

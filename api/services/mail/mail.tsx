@@ -5,6 +5,7 @@ import { requireEnv } from "require-env-variable";
 import { IS_PRODUCTION } from "../../../client/constants";
 
 const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS_REPLY_TO;
+const URL_WEB = process.env.DOMAIN;
 const DOMAIN = IS_PRODUCTION
   ? requireEnv("DOMAIN").DOMAIN
   : "http://localhost:3000";
@@ -49,123 +50,6 @@ export const UnlockMail = ({
   );
 };
 
-export const RiskNotificationMail = ({
-  email,
-  header,
-  footer,
-  subject,
-  body,
-  farewell,
-  closing,
-  parameters,
-  risk_types,
-}: {
-  email: string;
-  header: string;
-  footer: string;
-  body: string;
-  subject: string;
-  farewell: string;
-  closing: string;
-  parameters: string;
-  risk_types: string;
-}): string => {
-  const parametersDate = JSON.parse(parameters);
-  const risk_typesData = JSON.parse(risk_types);
-  const page = renderToString(
-    <html>
-      <div
-        style={{
-          border: 2,
-          alignItems: "center",
-          fontSize: "20px",
-        }}
-      >
-        <div
-          style={{
-            alignItems: "start",
-          }}
-        >
-          <h2>{subject}</h2>
-          <h3>{header}</h3>
-          <p>{body}</p>
-          <ul>
-            {parametersDate?.map(
-              (date: {
-                id: React.Key | null | undefined;
-                loading_type: any;
-                date: any;
-              }) => {
-                return date ? (
-                  <tr key={date.id}>
-                    <b>{date.loading_type}</b>
-                    {date.date}
-                  </tr>
-                ) : null;
-              }
-            )}
-          </ul>
-        </div>
-        <div>
-          <ul>
-            <h3>Situaciones de riesgo</h3>
-            {risk_typesData.length
-              ? risk_typesData?.map(
-                  (risks: {
-                    risk_id: React.Key | null | undefined;
-                    program: any;
-                    risks: any;
-                  }) => {
-                    return risks ? (
-                      <li key={risks.risk_id}>
-                        <b>{risks.program}</b>
-                        <ul>
-                          {risks.risks?.map(
-                            (risk_type: {
-                              risk_type_id: React.Key | null | undefined;
-                              risk_type: any;
-                              count: any;
-                            }) => {
-                              return risk_type ? (
-                                <li key={risk_type.risk_type_id}>
-                                  <b>{risk_type.risk_type}</b>
-                                  {":"}
-                                  <b>{risk_type.count}</b>
-                                </li>
-                              ) : null;
-                            }
-                          )}
-                        </ul>
-                      </li>
-                    ) : null;
-                  }
-                )
-              : null}
-          </ul>
-          <p>{farewell}</p>
-        </div>
-        <div
-          style={{
-            border: 2,
-            background: "#ABBAEA",
-            textSizeAdjust: "70%",
-            textAlign: "center",
-            fontSize: "15px",
-          }}
-        >
-          <p>
-            {closing} <b>{EMAIL_ADDRESS}</b>
-          </p>
-          <p>
-            {footer}
-            {email}.
-          </p>
-        </div>
-      </div>
-    </html>
-  );
-  return page;
-};
 export const NotificationMail = ({
   email,
   header,
@@ -218,4 +102,137 @@ export const NotificationMail = ({
       </p>
     </div>
   );
+};
+
+export const RiskNotificationMail = ({
+  email,
+  header,
+  footer,
+  subject,
+  body,
+  farewell,
+  closing,
+  parameters,
+  risk_types,
+  risk_header,
+  risk_body,
+  risk_gif,
+  risk_footer,
+}: {
+  email: string;
+  header: string;
+  footer: string;
+  body: string;
+  subject: string;
+  farewell: string;
+  closing: string;
+  parameters: string;
+  risk_types: string;
+  risk_header: string;
+  risk_body: string;
+  risk_gif: string;
+  risk_footer: string;
+}): string => {
+  const parametersDate = JSON.parse(parameters);
+  const risk_typesData = JSON.parse(risk_types);
+  const page = renderToString(
+    <html>
+      <body style={{ fontSize: "20px" }}>
+        <div style={{}}>
+          <div style={{}}>
+            <h2
+              style={{
+                textAlign: "center",
+                fontFamily: "Georgia, serif",
+                textSizeAdjust: "40px",
+              }}
+            >
+              {subject}
+            </h2>
+            <h3>{header}</h3>
+            <p>{body}</p>
+            <ul>
+              {parametersDate?.map(
+                (date: {
+                  id: React.Key | null | undefined;
+                  loading_type: any;
+                  date: any;
+                }) => {
+                  return date ? (
+                    <tr key={date.id}>
+                      <b>{date.loading_type}</b>
+                      {" : "}
+                      {date.date}
+                    </tr>
+                  ) : null;
+                }
+              )}
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <h3>{risk_header}</h3>
+              <p>{risk_body}</p>
+              {risk_typesData.length
+                ? risk_typesData?.map(
+                    (risks: {
+                      risk_id: React.Key | null | undefined;
+                      program: any;
+                      risks: any;
+                    }) => {
+                      return risks ? (
+                        <li key={risks.risk_id}>
+                          <b>{risks.program}</b>
+                          <ul>
+                            {risks.risks?.map(
+                              (risk_type: {
+                                risk_type_id: React.Key | null | undefined;
+                                risk_type: any;
+                                count: any;
+                              }) => {
+                                return risk_type ? (
+                                  <li key={risk_type.risk_type_id}>
+                                    <b>{risk_type.risk_type}</b>
+                                    {":"}
+                                    <b>{risk_type.count}</b>
+                                  </li>
+                                ) : null;
+                              }
+                            )}
+                          </ul>
+                        </li>
+                      ) : null;
+                    }
+                  )
+                : null}
+            </ul>
+            <p>{risk_gif}</p>
+            <img src="http://drive.google.com/uc?=export=view&id=1WhAes4dJOsMDxum8m2RT5uZ4THX2-zTG"></img>
+            <p></p>
+            <b>
+              {risk_footer} {URL_WEB}
+            </b>
+            <p>{farewell}</p>
+          </div>
+          <div
+            style={{
+              border: 2,
+              background: "#ABBAEA",
+              textAlign: "center",
+              fontSize: "15px",
+            }}
+          >
+            <p>
+              {closing} <b>{EMAIL_ADDRESS}</b>
+            </p>
+            <p>
+              {footer}
+              {email}.
+            </p>
+          </div>
+        </div>
+      </body>
+    </html>
+  );
+  return page;
 };

@@ -104,6 +104,10 @@ export const AdminNotifications: FC<{
                       body: config.DEFAULT_MESSAGE,
                       farewell: config.MESSAGE_FAREWELL,
                       closing: config.MESSAGE_CLOSING,
+                      riskBody: config.MESSAGE_RISK_BODY,
+                      riskGif: config.MESSAGE_RISK_GIF,
+                      riskTitle: config.MESSAGE_RISK_HEADER,
+                      riskFooter: config.MESSAGE_RISK_FOOTER,
                     },
                   });
                   setOpenNotificationMailMessage(true);
@@ -275,6 +279,12 @@ export const AdminNotifications: FC<{
                             {config.NOTIFICATIONS_EMAIL_ADDRESS}
                           </p>
                           <p>
+                            <b>Risk title: </b> {data.riskTitle}
+                          </p>
+                          <p>
+                            <b>Risk footer: </b> {data.riskFooter}
+                          </p>
+                          <p>
                             <b>Footer</b>:{data.footer}
                             {email}
                           </p>
@@ -297,6 +307,9 @@ export const AdminNotifications: FC<{
                           )}
                         </Table.Cell>
                         <Table.Cell>
+                          <p>
+                            <b>Risk body</b> {data.riskBody}
+                          </p>
                           {risksData?.map(
                             (risks: {
                               risk_id: React.Key | null | undefined;

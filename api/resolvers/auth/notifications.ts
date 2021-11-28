@@ -16,6 +16,7 @@ import { sendMail } from "../../services/mail";
 import { Notifications } from "../../entities/auth/notifications";
 
 import { format } from "date-fns-tz";
+/*mport { RiskNotificationMailTest } from "../../services/mail/mail";*/
 
 @Resolver(() => Notifications)
 export class NotificationsResolver {
@@ -27,11 +28,16 @@ export class NotificationsResolver {
     @Arg("closing") closing: string,
     @Arg("farewell") farewell: string,
     @Arg("subject") subject: string,
-    @Arg("body") body: string
+    @Arg("body") body: string,
+    @Arg("riskTitle") riskTitle: string,
+    @Arg("riskBody") riskBody: string,
+    @Arg("riskGif") riskGif: string,
+    @Arg("riskFooter") riskFooter: string
   ): Promise<Record<string, any>> {
     const users = await UserTable()
       .select("email", "type", "locked")
       .distinctOn("email");
+
     console.log(users);
     const NotificationMailResults: Record<string, any>[] = [];
     const parametersDate = await ParameterTable().distinctOn("loading_type");
@@ -117,7 +123,7 @@ export class NotificationsResolver {
 
       /**######## envio de notificaciones ######## */
       if (
-        !(emailParameters?.parameters === parametersInfo) &&
+        emailParameters?.parameters === parametersInfo &&
         type === "Director" &&
         locked === false &&
         sendNotification
@@ -167,6 +173,10 @@ export class NotificationsResolver {
             farewell: farewell,
             parameters: parametersInfo,
             risk_types: risks_array,
+            risk_body: riskBody,
+            risk_gif: riskGif,
+            risk_header: riskTitle,
+            risk_footer: riskFooter,
           });
           const messageContent = {
             header: header,
@@ -175,8 +185,11 @@ export class NotificationsResolver {
             body: body,
             closing: closing,
             farewell: farewell,
+            riskBody: riskBody,
+            riskTitle: riskTitle,
+            riskGif: riskGif,
+            riskFooter: riskFooter,
           };
-
           const result = await sendMail({
             to: email,
             message: msg,
@@ -209,7 +222,6 @@ export class NotificationsResolver {
     @Arg("risks") risks: string
   ): Promise<Record<string, any>> {
     const data = JSON.parse(content);
-    console.log("largo de risks", risks.length);
     if (risks.length > 0) {
       var msg = RiskNotificationMail({
         email: email,
@@ -221,6 +233,10 @@ export class NotificationsResolver {
         farewell: data.farewell,
         parameters: parameters,
         risk_types: risks,
+        risk_body: data.riskBody,
+        risk_footer: data.riskFooter,
+        risk_gif: data.riskGif,
+        risk_header: data.riskTitle,
       });
     } else {
       var msg = NotificationMail({

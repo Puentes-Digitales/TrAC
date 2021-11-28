@@ -292,6 +292,10 @@ export type MutationNotificateUsersArgs = {
   farewell: Scalars["String"];
   footer: Scalars["String"];
   header: Scalars["String"];
+  riskBody: Scalars["String"];
+  riskFooter: Scalars["String"];
+  riskGif: Scalars["String"];
+  riskTitle: Scalars["String"];
   subject: Scalars["String"];
 };
 
@@ -666,6 +670,10 @@ export type NotificateUsersAdminMutationVariables = Exact<{
   footer: Scalars["String"];
   header: Scalars["String"];
   subject: Scalars["String"];
+  riskBody: Scalars["String"];
+  riskTitle: Scalars["String"];
+  riskGif: Scalars["String"];
+  riskFooter: Scalars["String"];
 }>;
 
 export type NotificateUsersAdminMutation = Pick<Mutation, "NotificateUsers">;
@@ -1577,6 +1585,10 @@ export const NotificateUsersAdminDocument = gql`
     $footer: String!
     $header: String!
     $subject: String!
+    $riskBody: String!
+    $riskTitle: String!
+    $riskGif: String!
+    $riskFooter: String!
   ) {
     NotificateUsers(
       header: $header
@@ -1585,6 +1597,10 @@ export const NotificateUsersAdminDocument = gql`
       subject: $subject
       farewell: $farewell
       closing: $closing
+      riskBody: $riskBody
+      riskTitle: $riskTitle
+      riskGif: $riskGif
+      riskFooter: $riskFooter
     )
   }
 `;
@@ -1612,6 +1628,10 @@ export type NotificateUsersAdminMutationFn = Apollo.MutationFunction<
  *      footer: // value for 'footer'
  *      header: // value for 'header'
  *      subject: // value for 'subject'
+ *      riskBody: // value for 'riskBody'
+ *      riskTitle: // value for 'riskTitle'
+ *      riskGif: // value for 'riskGif'
+ *      riskFooter: // value for 'riskFooter'
  *   },
  * });
  */
