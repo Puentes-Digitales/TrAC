@@ -311,6 +311,7 @@ export type MutationReNotificateUsersArgs = {
   email: Scalars["String"];
   id: Scalars["Float"];
   parameters: Scalars["String"];
+  risks: Scalars["String"];
 };
 
 export type MutationResetPersistenceArgs = {
@@ -353,6 +354,7 @@ export type Notifications = {
   email: Scalars["String"];
   id: Scalars["Int"];
   parameters: Scalars["String"];
+  risks: Scalars["String"];
 };
 
 export type Parameter = {
@@ -674,6 +676,7 @@ export type ReNotificateUsersAdminMutationVariables = Exact<{
   parameters: Scalars["String"];
   counter: Scalars["Float"];
   id: Scalars["Float"];
+  risks: Scalars["String"];
 }>;
 
 export type ReNotificateUsersAdminMutation = Pick<
@@ -689,7 +692,7 @@ export type NotificationsDataAdminQuery = {
   NotificationsData: Array<
     Pick<
       Notifications,
-      "id" | "email" | "content" | "date" | "parameters" | "counter"
+      "id" | "email" | "content" | "date" | "parameters" | "counter" | "risks"
     >
   >;
 };
@@ -1638,6 +1641,7 @@ export const ReNotificateUsersAdminDocument = gql`
     $parameters: String!
     $counter: Float!
     $id: Float!
+    $risks: String!
   ) {
     ReNotificateUsers(
       content: $content
@@ -1645,6 +1649,7 @@ export const ReNotificateUsersAdminDocument = gql`
       parameters: $parameters
       counter: $counter
       id: $id
+      risks: $risks
     )
   }
 `;
@@ -1671,6 +1676,7 @@ export type ReNotificateUsersAdminMutationFn = Apollo.MutationFunction<
  *      parameters: // value for 'parameters'
  *      counter: // value for 'counter'
  *      id: // value for 'id'
+ *      risks: // value for 'risks'
  *   },
  * });
  */
@@ -1702,6 +1708,7 @@ export const NotificationsDataAdminDocument = gql`
       date
       parameters
       counter
+      risks
     }
   }
 `;

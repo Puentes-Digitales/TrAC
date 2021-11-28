@@ -17,10 +17,12 @@ export const AdminNotifications: FC<{
     email: string;
     content: string;
     emailParameters: string;
+    risksTypes: string;
     date: string;
     counter: number;
   }[];
 }> = ({ notifications }) => {
+  console.log("notifications", notifications);
   const config = useContext(ConfigContext);
 
   const [column, setColumn] = useRememberState(
@@ -37,6 +39,7 @@ export const AdminNotifications: FC<{
       email: string;
       content: string;
       emailParameters: string;
+      risksTypes: string;
       date: string;
       counter: number;
     }[]
@@ -197,6 +200,12 @@ export const AdminNotifications: FC<{
                   parameters date notified
                 </Table.HeaderCell>
                 <Table.HeaderCell
+                  sorted={column === "risksTypes" ? direction : undefined}
+                  onClick={handleSort("risksTypes")}
+                >
+                  risk notified
+                </Table.HeaderCell>
+                <Table.HeaderCell
                   sorted={column === "parameters" ? direction : undefined}
                   onClick={handleSort("parameters")}
                 >
@@ -214,12 +223,20 @@ export const AdminNotifications: FC<{
             <Table.Body>
               {selectedData.map(
                 (
-                  { id, email, content, date, emailParameters, counter },
+                  {
+                    id,
+                    email,
+                    content,
+                    date,
+                    emailParameters,
+                    counter,
+                    risksTypes,
+                  },
                   key
                 ) => {
                   const data = JSON.parse(content);
                   const parametersData = JSON.parse(emailParameters);
-
+                  const risksData = JSON.parse(risksTypes);
                   const messageDate = format(
                     new Date(date),
                     dateFormatStringTemplate,
@@ -236,6 +253,7 @@ export const AdminNotifications: FC<{
                         content: content,
                         parameters: JSON.stringify(parametersData),
                         counter: counter,
+                        risks: JSON.stringify(risksData),
                       }}
                     >
                       <Table.Row className="cursorPointer" align="left">
@@ -273,6 +291,42 @@ export const AdminNotifications: FC<{
                                   <b>{item.loading_type}</b>
                                   {": "}
                                   {item.date}
+                                </p>
+                              ) : null;
+                            }
+                          )}
+                        </Table.Cell>
+                        <Table.Cell>
+                          {risksData?.map(
+                            (risks: {
+                              risk_id: React.Key | null | undefined;
+                              program: any;
+                              risks: any;
+                            }) => {
+                              return risks ? (
+                                <p key={risks.risk_id}>
+                                  <b>{risks.program}</b>
+                                  <ul>
+                                    {risks.risks?.map(
+                                      (risk_type: {
+                                        risk_type_id:
+                                          | React.Key
+                                          | null
+                                          | undefined;
+                                        risk_type: any;
+                                        count: any;
+                                      }) => {
+                                        return risk_type ? (
+                                          <p key={risk_type.risk_type_id}>
+                                            <p>
+                                              {risk_type.risk_type} :{" "}
+                                              {risk_type.count}
+                                            </p>
+                                          </p>
+                                        ) : null;
+                                      }
+                                    )}
+                                  </ul>
                                 </p>
                               ) : null;
                             }

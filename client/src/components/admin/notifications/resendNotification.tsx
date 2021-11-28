@@ -11,6 +11,7 @@ export const ResendNotification: FC<{
     email: string;
     content: string;
     parameters: string;
+    risks: string;
     counter: number;
   };
   children: JSX.Element;
@@ -56,6 +57,7 @@ export const ResendNotification: FC<{
                           email: notification.email,
                           parameters: notification.parameters,
                           counter: notification.counter,
+                          risks: notification.risks,
                         },
                       });
                     } catch (err) {

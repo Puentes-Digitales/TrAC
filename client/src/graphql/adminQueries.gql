@@ -77,6 +77,7 @@ mutation ReNotificateUsersAdmin(
   $parameters: String!
   $counter: Float!
   $id: Float!
+  $risks: String!
 ) {
   ReNotificateUsers(
     content: $content
@@ -84,6 +85,7 @@ mutation ReNotificateUsersAdmin(
     parameters: $parameters
     counter: $counter
     id: $id
+    risks: $risks
   )
 }
 
@@ -95,6 +97,7 @@ query NotificationsDataAdmin {
     date
     parameters
     counter
+    risks
   }
 }
 mutation mailAllLockedUsersAdmin {

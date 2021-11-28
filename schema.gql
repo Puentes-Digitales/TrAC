@@ -264,6 +264,7 @@ type Mutation {
     email: String!
     id: Float!
     parameters: String!
+    risks: String!
   ): [JSONObject!]!
   resetDataLoadersCache: Int!
   resetPersistence(user: String!): Int!
@@ -286,6 +287,7 @@ type Notifications {
   email: String!
   id: Int!
   parameters: String!
+  risks: String!
 }
 
 type Parameter {
