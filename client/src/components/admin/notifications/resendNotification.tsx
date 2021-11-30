@@ -13,7 +13,9 @@ export const ResendNotification: FC<{
     parameters: string;
     risks: string;
     counter: number;
+    riskJSON: string;
   };
+
   children: JSX.Element;
 }> = ({ children, notification }) => {
   const [open, setOpen] = useState(false);
@@ -58,6 +60,7 @@ export const ResendNotification: FC<{
                           parameters: notification.parameters,
                           counter: notification.counter,
                           risks: notification.risks,
+                          riskJSON: notification.riskJSON,
                         },
                       });
                     } catch (err) {

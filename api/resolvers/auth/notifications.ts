@@ -14,7 +14,6 @@ import { ADMIN } from "../../constants";
 import { NotificationMail, RiskNotificationMail } from "../../services/mail";
 import { sendMail } from "../../services/mail";
 import { Notifications } from "../../entities/auth/notifications";
-
 import { format } from "date-fns-tz";
 /*mport { RiskNotificationMailTest } from "../../services/mail/mail";*/
 
@@ -32,13 +31,12 @@ export class NotificationsResolver {
     @Arg("riskTitle") riskTitle: string,
     @Arg("riskBody") riskBody: string,
     @Arg("riskGif") riskGif: string,
-    @Arg("riskFooter") riskFooter: string
+    @Arg("riskFooter") riskFooter: string,
+    @Arg("riskJSON") riskJSON: string
   ): Promise<Record<string, any>> {
     const users = await UserTable()
       .select("email", "type", "locked")
       .distinctOn("email");
-
-    console.log(users);
     const NotificationMailResults: Record<string, any>[] = [];
     const parametersDate = await ParameterTable().distinctOn("loading_type");
     const carrerasFID = [
@@ -79,7 +77,6 @@ export class NotificationsResolver {
 
       for (const { program } of user_programs) {
         /* ######## contar situaciones de riesgo y tipo por programa######## */
-        console.log("programa: ", program, "de usuario: ", email);
         const risk_types = await RiskNotificationTable()
           .select("risk_type")
           .count("*")
@@ -94,15 +91,16 @@ export class NotificationsResolver {
           );
           sendNotification = true;
         }
+        console.log(sendNotification);
         if (risk_types.length > 0) {
           const program_name = await ProgramTable()
             .select("name")
             .where({ id: program });
-
           risk_and_programs.push({
             program: program_name?.map(({ name }) => {
               return name;
             }),
+
             risks: risk_types,
           });
         }
@@ -120,10 +118,9 @@ export class NotificationsResolver {
         .where({ email: email })
         .first()
         .orderBy("id", "desc");
-
       /**######## envio de notificaciones ######## */
       if (
-        emailParameters?.parameters === parametersInfo &&
+        !(emailParameters?.parameters === parametersInfo) &&
         type === "Director" &&
         locked === false &&
         sendNotification
@@ -177,7 +174,9 @@ export class NotificationsResolver {
             risk_gif: riskGif,
             risk_header: riskTitle,
             risk_footer: riskFooter,
+            risk_json: riskJSON,
           });
+
           const messageContent = {
             header: header,
             footer: footer,
@@ -195,6 +194,7 @@ export class NotificationsResolver {
             message: msg,
             subject: subject,
           });
+
           NotificationMailResults.push(result);
           const counter = 1;
           await NotificationsDataTable().insert({
@@ -219,7 +219,8 @@ export class NotificationsResolver {
     @Arg("content") content: string,
     @Arg("parameters") parameters: string,
     @Arg("counter") counter: number,
-    @Arg("risks") risks: string
+    @Arg("risks") risks: string,
+    @Arg("risksJSON") risksJSON: string
   ): Promise<Record<string, any>> {
     const data = JSON.parse(content);
     if (risks.length > 0) {
@@ -237,6 +238,7 @@ export class NotificationsResolver {
         risk_footer: data.riskFooter,
         risk_gif: data.riskGif,
         risk_header: data.riskTitle,
+        risk_json: risksJSON,
       });
     } else {
       var msg = NotificationMail({

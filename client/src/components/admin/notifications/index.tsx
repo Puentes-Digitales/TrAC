@@ -22,7 +22,6 @@ export const AdminNotifications: FC<{
     counter: number;
   }[];
 }> = ({ notifications }) => {
-  console.log("notifications", notifications);
   const config = useContext(ConfigContext);
 
   const [column, setColumn] = useRememberState(
@@ -84,6 +83,30 @@ export const AdminNotifications: FC<{
 
   const dateFormatStringTemplate = "dd-MM-yyyy";
 
+  const risksJSON = [
+    {
+      id: "low_progressing_rate",
+      def: config.RISK_LOW_PROGRESSING_RATE,
+    },
+    {
+      id: "low_passing_rate_courses",
+      def: config.RISK_LOW_PASSING_RATE_COURSES,
+    },
+    {
+      id: "student_pending_of_graduation",
+      def: config.RISK_STUDENT_PENDING_OF_GRADUATION,
+    },
+    {
+      id: "third_attempt",
+      def: config.RISK_THIRD_ATTEMPT,
+    },
+    {
+      id: "low_high_drop_rate",
+      def: config.RISK_LOW_HIGH_DROP_RATE,
+    },
+  ];
+
+  const risksJSONString = JSON.stringify(risksJSON);
   return (
     <>
       <Stack alignItems="center" spacing="1pm">
@@ -108,6 +131,7 @@ export const AdminNotifications: FC<{
                       riskGif: config.MESSAGE_RISK_GIF,
                       riskTitle: config.MESSAGE_RISK_HEADER,
                       riskFooter: config.MESSAGE_RISK_FOOTER,
+                      riskJSON: risksJSONString,
                     },
                   });
                   setOpenNotificationMailMessage(true);
@@ -258,6 +282,7 @@ export const AdminNotifications: FC<{
                         parameters: JSON.stringify(parametersData),
                         counter: counter,
                         risks: JSON.stringify(risksData),
+                        riskJSON: risksJSONString,
                       }}
                     >
                       <Table.Row className="cursorPointer" align="left">

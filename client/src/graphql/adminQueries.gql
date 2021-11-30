@@ -65,6 +65,7 @@ mutation NotificateUsersAdmin(
   $riskTitle: String!
   $riskGif: String!
   $riskFooter: String!
+  $riskJSON: String!
 ) {
   NotificateUsers(
     header: $header
@@ -77,6 +78,7 @@ mutation NotificateUsersAdmin(
     riskTitle: $riskTitle
     riskGif: $riskGif
     riskFooter: $riskFooter
+    riskJSON: $riskJSON
   )
 }
 mutation ReNotificateUsersAdmin(
@@ -86,6 +88,7 @@ mutation ReNotificateUsersAdmin(
   $counter: Float!
   $id: Float!
   $risks: String!
+  $riskJSON: String!
 ) {
   ReNotificateUsers(
     content: $content
@@ -94,6 +97,7 @@ mutation ReNotificateUsersAdmin(
     counter: $counter
     id: $id
     risks: $risks
+    risksJSON: $riskJSON
   )
 }
 

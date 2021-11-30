@@ -3,9 +3,11 @@ import React from "react";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
 import { requireEnv } from "require-env-variable";
 import { IS_PRODUCTION } from "../../../client/constants";
+/*import { ConfigContext } from "../../../client/src/context/Config";*/
 
 const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS_REPLY_TO;
 const URL_WEB = process.env.DOMAIN;
+
 const DOMAIN = IS_PRODUCTION
   ? requireEnv("DOMAIN").DOMAIN
   : "http://localhost:3000";
@@ -118,6 +120,7 @@ export const RiskNotificationMail = ({
   risk_body,
   risk_gif,
   risk_footer,
+  risk_json,
 }: {
   email: string;
   header: string;
@@ -132,83 +135,125 @@ export const RiskNotificationMail = ({
   risk_body: string;
   risk_gif: string;
   risk_footer: string;
+  risk_json: string;
 }): string => {
   const parametersDate = JSON.parse(parameters);
   const risk_typesData = JSON.parse(risk_types);
+  const risk_jsonData = JSON.parse(risk_json);
+
+  var risksDict: { [index: string]: string } = {};
+
+  risk_jsonData?.map((item: { id: string; def: string }) => {
+    risksDict[item.id] = item.def;
+  });
+
+  console.log(risksDict);
+
   const page = renderToString(
     <html>
-      <body style={{ fontSize: "20px" }}>
-        <div style={{}}>
+      <body
+        style={{
+          fontSize: "20px",
+          backgroundImage:
+            "URL('https://drive.google.com/file/d/1wSpdrylvYpovUuFniBi_xuFVkNDayhNA/view')",
+          padding: "50px",
+          marginLeft: "200px",
+          marginRight: "200px",
+        }}
+      >
+        <div
+          style={{
+            margin: "10px",
+            padding: "10px",
+            alignItems: "center",
+          }}
+        >
           <div style={{}}>
             <h2
               style={{
                 textAlign: "center",
                 fontFamily: "Georgia, serif",
                 textSizeAdjust: "40px",
+                paddingBottom: "40px",
+                borderBottom: "4px double black",
               }}
             >
               {subject}
             </h2>
-            <h3>{header}</h3>
+            <h3 style={{}}>{header}</h3>
             <p>{body}</p>
-            <ul>
-              {parametersDate?.map(
-                (date: {
-                  id: React.Key | null | undefined;
-                  loading_type: any;
-                  date: any;
-                }) => {
-                  return date ? (
-                    <tr key={date.id}>
-                      <b>{date.loading_type}</b>
-                      {" : "}
-                      {date.date}
-                    </tr>
-                  ) : null;
-                }
-              )}
-            </ul>
+            <p style={{}}>
+              <ul>
+                {parametersDate?.map(
+                  (date: {
+                    id: React.Key | null | undefined;
+                    loading_type: any;
+                    date: any;
+                  }) => {
+                    return date ? (
+                      <li key={date.id}>
+                        <b>{date.loading_type}</b>
+                        {" : "}
+                        {date.date}
+                      </li>
+                    ) : null;
+                  }
+                )}
+              </ul>
+            </p>
           </div>
           <div>
-            <ul>
-              <h3>{risk_header}</h3>
+            <h4 style={{ borderBottom: "2px solid black" }}>{risk_header}</h4>
+            <div>
               <p>{risk_body}</p>
-              {risk_typesData.length
-                ? risk_typesData?.map(
-                    (risks: {
-                      risk_id: React.Key | null | undefined;
-                      program: any;
-                      risks: any;
-                    }) => {
-                      return risks ? (
-                        <li key={risks.risk_id}>
-                          <b>{risks.program}</b>
-                          <ul>
-                            {risks.risks?.map(
-                              (risk_type: {
-                                risk_type_id: React.Key | null | undefined;
-                                risk_type: any;
-                                count: any;
-                              }) => {
-                                return risk_type ? (
-                                  <li key={risk_type.risk_type_id}>
-                                    <b>{risk_type.risk_type}</b>
-                                    {":"}
-                                    <b>{risk_type.count}</b>
-                                  </li>
-                                ) : null;
-                              }
-                            )}
-                          </ul>
-                        </li>
-                      ) : null;
-                    }
-                  )
-                : null}
-            </ul>
-            <p>{risk_gif}</p>
-            <img src="http://drive.google.com/uc?=export=view&id=1WhAes4dJOsMDxum8m2RT5uZ4THX2-zTG"></img>
-            <p></p>
+              <ul>
+                {risk_typesData.length
+                  ? risk_typesData?.map(
+                      (risks: {
+                        risk_id: React.Key | null | undefined;
+                        program: any;
+                        risks: any;
+                      }) => {
+                        return risks ? (
+                          <li key={risks.risk_id}>
+                            <b>{risks.program}</b>
+                            <ul>
+                              {risks.risks?.map(
+                                (risk_types: {
+                                  risk_type_id: React.Key | null | undefined;
+                                  risk_type: string;
+                                  count: any;
+                                }) => {
+                                  return risk_types ? (
+                                    <li key={risk_types.risk_type_id}>
+                                      <p>
+                                        <b>
+                                          {risksDict[risk_types?.risk_type]}
+                                        </b>
+                                        {":"}
+                                        {risk_types.count}
+                                      </p>
+                                    </li>
+                                  ) : null;
+                                }
+                              )}
+                            </ul>
+                          </li>
+                        ) : null;
+                      }
+                    )
+                  : null}
+              </ul>
+              <p>{risk_gif}</p>
+              <p style={{ textAlign: "center" }}>
+                <img
+                  src="http://drive.google.com/uc?=export=view&id=1WhAes4dJOsMDxum8m2RT5uZ4THX2-zTG"
+                  width="500"
+                  height="300"
+                ></img>
+              </p>
+              <p></p>
+            </div>
             <b>
               {risk_footer} {URL_WEB}
             </b>
@@ -222,7 +267,7 @@ export const RiskNotificationMail = ({
               fontSize: "15px",
             }}
           >
-            <p>
+            <p style={{ borderTop: "2px solid black", marginTop: "5px" }}>
               {closing} <b>{EMAIL_ADDRESS}</b>
             </p>
             <p>

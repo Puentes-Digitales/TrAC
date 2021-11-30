@@ -295,6 +295,7 @@ export type MutationNotificateUsersArgs = {
   riskBody: Scalars["String"];
   riskFooter: Scalars["String"];
   riskGif: Scalars["String"];
+  riskJSON: Scalars["String"];
   riskTitle: Scalars["String"];
   subject: Scalars["String"];
 };
@@ -316,6 +317,7 @@ export type MutationReNotificateUsersArgs = {
   id: Scalars["Float"];
   parameters: Scalars["String"];
   risks: Scalars["String"];
+  risksJSON: Scalars["String"];
 };
 
 export type MutationResetPersistenceArgs = {
@@ -674,6 +676,7 @@ export type NotificateUsersAdminMutationVariables = Exact<{
   riskTitle: Scalars["String"];
   riskGif: Scalars["String"];
   riskFooter: Scalars["String"];
+  riskJSON: Scalars["String"];
 }>;
 
 export type NotificateUsersAdminMutation = Pick<Mutation, "NotificateUsers">;
@@ -685,6 +688,7 @@ export type ReNotificateUsersAdminMutationVariables = Exact<{
   counter: Scalars["Float"];
   id: Scalars["Float"];
   risks: Scalars["String"];
+  riskJSON: Scalars["String"];
 }>;
 
 export type ReNotificateUsersAdminMutation = Pick<
@@ -1589,6 +1593,7 @@ export const NotificateUsersAdminDocument = gql`
     $riskTitle: String!
     $riskGif: String!
     $riskFooter: String!
+    $riskJSON: String!
   ) {
     NotificateUsers(
       header: $header
@@ -1601,6 +1606,7 @@ export const NotificateUsersAdminDocument = gql`
       riskTitle: $riskTitle
       riskGif: $riskGif
       riskFooter: $riskFooter
+      riskJSON: $riskJSON
     )
   }
 `;
@@ -1632,6 +1638,7 @@ export type NotificateUsersAdminMutationFn = Apollo.MutationFunction<
  *      riskTitle: // value for 'riskTitle'
  *      riskGif: // value for 'riskGif'
  *      riskFooter: // value for 'riskFooter'
+ *      riskJSON: // value for 'riskJSON'
  *   },
  * });
  */
@@ -1662,6 +1669,7 @@ export const ReNotificateUsersAdminDocument = gql`
     $counter: Float!
     $id: Float!
     $risks: String!
+    $riskJSON: String!
   ) {
     ReNotificateUsers(
       content: $content
@@ -1670,6 +1678,7 @@ export const ReNotificateUsersAdminDocument = gql`
       counter: $counter
       id: $id
       risks: $risks
+      risksJSON: $riskJSON
     )
   }
 `;
@@ -1697,6 +1706,7 @@ export type ReNotificateUsersAdminMutationFn = Apollo.MutationFunction<
  *      counter: // value for 'counter'
  *      id: // value for 'id'
  *      risks: // value for 'risks'
+ *      riskJSON: // value for 'riskJSON'
  *   },
  * });
  */
