@@ -3,8 +3,6 @@ import React from "react";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
 import { requireEnv } from "require-env-variable";
 import { IS_PRODUCTION } from "../../../client/constants";
-/*import { ConfigContext } from "../../../client/src/context/Config";*/
-
 const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS_REPLY_TO;
 const URL_WEB = process.env.DOMAIN;
 
