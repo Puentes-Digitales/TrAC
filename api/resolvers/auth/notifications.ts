@@ -76,35 +76,32 @@ export class NotificationsResolver {
       var risk_and_programs = [];
 
       for (const { program } of user_programs) {
-        /* ######## contar situaciones de riesgo y tipo por programa######## */
-        const risk_types = await RiskNotificationTable()
-          .select("risk_type")
-          .count("*")
-          .where({ program_id: program })
-          .andWhere({ notified: false })
-          .groupBy("risk_type");
-
         if (carrerasFID.includes(program)) {
+          /* ######## contar situaciones de riesgo y tipo por programa######## */
+          const risk_types = await RiskNotificationTable()
+            .select("risk_type")
+            .count("*")
+            .where({ program_id: program })
+            .andWhere({ notified: false })
+            .groupBy("risk_type");
+
           sendNotification = true;
-        }
-        if (risk_types.length > 0) {
-          const program_name = await ProgramTable()
-            .select("name")
-            .where({ id: program });
-          risk_and_programs.push({
-            program: program_name?.map(({ name }) => {
-              return name;
-            }),
+          if (risk_types.length > 0) {
+            const program_name = await ProgramTable()
+              .select("name")
+              .where({ id: program });
+            risk_and_programs.push({
+              program: program_name?.map(({ name }) => {
+                return name;
+              }),
 
-            risks: risk_types,
-          });
+              risks: risk_types,
+            });
+          }
+          await RiskNotificationTable()
+            .where({ program_id: program })
+            .update({ notified: false });
         }
-
-        /* const risk_types_json = JSON.stringify(risk_types);*/
-        /*######## cambio de valor "NOTIFIED" ######### */
-        await RiskNotificationTable()
-          .where({ program_id: program })
-          .update({ notified: false });
       }
 
       const emailParameters = await NotificationsDataTable()
