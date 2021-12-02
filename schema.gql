@@ -254,6 +254,7 @@ type Mutation {
     riskBody: String!
     riskFooter: String!
     riskGif: String!
+    riskJSON: String!
     riskTitle: String!
     subject: String!
   ): [JSONObject!]!
@@ -269,6 +270,7 @@ type Mutation {
     id: Float!
     parameters: String!
     risks: String!
+    risksJSON: String!
   ): [JSONObject!]!
   resetDataLoadersCache: Int!
   resetPersistence(user: String!): Int!

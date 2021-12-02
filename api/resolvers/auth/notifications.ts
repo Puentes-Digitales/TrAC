@@ -85,13 +85,8 @@ export class NotificationsResolver {
           .groupBy("risk_type");
 
         if (carrerasFID.includes(program)) {
-          console.log(
-            program,
-            "es un carrera FID, debería enviarse el mensaje"
-          );
           sendNotification = true;
         }
-        console.log(sendNotification);
         if (risk_types.length > 0) {
           const program_name = await ProgramTable()
             .select("name")
@@ -106,7 +101,6 @@ export class NotificationsResolver {
         }
 
         /* const risk_types_json = JSON.stringify(risk_types);*/
-        console.log("risk_and_programs: ", risk_types);
         /*######## cambio de valor "NOTIFIED" ######### */
         await RiskNotificationTable()
           .where({ program_id: program })

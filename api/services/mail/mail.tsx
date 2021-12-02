@@ -145,8 +145,6 @@ export const RiskNotificationMail = ({
     risksDict[item.id] = item.def;
   });
 
-  console.log(risksDict);
-
   const page = renderToString(
     <html>
       <body
