@@ -102,7 +102,7 @@ export const AdminNotifications: FC<{
     },
     {
       id: "low_high_drop_rate",
-      def: config.RISK_LOW_HIGH_DROP_RATE,
+      def: config.RISK_HIGH_DROP_RATE,
     },
   ];
 
