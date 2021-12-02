@@ -146,10 +146,11 @@ export const StudentList: FC<{
     RISK_LOW_PASSING_RATE_COURSES,
     RISK_LOW_PROGRESSING_RATE,
     RISK_THIRD_ATTEMPT,
-    RISK_LOW_HIGH_DROP_RATE,
+    RISK_HIGH_DROP_RATE,
     COURSE_LABEL,
     YEAR_LABEL,
     TERM_LABEL,
+    RATE_LABEL,
   } = useContext(ConfigContext);
 
   var [riskType, setRiskType] = useRememberState(
@@ -260,7 +261,7 @@ export const StudentList: FC<{
             }
           ) ?? []
         );
-      case RISK_LOW_HIGH_DROP_RATE:
+      case RISK_HIGH_DROP_RATE:
         return (
           highDropRate?.riskNotification.map(
             ({ course_id, cohort, risk_type, details }) => {
@@ -500,7 +501,7 @@ export const StudentList: FC<{
                 sorted={columnSort[0] === "rate" ? directionSort : undefined}
                 onClick={handleSort("rate")}
               >
-                {PROGRESS_LABEL}
+                {RATE_LABEL}
               </Table.HeaderCell>
             </>
           )}
@@ -590,8 +591,8 @@ export const StudentList: FC<{
                   <option value={RISK_LOW_PASSING_RATE_COURSES}>
                     {RISK_LOW_PASSING_RATE_COURSES}
                   </option>
-                  <option value={RISK_LOW_HIGH_DROP_RATE}>
-                    {RISK_LOW_HIGH_DROP_RATE}
+                  <option value={RISK_HIGH_DROP_RATE}>
+                    {RISK_HIGH_DROP_RATE}
                   </option>
                 </>
               )}
