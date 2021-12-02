@@ -45,7 +45,7 @@ mutation logout {
   logout
 }
 
-mutation searchProgram($id: String, $student_id: String) {
+mutation searchProgram($id: String, $student_id: String!) {
   program(id: $id, student_id: $student_id) {
     id
     name
@@ -126,7 +126,7 @@ mutation searchProgram($id: String, $student_id: String) {
       }
     }
 
-    curriculums {
+    curriculums(student_id: $student_id) {
       id
       semesters {
         id

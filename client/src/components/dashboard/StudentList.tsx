@@ -54,7 +54,7 @@ const progressTextShadow = css`
 
 const progressSmallText = css`
   .progress {
-    fontsize: 10px !important;
+    font-size: 10px !important;
   }
 `;
 

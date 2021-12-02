@@ -326,7 +326,7 @@ type Persistence {
 type Program {
   active: Boolean!
   courseGroupedStats: [CourseGroupedStats!]!
-  curriculums: [Curriculum!]!
+  curriculums(student_id: String!): [Curriculum!]!
   desc: String!
   externalEvaluationGroupedStats: [ExternalEvaluationGroupedStats!]!
   groupedComplementary: [GroupedComplementary!]!
