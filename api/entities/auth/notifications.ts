@@ -19,4 +19,7 @@ export class Notifications {
 
   @Field()
   counter: number;
+
+  @Field()
+  risks: string;
 }

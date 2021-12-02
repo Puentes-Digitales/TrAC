@@ -45,7 +45,7 @@ export type Course = {
   credits: Array<Credit>;
   flow: Array<Course>;
   historicalDistribution: Array<DistributionValue>;
-  /** Course-Semester-Curriculum-Program ID */
+  /** Course-Semester-Curriculum-Program ID  */
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
@@ -105,7 +105,7 @@ export type ExternalEvaluation = {
   bandColors: Array<BandColor>;
   code: Scalars["String"];
   historicalDistribution: Array<DistributionValue>;
-  /** ExternalEvaluation-Semester-Curriculum-Program ID */
+  /** ExternalEvaluation-Semester-Curriculum-Program ID  */
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
@@ -293,6 +293,11 @@ export type MutationNotificateUsersArgs = {
   farewell: Scalars["String"];
   footer: Scalars["String"];
   header: Scalars["String"];
+  riskBody: Scalars["String"];
+  riskFooter: Scalars["String"];
+  riskGif: Scalars["String"];
+  riskJSON: Scalars["String"];
+  riskTitle: Scalars["String"];
   subject: Scalars["String"];
 };
 
@@ -312,6 +317,8 @@ export type MutationReNotificateUsersArgs = {
   email: Scalars["String"];
   id: Scalars["Float"];
   parameters: Scalars["String"];
+  risks: Scalars["String"];
+  risksJSON: Scalars["String"];
 };
 
 export type MutationResetPersistenceArgs = {
@@ -354,6 +361,7 @@ export type Notifications = {
   email: Scalars["String"];
   id: Scalars["Int"];
   parameters: Scalars["String"];
+  risks: Scalars["String"];
 };
 
 export type Parameter = {
@@ -666,6 +674,11 @@ export type NotificateUsersAdminMutationVariables = Exact<{
   footer: Scalars["String"];
   header: Scalars["String"];
   subject: Scalars["String"];
+  riskBody: Scalars["String"];
+  riskTitle: Scalars["String"];
+  riskGif: Scalars["String"];
+  riskFooter: Scalars["String"];
+  riskJSON: Scalars["String"];
 }>;
 
 export type NotificateUsersAdminMutation = Pick<Mutation, "NotificateUsers">;
@@ -676,6 +689,8 @@ export type ReNotificateUsersAdminMutationVariables = Exact<{
   parameters: Scalars["String"];
   counter: Scalars["Float"];
   id: Scalars["Float"];
+  risks: Scalars["String"];
+  riskJSON: Scalars["String"];
 }>;
 
 export type ReNotificateUsersAdminMutation = Pick<
@@ -691,7 +706,7 @@ export type NotificationsDataAdminQuery = {
   NotificationsData: Array<
     Pick<
       Notifications,
-      "id" | "email" | "content" | "date" | "parameters" | "counter"
+      "id" | "email" | "content" | "date" | "parameters" | "counter" | "risks"
     >
   >;
 };
@@ -1582,6 +1597,11 @@ export const NotificateUsersAdminDocument = gql`
     $footer: String!
     $header: String!
     $subject: String!
+    $riskBody: String!
+    $riskTitle: String!
+    $riskGif: String!
+    $riskFooter: String!
+    $riskJSON: String!
   ) {
     NotificateUsers(
       header: $header
@@ -1590,6 +1610,11 @@ export const NotificateUsersAdminDocument = gql`
       subject: $subject
       farewell: $farewell
       closing: $closing
+      riskBody: $riskBody
+      riskTitle: $riskTitle
+      riskGif: $riskGif
+      riskFooter: $riskFooter
+      riskJSON: $riskJSON
     )
   }
 `;
@@ -1617,6 +1642,11 @@ export type NotificateUsersAdminMutationFn = Apollo.MutationFunction<
  *      footer: // value for 'footer'
  *      header: // value for 'header'
  *      subject: // value for 'subject'
+ *      riskBody: // value for 'riskBody'
+ *      riskTitle: // value for 'riskTitle'
+ *      riskGif: // value for 'riskGif'
+ *      riskFooter: // value for 'riskFooter'
+ *      riskJSON: // value for 'riskJSON'
  *   },
  * });
  */
@@ -1646,6 +1676,8 @@ export const ReNotificateUsersAdminDocument = gql`
     $parameters: String!
     $counter: Float!
     $id: Float!
+    $risks: String!
+    $riskJSON: String!
   ) {
     ReNotificateUsers(
       content: $content
@@ -1653,6 +1685,8 @@ export const ReNotificateUsersAdminDocument = gql`
       parameters: $parameters
       counter: $counter
       id: $id
+      risks: $risks
+      risksJSON: $riskJSON
     )
   }
 `;
@@ -1679,6 +1713,8 @@ export type ReNotificateUsersAdminMutationFn = Apollo.MutationFunction<
  *      parameters: // value for 'parameters'
  *      counter: // value for 'counter'
  *      id: // value for 'id'
+ *      risks: // value for 'risks'
+ *      riskJSON: // value for 'riskJSON'
  *   },
  * });
  */
@@ -1710,6 +1746,7 @@ export const NotificationsDataAdminDocument = gql`
       date
       parameters
       counter
+      risks
     }
   }
 `;
