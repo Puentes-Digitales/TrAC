@@ -432,6 +432,8 @@ export const baseConfig = {
   NOTIFICATIONS_EMAIL_ADDRESS: "soportelala@inf.uach.cl",
   SHOW_PARAMETER: true,
   COURSE_LABEL: "Ramo",
+  YEAR_LABEL: "Año",
+  TERM_LABEL: "Semestre",
 };
 
 export const baseConfigAdmin: typeof baseConfig &
