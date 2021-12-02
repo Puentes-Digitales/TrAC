@@ -416,6 +416,7 @@ export const baseConfig = {
   NO_INFORMATION_TO_DEPLOY: "No hay información para mostrar",
   RISK_ALL: "Todos",
   RISK_STUDENT_PENDING_OF_GRADUATION: "Pendientes de Titulación ",
+  RISK_HIGH_DROP_RATE: "Cursos con alto tasa de anulacion",
   RISK_LOW_PROGRESSING_RATE: "Avance menor al umbral (50%)",
   MESSAGE_RISK_HEADER: "Situaciones de riesgo",
   MESSAGE_RISK_BODY: "Se han encontrado las siguientes situaciones de riesgo: ",
@@ -423,7 +424,6 @@ export const baseConfig = {
   MESSAGE_RISK_FOOTER: "Para mayor información visite : ",
   RISK_THIRD_ATTEMPT: "Asignaturas por tercera vez",
   RISK_LOW_PASSING_RATE_COURSES: "Cursos con bajo nivel de aprobación",
-  RISK_LOW_HIGH_DROP_RATE: "Anulaciones sobre el umbral",
   GROUPED_DATA: "Datos agrupados",
   EMPLOYABILITY_DATA: "Datos empleabilidad",
   ACADEMIC_DATA: "Datos académicos",
@@ -434,6 +434,7 @@ export const baseConfig = {
   COURSE_LABEL: "Ramo",
   YEAR_LABEL: "Año",
   TERM_LABEL: "Semestre",
+  RATE_LABEL: "Tasa",
 };
 
 export const baseConfigAdmin: typeof baseConfig &
