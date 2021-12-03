@@ -1158,6 +1158,7 @@ export type RiskNoticationQuery = {
       | "curriculum"
       | "cohort"
       | "risk_type"
+      | "details"
     >
   >;
 };
@@ -3444,6 +3445,7 @@ export const RiskNoticationDocument = gql`
       curriculum
       cohort
       risk_type
+      details
     }
   }
 `;
