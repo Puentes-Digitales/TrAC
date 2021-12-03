@@ -49,7 +49,7 @@ export type ITakenExternalEvaluation = {
   term: string;
   year: number;
   registration?: string;
-  grade: string;
+  grade: number;
   topic?: string;
   state?: StateCourse;
   currentDistribution?: IDistribution[];

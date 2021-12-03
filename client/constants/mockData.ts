@@ -13628,7 +13628,7 @@ const data: {
               name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
               registration: "CURSADA",
               topic: "Lectura",
-              grade: "71",
+              grade: 71,
               state: StateCourse.Passed,
               currentDistribution: [
                 {
@@ -13681,7 +13681,7 @@ const data: {
               name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
               registration: "CURSADA",
               topic: "Comunicación oral",
-              grade: "20",
+              grade: 20,
               state: StateCourse.Passed,
               currentDistribution: [
                 {
@@ -13734,7 +13734,7 @@ const data: {
               name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
               registration: "CURSADA",
               topic: "Escritura",
-              grade: "30",
+              grade: 30,
               state: StateCourse.Passed,
               currentDistribution: [
                 {
@@ -15409,7 +15409,7 @@ const data: {
               name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
               registration: "CURSADA",
               topic: "Lectura",
-              grade: "30",
+              grade: 30,
               state: StateCourse.Passed,
               currentDistribution: [
                 {
@@ -15462,7 +15462,7 @@ const data: {
               name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
               registration: "CURSADA",
               topic: "Comunicación oral",
-              grade: "70",
+              grade: 70,
               state: StateCourse.Passed,
               currentDistribution: [
                 {
@@ -15515,7 +15515,7 @@ const data: {
               name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
               registration: "CURSADA",
               topic: "Escritura",
-              grade: "55",
+              grade: 55,
               state: StateCourse.Passed,
               currentDistribution: [
                 {
