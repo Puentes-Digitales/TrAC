@@ -8,6 +8,7 @@ import React, {
   useMemo,
   useRef,
   useState,
+  Component,
 } from "react";
 import { FaChevronLeft, FaChevronRight, FaListOl } from "react-icons/fa";
 import { useUpdateEffect } from "react-use";
@@ -38,6 +39,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { css } from "@emotion/react";
+import { Divider, Tab } from "semantic-ui-react";
 
 import { IS_DEVELOPMENT } from "../../../constants";
 import { ConfigContext } from "../../context/Config";
@@ -407,6 +409,32 @@ export const StudentList: FC<{
     }
   }, [courseRisk]);
 
+  const panes = [
+    {
+      menuItem: "Riegos por estudiantes",
+      render: () => <></>,
+    },
+    {
+      menuItem: "Riesgos por cursos",
+      render: () => <></>,
+    },
+  ];
+
+  class TabExampleColoredInverted extends Component {
+    render() {
+      return (
+        <div>
+          <Divider hidden />
+          <Tab
+            menu={{ inverted: false, attached: false, tabular: false }}
+            panes={panes}
+            onTabChange={() => setCourseRisk(!courseRisk)}
+          />
+        </div>
+      );
+    }
+  }
+
   const TableHeader: FC<{
     columnSort: columnNames[];
     directionSort: "ascending" | "descending" | undefined;
@@ -541,25 +569,9 @@ export const StudentList: FC<{
           <DrawerHeader height={20} display="flex" alignItems="center">
             {STUDENT_LIST_TITLE} {loadingData && <Spinner ml={3} />}
           </DrawerHeader>
+          <TabExampleColoredInverted />
 
-          <Center>
-            <Button
-              m={1}
-              color="black"
-              cursor="pointer"
-              pl={6}
-              height="2.0rem"
-              width="25%"
-              colorScheme={courseRisk ? "blue" : "red"}
-              position="relative"
-              left="270px"
-              onClick={() => {
-                setCourseRisk(!courseRisk);
-              }}
-            >
-              {courseRisk ? "Riesgos por estudiantes" : "Riesgos por cursos  "}
-            </Button>
-          </Center>
+          <br />
           <Box>
             <Select
               value={riskType}
@@ -625,13 +637,21 @@ export const StudentList: FC<{
               />
               <Table.Body>
                 {!selectedStudents?.length && (
-                  <Table.Row>
-                    <TableCell />
-                    <Table.Cell>
-                      <Text>{NO_INFORMATION_TO_DEPLOY}</Text>
-                    </Table.Cell>
-                    <TableCell />
-                  </Table.Row>
+                  <>
+                    <Table.Row>
+                      <TableCell />
+                      <Table.Cell>
+                        <Text>{NO_INFORMATION_TO_DEPLOY}</Text>
+                      </Table.Cell>
+                      <TableCell />
+                      {!courseRisk && (
+                        <>
+                          <TableCell />
+                          <TableCell />
+                        </>
+                      )}
+                    </Table.Row>
+                  </>
                 )}
                 {selectedStudents?.length &&
                   selectedStudents?.map(
