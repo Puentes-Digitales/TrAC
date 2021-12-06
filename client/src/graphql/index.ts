@@ -402,10 +402,6 @@ export type Program = {
   type_admission: Scalars["String"];
 };
 
-export type ProgramCurriculumsArgs = {
-  student_id: Scalars["String"];
-};
-
 export type Query = {
   /** Check unlockKey combination, if it's valid, returns null, if it's invalid, returns an error message. */
   checkUnlockKey?: Maybe<Scalars["String"]>;
@@ -822,7 +818,7 @@ export type LogoutMutation = Pick<Mutation, "logout">;
 
 export type SearchProgramMutationVariables = Exact<{
   id?: Maybe<Scalars["String"]>;
-  student_id: Scalars["String"];
+  student_id?: Maybe<Scalars["String"]>;
 }>;
 
 export type SearchProgramMutation = {
@@ -2440,7 +2436,7 @@ export type LogoutMutationOptions = Apollo.BaseMutationOptions<
   LogoutMutationVariables
 >;
 export const SearchProgramDocument = gql`
-  mutation searchProgram($id: String, $student_id: String!) {
+  mutation searchProgram($id: String, $student_id: String) {
     program(id: $id, student_id: $student_id) {
       id
       name
@@ -2519,7 +2515,7 @@ export const SearchProgramDocument = gql`
           color
         }
       }
-      curriculums(student_id: $student_id) {
+      curriculums {
         id
         semesters {
           id

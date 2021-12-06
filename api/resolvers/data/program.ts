@@ -29,8 +29,6 @@ import {
   StudentGroupedComplementaryDataLoader,
   GroupedEmployedDataLoader,
 } from "../../dataloaders/program";
-import { StudentViaProgramsDataLoader } from "../../dataloaders/student";
-
 import { ProgramTable, UserProgramsTable } from "../../db/tables";
 import { Program } from "../../entities/data/program";
 
@@ -47,11 +45,6 @@ import type {
 import type { PartialCourse } from "./course";
 import type { PartialExternalEvaluation } from "./externalEvaluation";
 export type PartialProgram = Pick<Program, "id">;
-export type partialProgramPlusStudentId = {
-  student_id: string;
-  id: string;
-  curriculums: any[];
-};
 
 @Resolver(() => Program)
 export class ProgramResolver {
@@ -312,14 +305,12 @@ export class ProgramResolver {
   }
 
   @FieldResolver()
-  @Authorized()
   async curriculums(
-    @Arg("student_id") student_id: string,
     @Root()
     {
       id: program_id,
       curriculums: curriculumsIds,
-    }: Pick<partialProgramPlusStudentId, "id" | "curriculums" | "student_id">
+    }: Pick<Program, "id" | "curriculums">
   ): Promise<
     IfImplements<
       {
@@ -338,17 +329,9 @@ export class ProgramResolver {
       "The id needs to be available for the program fields resolvers"
     );
 
-    let auxStudentId = "" + student_id;
-    const studentData = await StudentViaProgramsDataLoader.load(auxStudentId);
-    let mentionStudent: string = studentData?.mention ?? "";
-    console.log(studentData);
-    console.log(student_id);
-    console.log("&&&&&&&&&&&");
-
     const data = await CurriculumsDataLoader.load({
-      program_id: program_id,
-      curriculumsIds: curriculumsIds,
-      mention: mentionStudent,
+      program_id,
+      curriculumsIds,
     });
 
     return data;
