@@ -413,22 +413,32 @@ export const StudentList: FC<{
     {
       menuItem: "Riegos por estudiantes",
       render: () => <></>,
+      tabIndex: 0,
     },
     {
       menuItem: "Riesgos por cursos",
       render: () => <></>,
+      tabIndex: 1,
     },
   ];
 
+  var [indexTab, setIndexTab] = useRememberState("index_Tab_selected", 1);
   class TabExampleColoredInverted extends Component {
     render() {
       return (
         <div>
           <Divider hidden />
           <Tab
+            activeIndex={indexTab}
             menu={{ inverted: false, attached: false, tabular: false }}
             panes={panes}
-            onTabChange={() => setCourseRisk(!courseRisk)}
+            onTabChange={(e, data) => {
+              let auxIndx = data?.activeIndex ?? 0;
+              let auxIndx2 = parseInt("" + auxIndx);
+              setIndexTab(auxIndx2);
+              setCourseRisk(!courseRisk);
+              //e.currentTarget.setAttribute("class", "active item");
+            }}
           />
         </div>
       );
