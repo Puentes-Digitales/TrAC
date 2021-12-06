@@ -84,9 +84,9 @@ export class NotificationsResolver {
             .where({ program_id: program })
             .andWhere({ notified: false })
             .groupBy("risk_type");
-
           sendNotification = true;
-          if (risk_types.length > 0) {
+          console.log(risk_types);
+          if (risk_types != null && risk_types.length) {
             const program_name = await ProgramTable()
               .select("name")
               .where({ id: program });
@@ -214,7 +214,9 @@ export class NotificationsResolver {
     @Arg("risksJSON") risksJSON: string
   ): Promise<Record<string, any>> {
     const data = JSON.parse(content);
-    if (risks.length > 0) {
+    console.log(risks);
+    if (risks != "null") {
+      console.log(risks);
       var msg = RiskNotificationMail({
         email: email,
         header: data.header,

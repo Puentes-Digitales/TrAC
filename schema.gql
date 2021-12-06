@@ -294,7 +294,7 @@ type Notifications {
   email: String!
   id: Int!
   parameters: String!
-  risks: String!
+  risks: String
 }
 
 type Parameter {
