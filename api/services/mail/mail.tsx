@@ -71,36 +71,76 @@ export const NotificationMail = ({
 }): string => {
   const parametersDate = JSON.parse(parameters);
   return renderToString(
-    <div>
-      <h2>{subject}</h2>
-      <h3>{header}</h3>
-      <p>{body}</p>
-      <ul>
-        {parametersDate?.map(
-          (date: {
-            id: React.Key | null | undefined;
-            loading_type: any;
-            date: any;
-          }) => {
-            return date ? (
-              <li key={date.id}>
-                <b>{date.loading_type}</b>
-                {": "}
-                {date.date}
-              </li>
-            ) : null;
-          }
-        )}
-      </ul>
-      <p>{farewell}</p>
-      <p>
-        {closing} <b>{EMAIL_ADDRESS}</b>
-      </p>
-      <p>
-        {footer}
-        {email}.
-      </p>
-    </div>
+    <html>
+      <body
+        style={{
+          fontSize: "20px",
+          padding: "50px",
+          marginLeft: "200px",
+          marginRight: "200px",
+        }}
+      >
+        <div
+          style={{
+            margin: "10px",
+            padding: "10px",
+            alignItems: "center",
+          }}
+        >
+          <div style={{}}>
+            <h2
+              style={{
+                textAlign: "center",
+                fontFamily: "Georgia, serif",
+                textSizeAdjust: "40px",
+                paddingBottom: "40px",
+                borderBottom: "4px double black",
+              }}
+            >
+              {subject}
+            </h2>
+            <h3 style={{}}>{header}</h3>
+            <p>{body}</p>
+            <p style={{}}>
+              <ul>
+                {parametersDate?.map(
+                  (date: {
+                    id: React.Key | null | undefined;
+                    loading_type: any;
+                    date: any;
+                  }) => {
+                    return date ? (
+                      <li key={date.id}>
+                        <b>{date.loading_type}</b>
+                        {" : "}
+                        {date.date}
+                      </li>
+                    ) : null;
+                  }
+                )}
+              </ul>
+            </p>
+          </div>
+          <p>{farewell}</p>
+        </div>
+        <div
+          style={{
+            border: 2,
+            background: "#ABBAEA",
+            textAlign: "center",
+            fontSize: "15px",
+          }}
+        >
+          <p style={{ borderTop: "2px solid black", marginTop: "5px" }}>
+            {closing} <b>{EMAIL_ADDRESS}</b>
+          </p>
+          <p>
+            {footer}
+            {email}.
+          </p>
+        </div>
+      </body>
+    </html>
   );
 };
 
@@ -150,8 +190,6 @@ export const RiskNotificationMail = ({
       <body
         style={{
           fontSize: "20px",
-          backgroundImage:
-            "URL('https://drive.google.com/file/d/1wSpdrylvYpovUuFniBi_xuFVkNDayhNA/view')",
           padding: "50px",
           marginLeft: "200px",
           marginRight: "200px",
