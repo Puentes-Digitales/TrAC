@@ -20,6 +20,6 @@ export class Notifications {
   @Field()
   counter: number;
 
-  @Field()
+  @Field({ nullable: true })
   risks: string;
 }
