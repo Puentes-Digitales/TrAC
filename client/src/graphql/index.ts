@@ -317,7 +317,7 @@ export type MutationReNotificateUsersArgs = {
   email: Scalars["String"];
   id: Scalars["Float"];
   parameters: Scalars["String"];
-  risks: Scalars["String"];
+  risks?: Maybe<Scalars["String"]>;
   risksJSON: Scalars["String"];
 };
 

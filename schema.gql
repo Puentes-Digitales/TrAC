@@ -270,7 +270,7 @@ type Mutation {
     email: String!
     id: Float!
     parameters: String!
-    risks: String!
+    risks: String
     risksJSON: String!
   ): [JSONObject!]!
   resetDataLoadersCache: Int!
