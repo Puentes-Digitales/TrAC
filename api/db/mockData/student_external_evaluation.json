@@ -8,7 +8,7 @@
     "topic": "Lenguaje",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "91",
+    "grade": 91,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -22,7 +22,7 @@
     "topic": "Ciencias Naturales",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "77",
+    "grade": 77,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -36,7 +36,7 @@
     "topic": "Matematica",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "78",
+    "grade": 78,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -50,7 +50,7 @@
     "topic": "Ciencias Sociales",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "34",
+    "grade": 34,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -64,7 +64,7 @@
     "topic": "Resolución de situaciones pedagógicas",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "A",
+    "grade": 1,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -78,7 +78,7 @@
     "topic": "Lenguaje",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "23",
+    "grade": 23,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -92,7 +92,7 @@
     "topic": "Ciencias Naturales",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "30",
+    "grade": 30,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -106,7 +106,7 @@
     "topic": "Matematica",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "31",
+    "grade": 31,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -120,7 +120,7 @@
     "topic": "Ciencias Sociales",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "31",
+    "grade": 31,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -134,7 +134,7 @@
     "topic": "Resolución de situaciones pedagógicas",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "B",
+    "grade": 1,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -148,7 +148,7 @@
     "topic": "Lectura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "23",
+    "grade": 23,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -162,7 +162,7 @@
     "topic": "Escritura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "80",
+    "grade": 80,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -176,7 +176,7 @@
     "topic": "Comunicación oral",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "61",
+    "grade": 61,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -190,7 +190,7 @@
     "topic": "Resolución de situaciones pedagógicas",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "B",
+    "grade": 1,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -204,7 +204,7 @@
     "topic": "Resolución de situaciones pedagógicas",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "C",
+    "grade": 2,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -218,7 +218,7 @@
     "topic": "Lectura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "87",
+    "grade": 87,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -232,7 +232,7 @@
     "topic": "Escritura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "56",
+    "grade": 56,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -246,7 +246,7 @@
     "topic": "Comunicación oral",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "97",
+    "grade": 97,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -260,7 +260,7 @@
     "topic": "Lectura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "28",
+    "grade": 28,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -274,7 +274,7 @@
     "topic": "Escritura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "16",
+    "grade": 16,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -288,7 +288,7 @@
     "topic": "Comunicación oral",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "15",
+    "grade": 15,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -302,7 +302,7 @@
     "topic": "Lectura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "34",
+    "grade": 34,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -316,7 +316,7 @@
     "topic": "Escritura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "51",
+    "grade": 51,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -330,7 +330,7 @@
     "topic": "Comunicación oral",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "44",
+    "grade": 44,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -344,7 +344,7 @@
     "topic": "Lectura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "71",
+    "grade": 71,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -358,7 +358,7 @@
     "topic": "Escritura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "9",
+    "grade": 9,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -372,7 +372,7 @@
     "topic": "Comunicación oral",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "87",
+    "grade": 87,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -386,7 +386,7 @@
     "topic": "Lectura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "2",
+    "grade": 2,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -400,7 +400,7 @@
     "topic": "Escritura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "96",
+    "grade": 96,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -414,7 +414,7 @@
     "topic": "Comunicación oral",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "69",
+    "grade": 69,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -428,7 +428,7 @@
     "topic": "Lectura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "31",
+    "grade": 31,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -442,7 +442,7 @@
     "topic": "Escritura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "5",
+    "grade": 5,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -456,7 +456,7 @@
     "topic": "Comunicación oral",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "59",
+    "grade": 59,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -470,7 +470,7 @@
     "topic": "Lectura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "43",
+    "grade": 43,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -484,7 +484,7 @@
     "topic": "Escritura",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "54",
+    "grade": 54,
     "p_group": 0,
     "comments": "",
     "duplicates": 1
@@ -498,7 +498,7 @@
     "topic": "Comunicación oral",
     "registration": "CURSADA",
     "state": "A",
-    "grade": "65",
+    "grade": 65,
     "p_group": 0,
     "comments": "",
     "duplicates": 1

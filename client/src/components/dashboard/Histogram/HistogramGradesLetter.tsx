@@ -95,7 +95,7 @@ export function HistogramGradesLetter({
 }: {
   distribution: IDistribution[];
   label?: string;
-  grade?: string;
+  grade?: number;
   bandColors: { min: number; max: number; color: string }[];
 }) {
   const { GRADE_STUDENT_LABEL } = useContext(ConfigContext);
@@ -116,20 +116,7 @@ export function HistogramGradesLetter({
   const greyN = useMemo(() => {
     if (grade !== undefined) {
       return distribution.findIndex(({ label }, key: number) => {
-        let value = -1;
-        switch (grade) {
-          case "A":
-            value = 100;
-            break;
-          case "B":
-            value = 74;
-            break;
-          case "C":
-            value = 49;
-            break;
-          case "D":
-            value = 1;
-        }
+        let value = grade;
         const [min, max] = label.split("-").map(toInteger); // TODO: Adapt to pass/fail histogram type
         if (
           min != undefined &&
