@@ -65,7 +65,6 @@ const replyTo: EmailJSON = {
   email: EMAIL_ADDRESS_REPLY_TO,
   name: EMAIL_ADDRESS_NAME,
 };
-
 export async function sendMail({
   to,
   subject,
@@ -98,5 +97,4 @@ export async function sendMail({
   )[0];
 }
 
-export { UnlockMail } from "./mail";
-export { NotificationMail } from "./mail";
+export { UnlockMail, NotificationMail, RiskNotificationMail } from "./mail";

@@ -89,6 +89,7 @@ export const ProgramStructureTable = () =>
 // -------------------------------------------------------------------------------------#############################
 
 export interface IRiskNotification {
+  id: number;
   student_id: string;
   course_id: string;
   program_id: string;

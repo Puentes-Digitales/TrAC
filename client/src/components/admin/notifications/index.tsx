@@ -17,6 +17,7 @@ export const AdminNotifications: FC<{
     email: string;
     content: string;
     emailParameters: string;
+    risksTypes: string;
     date: string;
     counter: number;
   }[];
@@ -37,6 +38,7 @@ export const AdminNotifications: FC<{
       email: string;
       content: string;
       emailParameters: string;
+      risksTypes: string;
       date: string;
       counter: number;
     }[]
@@ -81,6 +83,30 @@ export const AdminNotifications: FC<{
 
   const dateFormatStringTemplate = "dd-MM-yyyy";
 
+  const risksJSON = [
+    {
+      id: "low_progressing_rate",
+      def: config.RISK_LOW_PROGRESSING_RATE,
+    },
+    {
+      id: "low_passing_rate_courses",
+      def: config.RISK_LOW_PASSING_RATE_COURSES,
+    },
+    {
+      id: "student_pending_of_graduation",
+      def: config.RISK_STUDENT_PENDING_OF_GRADUATION,
+    },
+    {
+      id: "third_attempt",
+      def: config.RISK_THIRD_ATTEMPT,
+    },
+    {
+      id: "low_high_drop_rate",
+      def: config.RISK_HIGH_DROP_RATE,
+    },
+  ];
+
+  const risksJSONString = JSON.stringify(risksJSON);
   return (
     <>
       <Stack alignItems="center" spacing="1pm">
@@ -101,6 +127,11 @@ export const AdminNotifications: FC<{
                       body: config.DEFAULT_MESSAGE,
                       farewell: config.MESSAGE_FAREWELL,
                       closing: config.MESSAGE_CLOSING,
+                      riskBody: config.MESSAGE_RISK_BODY,
+                      riskGif: config.MESSAGE_RISK_GIF,
+                      riskTitle: config.MESSAGE_RISK_HEADER,
+                      riskFooter: config.MESSAGE_RISK_FOOTER,
+                      riskJSON: risksJSONString,
                     },
                   });
                   setOpenNotificationMailMessage(true);
@@ -197,6 +228,12 @@ export const AdminNotifications: FC<{
                   parameters date notified
                 </Table.HeaderCell>
                 <Table.HeaderCell
+                  sorted={column === "risksTypes" ? direction : undefined}
+                  onClick={handleSort("risksTypes")}
+                >
+                  risk notified
+                </Table.HeaderCell>
+                <Table.HeaderCell
                   sorted={column === "parameters" ? direction : undefined}
                   onClick={handleSort("parameters")}
                 >
@@ -214,12 +251,20 @@ export const AdminNotifications: FC<{
             <Table.Body>
               {selectedData.map(
                 (
-                  { id, email, content, date, emailParameters, counter },
+                  {
+                    id,
+                    email,
+                    content,
+                    date,
+                    emailParameters,
+                    counter,
+                    risksTypes,
+                  },
                   key
                 ) => {
                   const data = JSON.parse(content);
                   const parametersData = JSON.parse(emailParameters);
-
+                  const risksData = JSON.parse(risksTypes);
                   const messageDate = format(
                     new Date(date),
                     dateFormatStringTemplate,
@@ -236,6 +281,8 @@ export const AdminNotifications: FC<{
                         content: content,
                         parameters: JSON.stringify(parametersData),
                         counter: counter,
+                        risks: JSON.stringify(risksData),
+                        riskJSON: risksJSONString,
                       }}
                     >
                       <Table.Row className="cursorPointer" align="left">
@@ -255,6 +302,12 @@ export const AdminNotifications: FC<{
                           <p>
                             <b>Closing: </b> {data.closing}{" "}
                             {config.NOTIFICATIONS_EMAIL_ADDRESS}
+                          </p>
+                          <p>
+                            <b>Risk title: </b> {data.riskTitle}
+                          </p>
+                          <p>
+                            <b>Risk footer: </b> {data.riskFooter}
                           </p>
                           <p>
                             <b>Footer</b>:{data.footer}
@@ -277,6 +330,49 @@ export const AdminNotifications: FC<{
                               ) : null;
                             }
                           )}
+                        </Table.Cell>
+                        <Table.Cell>
+                          {risksData
+                            ? (
+                                <p>
+                                  <b>Risk body</b> {data.riskBody}
+                                </p>
+                              ) &&
+                              risksData?.map(
+                                (risks: {
+                                  risk_id: React.Key | null | undefined;
+                                  program: any;
+                                  risks: any;
+                                }) => {
+                                  return risks ? (
+                                    <p key={risks.risk_id}>
+                                      <b>{risks.program}</b>
+                                      <ul>
+                                        {risks.risks?.map(
+                                          (risk_type: {
+                                            risk_type_id:
+                                              | React.Key
+                                              | null
+                                              | undefined;
+                                            risk_type: any;
+                                            count: any;
+                                          }) => {
+                                            return risk_type ? (
+                                              <p key={risk_type.risk_type_id}>
+                                                <p>
+                                                  {risk_type.risk_type} :{" "}
+                                                  {risk_type.count}
+                                                </p>
+                                              </p>
+                                            ) : null;
+                                          }
+                                        )}
+                                      </ul>
+                                    </p>
+                                  ) : null;
+                                }
+                              )
+                            : "NO DATA"}
                         </Table.Cell>
                         <Table.Cell>{messageDate}</Table.Cell>
                         <Table.Cell>{counter}</Table.Cell>

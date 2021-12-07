@@ -6,6 +6,7 @@ export interface INotificationsData {
   content: object;
   parameters: string;
   counter: number;
+  risks: string;
   date: Date;
 }
 export const NOTIFICATIONS_DATA_TABLE = "notifications_data";

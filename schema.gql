@@ -252,6 +252,11 @@ type Mutation {
     farewell: String!
     footer: String!
     header: String!
+    riskBody: String!
+    riskFooter: String!
+    riskGif: String!
+    riskJSON: String!
+    riskTitle: String!
     subject: String!
   ): [JSONObject!]!
   performanceLoadAdvices(
@@ -265,6 +270,8 @@ type Mutation {
     email: String!
     id: Float!
     parameters: String!
+    risks: String!
+    risksJSON: String!
   ): [JSONObject!]!
   resetDataLoadersCache: Int!
   resetPersistence(user: String!): Int!
@@ -287,6 +294,7 @@ type Notifications {
   email: String!
   id: Int!
   parameters: String!
+  risks: String
 }
 
 type Parameter {
