@@ -429,7 +429,7 @@ export const baseConfig = {
   LAST_UPDATE_DATA: "Fecha de última carga de datos",
   NOTIFICATIONS_EMAIL_ADDRESS: "soportelala@inf.uach.cl",
   SHOW_PARAMETER: true,
-  COURSE_LABEL: "Ramo",
+  COURSE_LABEL: "Asignatura",
   YEAR_LABEL: "Año",
   TERM_LABEL: "Semestre",
   RATE_LABEL: "Tasa",
