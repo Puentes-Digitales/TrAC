@@ -47,7 +47,6 @@ export const ProgressStudent: FC<{
                   className="horizontalText"
                 >
                   {PROGRESS_STUDENT_INFORMATION_TEXT} {cycle}
-                  {i}
                   {console.log(n_cycles_student)}
                   {console.log(n_courses_cycles)}
                 </Text>
