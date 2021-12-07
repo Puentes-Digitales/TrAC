@@ -98,7 +98,7 @@ const Admin: FC = () => {
                     date,
                     emailParameters: parameters,
                     counter: counter,
-                    risksTypes: risks,
+                    risksTypes: risks ?? "",
                   };
                 }
               ) || []
