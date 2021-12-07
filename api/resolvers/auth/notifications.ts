@@ -210,13 +210,11 @@ export class NotificationsResolver {
     @Arg("content") content: string,
     @Arg("parameters") parameters: string,
     @Arg("counter") counter: number,
-    @Arg("risks") risks: string,
-    @Arg("risksJSON") risksJSON: string
+    @Arg("risksJSON") risksJSON: string,
+    @Arg("risks", { nullable: true }) risks?: string
   ): Promise<Record<string, any>> {
     const data = JSON.parse(content);
-    console.log(risks);
     if (risks != "null") {
-      console.log(risks);
       var msg = RiskNotificationMail({
         email: email,
         header: data.header,
@@ -226,7 +224,7 @@ export class NotificationsResolver {
         closing: data.closing,
         farewell: data.farewell,
         parameters: parameters,
-        risk_types: risks,
+        risk_types: risks ?? "",
         risk_body: data.riskBody,
         risk_footer: data.riskFooter,
         risk_gif: data.riskGif,

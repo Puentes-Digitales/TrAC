@@ -37,16 +37,6 @@ const Admin: FC = () => {
   });
 
   const { data: NotificationsQueryData } = useNotificationsDataAdminQuery();
-  const datos = NotificationsQueryData?.NotificationsData.map(
-    ({ risks, parameters }) => {
-      return {
-        risks: risks,
-        parameters: parameters,
-      };
-    }
-  );
-  console.log("datos:", datos);
-
   /*const NotificationsQueryData = useMemo(() => {
     return useNotificationsDataAdminQuery();
   }, [studentListChunks, pageSelected, statusProgress]);*/
@@ -98,7 +88,7 @@ const Admin: FC = () => {
                     date,
                     emailParameters: parameters,
                     counter: counter,
-                    risksTypes: risks,
+                    risksTypes: risks ?? "",
                   };
                 }
               ) || []
