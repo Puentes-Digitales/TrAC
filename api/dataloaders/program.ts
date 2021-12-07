@@ -98,7 +98,10 @@ export const StudentProgramCurriculumsDataLoader = new DataLoader(
 
 export const CurriculumsDataLoader = new DataLoader(
   async (
-    keys: readonly { program_id: string; curriculumsIds: Curriculum[] }[]
+    keys: readonly {
+      program_id: string;
+      curriculumsIds: Curriculum[];
+    }[]
   ) => {
     return await Promise.all(
       keys.map(async ({ program_id, curriculumsIds }) => {

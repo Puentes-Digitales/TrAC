@@ -291,7 +291,9 @@ export class StudentResolver {
     });
 
     const list_cycle = total_cycles.map((d) => d.course_cat);
+    const studentData = await StudentViaProgramsDataLoader.load(id);
 
+    let mentionStudent: string = studentData?.mention ?? "";
     const dataCycleStudent = [];
 
     for (const cycle of list_cycle) {
@@ -300,12 +302,14 @@ export class StudentResolver {
           program_id: program,
           curriculum: curriculums,
           course_cat: cycle,
+          mention: mentionStudent,
         }),
         StudentCycleApprovedCourseDataLoader.load({
           program_id: program,
           curriculum: curriculums,
           student_id: id,
           course_cat: cycle,
+          mention: mentionStudent,
         }),
       ]);
       if (n_courses[0]) dataCycleStudent.push(Number(n_courses[0]["count"]));
