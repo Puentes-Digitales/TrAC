@@ -107,6 +107,7 @@ export const AdminNotifications: FC<{
   ];
 
   const risksJSONString = JSON.stringify(risksJSON);
+
   return (
     <>
       <Stack alignItems="center" spacing="1pm">
@@ -264,7 +265,10 @@ export const AdminNotifications: FC<{
                 ) => {
                   const data = JSON.parse(content);
                   const parametersData = JSON.parse(emailParameters);
-                  const risksData = JSON.parse(risksTypes);
+                  var risksData = null;
+                  if (risksTypes) {
+                    risksData = JSON.parse(risksTypes);
+                  }
                   const messageDate = format(
                     new Date(date),
                     dateFormatStringTemplate,
