@@ -85,7 +85,6 @@ export class NotificationsResolver {
             .andWhere({ notified: false })
             .groupBy("risk_type");
           sendNotification = true;
-          console.log(risk_types);
           if (risk_types != null && risk_types.length) {
             const program_name = await ProgramTable()
               .select("name")
@@ -94,7 +93,6 @@ export class NotificationsResolver {
               program: program_name?.map(({ name }) => {
                 return name;
               }),
-
               risks: risk_types,
             });
           }
@@ -109,9 +107,19 @@ export class NotificationsResolver {
         .where({ email: email })
         .first()
         .orderBy("id", "desc");
+
+      const risksData = await NotificationsDataTable()
+        .select("risks")
+        .where({ email: email })
+        .first()
+        .orderBy("id", "desc");
+      const risks_en_JSON = JSON.stringify(risk_and_programs);
       /**######## envio de notificaciones ######## */
       if (
-        !(emailParameters?.parameters === parametersInfo) &&
+        !(
+          emailParameters?.parameters === parametersInfo &&
+          (risksData?.risks === risks_en_JSON || risksData?.risks == null)
+        ) &&
         type === "Director" &&
         locked === false &&
         sendNotification
