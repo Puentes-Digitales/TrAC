@@ -177,7 +177,7 @@ export function HistogramExternalEvaluation({
         </text>
         {grade && (
           <text y={40} x={30} fontWeight="bold" fill={textColor}>
-            {GRADE_STUDENT_LABEL}: {grade} %
+            {GRADE_STUDENT_LABEL}:{Math.trunc(grade)}%
           </text>
         )}
 
