@@ -73,13 +73,16 @@ export class NotificationsResolver {
         .where({ email: email });
 
       var risk_and_programs = [];
-
+      var FIDProgram = false;
       for (const { program } of user_programs) {
         if (
           carrerasFID.includes(program) &&
           type === "Director" &&
           locked === false
         ) {
+          if (carrerasFID.includes(program)) {
+            FIDProgram = true;
+          }
           const risk_types = await RiskNotificationTable()
             .select("risk_type")
             .count("*")
@@ -118,15 +121,18 @@ export class NotificationsResolver {
       var newRisks = true;
 
       if (risksData?.risks === risks_en_JSON) {
-        newRisks = false; //no se envía pq son iguales
+        newRisks = false;
       } else if (risksData?.risks === null && risks_en_JSON.length === 2) {
         if (risksData.risks === null) {
         }
-        newRisks = false; //no senvia pq los dos son null
+        newRisks = false;
       } else {
         newRisks = true;
       }
-      if (!(emailParameters?.parameters === parametersInfo) || newRisks) {
+      if (
+        (!(emailParameters?.parameters === parametersInfo) || newRisks) &&
+        FIDProgram
+      ) {
         if (risk_and_programs.length === 0) {
           const msg = NotificationMail({
             email: email,
