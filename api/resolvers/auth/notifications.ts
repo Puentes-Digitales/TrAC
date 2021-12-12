@@ -67,24 +67,29 @@ export class NotificationsResolver {
 
     const parametersInfo = JSON.stringify(dates);
     for (const { email, type, locked } of users) {
-      var sendNotification = false;
       /*######  Programas del usuario #####*/
       const user_programs = await UserProgramsTable()
         .select("program")
         .where({ email: email });
 
       var risk_and_programs = [];
-
+      var FIDProgram = false;
       for (const { program } of user_programs) {
-        if (carrerasFID.includes(program)) {
-          /* ######## contar situaciones de riesgo y tipo por programa######## */
+        if (
+          carrerasFID.includes(program) &&
+          type === "Director" &&
+          locked === false
+        ) {
+          if (carrerasFID.includes(program)) {
+            FIDProgram = true;
+          }
           const risk_types = await RiskNotificationTable()
             .select("risk_type")
             .count("*")
             .where({ program_id: program })
             .andWhere({ notified: false })
             .groupBy("risk_type");
-          sendNotification = true;
+
           if (risk_types != null && risk_types.length) {
             const program_name = await ProgramTable()
               .select("name")
@@ -101,7 +106,6 @@ export class NotificationsResolver {
             .update({ notified: false });
         }
       }
-
       const emailParameters = await NotificationsDataTable()
         .select("parameters")
         .where({ email: email })
@@ -114,15 +118,20 @@ export class NotificationsResolver {
         .first()
         .orderBy("id", "desc");
       const risks_en_JSON = JSON.stringify(risk_and_programs);
-      /**######## envio de notificaciones ######## */
+      var newRisks = true;
+
+      if (risksData?.risks === risks_en_JSON) {
+        newRisks = false;
+      } else if (risksData?.risks === null && risks_en_JSON.length === 2) {
+        if (risksData.risks === null) {
+        }
+        newRisks = false;
+      } else {
+        newRisks = true;
+      }
       if (
-        !(
-          emailParameters?.parameters === parametersInfo &&
-          (risksData?.risks === risks_en_JSON || risksData?.risks == null)
-        ) &&
-        type === "Director" &&
-        locked === false &&
-        sendNotification
+        (!(emailParameters?.parameters === parametersInfo) || newRisks) &&
+        FIDProgram
       ) {
         if (risk_and_programs.length === 0) {
           const msg = NotificationMail({

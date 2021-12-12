@@ -47,8 +47,6 @@ export const ProgressStudent: FC<{
                   className="horizontalText"
                 >
                   {PROGRESS_STUDENT_INFORMATION_TEXT} {cycle}
-                  {console.log(n_cycles_student)}
-                  {console.log(n_courses_cycles)}
                 </Text>
                 <Flex>
                   <Text width="250px" pr={3} pb={1} mb={0} fontFamily="Lato">
