@@ -270,7 +270,7 @@ type Mutation {
     email: String!
     id: Float!
     parameters: String!
-    risks: String!
+    risks: String
     risksJSON: String!
   ): [JSONObject!]!
   resetDataLoadersCache: Int!
@@ -294,7 +294,7 @@ type Notifications {
   email: String!
   id: Int!
   parameters: String!
-  risks: String!
+  risks: String
 }
 
 type Parameter {
@@ -432,7 +432,7 @@ type TakenExternalEvaluation {
   bandColors: [BandColor!]!
   code: String!
   currentDistribution: [DistributionValue!]!
-  grade: String!
+  grade: Float!
   id: Int!
   name: String!
   registration: String!

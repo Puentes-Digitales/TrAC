@@ -325,7 +325,7 @@ export interface IStudentExternalEvaluation {
   topic: string;
   registration: string;
   state: string;
-  grade: string;
+  grade: number;
   p_group: number;
   comments: string;
   duplicates: number;

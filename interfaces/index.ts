@@ -29,6 +29,7 @@ export type ITakenCourse = {
 export type ICourse = {
   code: string;
   name: string;
+  mention: string;
   credits: { label: string; value: number }[];
   flow: string[];
   requisites: string[];
@@ -49,7 +50,7 @@ export type ITakenExternalEvaluation = {
   term: string;
   year: number;
   registration?: string;
-  grade: string;
+  grade: number;
   topic?: string;
   state?: StateCourse;
   currentDistribution?: IDistribution[];

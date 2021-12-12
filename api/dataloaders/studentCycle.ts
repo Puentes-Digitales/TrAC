@@ -43,15 +43,25 @@ export const StudentCourseListDataLoader = new DataLoader(
       program_id: string;
       curriculum: string;
       course_cat: string;
+      mention: string;
     }[]
   ) => {
     return await Promise.all(
-      keys.map(({ program_id, curriculum, course_cat }) => {
-        return ProgramStructureTable().count("course_id").where({
-          program_id: program_id,
-          curriculum: curriculum,
-          course_cat: course_cat,
-        });
+      keys.map(({ program_id, curriculum, course_cat, mention }) => {
+        return ProgramStructureTable()
+          .count("course_id")
+          .where({
+            program_id: program_id,
+            curriculum: curriculum,
+            course_cat: course_cat,
+            mention: mention,
+          })
+          .orWhere({
+            program_id: program_id,
+            curriculum: curriculum,
+            course_cat: course_cat,
+            mention: "",
+          });
       })
     );
   },
@@ -70,35 +80,48 @@ export const StudentCycleApprovedCourseDataLoader = new DataLoader(
       curriculum: string;
       student_id: string;
       course_cat: string;
+      mention: string;
     }[]
   ) => {
     return await Promise.all(
-      keys.map(({ program_id, curriculum, student_id, course_cat }) => {
-        return ProgramStructureTable()
-          .count("course_id")
-          .innerJoin<IStudentCourse>(STUDENT_COURSE_TABLE, function () {
-            this.on(
-              `${PROGRAM_STRUCTURE_TABLE}.course_id`,
-              `${STUDENT_COURSE_TABLE}.course_taken`
-            );
-            this.orOn(
-              `${PROGRAM_STRUCTURE_TABLE}.course_id`,
-              `${STUDENT_COURSE_TABLE}.course_equiv`
-            );
-            this.orOn(
-              `${PROGRAM_STRUCTURE_TABLE}.course_id`,
-              `${STUDENT_COURSE_TABLE}.elect_equiv`
-            );
-          })
-          .where({
-            program_id: program_id,
-            comments: program_id,
-            curriculum: curriculum,
-            course_cat: course_cat,
-            state: "A",
-            student_id: student_id,
-          });
-      })
+      keys.map(
+        ({ program_id, curriculum, student_id, course_cat, mention }) => {
+          return ProgramStructureTable()
+            .count("course_id")
+            .innerJoin<IStudentCourse>(STUDENT_COURSE_TABLE, function () {
+              this.on(
+                `${PROGRAM_STRUCTURE_TABLE}.course_id`,
+                `${STUDENT_COURSE_TABLE}.course_taken`
+              );
+              this.orOn(
+                `${PROGRAM_STRUCTURE_TABLE}.course_id`,
+                `${STUDENT_COURSE_TABLE}.course_equiv`
+              );
+              this.orOn(
+                `${PROGRAM_STRUCTURE_TABLE}.course_id`,
+                `${STUDENT_COURSE_TABLE}.elect_equiv`
+              );
+            })
+            .where({
+              program_id: program_id,
+              comments: program_id,
+              curriculum: curriculum,
+              course_cat: course_cat,
+              state: "A",
+              student_id: student_id,
+              mention: mention,
+            })
+            .orWhere({
+              program_id: program_id,
+              comments: program_id,
+              curriculum: curriculum,
+              course_cat: course_cat,
+              state: "A",
+              student_id: student_id,
+              mention: "",
+            });
+        }
+      )
     );
   },
   {

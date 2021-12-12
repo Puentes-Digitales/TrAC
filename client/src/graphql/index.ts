@@ -45,7 +45,7 @@ export type Course = {
   credits: Array<Credit>;
   flow: Array<Course>;
   historicalDistribution: Array<DistributionValue>;
-  /** Course-Semester-Curriculum-Program ID  */
+  /** Course-Semester-Curriculum-Program ID */
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
@@ -105,7 +105,7 @@ export type ExternalEvaluation = {
   bandColors: Array<BandColor>;
   code: Scalars["String"];
   historicalDistribution: Array<DistributionValue>;
-  /** ExternalEvaluation-Semester-Curriculum-Program ID  */
+  /** ExternalEvaluation-Semester-Curriculum-Program ID */
   id: Scalars["Int"];
   mention: Scalars["String"];
   name: Scalars["String"];
@@ -317,7 +317,7 @@ export type MutationReNotificateUsersArgs = {
   email: Scalars["String"];
   id: Scalars["Float"];
   parameters: Scalars["String"];
-  risks: Scalars["String"];
+  risks?: Maybe<Scalars["String"]>;
   risksJSON: Scalars["String"];
 };
 
@@ -361,7 +361,7 @@ export type Notifications = {
   email: Scalars["String"];
   id: Scalars["Int"];
   parameters: Scalars["String"];
-  risks: Scalars["String"];
+  risks?: Maybe<Scalars["String"]>;
 };
 
 export type Parameter = {
@@ -527,7 +527,7 @@ export type TakenExternalEvaluation = {
   bandColors: Array<BandColor>;
   code: Scalars["String"];
   currentDistribution: Array<DistributionValue>;
-  grade: Scalars["String"];
+  grade: Scalars["Float"];
   id: Scalars["Int"];
   name: Scalars["String"];
   registration: Scalars["String"];

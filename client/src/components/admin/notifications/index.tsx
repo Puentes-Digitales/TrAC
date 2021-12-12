@@ -107,6 +107,7 @@ export const AdminNotifications: FC<{
   ];
 
   const risksJSONString = JSON.stringify(risksJSON);
+
   return (
     <>
       <Stack alignItems="center" spacing="1pm">
@@ -264,7 +265,10 @@ export const AdminNotifications: FC<{
                 ) => {
                   const data = JSON.parse(content);
                   const parametersData = JSON.parse(emailParameters);
-                  const risksData = JSON.parse(risksTypes);
+                  var risksData = null;
+                  if (risksTypes) {
+                    risksData = JSON.parse(risksTypes);
+                  }
                   const messageDate = format(
                     new Date(date),
                     dateFormatStringTemplate,
@@ -332,43 +336,47 @@ export const AdminNotifications: FC<{
                           )}
                         </Table.Cell>
                         <Table.Cell>
-                          <p>
-                            <b>Risk body</b> {data.riskBody}
-                          </p>
-                          {risksData?.map(
-                            (risks: {
-                              risk_id: React.Key | null | undefined;
-                              program: any;
-                              risks: any;
-                            }) => {
-                              return risks ? (
-                                <p key={risks.risk_id}>
-                                  <b>{risks.program}</b>
-                                  <ul>
-                                    {risks.risks?.map(
-                                      (risk_type: {
-                                        risk_type_id:
-                                          | React.Key
-                                          | null
-                                          | undefined;
-                                        risk_type: any;
-                                        count: any;
-                                      }) => {
-                                        return risk_type ? (
-                                          <p key={risk_type.risk_type_id}>
-                                            <p>
-                                              {risk_type.risk_type} :{" "}
-                                              {risk_type.count}
-                                            </p>
-                                          </p>
-                                        ) : null;
-                                      }
-                                    )}
-                                  </ul>
+                          {risksData
+                            ? (
+                                <p>
+                                  <b>Risk body</b> {data.riskBody}
                                 </p>
-                              ) : null;
-                            }
-                          )}
+                              ) &&
+                              risksData?.map(
+                                (risks: {
+                                  risk_id: React.Key | null | undefined;
+                                  program: any;
+                                  risks: any;
+                                }) => {
+                                  return risks ? (
+                                    <p key={risks.risk_id}>
+                                      <b>{risks.program}</b>
+                                      <ul>
+                                        {risks.risks?.map(
+                                          (risk_type: {
+                                            risk_type_id:
+                                              | React.Key
+                                              | null
+                                              | undefined;
+                                            risk_type: any;
+                                            count: any;
+                                          }) => {
+                                            return risk_type ? (
+                                              <p key={risk_type.risk_type_id}>
+                                                <p>
+                                                  {risk_type.risk_type} :{" "}
+                                                  {risk_type.count}
+                                                </p>
+                                              </p>
+                                            ) : null;
+                                          }
+                                        )}
+                                      </ul>
+                                    </p>
+                                  ) : null;
+                                }
+                              )
+                            : "NO DATA"}
                         </Table.Cell>
                         <Table.Cell>{messageDate}</Table.Cell>
                         <Table.Cell>{counter}</Table.Cell>

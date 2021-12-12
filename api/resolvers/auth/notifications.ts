@@ -84,9 +84,8 @@ export class NotificationsResolver {
             .where({ program_id: program })
             .andWhere({ notified: false })
             .groupBy("risk_type");
-
           sendNotification = true;
-          if (risk_types.length > 0) {
+          if (risk_types != null && risk_types.length) {
             const program_name = await ProgramTable()
               .select("name")
               .where({ id: program });
@@ -94,7 +93,6 @@ export class NotificationsResolver {
               program: program_name?.map(({ name }) => {
                 return name;
               }),
-
               risks: risk_types,
             });
           }
@@ -109,9 +107,19 @@ export class NotificationsResolver {
         .where({ email: email })
         .first()
         .orderBy("id", "desc");
+
+      const risksData = await NotificationsDataTable()
+        .select("risks")
+        .where({ email: email })
+        .first()
+        .orderBy("id", "desc");
+      const risks_en_JSON = JSON.stringify(risk_and_programs);
       /**######## envio de notificaciones ######## */
       if (
-        !(emailParameters?.parameters === parametersInfo) &&
+        !(
+          emailParameters?.parameters === parametersInfo &&
+          (risksData?.risks === risks_en_JSON || risksData?.risks == null)
+        ) &&
         type === "Director" &&
         locked === false &&
         sendNotification
@@ -210,11 +218,11 @@ export class NotificationsResolver {
     @Arg("content") content: string,
     @Arg("parameters") parameters: string,
     @Arg("counter") counter: number,
-    @Arg("risks") risks: string,
-    @Arg("risksJSON") risksJSON: string
+    @Arg("risksJSON") risksJSON: string,
+    @Arg("risks", { nullable: true }) risks?: string
   ): Promise<Record<string, any>> {
     const data = JSON.parse(content);
-    if (risks.length > 0) {
+    if (risks != "null") {
       var msg = RiskNotificationMail({
         email: email,
         header: data.header,
@@ -224,7 +232,7 @@ export class NotificationsResolver {
         closing: data.closing,
         farewell: data.farewell,
         parameters: parameters,
-        risk_types: risks,
+        risk_types: risks ?? "",
         risk_body: data.riskBody,
         risk_footer: data.riskFooter,
         risk_gif: data.riskGif,

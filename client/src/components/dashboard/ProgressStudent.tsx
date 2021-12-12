@@ -47,6 +47,8 @@ export const ProgressStudent: FC<{
                   className="horizontalText"
                 >
                   {PROGRESS_STUDENT_INFORMATION_TEXT} {cycle}
+                  {console.log(n_cycles_student)}
+                  {console.log(n_courses_cycles)}
                 </Text>
                 <Flex>
                   <Text width="250px" pr={3} pb={1} mb={0} fontFamily="Lato">
@@ -60,8 +62,9 @@ export const ProgressStudent: FC<{
                   </Text>
                   <Text width="50px" fontFamily="Lato">
                     {(
-                      ((n_courses_cycles[2 * i + 1] ?? 0) * 100) /
-                      (n_courses_cycles[2 * i] ?? 1)
+                      (((n_courses_cycles[2 * i + 1] ?? 0) * 100) /
+                        (n_courses_cycles[2 * i] ?? 1)) |
+                      0
                     ).toFixed(1)}{" "}
                     {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
                   </Text>

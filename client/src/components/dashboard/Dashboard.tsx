@@ -611,9 +611,11 @@ export function Dashboard() {
                     requisites,
                     historicalDistribution,
                     bandColors,
+                    mention,
                   }) => {
                     return {
                       code,
+                      mention,
                       name,
                       credits,
                       flow: flow.map(({ code }) => {
@@ -680,6 +682,7 @@ export function Dashboard() {
         SemestersComponent = (
           <SemestersList
             semesters={data.semesters.map(({ semester }) => semester)}
+            student_mention={searchStudentData?.student?.mention ?? ""}
           />
         );
       }
