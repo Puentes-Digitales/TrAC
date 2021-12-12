@@ -88,6 +88,7 @@ export type ITopicExternalEvaluation = {
 export type IImagesID = {
   id: string;
   value: string;
+  text: string;
 };
 
 export * from "./utils";

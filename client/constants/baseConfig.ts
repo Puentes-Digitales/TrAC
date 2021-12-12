@@ -105,6 +105,15 @@ export const baseConfig = {
   COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS: "Meses hasta encontrar trabajo:",
   COMPLEMENTARY_INFORMATION_TEXT_COLOR: "black",
   DOWNLOAD_WORD: "Descargar Informe",
+  DOWNLOAD_WORD_STUDENT_COMPLEMENTARY_INFO_TEXT:
+    "La siguiente imagen muestra información complementaria asociada al ingreso del estudiante",
+  DOWNLOAD_WORD_STUDENT_PROGRESS_TEXT:
+    "La siguiente gráfica evidencia el progreso del estudiante en el respectivo ciclo formativo. El valor en color azul corresponde a la cantidad de asignaturas aprobadas, en tanto que el valor porcentual evidencia el avance del estudiante en cada ciclo formativo. ",
+  DOWNLOAD_WORD_STUDENT_TREND_TEXT:
+    "El siguiente gráfico muestra la tendencia en el avance del estudiante. En color azul se aprecia su Promedio Semestral Ponderado, mientras que en color morado se señala su Promedio General Acumulado. Finalmente, en tono gris se encuentra el Promedio General Acumulado de la carrera.",
+  DOWNLOAD_WORD_STUDENT_PLAN_TEXT:
+    "La siguiente imagen corresponde a la malla curricular del plan de estudios que cursa el estudiante. En color verde se aprecian las asignaturas aprobadas/cursadas/inscritas/reprobadas por el estudiante, mientras que en color X se aprecian aquellas asignaturas aprobadas/cursadas/inscritas/reprobadas. En cuanto a las asignaturas X, se destacan en color XX. ",
+
   GROPUED_COURSE_BOX_COLORS: [
     {
       val: 0,
@@ -364,6 +373,7 @@ export const baseConfig = {
   STATE_FAILED_LABEL_MINI: "Rep",
   STATE_PASSED_LABEL_MINI: "Apr",
   STATE_PENDING_LABEL_MINI: "Pen",
+  STUDENT_PROGRESS: "Progreso del estudiante",
   STUDENT_LABEL: "Estudiante",
   STUDENT_LIST_TITLE: "Lista de estudiantes",
   STUDENT_REPORT: "Informe de Estudiantes",
