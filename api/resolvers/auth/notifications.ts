@@ -60,7 +60,7 @@ export class NotificationsResolver {
       for (const { program } of user_programs) {
         if (selectedPrograms != "All") {
           if (
-            selectedPrograms.includes(program) &&
+            selectedPrograms?.includes(program) &&
             type === "Director" &&
             locked === false
           ) {
