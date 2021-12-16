@@ -7,5 +7,6 @@ declare namespace NodeJS {
     EMAIL_ADDRESS_NAME: string;
     EMAIL_ADDRESS_REPLY_TO: string;
     PORT: string;
+    SELECTED_PROGRAMS: string;
   }
 }
