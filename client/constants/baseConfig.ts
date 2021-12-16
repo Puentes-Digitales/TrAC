@@ -110,8 +110,7 @@ export const baseConfig = {
   DOWNLOAD_WORD_STUDENT_TREND_TEXT:
     "El siguiente gráfico muestra la tendencia en el avance del estudiante. En color azul se aprecia su Promedio Semestral Ponderado, mientras que en color morado se señala su Promedio General Acumulado. Finalmente, en tono gris se encuentra el Promedio General Acumulado de la carrera.",
   DOWNLOAD_WORD_STUDENT_PLAN_TEXT:
-    "La siguiente imagen corresponde a la malla curricular del plan de estudios que cursa el estudiante. En color verde se aprecian las asignaturas aprobadas/cursadas/inscritas/reprobadas por el estudiante, mientras que en color X se aprecian aquellas asignaturas aprobadas/cursadas/inscritas/reprobadas. En cuanto a las asignaturas X, se destacan en color XX. ",
-
+    "La siguiente imagen corresponde a la malla curricular del plan de estudios que cursa el estudiante. En color verde se aprecian las asignaturas aprobadas, en rojo las reprobadas, en blanco las anuladas, en gris las asignaturas sin cursar y en azul las inscritas.",
   GROPUED_COURSE_BOX_COLORS: [
     {
       val: 0,
