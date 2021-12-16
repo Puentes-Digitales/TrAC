@@ -101,7 +101,7 @@ export const AdminNotifications: FC<{
       def: config.RISK_THIRD_ATTEMPT,
     },
     {
-      id: "low_high_drop_rate",
+      id: "high_drop_rate",
       def: config.RISK_HIGH_DROP_RATE,
     },
   ];

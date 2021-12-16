@@ -37,26 +37,9 @@ export class NotificationsResolver {
     const users = await UserTable()
       .select("email", "type", "locked")
       .distinctOn("email");
+    const selectedPrograms = process.env.SELECTED_PROGRAMS;
     const NotificationMailResults: Record<string, any>[] = [];
     const parametersDate = await ParameterTable().distinctOn("loading_type");
-    const carrerasFID = [
-      "1757",
-      "1774",
-      "1784",
-      "1785",
-      "1806",
-      "1808",
-      "1811",
-      "1816",
-      "1823",
-      "1824",
-      "1840",
-      "1842",
-      "1844",
-      "4050",
-      "4061",
-    ];
-
     const dateFormatStringTemplate = "dd-MM-yyyy";
     const dates = parametersDate.map(({ id, loading_type, loading_date }) => {
       const date = format(new Date(loading_date), dateFormatStringTemplate, {
@@ -75,35 +58,58 @@ export class NotificationsResolver {
       var risk_and_programs = [];
       var FIDProgram = false;
       for (const { program } of user_programs) {
-        if (
-          carrerasFID.includes(program) &&
-          type === "Director" &&
-          locked === false
-        ) {
-          if (carrerasFID.includes(program)) {
-            FIDProgram = true;
-          }
-          const risk_types = await RiskNotificationTable()
-            .select("risk_type")
-            .count("*")
-            .where({ program_id: program })
-            .andWhere({ notified: false })
-            .groupBy("risk_type");
+        if (selectedPrograms != "All") {
+          if (
+            selectedPrograms?.includes(program) &&
+            type === "Director" &&
+            locked === false
+          ) {
+            const risk_types = await RiskNotificationTable()
+              .select("risk_type")
+              .count("*")
+              .where({ program_id: program })
+              .andWhere({ notified: false })
+              .groupBy("risk_type");
 
-          if (risk_types != null && risk_types.length) {
-            const program_name = await ProgramTable()
-              .select("name")
-              .where({ id: program });
-            risk_and_programs.push({
-              program: program_name?.map(({ name }) => {
-                return name;
-              }),
-              risks: risk_types,
-            });
+            if (risk_types != null && risk_types.length) {
+              const program_name = await ProgramTable()
+                .select("name")
+                .where({ id: program });
+              risk_and_programs.push({
+                program: program_name?.map(({ name }) => {
+                  return name;
+                }),
+                risks: risk_types,
+              });
+            }
+            await RiskNotificationTable()
+              .where({ program_id: program })
+              .update({ notified: false });
           }
-          await RiskNotificationTable()
-            .where({ program_id: program })
-            .update({ notified: false });
+        } else {
+          if (type === "Director" && locked === false) {
+            const risk_types = await RiskNotificationTable()
+              .select("risk_type")
+              .count("*")
+              .where({ program_id: program })
+              .andWhere({ notified: false })
+              .groupBy("risk_type");
+
+            if (risk_types != null && risk_types.length) {
+              const program_name = await ProgramTable()
+                .select("name")
+                .where({ id: program });
+              risk_and_programs.push({
+                program: program_name?.map(({ name }) => {
+                  return name;
+                }),
+                risks: risk_types,
+              });
+            }
+            await RiskNotificationTable()
+              .where({ program_id: program })
+              .update({ notified: false });
+          }
         }
       }
       const emailParameters = await NotificationsDataTable()
