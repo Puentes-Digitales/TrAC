@@ -54,9 +54,7 @@ export class NotificationsResolver {
       const user_programs = await UserProgramsTable()
         .select("program")
         .where({ email: email });
-
       var risk_and_programs = [];
-      var FIDProgram = false;
       for (const { program } of user_programs) {
         if (selectedPrograms != "All") {
           if (
@@ -135,10 +133,7 @@ export class NotificationsResolver {
       } else {
         newRisks = true;
       }
-      if (
-        (!(emailParameters?.parameters === parametersInfo) || newRisks) &&
-        FIDProgram
-      ) {
+      if (!(emailParameters?.parameters === parametersInfo) || newRisks) {
         if (risk_and_programs.length === 0) {
           const msg = NotificationMail({
             email: email,
