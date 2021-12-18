@@ -1122,8 +1122,8 @@ EMAIL_ADDRESS=no-reply@example.com
 EMAIL_ADDRESS_NAME=Support example
 EMAIL_ADDRESS_REPLY_TO=support@emample.com
 
-#If SELECTED_PROGRAMS = All,all program will be included in notifications risk filter.
-SELECTED_PROGRAMS = 1757,1774,1784,1785,1806,1808,1811,1816,1823,1824,1840,1842,1844,4050,4061
+#If SELECTED_PROGRAMS=All,all program will be included in notifications risk filter.
+SELECTED_PROGRAMS=1757,1774,1784,1785,1806,1808,1811,1816,1823,1824,1840,1842,1844,4050,4061
 
 # Optional, 3000 by default
 PORT=3000
