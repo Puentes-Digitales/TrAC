@@ -74,10 +74,8 @@ export const NotificationMail = ({
     <html>
       <body
         style={{
-          fontSize: "20px",
-          padding: "50px",
-          marginLeft: "200px",
-          marginRight: "200px",
+          fontSize: "15px",
+          padding: "20px",
         }}
       >
         <div
@@ -92,8 +90,8 @@ export const NotificationMail = ({
               style={{
                 textAlign: "center",
                 fontFamily: "Georgia, serif",
-                textSizeAdjust: "40px",
-                paddingBottom: "40px",
+                textSizeAdjust: "25px",
+                paddingBottom: "25px",
                 borderBottom: "4px double black",
               }}
             >
@@ -128,10 +126,11 @@ export const NotificationMail = ({
             border: 2,
             background: "#ABBAEA",
             textAlign: "center",
-            fontSize: "15px",
+            fontSize: "10px",
+            alignItems: "center",
           }}
         >
-          <p style={{ borderTop: "2px solid black", marginTop: "5px" }}>
+          <p style={{ marginTop: "5px" }}>
             {closing} <b>{EMAIL_ADDRESS}</b>
           </p>
           <p>
@@ -189,10 +188,8 @@ export const RiskNotificationMail = ({
     <html>
       <body
         style={{
-          fontSize: "20px",
-          padding: "50px",
-          marginLeft: "200px",
-          marginRight: "200px",
+          fontSize: "15px",
+          padding: "20px",
         }}
       >
         <div
@@ -207,8 +204,8 @@ export const RiskNotificationMail = ({
               style={{
                 textAlign: "center",
                 fontFamily: "Georgia, serif",
-                textSizeAdjust: "40px",
-                paddingBottom: "40px",
+                textSizeAdjust: "25px",
+                paddingBottom: "25px",
                 borderBottom: "4px double black",
               }}
             >
@@ -298,10 +295,11 @@ export const RiskNotificationMail = ({
               border: 2,
               background: "#ABBAEA",
               textAlign: "center",
-              fontSize: "15px",
+              fontSize: "10px",
+              alignItems: "center",
             }}
           >
-            <p style={{ borderTop: "2px solid black", marginTop: "5px" }}>
+            <p style={{ marginTop: "5px" }}>
               {closing} <b>{EMAIL_ADDRESS}</b>
             </p>
             <p>

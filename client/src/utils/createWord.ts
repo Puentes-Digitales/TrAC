@@ -161,7 +161,7 @@ export class DocumentCreator {
                         new TableCell({
                           children: [
                             new Paragraph(
-                              Media.addImage(document, cur.value, 300, 200)
+                              Media.addImage(document, cur.value, 270, 200)
                             ),
                           ],
                         }),
