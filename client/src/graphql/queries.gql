@@ -61,6 +61,7 @@ mutation searchProgram($id: String, $student_id: String) {
       cohort
       university_degree_rate
       retention_rate
+      inactive_time_rate
     }
 
     groupedEmployed {
@@ -379,5 +380,6 @@ query riskNotication($program_id: String!, $risk_type: String!) {
     curriculum
     cohort
     risk_type
+    details
   }
 }

@@ -45,13 +45,13 @@ export const StudentViaProgramsDataLoader = new DataLoader(
     return await Promise.all(
       student_ids.map((student_id) => {
         return StudentProgramTable()
-          .select("program_id", "name", "state", "curriculum")
+          .select("program_id", "name", "state", "curriculum", "mention")
           .innerJoin<IStudent>(
             STUDENT_TABLE,
             `${STUDENT_TABLE}.id`,
             `${STUDENT_PROGRAM_TABLE}.student_id`
           )
-          .orderBy("start_year", "desc")
+          .orderBy("last_term", "desc")
           .where({ student_id })
           .first();
       })
@@ -68,7 +68,7 @@ export const StudentLastProgramDataLoader = new DataLoader(
       student_ids.map((student_id) => {
         return StudentProgramTable()
           .select("*")
-          .orderBy("start_year", "desc")
+          .orderBy("last_term", "desc")
           .where({
             student_id,
           })

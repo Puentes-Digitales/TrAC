@@ -61,6 +61,11 @@ mutation NotificateUsersAdmin(
   $footer: String!
   $header: String!
   $subject: String!
+  $riskBody: String!
+  $riskTitle: String!
+  $riskGif: String!
+  $riskFooter: String!
+  $riskJSON: String!
 ) {
   NotificateUsers(
     header: $header
@@ -69,6 +74,11 @@ mutation NotificateUsersAdmin(
     subject: $subject
     farewell: $farewell
     closing: $closing
+    riskBody: $riskBody
+    riskTitle: $riskTitle
+    riskGif: $riskGif
+    riskFooter: $riskFooter
+    riskJSON: $riskJSON
   )
 }
 mutation ReNotificateUsersAdmin(
@@ -77,6 +87,8 @@ mutation ReNotificateUsersAdmin(
   $parameters: String!
   $counter: Float!
   $id: Float!
+  $risks: String!
+  $riskJSON: String!
 ) {
   ReNotificateUsers(
     content: $content
@@ -84,6 +96,8 @@ mutation ReNotificateUsersAdmin(
     parameters: $parameters
     counter: $counter
     id: $id
+    risks: $risks
+    risksJSON: $riskJSON
   )
 }
 
@@ -95,6 +109,7 @@ query NotificationsDataAdmin {
     date
     parameters
     counter
+    risks
   }
 }
 mutation mailAllLockedUsersAdmin {

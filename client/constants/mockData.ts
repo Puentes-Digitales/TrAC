@@ -7596,6 +7596,7 @@ const data: {
           retention_rate: 55,
           average_time_university_degree: 57,
           timely_university_degree_rate: 55,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7607,6 +7608,7 @@ const data: {
           retention_rate: 64,
           average_time_university_degree: 51,
           timely_university_degree_rate: 61,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7618,6 +7620,7 @@ const data: {
           retention_rate: 46,
           average_time_university_degree: 68,
           timely_university_degree_rate: 52,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7629,6 +7632,7 @@ const data: {
           retention_rate: 49,
           average_time_university_degree: 48,
           timely_university_degree_rate: 47,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7640,6 +7644,7 @@ const data: {
           retention_rate: 46,
           average_time_university_degree: 47,
           timely_university_degree_rate: 50,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7651,6 +7656,7 @@ const data: {
           retention_rate: 48,
           average_time_university_degree: 49,
           timely_university_degree_rate: 63,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7662,6 +7668,7 @@ const data: {
           retention_rate: 65,
           average_time_university_degree: 51,
           timely_university_degree_rate: 65,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7673,6 +7680,7 @@ const data: {
           retention_rate: 66,
           average_time_university_degree: 59,
           timely_university_degree_rate: 55,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7684,6 +7692,7 @@ const data: {
           retention_rate: 55,
           average_time_university_degree: 58,
           timely_university_degree_rate: 51,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7695,6 +7704,7 @@ const data: {
           retention_rate: 55,
           average_time_university_degree: 64,
           timely_university_degree_rate: 67,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7706,6 +7716,7 @@ const data: {
           retention_rate: 49,
           average_time_university_degree: 55,
           timely_university_degree_rate: 69,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7717,6 +7728,7 @@ const data: {
           retention_rate: 58,
           average_time_university_degree: 57,
           timely_university_degree_rate: 67,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7728,6 +7740,7 @@ const data: {
           retention_rate: 62,
           average_time_university_degree: 57,
           timely_university_degree_rate: 66,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7739,6 +7752,7 @@ const data: {
           retention_rate: 58,
           average_time_university_degree: 57,
           timely_university_degree_rate: 62,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7750,6 +7764,7 @@ const data: {
           retention_rate: 57,
           average_time_university_degree: 50,
           timely_university_degree_rate: 52,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7761,6 +7776,7 @@ const data: {
           retention_rate: 55,
           average_time_university_degree: 55,
           timely_university_degree_rate: 67,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7772,6 +7788,7 @@ const data: {
           retention_rate: 65,
           average_time_university_degree: 68,
           timely_university_degree_rate: 54,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7783,6 +7800,7 @@ const data: {
           retention_rate: 46,
           average_time_university_degree: 62,
           timely_university_degree_rate: 60,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7794,6 +7812,7 @@ const data: {
           retention_rate: 51,
           average_time_university_degree: 48,
           timely_university_degree_rate: 68,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7805,6 +7824,7 @@ const data: {
           retention_rate: 57,
           average_time_university_degree: 63,
           timely_university_degree_rate: 52,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7816,6 +7836,7 @@ const data: {
           retention_rate: 66,
           average_time_university_degree: 65,
           timely_university_degree_rate: 48,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7827,6 +7848,7 @@ const data: {
           retention_rate: 68,
           average_time_university_degree: 64,
           timely_university_degree_rate: 58,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7838,6 +7860,7 @@ const data: {
           retention_rate: 50,
           average_time_university_degree: 60,
           timely_university_degree_rate: 59,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7849,6 +7872,7 @@ const data: {
           retention_rate: 46,
           average_time_university_degree: 64,
           timely_university_degree_rate: 60,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7860,6 +7884,7 @@ const data: {
           retention_rate: 62,
           average_time_university_degree: 46,
           timely_university_degree_rate: 58,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7871,6 +7896,7 @@ const data: {
           retention_rate: 69,
           average_time_university_degree: 52,
           timely_university_degree_rate: 53,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7882,6 +7908,7 @@ const data: {
           retention_rate: 60,
           average_time_university_degree: 62,
           timely_university_degree_rate: 57,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7893,6 +7920,7 @@ const data: {
           retention_rate: 49,
           average_time_university_degree: 64,
           timely_university_degree_rate: 59,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7904,6 +7932,7 @@ const data: {
           retention_rate: 55,
           average_time_university_degree: 60,
           timely_university_degree_rate: 47,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7915,6 +7944,7 @@ const data: {
           retention_rate: 60,
           average_time_university_degree: 66,
           timely_university_degree_rate: 54,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7926,6 +7956,7 @@ const data: {
           retention_rate: 50,
           average_time_university_degree: 49,
           timely_university_degree_rate: 46,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7937,6 +7968,7 @@ const data: {
           retention_rate: 51,
           average_time_university_degree: 50,
           timely_university_degree_rate: 62,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7948,6 +7980,7 @@ const data: {
           retention_rate: 67,
           average_time_university_degree: 65,
           timely_university_degree_rate: 59,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7959,6 +7992,7 @@ const data: {
           retention_rate: 61,
           average_time_university_degree: 54,
           timely_university_degree_rate: 56,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7970,6 +8004,7 @@ const data: {
           retention_rate: 53,
           average_time_university_degree: 68,
           timely_university_degree_rate: 56,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7981,6 +8016,7 @@ const data: {
           retention_rate: 50,
           average_time_university_degree: 61,
           timely_university_degree_rate: 54,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -7992,6 +8028,7 @@ const data: {
           retention_rate: 45,
           average_time_university_degree: 68,
           timely_university_degree_rate: 68,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8003,6 +8040,7 @@ const data: {
           retention_rate: 69,
           average_time_university_degree: 58,
           timely_university_degree_rate: 63,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8014,6 +8052,7 @@ const data: {
           retention_rate: 55,
           average_time_university_degree: 52,
           timely_university_degree_rate: 47,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8025,6 +8064,7 @@ const data: {
           retention_rate: 50,
           average_time_university_degree: 56,
           timely_university_degree_rate: 60,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8036,6 +8076,7 @@ const data: {
           retention_rate: 65,
           average_time_university_degree: 62,
           timely_university_degree_rate: 69,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8047,6 +8088,7 @@ const data: {
           retention_rate: 45,
           average_time_university_degree: 46,
           timely_university_degree_rate: 58,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8058,6 +8100,7 @@ const data: {
           retention_rate: 46,
           average_time_university_degree: 45,
           timely_university_degree_rate: 48,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8069,6 +8112,7 @@ const data: {
           retention_rate: 58,
           average_time_university_degree: 47,
           timely_university_degree_rate: 47,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8080,6 +8124,7 @@ const data: {
           retention_rate: 62,
           average_time_university_degree: 62,
           timely_university_degree_rate: 48,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8091,6 +8136,7 @@ const data: {
           retention_rate: 45,
           average_time_university_degree: 55,
           timely_university_degree_rate: 68,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8102,6 +8148,7 @@ const data: {
           retention_rate: 54,
           average_time_university_degree: 67,
           timely_university_degree_rate: 55,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8113,6 +8160,7 @@ const data: {
           retention_rate: 49,
           average_time_university_degree: 63,
           timely_university_degree_rate: 45,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8124,6 +8172,7 @@ const data: {
           retention_rate: 69,
           average_time_university_degree: 59,
           timely_university_degree_rate: 45,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8135,6 +8184,7 @@ const data: {
           retention_rate: 69,
           average_time_university_degree: 57,
           timely_university_degree_rate: 51,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8146,6 +8196,7 @@ const data: {
           retention_rate: 51,
           average_time_university_degree: 47,
           timely_university_degree_rate: 53,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8157,6 +8208,7 @@ const data: {
           retention_rate: 63,
           average_time_university_degree: 45,
           timely_university_degree_rate: 63,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8168,6 +8220,7 @@ const data: {
           retention_rate: 50,
           average_time_university_degree: 62,
           timely_university_degree_rate: 60,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1708",
@@ -8179,6 +8232,7 @@ const data: {
           retention_rate: 62,
           average_time_university_degree: 59,
           timely_university_degree_rate: 55,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8190,6 +8244,7 @@ const data: {
           retention_rate: 58,
           average_time_university_degree: 54,
           timely_university_degree_rate: 49,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8201,6 +8256,7 @@ const data: {
           retention_rate: 55,
           average_time_university_degree: 69,
           timely_university_degree_rate: 52,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8212,6 +8268,7 @@ const data: {
           retention_rate: 66,
           average_time_university_degree: 62,
           timely_university_degree_rate: 67,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8223,6 +8280,7 @@ const data: {
           retention_rate: 53,
           average_time_university_degree: 61,
           timely_university_degree_rate: 62,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8234,6 +8292,7 @@ const data: {
           retention_rate: 60,
           average_time_university_degree: 68,
           timely_university_degree_rate: 65,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8245,6 +8304,7 @@ const data: {
           retention_rate: 53,
           average_time_university_degree: 46,
           timely_university_degree_rate: 47,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8256,6 +8316,7 @@ const data: {
           retention_rate: 46,
           average_time_university_degree: 59,
           timely_university_degree_rate: 60,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8267,6 +8328,7 @@ const data: {
           retention_rate: 47,
           average_time_university_degree: 58,
           timely_university_degree_rate: 66,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8278,6 +8340,7 @@ const data: {
           retention_rate: 47,
           average_time_university_degree: 62,
           timely_university_degree_rate: 62,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8289,6 +8352,7 @@ const data: {
           retention_rate: 45,
           average_time_university_degree: 59,
           timely_university_degree_rate: 61,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8300,6 +8364,7 @@ const data: {
           retention_rate: 56,
           average_time_university_degree: 46,
           timely_university_degree_rate: 60,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8311,6 +8376,7 @@ const data: {
           retention_rate: 54,
           average_time_university_degree: 53,
           timely_university_degree_rate: 52,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8322,6 +8388,7 @@ const data: {
           retention_rate: 45,
           average_time_university_degree: 51,
           timely_university_degree_rate: 49,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8333,6 +8400,7 @@ const data: {
           retention_rate: 53,
           average_time_university_degree: 47,
           timely_university_degree_rate: 58,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8344,6 +8412,7 @@ const data: {
           retention_rate: 57,
           average_time_university_degree: 63,
           timely_university_degree_rate: 57,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8355,6 +8424,7 @@ const data: {
           retention_rate: 55,
           average_time_university_degree: 51,
           timely_university_degree_rate: 68,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8366,6 +8436,7 @@ const data: {
           retention_rate: 69,
           average_time_university_degree: 45,
           timely_university_degree_rate: 63,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8377,6 +8448,7 @@ const data: {
           retention_rate: 64,
           average_time_university_degree: 45,
           timely_university_degree_rate: 53,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8388,6 +8460,7 @@ const data: {
           retention_rate: 50,
           average_time_university_degree: 54,
           timely_university_degree_rate: 60,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8399,6 +8472,7 @@ const data: {
           retention_rate: 57,
           average_time_university_degree: 69,
           timely_university_degree_rate: 51,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8410,6 +8484,7 @@ const data: {
           retention_rate: 59,
           average_time_university_degree: 49,
           timely_university_degree_rate: 48,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8421,6 +8496,7 @@ const data: {
           retention_rate: 69,
           average_time_university_degree: 47,
           timely_university_degree_rate: 65,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8432,6 +8508,7 @@ const data: {
           retention_rate: 54,
           average_time_university_degree: 62,
           timely_university_degree_rate: 63,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8443,6 +8520,7 @@ const data: {
           retention_rate: 62,
           average_time_university_degree: 45,
           timely_university_degree_rate: 54,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8454,6 +8532,7 @@ const data: {
           retention_rate: 54,
           average_time_university_degree: 49,
           timely_university_degree_rate: 58,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8465,6 +8544,7 @@ const data: {
           retention_rate: 62,
           average_time_university_degree: 48,
           timely_university_degree_rate: 65,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8476,6 +8556,7 @@ const data: {
           retention_rate: 48,
           average_time_university_degree: 62,
           timely_university_degree_rate: 56,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8487,6 +8568,7 @@ const data: {
           retention_rate: 57,
           average_time_university_degree: 49,
           timely_university_degree_rate: 48,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8498,6 +8580,7 @@ const data: {
           retention_rate: 48,
           average_time_university_degree: 65,
           timely_university_degree_rate: 55,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8509,6 +8592,7 @@ const data: {
           retention_rate: 59,
           average_time_university_degree: 49,
           timely_university_degree_rate: 66,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8520,6 +8604,7 @@ const data: {
           retention_rate: 47,
           average_time_university_degree: 64,
           timely_university_degree_rate: 57,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8531,6 +8616,7 @@ const data: {
           retention_rate: 51,
           average_time_university_degree: 49,
           timely_university_degree_rate: 53,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8542,6 +8628,7 @@ const data: {
           retention_rate: 57,
           average_time_university_degree: 63,
           timely_university_degree_rate: 45,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8553,6 +8640,7 @@ const data: {
           retention_rate: 52,
           average_time_university_degree: 54,
           timely_university_degree_rate: 48,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8564,6 +8652,7 @@ const data: {
           retention_rate: 69,
           average_time_university_degree: 59,
           timely_university_degree_rate: 62,
+          inactive_time_rate: 58,
         },
         {
           program_id: "1700",
@@ -8575,6 +8664,7 @@ const data: {
           retention_rate: 67,
           average_time_university_degree: 53,
           timely_university_degree_rate: 51,
+          inactive_time_rate: 58,
         },
       ],
       groupedEmployed: [
@@ -13538,7 +13628,7 @@ const data: {
               name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
               registration: "CURSADA",
               topic: "Lectura",
-              grade: "71",
+              grade: 71,
               state: StateCourse.Passed,
               currentDistribution: [
                 {
@@ -13591,7 +13681,7 @@ const data: {
               name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
               registration: "CURSADA",
               topic: "Comunicación oral",
-              grade: "20",
+              grade: 20,
               state: StateCourse.Passed,
               currentDistribution: [
                 {
@@ -13644,7 +13734,7 @@ const data: {
               name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
               registration: "CURSADA",
               topic: "Escritura",
-              grade: "30",
+              grade: 30,
               state: StateCourse.Passed,
               currentDistribution: [
                 {
@@ -15319,7 +15409,7 @@ const data: {
               name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
               registration: "CURSADA",
               topic: "Lectura",
-              grade: "30",
+              grade: 30,
               state: StateCourse.Passed,
               currentDistribution: [
                 {
@@ -15372,7 +15462,7 @@ const data: {
               name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
               registration: "CURSADA",
               topic: "Comunicación oral",
-              grade: "70",
+              grade: 70,
               state: StateCourse.Passed,
               currentDistribution: [
                 {
@@ -15425,7 +15515,7 @@ const data: {
               name: "EVALUACIÓN NACIONAL DIAGNÓSTICA",
               registration: "CURSADA",
               topic: "Escritura",
-              grade: "55",
+              grade: 55,
               state: StateCourse.Passed,
               currentDistribution: [
                 {
@@ -15780,7 +15870,7 @@ const data: {
       },
       employed: {
         employed: true,
-        educational_system: "Sistema educacional chileno",
+        educational_system: true,
         institution: "Liceo Recto Armando Robles",
         months_to_first_job: 15,
       },

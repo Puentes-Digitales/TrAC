@@ -88,8 +88,8 @@ scalar EmailAddress
 
 type Employed {
   description: String
-  educational_system: String
-  employed: Boolean!
+  educational_system: Boolean
+  employed: Boolean
   institution: String
   months_to_first_job: Float
 }
@@ -185,15 +185,16 @@ type FeedbackResult {
 }
 
 type GroupedComplementary {
-  average_time_university_degree: Float!
+  average_time_university_degree: Float
   cohort: String!
   curriculum: String!
+  inactive_time_rate: Float
   program_id: String!
   retention_rate: Float!
-  timely_university_degree_rate: Float!
+  timely_university_degree_rate: Float
   total_students: Float!
   type_admission: String!
-  university_degree_rate: Float!
+  university_degree_rate: Float
 }
 
 type GroupedEmployed {
@@ -251,6 +252,11 @@ type Mutation {
     farewell: String!
     footer: String!
     header: String!
+    riskBody: String!
+    riskFooter: String!
+    riskGif: String!
+    riskJSON: String!
+    riskTitle: String!
     subject: String!
   ): [JSONObject!]!
   performanceLoadAdvices(
@@ -264,6 +270,8 @@ type Mutation {
     email: String!
     id: Float!
     parameters: String!
+    risks: String
+    risksJSON: String!
   ): [JSONObject!]!
   resetDataLoadersCache: Int!
   resetPersistence(user: String!): Int!
@@ -286,6 +294,7 @@ type Notifications {
   email: String!
   id: Int!
   parameters: String!
+  risks: String
 }
 
 type Parameter {
@@ -423,7 +432,7 @@ type TakenExternalEvaluation {
   bandColors: [BandColor!]!
   code: String!
   currentDistribution: [DistributionValue!]!
-  grade: String!
+  grade: Float!
   id: Int!
   name: String!
   registration: String!

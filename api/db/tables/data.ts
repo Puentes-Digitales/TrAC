@@ -89,6 +89,7 @@ export const ProgramStructureTable = () =>
 // -------------------------------------------------------------------------------------#############################
 
 export interface IRiskNotification {
+  id: number;
   student_id: string;
   course_id: string;
   program_id: string;
@@ -224,7 +225,7 @@ export interface IStudentEmployed {
   student_id: string;
   employed: boolean;
   institution: string;
-  educational_system: string;
+  educational_system: boolean;
   months_to_first_job: number;
   description: string;
 }
@@ -258,6 +259,7 @@ export interface IGroupedComplementaryInformation {
   retention_rate: number;
   average_time_university_degree: number;
   timely_university_degree_rate: number;
+  inactive_time_rate: number;
 }
 
 export const GROUPED_COMPLEMENTARY_INFORMATION_TABLE =
@@ -323,7 +325,7 @@ export interface IStudentExternalEvaluation {
   topic: string;
   registration: string;
   state: string;
-  grade: string;
+  grade: number;
   p_group: number;
   comments: string;
   duplicates: number;

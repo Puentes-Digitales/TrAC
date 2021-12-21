@@ -74,16 +74,38 @@ export const DownloadWord: FC<{
         let input = document.getElementById(id);
         if (typeof input !== "undefined" && input !== null) {
           if (id === "graphic_advance") {
-            const value = await domtoimage.toPng(input, { bgcolor: "white" });
-            lista.push({ id: baseConfig.GRAPHIC_ADVANCE, value });
+            const value = await domtoimage.toPng(input, {
+              bgcolor: "white",
+            });
+            lista.push({
+              id: baseConfig.GRAPHIC_ADVANCE,
+              value,
+              text: baseConfig.DOWNLOAD_WORD_STUDENT_TREND_TEXT,
+            });
           } else if (id === "course_plan") {
             const value = await domtoimage.toPng(input);
             const value2 = await domtoimage.toBlob(input);
             zip.file("Malla.jpeg", value2, { base64: true });
-            lista.push({ id: baseConfig.COURSE_PLAN, value });
-          } else {
+            lista.push({
+              id: baseConfig.COURSE_PLAN,
+              value,
+              text: baseConfig.DOWNLOAD_WORD_STUDENT_PLAN_TEXT,
+            });
+          } else if (id == "student_progress") {
             const value = await domtoimage.toPng(input);
-            lista.push({ id: baseConfig.COMPLEMENTARY_INFORMATION, value });
+            lista.push({
+              id: baseConfig.STUDENT_PROGRESS,
+              value,
+              text: baseConfig.DOWNLOAD_WORD_STUDENT_PROGRESS_TEXT,
+            });
+          } else {
+            console.log("id,", id);
+            const value = await domtoimage.toPng(input);
+            lista.push({
+              id: baseConfig.COMPLEMENTARY_INFORMATION,
+              value,
+              text: baseConfig.DOWNLOAD_WORD_STUDENT_COMPLEMENTARY_INFO_TEXT,
+            });
           }
         }
       })

@@ -95,8 +95,8 @@ export type Dropout = {
 
 export type Employed = {
   description?: Maybe<Scalars["String"]>;
-  educational_system?: Maybe<Scalars["String"]>;
-  employed: Scalars["Boolean"];
+  educational_system?: Maybe<Scalars["Boolean"]>;
+  employed?: Maybe<Scalars["Boolean"]>;
   institution?: Maybe<Scalars["String"]>;
   months_to_first_job?: Maybe<Scalars["Float"]>;
 };
@@ -187,15 +187,16 @@ export type FeedbackResult = {
 };
 
 export type GroupedComplementary = {
-  average_time_university_degree: Scalars["Float"];
+  average_time_university_degree?: Maybe<Scalars["Float"]>;
   cohort: Scalars["String"];
   curriculum: Scalars["String"];
+  inactive_time_rate?: Maybe<Scalars["Float"]>;
   program_id: Scalars["String"];
   retention_rate: Scalars["Float"];
-  timely_university_degree_rate: Scalars["Float"];
+  timely_university_degree_rate?: Maybe<Scalars["Float"]>;
   total_students: Scalars["Float"];
   type_admission: Scalars["String"];
-  university_degree_rate: Scalars["Float"];
+  university_degree_rate?: Maybe<Scalars["Float"]>;
 };
 
 export type GroupedEmployed = {
@@ -292,6 +293,11 @@ export type MutationNotificateUsersArgs = {
   farewell: Scalars["String"];
   footer: Scalars["String"];
   header: Scalars["String"];
+  riskBody: Scalars["String"];
+  riskFooter: Scalars["String"];
+  riskGif: Scalars["String"];
+  riskJSON: Scalars["String"];
+  riskTitle: Scalars["String"];
   subject: Scalars["String"];
 };
 
@@ -311,6 +317,8 @@ export type MutationReNotificateUsersArgs = {
   email: Scalars["String"];
   id: Scalars["Float"];
   parameters: Scalars["String"];
+  risks?: Maybe<Scalars["String"]>;
+  risksJSON: Scalars["String"];
 };
 
 export type MutationResetPersistenceArgs = {
@@ -353,6 +361,7 @@ export type Notifications = {
   email: Scalars["String"];
   id: Scalars["Int"];
   parameters: Scalars["String"];
+  risks?: Maybe<Scalars["String"]>;
 };
 
 export type Parameter = {
@@ -518,7 +527,7 @@ export type TakenExternalEvaluation = {
   bandColors: Array<BandColor>;
   code: Scalars["String"];
   currentDistribution: Array<DistributionValue>;
-  grade: Scalars["String"];
+  grade: Scalars["Float"];
   id: Scalars["Int"];
   name: Scalars["String"];
   registration: Scalars["String"];
@@ -665,6 +674,11 @@ export type NotificateUsersAdminMutationVariables = Exact<{
   footer: Scalars["String"];
   header: Scalars["String"];
   subject: Scalars["String"];
+  riskBody: Scalars["String"];
+  riskTitle: Scalars["String"];
+  riskGif: Scalars["String"];
+  riskFooter: Scalars["String"];
+  riskJSON: Scalars["String"];
 }>;
 
 export type NotificateUsersAdminMutation = Pick<Mutation, "NotificateUsers">;
@@ -675,6 +689,8 @@ export type ReNotificateUsersAdminMutationVariables = Exact<{
   parameters: Scalars["String"];
   counter: Scalars["Float"];
   id: Scalars["Float"];
+  risks: Scalars["String"];
+  riskJSON: Scalars["String"];
 }>;
 
 export type ReNotificateUsersAdminMutation = Pick<
@@ -690,7 +706,7 @@ export type NotificationsDataAdminQuery = {
   NotificationsData: Array<
     Pick<
       Notifications,
-      "id" | "email" | "content" | "date" | "parameters" | "counter"
+      "id" | "email" | "content" | "date" | "parameters" | "counter" | "risks"
     >
   >;
 };
@@ -834,6 +850,7 @@ export type SearchProgramMutation = {
         | "cohort"
         | "university_degree_rate"
         | "retention_rate"
+        | "inactive_time_rate"
       >
     >;
     groupedEmployed: Array<
@@ -1156,6 +1173,7 @@ export type RiskNoticationQuery = {
       | "curriculum"
       | "cohort"
       | "risk_type"
+      | "details"
     >
   >;
 };
@@ -1580,6 +1598,11 @@ export const NotificateUsersAdminDocument = gql`
     $footer: String!
     $header: String!
     $subject: String!
+    $riskBody: String!
+    $riskTitle: String!
+    $riskGif: String!
+    $riskFooter: String!
+    $riskJSON: String!
   ) {
     NotificateUsers(
       header: $header
@@ -1588,6 +1611,11 @@ export const NotificateUsersAdminDocument = gql`
       subject: $subject
       farewell: $farewell
       closing: $closing
+      riskBody: $riskBody
+      riskTitle: $riskTitle
+      riskGif: $riskGif
+      riskFooter: $riskFooter
+      riskJSON: $riskJSON
     )
   }
 `;
@@ -1615,6 +1643,11 @@ export type NotificateUsersAdminMutationFn = Apollo.MutationFunction<
  *      footer: // value for 'footer'
  *      header: // value for 'header'
  *      subject: // value for 'subject'
+ *      riskBody: // value for 'riskBody'
+ *      riskTitle: // value for 'riskTitle'
+ *      riskGif: // value for 'riskGif'
+ *      riskFooter: // value for 'riskFooter'
+ *      riskJSON: // value for 'riskJSON'
  *   },
  * });
  */
@@ -1644,6 +1677,8 @@ export const ReNotificateUsersAdminDocument = gql`
     $parameters: String!
     $counter: Float!
     $id: Float!
+    $risks: String!
+    $riskJSON: String!
   ) {
     ReNotificateUsers(
       content: $content
@@ -1651,6 +1686,8 @@ export const ReNotificateUsersAdminDocument = gql`
       parameters: $parameters
       counter: $counter
       id: $id
+      risks: $risks
+      risksJSON: $riskJSON
     )
   }
 `;
@@ -1677,6 +1714,8 @@ export type ReNotificateUsersAdminMutationFn = Apollo.MutationFunction<
  *      parameters: // value for 'parameters'
  *      counter: // value for 'counter'
  *      id: // value for 'id'
+ *      risks: // value for 'risks'
+ *      riskJSON: // value for 'riskJSON'
  *   },
  * });
  */
@@ -1708,6 +1747,7 @@ export const NotificationsDataAdminDocument = gql`
       date
       parameters
       counter
+      risks
     }
   }
 `;
@@ -2450,6 +2490,7 @@ export const SearchProgramDocument = gql`
         cohort
         university_degree_rate
         retention_rate
+        inactive_time_rate
       }
       groupedEmployed {
         employed_rate
@@ -3441,6 +3482,7 @@ export const RiskNoticationDocument = gql`
       curriculum
       cohort
       risk_type
+      details
     }
   }
 `;

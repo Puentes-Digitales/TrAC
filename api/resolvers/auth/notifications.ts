@@ -4,15 +4,18 @@ import {
   NotificationsDataTable,
   UserTable,
   ParameterTable,
+  UserProgramsTable,
+  RiskNotificationTable,
+  ProgramTable,
   /*MessageContentTable,*/
 } from "../../db/tables";
 import { GraphQLJSONObject } from "graphql-type-json";
 import { ADMIN } from "../../constants";
-import { NotificationMail } from "../../services/mail";
+import { NotificationMail, RiskNotificationMail } from "../../services/mail";
 import { sendMail } from "../../services/mail";
 import { Notifications } from "../../entities/auth/notifications";
-
 import { format } from "date-fns-tz";
+/*mport { RiskNotificationMailTest } from "../../services/mail/mail";*/
 
 @Resolver(() => Notifications)
 export class NotificationsResolver {
@@ -24,15 +27,20 @@ export class NotificationsResolver {
     @Arg("closing") closing: string,
     @Arg("farewell") farewell: string,
     @Arg("subject") subject: string,
-    @Arg("body") body: string
+    @Arg("body") body: string,
+    @Arg("riskTitle") riskTitle: string,
+    @Arg("riskBody") riskBody: string,
+    @Arg("riskGif") riskGif: string,
+    @Arg("riskFooter") riskFooter: string,
+    @Arg("riskJSON") riskJSON: string
   ): Promise<Record<string, any>> {
-    const users = await UserTable().select("*");
+    const users = await UserTable()
+      .select("email", "type", "locked")
+      .distinctOn("email");
+    const selectedPrograms = process.env.SELECTED_PROGRAMS;
     const NotificationMailResults: Record<string, any>[] = [];
-
     const parametersDate = await ParameterTable().distinctOn("loading_type");
-
     const dateFormatStringTemplate = "dd-MM-yyyy";
-
     const dates = parametersDate.map(({ id, loading_type, loading_date }) => {
       const date = format(new Date(loading_date), dateFormatStringTemplate, {
         timeZone: "America/Santiago",
@@ -41,51 +49,172 @@ export class NotificationsResolver {
     });
 
     const parametersInfo = JSON.stringify(dates);
+    for (const { email, type, locked } of users) {
+      /*######  Programas del usuario #####*/
+      const user_programs = await UserProgramsTable()
+        .select("program")
+        .where({ email: email });
+      var risk_and_programs = [];
+      for (const { program } of user_programs) {
+        if (selectedPrograms != "All") {
+          if (
+            selectedPrograms?.includes(program) &&
+            type === "Director" &&
+            locked === false
+          ) {
+            const risk_types = await RiskNotificationTable()
+              .select("risk_type")
+              .count("*")
+              .where({ program_id: program })
+              .andWhere({ notified: false })
+              .groupBy("risk_type");
 
-    for (const { email, type } of users) {
+            if (risk_types != null && risk_types.length) {
+              const program_name = await ProgramTable()
+                .select("name")
+                .where({ id: program });
+              risk_and_programs.push({
+                program: program_name?.map(({ name }) => {
+                  return name;
+                }),
+                risks: risk_types,
+              });
+            }
+            await RiskNotificationTable()
+              .where({ program_id: program })
+              .update({ notified: false });
+          }
+        } else {
+          if (type === "Director" && locked === false) {
+            const risk_types = await RiskNotificationTable()
+              .select("risk_type")
+              .count("*")
+              .where({ program_id: program })
+              .andWhere({ notified: false })
+              .groupBy("risk_type");
+
+            if (risk_types != null && risk_types.length) {
+              const program_name = await ProgramTable()
+                .select("name")
+                .where({ id: program });
+              risk_and_programs.push({
+                program: program_name?.map(({ name }) => {
+                  return name;
+                }),
+                risks: risk_types,
+              });
+            }
+            await RiskNotificationTable()
+              .where({ program_id: program })
+              .update({ notified: false });
+          }
+        }
+      }
       const emailParameters = await NotificationsDataTable()
         .select("parameters")
         .where({ email: email })
         .first()
         .orderBy("id", "desc");
-      if (
-        !(emailParameters?.parameters === parametersInfo) &&
-        type === "Director"
-      ) {
-        const msg = NotificationMail({
-          email: email,
-          header: header,
-          footer: footer,
-          subject: subject,
-          body: body,
-          closing: closing,
-          farewell: farewell,
-          parameters: parametersInfo,
-        });
-        const messageContent = {
-          header: header,
-          footer: footer,
-          subject: subject,
-          body: body,
-          closing: closing,
-          farewell: farewell,
-        };
 
-        const result = await sendMail({
-          to: email,
-          message: msg,
-          subject: subject,
-        });
+      const risksData = await NotificationsDataTable()
+        .select("risks")
+        .where({ email: email })
+        .first()
+        .orderBy("id", "desc");
+      const risks_en_JSON = JSON.stringify(risk_and_programs);
+      var newRisks = true;
 
-        NotificationMailResults.push(result);
-        const counter = 1;
-        await NotificationsDataTable().insert({
-          email,
-          content: messageContent,
-          date: new Date(),
-          parameters: parametersInfo,
-          counter: counter,
-        });
+      if (risksData?.risks === risks_en_JSON) {
+        newRisks = false;
+      } else if (risksData?.risks === null && risks_en_JSON.length === 2) {
+        if (risksData.risks === null) {
+        }
+        newRisks = false;
+      } else {
+        newRisks = true;
+      }
+      if (!(emailParameters?.parameters === parametersInfo) || newRisks) {
+        if (risk_and_programs.length === 0) {
+          const msg = NotificationMail({
+            email: email,
+            header: header,
+            footer: footer,
+            subject: subject,
+            body: body,
+            closing: closing,
+            farewell: farewell,
+            parameters: parametersInfo,
+          });
+          const messageContent = {
+            header: header,
+            footer: footer,
+            subject: subject,
+            body: body,
+            closing: closing,
+            farewell: farewell,
+          };
+          const result = await sendMail({
+            to: email,
+            message: msg,
+            subject: subject,
+          });
+          NotificationMailResults.push(result);
+          const counter = 1;
+          await NotificationsDataTable().insert({
+            email,
+            content: messageContent,
+            date: new Date(),
+            parameters: parametersInfo,
+            counter: counter,
+          });
+        } else {
+          const risks_array = JSON.stringify(risk_and_programs);
+          const msg = RiskNotificationMail({
+            email: email,
+            header: header,
+            footer: footer,
+            subject: subject,
+            body: body,
+            closing: closing,
+            farewell: farewell,
+            parameters: parametersInfo,
+            risk_types: risks_array,
+            risk_body: riskBody,
+            risk_gif: riskGif,
+            risk_header: riskTitle,
+            risk_footer: riskFooter,
+            risk_json: riskJSON,
+          });
+
+          const messageContent = {
+            header: header,
+            footer: footer,
+            subject: subject,
+            body: body,
+            closing: closing,
+            farewell: farewell,
+            riskBody: riskBody,
+            riskTitle: riskTitle,
+            riskGif: riskGif,
+            riskFooter: riskFooter,
+          };
+          const result = await sendMail({
+            to: email,
+            message: msg,
+            subject: subject,
+          });
+
+          NotificationMailResults.push(result);
+          const counter = 1;
+          await NotificationsDataTable().insert({
+            email,
+            content: messageContent,
+            date: new Date(),
+            parameters: parametersInfo,
+            counter: counter,
+            risks: risks_array,
+          });
+        }
       }
     }
     return NotificationMailResults;
@@ -98,23 +227,41 @@ export class NotificationsResolver {
     @Arg("email") email: string,
     @Arg("content") content: string,
     @Arg("parameters") parameters: string,
-    @Arg("counter") counter: number
+    @Arg("counter") counter: number,
+    @Arg("risksJSON") risksJSON: string,
+    @Arg("risks", { nullable: true }) risks?: string
   ): Promise<Record<string, any>> {
     const data = JSON.parse(content);
-
-    const msg = NotificationMail({
-      email: email,
-      header: data.header,
-      footer: data.footer,
-      subject: data.subject,
-      body: data.body,
-      closing: data.closing,
-      farewell: data.farewell,
-      parameters: parameters,
-    });
-
+    if (risks != "null") {
+      var msg = RiskNotificationMail({
+        email: email,
+        header: data.header,
+        footer: data.footer,
+        subject: data.subject,
+        body: data.body,
+        closing: data.closing,
+        farewell: data.farewell,
+        parameters: parameters,
+        risk_types: risks ?? "",
+        risk_body: data.riskBody,
+        risk_footer: data.riskFooter,
+        risk_gif: data.riskGif,
+        risk_header: data.riskTitle,
+        risk_json: risksJSON,
+      });
+    } else {
+      var msg = NotificationMail({
+        email: email,
+        header: data.header,
+        footer: data.footer,
+        subject: data.subject,
+        body: data.body,
+        closing: data.closing,
+        farewell: data.farewell,
+        parameters: parameters,
+      });
+    }
     const ReNotificationMailResults: Record<string, any>[] = [];
-
     const result = await sendMail({
       to: email,
       message: msg,

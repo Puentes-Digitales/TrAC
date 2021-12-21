@@ -521,6 +521,7 @@ export function Dashboard() {
       ) {
         ComplementaryInfoComponent = (
           <ComplementaryInfo
+            employed={studentData.employed?.employed}
             type_admission={studentData.admission.type_admission}
             educational_system={studentData.employed?.educational_system}
             institution={studentData.employed?.institution}
@@ -610,9 +611,11 @@ export function Dashboard() {
                     requisites,
                     historicalDistribution,
                     bandColors,
+                    mention,
                   }) => {
                     return {
                       code,
+                      mention,
                       name,
                       credits,
                       flow: flow.map(({ code }) => {
@@ -679,6 +682,7 @@ export function Dashboard() {
         SemestersComponent = (
           <SemestersList
             semesters={data.semesters.map(({ semester }) => semester)}
+            student_mention={searchStudentData?.student?.mention ?? ""}
           />
         );
       }
@@ -858,6 +862,9 @@ export function Dashboard() {
               }
               empleability_rate_educational_system={
                 filteredEmpleabilityData[0]?.employed_rate_educational_system
+              }
+              inactive_time_rate={
+                filteredComplementaryData[0]?.inactive_time_rate
               }
             />
           );

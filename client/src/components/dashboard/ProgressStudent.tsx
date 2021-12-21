@@ -60,8 +60,9 @@ export const ProgressStudent: FC<{
                   </Text>
                   <Text width="50px" fontFamily="Lato">
                     {(
-                      ((n_courses_cycles[2 * i + 1] ?? 0) * 100) /
-                      (n_courses_cycles[2 * i] ?? 1)
+                      (((n_courses_cycles[2 * i + 1] ?? 0) * 100) /
+                        (n_courses_cycles[2 * i] ?? 1)) |
+                      0
                     ).toFixed(1)}{" "}
                     {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
                   </Text>

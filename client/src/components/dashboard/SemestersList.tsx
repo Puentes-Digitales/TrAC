@@ -15,12 +15,13 @@ import { ConfigContext } from "../../context/Config";
 import { Semester } from "./Semester";
 
 export const SemestersList: FC<{
+  student_mention: string;
   semesters: {
     n: number;
     courses: ICourse[];
     externalEvaluations: IExternalEvaluation[];
   }[];
-}> = memo(({ semesters }) => {
+}> = memo(({ semesters, student_mention }) => {
   const { width } = useWindowSize();
   const { DASHBOARD_SEMESTERS_LIST_MOBILE_BREAKPOINT } = useContext(
     ConfigContext
@@ -39,6 +40,7 @@ export const SemestersList: FC<{
         key={n}
         n={n}
         zIndex={semesters.length - n}
+        student_mention={student_mention}
       />
     ));
   }, [semesters]);
@@ -80,6 +82,7 @@ export const SemestersList: FC<{
         {semesters.map(({ courses, externalEvaluations, n }, key) => {
           return (
             <Semester
+              student_mention={student_mention}
               key={key}
               courses={courses}
               externalEvaluations={externalEvaluations}

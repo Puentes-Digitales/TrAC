@@ -276,7 +276,7 @@ const migration = async () => {
   const param = dbData.schema.hasTable(PARAMETER_TABLE).then(async (exists) => {
     if (!exists) {
       await dbData.schema.createTable(PARAMETER_TABLE, (table) => {
-        table.integer("id", 8).notNullable().primary();
+        table.increments("id");
         table.text("loading_type").notNullable();
         table.timestamp("loading_date").notNullable();
       });
@@ -365,7 +365,8 @@ const migration = async () => {
             table.float("university_degree_rate", 3).notNullable();
             table.float("retention_rate", 3).notNullable();
             table.float("average_time_university_degree", 3).notNullable();
-            table.float("timely_university_degree_rate", 3).notNullable();
+            table.float("timely_university_degree_rate", 3);
+            table.float("inactive_time_rate", 3);
           }
         );
         await GroupedComplementaryInformationTable().insert(
@@ -388,15 +389,15 @@ const migration = async () => {
     .then(async (exists) => {
       if (!exists) {
         await dbData.schema.createTable(GROUPED_EMPLOYED_TABLE, (table) => {
-          table.integer("id", 8).notNullable().primary();
+          table.increments("id");
           table.text("program_id").notNullable();
-          table.text("curriculum").notNullable();
-          table.text("type_admission").notNullable();
-          table.text("cohort").notNullable();
-          table.integer("total_students", 6).notNullable();
-          table.float("employed_rate", 3).notNullable();
-          table.float("average_time_job_finding", 3).notNullable();
-          table.float("employed_rate_educational_system", 3).notNullable();
+          table.text("curriculum");
+          table.text("type_admission");
+          table.text("cohort");
+          table.integer("total_students", 6);
+          table.float("employed_rate", 3);
+          table.float("average_time_job_finding", 3);
+          table.float("employed_rate_educational_system", 3);
         });
         await GroupedEmployedTable().insert(
           (await import("./mockData/grouped_employed.json")).default.map(
@@ -584,7 +585,7 @@ const migration = async () => {
         await dbData.schema.createTable(
           STUDENT_EXTERNAL_EVALUATION_TABLE,
           (table) => {
-            table.integer("id").notNullable().primary();
+            table.increments("id");
             table.integer("year").notNullable();
             table.integer("term").notNullable();
             table.text("student_id").notNullable();
@@ -592,7 +593,7 @@ const migration = async () => {
             table.text("topic").notNullable();
             table.text("registration").notNullable();
             table.text("state").notNullable();
-            table.text("grade").notNullable();
+            table.float("grade").notNullable();
             table.integer("p_group").notNullable();
             table.text("comments");
             table.integer("duplicates").notNullable();
@@ -632,6 +633,7 @@ const migration = async () => {
           EXTERNAL_EVALUATION_STATS_TABLE,
           (table) => {
             table.text("external_evaluation_taken").notNullable();
+            table.increments("id");
             table.integer("year", 4).notNullable();
             table.integer("term", 4).notNullable();
             table.text("topic").notNullable();
@@ -644,7 +646,6 @@ const migration = async () => {
             table.text("histogram").notNullable();
             table.float("avg_grade").notNullable();
             table.integer("n_grades", 4).notNullable();
-            table.integer("id", 8).primary().notNullable();
             table.text("histogram_labels").notNullable();
             table.text("color_bands").notNullable();
           }
@@ -741,9 +742,11 @@ const migration = async () => {
       if (!exists) {
         await dbData.schema.createTable(STUDENT_EMPLOYED_TABLE, (table) => {
           table.text("student_id").notNullable().primary();
-          table.boolean("employed").defaultTo(false).notNullable();
+          table.text("program_id").notNullable();
+          table.integer("finish_year");
+          table.boolean("employed");
           table.text("institution");
-          table.text("educational_system");
+          table.boolean("educational_system");
           table.integer("months_to_first_job");
           table.text("description");
         });
@@ -995,6 +998,7 @@ const migration = async () => {
           table.text("email").notNullable();
           table.text("content").notNullable();
           table.text("parameters").notNullable();
+          table.text("risks").nullable();
           table.timestamp("date", { useTz: true }).notNullable();
           table.integer("counter").notNullable();
         });
@@ -1117,6 +1121,9 @@ SENDGRID_API_KEY=SG.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 EMAIL_ADDRESS=no-reply@example.com
 EMAIL_ADDRESS_NAME=Support example
 EMAIL_ADDRESS_REPLY_TO=support@emample.com
+
+#If SELECTED_PROGRAMS=All,all program will be included in notifications risk filter.
+SELECTED_PROGRAMS=1757,1774,1784,1785,1806,1808,1811,1816,1823,1824,1840,1842,1844,4050,4061
 
 # Optional, 3000 by default
 PORT=3000

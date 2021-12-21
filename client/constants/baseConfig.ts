@@ -1,4 +1,13 @@
 export const baseConfig = {
+  GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE:
+    "Tiempo promedio inactivo:",
+  GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE_TOOLTIP: "IA 8",
+  NO_INFORMATION: "Sin información",
+  EMPLOYED_TRUE: "Empleado",
+  EMPLOYED_FALSE: "Cesante",
+  EDUCATIONAL_SYSTEM_TRUE: "Si",
+  EDUCATIONAL_SYSTEM_FALSE: "No",
+  COMPLEMENTARY_INFORMATION_EMPLOYED_TOOLTIP: "Informacion del indicador 0",
   COMPLEMENTARY_INFORMATION_TYPE_ADMISSION_TOOLTIP:
     "Información del indicador 1",
   COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM_TOOLTIP:
@@ -16,7 +25,8 @@ export const baseConfig = {
     "IA4",
   GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE_TOOLTIP: "IA8",
   GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_TOOLTIP: "IA5",
-  GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB_TOOLTIP: "IA6",
+  GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_AVERAGE_TIME_FINDING_JOB_TOOLTIP:
+    "IA6",
   GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM_TOOLTIP:
     "IA7",
 
@@ -30,11 +40,9 @@ export const baseConfig = {
   FLOW_EXTERNAL_EVALUATION_BOX_COLOR: "#F56565",
   EXPLICIT_SEMESTER_EXTERNAL_EVALUATION_BOX_COLOR: "#ECC94B",
   REQUISITE_EXTERNAL_EVALUATION_BOX_COLOR: "#4299E1",
-  STATE_COLOR_PASS_FALLBACK_EXTERNAL_EVALUATION: "rgb(102,180,62)",
-  STATE_COURSE_CURRENT_COLOR_EXTERNAL_EVALUATION: "blue.500",
-  STATE_COURSE_CANCELED_COLOR_EXTERNAL_EVALUATION: "white",
-  STATE_COURSE_PENDING_COLOR_EXTERNAL_EVALUATION: "blue.300",
+  STATE_COURSE_DEFAULT_COLOR_EXTERNAL_EVALUATION: "rgb(253,158,44)",
   STATE_COURSE_DEFAULT_DARK_COLOR_EXTERNAL_EVALUATION: "#181A1B",
+  STATE_COURSE_DEFAULT_LIGHT_COLOR_EXTERNAL_EVALUATION: "rgb(245,245,245)",
 
   GRAPHIC_ADVANCE: "Gráfico Avance",
   COURSE_PLAN: "Malla",
@@ -66,7 +74,9 @@ export const baseConfig = {
   COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM: "Sistema educacional:",
   COMPLEMENTARY_INFORMATION: "Información Complementaria",
   GROUPED_COMPLEMENTARY_INFORMATION: "Información Complementaria Agrupada",
-  COMPLEMENTARY_INFORMATION_YEAR_TEXT: "años",
+  COMPLEMENTARY_INFORMATION_EMPLOYED: "Estado ocupacional:",
+  COMPLEMENTARY_INFORMATION_MONTHS_TEXT: "meses",
+  COMPLEMENTARY_INFORMATION_SEMESTER_TEXT: "semestres",
   COMPLEMENTARY_INFORMATION_TYPE_ADMISSION: "Tipo de ingreso: ",
   GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS: "Cantidad de estudiantes:",
   GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE:
@@ -77,7 +87,7 @@ export const baseConfig = {
   GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE:
     "Tiempo promedio de titulación:",
   GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE: "Tasa de ocupación:",
-  GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_FINDING_JOB:
+  GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_AVERAGE_TIME_FINDING_JOB:
     "Tiempo promedio en encontrar empleo:",
   GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM:
     "Tasa de ocupación en sistema educativo:",
@@ -93,6 +103,14 @@ export const baseConfig = {
   COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS: "Meses hasta encontrar trabajo:",
   COMPLEMENTARY_INFORMATION_TEXT_COLOR: "black",
   DOWNLOAD_WORD: "Descargar Informe",
+  DOWNLOAD_WORD_STUDENT_COMPLEMENTARY_INFO_TEXT:
+    "La siguiente imagen muestra información complementaria asociada al ingreso del estudiante",
+  DOWNLOAD_WORD_STUDENT_PROGRESS_TEXT:
+    "La siguiente gráfica evidencia el progreso del estudiante en el respectivo ciclo formativo. El valor en color azul corresponde a la cantidad de asignaturas aprobadas, en tanto que el valor porcentual evidencia el avance del estudiante en cada ciclo formativo. ",
+  DOWNLOAD_WORD_STUDENT_TREND_TEXT:
+    "El siguiente gráfico muestra la tendencia en el avance del estudiante. En color azul se aprecia su Promedio Semestral Ponderado, mientras que en color morado se señala su Promedio General Acumulado. Finalmente, en tono gris se encuentra el Promedio General Acumulado de la carrera.",
+  DOWNLOAD_WORD_STUDENT_PLAN_TEXT:
+    "La siguiente imagen corresponde a la malla curricular del plan de estudios que cursa el estudiante. En color verde se aprecian las asignaturas aprobadas, en rojo las reprobadas, en blanco las anuladas, en gris las asignaturas sin cursar y en azul las inscritas.",
   GROPUED_COURSE_BOX_COLORS: [
     {
       val: 0,
@@ -352,6 +370,7 @@ export const baseConfig = {
   STATE_FAILED_LABEL_MINI: "Rep",
   STATE_PASSED_LABEL_MINI: "Apr",
   STATE_PENDING_LABEL_MINI: "Pen",
+  STUDENT_PROGRESS: "Progreso del estudiante",
   STUDENT_LABEL: "Estudiante",
   STUDENT_LIST_TITLE: "Lista de estudiantes",
   STUDENT_REPORT: "Informe de Estudiantes",
@@ -404,9 +423,14 @@ export const baseConfig = {
   NO_INFORMATION_TO_DEPLOY: "No hay información para mostrar",
   RISK_ALL: "Todos",
   RISK_STUDENT_PENDING_OF_GRADUATION: "Pendientes de Titulación ",
-  RISK_LOW_PASSING_RATE_COURSES: "Anulaciones sobre el umbral",
+  RISK_HIGH_DROP_RATE: "Cursos con alto tasa de anulacion",
   RISK_LOW_PROGRESSING_RATE: "Avance menor al umbral (50%)",
+  MESSAGE_RISK_HEADER: "Situaciones de riesgo",
+  MESSAGE_RISK_BODY: "Se han encontrado las siguientes situaciones de riesgo: ",
+  MESSAGE_RISK_GIF: "Cómo visualizar situaciones de riesgo en TrAC-FID : ",
+  MESSAGE_RISK_FOOTER: "Para mayor información visite : ",
   RISK_THIRD_ATTEMPT: "Asignaturas por tercera vez",
+  RISK_LOW_PASSING_RATE_COURSES: "Cursos con bajo nivel de aprobación",
   GROUPED_DATA: "Datos agrupados",
   EMPLOYABILITY_DATA: "Datos empleabilidad",
   ACADEMIC_DATA: "Datos académicos",
@@ -414,7 +438,10 @@ export const baseConfig = {
   LAST_UPDATE_DATA: "Fecha de última carga de datos",
   NOTIFICATIONS_EMAIL_ADDRESS: "soportelala@inf.uach.cl",
   SHOW_PARAMETER: true,
-  COURSE_LABEL: "Ramo",
+  COURSE_LABEL: "Asignatura",
+  YEAR_LABEL: "Año",
+  TERM_LABEL: "Semestre",
+  RATE_LABEL: "Tasa",
 };
 
 export const baseConfigAdmin: typeof baseConfig &

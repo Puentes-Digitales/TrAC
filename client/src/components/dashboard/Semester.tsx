@@ -37,6 +37,7 @@ const toRoman = (num: number, first = false): string => {
 
 export const Semester: FC<
   {
+    student_mention: string;
     courses: ICourse[];
     externalEvaluations: IExternalEvaluation[];
     n: number;
@@ -46,32 +47,68 @@ export const Semester: FC<
   externalEvaluations: semesterExternalEvaluation,
   n,
   mr,
+  student_mention,
   ...stackProps
 }) => {
   const { SEMESTER_HEADER_TEXT_COLOR, SEMESTER_HEADER_FONT_SIZE } = useContext(
     ConfigContext
   );
 
-  return (
-    <Stack {...stackProps} height="fit-content">
-      <Text
-        color={SEMESTER_HEADER_TEXT_COLOR}
-        textAlign="center"
-        fontSize={SEMESTER_HEADER_FONT_SIZE}
-      >
-        <b>{toRoman(n, true)}</b>
-      </Text>
+  if (student_mention == "") {
+    return (
+      <Stack {...stackProps} height="fit-content">
+        <Text
+          color={SEMESTER_HEADER_TEXT_COLOR}
+          textAlign="center"
+          fontSize={SEMESTER_HEADER_FONT_SIZE}
+        >
+          <b>{toRoman(n, true)}</b>
+        </Text>
 
-      {semesterExternalEvaluation.map((externalEvaluations) => (
-        <ExternalEvaluationBox
-          key={externalEvaluations.code}
-          {...externalEvaluations}
-        />
-      ))}
+        {semesterExternalEvaluation.map((externalEvaluations) => (
+          <ExternalEvaluationBox
+            key={externalEvaluations.code}
+            {...externalEvaluations}
+          />
+        ))}
+        {semesterCourse.map((course) => (
+          <CourseBox key={course.code} {...course} />
+        ))}
+      </Stack>
+    );
+  } else {
+    return (
+      <Stack {...stackProps} height="fit-content">
+        <Text
+          color={SEMESTER_HEADER_TEXT_COLOR}
+          textAlign="center"
+          fontSize={SEMESTER_HEADER_FONT_SIZE}
+        >
+          <b>{toRoman(n, true)}</b>
+        </Text>
 
-      {semesterCourse.map((course) => (
-        <CourseBox key={course.code} {...course} />
-      ))}
-    </Stack>
-  );
+        {semesterExternalEvaluation.map((externalEvaluations) => (
+          <ExternalEvaluationBox
+            key={externalEvaluations.code}
+            {...externalEvaluations}
+          />
+        ))}
+        {semesterCourse.map(
+          (course) =>
+            student_mention == course.mention && (
+              <CourseBox key={course.code} {...course} />
+            )
+        )}
+
+        {semesterCourse.map(
+          (course) =>
+            "" == course.mention && <CourseBox key={course.code} {...course} />
+        )}
+      </Stack>
+    );
+  }
 };
+// console.log(course)
+//(
+//<CourseBox key={course.code} {...course} />
+//)

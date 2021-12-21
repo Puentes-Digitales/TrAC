@@ -1,5 +1,5 @@
 import DataLoader from "dataloader";
-import { Dictionary, keyBy, uniqBy } from "lodash";
+import { Dictionary, keyBy } from "lodash";
 import { LRUMap } from "lru_map";
 
 import {
@@ -49,7 +49,11 @@ export const ProgramGradeDataLoader = new DataLoader(
 
 export const TakenCoursesDataLoader = new DataLoader(
   async (
-    ids: readonly { year: number; term: number; student_id: string }[]
+    ids: readonly {
+      year: number;
+      term: number;
+      student_id: string;
+    }[]
   ) => {
     return await Promise.all(
       ids.map(async ({ year, term, student_id }) => {
@@ -66,7 +70,7 @@ export const TakenCoursesDataLoader = new DataLoader(
             { column: "term", order: "desc" },
             { column: "state", order: "asc" },
           ]);
-        return uniqBy(takenCoursesData, ({ course_taken }) => course_taken);
+        return takenCoursesData;
       })
     );
   },
