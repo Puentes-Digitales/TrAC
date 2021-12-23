@@ -40,6 +40,37 @@ export const StudentDataLoader = new DataLoader(
   }
 );
 
+export const StudentViaProgramsDataLoader2 = new DataLoader(
+  async (
+    keys: readonly {
+      student_id: string;
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ student_id, program_id }) => {
+        console.log(student_id, program_id);
+        return StudentProgramTable()
+          .select("program_id", "name", "state", "curriculum", "mention")
+          .innerJoin<IStudent>(
+            STUDENT_TABLE,
+            `${STUDENT_TABLE}.id`,
+            `${STUDENT_PROGRAM_TABLE}.student_id`
+          )
+          .orderBy("last_term", "desc")
+          .where({ student_id, program_id })
+          .first();
+      })
+    );
+  },
+  {
+    cacheKeyFn: ({ student_id, program_id }) => {
+      return student_id + program_id;
+    },
+    cacheMap: new LRUMap(1000),
+  }
+);
+
 export const StudentViaProgramsDataLoader = new DataLoader(
   async (student_ids: readonly string[]) => {
     return await Promise.all(

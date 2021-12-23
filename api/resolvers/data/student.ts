@@ -28,6 +28,7 @@ import {
   StudentListFilterDataLoader,
   StudentTermsDataLoader,
   StudentViaProgramsDataLoader,
+  StudentViaProgramsDataLoader2,
 } from "../../dataloaders/student";
 import {
   StudentListCyclesDataLoader,
@@ -111,7 +112,10 @@ export class StudentResolver {
 
       assertIsDefined(IsAuthorized, STUDENT_NOT_FOUND);
 
-      const studentData = await StudentViaProgramsDataLoader.load(student_id);
+      const studentData = await StudentViaProgramsDataLoader2.load({
+        student_id: student_id,
+        program_id: program_id,
+      });
 
       assertIsDefined(studentData, STUDENT_NOT_FOUND);
 
@@ -291,7 +295,10 @@ export class StudentResolver {
     });
 
     const list_cycle = total_cycles.map((d) => d.course_cat);
-    const studentData = await StudentViaProgramsDataLoader.load(id);
+    const studentData = await StudentViaProgramsDataLoader2.load({
+      student_id: id,
+      program_id: program,
+    });
 
     let mentionStudent: string = studentData?.mention ?? "";
     const dataCycleStudent = [];
