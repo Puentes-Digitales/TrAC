@@ -430,13 +430,23 @@ export const StudentList: FC<{
           <Divider hidden />
           <Tab
             activeIndex={indexTab}
-            menu={{ inverted: false, attached: false, tabular: false }}
+            menu={{ inverted: false, attached: true, tabular: false }}
             panes={panes}
             onTabChange={(e, data) => {
+              /*
+              console.log("data",data);*/
+              //console.log("E",e)
               let auxIndx = data?.activeIndex ?? 0;
               let auxIndx2 = parseInt("" + auxIndx);
-              setIndexTab(auxIndx2);
-              setCourseRisk(!courseRisk);
+              /*console.log("auxIndx: ",auxIndx2);*/
+              if (auxIndx2) {
+                setCourseRisk(false);
+                setIndexTab(auxIndx2);
+              } else {
+                setCourseRisk(true);
+                setIndexTab(auxIndx2);
+              }
+              //setCourseRisk(!courseRisk);
               //e.currentTarget.setAttribute("class", "active item");
             }}
           />
