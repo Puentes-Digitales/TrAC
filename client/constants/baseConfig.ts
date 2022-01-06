@@ -299,6 +299,7 @@ export const baseConfig = {
   GRADES_LABEL: "Calificaciones",
   GRADES_SCALES: "Escala de notas",
   HELP_ENABLED: false,
+  HELP_DESK: "Mesa de ayuda",
   HISTOGRAM_BAR_ACTIVE: "rgb(122,122,122)",
   HISTOGRAM_BAR_INACTIVE: "rgb(191,191,191)",
   GROUPED_HISTOGRAM_BAR: "rgb(173,66,244)",
