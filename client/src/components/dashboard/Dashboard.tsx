@@ -889,8 +889,7 @@ export function Dashboard() {
           const allStudentsGrades = allStudents.map((stu) =>
             stu.terms
               .map((semester) => {
-                if (semester.year >= toInteger(chosenCohort))
-                  return semester.semestral_grade;
+                return semester.semestral_grade;
               })
               .reverse()
           );
