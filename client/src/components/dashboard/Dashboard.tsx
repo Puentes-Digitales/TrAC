@@ -984,10 +984,17 @@ export function Dashboard() {
           const takenTerms = studentTerms?.map((i) => {
             return { year: i.year, term: i.term };
           });
-
+          var cohortLen = filteredAvgGrades.length;
+          if (filteredAvgGrades[filteredAvgGrades.length - 1] === 0) {
+            cohortLen = cohortLen - 1;
+          }
+          console.log("grades: ", grades);
+          console.log("allStudentsGrades:", allStudentsGrades);
+          console.log("avgPlan: ", avgGrades.slice(0, cohortLen));
+          console.log("filteredAvg:", filteredAvgGrades);
           TimeLineComponent = (
             <GroupedTimeLine
-              programGrades={avgGrades}
+              programGrades={avgGrades.slice(0, cohortLen)}
               filteredGrades={filteredAvgGrades}
               takenSemesters={takenTerms?.slice().reverse() ?? []}
             />
