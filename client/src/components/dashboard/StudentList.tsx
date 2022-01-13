@@ -78,7 +78,6 @@ export type StudentListInfo = {
   start_year: number;
   explanation: string;
   progress: number;
-  name: string;
 };
 
 export type RiskInfo = {
