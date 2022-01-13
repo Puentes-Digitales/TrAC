@@ -155,8 +155,29 @@ export class StudentResolver {
     const filteredStudentList = studentList.filter(({ last_term }) => {
       return (last_term / 10 || 0) >= sinceNYear;
     });
+    //console.log(filteredStudentList);
 
-    return filteredStudentList;
+    var anonID = filteredStudentList?.map((student) => student.id);
+    var objAnonID = { Listado: anonID };
+    var stObjAnonID = JSON.stringify(objAnonID);
+    var listRut = await anonService.getInfoSessionIdResult(stObjAnonID);
+
+    if (listRut === stObjAnonID) {
+      return filteredStudentList;
+    } else {
+      /*  //mock way
+      var mock = [{ Orden: 0, Rut: "19223242-4",},{ Orden: 1,Rut: "19994523-0",},{Orden: 2,Rut: "16492338-8",},{Orden: 3,Rut: "21234543-8",}];
+      filteredStudentList.forEach(function (std, index) {
+        std.name = mock[index % 4]?.Rut || "";
+      });
+      */
+      let desListRut = JSON.parse(listRut); //warning if is undefiend
+      filteredStudentList.forEach(function (std, index) {
+        //toDo change name to rut
+        std.name = desListRut[index].Rut;
+      });
+      return filteredStudentList;
+    }
   }
 
   @FieldResolver()

@@ -507,6 +507,7 @@ export type Student = {
   progress: Scalars["Float"];
   start_year: Scalars["Int"];
   state: Scalars["String"];
+  student_rut: Scalars["String"];
   terms: Array<Term>;
 };
 
@@ -1045,7 +1046,7 @@ export type StudentsListQueryVariables = Exact<{
 
 export type StudentsListQuery = {
   students: Array<
-    Pick<Student, "id" | "progress" | "start_year"> & {
+    Pick<Student, "id" | "name" | "progress" | "start_year"> & {
       dropout?: Maybe<Pick<Dropout, "prob_dropout" | "explanation">>;
       admission: Pick<Admission, "type_admission">;
     }
@@ -2903,6 +2904,7 @@ export const StudentsListDocument = gql`
   query studentsList($program_id: String!) {
     students(program_id: $program_id) {
       id
+      name
       progress
       start_year
       dropout {
