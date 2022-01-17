@@ -263,6 +263,7 @@ query config {
 query studentsList($program_id: String!) {
   students(program_id: $program_id) {
     id
+    name
     progress
     start_year
     dropout {

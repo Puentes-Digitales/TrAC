@@ -135,6 +135,7 @@ export interface IStudent {
   id: string;
   name: string;
   state: string;
+  student_rut: string;
 }
 
 export const STUDENT_TABLE = "student";

@@ -412,6 +412,7 @@ type Student {
   progress: Float!
   start_year: Int!
   state: String!
+  student_rut: String!
   terms: [Term!]!
 }
 

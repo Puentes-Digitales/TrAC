@@ -28,6 +28,7 @@ import {
   StudentListFilterDataLoader,
   StudentTermsDataLoader,
   StudentViaProgramsDataLoader,
+  StudentViaProgramsDataLoader2,
 } from "../../dataloaders/student";
 import {
   StudentListCyclesDataLoader,
@@ -111,7 +112,10 @@ export class StudentResolver {
 
       assertIsDefined(IsAuthorized, STUDENT_NOT_FOUND);
 
-      const studentData = await StudentViaProgramsDataLoader.load(student_id);
+      const studentData = await StudentViaProgramsDataLoader2.load({
+        student_id: student_id,
+        program_id: program_id,
+      });
 
       assertIsDefined(studentData, STUDENT_NOT_FOUND);
 
@@ -151,8 +155,29 @@ export class StudentResolver {
     const filteredStudentList = studentList.filter(({ last_term }) => {
       return (last_term / 10 || 0) >= sinceNYear;
     });
+    //console.log(filteredStudentList);
 
-    return filteredStudentList;
+    var anonID = filteredStudentList?.map((student) => student.id);
+    var objAnonID = { Listado: anonID };
+    var stObjAnonID = JSON.stringify(objAnonID);
+    var listRut = await anonService.getInfoSessionIdResult(stObjAnonID);
+
+    if (listRut === stObjAnonID) {
+      return filteredStudentList;
+    } else {
+      /*  //mock way
+      var mock = [{ Orden: 0, Rut: "19223242-4",},{ Orden: 1,Rut: "19994523-0",},{Orden: 2,Rut: "16492338-8",},{Orden: 3,Rut: "21234543-8",}];
+      filteredStudentList.forEach(function (std, index) {
+        std.name = mock[index % 4]?.Rut || "";
+      });
+      */
+      let desListRut = JSON.parse(listRut); //warning if is undefiend
+      filteredStudentList.forEach(function (std, index) {
+        //toDo change name to rut
+        std.name = desListRut[index].Rut;
+      });
+      return filteredStudentList;
+    }
   }
 
   @FieldResolver()
@@ -291,7 +316,10 @@ export class StudentResolver {
     });
 
     const list_cycle = total_cycles.map((d) => d.course_cat);
-    const studentData = await StudentViaProgramsDataLoader.load(id);
+    const studentData = await StudentViaProgramsDataLoader2.load({
+      student_id: id,
+      program_id: program,
+    });
 
     let mentionStudent: string = studentData?.mention ?? "";
     const dataCycleStudent = [];
