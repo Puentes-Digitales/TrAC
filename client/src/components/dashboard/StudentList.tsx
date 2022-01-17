@@ -256,10 +256,14 @@ export const StudentList: FC<{
         return (
           lowPassingRateCourses?.riskNotification.map(
             ({ course_id, cohort, risk_type, details }) => {
-              let cDetails = JSON.parse(details);
-              let yearTerm = cDetails.semester;
-              let year = yearTerm.substring(0, 4);
-              let term = yearTerm.substring(4, 5);
+              // let cDetails = JSON.parse(details);
+              // let yearTerm = cDetails.semester;
+              // let year = yearTerm.substring(0, 4);
+              // let term = yearTerm.substring(4, 5);
+              // let yearTerm = cDetails.semester;
+              let cDetails = details ? JSON.parse(details) : {};
+              let year = "";
+              let term = "";
               return {
                 student_id: "-1",
                 student_rut: "",
