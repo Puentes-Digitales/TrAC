@@ -77,7 +77,9 @@ class AnonymizationService {
           data: { getInfoSessionIdResult },
         } = await axios.post<{ getInfoSessionIdResult: string }>(
           this.route2,
-          id,
+          {
+            id,
+          }
           //{
           //  Clave: sha1(id).toString(),   // uncomment or delete test1.1
           //},
