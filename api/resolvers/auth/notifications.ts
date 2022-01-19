@@ -120,10 +120,8 @@ export class NotificationsResolver {
         var newRisks = true;
 
         if (risksData?.risks === risks_en_JSON) {
-          //si lo que hay en la ddbb es igual a lo del registro.
-          newRisks = false; //no hay nuevos datos
+          newRisks = false;
         } else if (risksData?.risks === null && risks_en_JSON.length === 2) {
-          //si lo que está en el registro es null y no hay situaciones  nuevas
           newRisks = false;
         } else {
           newRisks = true;
