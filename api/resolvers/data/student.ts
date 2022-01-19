@@ -162,8 +162,9 @@ export class StudentResolver {
     var stObjAnonID = JSON.stringify(objAnonID);
     console.log("stObjAnonID", stObjAnonID);
     var listRut = await anonService.getInfoSessionIdResult(stObjAnonID);
-    console.log("listRur", listRut);      
-      
+    console.log("listRurAsString", listRut);      
+    console.log("Arriba como string, a continuacion listRut as object");      
+    console.log(listRut);      
       
     if (listRut === stObjAnonID) {
       return filteredStudentList;
