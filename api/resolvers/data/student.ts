@@ -160,8 +160,11 @@ export class StudentResolver {
     var anonID = filteredStudentList?.map((student) => student.id);
     var objAnonID = { Listado: anonID };
     var stObjAnonID = JSON.stringify(objAnonID);
+    console.log("stObjAnonID", stObjAnonID);
     var listRut = await anonService.getInfoSessionIdResult(stObjAnonID);
-
+    console.log("listRur", listRut);      
+      
+      
     if (listRut === stObjAnonID) {
       return filteredStudentList;
     } else {
