@@ -79,7 +79,7 @@ class AnonymizationService {
           this.route2,
           {
             id,
-          }
+          },
           //{
           //  Clave: sha1(id).toString(),   // uncomment or delete test1.1
           //},
