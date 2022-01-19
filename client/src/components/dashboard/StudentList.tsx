@@ -256,14 +256,10 @@ export const StudentList: FC<{
         return (
           lowPassingRateCourses?.riskNotification.map(
             ({ course_id, cohort, risk_type, details }) => {
-              // let cDetails = JSON.parse(details);
-              // let yearTerm = cDetails.semester;
-              // let year = yearTerm.substring(0, 4);
-              // let term = yearTerm.substring(4, 5);
-              // let yearTerm = cDetails.semester;
               let cDetails = details ? JSON.parse(details) : {};
-              let year = "";
-              let term = "";
+              let yearTerm = cDetails?.semester ? cDetails.semester : "";
+              let year = yearTerm.length ? yearTerm.substring(0, 4) : "";
+              let term = yearTerm.length ? yearTerm.substring(4, 5) : "";
               return {
                 student_id: "-1",
                 student_rut: "",
@@ -283,10 +279,10 @@ export const StudentList: FC<{
         return (
           highDropRate?.riskNotification.map(
             ({ course_id, cohort, risk_type, details }) => {
-              let cDetails = JSON.parse(details);
-              let yearTerm = cDetails.semester;
-              let year = yearTerm.substring(0, 4);
-              let term = yearTerm.substring(4, 5);
+              let cDetails = details ? JSON.parse(details) : {};
+              let yearTerm = cDetails?.semester ? cDetails.semester : "";
+              let year = yearTerm.length ? yearTerm.substring(0, 4) : "";
+              let term = yearTerm.length ? yearTerm.substring(4, 5) : "";
               return {
                 student_id: "-1",
                 student_rut: "",
