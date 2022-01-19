@@ -32,12 +32,18 @@ export class riskNotificationResolver {
       if (listRut === stObjAnonID) {
         return riskQuery;
       } else {
-        let desListRut = JSON.parse(listRut); //warning if is undefiend
+        let strListRut = JSON.stringify(listRut); // stringify listRut before parse
+        console.log("riskNotification strListRut", strListRut); // see stringified list
+        let desListRut = JSON.parse(strListRut); //warning if is undefiend
         riskQuery.forEach(function (std, index) {
           // auxDetail = std.details.length > 0 ? std.details : "{}";
           //let objDetails = JSON.parse(auxDetail);
           // = "new"; toDo put the data in details => BD without [] cannot append data in multi arguments
-          std.details = "{rut:" + desListRut[index].Rut + "}";
+          // std.details = "{rut:" + desListRut[index].Rut + "}"; 
+          console.log("std pre asign", std);
+          //std.details = '{"rut":' + desListRut[index % 4].Rut + "}";
+          std.details = '{"rut":"' + desListRut[index].Rut + '"}';
+          console.log("std post asign", std);
         });
         return riskQuery;
       }
