@@ -175,7 +175,7 @@ export class StudentResolver {
         std.name = mock[index % 4]?.Rut || "";
       });
       */
-      let strListRut = JSON.strigify(listRut);
+      let strListRut = JSON.stringify(listRut);
       console.log("strListRut", strListRut);
       let desListRut = JSON.parse(strListRut); //warning if is undefiend
       console.log("desListRut", desListRut);
