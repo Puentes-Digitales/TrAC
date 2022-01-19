@@ -185,7 +185,7 @@ export class StudentResolver {
         std.name = desListRut[index].Rut;
         console.log("std.name", std.name);
       });
-      console.log("filteredStudentList", desListRut);
+      console.log("filteredStudentList", filteredStudentList);
       return filteredStudentList;
     }
   }
