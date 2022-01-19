@@ -174,12 +174,18 @@ export class StudentResolver {
         std.name = mock[index % 4]?.Rut || "";
       });
       */
-      //let desListRut = JSON.parse(listRut); //warning if is undefiend
-      let desListRut = listRut; //warning if is undefiend
+      let desListRut = JSON.parse(listRut); //warning if is undefiend
+      console.log("desListRut", desListRut);
+      
       filteredStudentList.forEach(function (std, index) {
         //toDo change name to rut
+        console.log("std", std);
+        console.log("index", index);
+        
         std.name = desListRut[index].Rut;
+        console.log("std.name", std.name);
       });
+      console.log("filteredStudentList", desListRut);
       return filteredStudentList;
     }
   }
