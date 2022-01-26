@@ -390,7 +390,7 @@ export class StudentResolver {
   @Query(() => String)
   async groupedSpecialTypesAdmission(): Promise<string | null> {
     const notGroupedEspecialTypesAdmission =
-      "INGRESO ESPECIAL - PROPEDEUTICO, INGRESO ESPECIAL - HABILITACIÓN PEDAGOGICA";
+      process.env.NOT_GROUPED_SPECIAL_ADMISSIONS;
     const TypeAdmissions = await StudentProgramTable()
       .distinct("type_admission")
       .where("type_admission", "like", "%ESPECIAL%");
