@@ -396,7 +396,7 @@ export class StudentResolver {
       .where("type_admission", "like", "%ESPECIAL%");
     var gropuedEspecialAdmissions: string = "";
     for (const { type_admission } of TypeAdmissions) {
-      if (!notGroupedEspecialTypesAdmission.includes(type_admission)) {
+      if (!notGroupedEspecialTypesAdmission?.includes(type_admission)) {
         gropuedEspecialAdmissions = gropuedEspecialAdmissions + type_admission;
       }
     }
