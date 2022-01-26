@@ -87,6 +87,10 @@ export function Dashboard() {
   const [mockData, setMockData] = useState<
     typeof import("../../../constants/mockData")
   >();
+  var nStudentsComplementaryInfo:
+    | number
+    | null
+    | undefined; /*this value match # students from complementary info with semesterTaken components*/
 
   useEffect(() => {
     if (mock && !mockData) {
@@ -151,7 +155,9 @@ export function Dashboard() {
     skip: !program,
   });
 
-  const { data: aux } = useGroupedSpecialTypesAdmissionQuery();
+  const {
+    data: dataGroupedSpecialAdmissions,
+  } = useGroupedSpecialTypesAdmissionQuery();
 
   useUpdateEffect(() => {
     if (IS_NOT_TEST && user?.admin) {
@@ -842,36 +848,6 @@ export function Dashboard() {
             />
           );
         }
-        if (
-          (filteredEmpleabilityData[0] || filteredComplementaryData[0]) &&
-          user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO
-        ) {
-          GroupedPerformanceInfoComponent = (
-            <GroupedComplementaryInfo
-              total_students={filteredComplementaryData[0]?.total_students}
-              university_degree_rate={
-                filteredComplementaryData[0]?.university_degree_rate
-              }
-              average_time_university_degree={
-                filteredComplementaryData[0]?.average_time_university_degree
-              }
-              timely_university_degree_rate={
-                filteredComplementaryData[0]?.timely_university_degree_rate
-              }
-              retention_rate={filteredComplementaryData[0]?.retention_rate}
-              empleability_rate={filteredEmpleabilityData[0]?.employed_rate}
-              average_time_finding_job={
-                filteredEmpleabilityData[0]?.average_time_job_finding
-              }
-              empleability_rate_educational_system={
-                filteredEmpleabilityData[0]?.employed_rate_educational_system
-              }
-              inactive_time_rate={
-                filteredComplementaryData[0]?.inactive_time_rate
-              }
-            />
-          );
-        }
         /* 
         Lista .env = "[INGRESOS ESPECIALES QUE PERTENECEN A "OTROS INGRESOS ESPECIALES"]"
         si el chosenAdmissionType es igual a "otros ingresos especiales"
@@ -904,7 +880,10 @@ export function Dashboard() {
               })
               .reverse()
           );
-          console.log("auxiliar: ", aux?.groupedSpecialTypesAdmission);
+          console.log(
+            "auxiliar: ",
+            dataGroupedSpecialAdmissions?.groupedSpecialTypesAdmission
+          );
           var filteredStudents;
           if (chosenAdmissionType === "Otro Ingresos especiales") {
             //hardcode
@@ -912,7 +891,7 @@ export function Dashboard() {
             filteredStudents = studentListData.students_filter
               .filter(
                 (stu) =>
-                  aux?.groupedSpecialTypesAdmission.includes(
+                  dataGroupedSpecialAdmissions?.groupedSpecialTypesAdmission.includes(
                     stu.admission.type_admission
                   ) &&
                   stu.curriculums.includes(chosenCurriculum) &&
@@ -994,6 +973,7 @@ export function Dashboard() {
           for (let i = 0; i < filteredMaxTerm; i++) {
             filteredGrades.push(filteredStudentsGrades.map((v) => v[i] ?? 0));
           }
+          console.log("filteredGrades", filteredGrades);
 
           const avgGrades = grades.map((arr) => {
             return (
@@ -1011,6 +991,17 @@ export function Dashboard() {
           const filteredAvgGrades = filteredGrades!.map((arr) => {
             n_students_per_semester.push(
               arr.filter((ele: number) => ele).length
+            );
+            if (
+              n_students_per_semester.length === 1 &&
+              n_students_per_semester[0] === 0
+            ) {
+              n_students_per_semester[0] = filteredGrades[0].length;
+            }
+            nStudentsComplementaryInfo = n_students_per_semester[0];
+            console.log(
+              "nStudentsComplementaryInfo2:",
+              nStudentsComplementaryInfo
             );
             return (
               arr.reduce((a: number, b: number) => {
@@ -1068,6 +1059,92 @@ export function Dashboard() {
                 </Flex>
               ))
             : (TakenSemestersComponent = null);
+        }
+
+        if (
+          (filteredEmpleabilityData[0] || filteredComplementaryData[0]) &&
+          user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO
+        ) {
+          console.log(
+            "cohort :",
+            chosenCohort,
+            ", curriculum: ",
+            chosenCurriculum,
+            "admissionType: ",
+            chosenAdmissionType
+          );
+          if (!chosenCohort?.length) {
+            if (chosenCurriculum?.length) {
+              console.log("1.- tiene plan");
+              if (chosenAdmissionType?.length) {
+                if (chosenAdmissionType === "Otro Ingresos especiales") {
+                  nStudentsComplementaryInfo = studentListData?.students_filter.filter(
+                    (stu) =>
+                      dataGroupedSpecialAdmissions?.groupedSpecialTypesAdmission.includes(
+                        stu.admission.type_admission
+                      )
+                  ).length;
+                } else {
+                  nStudentsComplementaryInfo = studentListData?.students_filter.filter(
+                    (stu) =>
+                      stu.admission.type_admission === chosenAdmissionType
+                  ).length;
+                }
+                console.log("2.- Tiene tipo de admisión");
+                console.log(
+                  "el n va a ser igual a todos los estudiantes del plan y con el tipo de admisión"
+                );
+              } else {
+                console.log("2.- No Tiene tipo de admisión");
+                console.log(
+                  "el n va a ser igual a el numero de estudiantes del curriculum"
+                );
+                nStudentsComplementaryInfo =
+                  dataStudentFilterList?.students_filter.length;
+              }
+            } else {
+              console.log("1.- No tiene plan");
+              console.log(
+                "el n es igual todos los estudiantes y es igual  a :",
+                dataStudentFilterList?.students_filter.length
+              );
+              nStudentsComplementaryInfo =
+                dataStudentFilterList?.students_filter.length;
+            }
+          }
+          console.log(
+            "nStudentsComplementaryInfo: ",
+            nStudentsComplementaryInfo
+          );
+          GroupedPerformanceInfoComponent = (
+            <GroupedComplementaryInfo
+              total_students={
+                nStudentsComplementaryInfo
+                  ? nStudentsComplementaryInfo
+                  : filteredComplementaryData[0]?.total_students
+              }
+              university_degree_rate={
+                filteredComplementaryData[0]?.university_degree_rate
+              }
+              average_time_university_degree={
+                filteredComplementaryData[0]?.average_time_university_degree
+              }
+              timely_university_degree_rate={
+                filteredComplementaryData[0]?.timely_university_degree_rate
+              }
+              retention_rate={filteredComplementaryData[0]?.retention_rate}
+              empleability_rate={filteredEmpleabilityData[0]?.employed_rate}
+              average_time_finding_job={
+                filteredEmpleabilityData[0]?.average_time_job_finding
+              }
+              empleability_rate_educational_system={
+                filteredEmpleabilityData[0]?.employed_rate_educational_system
+              }
+              inactive_time_rate={
+                filteredComplementaryData[0]?.inactive_time_rate
+              }
+            />
+          );
         }
       }
     }

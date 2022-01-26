@@ -246,17 +246,30 @@ export const StudentListFilterDataLoader = new DataLoader(
   ) => {
     return await Promise.all(
       keys.map(({ program_id, curriculum }) => {
-        return StudentProgramTable()
-          .select("*")
-          .join<IStudent>(
-            STUDENT_TABLE,
-            `${STUDENT_PROGRAM_TABLE}.student_id`,
-            `${STUDENT_TABLE}.id`
-          )
-          .where({
-            program_id,
-            curriculum,
-          });
+        if (curriculum === "") {
+          return StudentProgramTable()
+            .select("*")
+            .join<IStudent>(
+              STUDENT_TABLE,
+              `${STUDENT_PROGRAM_TABLE}.student_id`,
+              `${STUDENT_TABLE}.id`
+            )
+            .where({
+              program_id,
+            });
+        } else {
+          return StudentProgramTable()
+            .select("*")
+            .join<IStudent>(
+              STUDENT_TABLE,
+              `${STUDENT_PROGRAM_TABLE}.student_id`,
+              `${STUDENT_TABLE}.id`
+            )
+            .where({
+              program_id,
+              curriculum,
+            });
+        }
       })
     );
   },
