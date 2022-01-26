@@ -417,6 +417,7 @@ export type Query = {
   currentUser?: Maybe<AuthResult>;
   feedbackResults: Array<FeedbackResult>;
   getPersistenceValue?: Maybe<Persistence>;
+  groupedSpecialTypesAdmission: Scalars["String"];
   myPrograms: Array<Program>;
   NotificationsData: Array<Notifications>;
   parameters: Array<Parameter>;
@@ -1028,6 +1029,15 @@ export type MyProgramsQueryVariables = Exact<{ [key: string]: never }>;
 export type MyProgramsQuery = {
   myPrograms: Array<Pick<Program, "id" | "name">>;
 };
+
+export type GroupedSpecialTypesAdmissionQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type GroupedSpecialTypesAdmissionQuery = Pick<
+  Query,
+  "groupedSpecialTypesAdmission"
+>;
 
 export type TrackMutationVariables = Exact<{
   data: Scalars["String"];
@@ -2811,6 +2821,59 @@ export type MyProgramsLazyQueryHookResult = ReturnType<
 export type MyProgramsQueryResult = Apollo.QueryResult<
   MyProgramsQuery,
   MyProgramsQueryVariables
+>;
+export const GroupedSpecialTypesAdmissionDocument = gql`
+  query groupedSpecialTypesAdmission {
+    groupedSpecialTypesAdmission
+  }
+`;
+
+/**
+ * __useGroupedSpecialTypesAdmissionQuery__
+ *
+ * To run a query within a React component, call `useGroupedSpecialTypesAdmissionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGroupedSpecialTypesAdmissionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGroupedSpecialTypesAdmissionQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGroupedSpecialTypesAdmissionQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GroupedSpecialTypesAdmissionQuery,
+    GroupedSpecialTypesAdmissionQueryVariables
+  >
+) {
+  return Apollo.useQuery<
+    GroupedSpecialTypesAdmissionQuery,
+    GroupedSpecialTypesAdmissionQueryVariables
+  >(GroupedSpecialTypesAdmissionDocument, baseOptions);
+}
+export function useGroupedSpecialTypesAdmissionLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GroupedSpecialTypesAdmissionQuery,
+    GroupedSpecialTypesAdmissionQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<
+    GroupedSpecialTypesAdmissionQuery,
+    GroupedSpecialTypesAdmissionQueryVariables
+  >(GroupedSpecialTypesAdmissionDocument, baseOptions);
+}
+export type GroupedSpecialTypesAdmissionQueryHookResult = ReturnType<
+  typeof useGroupedSpecialTypesAdmissionQuery
+>;
+export type GroupedSpecialTypesAdmissionLazyQueryHookResult = ReturnType<
+  typeof useGroupedSpecialTypesAdmissionLazyQuery
+>;
+export type GroupedSpecialTypesAdmissionQueryResult = Apollo.QueryResult<
+  GroupedSpecialTypesAdmissionQuery,
+  GroupedSpecialTypesAdmissionQueryVariables
 >;
 export const TrackDocument = gql`
   mutation track($data: String!, $datetime_client: DateTime!) {

@@ -51,6 +51,7 @@ import {
   useSearchProgramMutation,
   useSearchStudentMutation,
   useStudentsFilterListQuery,
+  useGroupedSpecialTypesAdmissionQuery,
 } from "../../graphql";
 import { useUser } from "../../utils/useUser";
 import { ToggleDarkMode } from "../DarkMode";
@@ -150,15 +151,17 @@ export function Dashboard() {
     skip: !program,
   });
 
+  const { data: aux } = useGroupedSpecialTypesAdmissionQuery();
+
   useUpdateEffect(() => {
     if (IS_NOT_TEST && user?.admin) {
-      console.log({
+      /*console.log({
         searchProgramData,
         searchStudentData,
         dataPerformanceByLoad,
         dataDirectTakeCourses,
         dataIndirectTakeCourses,
-      });
+      });*/
     }
   }, [
     searchProgramData,
@@ -869,6 +872,11 @@ export function Dashboard() {
             />
           );
         }
+        /* 
+        Lista .env = "[INGRESOS ESPECIALES QUE PERTENECEN A "OTROS INGRESOS ESPECIALES"]"
+        si el chosenAdmissionType es igual a "otros ingresos especiales"
+        entonces deberá traer todos los ingresos especiales menos los que estan en la Lista.
+        */
 
         if (chosenCurriculum && chosenCohort && studentListData) {
           const allStudents = studentListData.students_filter
@@ -886,6 +894,9 @@ export function Dashboard() {
                 ),
               };
             });
+          console.log("allStudents: ", allStudents);
+          console.log("ChosenAdmissionType:", chosenAdmissionType);
+
           const allStudentsGrades = allStudents.map((stu) =>
             stu.terms
               .map((semester) => {
@@ -893,26 +904,60 @@ export function Dashboard() {
               })
               .reverse()
           );
+          console.log("auxiliar: ", aux?.groupedSpecialTypesAdmission);
+          var filteredStudents;
+          if (chosenAdmissionType === "Otro Ingresos especiales") {
+            //hardcode
+            console.log("Entro al if");
+            filteredStudents = studentListData.students_filter
+              .filter(
+                (stu) =>
+                  aux?.groupedSpecialTypesAdmission.includes(
+                    stu.admission.type_admission
+                  ) &&
+                  stu.curriculums.includes(chosenCurriculum) &&
+                  stu.start_year == toInteger(chosenCohort)
+              )
+              .map((stu) => {
+                console.log("tipo de admision:", stu.admission.type_admission);
+                return {
+                  id: stu.id,
+                  curriculums: stu.curriculums,
+                  start_year: stu.start_year,
+                  mention: stu.mention,
+                  programs: stu.programs,
+                  admission: stu.admission,
+                  terms: stu.terms.filter(
+                    (term) => term.year >= toInteger(chosenCohort)
+                  ),
+                };
+              });
+          } else {
+            filteredStudents = studentListData.students_filter
+              .filter((stu) =>
+                chosenAdmissionType?.length
+                  ? stu.admission.type_admission === chosenAdmissionType &&
+                    stu.curriculums.includes(chosenCurriculum) &&
+                    stu.start_year == toInteger(chosenCohort)
+                  : stu.curriculums.includes(chosenCurriculum) &&
+                    stu.start_year == toInteger(chosenCohort)
+              )
+              .map((stu) => {
+                console.log("tipo de admision:", stu.admission.type_admission);
+                return {
+                  id: stu.id,
+                  curriculums: stu.curriculums,
+                  start_year: stu.start_year,
+                  mention: stu.mention,
+                  programs: stu.programs,
+                  admission: stu.admission,
+                  terms: stu.terms.filter(
+                    (term) => term.year >= toInteger(chosenCohort)
+                  ),
+                };
+              });
+          }
 
-          const filteredStudents = studentListData.students_filter
-            .filter(
-              (stu) =>
-                stu.curriculums.includes(chosenCurriculum) &&
-                stu.start_year == toInteger(chosenCohort)
-            )
-            .map((stu) => {
-              return {
-                id: stu.id,
-                curriculums: stu.curriculums,
-                start_year: stu.start_year,
-                mention: stu.mention,
-                programs: stu.programs,
-                admission: stu.admission,
-                terms: stu.terms.filter(
-                  (term) => term.year >= toInteger(chosenCohort)
-                ),
-              };
-            });
           const filteredStudentsGrades = filteredStudents.map((stu) =>
             stu.terms
               .map((semester) => {
@@ -987,10 +1032,13 @@ export function Dashboard() {
           if (filteredAvgGrades[filteredAvgGrades.length - 1] === 0) {
             cohortLen = cohortLen - 1;
           }
-          console.log("grades: ", grades);
-          console.log("allStudentsGrades:", allStudentsGrades);
-          console.log("avgPlan: ", avgGrades.slice(0, cohortLen));
+          //console.log("grades: ", grades);
+          //console.log("allStudentsGrades:", allStudentsGrades);
+          //console.log("avgPlan: ", avgGrades.slice(0, cohortLen));
           console.log("filteredAvg:", filteredAvgGrades);
+          console.log(
+            "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+          );
           TimeLineComponent = (
             <GroupedTimeLine
               programGrades={avgGrades.slice(0, cohortLen)}
@@ -1110,7 +1158,6 @@ export function Dashboard() {
     chosenCohort,
     user,
   ]);
-
   const searchError = useMemo(() => {
     return uniq(
       [
