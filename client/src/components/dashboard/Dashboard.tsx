@@ -871,7 +871,7 @@ export function Dashboard() {
               };
             });
           console.log("allStudents: ", allStudents);
-          console.log("ChosenAdmissionType:", chosenAdmissionType);
+          //console.log("ChosenAdmissionType:", chosenAdmissionType);
 
           const allStudentsGrades = allStudents.map((stu) =>
             stu.terms
@@ -880,14 +880,13 @@ export function Dashboard() {
               })
               .reverse()
           );
-          console.log(
-            "auxiliar: ",
-            dataGroupedSpecialAdmissions?.groupedSpecialTypesAdmission
-          );
+          //console.log(
+          //"auxiliar: ",
+          //dataGroupedSpecialAdmissions?.groupedSpecialTypesAdmission
+          //);
           var filteredStudents;
-          if (chosenAdmissionType === "Otro Ingresos especiales") {
+          if (chosenAdmissionType === "OTROS INGRESOS ESPECIALES") {
             //hardcode
-            console.log("Entro al if");
             filteredStudents = studentListData.students_filter
               .filter(
                 (stu) =>
@@ -898,7 +897,7 @@ export function Dashboard() {
                   stu.start_year == toInteger(chosenCohort)
               )
               .map((stu) => {
-                console.log("tipo de admision:", stu.admission.type_admission);
+                //console.log("tipo de admision:", stu.admission.type_admission);
                 return {
                   id: stu.id,
                   curriculums: stu.curriculums,
@@ -922,7 +921,7 @@ export function Dashboard() {
                     stu.start_year == toInteger(chosenCohort)
               )
               .map((stu) => {
-                console.log("tipo de admision:", stu.admission.type_admission);
+                //console.log("tipo de admision:", stu.admission.type_admission);
                 return {
                   id: stu.id,
                   curriculums: stu.curriculums,
@@ -999,10 +998,10 @@ export function Dashboard() {
               n_students_per_semester[0] = filteredGrades[0].length;
             }
             nStudentsComplementaryInfo = n_students_per_semester[0];
-            console.log(
+            /*console.log(
               "nStudentsComplementaryInfo2:",
               nStudentsComplementaryInfo
-            );
+            );*/
             return (
               arr.reduce((a: number, b: number) => {
                 if (a && b) return a + b;
@@ -1020,12 +1019,29 @@ export function Dashboard() {
             return { year: i.year, term: i.term };
           });
           var cohortLen = filteredAvgGrades.length;
+          /*
           if (filteredAvgGrades[filteredAvgGrades.length - 1] === 0) {
             cohortLen = cohortLen - 1;
           }
-          //console.log("grades: ", grades);
-          //console.log("allStudentsGrades:", allStudentsGrades);
-          //console.log("avgPlan: ", avgGrades.slice(0, cohortLen));
+          if (filteredAvgGrades[filteredAvgGrades.length - 2] === 0) {
+            cohortLen = cohortLen - 1;
+          }
+          */
+          //
+          var isZero = true;
+          let i = 1;
+          while (isZero) {
+            if (filteredAvgGrades[filteredAvgGrades.length - i] === 0) {
+              cohortLen = cohortLen - 1;
+            } else {
+              isZero = false;
+            }
+            i++;
+          }
+
+          console.log("grades: ", grades);
+          console.log("allStudentsGrades:", allStudentsGrades);
+          console.log("avgPlan: ", avgGrades.slice(0, cohortLen));
           console.log("filteredAvg:", filteredAvgGrades);
           console.log(
             "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
@@ -1033,6 +1049,7 @@ export function Dashboard() {
           TimeLineComponent = (
             <GroupedTimeLine
               programGrades={avgGrades.slice(0, cohortLen)}
+              //programGrades={avgGrades}
               filteredGrades={filteredAvgGrades}
               takenSemesters={takenTerms?.slice().reverse() ?? []}
             />
