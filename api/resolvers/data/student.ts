@@ -162,10 +162,10 @@ export class StudentResolver {
     var stObjAnonID = JSON.stringify(objAnonID);
     console.log("stObjAnonID", stObjAnonID);
     var listRut = await anonService.getInfoSessionIdResult(stObjAnonID);
-    console.log("listRurAsString", listRut);      
-    console.log("Arriba como string, a continuacion listRut as object");      
-    console.log(listRut);      
-      
+    console.log("listRurAsString", listRut);
+    console.log("Arriba como string, a continuacion listRut as object");
+    console.log(listRut);
+
     if (listRut === stObjAnonID) {
       return filteredStudentList;
     } else {
@@ -179,12 +179,12 @@ export class StudentResolver {
       console.log("strListRut", strListRut);
       let desListRut = JSON.parse(strListRut); //warning if is undefiend
       console.log("desListRut", desListRut);
-      
+
       filteredStudentList.forEach(function (std, index) {
         //toDo change name to rut
         console.log("std", std);
         console.log("index", index);
-        
+
         std.name = desListRut[index].Rut;
         console.log("std.name", std.name);
       });
@@ -385,5 +385,21 @@ export class StudentResolver {
     });
 
     return studentList;
+  }
+  //Lista de especiales no agrupables NOTGROUPEDESPECIALTYPEADMISSION
+  @Query(() => String)
+  async groupedSpecialTypesAdmission(): Promise<string | null> {
+    const notGroupedEspecialTypesAdmission =
+      process.env.NOT_GROUPED_SPECIAL_ADMISSIONS;
+    const TypeAdmissions = await StudentProgramTable()
+      .distinct("type_admission")
+      .where("type_admission", "like", "%ESPECIAL%");
+    var gropuedEspecialAdmissions: string = "";
+    for (const { type_admission } of TypeAdmissions) {
+      if (!notGroupedEspecialTypesAdmission?.includes(type_admission)) {
+        gropuedEspecialAdmissions = gropuedEspecialAdmissions + type_admission;
+      }
+    }
+    return gropuedEspecialAdmissions;
   }
 }

@@ -354,6 +354,7 @@ type Query {
   currentUser: AuthResult
   feedbackResults(user_ids: [String!]): [FeedbackResult!]!
   getPersistenceValue(key: String!): Persistence
+  groupedSpecialTypesAdmission: String!
   myPrograms: [Program!]!
   NotificationsData: [Notifications!]!
   parameters: [Parameter!]!

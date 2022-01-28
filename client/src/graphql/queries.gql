@@ -252,6 +252,10 @@ query myPrograms {
   }
 }
 
+query groupedSpecialTypesAdmission {
+  groupedSpecialTypesAdmission
+}
+
 mutation track($data: String!, $datetime_client: DateTime!) {
   track(data: $data, datetime_client: $datetime_client)
 }
