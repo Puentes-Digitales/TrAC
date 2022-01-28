@@ -401,7 +401,6 @@ export function ExternalEvaluationBox({
 
     return true;
   }, [isForeplanActive, code, taken, user]);
-  console.log("external evaluation", "taken", taken);
   return (
     <OuterCourseBox
       code={code}

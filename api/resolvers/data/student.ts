@@ -386,7 +386,8 @@ export class StudentResolver {
 
     return studentList;
   }
-  //Lista de especiales no agrupables NOTGROUPEDESPECIALTYPEADMISSION
+
+  //hard-code , to do: refactoring
   @Query(() => String)
   async groupedSpecialTypesAdmission(): Promise<string | null> {
     const notGroupedEspecialTypesAdmission =
