@@ -456,6 +456,7 @@ export type QueryStudentsArgs = {
 
 export type QueryStudents_FilterArgs = {
   curriculum: Scalars["String"];
+  grouped: Scalars["Boolean"];
   program_id: Scalars["String"];
 };
 
@@ -1067,6 +1068,7 @@ export type StudentsListQuery = {
 export type StudentsFilterListQueryVariables = Exact<{
   program_id: Scalars["String"];
   curriculum: Scalars["String"];
+  grouped: Scalars["Boolean"];
 }>;
 
 export type StudentsFilterListQuery = {
@@ -3034,8 +3036,16 @@ export type StudentsListQueryResult = Apollo.QueryResult<
   StudentsListQueryVariables
 >;
 export const StudentsFilterListDocument = gql`
-  query studentsFilterList($program_id: String!, $curriculum: String!) {
-    students_filter(program_id: $program_id, curriculum: $curriculum) {
+  query studentsFilterList(
+    $program_id: String!
+    $curriculum: String!
+    $grouped: Boolean!
+  ) {
+    students_filter(
+      program_id: $program_id
+      curriculum: $curriculum
+      grouped: $grouped
+    ) {
       id
       programs {
         id
@@ -3072,6 +3082,7 @@ export const StudentsFilterListDocument = gql`
  *   variables: {
  *      program_id: // value for 'program_id'
  *      curriculum: // value for 'curriculum'
+ *      grouped: // value for 'grouped'
  *   },
  * });
  */

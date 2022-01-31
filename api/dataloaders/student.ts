@@ -242,11 +242,13 @@ export const StudentListFilterDataLoader = new DataLoader(
     keys: readonly {
       program_id: string;
       curriculum: string;
+      grouped: boolean;
     }[]
   ) => {
     return await Promise.all(
-      keys.map(({ program_id, curriculum }) => {
-        if (curriculum === "") {
+      keys.map(({ program_id, curriculum, grouped }) => {
+        if (curriculum === "" && grouped) {
+          //To do refactoring, number students complementary info match semesters
           return StudentProgramTable()
             .select("*")
             .join<IStudent>(

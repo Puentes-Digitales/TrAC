@@ -369,7 +369,8 @@ export class StudentResolver {
   async students_filter(
     @Ctx() { user }: IContext,
     @Arg("program_id") program_id: string,
-    @Arg("curriculum") curriculum: string
+    @Arg("curriculum") curriculum: string,
+    @Arg("grouped") grouped: boolean
   ): Promise<PartialStudent[]> {
     assertIsDefined(user, `Error on authorization context`);
 
@@ -386,6 +387,7 @@ export class StudentResolver {
     const studentList = await StudentListFilterDataLoader.load({
       program_id: program_id,
       curriculum: curriculum,
+      grouped: grouped,
     });
 
     return studentList;
