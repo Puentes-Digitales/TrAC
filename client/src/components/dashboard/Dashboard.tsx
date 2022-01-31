@@ -875,7 +875,7 @@ export function Dashboard() {
           );
           var filteredStudents;
           if (chosenAdmissionType === "OTROS INGRESOS ESPECIALES") {
-            //hardcode
+            //Hard-Code - To do refactoring
             filteredStudents = studentListData.students_filter
               .filter(
                 (stu) =>
@@ -1004,15 +1004,6 @@ export function Dashboard() {
             return { year: i.year, term: i.term };
           });
           var cohortLen = filteredAvgGrades.length;
-          /*
-          if (filteredAvgGrades[filteredAvgGrades.length - 1] === 0) {
-            cohortLen = cohortLen - 1;
-          }
-          if (filteredAvgGrades[filteredAvgGrades.length - 2] === 0) {
-            cohortLen = cohortLen - 1;
-          }
-          */
-          //
           var isZero = true;
           let i = 1;
           while (isZero) {
@@ -1023,11 +1014,9 @@ export function Dashboard() {
             }
             i++;
           }
-
           TimeLineComponent = (
             <GroupedTimeLine
               programGrades={avgGrades.slice(0, cohortLen)}
-              //programGrades={avgGrades}
               filteredGrades={filteredAvgGrades}
               takenSemesters={takenTerms?.slice().reverse() ?? []}
             />
