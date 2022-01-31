@@ -161,13 +161,13 @@ export function Dashboard() {
 
   useUpdateEffect(() => {
     if (IS_NOT_TEST && user?.admin) {
-      /*console.log({
+      console.log({
         searchProgramData,
         searchStudentData,
         dataPerformanceByLoad,
         dataDirectTakeCourses,
         dataIndirectTakeCourses,
-      });*/
+      });
     }
   }, [
     searchProgramData,
@@ -962,7 +962,6 @@ export function Dashboard() {
           for (let i = 0; i < filteredMaxTerm; i++) {
             filteredGrades.push(filteredStudentsGrades.map((v) => v[i] ?? 0));
           }
-          console.log("filteredGrades", filteredGrades);
 
           const avgGrades = grades.map((arr) => {
             return (
@@ -988,10 +987,6 @@ export function Dashboard() {
               n_students_per_semester[0] = filteredGrades[0].length;
             }
             nStudentsComplementaryInfo = n_students_per_semester[0];
-            /*console.log(
-              "nStudentsComplementaryInfo2:",
-              nStudentsComplementaryInfo
-            );*/
             return (
               arr.reduce((a: number, b: number) => {
                 if (a && b) return a + b;
@@ -1029,13 +1024,6 @@ export function Dashboard() {
             i++;
           }
 
-          console.log("grades: ", grades);
-          console.log("allStudentsGrades:", allStudentsGrades);
-          console.log("avgPlan: ", avgGrades.slice(0, cohortLen));
-          console.log("filteredAvg:", filteredAvgGrades);
-          console.log(
-            "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-          );
           TimeLineComponent = (
             <GroupedTimeLine
               programGrades={avgGrades.slice(0, cohortLen)}
@@ -1072,17 +1060,8 @@ export function Dashboard() {
           (filteredEmpleabilityData[0] || filteredComplementaryData[0]) &&
           user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO
         ) {
-          console.log(
-            "cohort :",
-            chosenCohort,
-            ", curriculum: ",
-            chosenCurriculum,
-            "admissionType: ",
-            chosenAdmissionType
-          );
           if (!chosenCohort?.length) {
             if (chosenCurriculum?.length) {
-              console.log("1.- tiene plan");
               if (chosenAdmissionType?.length) {
                 if (chosenAdmissionType === "Otro Ingresos especiales") {
                   nStudentsComplementaryInfo = studentListData?.students_filter.filter(
@@ -1097,32 +1076,16 @@ export function Dashboard() {
                       stu.admission.type_admission === chosenAdmissionType
                   ).length;
                 }
-                console.log("2.- Tiene tipo de admisión");
-                console.log(
-                  "el n va a ser igual a todos los estudiantes del plan y con el tipo de admisión"
-                );
               } else {
-                console.log("2.- No Tiene tipo de admisión");
-                console.log(
-                  "el n va a ser igual a el numero de estudiantes del curriculum"
-                );
                 nStudentsComplementaryInfo =
                   dataStudentFilterList?.students_filter.length;
               }
             } else {
-              console.log("1.- No tiene plan");
-              console.log(
-                "el n es igual todos los estudiantes y es igual  a :",
-                dataStudentFilterList?.students_filter.length
-              );
               nStudentsComplementaryInfo =
                 dataStudentFilterList?.students_filter.length;
             }
           }
-          console.log(
-            "nStudentsComplementaryInfo: ",
-            nStudentsComplementaryInfo
-          );
+
           GroupedPerformanceInfoComponent = (
             <GroupedComplementaryInfo
               total_students={
