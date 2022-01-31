@@ -8,6 +8,5 @@ declare namespace NodeJS {
     EMAIL_ADDRESS_REPLY_TO: string;
     PORT: string;
     SELECTED_PROGRAMS: string;
-    NOT_GROUPED_SPECIAL_ADMISSIONS: string;
   }
 }

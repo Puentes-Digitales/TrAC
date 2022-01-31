@@ -848,11 +848,6 @@ export function Dashboard() {
             />
           );
         }
-        /* 
-        Lista .env = "[INGRESOS ESPECIALES QUE PERTENECEN A "OTROS INGRESOS ESPECIALES"]"
-        si el chosenAdmissionType es igual a "otros ingresos especiales"
-        entonces deberá traer todos los ingresos especiales menos los que estan en la Lista.
-        */
 
         if (chosenCurriculum && chosenCohort && studentListData) {
           const allStudents = studentListData.students_filter
@@ -870,8 +865,6 @@ export function Dashboard() {
                 ),
               };
             });
-          console.log("allStudents: ", allStudents);
-          //console.log("ChosenAdmissionType:", chosenAdmissionType);
 
           const allStudentsGrades = allStudents.map((stu) =>
             stu.terms
@@ -880,10 +873,6 @@ export function Dashboard() {
               })
               .reverse()
           );
-          //console.log(
-          //"auxiliar: ",
-          //dataGroupedSpecialAdmissions?.groupedSpecialTypesAdmission
-          //);
           var filteredStudents;
           if (chosenAdmissionType === "OTROS INGRESOS ESPECIALES") {
             //hardcode
@@ -897,7 +886,6 @@ export function Dashboard() {
                   stu.start_year == toInteger(chosenCohort)
               )
               .map((stu) => {
-                //console.log("tipo de admision:", stu.admission.type_admission);
                 return {
                   id: stu.id,
                   curriculums: stu.curriculums,
@@ -906,14 +894,16 @@ export function Dashboard() {
                   programs: stu.programs,
                   admission: stu.admission,
                   terms: stu.terms.filter(
-                    (term) => term.year >= toInteger(chosenCohort)
+                    (term) =>
+                      term.year >= toInteger(chosenCohort) &&
+                      term.program_id === program
                   ),
                 };
               });
           } else {
             filteredStudents = studentListData.students_filter
               .filter((stu) =>
-                chosenAdmissionType?.length
+                chosenAdmissionType?.length /* when chosenAdmissionType="" means user want to see all types Admission */
                   ? stu.admission.type_admission === chosenAdmissionType &&
                     stu.curriculums.includes(chosenCurriculum) &&
                     stu.start_year == toInteger(chosenCohort)
@@ -921,7 +911,6 @@ export function Dashboard() {
                     stu.start_year == toInteger(chosenCohort)
               )
               .map((stu) => {
-                //console.log("tipo de admision:", stu.admission.type_admission);
                 return {
                   id: stu.id,
                   curriculums: stu.curriculums,
@@ -930,12 +919,13 @@ export function Dashboard() {
                   programs: stu.programs,
                   admission: stu.admission,
                   terms: stu.terms.filter(
-                    (term) => term.year >= toInteger(chosenCohort)
+                    (term) =>
+                      term.year >= toInteger(chosenCohort) &&
+                      term.program_id === program
                   ),
                 };
               });
           }
-
           const filteredStudentsGrades = filteredStudents.map((stu) =>
             stu.terms
               .map((semester) => {
