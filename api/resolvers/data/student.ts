@@ -35,7 +35,11 @@ import {
   StudentCourseListDataLoader,
   StudentCycleApprovedCourseDataLoader,
 } from "../../dataloaders/studentCycle";
-import { StudentProgramTable, UserProgramsTable } from "../../db/tables";
+import {
+  CourseGroupedStatsTable,
+  StudentProgramTable,
+  UserProgramsTable,
+} from "../../db/tables";
 import { Student } from "../../entities/data/student";
 import { anonService } from "../../services/anonymization";
 import { assertIsDefined } from "../../utils/assert";
@@ -390,8 +394,14 @@ export class StudentResolver {
   //hard-code , to do: refactoring
   @Query(() => String)
   async groupedSpecialTypesAdmission(): Promise<string | null> {
-    const notGroupedEspecialTypesAdmission =
-      process.env.NOT_GROUPED_SPECIAL_ADMISSIONS;
+    let notGroupedEspecialTypesAdmission: string = "";
+    const notGroupedEspecialTypesAdmissionQuery = await CourseGroupedStatsTable()
+      .distinct("type_admission")
+      .where("type_admission", "like", "%ESPECIAL%");
+    notGroupedEspecialTypesAdmissionQuery.map((aux) => {
+      notGroupedEspecialTypesAdmission =
+        notGroupedEspecialTypesAdmission + aux.type_admission;
+    });
     const TypeAdmissions = await StudentProgramTable()
       .distinct("type_admission")
       .where("type_admission", "like", "%ESPECIAL%");

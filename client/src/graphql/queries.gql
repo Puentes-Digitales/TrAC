@@ -298,6 +298,7 @@ query studentsFilterList($program_id: String!, $curriculum: String!) {
       term
       semestral_grade
       comments
+      program_id
     }
   }
 }

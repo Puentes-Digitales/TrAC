@@ -894,14 +894,16 @@ export function Dashboard() {
                   programs: stu.programs,
                   admission: stu.admission,
                   terms: stu.terms.filter(
-                    (term) => term.year >= toInteger(chosenCohort)
+                    (term) =>
+                      term.year >= toInteger(chosenCohort) &&
+                      term.program_id === program
                   ),
                 };
               });
           } else {
             filteredStudents = studentListData.students_filter
               .filter((stu) =>
-                chosenAdmissionType?.length
+                chosenAdmissionType?.length /* when chosenAdmissionType="" means user want to see all types Admission */
                   ? stu.admission.type_admission === chosenAdmissionType &&
                     stu.curriculums.includes(chosenCurriculum) &&
                     stu.start_year == toInteger(chosenCohort)
@@ -917,12 +919,13 @@ export function Dashboard() {
                   programs: stu.programs,
                   admission: stu.admission,
                   terms: stu.terms.filter(
-                    (term) => term.year >= toInteger(chosenCohort)
+                    (term) =>
+                      term.year >= toInteger(chosenCohort) &&
+                      term.program_id === program
                   ),
                 };
               });
           }
-
           const filteredStudentsGrades = filteredStudents.map((stu) =>
             stu.terms
               .map((semester) => {
@@ -1071,6 +1074,7 @@ export function Dashboard() {
                 dataStudentFilterList?.students_filter.length;
             }
           }
+
           GroupedPerformanceInfoComponent = (
             <GroupedComplementaryInfo
               total_students={

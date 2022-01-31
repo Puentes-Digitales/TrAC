@@ -447,6 +447,7 @@ type Term {
   cumulated_grade: Float!
   id: Int!
   program_grade: Float!
+  program_id: String!
   semestral_grade: Float!
   situation: String!
   student_id: String!

@@ -542,6 +542,7 @@ export type Term = {
   cumulated_grade: Scalars["Float"];
   id: Scalars["Int"];
   program_grade: Scalars["Float"];
+  program_id: Scalars["String"];
   semestral_grade: Scalars["Float"];
   situation: Scalars["String"];
   student_id: Scalars["String"];
@@ -1074,7 +1075,10 @@ export type StudentsFilterListQuery = {
       programs: Array<Pick<Program, "id" | "name">>;
       admission: Pick<Admission, "type_admission">;
       terms: Array<
-        Pick<Term, "year" | "term" | "semestral_grade" | "comments">
+        Pick<
+          Term,
+          "year" | "term" | "semestral_grade" | "comments" | "program_id"
+        >
       >;
     }
   >;
@@ -3048,6 +3052,7 @@ export const StudentsFilterListDocument = gql`
         term
         semestral_grade
         comments
+        program_id
       }
     }
   }
