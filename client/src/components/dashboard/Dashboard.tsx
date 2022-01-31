@@ -151,6 +151,7 @@ export function Dashboard() {
     variables: {
       program_id: program || "",
       curriculum: chosenCurriculum || "",
+      grouped: grouped,
     },
     skip: !program,
   });

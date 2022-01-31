@@ -280,8 +280,16 @@ query studentsList($program_id: String!) {
   }
 }
 
-query studentsFilterList($program_id: String!, $curriculum: String!) {
-  students_filter(program_id: $program_id, curriculum: $curriculum) {
+query studentsFilterList(
+  $program_id: String!
+  $curriculum: String!
+  $grouped: Boolean!
+) {
+  students_filter(
+    program_id: $program_id
+    curriculum: $curriculum
+    grouped: $grouped
+  ) {
     id
     programs {
       id
