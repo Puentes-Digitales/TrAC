@@ -1,6 +1,7 @@
 import React, { FC, memo, useEffect, useState } from "react";
 import { saveAs } from "file-saver";
 import { Packer } from "docx";
+
 import {
   DocumentCreator,
   DocumentCreatorAgrouped,
@@ -81,6 +82,8 @@ export const DownloadWord: FC<{
               id: baseConfig.GRAPHIC_ADVANCE,
               value,
               text: baseConfig.DOWNLOAD_WORD_STUDENT_TREND_TEXT,
+              height: input?.clientHeight,
+              width: input.clientWidth,
             });
           } else if (id === "course_plan") {
             const value = await domtoimage.toPng(input);
@@ -90,6 +93,8 @@ export const DownloadWord: FC<{
               id: baseConfig.COURSE_PLAN,
               value,
               text: baseConfig.DOWNLOAD_WORD_STUDENT_PLAN_TEXT,
+              height: input?.clientHeight,
+              width: input.clientWidth,
             });
           } else if (id == "student_progress") {
             const value = await domtoimage.toPng(input);
@@ -97,14 +102,17 @@ export const DownloadWord: FC<{
               id: baseConfig.STUDENT_PROGRESS,
               value,
               text: baseConfig.DOWNLOAD_WORD_STUDENT_PROGRESS_TEXT,
+              height: input?.clientHeight,
+              width: input.clientWidth,
             });
           } else {
-            console.log("id,", id);
             const value = await domtoimage.toPng(input);
             lista.push({
               id: baseConfig.COMPLEMENTARY_INFORMATION,
               value,
               text: baseConfig.DOWNLOAD_WORD_STUDENT_COMPLEMENTARY_INFO_TEXT,
+              height: input?.clientHeight,
+              width: input.clientWidth,
             });
           }
         }

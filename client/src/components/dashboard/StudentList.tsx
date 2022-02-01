@@ -164,15 +164,15 @@ export const StudentList: FC<{
     "course_risk_selected",
     false
   );
-
   const studentListData = useMemo(() => {
     switch (riskType) {
       case RISK_ALL:
         return (
           dataStudentList?.students.map(
-            ({ id, start_year, progress, dropout }) => {
+            ({ id, start_year, progress, dropout, name }) => {
               return {
                 student_id: id,
+                student_rut: name,
                 dropout_probability: dropout?.prob_dropout ?? -1,
                 progress: progress * 100,
                 start_year,
@@ -188,9 +188,12 @@ export const StudentList: FC<{
       case RISK_STUDENT_PENDING_OF_GRADUATION:
         return (
           studentPendingOfGraduation?.riskNotification.map(
-            ({ student_id, cohort, risk_type }) => {
+            ({ student_id, cohort, risk_type, details }) => {
+              let cDetails = details ? JSON.parse(details) : {};
+              let rut: string = details.length > 0 ? cDetails.rut : ""; //warnning with risk data
               return {
                 student_id: student_id,
+                student_rut: rut,
                 dropout_probability: -1,
                 progress: -1,
                 start_year: parseInt(cohort),
@@ -206,9 +209,12 @@ export const StudentList: FC<{
       case RISK_LOW_PROGRESSING_RATE:
         return (
           lowProgressingRate?.riskNotification.map(
-            ({ student_id, cohort, risk_type }) => {
+            ({ student_id, cohort, risk_type, details }) => {
+              let cDetails = details ? JSON.parse(details) : {};
+              let rut: string = details.length > 0 ? cDetails.rut : ""; //warnning with risk data
               return {
                 student_id: student_id,
+                student_rut: rut,
                 dropout_probability: -1,
                 progress: -1,
                 start_year: parseInt(cohort),
@@ -225,9 +231,14 @@ export const StudentList: FC<{
       case RISK_THIRD_ATTEMPT:
         return (
           thirdAttempt?.riskNotification.map(
-            ({ student_id, course_id, cohort, risk_type }) => {
+            ({ student_id, course_id, cohort, risk_type, details }) => {
+              let auxArray = "[ " + details + " ]";
+              let parseDetails = JSON.parse(auxArray);
+              let details2 = parseDetails[0] || "";
+              let rut: string = details2.rut ? details2.rut : ""; // big Warning details: comment this 4 linmnes and put "" in student_rut
               return {
                 student_id: student_id,
+                student_rut: rut,
                 dropout_probability: -1,
                 progress: -1,
                 start_year: parseInt(cohort),
@@ -245,12 +256,13 @@ export const StudentList: FC<{
         return (
           lowPassingRateCourses?.riskNotification.map(
             ({ course_id, cohort, risk_type, details }) => {
-              let cDetails = JSON.parse(details);
-              let yearTerm = cDetails.semester;
-              let year = yearTerm.substring(0, 4);
-              let term = yearTerm.substring(4, 5);
+              let cDetails = details ? JSON.parse(details) : {};
+              let yearTerm = cDetails?.semester ? cDetails.semester : "";
+              let year = yearTerm.length ? yearTerm.substring(0, 4) : "";
+              let term = yearTerm.length ? yearTerm.substring(4, 5) : "";
               return {
-                student_id: cDetails.failing_rate,
+                student_id: "-1",
+                student_rut: "",
                 dropout_probability: -1,
                 progress: -1,
                 start_year: parseInt(cohort),
@@ -267,12 +279,13 @@ export const StudentList: FC<{
         return (
           highDropRate?.riskNotification.map(
             ({ course_id, cohort, risk_type, details }) => {
-              let cDetails = JSON.parse(details);
-              let yearTerm = cDetails.semester;
-              let year = yearTerm.substring(0, 4);
-              let term = yearTerm.substring(4, 5);
+              let cDetails = details ? JSON.parse(details) : {};
+              let yearTerm = cDetails?.semester ? cDetails.semester : "";
+              let year = yearTerm.length ? yearTerm.substring(0, 4) : "";
+              let term = yearTerm.length ? yearTerm.substring(4, 5) : "";
               return {
-                student_id: cDetails.droping_rate,
+                student_id: "-1",
+                student_rut: "",
                 dropout_probability: -1,
                 progress: -1,
                 start_year: parseInt(cohort),
@@ -430,14 +443,18 @@ export const StudentList: FC<{
           <Divider hidden />
           <Tab
             activeIndex={indexTab}
-            menu={{ inverted: false, attached: false, tabular: false }}
+            menu={{ inverted: false, attached: true, tabular: false }}
             panes={panes}
             onTabChange={(e, data) => {
               let auxIndx = data?.activeIndex ?? 0;
               let auxIndx2 = parseInt("" + auxIndx);
-              setIndexTab(auxIndx2);
-              setCourseRisk(!courseRisk);
-              //e.currentTarget.setAttribute("class", "active item");
+              if (auxIndx2) {
+                setCourseRisk(false);
+                setIndexTab(auxIndx2);
+              } else {
+                setCourseRisk(true);
+                setIndexTab(auxIndx2);
+              }
             }}
           />
         </div>
@@ -668,6 +685,7 @@ export const StudentList: FC<{
                     (
                       {
                         student_id,
+                        student_rut,
                         dropout_probability,
                         start_year,
                         progress,
@@ -712,7 +730,9 @@ export const StudentList: FC<{
                                   textAlign="center"
                                 >
                                   <Text>
-                                    {truncate(student_id, { length: 35 })}
+                                    {truncate(student_rut || student_id, {
+                                      length: 35,
+                                    })}
                                   </Text>
                                 </Tooltip>
                               </Table.Cell>

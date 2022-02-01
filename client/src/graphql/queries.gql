@@ -252,6 +252,10 @@ query myPrograms {
   }
 }
 
+query groupedSpecialTypesAdmission {
+  groupedSpecialTypesAdmission
+}
+
 mutation track($data: String!, $datetime_client: DateTime!) {
   track(data: $data, datetime_client: $datetime_client)
 }
@@ -263,6 +267,7 @@ query config {
 query studentsList($program_id: String!) {
   students(program_id: $program_id) {
     id
+    name
     progress
     start_year
     dropout {
@@ -275,8 +280,16 @@ query studentsList($program_id: String!) {
   }
 }
 
-query studentsFilterList($program_id: String!, $curriculum: String!) {
-  students_filter(program_id: $program_id, curriculum: $curriculum) {
+query studentsFilterList(
+  $program_id: String!
+  $curriculum: String!
+  $grouped: Boolean!
+) {
+  students_filter(
+    program_id: $program_id
+    curriculum: $curriculum
+    grouped: $grouped
+  ) {
     id
     programs {
       id
@@ -293,6 +306,7 @@ query studentsFilterList($program_id: String!, $curriculum: String!) {
       term
       semestral_grade
       comments
+      program_id
     }
   }
 }

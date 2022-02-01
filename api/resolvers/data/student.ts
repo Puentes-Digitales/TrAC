@@ -28,13 +28,18 @@ import {
   StudentListFilterDataLoader,
   StudentTermsDataLoader,
   StudentViaProgramsDataLoader,
+  StudentViaProgramsDataLoader2,
 } from "../../dataloaders/student";
 import {
   StudentListCyclesDataLoader,
   StudentCourseListDataLoader,
   StudentCycleApprovedCourseDataLoader,
 } from "../../dataloaders/studentCycle";
-import { StudentProgramTable, UserProgramsTable } from "../../db/tables";
+import {
+  CourseGroupedStatsTable,
+  StudentProgramTable,
+  UserProgramsTable,
+} from "../../db/tables";
 import { Student } from "../../entities/data/student";
 import { anonService } from "../../services/anonymization";
 import { assertIsDefined } from "../../utils/assert";
@@ -111,7 +116,10 @@ export class StudentResolver {
 
       assertIsDefined(IsAuthorized, STUDENT_NOT_FOUND);
 
-      const studentData = await StudentViaProgramsDataLoader.load(student_id);
+      const studentData = await StudentViaProgramsDataLoader2.load({
+        student_id: student_id,
+        program_id: program_id,
+      });
 
       assertIsDefined(studentData, STUDENT_NOT_FOUND);
 
@@ -151,8 +159,42 @@ export class StudentResolver {
     const filteredStudentList = studentList.filter(({ last_term }) => {
       return (last_term / 10 || 0) >= sinceNYear;
     });
+    //console.log(filteredStudentList);
 
-    return filteredStudentList;
+    var anonID = filteredStudentList?.map((student) => student.id);
+    var objAnonID = { Listado: anonID };
+    var stObjAnonID = JSON.stringify(objAnonID);
+    console.log("stObjAnonID", stObjAnonID);
+    var listRut = await anonService.getInfoSessionIdResult(stObjAnonID);
+    console.log("listRurAsString", listRut);
+    console.log("Arriba como string, a continuacion listRut as object");
+    console.log(listRut);
+
+    if (listRut === stObjAnonID) {
+      return filteredStudentList;
+    } else {
+      /*  //mock way
+      var mock = [{ Orden: 0, Rut: "19223242-4",},{ Orden: 1,Rut: "19994523-0",},{Orden: 2,Rut: "16492338-8",},{Orden: 3,Rut: "21234543-8",}];
+      filteredStudentList.forEach(function (std, index) {
+        std.name = mock[index % 4]?.Rut || "";
+      });
+      */
+      let strListRut = JSON.stringify(listRut);
+      console.log("strListRut", strListRut);
+      let desListRut = JSON.parse(strListRut); //warning if is undefiend
+      console.log("desListRut", desListRut);
+
+      filteredStudentList.forEach(function (std, index) {
+        //toDo change name to rut
+        console.log("std", std);
+        console.log("index", index);
+
+        std.name = desListRut[index].Rut;
+        console.log("std.name", std.name);
+      });
+      console.log("filteredStudentList", filteredStudentList);
+      return filteredStudentList;
+    }
   }
 
   @FieldResolver()
@@ -291,7 +333,10 @@ export class StudentResolver {
     });
 
     const list_cycle = total_cycles.map((d) => d.course_cat);
-    const studentData = await StudentViaProgramsDataLoader.load(id);
+    const studentData = await StudentViaProgramsDataLoader2.load({
+      student_id: id,
+      program_id: program,
+    });
 
     let mentionStudent: string = studentData?.mention ?? "";
     const dataCycleStudent = [];
@@ -324,7 +369,8 @@ export class StudentResolver {
   async students_filter(
     @Ctx() { user }: IContext,
     @Arg("program_id") program_id: string,
-    @Arg("curriculum") curriculum: string
+    @Arg("curriculum") curriculum: string,
+    @Arg("grouped") grouped: boolean
   ): Promise<PartialStudent[]> {
     assertIsDefined(user, `Error on authorization context`);
 
@@ -341,8 +387,32 @@ export class StudentResolver {
     const studentList = await StudentListFilterDataLoader.load({
       program_id: program_id,
       curriculum: curriculum,
+      grouped: grouped,
     });
 
     return studentList;
+  }
+
+  //hard-code , to do: refactoring
+  @Query(() => String)
+  async groupedSpecialTypesAdmission(): Promise<string | null> {
+    let notGroupedEspecialTypesAdmission: string = "";
+    const notGroupedEspecialTypesAdmissionQuery = await CourseGroupedStatsTable()
+      .distinct("type_admission")
+      .where("type_admission", "like", "%ESPECIAL%");
+    notGroupedEspecialTypesAdmissionQuery.map((aux) => {
+      notGroupedEspecialTypesAdmission =
+        notGroupedEspecialTypesAdmission + aux.type_admission;
+    });
+    const TypeAdmissions = await StudentProgramTable()
+      .distinct("type_admission")
+      .where("type_admission", "like", "%ESPECIAL%");
+    var gropuedEspecialAdmissions: string = "";
+    for (const { type_admission } of TypeAdmissions) {
+      if (!notGroupedEspecialTypesAdmission?.includes(type_admission)) {
+        gropuedEspecialAdmissions = gropuedEspecialAdmissions + type_admission;
+      }
+    }
+    return gropuedEspecialAdmissions;
   }
 }

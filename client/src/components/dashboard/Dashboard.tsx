@@ -51,6 +51,7 @@ import {
   useSearchProgramMutation,
   useSearchStudentMutation,
   useStudentsFilterListQuery,
+  useGroupedSpecialTypesAdmissionQuery,
 } from "../../graphql";
 import { useUser } from "../../utils/useUser";
 import { ToggleDarkMode } from "../DarkMode";
@@ -86,6 +87,10 @@ export function Dashboard() {
   const [mockData, setMockData] = useState<
     typeof import("../../../constants/mockData")
   >();
+  var nStudentsComplementaryInfo:
+    | number
+    | null
+    | undefined; /*this value match # students from complementary info with semesterTaken components*/
 
   useEffect(() => {
     if (mock && !mockData) {
@@ -146,9 +151,14 @@ export function Dashboard() {
     variables: {
       program_id: program || "",
       curriculum: chosenCurriculum || "",
+      grouped: grouped,
     },
     skip: !program,
   });
+
+  const {
+    data: dataGroupedSpecialAdmissions,
+  } = useGroupedSpecialTypesAdmissionQuery();
 
   useUpdateEffect(() => {
     if (IS_NOT_TEST && user?.admin) {
@@ -839,36 +849,6 @@ export function Dashboard() {
             />
           );
         }
-        if (
-          (filteredEmpleabilityData[0] || filteredComplementaryData[0]) &&
-          user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO
-        ) {
-          GroupedPerformanceInfoComponent = (
-            <GroupedComplementaryInfo
-              total_students={filteredComplementaryData[0]?.total_students}
-              university_degree_rate={
-                filteredComplementaryData[0]?.university_degree_rate
-              }
-              average_time_university_degree={
-                filteredComplementaryData[0]?.average_time_university_degree
-              }
-              timely_university_degree_rate={
-                filteredComplementaryData[0]?.timely_university_degree_rate
-              }
-              retention_rate={filteredComplementaryData[0]?.retention_rate}
-              empleability_rate={filteredEmpleabilityData[0]?.employed_rate}
-              average_time_finding_job={
-                filteredEmpleabilityData[0]?.average_time_job_finding
-              }
-              empleability_rate_educational_system={
-                filteredEmpleabilityData[0]?.employed_rate_educational_system
-              }
-              inactive_time_rate={
-                filteredComplementaryData[0]?.inactive_time_rate
-              }
-            />
-          );
-        }
 
         if (chosenCurriculum && chosenCohort && studentListData) {
           const allStudents = studentListData.students_filter
@@ -886,34 +866,67 @@ export function Dashboard() {
                 ),
               };
             });
+
           const allStudentsGrades = allStudents.map((stu) =>
             stu.terms
               .map((semester) => {
-                if (semester.year >= toInteger(chosenCohort))
-                  return semester.semestral_grade;
+                return semester.semestral_grade;
               })
               .reverse()
           );
-
-          const filteredStudents = studentListData.students_filter
-            .filter(
-              (stu) =>
-                stu.curriculums.includes(chosenCurriculum) &&
-                stu.start_year == toInteger(chosenCohort)
-            )
-            .map((stu) => {
-              return {
-                id: stu.id,
-                curriculums: stu.curriculums,
-                start_year: stu.start_year,
-                mention: stu.mention,
-                programs: stu.programs,
-                admission: stu.admission,
-                terms: stu.terms.filter(
-                  (term) => term.year >= toInteger(chosenCohort)
-                ),
-              };
-            });
+          var filteredStudents;
+          if (chosenAdmissionType === "OTROS INGRESOS ESPECIALES") {
+            //Hard-Code - To do refactoring
+            filteredStudents = studentListData.students_filter
+              .filter(
+                (stu) =>
+                  dataGroupedSpecialAdmissions?.groupedSpecialTypesAdmission.includes(
+                    stu.admission.type_admission
+                  ) &&
+                  stu.curriculums.includes(chosenCurriculum) &&
+                  stu.start_year == toInteger(chosenCohort)
+              )
+              .map((stu) => {
+                return {
+                  id: stu.id,
+                  curriculums: stu.curriculums,
+                  start_year: stu.start_year,
+                  mention: stu.mention,
+                  programs: stu.programs,
+                  admission: stu.admission,
+                  terms: stu.terms.filter(
+                    (term) =>
+                      term.year >= toInteger(chosenCohort) &&
+                      term.program_id === program
+                  ),
+                };
+              });
+          } else {
+            filteredStudents = studentListData.students_filter
+              .filter((stu) =>
+                chosenAdmissionType?.length /* when chosenAdmissionType="" means user want to see all types Admission */
+                  ? stu.admission.type_admission === chosenAdmissionType &&
+                    stu.curriculums.includes(chosenCurriculum) &&
+                    stu.start_year == toInteger(chosenCohort)
+                  : stu.curriculums.includes(chosenCurriculum) &&
+                    stu.start_year == toInteger(chosenCohort)
+              )
+              .map((stu) => {
+                return {
+                  id: stu.id,
+                  curriculums: stu.curriculums,
+                  start_year: stu.start_year,
+                  mention: stu.mention,
+                  programs: stu.programs,
+                  admission: stu.admission,
+                  terms: stu.terms.filter(
+                    (term) =>
+                      term.year >= toInteger(chosenCohort) &&
+                      term.program_id === program
+                  ),
+                };
+              });
+          }
           const filteredStudentsGrades = filteredStudents.map((stu) =>
             stu.terms
               .map((semester) => {
@@ -968,6 +981,13 @@ export function Dashboard() {
             n_students_per_semester.push(
               arr.filter((ele: number) => ele).length
             );
+            if (
+              n_students_per_semester.length === 1 &&
+              n_students_per_semester[0] === 0
+            ) {
+              n_students_per_semester[0] = filteredGrades[0].length;
+            }
+            nStudentsComplementaryInfo = n_students_per_semester[0];
             return (
               arr.reduce((a: number, b: number) => {
                 if (a && b) return a + b;
@@ -984,10 +1004,20 @@ export function Dashboard() {
           const takenTerms = studentTerms?.map((i) => {
             return { year: i.year, term: i.term };
           });
-
+          var cohortLen = filteredAvgGrades.length;
+          var isZero = true;
+          let i = 1;
+          while (isZero) {
+            if (filteredAvgGrades[filteredAvgGrades.length - i] === 0) {
+              cohortLen = cohortLen - 1;
+            } else {
+              isZero = false;
+            }
+            i++;
+          }
           TimeLineComponent = (
             <GroupedTimeLine
-              programGrades={avgGrades}
+              programGrades={avgGrades.slice(0, cohortLen)}
               filteredGrades={filteredAvgGrades}
               takenSemesters={takenTerms?.slice().reverse() ?? []}
             />
@@ -1014,6 +1044,67 @@ export function Dashboard() {
                 </Flex>
               ))
             : (TakenSemestersComponent = null);
+        }
+
+        if (
+          (filteredEmpleabilityData[0] || filteredComplementaryData[0]) &&
+          user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO
+        ) {
+          if (!chosenCohort?.length) {
+            if (chosenCurriculum?.length) {
+              if (chosenAdmissionType?.length) {
+                if (chosenAdmissionType === "Otro Ingresos especiales") {
+                  nStudentsComplementaryInfo = studentListData?.students_filter.filter(
+                    (stu) =>
+                      dataGroupedSpecialAdmissions?.groupedSpecialTypesAdmission.includes(
+                        stu.admission.type_admission
+                      )
+                  ).length;
+                } else {
+                  nStudentsComplementaryInfo = studentListData?.students_filter.filter(
+                    (stu) =>
+                      stu.admission.type_admission === chosenAdmissionType
+                  ).length;
+                }
+              } else {
+                nStudentsComplementaryInfo =
+                  dataStudentFilterList?.students_filter.length;
+              }
+            } else {
+              nStudentsComplementaryInfo =
+                dataStudentFilterList?.students_filter.length;
+            }
+          }
+
+          GroupedPerformanceInfoComponent = (
+            <GroupedComplementaryInfo
+              total_students={
+                nStudentsComplementaryInfo
+                  ? nStudentsComplementaryInfo
+                  : filteredComplementaryData[0]?.total_students
+              }
+              university_degree_rate={
+                filteredComplementaryData[0]?.university_degree_rate
+              }
+              average_time_university_degree={
+                filteredComplementaryData[0]?.average_time_university_degree
+              }
+              timely_university_degree_rate={
+                filteredComplementaryData[0]?.timely_university_degree_rate
+              }
+              retention_rate={filteredComplementaryData[0]?.retention_rate}
+              empleability_rate={filteredEmpleabilityData[0]?.employed_rate}
+              average_time_finding_job={
+                filteredEmpleabilityData[0]?.average_time_job_finding
+              }
+              empleability_rate_educational_system={
+                filteredEmpleabilityData[0]?.employed_rate_educational_system
+              }
+              inactive_time_rate={
+                filteredComplementaryData[0]?.inactive_time_rate
+              }
+            />
+          );
         }
       }
     }
@@ -1104,7 +1195,6 @@ export function Dashboard() {
     chosenCohort,
     user,
   ]);
-
   const searchError = useMemo(() => {
     return uniq(
       [

@@ -90,6 +90,7 @@ export type IImagesID = {
   id: string;
   value: string;
   text: string;
+  height: number;
+  width: number;
 };
-
 export * from "./utils";
