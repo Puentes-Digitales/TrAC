@@ -1,7 +1,7 @@
 export const baseConfig = {
   GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE:
     "Tiempo promedio inactivo:",
-  GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE_TOOLTIP: "IA 8",
+
   NO_INFORMATION: "Sin información",
   EMPLOYED_TRUE: "Empleado",
   EMPLOYED_FALSE: "Cesante",
@@ -23,12 +23,14 @@ export const baseConfig = {
   GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE_TOOLTIP: "IA3",
   GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE_TOOLTIP:
     "IA4",
-  GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE_TOOLTIP: "IA8",
+
   GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_TOOLTIP: "IA5",
   GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_AVERAGE_TIME_FINDING_JOB_TOOLTIP:
     "IA6",
   GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM_TOOLTIP:
     "IA7",
+  GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE_TOOLTIP: "IA 8",
+  GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE_TOOLTIP: "IA9",
 
   ACTIVE_EXTERNAL_EVALUATION_BOX_COLOR: "#718096",
   INACTIVE_EXTERNAL_EVALUATION_BOX_COLOR: "#F8690C",
@@ -73,11 +75,13 @@ export const baseConfig = {
   COMPLEMENTARY_INFORMATION_EMPLOYED_INFORMATION: "Datos de empleabilidad",
   COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM: "Sistema educacional:",
   COMPLEMENTARY_INFORMATION: "Información Complementaria",
+
   GROUPED_COMPLEMENTARY_INFORMATION: "Información Complementaria Agrupada",
   COMPLEMENTARY_INFORMATION_EMPLOYED: "Estado ocupacional:",
   COMPLEMENTARY_INFORMATION_MONTHS_TEXT: "meses",
   COMPLEMENTARY_INFORMATION_SEMESTER_TEXT: "semestres",
   COMPLEMENTARY_INFORMATION_TYPE_ADMISSION: "Tipo de ingreso: ",
+
   GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS: "Cantidad de estudiantes:",
   GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE:
     "Tasa de titulación:",
@@ -91,6 +95,7 @@ export const baseConfig = {
     "Tiempo promedio en encontrar empleo:",
   GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM:
     "Tasa de ocupación en sistema educativo:",
+
   GROUPED_OFF: "No agrupado ",
   GROUPED_ON: "Agrupado ",
   GROUPED_REPORT_INFORMATION: "Informe Información Agrupada",
@@ -110,7 +115,30 @@ export const baseConfig = {
   DOWNLOAD_WORD_STUDENT_TREND_TEXT:
     "El siguiente gráfico muestra la tendencia en el avance del estudiante. En color azul se aprecia su Promedio Semestral Ponderado, mientras que en color morado se señala su Promedio General Acumulado. Finalmente, en tono gris se encuentra el Promedio General Acumulado de la carrera.",
   DOWNLOAD_WORD_STUDENT_PLAN_TEXT:
-    "La siguiente imagen corresponde a la malla curricular del plan de estudios que cursa el estudiante. En color verde se aprecian las asignaturas aprobadas, en rojo las reprobadas, en blanco las anuladas, en gris las asignaturas sin cursar y en azul las inscritas.",
+    "La siguiente imagen corresponde a la malla curricular. La siguiente imagen muestra indicadores correspondientes a los y las estudiantes de la carrera de acuerdo a los parámetros seleccionados en cuanto a Plan de estudios, Tipo de Admisión (PSU-Ingreso PACE – Ingreso Especial) y Cohorte de ingreso.",
+
+  DOWNLOAD_WORD_GROUPED_COMPLEMENTARY_INFO_TEXT:
+    "La siguiente imagen muestra indicadores correspondientes a los y las estudiantes de la carrera de acuerdo a los parámetros seleccionados en cuanto a Plan de estudios, Tipo de Admisión (PSU-Ingreso PACE – Ingreso Especial) y Cohorte de ingreso. ",
+  DOWNLOAD_WORD_GROUPED_COMPLEMENTARY_INFO_SECOND_TEXT:
+    "En el caso particular de su búsqueda, los indicadores son los siguientes:",
+  DOWNLOAD_WORD_GROUPED_TREND_TEXT:
+    "El siguiente gráfico evidencia en un tono morado el Promedio General Acumulado de la cohorte filtrada, la cual se visualiza de manera comparativa con el Promedio General Acumulado del Plan curricular seleccionado, el cual se encuentra en tono gris. ",
+  DOWNLOAD_WORD_GROUPED_TREND_SECOND_TEXT:
+    "El valor numérico señalado en la parte superior de cada 1er y 2do semestre corresponde a la cantidad de estudiantes que inscribieron alguna asignatura en el semestre especificado y permite analizar la deserción estudiantil en el tiempo.",
+  DOWNLOAD_WORD_GROUPED_PLAN_TEXT:
+    "La siguiente imagen corresponde a la malla curricular del plan de estudios seleccionado",
+  DOWNLOAD_WORD_GROUPED_PLAN_SECOND_TEXT:
+    "En el caso particular de su búsqueda el progreso en la malla curricular es el siguiente:",
+  DOWNLOAD_WORD_GROUPED_PLAN_TEXT_01:
+    "En un tono morado más oscuro se encuentran las asignaturas en las que un 75% o más de los estudiantes han aprobado el curso.",
+  DOWNLOAD_WORD_GROUPED_PLAN_TEXT_02:
+    "En un tono morado un poco más claro, se aprecian aquellas asignaturas en las que el 74% a 50% de los estudiantes ha aprobado.",
+  DOWNLOAD_WORD_GROUPED_PLAN_TEXT_03:
+    "En un tono aún más claro representa a las asignaturas donde han aprobado entre un 49% y 25% de los estudiantes.",
+  DOWNLOAD_WORD_GROUPED_PLAN_TEXT_04:
+    "El tono de morado más claro de todos indica que la asignatura ha sido aprobada por menos del 25% de los estudiantes (pero al menos uno) han aprobado.",
+  DOWNLOAD_WORD_GROUPED_PLAN_TEXT_05:
+    "Finalmente, en color blanco están aquellas asignaturas en que ningún estudiante ha aprobado la asignatura.",
   GROPUED_COURSE_BOX_COLORS: [
     {
       val: 0,

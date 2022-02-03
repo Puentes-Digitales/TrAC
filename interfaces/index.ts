@@ -93,4 +93,18 @@ export type IImagesID = {
   height: number;
   width: number;
 };
+export type IGroupedImagesID = {
+  id: string;
+  value: string;
+  text: string;
+  secondtext: string;
+  texts: string[];
+  height: number;
+  width: number;
+};
+
+export type IGroupedVariable = {
+  id: string;
+  value?: string;
+};
 export * from "./utils";

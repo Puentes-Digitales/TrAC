@@ -481,6 +481,7 @@ export const SearchBar: FC<{
             </Stack>
             <Box width={150} ml={2}>
               <Select
+                id="chosenCurriculumComponent"
                 options={
                   searchResult?.curriculums
                     .sort()
@@ -528,6 +529,7 @@ export const SearchBar: FC<{
                 css={{ color: "black" }}
               />
               <Select
+                id="chosenAdmissionTypeComponent"
                 options={
                   searchResult?.admission_types
                     .sort()
@@ -574,6 +576,7 @@ export const SearchBar: FC<{
                 css={{ color: "black" }}
               />
               <Select
+                id="chosenCohortComponent"
                 options={
                   searchResult?.cohorts
                     .sort()
