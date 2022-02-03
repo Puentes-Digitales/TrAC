@@ -1,6 +1,7 @@
-import React, { FC, memo, useEffect, useState } from "react";
+import React, { FC, memo, useEffect, useState, useContext } from "react";
 import { saveAs } from "file-saver";
 import { Packer } from "docx";
+import { ConfigContext } from "../../context/Config";
 
 import {
   DocumentCreator,
@@ -22,6 +23,11 @@ import JSZip from "jszip";
 export const DownloadWord: FC<{
   student_id?: string | null;
 }> = memo(({ student_id }) => {
+  const config = useContext(ConfigContext);
+  console.log(
+    "CONFIG DOWNLOAD: ",
+    config.DOWNLOAD_WORD_GROUPED_PLAN_SECOND_TEXT
+  );
   const [show, setShow] = useState(false);
   const groupedActive = useGroupedActive();
   const { colorMode } = useColorMode();
@@ -49,101 +55,76 @@ export const DownloadWord: FC<{
 
   const groupedIndicators = [
     {
-      id: baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS,
-      value:
-        baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS_TOOLTIP,
+      id: config.GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS,
+      value: config.GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS_TOOLTIP,
     },
     {
-      id: baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE,
+      id: config.GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE,
       value:
-        baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE_TOOLTIP,
-    },
-    {
-      id:
-        baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE,
-      value:
-        baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE_TOOLTIP,
+        config.GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE_TOOLTIP,
     },
     {
       id:
-        baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE,
+        config.GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE,
       value:
-        baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE_TOOLTIP,
-    },
-    {
-      id: baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE,
-      value:
-        baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE_TOOLTIP,
-    },
-    {
-      id: baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE,
-      value:
-        baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_TOOLTIP,
+        config.GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE_TOOLTIP,
     },
     {
       id:
-        baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_AVERAGE_TIME_FINDING_JOB,
+        config.GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE,
       value:
-        baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_AVERAGE_TIME_FINDING_JOB_TOOLTIP,
+        config.GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE_TOOLTIP,
+    },
+    {
+      id: config.GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE,
+      value: config.GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE_TOOLTIP,
+    },
+    {
+      id: config.GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE,
+      value: config.GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_TOOLTIP,
     },
     {
       id:
-        baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM,
+        config.GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_AVERAGE_TIME_FINDING_JOB,
       value:
-        baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM_TOOLTIP,
+        config.GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_AVERAGE_TIME_FINDING_JOB_TOOLTIP,
     },
     {
-      id: baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE,
+      id:
+        config.GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM,
       value:
-        baseConfig.GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE_TOOLTIP,
+        config.GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM_TOOLTIP,
+    },
+    {
+      id: config.GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE,
+      value:
+        config.GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE_TOOLTIP,
     },
   ];
 
   const courseColorsDefinition = [
     {
       id: "#54278f",
-      value: baseConfig.DOWNLOAD_WORD_GROUPED_PLAN_TEXT_01,
+      value: config.DOWNLOAD_WORD_GROUPED_PLAN_TEXT_01,
     },
     {
       id: "#756bb1",
-      value: baseConfig.DOWNLOAD_WORD_GROUPED_PLAN_TEXT_02,
+      value: config.DOWNLOAD_WORD_GROUPED_PLAN_TEXT_02,
     },
     {
       id: "#9e9ac8",
-      value: baseConfig.DOWNLOAD_WORD_GROUPED_PLAN_TEXT_03,
+      value: config.DOWNLOAD_WORD_GROUPED_PLAN_TEXT_03,
     },
     {
       id: "#cbc9e2",
-      value: baseConfig.DOWNLOAD_WORD_GROUPED_PLAN_TEXT_04,
+      value: config.DOWNLOAD_WORD_GROUPED_PLAN_TEXT_04,
     },
     {
       id: "#f2f0f7",
-      value: baseConfig.DOWNLOAD_WORD_GROUPED_PLAN_TEXT_05,
+      value: config.DOWNLOAD_WORD_GROUPED_PLAN_TEXT_05,
     },
   ];
-  /*
-  let color;
-  let max_courses;
-  let course;
-  const max_semesters =
-    document.getElementById("course_plan")?.childNodes.length || 0;
-  for (var i = 0; i < max_semesters; i++) {
-    max_courses =
-      document.getElementById("course_plan")?.childNodes[i]?.childNodes
-        .length || 0;
-    for (var j = 0; j < max_courses; j++) {
-      let element = document.getElementById("course_plan")?.childNodes[i]
-        ?.childNodes[j]?.lastChild;
-      if (element) {
-        color = window
-          .getComputedStyle(element, null)
-          .getPropertyValue("background-color");
-        course = document.getElementById("course_plan")?.childNodes[i]
-          ?.childNodes[j]?.textContent;
-        console.log("COLOR : ", color, "TEXTO: ", course);
-      }
-    }
-  }*/
+
   var zip = new JSZip();
   let lista: IImagesID[] = [];
   let groupedList: IGroupedImagesID[] = [];
@@ -244,11 +225,11 @@ export const DownloadWord: FC<{
             groupedList.push({
               id: baseConfig.GRAPHIC_ADVANCE,
               value,
-              text: baseConfig.DOWNLOAD_WORD_GROUPED_TREND_TEXT,
+              text: config.DOWNLOAD_WORD_GROUPED_TREND_TEXT,
               texts: [],
               height: input?.clientHeight,
               width: input.clientWidth,
-              secondtext: baseConfig.DOWNLOAD_WORD_GROUPED_TREND_SECOND_TEXT,
+              secondtext: config.DOWNLOAD_WORD_GROUPED_TREND_SECOND_TEXT,
             });
           } else if (id === "course_plan") {
             const value = await domtoimage.toPng(input);
@@ -262,10 +243,10 @@ export const DownloadWord: FC<{
               id: baseConfig.COURSE_PLAN,
               value,
               texts: colorsDefinition,
-              text: baseConfig.DOWNLOAD_WORD_GROUPED_PLAN_TEXT,
+              text: config.DOWNLOAD_WORD_GROUPED_PLAN_TEXT,
               height: input?.clientHeight,
               width: input.clientWidth,
-              secondtext: baseConfig.DOWNLOAD_WORD_GROUPED_PLAN_SECOND_TEXT,
+              secondtext: config.DOWNLOAD_WORD_GROUPED_PLAN_SECOND_TEXT,
             });
           } else {
             const indicators: string[] = [];
@@ -278,11 +259,11 @@ export const DownloadWord: FC<{
               id: baseConfig.COMPLEMENTARY_INFORMATION,
               value,
               texts: indicators,
-              text: baseConfig.DOWNLOAD_WORD_GROUPED_COMPLEMENTARY_INFO_TEXT,
+              text: config.DOWNLOAD_WORD_GROUPED_COMPLEMENTARY_INFO_TEXT,
               height: input?.clientHeight,
               width: input.clientWidth,
               secondtext:
-                baseConfig.DOWNLOAD_WORD_GROUPED_COMPLEMENTARY_INFO_SECOND_TEXT,
+                config.DOWNLOAD_WORD_GROUPED_COMPLEMENTARY_INFO_SECOND_TEXT,
             });
           }
         }
