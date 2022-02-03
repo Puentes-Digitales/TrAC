@@ -473,10 +473,10 @@ export const SearchBar: FC<{
                 {CURRICULUM_LABEL}
               </Tag>
               <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
-                {ADMISSION_TYPE_LABEL}
+                {COHORT_LABEL}
               </Tag>
               <Tag minHeight="2.5rem" colorScheme="blue" variant="outline">
-                {COHORT_LABEL}
+                {ADMISSION_TYPE_LABEL}
               </Tag>
             </Stack>
             <Box width={150} ml={2}>
@@ -529,53 +529,6 @@ export const SearchBar: FC<{
                 css={{ color: "black" }}
               />
               <Select
-                id="chosenAdmissionTypeComponent"
-                options={
-                  searchResult?.admission_types
-                    .sort()
-                    .slice()
-                    .reverse()
-                    .map((admission_type) => {
-                      if (admission_type == "") {
-                        return {
-                          label: "Todos",
-                          value: admission_type,
-                        };
-                      } else {
-                        return {
-                          label: admission_type,
-                          value: admission_type,
-                        };
-                      }
-                    }) ?? []
-                }
-                value={
-                  chosenAdmissionType != undefined
-                    ? chosenAdmissionType
-                      ? {
-                          value: chosenAdmissionType,
-                          label: chosenAdmissionType,
-                        }
-                      : {
-                          value: chosenAdmissionType,
-                          label: "Todos",
-                        }
-                    : undefined
-                }
-                onChange={(selected) => {
-                  track({
-                    action: "click",
-                    target: "admission-menu",
-                    effect: "change-admission",
-                  });
-                  DashboardInputActions.setChosenAdmissionType(
-                    (selected as { label: string; value: string }).value
-                  );
-                }}
-                placeholder={"..."}
-                css={{ color: "black" }}
-              />
-              <Select
                 id="chosenCohortComponent"
                 options={
                   searchResult?.cohorts
@@ -616,6 +569,53 @@ export const SearchBar: FC<{
                     effect: "change-cohort",
                   });
                   DashboardInputActions.setChosenCohort(
+                    (selected as { label: string; value: string }).value
+                  );
+                }}
+                placeholder={"..."}
+                css={{ color: "black" }}
+              />
+              <Select
+                id="chosenAdmissionTypeComponent"
+                options={
+                  searchResult?.admission_types
+                    .sort()
+                    .slice()
+                    .reverse()
+                    .map((admission_type) => {
+                      if (admission_type == "") {
+                        return {
+                          label: "Todos",
+                          value: admission_type,
+                        };
+                      } else {
+                        return {
+                          label: admission_type,
+                          value: admission_type,
+                        };
+                      }
+                    }) ?? []
+                }
+                value={
+                  chosenAdmissionType != undefined
+                    ? chosenAdmissionType
+                      ? {
+                          value: chosenAdmissionType,
+                          label: chosenAdmissionType,
+                        }
+                      : {
+                          value: chosenAdmissionType,
+                          label: "Todos",
+                        }
+                    : undefined
+                }
+                onChange={(selected) => {
+                  track({
+                    action: "click",
+                    target: "admission-menu",
+                    effect: "change-admission",
+                  });
+                  DashboardInputActions.setChosenAdmissionType(
                     (selected as { label: string; value: string }).value
                   );
                 }}
