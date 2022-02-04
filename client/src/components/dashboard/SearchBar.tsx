@@ -136,6 +136,18 @@ export const SearchBar: FC<{
     }
   }, [chosenCurriculum, searchResult?.curriculums]);
 
+  const [showGroupedDownloadBotton, setshowGroupedDownloadBotton] = useState(
+    false
+  );
+
+  useEffect(() => {
+    if (searchResult?.admission_types.length) {
+      setshowGroupedDownloadBotton(true);
+    } else {
+      setshowGroupedDownloadBotton(false);
+    }
+  }, [searchResult, showGroupedDownloadBotton]);
+
   useEffect(() => {
     if (
       (chosenAdmissionType === undefined &&
@@ -270,9 +282,14 @@ export const SearchBar: FC<{
         {isDirector && user?.config?.SHOW_GROUPED_VIEW && <GrupedMode />}
 
         {user?.admin && <MockingMode />}
-        {(student_id || groupedActive) && user?.config?.SHOW_DOWNLOAD && (
-          <DownloadWord />
-        )}
+
+        {(student_id || (groupedActive && showGroupedDownloadBotton)) &&
+          user?.config?.SHOW_DOWNLOAD && <DownloadWord />}
+
+        {/*groupedActive &&
+          showGroupedDownloadBotton &&
+          user?.config?.SHOW_DOWNLOAD && <DownloadWord />*/}
+
         {isDirector && !groupedActive && user?.config?.SHOW_STUDENT_LIST && (
           <StudentList
             program_id={program?.value}
@@ -376,6 +393,7 @@ export const SearchBar: FC<{
     groupedActive,
     onSearch,
     HELP_ENABLED,
+    showGroupedDownloadBotton,
   ]);
 
   useEffect(() => {
