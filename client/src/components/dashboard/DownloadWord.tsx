@@ -251,7 +251,7 @@ export const DownloadWord: FC<{
           } else {
             const indicators: string[] = [];
             groupedIndicators.map(({ id, value }) => {
-              let indicator = id + value;
+              let indicator = id + " " + value;
               indicators.push(indicator);
             });
             const value = await domtoimage.toPng(input);

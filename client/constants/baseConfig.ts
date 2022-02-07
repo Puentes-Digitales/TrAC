@@ -1,7 +1,6 @@
 export const baseConfig = {
   GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE:
     "Tiempo promedio inactivo:",
-
   NO_INFORMATION: "Sin información",
   EMPLOYED_TRUE: "Empleado",
   EMPLOYED_FALSE: "Cesante",
@@ -118,7 +117,7 @@ export const baseConfig = {
     "La siguiente imagen corresponde a la malla curricular. La siguiente imagen muestra indicadores correspondientes a los y las estudiantes de la carrera de acuerdo a los parámetros seleccionados en cuanto a Plan de estudios, Tipo de Admisión (PSU-Ingreso PACE – Ingreso Especial) y Cohorte de ingreso.",
 
   DOWNLOAD_WORD_GROUPED_COMPLEMENTARY_INFO_TEXT:
-    "La siguiente imagen muestra indicadores correspondientes a los y las estudiantes de la carrera de acuerdo a los parámetros seleccionados en cuanto a Plan de estudios, Tipo de Admisión (PSU-Ingreso PACE – Ingreso Especial) y Cohorte de ingreso. ",
+    "La siguiente imagen muestra indicadores correspondientes a los y las estudiantes de la carrera de acuerdo a los parámetros seleccionados en cuanto a Plan de estudios, Tipo de Admisión (PSU-Ingreso PACE – Ingreso Especial) y Cohorte de ingreso. Si todos los datos están disponibles se podrán ver los siguientes indicadores: ",
   DOWNLOAD_WORD_GROUPED_COMPLEMENTARY_INFO_SECOND_TEXT:
     "En el caso particular de su búsqueda, los indicadores son los siguientes:",
   DOWNLOAD_WORD_GROUPED_TREND_TEXT:
