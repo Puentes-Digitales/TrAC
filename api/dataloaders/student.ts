@@ -170,10 +170,60 @@ export const StudentTermsDataLoader = new DataLoader(
   }
 );
 
-export const StudentDropoutDataLoader = new DataLoader(
+/*New dataLoader that receive program_id and student_id as parameters */
+export const StudentStartYearDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      student_id: string;
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ student_id, program_id }) => {
+        return StudentProgramTable()
+          .select("*")
+          .orderBy("last_term", "desc")
+          .where({
+            student_id,
+            program_id,
+          })
+          .first();
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const GroupedAdmissionDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      student_id: string;
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(async ({ student_id, program_id }) => {
+        const dataDict: Dictionary<IStudentAdmission | undefined> = keyBy(
+          await StudentAdmissionTable()
+            .where("student_id", student_id)
+            .where("program_id", program_id),
+          "student_id"
+        );
+        return dataDict[student_id];
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentAdmissionDataLoader = new DataLoader(
   async (student_ids: readonly string[]) => {
-    const dataDict: Dictionary<IStudentDropout | undefined> = keyBy(
-      await StudentDropoutTable().whereIn("student_id", student_ids),
+    const dataDict: Dictionary<IStudentAdmission | undefined> = keyBy(
+      await StudentAdmissionTable().whereIn("student_id", student_ids),
       "student_id"
     );
     return student_ids.map((id) => {
@@ -185,10 +235,10 @@ export const StudentDropoutDataLoader = new DataLoader(
   }
 );
 
-export const StudentAdmissionDataLoader = new DataLoader(
+export const StudentDropoutDataLoader = new DataLoader(
   async (student_ids: readonly string[]) => {
-    const dataDict: Dictionary<IStudentAdmission | undefined> = keyBy(
-      await StudentAdmissionTable().whereIn("student_id", student_ids),
+    const dataDict: Dictionary<IStudentDropout | undefined> = keyBy(
+      await StudentDropoutTable().whereIn("student_id", student_ids),
       "student_id"
     );
     return student_ids.map((id) => {

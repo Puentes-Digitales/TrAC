@@ -29,6 +29,8 @@ import {
   StudentTermsDataLoader,
   StudentViaProgramsDataLoader,
   StudentViaProgramsDataLoader2,
+  StudentStartYearDataLoader,
+  GroupedAdmissionDataLoader,
 } from "../../dataloaders/student";
 import {
   StudentListCyclesDataLoader,
@@ -57,6 +59,7 @@ export type PartialStudent = Pick<Student, "id" | "name" | "state"> & {
   programs?: PartialProgram[];
   curriculums?: string;
   program?: string;
+  program_id?: string;
 };
 @Resolver(() => Student)
 export class StudentResolver {
@@ -75,7 +78,7 @@ export class StudentResolver {
       const student_id = await anonService.getAnonymousIdOrGetItBack(
         user.student_id
       );
-
+      console.log("SE ESTA BUSCANDO EL SIGUIENTE PROGRAMA: ", program_id);
       const studentData = await StudentViaProgramsDataLoader.load(student_id);
 
       assertIsDefined(studentData, STUDENT_NOT_FOUND);
@@ -164,11 +167,11 @@ export class StudentResolver {
     var anonID = filteredStudentList?.map((student) => student.id);
     var objAnonID = { Listado: anonID };
     var stObjAnonID = JSON.stringify(objAnonID);
-    console.log("stObjAnonID", stObjAnonID);
+    //console.log("stObjAnonID", stObjAnonID);
     var listRut = await anonService.getInfoSessionIdResult(stObjAnonID);
-    console.log("listRurAsString", listRut);
-    console.log("Arriba como string, a continuacion listRut as object");
-    console.log(listRut);
+    //console.log("listRurAsString", listRut);
+    //console.log("Arriba como string, a continuacion listRut as object");
+    //console.log(listRut);
 
     if (listRut === stObjAnonID) {
       return filteredStudentList;
@@ -224,13 +227,6 @@ export class StudentResolver {
   }
 
   @FieldResolver()
-  async start_year(
-    @Root() { id }: PartialStudent
-  ): Promise<$PropertyType<Student, "start_year">> {
-    return (await StudentLastProgramDataLoader.load(id))?.start_year ?? 0;
-  }
-
-  @FieldResolver()
   async mention(
     @Root() { id }: PartialStudent
   ): Promise<$PropertyType<Student, "mention">> {
@@ -265,7 +261,34 @@ export class StudentResolver {
 
     return await StudentDropoutDataLoader.load(id);
   }
+  /* OLD START YEAR
+  @FieldResolver()
+  async start_year(
+    @Root() { id }: PartialStudent
+  ): Promise<$PropertyType<Student, "start_year">> {
+    return (await StudentLastProgramDataLoader.load(id))?.start_year ?? 0;
+  }
+  */
 
+  @FieldResolver()
+  async start_year(
+    @Root() { id, program_id }: PartialStudent
+  ): Promise<$PropertyType<Student, "start_year">> {
+    if (program_id) {
+      return (
+        (
+          await StudentStartYearDataLoader.load({
+            student_id: id,
+            program_id: program_id,
+          })
+        )?.start_year ?? 0
+      );
+    } else {
+      return (await StudentLastProgramDataLoader.load(id))?.start_year ?? 0;
+    }
+  }
+
+  /* OLD admission
   @FieldResolver()
   async admission(
     @Root() { id }: PartialStudent
@@ -274,8 +297,26 @@ export class StudentResolver {
       id,
       `student id needs to be available for Student field resolvers`
     );
-
     return await StudentAdmissionDataLoader.load(id);
+  }
+  */
+
+  @FieldResolver()
+  async admission(
+    @Root() { id, program_id }: PartialStudent
+  ): Promise<Admission | undefined> {
+    assertIsDefined(
+      id,
+      `student id needs to be available for Student field resolvers`
+    );
+    if (program_id) {
+      return await GroupedAdmissionDataLoader.load({
+        student_id: id,
+        program_id: program_id,
+      });
+    } else {
+      return await StudentAdmissionDataLoader.load(id);
+    }
   }
 
   @FieldResolver()
@@ -373,6 +414,12 @@ export class StudentResolver {
     @Arg("grouped") grouped: boolean
   ): Promise<PartialStudent[]> {
     assertIsDefined(user, `Error on authorization context`);
+    console.log(
+      "En student_filter llega: ",
+      curriculum,
+      ", program_id: ",
+      program_id
+    );
 
     const IsAuthorized = await UserProgramsTable()
       .select("program")
