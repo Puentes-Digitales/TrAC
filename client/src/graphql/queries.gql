@@ -293,7 +293,6 @@ query studentsFilterList(
     id
     programs {
       id
-      name
     }
     curriculums
     start_year

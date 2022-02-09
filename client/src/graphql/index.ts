@@ -1074,7 +1074,7 @@ export type StudentsFilterListQueryVariables = Exact<{
 export type StudentsFilterListQuery = {
   students_filter: Array<
     Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
-      programs: Array<Pick<Program, "id" | "name">>;
+      programs: Array<Pick<Program, "id">>;
       admission: Pick<Admission, "type_admission">;
       terms: Array<
         Pick<
@@ -3049,7 +3049,6 @@ export const StudentsFilterListDocument = gql`
       id
       programs {
         id
-        name
       }
       curriculums
       start_year
