@@ -15883,7 +15883,6 @@ const data: {
         programs: [
           {
             id: "1708",
-            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
           },
         ],
         curriculums: ["2017"],
@@ -15933,7 +15932,6 @@ const data: {
         programs: [
           {
             id: "1708",
-            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
           },
         ],
         curriculums: ["2017"],
@@ -15983,7 +15981,6 @@ const data: {
         programs: [
           {
             id: "1708",
-            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
           },
         ],
         curriculums: ["2017"],
@@ -16034,7 +16031,6 @@ const data: {
         programs: [
           {
             id: "1708",
-            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
           },
         ],
         curriculums: ["2015"],
@@ -16098,7 +16094,6 @@ const data: {
         programs: [
           {
             id: "1708",
-            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
           },
         ],
         curriculums: ["2015"],
