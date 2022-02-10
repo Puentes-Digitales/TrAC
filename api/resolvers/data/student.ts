@@ -61,6 +61,7 @@ export type PartialStudent = Pick<Student, "id" | "name" | "state"> & {
   program?: string;
   program_id?: string;
 };
+
 @Resolver(() => Student)
 export class StudentResolver {
   @Authorized()
@@ -133,6 +134,7 @@ export class StudentResolver {
         programs: [{ id: program_id }],
         curriculums: studentData.curriculum,
         program: studentData.program_id,
+        program_id: program_id,
       };
     }
   }
@@ -157,7 +159,6 @@ export class StudentResolver {
     assertIsDefined(IsAuthorized, STUDENT_LIST_UNAUTHORIZED);
 
     const studentList = await StudentListDataLoader.load(program_id);
-
     const sinceNYear = new Date().getFullYear() - last_n_years;
     const filteredStudentList = studentList.filter(({ last_term }) => {
       return (last_term / 10 || 0) >= sinceNYear;
@@ -204,10 +205,14 @@ export class StudentResolver {
   async programs(
     @Root() { id, programs }: PartialStudent
   ): Promise<PartialProgram[]> {
+    assertIsDefined(
+      id,
+      `student id needs to be available for Student field resolvers`
+    );
+
     if (programs) {
       return programs;
     }
-
     return (await StudentProgramsDataLoader.load(id)).map(({ program_id }) => {
       return {
         id: program_id,
@@ -414,6 +419,7 @@ export class StudentResolver {
     @Arg("grouped") grouped: boolean
   ): Promise<PartialStudent[]> {
     assertIsDefined(user, `Error on authorization context`);
+    assertIsDefined(program_id, "el programa es indefinido");
     console.log(
       "En student_filter llega: ",
       curriculum,
@@ -436,7 +442,7 @@ export class StudentResolver {
       curriculum: curriculum,
       grouped: grouped,
     });
-
+    console.log("STUDENT LIST:", studentList);
     return studentList;
   }
 

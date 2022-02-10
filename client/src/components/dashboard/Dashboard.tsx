@@ -454,6 +454,14 @@ export function Dashboard() {
     const studentListData = mock
       ? mockData?.default.searchStudentListData
       : dataStudentFilterList;
+    console.log(
+      "COHORTE ",
+      chosenCohort,
+      "CURRICULUM",
+      chosenCurriculum,
+      "TIPO DE ADMI",
+      chosenAdmissionType
+    );
 
     if (studentData && !grouped) {
       const {
@@ -552,7 +560,7 @@ export function Dashboard() {
         );
       }
     }
-
+    //CARGA
     if (programData && !grouped) {
       const curriculums =
         programData?.curriculums
@@ -699,6 +707,7 @@ export function Dashboard() {
     }
 
     if (programData && grouped) {
+      ///////////////////////////////////////////////////////////////////////////////////////// <------------
       const curriculums =
         programData?.curriculums
           .filter(({ id }) => {
@@ -843,11 +852,15 @@ export function Dashboard() {
         );
 
         if (chosenCurriculum != "") {
+          console.log("DATA SEMESTRES", data.semesters);
           SemestersComponent = (
             <GroupedSemestersList
               semesters={data.semesters.map(({ semester }) => semester)}
             />
           );
+        }
+        if (studentListData) {
+          console.log("EXISTE DATA DE LOS ESTUDIANTES");
         }
 
         if (chosenCurriculum && chosenCohort && studentListData) {
@@ -866,6 +879,7 @@ export function Dashboard() {
                 ),
               };
             });
+          console.log("allStudents", allStudents);
 
           const allStudentsGrades = allStudents.map((stu) =>
             stu.terms
@@ -874,6 +888,7 @@ export function Dashboard() {
               })
               .reverse()
           );
+          console.log("ALL STUDENTS GRADES", allStudentsGrades);
           var filteredStudents;
           if (chosenAdmissionType === "OTROS INGRESOS ESPECIALES") {
             //Hard-Code - To do refactoring
@@ -927,6 +942,7 @@ export function Dashboard() {
                 };
               });
           }
+          console.log("FILTERED STUDENTS :", filteredStudents);
           const filteredStudentsGrades = filteredStudents.map((stu) =>
             stu.terms
               .map((semester) => {
@@ -935,6 +951,7 @@ export function Dashboard() {
               })
               .reverse()
           );
+          console.log("FILTERED STUDENTS GRADES ", filteredStudentsGrades);
 
           const maxTerm =
             allStudents.length != 0
@@ -959,10 +976,21 @@ export function Dashboard() {
             grades.push(allStudentsGrades.map((v) => v[i] ?? 0));
           }
 
+          console.log("ALL GRADES :", grades);
+
           const filteredGrades = new Array();
           for (let i = 0; i < filteredMaxTerm; i++) {
             filteredGrades.push(filteredStudentsGrades.map((v) => v[i] ?? 0));
           }
+          console.log("FILTERED GRADES :", filteredGrades);
+          const maxGrades =
+            filteredStudentsGrades.length != 0
+              ? filteredStudentsGrades
+                  ?.map((v) => v.length)
+                  .reduce((a, b) => {
+                    return Math.max(a, b);
+                  })
+              : 0;
 
           const avgGrades = grades.map((arr) => {
             return (
@@ -974,6 +1002,7 @@ export function Dashboard() {
               }) / (arr.filter((ele: number) => ele).length || 1)
             );
           });
+          console.log("avgGrades : ", avgGrades);
 
           const n_students_per_semester: number[] = [];
 
@@ -981,13 +1010,18 @@ export function Dashboard() {
             n_students_per_semester.push(
               arr.filter((ele: number) => ele).length
             );
+
             if (
               n_students_per_semester.length === 1 &&
               n_students_per_semester[0] === 0
             ) {
               n_students_per_semester[0] = filteredGrades[0].length;
             }
-            nStudentsComplementaryInfo = n_students_per_semester[0];
+
+            //number of students with registered courses
+
+            //n_students_per_semester[maxGrades - 1] = registered;
+            console.log("n students per semester: ", n_students_per_semester);
             return (
               arr.reduce((a: number, b: number) => {
                 if (a && b) return a + b;
@@ -996,15 +1030,29 @@ export function Dashboard() {
               }, 0) / (arr.filter((ele: number) => ele).length || 1)
             );
           });
+          let registered = 0;
+          filteredStudentsGrades.map((item) => {
+            if (item.length === maxGrades) {
+              console.log("item.length :", item.length);
+              registered = registered + 1;
+            }
+          });
+          console.log("filteredGrades:", filteredGrades);
+
+          n_students_per_semester.splice(maxGrades - 1, 0, registered);
+          nStudentsComplementaryInfo = n_students_per_semester[0];
 
           const studentTerms = filteredStudents.filter(
             (student) => student.terms.length == filteredMaxTerm
           )[0]?.terms;
+          console.log("studentTerms: ", studentTerms);
 
           const takenTerms = studentTerms?.map((i) => {
             return { year: i.year, term: i.term };
           });
           var cohortLen = filteredAvgGrades.length;
+
+          //To do: Refactoring
           var isZero = true;
           let i = 1;
           while (isZero) {
@@ -1015,6 +1063,7 @@ export function Dashboard() {
             }
             i++;
           }
+          //
           TimeLineComponent = (
             <GroupedTimeLine
               programGrades={avgGrades.slice(0, cohortLen)}
