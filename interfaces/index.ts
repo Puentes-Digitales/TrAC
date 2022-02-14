@@ -62,6 +62,7 @@ export type IGroupedCourse = {
   name: string;
   credits: { label: string; value: number }[];
   flow: string[];
+  mention: string;
   requisites: string[];
   historicDistribution: IDistribution[];
   agroupedDistribution: IDistribution[];
