@@ -764,6 +764,7 @@ export function Dashboard() {
                   ({
                     code,
                     name,
+                    mention,
                     credits,
                     flow,
                     requisites,
@@ -782,7 +783,6 @@ export function Dashboard() {
                             ? toInteger(chosenCohort)
                             : value.year)
                     );
-
                     const courseSelected = filteredData.filter(
                       (value) =>
                         value.year === foundData.year &&
@@ -808,6 +808,7 @@ export function Dashboard() {
                       code,
                       name,
                       credits,
+                      mention,
                       flow: flow.map(({ code }) => {
                         return code;
                       }),
