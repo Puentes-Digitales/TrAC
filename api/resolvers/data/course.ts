@@ -104,24 +104,24 @@ export class CourseResolver {
     @Root() { code }: PartialCourse
   ): Promise<$PropertyType<Course, "historicalDistribution">> {
     const histogramData = await CourseStatsDataLoader.load(code);
-
     const reducedHistogramData =
       histogramData?.reduce<Record<number, { label: string; value: number }>>(
-        (acum, { histogram, histogram_labels }, key) => {
-          const histogramLabels = key === 0 ? histogram_labels.split(",") : [];
-          const histogramValues = histogram.split(",").map(toInteger);
-
-          for (let i = 0; i < histogramValues.length; i++) {
-            acum[i] = {
-              label: acum[i]?.label ?? histogramLabels[i] ?? "",
-              value: (acum[i]?.value ?? 0) + (histogramValues[i] ?? 0),
-            };
+        (acum, { histogram, histogram_labels, term, year, p_group }, key) => {
+          if (term === -1 && year === -1 && p_group === -1) {
+            const histogramLabels =
+              key === 0 ? histogram_labels.split(",") : [];
+            const histogramValues = histogram.split(",").map(toInteger);
+            for (let i = 0; i < histogramValues.length; i++) {
+              acum[i] = {
+                label: acum[i]?.label ?? histogramLabels[i] ?? "",
+                value: (acum[i]?.value ?? 0) + (histogramValues[i] ?? 0),
+              };
+            }
           }
           return acum;
         },
         {}
       ) ?? {};
-
     return Object.values(reducedHistogramData);
   }
 
