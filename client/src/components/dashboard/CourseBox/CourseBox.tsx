@@ -269,6 +269,11 @@ const NameComponent: FC<
           </Badge>
         )}
       </Flex>
+      {taken?.find(({ equiv }) => equiv)?.equiv ? (
+        <Text fontSize={9} m={0} whiteSpace="nowrap">
+          <b>{config.EQUIVALENT_ELECTIVE + code}</b>
+        </Text>
+      ) : null}
 
       <Text fontSize={9} maxWidth="150px" pr={1}>
         {truncate(name, { length: isOpen ? 60 : 35 })}
