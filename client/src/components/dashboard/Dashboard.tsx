@@ -619,7 +619,6 @@ export function Dashboard() {
                     };
                   }
                 ),
-
                 courses: va.courses.map(
                   ({
                     code,
@@ -658,7 +657,8 @@ export function Dashboard() {
                               registration,
                               state,
                               grade,
-                              currentDistribution,
+                              currentDistribution, //<------ grouped distributon
+                              historicalDistribution,
                               parallelGroup,
                               bandColors,
                             } of takenCourses) {
@@ -670,6 +670,7 @@ export function Dashboard() {
                                   state,
                                   grade,
                                   currentDistribution,
+                                  historicalDistribution,
                                   parallelGroup,
                                   equiv: equiv === code ? courseCode : "",
                                   bandColors,
@@ -853,15 +854,11 @@ export function Dashboard() {
         );
 
         if (chosenCurriculum != "") {
-          console.log("DATA SEMESTRES", data.semesters);
           SemestersComponent = (
             <GroupedSemestersList
               semesters={data.semesters.map(({ semester }) => semester)}
             />
           );
-        }
-        if (studentListData) {
-          console.log("EXISTE DATA DE LOS ESTUDIANTES");
         }
 
         if (chosenCurriculum && chosenCohort && studentListData) {
