@@ -604,7 +604,11 @@ export function CourseBox({
     <OuterCourseBox
       code={code}
       currentDistribution={currentDistribution}
-      historicDistribution={historicDistribution}
+      historicDistribution={
+        historicDistribution.length > 0
+          ? historicDistribution
+          : taken[0]?.historicalDistribution || []
+      }
       isOpen={isOpen}
       semestersTaken={semestersTaken}
       borderColor={borderColor}
@@ -651,8 +655,16 @@ export function CourseBox({
                 grade={grade}
               />
               <HistogramHistoric
-                historicDistribution={historicDistribution}
-                bandColors={bandColors}
+                historicDistribution={
+                  historicDistribution.length > 0
+                    ? historicDistribution
+                    : taken[0]?.historicalDistribution || []
+                }
+                bandColors={
+                  bandColors.length > 0
+                    ? bandColors
+                    : taken[0]?.bandColors || []
+                }
                 grade={grade}
               />
             </HistogramsComponent>

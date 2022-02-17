@@ -22,6 +22,7 @@ export type ITakenCourse = {
   grade?: number;
   state?: StateCourse;
   currentDistribution?: IDistribution[];
+  historicalDistribution?: IDistribution[];
   parallelGroup?: number;
   bandColors?: { min: number; max: number; color: string }[];
 };

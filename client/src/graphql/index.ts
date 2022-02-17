@@ -519,6 +519,7 @@ export type TakenCourse = {
   currentDistribution: Array<DistributionValue>;
   equiv: Scalars["String"];
   grade: Scalars["Float"];
+  historicalDistribution: Array<DistributionValue>;
   id: Scalars["Int"];
   name: Scalars["String"];
   parallelGroup: Scalars["Int"];
@@ -985,6 +986,9 @@ export type SearchStudentMutation = {
               | "parallelGroup"
             > & {
               currentDistribution: Array<
+                Pick<DistributionValue, "label" | "value">
+              >;
+              historicalDistribution: Array<
                 Pick<DistributionValue, "label" | "value">
               >;
               bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
@@ -2687,6 +2691,10 @@ export const SearchStudentDocument = gql`
           state
           parallelGroup
           currentDistribution {
+            label
+            value
+          }
+          historicalDistribution {
             label
             value
           }
