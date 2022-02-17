@@ -125,7 +125,6 @@ mutation searchProgram($id: String, $student_id: String) {
         color
       }
     }
-
     curriculums {
       id
       semesters {
@@ -200,6 +199,10 @@ mutation searchStudent($student_id: String, $program_id: String) {
         state
         parallelGroup
         currentDistribution {
+          label
+          value
+        }
+        historicalDistribution {
           label
           value
         }

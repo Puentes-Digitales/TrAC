@@ -427,6 +427,7 @@ type TakenCourse {
   currentDistribution: [DistributionValue!]!
   equiv: String!
   grade: Float!
+  historicalDistribution: [DistributionValue!]!
   id: Int!
   name: String!
   parallelGroup: Int!
