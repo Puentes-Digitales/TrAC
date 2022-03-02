@@ -580,7 +580,6 @@ export function Dashboard() {
                       code,
                       name,
                       bandColors,
-
                       taken: (() => {
                         const taken: ITakenExternalEvaluation[] = [];
                         if (studentData) {
@@ -735,18 +734,20 @@ export function Dashboard() {
                         course.cohort == chosenCohort
                     )[0]?.term,
                   };
+              const chosenFilterAdmissionType =
+                chosenAdmissionType === "" ? "-1" : chosenAdmissionType;
+              const chosenFilterCohort =
+                chosenCohort === "" ? "-1" : chosenCohort;
               const semester = {
                 n: va.id,
                 externalEvaluations: va.externalEvaluations.map(
                   ({ code, name }) => {
                     const externalEvaluationFilter = programData.externalEvaluationGroupedStats.filter(
                       (value) =>
+                        value.type_admission == chosenFilterAdmissionType &&
+                        value.cohort == chosenFilterCohort &&
                         value.curriculum == curriculumId &&
-                        value.type_admission == chosenAdmissionType &&
-                        value.cohort == chosenCohort &&
-                        value.external_evaluation_id == code &&
-                        value.year == foundData.year &&
-                        value.term == foundData.term
+                        value.external_evaluation_id == code
                     );
                     return {
                       code,
