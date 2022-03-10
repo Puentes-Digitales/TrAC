@@ -2,7 +2,7 @@ export const baseConfig = {
   GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE:
     "Tiempo promedio inactivo:",
   NO_INFORMATION: "Sin información",
-  EQUIVALENT_ELECTIVE: "Electivo Equivalente: ",
+  EQUIVALENT_ELECTIVE: "Equivalente: ",
   EMPLOYED_TRUE: "Empleado",
   EMPLOYED_FALSE: "Cesante",
   EDUCATIONAL_SYSTEM_TRUE: "Si",
