@@ -103,7 +103,7 @@ export function HistogramGradesLetter({
   const barsScale = useCallback(
     scaleLinear()
       .domain([0, Math.max(...distribution.map(({ value }) => value))])
-      .range([0, 50]),
+      .range([0, 70]),
     [distribution]
   );
   const axisLeftScale = useCallback(
@@ -185,10 +185,17 @@ export function HistogramGradesLetter({
             scale={axisLeftScale as AxisScale}
             hideAxisLine={true}
             tickLength={4}
-            numTicks={4}
+            numTicks={
+              Math.max(...distribution.map(({ value }) => value)) < 4
+                ? Math.max(...distribution.map(({ value }) => value))
+                : 4
+            }
             stroke={textColor}
             tickStroke={textColor}
             labelProps={{ fill: textColor }}
+            tickFormat={(n) => {
+              return n.toString();
+            }}
           />
         </svg>
       </svg>
