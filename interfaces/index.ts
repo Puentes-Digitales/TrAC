@@ -86,6 +86,8 @@ export type ITopicExternalEvaluation = {
   topic?: string;
   distribution?: IDistribution[];
   color_bands?: { min: number; max: number; color: string }[];
+  n_total: number;
+  n_pass: number;
 };
 
 export type IImagesID = {
