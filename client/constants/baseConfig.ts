@@ -84,7 +84,7 @@ export const baseConfig = {
 
   GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS: "Cantidad de estudiantes:",
   GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE:
-    "Tasa de titulación:",
+    "Tasa de titulación por año de ingreso:",
   GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE: "Tasa de retención:",
   GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE:
     "Tasa de titulación oportuna:",
@@ -471,6 +471,7 @@ export const baseConfig = {
   YEAR_LABEL: "Año",
   TERM_LABEL: "Semestre",
   RATE_LABEL: "Tasa",
+  HELP_DESK_LABEL: "Mesa de ayuda",
 };
 
 export const baseConfigAdmin: typeof baseConfig &
