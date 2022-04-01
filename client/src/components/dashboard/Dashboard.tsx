@@ -51,6 +51,7 @@ import {
   useSearchProgramMutation,
   useSearchStudentMutation,
   useStudentsFilterListQuery,
+  useGroupedSpecialTypesAdmissionQuery,
 } from "../../graphql";
 import { useUser } from "../../utils/useUser";
 import { ToggleDarkMode } from "../DarkMode";
@@ -86,6 +87,10 @@ export function Dashboard() {
   const [mockData, setMockData] = useState<
     typeof import("../../../constants/mockData")
   >();
+  var nStudentsComplementaryInfo:
+    | number
+    | null
+    | undefined; /*this value match # students from complementary info with semesterTaken components*/
 
   useEffect(() => {
     if (mock && !mockData) {
@@ -146,9 +151,14 @@ export function Dashboard() {
     variables: {
       program_id: program || "",
       curriculum: chosenCurriculum || "",
+      grouped: grouped,
     },
     skip: !program,
   });
+
+  const {
+    data: dataGroupedSpecialAdmissions,
+  } = useGroupedSpecialTypesAdmissionQuery();
 
   useUpdateEffect(() => {
     if (IS_NOT_TEST && user?.admin) {
@@ -444,6 +454,14 @@ export function Dashboard() {
     const studentListData = mock
       ? mockData?.default.searchStudentListData
       : dataStudentFilterList;
+    console.log(
+      "COHORTE ",
+      chosenCohort,
+      "CURRICULUM",
+      chosenCurriculum,
+      "TIPO DE ADMI",
+      chosenAdmissionType
+    );
 
     if (studentData && !grouped) {
       const {
@@ -542,7 +560,7 @@ export function Dashboard() {
         );
       }
     }
-
+    //CARGA
     if (programData && !grouped) {
       const curriculums =
         programData?.curriculums
@@ -562,7 +580,6 @@ export function Dashboard() {
                       code,
                       name,
                       bandColors,
-
                       taken: (() => {
                         const taken: ITakenExternalEvaluation[] = [];
                         if (studentData) {
@@ -601,7 +618,6 @@ export function Dashboard() {
                     };
                   }
                 ),
-
                 courses: va.courses.map(
                   ({
                     code,
@@ -640,7 +656,8 @@ export function Dashboard() {
                               registration,
                               state,
                               grade,
-                              currentDistribution,
+                              currentDistribution, //<------ grouped distributon
+                              historicalDistribution,
                               parallelGroup,
                               bandColors,
                             } of takenCourses) {
@@ -652,6 +669,7 @@ export function Dashboard() {
                                   state,
                                   grade,
                                   currentDistribution,
+                                  historicalDistribution,
                                   parallelGroup,
                                   equiv: equiv === code ? courseCode : "",
                                   bandColors,
@@ -689,6 +707,7 @@ export function Dashboard() {
     }
 
     if (programData && grouped) {
+      ///////////////////////////////////////////////////////////////////////////////////////// <------------
       const curriculums =
         programData?.curriculums
           .filter(({ id }) => {
@@ -715,18 +734,20 @@ export function Dashboard() {
                         course.cohort == chosenCohort
                     )[0]?.term,
                   };
+              const chosenFilterAdmissionType =
+                chosenAdmissionType === "" ? "-1" : chosenAdmissionType;
+              const chosenFilterCohort =
+                chosenCohort === "" ? "-1" : chosenCohort;
               const semester = {
                 n: va.id,
                 externalEvaluations: va.externalEvaluations.map(
                   ({ code, name }) => {
                     const externalEvaluationFilter = programData.externalEvaluationGroupedStats.filter(
                       (value) =>
+                        value.type_admission == chosenFilterAdmissionType &&
+                        value.cohort == chosenFilterCohort &&
                         value.curriculum == curriculumId &&
-                        value.type_admission == chosenAdmissionType &&
-                        value.cohort == chosenCohort &&
-                        value.external_evaluation_id == code &&
-                        value.year == foundData.year &&
-                        value.term == foundData.term
+                        value.external_evaluation_id == code
                     );
                     return {
                       code,
@@ -745,6 +766,7 @@ export function Dashboard() {
                   ({
                     code,
                     name,
+                    mention,
                     credits,
                     flow,
                     requisites,
@@ -763,7 +785,6 @@ export function Dashboard() {
                             ? toInteger(chosenCohort)
                             : value.year)
                     );
-
                     const courseSelected = filteredData.filter(
                       (value) =>
                         value.year === foundData.year &&
@@ -789,6 +810,7 @@ export function Dashboard() {
                       code,
                       name,
                       credits,
+                      mention,
                       flow: flow.map(({ code }) => {
                         return code;
                       }),
@@ -839,36 +861,6 @@ export function Dashboard() {
             />
           );
         }
-        if (
-          (filteredEmpleabilityData[0] || filteredComplementaryData[0]) &&
-          user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO
-        ) {
-          GroupedPerformanceInfoComponent = (
-            <GroupedComplementaryInfo
-              total_students={filteredComplementaryData[0]?.total_students}
-              university_degree_rate={
-                filteredComplementaryData[0]?.university_degree_rate
-              }
-              average_time_university_degree={
-                filteredComplementaryData[0]?.average_time_university_degree
-              }
-              timely_university_degree_rate={
-                filteredComplementaryData[0]?.timely_university_degree_rate
-              }
-              retention_rate={filteredComplementaryData[0]?.retention_rate}
-              empleability_rate={filteredEmpleabilityData[0]?.employed_rate}
-              average_time_finding_job={
-                filteredEmpleabilityData[0]?.average_time_job_finding
-              }
-              empleability_rate_educational_system={
-                filteredEmpleabilityData[0]?.employed_rate_educational_system
-              }
-              inactive_time_rate={
-                filteredComplementaryData[0]?.inactive_time_rate
-              }
-            />
-          );
-        }
 
         if (chosenCurriculum && chosenCohort && studentListData) {
           const allStudents = studentListData.students_filter
@@ -886,6 +878,8 @@ export function Dashboard() {
                 ),
               };
             });
+          console.log("allStudents", allStudents);
+
           const allStudentsGrades = allStudents.map((stu) =>
             stu.terms
               .map((semester) => {
@@ -893,26 +887,61 @@ export function Dashboard() {
               })
               .reverse()
           );
-
-          const filteredStudents = studentListData.students_filter
-            .filter(
-              (stu) =>
-                stu.curriculums.includes(chosenCurriculum) &&
-                stu.start_year == toInteger(chosenCohort)
-            )
-            .map((stu) => {
-              return {
-                id: stu.id,
-                curriculums: stu.curriculums,
-                start_year: stu.start_year,
-                mention: stu.mention,
-                programs: stu.programs,
-                admission: stu.admission,
-                terms: stu.terms.filter(
-                  (term) => term.year >= toInteger(chosenCohort)
-                ),
-              };
-            });
+          console.log("ALL STUDENTS GRADES", allStudentsGrades);
+          var filteredStudents;
+          if (chosenAdmissionType === "OTROS INGRESOS ESPECIALES") {
+            //Hard-Code - To do refactoring
+            filteredStudents = studentListData.students_filter
+              .filter(
+                (stu) =>
+                  dataGroupedSpecialAdmissions?.groupedSpecialTypesAdmission.includes(
+                    stu.admission.type_admission
+                  ) &&
+                  stu.curriculums.includes(chosenCurriculum) &&
+                  stu.start_year == toInteger(chosenCohort)
+              )
+              .map((stu) => {
+                return {
+                  id: stu.id,
+                  curriculums: stu.curriculums,
+                  start_year: stu.start_year,
+                  mention: stu.mention,
+                  programs: stu.programs,
+                  admission: stu.admission,
+                  terms: stu.terms.filter(
+                    (term) =>
+                      term.year >= toInteger(chosenCohort) &&
+                      term.program_id === program
+                  ),
+                };
+              });
+          } else {
+            filteredStudents = studentListData.students_filter
+              .filter((stu) =>
+                chosenAdmissionType?.length /* when chosenAdmissionType="" means user want to see all types Admission */
+                  ? stu.admission.type_admission === chosenAdmissionType &&
+                    stu.curriculums.includes(chosenCurriculum) &&
+                    stu.start_year == toInteger(chosenCohort)
+                  : stu.curriculums.includes(chosenCurriculum) &&
+                    stu.start_year == toInteger(chosenCohort)
+              )
+              .map((stu) => {
+                return {
+                  id: stu.id,
+                  curriculums: stu.curriculums,
+                  start_year: stu.start_year,
+                  mention: stu.mention,
+                  programs: stu.programs,
+                  admission: stu.admission,
+                  terms: stu.terms.filter(
+                    (term) =>
+                      term.year >= toInteger(chosenCohort) &&
+                      term.program_id === program
+                  ),
+                };
+              });
+          }
+          console.log("FILTERED STUDENTS :", filteredStudents);
           const filteredStudentsGrades = filteredStudents.map((stu) =>
             stu.terms
               .map((semester) => {
@@ -921,6 +950,7 @@ export function Dashboard() {
               })
               .reverse()
           );
+          console.log("FILTERED STUDENTS GRADES ", filteredStudentsGrades);
 
           const maxTerm =
             allStudents.length != 0
@@ -945,10 +975,21 @@ export function Dashboard() {
             grades.push(allStudentsGrades.map((v) => v[i] ?? 0));
           }
 
+          console.log("ALL GRADES :", grades);
+
           const filteredGrades = new Array();
           for (let i = 0; i < filteredMaxTerm; i++) {
             filteredGrades.push(filteredStudentsGrades.map((v) => v[i] ?? 0));
           }
+          console.log("FILTERED GRADES :", filteredGrades);
+          const maxGrades =
+            filteredStudentsGrades.length != 0
+              ? filteredStudentsGrades
+                  ?.map((v) => v.length)
+                  .reduce((a, b) => {
+                    return Math.max(a, b);
+                  })
+              : 0;
 
           const avgGrades = grades.map((arr) => {
             return (
@@ -960,6 +1001,7 @@ export function Dashboard() {
               }) / (arr.filter((ele: number) => ele).length || 1)
             );
           });
+          console.log("avgGrades : ", avgGrades);
 
           const n_students_per_semester: number[] = [];
 
@@ -967,6 +1009,18 @@ export function Dashboard() {
             n_students_per_semester.push(
               arr.filter((ele: number) => ele).length
             );
+
+            if (
+              n_students_per_semester.length === 1 &&
+              n_students_per_semester[0] === 0
+            ) {
+              n_students_per_semester[0] = filteredGrades[0].length;
+            }
+
+            //number of students with registered courses
+
+            //n_students_per_semester[maxGrades - 1] = registered;
+            console.log("n students per semester: ", n_students_per_semester);
             return (
               arr.reduce((a: number, b: number) => {
                 if (a && b) return a + b;
@@ -975,22 +1029,40 @@ export function Dashboard() {
               }, 0) / (arr.filter((ele: number) => ele).length || 1)
             );
           });
+          let registered = 0;
+          filteredStudentsGrades.map((item) => {
+            if (item.length === maxGrades) {
+              console.log("item.length :", item.length);
+              registered = registered + 1;
+            }
+          });
+          console.log("filteredGrades:", filteredGrades);
+
+          n_students_per_semester.splice(maxGrades - 1, 0, registered);
+          nStudentsComplementaryInfo = n_students_per_semester[0];
 
           const studentTerms = filteredStudents.filter(
             (student) => student.terms.length == filteredMaxTerm
           )[0]?.terms;
+          console.log("studentTerms: ", studentTerms);
 
           const takenTerms = studentTerms?.map((i) => {
             return { year: i.year, term: i.term };
           });
           var cohortLen = filteredAvgGrades.length;
-          if (filteredAvgGrades[filteredAvgGrades.length - 1] === 0) {
-            cohortLen = cohortLen - 1;
+
+          //To do: Refactoring
+          var isZero = true;
+          let i = 1;
+          while (isZero) {
+            if (filteredAvgGrades[filteredAvgGrades.length - i] === 0) {
+              cohortLen = cohortLen - 1;
+            } else {
+              isZero = false;
+            }
+            i++;
           }
-          console.log("grades: ", grades);
-          console.log("allStudentsGrades:", allStudentsGrades);
-          console.log("avgPlan: ", avgGrades.slice(0, cohortLen));
-          console.log("filteredAvg:", filteredAvgGrades);
+          //
           TimeLineComponent = (
             <GroupedTimeLine
               programGrades={avgGrades.slice(0, cohortLen)}
@@ -1020,6 +1092,67 @@ export function Dashboard() {
                 </Flex>
               ))
             : (TakenSemestersComponent = null);
+        }
+
+        if (
+          (filteredEmpleabilityData[0] || filteredComplementaryData[0]) &&
+          user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO
+        ) {
+          if (!chosenCohort?.length) {
+            if (chosenCurriculum?.length) {
+              if (chosenAdmissionType?.length) {
+                if (chosenAdmissionType === "Otro Ingresos especiales") {
+                  nStudentsComplementaryInfo = studentListData?.students_filter.filter(
+                    (stu) =>
+                      dataGroupedSpecialAdmissions?.groupedSpecialTypesAdmission.includes(
+                        stu.admission.type_admission
+                      )
+                  ).length;
+                } else {
+                  nStudentsComplementaryInfo = studentListData?.students_filter.filter(
+                    (stu) =>
+                      stu.admission.type_admission === chosenAdmissionType
+                  ).length;
+                }
+              } else {
+                nStudentsComplementaryInfo =
+                  dataStudentFilterList?.students_filter.length;
+              }
+            } else {
+              nStudentsComplementaryInfo =
+                dataStudentFilterList?.students_filter.length;
+            }
+          }
+
+          GroupedPerformanceInfoComponent = (
+            <GroupedComplementaryInfo
+              total_students={
+                nStudentsComplementaryInfo
+                  ? nStudentsComplementaryInfo
+                  : filteredComplementaryData[0]?.total_students
+              }
+              university_degree_rate={
+                filteredComplementaryData[0]?.university_degree_rate
+              }
+              average_time_university_degree={
+                filteredComplementaryData[0]?.average_time_university_degree
+              }
+              timely_university_degree_rate={
+                filteredComplementaryData[0]?.timely_university_degree_rate
+              }
+              retention_rate={filteredComplementaryData[0]?.retention_rate}
+              empleability_rate={filteredEmpleabilityData[0]?.employed_rate}
+              average_time_finding_job={
+                filteredEmpleabilityData[0]?.average_time_job_finding
+              }
+              empleability_rate_educational_system={
+                filteredEmpleabilityData[0]?.employed_rate_educational_system
+              }
+              inactive_time_rate={
+                filteredComplementaryData[0]?.inactive_time_rate
+              }
+            />
+          );
         }
       }
     }
@@ -1110,7 +1243,6 @@ export function Dashboard() {
     chosenCohort,
     user,
   ]);
-
   const searchError = useMemo(() => {
     return uniq(
       [

@@ -145,19 +145,27 @@ const MainBlockOuter: FC<Pick<ICourse, "code" | "flow" | "requisites">> = memo(
 );
 
 const NameComponent: FC<
-  Pick<ICourse, "code" | "name"> & {
+  Pick<ICourse, "code" | "name" | "mention"> & {
     isOpen: boolean;
   }
-> = memo(({ code, name, isOpen }) => {
+> = memo(({ code, name, mention, isOpen }) => {
+  const config = useContext(ConfigContext);
   return (
     <Stack spacing={1}>
       <Flex alignItems="center"></Flex>
       <Text m={0} whiteSpace="nowrap">
         <b>{code}</b>
       </Text>
-      <Text fontSize={9} maxWidth="150px" pr={1}>
+      <Text fontSize={9} maxWidth="400px" pr={1}>
         {truncate(name, { length: isOpen ? 60 : 35 })}
       </Text>
+      {mention.length > 0 ? (
+        <Text fontSize={9} maxWidth="400px" pr={1} marginBottom={4}>
+          {truncate(config.MENTION + mention, { length: isOpen ? 60 : 0 })}
+        </Text>
+      ) : (
+        ""
+      )}
     </Stack>
   );
 });
@@ -305,6 +313,7 @@ export function GroupedCourseBox({
   code,
   n_total,
   n_passed,
+  mention,
   name,
   credits,
   historicDistribution,
@@ -347,7 +356,12 @@ export function GroupedCourseBox({
       agroupedDistribution={agroupedDistribution}
     >
       <MainBlockOuter flow={flow} requisites={requisites} code={code}>
-        <NameComponent code={code} name={name} isOpen={isOpen} />
+        <NameComponent
+          code={code}
+          name={name}
+          mention={mention}
+          isOpen={isOpen}
+        />
 
         <AnimatePresence>
           {!isOpen && <CreditsComponent key="credits" credits={credits} />}

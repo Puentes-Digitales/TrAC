@@ -187,6 +187,7 @@ export const CurriculumsDataLoader = new DataLoader(
           for (const semester of Object.values(curr.semesters)) {
             for (let index = 0; index < data2.length; ++index) {
               const val = data2[index]!;
+
               if (val.curriculum === curr.id && val.semester === semester.id) {
                 semester.externalEvaluations.push({
                   id: val.id,
@@ -194,7 +195,7 @@ export const CurriculumsDataLoader = new DataLoader(
                 });
                 data2.splice(index, 1);
                 index--;
-              } else if (val.semester === 0) {
+              } else if (val.curriculum === curr.id && val.semester === 0) {
                 /* TODO: generalize, reorder for's  */
                 Object.assign(curr.semesters, {
                   0: {
@@ -342,6 +343,7 @@ export const ExternalEvaluationGroupedStatsDataLoader = new DataLoader(
         const data = await ExternalEvaluationGroupedStatsTable().where({
           program_id: program_id,
         });
+        //console.log("program_id :", program_id, "DATA:", data); //<- si llega EID el problema es el fieldresolver de EE y si no llega el problema está en la query
 
         const groupedData = data.map(
           ({ histogram, histogram_labels, color_bands, ...rest }) => {

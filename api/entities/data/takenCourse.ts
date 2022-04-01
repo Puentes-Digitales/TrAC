@@ -47,6 +47,9 @@ export class TakenCourse implements Pick<Course, "code" | "name"> {
   @Field(() => [DistributionValue])
   currentDistribution: DistributionValue[];
 
+  @Field(() => [DistributionValue])
+  historicalDistribution: DistributionValue[];
+
   // LOGIC, CHOOSE ACCORDINGLY => course_stats => color_bands
   @Field(() => [BandColor])
   bandColors: BandColor[];

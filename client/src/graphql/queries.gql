@@ -125,7 +125,6 @@ mutation searchProgram($id: String, $student_id: String) {
         color
       }
     }
-
     curriculums {
       id
       semesters {
@@ -203,6 +202,10 @@ mutation searchStudent($student_id: String, $program_id: String) {
           label
           value
         }
+        historicalDistribution {
+          label
+          value
+        }
         bandColors {
           min
           max
@@ -252,6 +255,10 @@ query myPrograms {
   }
 }
 
+query groupedSpecialTypesAdmission {
+  groupedSpecialTypesAdmission
+}
+
 mutation track($data: String!, $datetime_client: DateTime!) {
   track(data: $data, datetime_client: $datetime_client)
 }
@@ -276,12 +283,19 @@ query studentsList($program_id: String!) {
   }
 }
 
-query studentsFilterList($program_id: String!, $curriculum: String!) {
-  students_filter(program_id: $program_id, curriculum: $curriculum) {
+query studentsFilterList(
+  $program_id: String!
+  $curriculum: String!
+  $grouped: Boolean!
+) {
+  students_filter(
+    program_id: $program_id
+    curriculum: $curriculum
+    grouped: $grouped
+  ) {
     id
     programs {
       id
-      name
     }
     curriculums
     start_year
@@ -294,6 +308,7 @@ query studentsFilterList($program_id: String!, $curriculum: String!) {
       term
       semestral_grade
       comments
+      program_id
     }
   }
 }

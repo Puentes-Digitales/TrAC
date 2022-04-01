@@ -13794,6 +13794,7 @@ const data: {
               parallelGroup: 0,
               currentDistribution: [],
               bandColors: [],
+              historicalDistribution: [],
             },
             {
               id: 647861,
@@ -13806,6 +13807,7 @@ const data: {
               parallelGroup: 0,
               currentDistribution: [],
               bandColors: [],
+              historicalDistribution: [],
             },
             {
               id: 647823,
@@ -13818,6 +13820,7 @@ const data: {
               parallelGroup: 0,
               currentDistribution: [],
               bandColors: [],
+              historicalDistribution: [],
             },
             {
               id: 606941,
@@ -13830,6 +13833,7 @@ const data: {
               parallelGroup: 0,
               currentDistribution: [],
               bandColors: [],
+              historicalDistribution: [],
             },
             {
               id: 606740,
@@ -13863,6 +13867,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 606465,
@@ -13896,6 +13901,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 606317,
@@ -13929,6 +13935,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
           ],
         },
@@ -14001,6 +14008,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 578302,
@@ -14059,6 +14067,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 546153,
@@ -14071,6 +14080,7 @@ const data: {
               parallelGroup: 0,
               currentDistribution: [],
               bandColors: [],
+              historicalDistribution: [],
             },
             {
               id: 533248,
@@ -14129,6 +14139,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 533139,
@@ -14187,6 +14198,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 532993,
@@ -14245,6 +14257,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 532865,
@@ -14303,6 +14316,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
           ],
         },
@@ -14375,6 +14389,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 455449,
@@ -14433,6 +14448,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 455395,
@@ -14491,6 +14507,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 293724,
@@ -14549,6 +14566,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 293167,
@@ -14607,6 +14625,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 291962,
@@ -14665,6 +14684,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
           ],
         },
@@ -14737,6 +14757,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 455299,
@@ -14773,6 +14794,7 @@ const data: {
                   value: 0,
                 },
               ],
+              historicalDistribution: [],
               bandColors: [
                 {
                   min: 1,
@@ -14805,6 +14827,7 @@ const data: {
               grade: 0,
               state: StateCourse.Failed,
               parallelGroup: 3,
+              historicalDistribution: [],
               currentDistribution: [
                 {
                   label: "1-2",
@@ -14911,6 +14934,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 292004,
@@ -14969,6 +14993,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
           ],
         },
@@ -15041,6 +15066,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 455104,
@@ -15099,6 +15125,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 344984,
@@ -15157,6 +15184,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 292721,
@@ -15215,6 +15243,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 291257,
@@ -15273,6 +15302,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 290420,
@@ -15331,6 +15361,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 288964,
@@ -15389,6 +15420,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
           ],
         },
@@ -15621,6 +15653,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 454517,
@@ -15679,6 +15712,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 289703,
@@ -15737,6 +15771,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 287745,
@@ -15795,6 +15830,7 @@ const data: {
                   color: "#66b43e",
                 },
               ],
+              historicalDistribution: [],
             },
             {
               id: 286927,
@@ -15805,6 +15841,7 @@ const data: {
               grade: 5.6,
               state: StateCourse.Passed,
               parallelGroup: 7,
+              historicalDistribution: [],
               currentDistribution: [
                 {
                   label: "1-2",
@@ -15883,7 +15920,6 @@ const data: {
         programs: [
           {
             id: "1708",
-            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
           },
         ],
         curriculums: ["2017"],
@@ -15896,30 +15932,35 @@ const data: {
             term: TermType.First,
             semestral_grade: 4.3,
             comments: "2019-1",
+            program_id: "1708",
           },
           {
             year: 2018,
             term: TermType.Second,
             semestral_grade: 5.3,
             comments: "2018-2",
+            program_id: "1708",
           },
           {
             year: 2018,
             term: TermType.First,
             semestral_grade: 5.6,
             comments: "2018-1",
+            program_id: "1708",
           },
           {
             year: 2017,
             term: TermType.Second,
             semestral_grade: 5.6,
             comments: "2017-2",
+            program_id: "1708",
           },
           {
             year: 2017,
             term: TermType.First,
             semestral_grade: 4.6,
             comments: "2017-1",
+            program_id: "1708",
           },
         ],
       },
@@ -15928,7 +15969,6 @@ const data: {
         programs: [
           {
             id: "1708",
-            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
           },
         ],
         curriculums: ["2017"],
@@ -15941,30 +15981,35 @@ const data: {
             term: TermType.First,
             semestral_grade: 1.8,
             comments: "2019-1",
+            program_id: "1708",
           },
           {
             year: 2018,
             term: TermType.Second,
             semestral_grade: 3.7,
             comments: "2018-2",
+            program_id: "1708",
           },
           {
             year: 2018,
             term: TermType.First,
             semestral_grade: 4.6,
             comments: "2018-1",
+            program_id: "1708",
           },
           {
             year: 2017,
             term: TermType.Second,
             semestral_grade: 6.1,
             comments: "2017-2",
+            program_id: "1708",
           },
           {
             year: 2017,
             term: TermType.First,
             semestral_grade: 1.6,
             comments: "2017-1",
+            program_id: "1708",
           },
         ],
       },
@@ -15973,7 +16018,6 @@ const data: {
         programs: [
           {
             id: "1708",
-            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
           },
         ],
         curriculums: ["2017"],
@@ -15986,6 +16030,7 @@ const data: {
             term: TermType.First,
             semestral_grade: 4.1,
             comments: "2019-1",
+            program_id: "1708",
           },
 
           {
@@ -15993,24 +16038,28 @@ const data: {
             term: TermType.Second,
             semestral_grade: 7.0,
             comments: "2018-2",
+            program_id: "1708",
           },
           {
             year: 2018,
             term: TermType.First,
             semestral_grade: 4.1,
             comments: "2018-1",
+            program_id: "1708",
           },
           {
             year: 2017,
             term: TermType.Second,
             semestral_grade: 6.8,
             comments: "2017-2",
+            program_id: "1708",
           },
           {
             year: 2017,
             term: TermType.First,
             semestral_grade: 3.6,
             comments: "2017-1",
+            program_id: "1708",
           },
         ],
       },
@@ -16019,7 +16068,6 @@ const data: {
         programs: [
           {
             id: "1708",
-            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
           },
         ],
         curriculums: ["2015"],
@@ -16032,42 +16080,49 @@ const data: {
             term: TermType.First,
             semestral_grade: 4.7,
             comments: "",
+            program_id: "1708",
           },
           {
             year: 2018,
             term: TermType.Second,
             semestral_grade: 5.1,
             comments: "",
+            program_id: "1708",
           },
           {
             year: 2018,
             term: TermType.First,
             semestral_grade: 5.6,
             comments: "",
+            program_id: "1708",
           },
           {
             year: 2017,
             term: TermType.Second,
             semestral_grade: 5.6,
             comments: "",
+            program_id: "1708",
           },
           {
             year: 2017,
             term: TermType.First,
             semestral_grade: 4.6,
             comments: "",
+            program_id: "1708",
           },
           {
             year: 2016,
             term: TermType.Second,
             semestral_grade: 5.8,
             comments: "",
+            program_id: "1708",
           },
           {
             year: 2016,
             term: TermType.First,
             semestral_grade: 4.9,
             comments: "",
+            program_id: "1708",
           },
         ],
       },
@@ -16076,7 +16131,6 @@ const data: {
         programs: [
           {
             id: "1708",
-            name: "INGENIERÍA CIVIL EN INFORMÁTICA",
           },
         ],
         curriculums: ["2015"],
@@ -16089,42 +16143,49 @@ const data: {
             term: TermType.First,
             semestral_grade: 3.1,
             comments: "",
+            program_id: "1708",
           },
           {
             year: 2018,
             term: TermType.Second,
             semestral_grade: 1.0,
             comments: "",
+            program_id: "1708",
           },
           {
             year: 2018,
             term: TermType.First,
             semestral_grade: 4.1,
             comments: "",
+            program_id: "1708",
           },
           {
             year: 2017,
             term: TermType.Second,
             semestral_grade: 6.8,
             comments: "",
+            program_id: "1708",
           },
           {
             year: 2017,
             term: TermType.First,
             semestral_grade: 2.6,
             comments: "",
+            program_id: "1708",
           },
           {
             year: 2016,
             term: TermType.Second,
             semestral_grade: 6.8,
             comments: "",
+            program_id: "1708",
           },
           {
             year: 2016,
             term: TermType.First,
             semestral_grade: 2.6,
             comments: "",
+            program_id: "1708",
           },
         ],
       },

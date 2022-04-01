@@ -183,10 +183,17 @@ export function Histogram({
             scale={axisLeftScale as AxisScale}
             hideAxisLine={true}
             tickLength={4}
-            numTicks={4}
+            numTicks={
+              Math.max(...distribution.map(({ value }) => value)) < 4
+                ? Math.max(...distribution.map(({ value }) => value))
+                : 4
+            }
             stroke={textColor}
             tickStroke={textColor}
             labelProps={{ fill: textColor }}
+            tickFormat={(n) => {
+              return n.toString();
+            }}
           />
         </svg>
       </svg>

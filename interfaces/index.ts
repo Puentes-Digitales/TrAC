@@ -22,6 +22,7 @@ export type ITakenCourse = {
   grade?: number;
   state?: StateCourse;
   currentDistribution?: IDistribution[];
+  historicalDistribution?: IDistribution[];
   parallelGroup?: number;
   bandColors?: { min: number; max: number; color: string }[];
 };
@@ -62,6 +63,7 @@ export type IGroupedCourse = {
   name: string;
   credits: { label: string; value: number }[];
   flow: string[];
+  mention: string;
   requisites: string[];
   historicDistribution: IDistribution[];
   agroupedDistribution: IDistribution[];
@@ -84,6 +86,8 @@ export type ITopicExternalEvaluation = {
   topic?: string;
   distribution?: IDistribution[];
   color_bands?: { min: number; max: number; color: string }[];
+  n_total: number;
+  n_pass: number;
 };
 
 export type IImagesID = {
@@ -92,5 +96,19 @@ export type IImagesID = {
   text: string;
   height: number;
   width: number;
+};
+export type IGroupedImagesID = {
+  id: string;
+  value: string;
+  text: string;
+  secondtext: string;
+  texts: string[];
+  height: number;
+  width: number;
+};
+
+export type IGroupedVariable = {
+  id: string;
+  value?: string;
 };
 export * from "./utils";
