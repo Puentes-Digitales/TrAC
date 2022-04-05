@@ -143,6 +143,8 @@ export const StudentList: FC<{
     RISK_LOW_COLOR,
     CHECK_STUDENT_FROM_LIST_LABEL,
     NO_INFORMATION_TO_DEPLOY,
+    RISK_BY_COURSES_LABEL,
+    RISK_BY_STUDENTS_LABEL,
     RISK_ALL,
     RISK_STUDENT_PENDING_OF_GRADUATION,
     RISK_LOW_PASSING_RATE_COURSES,
@@ -424,12 +426,12 @@ export const StudentList: FC<{
 
   const panes = [
     {
-      menuItem: "Riegos por estudiantes",
+      menuItem: RISK_BY_STUDENTS_LABEL,
       render: () => <></>,
       tabIndex: 0,
     },
     {
-      menuItem: "Riesgos por cursos",
+      menuItem: RISK_BY_COURSES_LABEL,
       render: () => <></>,
       tabIndex: 1,
     },

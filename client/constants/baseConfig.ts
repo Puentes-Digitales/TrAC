@@ -450,6 +450,8 @@ export const baseConfig = {
   MESSAGE_SUBJECT: "Novedades en TrAC-FID",
   DEFAULT_MESSAGE: "Se ha actualizado la base de datos de TrAC-FID",
   NO_INFORMATION_TO_DEPLOY: "No hay información para mostrar",
+  RISK_BY_STUDENTS_LABEL: "Riesgos por estudiantes",
+  RISK_BY_COURSES_LABEL: "Riesgos por cursos",
   RISK_ALL: "Todos",
   RISK_STUDENT_PENDING_OF_GRADUATION: "Pendientes de Titulación ",
   RISK_HIGH_DROP_RATE: "Cursos con alto tasa de anulacion",
