@@ -14,6 +14,9 @@ export class Student {
   // student => name
   @Field()
   name: string;
+  // student => name
+  @Field()
+  student_rut: string;
 
   // student => state
   @Field()

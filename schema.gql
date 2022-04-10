@@ -354,6 +354,7 @@ type Query {
   currentUser: AuthResult
   feedbackResults(user_ids: [String!]): [FeedbackResult!]!
   getPersistenceValue(key: String!): Persistence
+  groupedSpecialTypesAdmission: String!
   myPrograms: [Program!]!
   NotificationsData: [Notifications!]!
   parameters: [Parameter!]!
@@ -363,7 +364,11 @@ type Query {
     risk_type: String!
   ): [riskNotification!]!
   students(last_n_years: Int = 2, program_id: String!): [Student!]!
-  students_filter(curriculum: String!, program_id: String!): [Student!]!
+  students_filter(
+    curriculum: String!
+    grouped: Boolean!
+    program_id: String!
+  ): [Student!]!
   trackInfo(maxDate: DateTime!, minDate: DateTime!): [Track!]!
   unansweredForm: FeedbackForm
   userPersistences(user: String!): [Persistence!]!
@@ -412,6 +417,7 @@ type Student {
   progress: Float!
   start_year: Int!
   state: String!
+  student_rut: String!
   terms: [Term!]!
 }
 
@@ -421,6 +427,7 @@ type TakenCourse {
   currentDistribution: [DistributionValue!]!
   equiv: String!
   grade: Float!
+  historicalDistribution: [DistributionValue!]!
   id: Int!
   name: String!
   parallelGroup: Int!
@@ -445,6 +452,7 @@ type Term {
   cumulated_grade: Float!
   id: Int!
   program_grade: Float!
+  program_id: String!
   semestral_grade: Float!
   situation: String!
   student_id: String!

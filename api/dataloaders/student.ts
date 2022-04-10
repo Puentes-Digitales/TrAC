@@ -40,6 +40,37 @@ export const StudentDataLoader = new DataLoader(
   }
 );
 
+export const StudentViaProgramsDataLoader2 = new DataLoader(
+  async (
+    keys: readonly {
+      student_id: string;
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ student_id, program_id }) => {
+        console.log(student_id, program_id);
+        return StudentProgramTable()
+          .select("program_id", "name", "state", "curriculum", "mention")
+          .innerJoin<IStudent>(
+            STUDENT_TABLE,
+            `${STUDENT_TABLE}.id`,
+            `${STUDENT_PROGRAM_TABLE}.student_id`
+          )
+          .orderBy("last_term", "desc")
+          .where({ student_id, program_id })
+          .first();
+      })
+    );
+  },
+  {
+    cacheKeyFn: ({ student_id, program_id }) => {
+      return student_id + program_id;
+    },
+    cacheMap: new LRUMap(1000),
+  }
+);
+
 export const StudentViaProgramsDataLoader = new DataLoader(
   async (student_ids: readonly string[]) => {
     return await Promise.all(
@@ -139,10 +170,60 @@ export const StudentTermsDataLoader = new DataLoader(
   }
 );
 
-export const StudentDropoutDataLoader = new DataLoader(
+/*New dataLoader that receive program_id and student_id as parameters */
+export const StudentStartYearDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      student_id: string;
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ student_id, program_id }) => {
+        return StudentProgramTable()
+          .select("*")
+          .orderBy("last_term", "desc")
+          .where({
+            student_id,
+            program_id,
+          })
+          .first();
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const GroupedAdmissionDataLoader = new DataLoader(
+  async (
+    keys: readonly {
+      student_id: string;
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(async ({ student_id, program_id }) => {
+        const dataDict: Dictionary<IStudentAdmission | undefined> = keyBy(
+          await StudentAdmissionTable()
+            .where("student_id", student_id)
+            .where("program_id", program_id),
+          "student_id"
+        );
+        return dataDict[student_id];
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentAdmissionDataLoader = new DataLoader(
   async (student_ids: readonly string[]) => {
-    const dataDict: Dictionary<IStudentDropout | undefined> = keyBy(
-      await StudentDropoutTable().whereIn("student_id", student_ids),
+    const dataDict: Dictionary<IStudentAdmission | undefined> = keyBy(
+      await StudentAdmissionTable().whereIn("student_id", student_ids),
       "student_id"
     );
     return student_ids.map((id) => {
@@ -154,10 +235,10 @@ export const StudentDropoutDataLoader = new DataLoader(
   }
 );
 
-export const StudentAdmissionDataLoader = new DataLoader(
+export const StudentDropoutDataLoader = new DataLoader(
   async (student_ids: readonly string[]) => {
-    const dataDict: Dictionary<IStudentAdmission | undefined> = keyBy(
-      await StudentAdmissionTable().whereIn("student_id", student_ids),
+    const dataDict: Dictionary<IStudentDropout | undefined> = keyBy(
+      await StudentDropoutTable().whereIn("student_id", student_ids),
       "student_id"
     );
     return student_ids.map((id) => {
@@ -211,21 +292,36 @@ export const StudentListFilterDataLoader = new DataLoader(
     keys: readonly {
       program_id: string;
       curriculum: string;
+      grouped: boolean;
     }[]
   ) => {
     return await Promise.all(
-      keys.map(({ program_id, curriculum }) => {
-        return StudentProgramTable()
-          .select("*")
-          .join<IStudent>(
-            STUDENT_TABLE,
-            `${STUDENT_PROGRAM_TABLE}.student_id`,
-            `${STUDENT_TABLE}.id`
-          )
-          .where({
-            program_id,
-            curriculum,
-          });
+      keys.map(({ program_id, curriculum, grouped }) => {
+        if (curriculum === "" && grouped) {
+          //To do refactoring, number students complementary info match semesters
+          return StudentProgramTable()
+            .select("*")
+            .join<IStudent>(
+              STUDENT_TABLE,
+              `${STUDENT_PROGRAM_TABLE}.student_id`,
+              `${STUDENT_TABLE}.id`
+            )
+            .where({
+              program_id,
+            });
+        } else {
+          return StudentProgramTable()
+            .select("*")
+            .join<IStudent>(
+              STUDENT_TABLE,
+              `${STUDENT_PROGRAM_TABLE}.student_id`,
+              `${STUDENT_TABLE}.id`
+            )
+            .where({
+              program_id,
+              curriculum,
+            });
+        }
       })
     );
   },

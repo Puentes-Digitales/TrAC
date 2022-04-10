@@ -127,6 +127,9 @@ export class TakenCourseResolver {
       term: dataTakenCourse.term,
       p_group: dataTakenCourse.p_group,
     });
+    if (code === "ILLI066-98") {
+      console.log("ILLI066-98:", histogramData);
+    }
 
     if (histogramData === undefined) {
       return [];
@@ -147,7 +150,53 @@ export class TakenCourseResolver {
       };
     });
   }
+  @FieldResolver()
+  async historicalDistribution(
+    @Root()
+    { id, code }: PartialTakenCourse
+  ): Promise<$PropertyType<TakenCourse, "currentDistribution">> {
+    assertIsDefined(
+      id,
+      `id needs to be available for Taken Course field resolvers`
+    );
+    assertIsDefined(
+      code,
+      `code needs to be available for Taken Course field resolvers`
+    );
 
+    const dataTakenCourse = await StudentCourseDataLoader.load(id);
+
+    assertIsDefined(
+      dataTakenCourse,
+      `Data of the taken course ${id} ${code} could not be found!`
+    );
+
+    const histogramData = await CourseStatsByStateDataLoader.load({
+      course_taken: code,
+      year: -1,
+      term: -1,
+      p_group: -1,
+    });
+
+    if (histogramData === undefined) {
+      return [];
+    }
+
+    assertIsDefined(
+      histogramData,
+      `Stats Data of the taken course ${id} ${code} could not be found!`
+    );
+
+    const histogramValues = histogramData.histogram.split(",").map(toInteger);
+    const histogramLabels = histogramData.histogram_labels.split(",");
+
+    return histogramValues.map((value, key) => {
+      return {
+        label: histogramLabels[key] ?? `${key}`,
+        value,
+      };
+    });
+  }
   @FieldResolver()
   async bandColors(
     @Root() { code, equiv }: PartialTakenCourse

@@ -145,7 +145,7 @@ const SecondaryBlockOuter: FC<{
   borderColor: string;
 }> = memo(({ children, borderColor, n_total, n_passed }) => {
   const config = useContext(ConfigContext);
-
+  console.log("n_total :", n_total, ", n_passed", n_passed);
   const { colorMode } = useColorMode();
 
   const grouped_box = config.GROPUED_COURSE_BOX_COLORS;
@@ -257,11 +257,16 @@ export function GroupedExternalEvaluationBox({
   code,
   name,
   taken,
-  n_total,
-  n_passed,
+  n_total, //TODO:deprecated, change type and delete
+  n_passed, //TODO:deprecated, change type and delete
 }: IGroupedExternalEvaluation) {
   const config = useContext(ConfigContext);
-
+  var n_total_sum = 0;
+  var n_passed_sum = 0;
+  taken.map(({ n_total, n_pass }) => {
+    n_total_sum = n_total_sum + n_total;
+    n_passed_sum = n_passed_sum + n_pass;
+  });
   const activeCourse = CoursesDashboardStore.hooks.useActiveCourse(code);
   const activeFlow = CoursesDashboardStore.hooks.useActiveFlow(code);
   const activeRequisites = CoursesDashboardStore.hooks.useActiveRequisites(
@@ -316,8 +321,9 @@ export function GroupedExternalEvaluationBox({
         </AnimatePresence>
       </MainBlockOuter>
       <SecondaryBlockOuter
-        n_passed={n_passed}
-        n_total={n_total}
+        //
+        n_passed={n_passed_sum}
+        n_total={n_total_sum}
         borderColor={borderColor}
       ></SecondaryBlockOuter>
     </OuterCourseBox>

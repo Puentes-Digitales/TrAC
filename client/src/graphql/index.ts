@@ -417,6 +417,7 @@ export type Query = {
   currentUser?: Maybe<AuthResult>;
   feedbackResults: Array<FeedbackResult>;
   getPersistenceValue?: Maybe<Persistence>;
+  groupedSpecialTypesAdmission: Scalars["String"];
   myPrograms: Array<Program>;
   NotificationsData: Array<Notifications>;
   parameters: Array<Parameter>;
@@ -455,6 +456,7 @@ export type QueryStudentsArgs = {
 
 export type QueryStudents_FilterArgs = {
   curriculum: Scalars["String"];
+  grouped: Scalars["Boolean"];
   program_id: Scalars["String"];
 };
 
@@ -507,6 +509,7 @@ export type Student = {
   progress: Scalars["Float"];
   start_year: Scalars["Int"];
   state: Scalars["String"];
+  student_rut: Scalars["String"];
   terms: Array<Term>;
 };
 
@@ -516,6 +519,7 @@ export type TakenCourse = {
   currentDistribution: Array<DistributionValue>;
   equiv: Scalars["String"];
   grade: Scalars["Float"];
+  historicalDistribution: Array<DistributionValue>;
   id: Scalars["Int"];
   name: Scalars["String"];
   parallelGroup: Scalars["Int"];
@@ -540,6 +544,7 @@ export type Term = {
   cumulated_grade: Scalars["Float"];
   id: Scalars["Int"];
   program_grade: Scalars["Float"];
+  program_id: Scalars["String"];
   semestral_grade: Scalars["Float"];
   situation: Scalars["String"];
   student_id: Scalars["String"];
@@ -983,6 +988,9 @@ export type SearchStudentMutation = {
               currentDistribution: Array<
                 Pick<DistributionValue, "label" | "value">
               >;
+              historicalDistribution: Array<
+                Pick<DistributionValue, "label" | "value">
+              >;
               bandColors: Array<Pick<BandColor, "min" | "max" | "color">>;
             }
           >;
@@ -1028,6 +1036,15 @@ export type MyProgramsQuery = {
   myPrograms: Array<Pick<Program, "id" | "name">>;
 };
 
+export type GroupedSpecialTypesAdmissionQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type GroupedSpecialTypesAdmissionQuery = Pick<
+  Query,
+  "groupedSpecialTypesAdmission"
+>;
+
 export type TrackMutationVariables = Exact<{
   data: Scalars["String"];
   datetime_client: Scalars["DateTime"];
@@ -1045,7 +1062,7 @@ export type StudentsListQueryVariables = Exact<{
 
 export type StudentsListQuery = {
   students: Array<
-    Pick<Student, "id" | "progress" | "start_year"> & {
+    Pick<Student, "id" | "name" | "progress" | "start_year"> & {
       dropout?: Maybe<Pick<Dropout, "prob_dropout" | "explanation">>;
       admission: Pick<Admission, "type_admission">;
     }
@@ -1055,15 +1072,19 @@ export type StudentsListQuery = {
 export type StudentsFilterListQueryVariables = Exact<{
   program_id: Scalars["String"];
   curriculum: Scalars["String"];
+  grouped: Scalars["Boolean"];
 }>;
 
 export type StudentsFilterListQuery = {
   students_filter: Array<
     Pick<Student, "id" | "curriculums" | "start_year" | "mention"> & {
-      programs: Array<Pick<Program, "id" | "name">>;
+      programs: Array<Pick<Program, "id">>;
       admission: Pick<Admission, "type_admission">;
       terms: Array<
-        Pick<Term, "year" | "term" | "semestral_grade" | "comments">
+        Pick<
+          Term,
+          "year" | "term" | "semestral_grade" | "comments" | "program_id"
+        >
       >;
     }
   >;
@@ -2673,6 +2694,10 @@ export const SearchStudentDocument = gql`
             label
             value
           }
+          historicalDistribution {
+            label
+            value
+          }
           bandColors {
             min
             max
@@ -2811,6 +2836,59 @@ export type MyProgramsQueryResult = Apollo.QueryResult<
   MyProgramsQuery,
   MyProgramsQueryVariables
 >;
+export const GroupedSpecialTypesAdmissionDocument = gql`
+  query groupedSpecialTypesAdmission {
+    groupedSpecialTypesAdmission
+  }
+`;
+
+/**
+ * __useGroupedSpecialTypesAdmissionQuery__
+ *
+ * To run a query within a React component, call `useGroupedSpecialTypesAdmissionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGroupedSpecialTypesAdmissionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGroupedSpecialTypesAdmissionQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGroupedSpecialTypesAdmissionQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GroupedSpecialTypesAdmissionQuery,
+    GroupedSpecialTypesAdmissionQueryVariables
+  >
+) {
+  return Apollo.useQuery<
+    GroupedSpecialTypesAdmissionQuery,
+    GroupedSpecialTypesAdmissionQueryVariables
+  >(GroupedSpecialTypesAdmissionDocument, baseOptions);
+}
+export function useGroupedSpecialTypesAdmissionLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GroupedSpecialTypesAdmissionQuery,
+    GroupedSpecialTypesAdmissionQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<
+    GroupedSpecialTypesAdmissionQuery,
+    GroupedSpecialTypesAdmissionQueryVariables
+  >(GroupedSpecialTypesAdmissionDocument, baseOptions);
+}
+export type GroupedSpecialTypesAdmissionQueryHookResult = ReturnType<
+  typeof useGroupedSpecialTypesAdmissionQuery
+>;
+export type GroupedSpecialTypesAdmissionLazyQueryHookResult = ReturnType<
+  typeof useGroupedSpecialTypesAdmissionLazyQuery
+>;
+export type GroupedSpecialTypesAdmissionQueryResult = Apollo.QueryResult<
+  GroupedSpecialTypesAdmissionQuery,
+  GroupedSpecialTypesAdmissionQueryVariables
+>;
 export const TrackDocument = gql`
   mutation track($data: String!, $datetime_client: DateTime!) {
     track(data: $data, datetime_client: $datetime_client)
@@ -2903,6 +2981,7 @@ export const StudentsListDocument = gql`
   query studentsList($program_id: String!) {
     students(program_id: $program_id) {
       id
+      name
       progress
       start_year
       dropout {
@@ -2965,12 +3044,19 @@ export type StudentsListQueryResult = Apollo.QueryResult<
   StudentsListQueryVariables
 >;
 export const StudentsFilterListDocument = gql`
-  query studentsFilterList($program_id: String!, $curriculum: String!) {
-    students_filter(program_id: $program_id, curriculum: $curriculum) {
+  query studentsFilterList(
+    $program_id: String!
+    $curriculum: String!
+    $grouped: Boolean!
+  ) {
+    students_filter(
+      program_id: $program_id
+      curriculum: $curriculum
+      grouped: $grouped
+    ) {
       id
       programs {
         id
-        name
       }
       curriculums
       start_year
@@ -2983,6 +3069,7 @@ export const StudentsFilterListDocument = gql`
         term
         semestral_grade
         comments
+        program_id
       }
     }
   }
@@ -3002,6 +3089,7 @@ export const StudentsFilterListDocument = gql`
  *   variables: {
  *      program_id: // value for 'program_id'
  *      curriculum: // value for 'curriculum'
+ *      grouped: // value for 'grouped'
  *   },
  * });
  */

@@ -12,6 +12,10 @@ registerEnumType(TermType, {
 
 @ObjectType({ simpleResolvers: true })
 export class Term {
+  // student_term => program_id
+  @Field()
+  program_id: string;
+
   // student_term => id
   @Field(() => Int)
   id: number;
