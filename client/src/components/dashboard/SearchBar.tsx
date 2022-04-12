@@ -175,8 +175,19 @@ export const SearchBar: FC<{
     setGroupedActive(false);
     setMock(false);
   }, []);
-
   const { user } = useUser();
+  const handleHelpDeskClick = () => {
+    //push (user, localhost:8080)
+    //var receiver = window.open("http://localhost:8080/")
+    //receiver?.postMessage('Hola','http://localhost:8080/')
+    console.log("handlingHelpdeskClick");
+    //data.created_at = '2022-02-29 20:04:11-06';
+    fetch("http://localhost:3001/login/test", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    });
+  };
 
   const isDirector = user?.type === UserType.Director;
 
@@ -196,6 +207,7 @@ export const SearchBar: FC<{
     GROUPED_ON,
     GROUPED_OFF,
     SHOW_PARAMETER,
+    HELP_DESK_LABEL,
   } = useContext(ConfigContext);
 
   const {
@@ -345,6 +357,17 @@ export const SearchBar: FC<{
         )}
 
         {HELP_ENABLED && <Help />}
+        {
+          <Button
+            size="medium"
+            icon
+            labelPosition="left"
+            onClick={handleHelpDeskClick}
+          >
+            <Icon name="help circle" />
+            {HELP_DESK_LABEL}
+          </Button>
+        }
         {isDirector && SHOW_PARAMETER && <Parameter mockIsActive={mock} />}
         <Button
           css={marginLeft5px}

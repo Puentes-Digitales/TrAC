@@ -26,17 +26,17 @@ export const app = Fastify({
 app.register(helmet, {
   contentSecurityPolicy: {
     directives: {
-      "default-src": "'self'",
+      "default-src": "'self' http://localhost:3001/login",
       "style-src":
         "'self' https://cdn.jsdelivr.net https://fonts.googleapis.com 'unsafe-inline'",
       "script-src": IS_DEVELOPMENT
-        ? "'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net"
+        ? "'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net "
         : /** 'self' - altair - voyager - cdn */ "'self' 'sha256-US93NNvzxqNwZq4vsTymtyO9e1JOnGB6vGy83vG+uuw=' 'sha256-YxOTuTvyNLHJOis3NYhQFhTdPRWuJIRWCv6cons2/b4=' https://cdn.jsdelivr.net",
       "font-src":
         "'self' https://fonts.gstatic.com https://cdn.jsdelivr.net data:",
       "img-src": `'self' data:`,
       "connect-src":
-        "'self' https://cdn.jsdelivr.net https://fonts.googleapis.com",
+        "'self' https://cdn.jsdelivr.net https://fonts.googleapis.com http://localhost:3001/login http://localhost:3001/login/test",
       "worker-src": "'self' blob:",
       "object-src": "'self' data:",
     },
