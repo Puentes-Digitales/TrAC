@@ -146,11 +146,17 @@ export const StudentList: FC<{
     RISK_BY_COURSES_LABEL,
     RISK_BY_STUDENTS_LABEL,
     RISK_ALL,
+    RISK_ALL_TOOLTIP,
     RISK_STUDENT_PENDING_OF_GRADUATION,
+    RISK_STUDENT_PENDING_OF_GRADUATION_TOOLTIP,
     RISK_LOW_PASSING_RATE_COURSES,
+    RISK_LOW_PASSING_RATE_COURSES_TOOLTIP,
     RISK_LOW_PROGRESSING_RATE,
+    RISK_LOW_PROGRESSING_RATE_TOOLTIP,
     RISK_THIRD_ATTEMPT,
+    RISK_THIRD_ATTEMPT_TOOLTIP,
     RISK_HIGH_DROP_RATE,
+    RISK_HIGH_DROP_RATE_TOOTLTIP,
     COURSE_LABEL,
     YEAR_LABEL,
     TERM_LABEL,
@@ -162,6 +168,11 @@ export const StudentList: FC<{
     RISK_ALL
   );
 
+  var [riskTypeTooltip, setRiskTypeTooltip] = useRememberState(
+    "risk_tooltip_selected",
+    ""
+  );
+
   var [courseRisk, setCourseRisk] = useRememberState(
     "course_risk_selected",
     false
@@ -169,6 +180,7 @@ export const StudentList: FC<{
   const studentListData = useMemo(() => {
     switch (riskType) {
       case RISK_ALL:
+        setRiskTypeTooltip(RISK_ALL_TOOLTIP);
         return (
           dataStudentList?.students.map(
             ({ id, start_year, progress, dropout, name }) => {
@@ -188,6 +200,7 @@ export const StudentList: FC<{
           ) ?? []
         );
       case RISK_STUDENT_PENDING_OF_GRADUATION:
+        setRiskTypeTooltip(RISK_STUDENT_PENDING_OF_GRADUATION_TOOLTIP);
         return (
           studentPendingOfGraduation?.riskNotification.map(
             ({ student_id, cohort, risk_type, details }) => {
@@ -209,6 +222,7 @@ export const StudentList: FC<{
           ) ?? []
         );
       case RISK_LOW_PROGRESSING_RATE:
+        setRiskTypeTooltip(RISK_LOW_PROGRESSING_RATE_TOOLTIP);
         return (
           lowProgressingRate?.riskNotification.map(
             ({ student_id, cohort, risk_type, details }) => {
@@ -231,6 +245,7 @@ export const StudentList: FC<{
         );
 
       case RISK_THIRD_ATTEMPT:
+        setRiskTypeTooltip(RISK_THIRD_ATTEMPT_TOOLTIP);
         return (
           thirdAttempt?.riskNotification.map(
             ({ student_id, course_id, cohort, risk_type, details }) => {
@@ -255,6 +270,7 @@ export const StudentList: FC<{
         );
 
       case RISK_LOW_PASSING_RATE_COURSES:
+        setRiskTypeTooltip(RISK_LOW_PASSING_RATE_COURSES_TOOLTIP);
         return (
           lowPassingRateCourses?.riskNotification.map(
             ({ course_id, cohort, risk_type, details }) => {
@@ -278,6 +294,7 @@ export const StudentList: FC<{
           ) ?? []
         );
       case RISK_HIGH_DROP_RATE:
+        setRiskTypeTooltip(RISK_HIGH_DROP_RATE_TOOTLTIP);
         return (
           highDropRate?.riskNotification.map(
             ({ course_id, cohort, risk_type, details }) => {
@@ -602,42 +619,45 @@ export const StudentList: FC<{
 
           <br />
           <Box>
-            <Select
-              value={riskType}
-              onChange={(e) => setRiskType(e.currentTarget.value)}
-              pl={6}
-              height="2.5rem"
-              width="25%"
-              position="absolute"
-              size="lg"
-              color="Black"
-              bg="white"
-            >
-              {courseRisk && (
-                <>
-                  <option value={RISK_ALL}>{RISK_ALL}</option>
-                  <option value={RISK_STUDENT_PENDING_OF_GRADUATION}>
-                    {RISK_STUDENT_PENDING_OF_GRADUATION}
-                  </option>
-                  <option value={RISK_LOW_PROGRESSING_RATE}>
-                    {RISK_LOW_PROGRESSING_RATE}
-                  </option>
-                  <option value={RISK_THIRD_ATTEMPT}>
-                    {RISK_THIRD_ATTEMPT}
-                  </option>
-                </>
-              )}
-              {!courseRisk && (
-                <>
-                  <option value={RISK_LOW_PASSING_RATE_COURSES}>
-                    {RISK_LOW_PASSING_RATE_COURSES}
-                  </option>
-                  <option value={RISK_HIGH_DROP_RATE}>
-                    {RISK_HIGH_DROP_RATE}
-                  </option>
-                </>
-              )}
-            </Select>
+            <Tooltip hasArrow label={riskTypeTooltip}>
+              <Select
+                value={riskType}
+                onChange={(e) => setRiskType(e.currentTarget.value)}
+                pl={6}
+                height="2.5rem"
+                width="25%"
+                position="absolute"
+                size="lg"
+                color="Black"
+                bg="white"
+              >
+                {courseRisk && (
+                  <>
+                    <option value={RISK_ALL}>{RISK_ALL}</option>
+                    <option value={RISK_STUDENT_PENDING_OF_GRADUATION}>
+                      {RISK_STUDENT_PENDING_OF_GRADUATION}
+                    </option>
+                    <option value={RISK_LOW_PROGRESSING_RATE}>
+                      {RISK_LOW_PROGRESSING_RATE}
+                    </option>
+                    <option value={RISK_THIRD_ATTEMPT}>
+                      {RISK_THIRD_ATTEMPT}
+                    </option>
+                  </>
+                )}
+                {!courseRisk && (
+                  <>
+                    <option value={RISK_LOW_PASSING_RATE_COURSES}>
+                      {RISK_LOW_PASSING_RATE_COURSES}
+                    </option>
+                    <option value={RISK_HIGH_DROP_RATE}>
+                      {RISK_HIGH_DROP_RATE}
+                    </option>
+                  </>
+                )}
+              </Select>
+            </Tooltip>
+
             <Center>
               <Pagination
                 css={[textAlignCenter, { alignSelf: "center" }]}

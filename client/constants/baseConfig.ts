@@ -453,15 +453,25 @@ export const baseConfig = {
   RISK_BY_STUDENTS_LABEL: "Riesgos por estudiantes",
   RISK_BY_COURSES_LABEL: "Riesgos por cursos",
   RISK_ALL: "Todos",
+  RISK_ALL_TOOLTIP: "Todos los alumnos cursando asignaturas",
   RISK_STUDENT_PENDING_OF_GRADUATION: "Pendientes de Titulación ",
+  RISK_STUDENT_PENDING_OF_GRADUATION_TOOLTIP:
+    "Estudiantes que deberían haberse titulado según su cohorte",
   RISK_HIGH_DROP_RATE: "Cursos con alto tasa de anulacion",
+  RISK_HIGH_DROP_RATE_TOOTLTIP: "Cursos con mayor tasa de anulación",
   RISK_LOW_PROGRESSING_RATE: "Avance menor al umbral (50%)",
+  RISK_LOW_PROGRESSING_RATE_TOOLTIP:
+    "Bajo avance en su curriculum respecto a su cohorte",
   MESSAGE_RISK_HEADER: "Situaciones de riesgo",
   MESSAGE_RISK_BODY: "Se han encontrado las siguientes situaciones de riesgo: ",
   MESSAGE_RISK_GIF: "Cómo visualizar situaciones de riesgo en TrAC-FID : ",
   MESSAGE_RISK_FOOTER: "Para mayor información visite : ",
   RISK_THIRD_ATTEMPT: "Asignaturas por tercera vez",
+  RISK_THIRD_ATTEMPT_TOOLTIP:
+    "Estudiantes que cursarán por tecera vez una asignatura",
   RISK_LOW_PASSING_RATE_COURSES: "Cursos con bajo nivel de aprobación",
+  RISK_LOW_PASSING_RATE_COURSES_TOOLTIP:
+    "Cursos que tiene un bajo nivel de aprobación",
   GROUPED_DATA: "Datos agrupados",
   EMPLOYABILITY_DATA: "Datos empleabilidad",
   ACADEMIC_DATA: "Datos académicos",
