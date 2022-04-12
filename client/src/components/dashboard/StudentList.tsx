@@ -170,7 +170,7 @@ export const StudentList: FC<{
 
   var [riskTypeTooltip, setRiskTypeTooltip] = useRememberState(
     "risk_tooltip_selected",
-    ""
+    RISK_ALL_TOOLTIP
   );
 
   var [courseRisk, setCourseRisk] = useRememberState(
