@@ -469,7 +469,7 @@ export const baseConfig = {
     "Cursos con tasa de anulación mayor o igual al 30% ",
   RISK_LOW_PASSING_RATE_COURSES: "Cursos con alta tasa de reprobación",
   RISK_LOW_PASSING_RATE_COURSES_TOOLTIP:
-    "Cursos con tasa de reprobación mayor o igual al 30%",
+    "Cursos con tasa de reprobación mayor o igual al 20%",
   GROUPED_DATA: "Datos agrupados",
   EMPLOYABILITY_DATA: "Datos empleabilidad",
   ACADEMIC_DATA: "Datos académicos",
