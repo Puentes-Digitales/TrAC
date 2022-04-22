@@ -143,24 +143,28 @@ export const TimeLine: FC<{
         cumulatedGrades.map((CUMULATED_GRADE, key) => {
           return (
             <g key={key}>
-              <TimeLineTooltip grade={CUMULATED_GRADE}>
-                <circle
-                  cy={GradeScale(CUMULATED_GRADE)}
-                  cx={key * xTranslateMultiplier + xTranslateAdded}
-                  r={5}
-                  fill={config.CUMULATED_GRADE_COLOR}
-                  css={transitionCSS}
-                />
-              </TimeLineTooltip>
-              <TimeLineTooltip grade={programGrades[key] ?? 0}>
-                <circle
-                  cy={GradeScale(programGrades[key] ?? 0)}
-                  cx={key * xTranslateMultiplier + xTranslateAdded}
-                  r={5}
-                  fill={config.PROGRAM_GRADE_COLOR}
-                  css={transitionCSS}
-                />
-              </TimeLineTooltip>
+              {CUMULATED_GRADE > 0 ? (
+                <TimeLineTooltip grade={CUMULATED_GRADE}>
+                  <circle
+                    cy={GradeScale(CUMULATED_GRADE)}
+                    cx={key * xTranslateMultiplier + xTranslateAdded}
+                    r={5}
+                    fill={config.CUMULATED_GRADE_COLOR}
+                    css={transitionCSS}
+                  />
+                </TimeLineTooltip>
+              ) : null}
+              {programGrades[key]! > 0 ? (
+                <TimeLineTooltip grade={programGrades[key] ?? 0}>
+                  <circle
+                    cy={GradeScale(programGrades[key] ?? 0)}
+                    cx={key * xTranslateMultiplier + xTranslateAdded}
+                    r={5}
+                    fill={config.PROGRAM_GRADE_COLOR}
+                    css={transitionCSS}
+                  />
+                </TimeLineTooltip>
+              ) : null}
               {semestralGrades[key] && semestersTaken[key] ? (
                 <TimeLineTooltip grade={semestralGrades[key] ?? 0}>
                   <circle
@@ -219,16 +223,17 @@ export const TimeLine: FC<{
                   css={transitionCSS}
                 />
               )}
-              {cumulatedGrades[key + 1] !== undefined && (
-                <line
-                  stroke={config.CUMULATED_GRADE_COLOR}
-                  x1={key * xTranslateMultiplier + xTranslateAdded}
-                  y1={GradeScale(cumulatedGrades[key] ?? 0)}
-                  x2={(key + 1) * xTranslateMultiplier + xTranslateAdded}
-                  y2={GradeScale(cumulatedGrades[key + 1] ?? 0)}
-                  css={transitionCSS}
-                />
-              )}
+              {cumulatedGrades[key + 1] !== undefined &&
+                cumulatedGrades[key + 1]! > 0 && (
+                  <line
+                    stroke={config.CUMULATED_GRADE_COLOR}
+                    x1={key * xTranslateMultiplier + xTranslateAdded}
+                    y1={GradeScale(cumulatedGrades[key] ?? 0)}
+                    x2={(key + 1) * xTranslateMultiplier + xTranslateAdded}
+                    y2={GradeScale(cumulatedGrades[key + 1] ?? 0)}
+                    css={transitionCSS}
+                  />
+                )}
               {cumulatedGrades[key + 1] !== undefined &&
                 programGrades[key + 1] !== undefined && (
                   <line

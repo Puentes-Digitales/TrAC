@@ -107,7 +107,7 @@ export const GroupedTakenSemesterBox: FC<{
   }, [comments]);
 
   const badgeBgColor = useColorModeValue(undefined, "#202020");
-  return (
+  return termTypeToNumber(term) < 3 ? (
     <Stack ml={config.TAKEN_SEMESTER_BOX_MARGIN_SIDES}>
       <svg width={80} height={80}>
         <svg x={20} y={10}>
@@ -168,5 +168,5 @@ export const GroupedTakenSemesterBox: FC<{
         )}
       </Box>
     </Stack>
-  );
+  ) : null;
 });
