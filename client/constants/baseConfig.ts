@@ -450,16 +450,26 @@ export const baseConfig = {
   MESSAGE_SUBJECT: "Novedades en TrAC-FID",
   DEFAULT_MESSAGE: "Se ha actualizado la base de datos de TrAC-FID",
   NO_INFORMATION_TO_DEPLOY: "No hay información para mostrar",
+  RISK_BY_STUDENTS_LABEL: "Riesgos por estudiantes",
+  RISK_BY_COURSES_LABEL: "Riesgos por cursos",
   RISK_ALL: "Todos",
-  RISK_STUDENT_PENDING_OF_GRADUATION: "Pendientes de Titulación ",
+  RISK_ALL_TOOLTIP:
+    "Todos los alumnos que han inscrito asignaturas en los últimos dos semestres",
+  RISK_STUDENT_PENDING_OF_GRADUATION: "Estudiantes no titulados",
+  RISK_STUDENT_PENDING_OF_GRADUATION_TOOLTIP:
+    "Estudiantes a los que le falta un curso para titularse",
+  RISK_LOW_PROGRESSING_RATE: "Estudiantes con bajo progreso efectivo",
+  RISK_LOW_PROGRESSING_RATE_TOOLTIP:
+    "Estudiantes con avance menor o igual al 50% esperado",
+  RISK_THIRD_ATTEMPT: "Estudiantes cursando asignaturas por tercera vez",
+  RISK_THIRD_ATTEMPT_TOOLTIP:
+    "Estudiantes que este semestre cursan por tecera vez una asignatura",
   RISK_HIGH_DROP_RATE: "Cursos con alto tasa de anulacion",
-  RISK_LOW_PROGRESSING_RATE: "Avance menor al umbral (50%)",
-  MESSAGE_RISK_HEADER: "Situaciones de riesgo",
-  MESSAGE_RISK_BODY: "Se han encontrado las siguientes situaciones de riesgo: ",
-  MESSAGE_RISK_GIF: "Cómo visualizar situaciones de riesgo en TrAC-FID : ",
-  MESSAGE_RISK_FOOTER: "Para mayor información visite : ",
-  RISK_THIRD_ATTEMPT: "Asignaturas por tercera vez",
-  RISK_LOW_PASSING_RATE_COURSES: "Cursos con bajo nivel de aprobación",
+  RISK_HIGH_DROP_RATE_TOOTLTIP:
+    "Cursos con tasa de anulación mayor o igual al 30% ",
+  RISK_LOW_PASSING_RATE_COURSES: "Cursos con alta tasa de reprobación",
+  RISK_LOW_PASSING_RATE_COURSES_TOOLTIP:
+    "Cursos con tasa de reprobación mayor o igual al 20%",
   GROUPED_DATA: "Datos agrupados",
   EMPLOYABILITY_DATA: "Datos empleabilidad",
   ACADEMIC_DATA: "Datos académicos",
@@ -472,6 +482,10 @@ export const baseConfig = {
   TERM_LABEL: "Semestre",
   RATE_LABEL: "Tasa",
   HELP_DESK_LABEL: "Mesa de ayuda",
+  MESSAGE_RISK_HEADER: "Situaciones de riesgo",
+  MESSAGE_RISK_BODY: "Se han encontrado las siguientes situaciones de riesgo: ",
+  MESSAGE_RISK_GIF: "Cómo visualizar situaciones de riesgo en TrAC-FID : ",
+  MESSAGE_RISK_FOOTER: "Para mayor información visite : ",
 };
 
 export const baseConfigAdmin: typeof baseConfig &
