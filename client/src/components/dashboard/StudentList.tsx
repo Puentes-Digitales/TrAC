@@ -740,7 +740,13 @@ export const StudentList: FC<{
                               <Table.Cell
                                 className="cursorPointer"
                                 onClick={() => {
-                                  searchStudent(student_id);
+                                  let student_ = truncate(
+                                    student_rut || student_id,
+                                    {
+                                      length: 35,
+                                    }
+                                  );
+                                  searchStudent(student_);
                                   onClose();
                                 }}
                               >
