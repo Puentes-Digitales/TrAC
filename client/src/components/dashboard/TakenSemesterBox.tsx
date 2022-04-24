@@ -78,7 +78,7 @@ export const TakenSemesterBox: FC<{
 
   const badgeBgColor = useColorModeValue(undefined, "#202020");
 
-  return (
+  return termTypeToNumber(term) < 3 ? (
     <Box
       textAlign="center"
       border={config.TAKEN_SEMESTER_BOX_BORDER}
@@ -125,5 +125,5 @@ export const TakenSemesterBox: FC<{
         <b>{`${termTypeToNumber(term)}S ${year}`}</b>
       )}
     </Box>
-  );
+  ) : null;
 });
