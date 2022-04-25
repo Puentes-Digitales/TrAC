@@ -1029,6 +1029,7 @@ export function Dashboard() {
               }, 0) / (arr.filter((ele: number) => ele).length || 1)
             );
           });
+
           let registered = 0;
           filteredStudentsGrades.map((item) => {
             if (item.length === maxGrades) {
@@ -1062,11 +1063,17 @@ export function Dashboard() {
             }
             i++;
           }
+          console.log(
+            "TEST GRADES: ",
+            filteredAvgGrades.filter((item) => item != 0)
+          );
           //
           TimeLineComponent = (
             <GroupedTimeLine
-              programGrades={avgGrades.slice(0, cohortLen)}
-              filteredGrades={filteredAvgGrades}
+              programGrades={avgGrades
+                .slice(0, cohortLen)
+                .filter((item) => item != 0)}
+              filteredGrades={filteredAvgGrades.filter((item) => item != 0)}
               takenSemesters={takenTerms?.slice().reverse() ?? []}
             />
           );

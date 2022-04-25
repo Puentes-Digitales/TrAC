@@ -170,7 +170,7 @@ export const StudentList: FC<{
 
   var [riskTypeTooltip, setRiskTypeTooltip] = useRememberState(
     "risk_tooltip_selected",
-    ""
+    RISK_ALL_TOOLTIP
   );
 
   var [courseRisk, setCourseRisk] = useRememberState(
@@ -741,7 +741,11 @@ export const StudentList: FC<{
                                 className="cursorPointer"
                                 onClick={() => {
                                   let student_ = truncate(
-                                    student_rut || student_id,
+                                    student_rut
+                                      ? student_rut.slice(0, -1) +
+                                          "-" +
+                                          student_rut.slice(-1)
+                                      : false || student_id,
                                     {
                                       length: 35,
                                     }
@@ -758,9 +762,16 @@ export const StudentList: FC<{
                                   textAlign="center"
                                 >
                                   <Text>
-                                    {truncate(student_rut || student_id, {
-                                      length: 35,
-                                    })}
+                                    {truncate(
+                                      student_rut
+                                        ? student_rut.slice(0, -1) +
+                                            "-" +
+                                            student_rut.slice(-1)
+                                        : false || student_id,
+                                      {
+                                        length: 35,
+                                      }
+                                    )}
                                   </Text>
                                 </Tooltip>
                               </Table.Cell>
