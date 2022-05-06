@@ -189,6 +189,7 @@ export type FeedbackResult = {
 export type GroupedComplementary = {
   average_time_university_degree?: Maybe<Scalars["Float"]>;
   cohort: Scalars["String"];
+  current_retention_rate: Scalars["Float"];
   curriculum: Scalars["String"];
   inactive_time_rate?: Maybe<Scalars["Float"]>;
   program_id: Scalars["String"];
@@ -854,6 +855,7 @@ export type SearchProgramMutation = {
         | "type_admission"
         | "cohort"
         | "university_degree_rate"
+        | "current_retention_rate"
         | "retention_rate"
         | "inactive_time_rate"
       >
@@ -2510,6 +2512,7 @@ export const SearchProgramDocument = gql`
         type_admission
         cohort
         university_degree_rate
+        current_retention_rate
         retention_rate
         inactive_time_rate
       }

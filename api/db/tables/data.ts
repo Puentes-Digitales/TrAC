@@ -258,6 +258,7 @@ export interface IGroupedComplementaryInformation {
   total_students: number;
   university_degree_rate: number;
   retention_rate: number;
+  current_retention_rate: number;
   average_time_university_degree: number;
   timely_university_degree_rate: number;
   inactive_time_rate: number;

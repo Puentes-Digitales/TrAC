@@ -187,6 +187,7 @@ type FeedbackResult {
 type GroupedComplementary {
   average_time_university_degree: Float
   cohort: String!
+  current_retention_rate: Float!
   curriculum: String!
   inactive_time_rate: Float
   program_id: String!
