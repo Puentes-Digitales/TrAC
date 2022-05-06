@@ -142,6 +142,7 @@ export const StudentList: FC<{
     RISK_MEDIUM_THRESHOLD,
     RISK_LOW_COLOR,
     CHECK_STUDENT_FROM_LIST_LABEL,
+    CHECK_COURSE_FROM_LIST_LABEL,
     NO_INFORMATION_TO_DEPLOY,
     RISK_BY_COURSES_LABEL,
     RISK_BY_STUDENTS_LABEL,
@@ -205,7 +206,7 @@ export const StudentList: FC<{
           studentPendingOfGraduation?.riskNotification.map(
             ({ student_id, cohort, risk_type, details }) => {
               let cDetails = details ? JSON.parse(details) : {};
-              let rut: string = details.length > 0 ? cDetails.rut : ""; //warnning with risk data
+              let rut: string = details.length > 0 ? cDetails.rut : ""; //warning with risk data
               return {
                 student_id: student_id,
                 student_rut: rut,
@@ -275,12 +276,15 @@ export const StudentList: FC<{
           lowPassingRateCourses?.riskNotification.map(
             ({ course_id, cohort, risk_type, details }) => {
               let cDetails = details ? JSON.parse(details) : {};
+              let courseName = cDetails?.course_name
+                ? cDetails.course_name
+                : "";
               let yearTerm = cDetails?.semester ? cDetails.semester : "";
               let year = yearTerm.length ? yearTerm.substring(0, 4) : "";
               let term = yearTerm.length ? yearTerm.substring(4, 5) : "";
               return {
-                student_id: "-1",
-                student_rut: "",
+                student_id: courseName,
+                student_rut: "risk_low_passing_rate_courses",
                 dropout_probability: -1,
                 progress: -1,
                 start_year: parseInt(cohort),
@@ -300,11 +304,14 @@ export const StudentList: FC<{
             ({ course_id, cohort, risk_type, details }) => {
               let cDetails = details ? JSON.parse(details) : {};
               let yearTerm = cDetails?.semester ? cDetails.semester : "";
+              let courseName = cDetails?.course_name
+                ? cDetails.course_name
+                : "";
               let year = yearTerm.length ? yearTerm.substring(0, 4) : "";
               let term = yearTerm.length ? yearTerm.substring(4, 5) : "";
               return {
-                student_id: "-1",
-                student_rut: "",
+                student_id: courseName,
+                student_rut: "risk_high_drop_rate",
                 dropout_probability: -1,
                 progress: -1,
                 start_year: parseInt(cohort),
@@ -730,6 +737,7 @@ export const StudentList: FC<{
                       const integerProgress = toInteger(progress);
                       const integerRate = toInteger(rate);
                       const checkStudentLabel = `${CHECK_STUDENT_FROM_LIST_LABEL} ${student_id}`;
+                      const checkCourseLabel = `${CHECK_COURSE_FROM_LIST_LABEL} ${student_id}`;
                       return (
                         <Table.Row key={key} verticalAlign="middle">
                           <TableCell textAlign="center">
@@ -850,6 +858,8 @@ export const StudentList: FC<{
                             <>
                               <Table.Cell verticalAlign="middle">
                                 <Tooltip
+                                  aria-label={checkCourseLabel}
+                                  label={checkCourseLabel}
                                   zIndex={10000}
                                   placement="top"
                                   textAlign="center"
@@ -870,6 +880,8 @@ export const StudentList: FC<{
                               </Table.Cell>
                               <Table.Cell verticalAlign="middle">
                                 <Tooltip
+                                  aria-label={checkCourseLabel}
+                                  label={checkCourseLabel}
                                   zIndex={10000}
                                   placement="top"
                                   textAlign="center"
