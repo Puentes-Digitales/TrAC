@@ -142,7 +142,7 @@ export const StudentList: FC<{
     RISK_MEDIUM_THRESHOLD,
     RISK_LOW_COLOR,
     CHECK_STUDENT_FROM_LIST_LABEL,
-    CHECK_COURSE_FROM_LIST_LABEL,
+    COURSE_FROM_LIST_LABEL,
     NO_INFORMATION_TO_DEPLOY,
     RISK_BY_COURSES_LABEL,
     RISK_BY_STUDENTS_LABEL,
@@ -737,7 +737,7 @@ export const StudentList: FC<{
                       const integerProgress = toInteger(progress);
                       const integerRate = toInteger(rate);
                       const checkStudentLabel = `${CHECK_STUDENT_FROM_LIST_LABEL} ${student_id}`;
-                      const checkCourseLabel = `${CHECK_COURSE_FROM_LIST_LABEL} ${student_id}`;
+                      const checkCourseLabel = `${COURSE_FROM_LIST_LABEL} ${student_id}`;
                       return (
                         <Table.Row key={key} verticalAlign="middle">
                           <TableCell textAlign="center">
