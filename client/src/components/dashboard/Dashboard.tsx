@@ -1148,6 +1148,7 @@ export function Dashboard() {
                 filteredComplementaryData[0]?.timely_university_degree_rate
               }
               retention_rate={filteredComplementaryData[0]?.retention_rate}
+              current_retention_rate={filteredComplementaryData[0]?.current_retention_rate}
               empleability_rate={filteredEmpleabilityData[0]?.employed_rate}
               average_time_finding_job={
                 filteredEmpleabilityData[0]?.average_time_job_finding
