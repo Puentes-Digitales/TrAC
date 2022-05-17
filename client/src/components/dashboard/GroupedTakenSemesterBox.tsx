@@ -11,10 +11,68 @@ import {
 import { termTypeToNumber } from "../../../constants";
 import { ConfigContext } from "../../context/Config";
 import { CoursesDashboardStore } from "../../context/CoursesDashboard";
-
+/*
 function SingleBar({ height }: { height: number }) {
-  const { GROUPED_HISTOGRAM_BAR } = useContext(ConfigContext);
   const fill = GROUPED_HISTOGRAM_BAR;
+  const textColor = useColorModeValue("black", "white");
+  const heightBar = Math.sqrt(height) * 4 > 50 ? 50 : Math.sqrt(height) * 4;
+  const textPosY =
+    50 - (Math.sqrt(height) * 4 > 50 ? 50 : Math.sqrt(height) * 4);
+
+  const textPosX = 20 - height.toString().length * 4;
+  return (
+    <>
+      <rect
+        className="ignore_dark_mode"
+        width={40}
+        height={heightBar}
+        fill={fill}
+      />
+      <g
+        css={{
+          transform: "rotate(180deg) translate(1%,65%) scaleX(-1)",
+          transformOrigin: "0% 65%",
+        }}
+      >
+        <text
+          x={textPosX}
+          y={textPosY}
+          fontWeight="bold"
+          fontSize="15"
+          fill={textColor}
+        >
+          {height}
+        </text>
+      </g>
+    </>
+  );
+}*/
+
+function OpportuneGraduationBar({
+  height,
+  semester,
+  timely,
+}: {
+  height: number;
+  semester: number;
+  timely: number;
+}) {
+  const {
+    GROUPED_HISTOGRAM_BAR,
+    GROUPED_TIMELY_HISTOGRAM_BAR,
+    GROUPED_OPPORTUNE_HISTOGRAM_BAR,
+    GROUPED_NOT_OPPORTUNE_HISTOGRAM_BAR,
+    GROUPED_OPPORTUNE_EXTRA_TERMS,
+  } = useContext(ConfigContext);
+  if (semester < timely) {
+    var fill = GROUPED_HISTOGRAM_BAR;
+  } else if (semester === timely) {
+    var fill = GROUPED_TIMELY_HISTOGRAM_BAR;
+  } else if (semester <= timely + GROUPED_OPPORTUNE_EXTRA_TERMS) {
+    var fill = GROUPED_OPPORTUNE_HISTOGRAM_BAR;
+  } else {
+    var fill = GROUPED_NOT_OPPORTUNE_HISTOGRAM_BAR;
+  }
   const textColor = useColorModeValue("black", "white");
   const heightBar = Math.sqrt(height) * 4 > 50 ? 50 : Math.sqrt(height) * 4;
   const textPosY =
@@ -54,7 +112,9 @@ export const GroupedTakenSemesterBox: FC<{
   term: string;
   n_students: number;
   comments?: string;
-}> = memo(({ year, term, n_students, comments }) => {
+  semesterNumber: number;
+  timely: number;
+}> = memo(({ year, term, n_students, comments, semesterNumber, timely }) => {
   const config = useContext(ConfigContext);
   const semestersTaken = CoursesDashboardStore.hooks.useActiveSemestersTaken();
 
@@ -117,7 +177,11 @@ export const GroupedTakenSemesterBox: FC<{
               transformOrigin: "0% 85%",
             }}
           >
-            <SingleBar height={n_students} />
+            <OpportuneGraduationBar
+              height={n_students}
+              semester={semesterNumber}
+              timely={timely}
+            />
           </g>
         </svg>
       </svg>
