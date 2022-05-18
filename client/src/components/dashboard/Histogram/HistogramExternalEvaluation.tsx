@@ -111,14 +111,17 @@ export function HistogramExternalEvaluation({
       .range([0, 70]),
     [distribution]
   );
-  console.log("barsScale :", barsScale);
   const axisLeftScale = useCallback(
     scaleLinear()
       .range([0, 70])
       .domain([Math.max(...distribution.map(({ value }) => value)), 0]),
     [distribution]
   );
-
+  //slice value
+  const newLine =
+    label?.length! > 30
+      ? label?.slice(30, label?.length!)?.indexOf(" ")! + 30
+      : 0;
   const greyN = useMemo(() => {
     if (grade !== undefined) {
       return distribution.findIndex(({ label }, key: number) => {
@@ -173,9 +176,24 @@ export function HistogramExternalEvaluation({
       </svg>
 
       <svg x={0}>
-        <text y={20} x={30} fontWeight="bold" fill={textColor}>
-          {truncate(label, { length: 45 }) ?? "Undefined"}
-        </text>
+        {label?.length! > 30 ? (
+          <>
+            <text y={10} x={30} fontWeight="bold" fill={textColor}>
+              {truncate(label?.slice(0, newLine)!, {
+                length: label?.length!,
+              }) ?? "Undefined"}
+            </text>
+            <text y={25} x={30} fontWeight="bold" fill={textColor}>
+              {truncate(label?.slice(newLine, label?.length!)!, {
+                length: label?.length!,
+              }) ?? "Undefined"}
+            </text>
+          </>
+        ) : (
+          <text y={20} x={30} fontWeight="bold" fill={textColor}>
+            {truncate(label, { length: 45 }) ?? "Undefined"}
+          </text>
+        )}
         {grade && (
           <text y={40} x={30} fontWeight="bold" fill={textColor}>
             {GRADE_STUDENT_LABEL}:{Math.trunc(grade)}%
