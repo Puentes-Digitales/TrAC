@@ -1085,9 +1085,9 @@ export function Dashboard() {
                     .reverse()
                     .map(({ term, year }, key) => {
                       const LineColor = useColorModeValue("black", "white");
-                      var fixVal = 1;
+                      var fixVal = 0;
                       if (data.semesters[0]?.semester.n === 0) {
-                        fixVal = 2;
+                        fixVal = 1;
                       }
                       if (n_students_per_semester[key])
                         return (
