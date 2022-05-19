@@ -1085,10 +1085,14 @@ export function Dashboard() {
                     .reverse()
                     .map(({ term, year }, key) => {
                       const LineColor = useColorModeValue("black", "white");
+                      var fixVal = 1;
+                      if (data.semesters[0]?.semester.n === 0) {
+                        fixVal = 2;
+                      }
                       if (n_students_per_semester[key])
                         return (
                           <Flex>
-                            {key == data.semesters.length ? (
+                            {key == data.semesters.length - fixVal ? (
                               <Flex
                                 borderLeftWidth={2}
                                 borderStyle={"dotted"}
@@ -1103,16 +1107,18 @@ export function Dashboard() {
                               n_students={n_students_per_semester[key] ?? 0}
                               year={year}
                               comments={
-                                key >= data.semesters.length &&
+                                key >= data.semesters.length - fixVal &&
                                 key <=
-                                  data.semesters.length +
+                                  data.semesters.length -
+                                    fixVal +
                                     GROUPED_TIMELY_EXTRA_TERMS
                                   ? GROUPED_TIMELY_GRADUATION_LABEL!
                                   : ""
                               }
                             />
                             {key ==
-                            data.semesters.length +
+                            data.semesters.length -
+                              fixVal +
                               GROUPED_TIMELY_EXTRA_TERMS ? (
                               <Flex
                                 borderLeftWidth={2}
