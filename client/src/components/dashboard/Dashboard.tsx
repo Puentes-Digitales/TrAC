@@ -9,6 +9,7 @@ import React, {
 import ScrollContainer from "react-indiana-drag-scroll";
 import { useUpdateEffect } from "react-use";
 import { Box, Flex, Stack } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
 
 import { ITakenCourse, ITakenExternalEvaluation } from "../../../../interfaces";
 import {
@@ -422,6 +423,8 @@ export function Dashboard() {
     mock,
   ]);
 
+  const LineColor = useColorModeValue("black", "white");
+
   const {
     TimeLineComponent,
     TakenSemestersComponent,
@@ -454,14 +457,6 @@ export function Dashboard() {
     const studentListData = mock
       ? mockData?.default.searchStudentListData
       : dataStudentFilterList;
-    console.log(
-      "COHORTE ",
-      chosenCohort,
-      "CURRICULUM",
-      chosenCurriculum,
-      "TIPO DE ADMI",
-      chosenAdmissionType
-    );
 
     if (studentData && !grouped) {
       const {
@@ -708,6 +703,10 @@ export function Dashboard() {
 
     if (programData && grouped) {
       ///////////////////////////////////////////////////////////////////////////////////////// <------------
+      const {
+        GROUPED_TIMELY_GRADUATION_LABEL,
+        GROUPED_TIMELY_EXTRA_TERMS,
+      } = useContext(ConfigContext);
       const curriculums =
         programData?.curriculums
           .filter(({ id }) => {
@@ -1085,19 +1084,45 @@ export function Dashboard() {
                     .slice()
                     .reverse()
                     .map(({ term, year }, key) => {
-                      console.log("key:", key);
-                      console.log("data :", data);
+                      const LineColor = useColorModeValue("black", "white");
                       if (n_students_per_semester[key])
                         return (
-                          <GroupedTakenSemesterBox
-                            key={key}
-                            term={term}
-                            n_students={n_students_per_semester[key] ?? 0}
-                            year={year}
-                            comments={""}
-                            semesterNumber={key}
-                            timely={data.semesters.length}
-                          />
+                          <Flex>
+                            {key == data.semesters.length ? (
+                              <Flex
+                                borderLeftWidth={2}
+                                borderStyle={"dotted"}
+                                borderLeftColor={LineColor}
+                              >
+                                <p> </p>
+                              </Flex>
+                            ) : null}
+                            <GroupedTakenSemesterBox
+                              key={key}
+                              term={term}
+                              n_students={n_students_per_semester[key] ?? 0}
+                              year={year}
+                              comments={
+                                key >= data.semesters.length &&
+                                key <=
+                                  data.semesters.length +
+                                    GROUPED_TIMELY_EXTRA_TERMS
+                                  ? GROUPED_TIMELY_GRADUATION_LABEL!
+                                  : ""
+                              }
+                            />
+                            {key ==
+                            data.semesters.length +
+                              GROUPED_TIMELY_EXTRA_TERMS ? (
+                              <Flex
+                                borderLeftWidth={2}
+                                borderStyle={"dotted"}
+                                borderLeftColor={LineColor}
+                              >
+                                <p> </p>
+                              </Flex>
+                            ) : null}
+                          </Flex>
                         );
                     })}
                 </Flex>
@@ -1192,6 +1217,7 @@ export function Dashboard() {
     mock,
     grouped,
     mockData,
+    LineColor,
   ]);
 
   const {
