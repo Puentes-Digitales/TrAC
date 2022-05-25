@@ -119,8 +119,8 @@ export function HistogramExternalEvaluation({
   );
   //slice value
   const newLine =
-    label?.length! > 30
-      ? label?.slice(30, label?.length!)?.indexOf(" ")! + 30
+    label?.length! > 20
+      ? label?.slice(20, label?.length!)?.indexOf(" ")! + 20
       : 0;
   const greyN = useMemo(() => {
     if (grade !== undefined) {
@@ -176,7 +176,7 @@ export function HistogramExternalEvaluation({
       </svg>
 
       <svg x={0}>
-        {label?.length! > 30 ? (
+        {label?.length! > 25 ? (
           <>
             <text y={10} x={30} fontWeight="bold" fill={textColor}>
               {truncate(label?.slice(0, newLine)!, {
@@ -194,9 +194,9 @@ export function HistogramExternalEvaluation({
             {truncate(label, { length: 45 }) ?? "Undefined"}
           </text>
         )}
-        {grade && (
+        {grade != undefined && (
           <text y={40} x={30} fontWeight="bold" fill={textColor}>
-            {GRADE_STUDENT_LABEL}:{Math.trunc(grade)}%
+            {GRADE_STUDENT_LABEL}:{Math.round(grade)}%
           </text>
         )}
 
