@@ -9,6 +9,7 @@ import React, {
 import ScrollContainer from "react-indiana-drag-scroll";
 import { useUpdateEffect } from "react-use";
 import { Box, Flex, Stack } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
 
 import { ITakenCourse, ITakenExternalEvaluation } from "../../../../interfaces";
 import {
@@ -422,6 +423,8 @@ export function Dashboard() {
     mock,
   ]);
 
+  const LineColor = useColorModeValue("black", "white");
+
   const {
     TimeLineComponent,
     TakenSemestersComponent,
@@ -454,14 +457,6 @@ export function Dashboard() {
     const studentListData = mock
       ? mockData?.default.searchStudentListData
       : dataStudentFilterList;
-    console.log(
-      "COHORTE ",
-      chosenCohort,
-      "CURRICULUM",
-      chosenCurriculum,
-      "TIPO DE ADMI",
-      chosenAdmissionType
-    );
 
     if (studentData && !grouped) {
       const {
@@ -708,6 +703,10 @@ export function Dashboard() {
 
     if (programData && grouped) {
       ///////////////////////////////////////////////////////////////////////////////////////// <------------
+      const {
+        GROUPED_TIMELY_GRADUATION_LABEL,
+        GROUPED_TIMELY_EXTRA_TERMS,
+      } = useContext(ConfigContext);
       const curriculums =
         programData?.curriculums
           .filter(({ id }) => {
@@ -1085,15 +1084,51 @@ export function Dashboard() {
                     .slice()
                     .reverse()
                     .map(({ term, year }, key) => {
+                      const LineColor = useColorModeValue("black", "white");
+                      var fixVal = 0;
+                      if (data.semesters[0]?.semester.n === 0) {
+                        fixVal = 1;
+                      }
                       if (n_students_per_semester[key])
                         return (
-                          <GroupedTakenSemesterBox
-                            key={key}
-                            term={term}
-                            n_students={n_students_per_semester[key] ?? 0}
-                            year={year}
-                            comments={""}
-                          />
+                          <Flex>
+                            {key == data.semesters.length - fixVal ? (
+                              <Flex
+                                borderLeftWidth={2}
+                                borderStyle={"dotted"}
+                                borderLeftColor={LineColor}
+                              >
+                                <p> </p>
+                              </Flex>
+                            ) : null}
+                            <GroupedTakenSemesterBox
+                              key={key}
+                              term={term}
+                              n_students={n_students_per_semester[key] ?? 0}
+                              year={year}
+                              comments={
+                                key >= data.semesters.length - fixVal &&
+                                key <=
+                                  data.semesters.length -
+                                    fixVal +
+                                    GROUPED_TIMELY_EXTRA_TERMS
+                                  ? GROUPED_TIMELY_GRADUATION_LABEL!
+                                  : ""
+                              }
+                            />
+                            {key ==
+                            data.semesters.length -
+                              fixVal +
+                              GROUPED_TIMELY_EXTRA_TERMS ? (
+                              <Flex
+                                borderLeftWidth={2}
+                                borderStyle={"dotted"}
+                                borderLeftColor={LineColor}
+                              >
+                                <p> </p>
+                              </Flex>
+                            ) : null}
+                          </Flex>
                         );
                     })}
                 </Flex>
@@ -1148,6 +1183,9 @@ export function Dashboard() {
                 filteredComplementaryData[0]?.timely_university_degree_rate
               }
               retention_rate={filteredComplementaryData[0]?.retention_rate}
+              current_retention_rate={
+                filteredComplementaryData[0]?.current_retention_rate
+              }
               empleability_rate={filteredEmpleabilityData[0]?.employed_rate}
               average_time_finding_job={
                 filteredEmpleabilityData[0]?.average_time_job_finding
@@ -1185,6 +1223,7 @@ export function Dashboard() {
     mock,
     grouped,
     mockData,
+    LineColor,
   ]);
 
   const {

@@ -60,6 +60,7 @@ mutation searchProgram($id: String, $student_id: String) {
       type_admission
       cohort
       university_degree_rate
+      current_retention_rate
       retention_rate
       inactive_time_rate
     }

@@ -23,6 +23,9 @@ export class GroupedComplementary {
   @Field()
   retention_rate: number;
 
+  @Field()
+  current_retention_rate: number;
+
   @Field({ nullable: true })
   average_time_university_degree?: number;
 
