@@ -11,6 +11,7 @@ export const ProgressStudent: FC<{
   const {
     PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR,
     PROGRESS_STUDENT_INFORMATION_TEXT,
+    PROGRESS_STUDENT_NOTE,
     COMPLEMENTARY_INFORMATION_PERCENT_MARK,
   } = useContext(ConfigContext);
 
@@ -69,6 +70,18 @@ export const ProgressStudent: FC<{
                 </Flex>
               </div>
             ))}
+            <div>
+              <Text
+                alignSelf={"center"}
+                fontSize="0.9em"
+                ml={4}
+                mb={2}
+                fontFamily="Lato"
+                className="horizontalText"
+              >
+                {PROGRESS_STUDENT_NOTE}
+              </Text>
+            </div>
           </Box>
         </Stack>
       </Flex>

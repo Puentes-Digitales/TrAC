@@ -168,6 +168,7 @@ export const baseConfig = {
   ],
   PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR: "rgb(252,249,165)",
   PROGRESS_STUDENT_INFORMATION_TEXT: "Avance en",
+  PROGRESS_STUDENT_NOTE: "Avance en malla curricular propuesta",
   ENTRY_YEAR_LABEL: "Ingreso",
   ERROR_PROGRAM_NOT_FOUND: "Programa especificado no pudo ser encontrado.",
   ERROR_PROGRAM_UNAUTHORIZED_MESSAGE:
