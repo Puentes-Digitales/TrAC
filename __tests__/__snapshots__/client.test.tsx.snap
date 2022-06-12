@@ -61,6 +61,50 @@ exports[`Test <AdmissionDropout /> Test Snapshot 1`] = `
           </g>
         </svg>
       </div>
+      <div
+        class="css-1nm7xg4"
+      >
+        <p
+          class="chakra-text css-0"
+        >
+          Fecha de titulación:
+           
+          Año: 2020 Semestre: 2
+        </p>
+        <svg
+          aria-controls="popover-content-4"
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          class="chakra-icon css-psva3u"
+          data-testid="test-tooltip"
+          focusable="false"
+          id="popover-trigger-4"
+          viewBox="0 0 24 24"
+        >
+          <g
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path
+              d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+              fill="none"
+              stroke-linecap="round"
+            />
+            <path
+              d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+              fill="currentColor"
+              stroke-linecap="round"
+            />
+            <circle
+              cx="12"
+              cy="12"
+              fill="none"
+              r="11.25"
+              stroke-miterlimit="10"
+            />
+          </g>
+        </svg>
+      </div>
     </div>
   </div>
 </div>
