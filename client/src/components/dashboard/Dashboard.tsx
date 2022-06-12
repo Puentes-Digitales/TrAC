@@ -539,6 +539,11 @@ export function Dashboard() {
             educational_system={studentData.employed?.educational_system}
             institution={studentData.employed?.institution}
             months_to_first_job={studentData.employed?.months_to_first_job}
+            graduation_term={
+              studentData.graduation_term.length > 0
+                ? studentData.graduation_term
+                : null
+            }
           />
         );
       }

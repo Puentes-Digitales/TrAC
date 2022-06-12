@@ -409,6 +409,7 @@ type Student {
   curriculums: [String!]!
   dropout: Dropout
   employed: Employed
+  graduation_term: String!
   id: ID!
   mention: String!
   n_courses_cycles: [Float!]!

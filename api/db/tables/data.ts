@@ -193,6 +193,7 @@ export interface IStudentProgram {
   n_courses: number;
   n_passed_courses: number;
   completion: number;
+  graduation_term: string;
 }
 
 export const STUDENT_PROGRAM_TABLE = "student_program";

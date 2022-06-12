@@ -26,6 +26,9 @@ export class Student {
   @Field(() => [Program])
   programs: Program[];
 
+  @Field()
+  graduation_term: string;
+
   // student_term => distinct(curriculum)
   @Field(() => [String])
   curriculums: string[];

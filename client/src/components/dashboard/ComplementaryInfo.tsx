@@ -13,6 +13,7 @@ export const ComplementaryInfo: FC<{
   institution?: string | null;
   months_to_first_job?: number | null;
   type_admission?: string | null;
+  graduation_term?: string | null;
 }> = memo(
   ({
     employed,
@@ -20,6 +21,7 @@ export const ComplementaryInfo: FC<{
     institution,
     months_to_first_job,
     type_admission,
+    graduation_term,
   }) => {
     const {
       NO_INFORMATION,
@@ -34,12 +36,17 @@ export const ComplementaryInfo: FC<{
       COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM,
       COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION,
       COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS,
+      COMPLEMENTARY_INFORMATION_GRADUATION_TERM,
+      COMPLEMENTARY_INFORMATION_GRADUATION_TERM_TOOLTIP,
+      COMPLEMENTARY_INFORMATION_UNGRADUATE,
       COMPLEMENTARY_INFORMATION_TEXT_COLOR,
       COMPLEMENTARY_INFORMATION_TYPE_ADMISSION,
       COMPLEMENTARY_INFORMATION_TYPE_ADMISSION_TOOLTIP,
       COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM_TOOLTIP,
       COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION_TOOLTIP,
       COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS_TOOLTIP,
+      YEAR_LABEL,
+      TERM_LABEL,
     } = useContext(ConfigContext);
 
     const [show, setShow] = useState(false);
@@ -122,6 +129,25 @@ export const ComplementaryInfo: FC<{
                       ></IndicatorTooltip>
                     </Flex>
                   )}
+                  <Flex minWidth="max-content" pr={5} pl={0} pt={1} pb={1}>
+                    <Text>
+                      {COMPLEMENTARY_INFORMATION_GRADUATION_TERM}{" "}
+                      {graduation_term?.length! > 0
+                        ? YEAR_LABEL +
+                          ": " +
+                          graduation_term?.split("-")[0] +
+                          " " +
+                          TERM_LABEL +
+                          ": " +
+                          graduation_term?.split("-")[1]
+                        : COMPLEMENTARY_INFORMATION_UNGRADUATE}
+                    </Text>
+                    <IndicatorTooltip
+                      tooltipShow={
+                        COMPLEMENTARY_INFORMATION_GRADUATION_TERM_TOOLTIP
+                      }
+                    ></IndicatorTooltip>
+                  </Flex>
 
                   {typeof employed == "boolean" && (
                     <Flex minWidth="max-content" pr={5} pl={0} pt={1} pb={1}>
@@ -134,7 +160,6 @@ export const ComplementaryInfo: FC<{
                       ></IndicatorTooltip>
                     </Flex>
                   )}
-
                   {typeof employed == "boolean" && (
                     <Flex minWidth="max-content" pr={5} pl={0} pt={1} pb={1}>
                       <Text>
@@ -152,7 +177,6 @@ export const ComplementaryInfo: FC<{
                       ></IndicatorTooltip>
                     </Flex>
                   )}
-
                   {typeof employed == "boolean" && (
                     <Flex
                       minWidth="max-content"
@@ -175,7 +199,6 @@ export const ComplementaryInfo: FC<{
                       ></IndicatorTooltip>
                     </Flex>
                   )}
-
                   {typeof employed == "boolean" ? (
                     <Flex minWidth="max-content" pr={5} pl={0} pt={1} pb={1}>
                       <Text>

@@ -180,6 +180,7 @@ mutation searchStudent($student_id: String, $program_id: String) {
     n_courses_cycles
     n_cycles
     mention
+    graduation_term
     terms {
       id
       student_id

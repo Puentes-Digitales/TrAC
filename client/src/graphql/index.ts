@@ -501,6 +501,7 @@ export type Student = {
   curriculums: Array<Scalars["String"]>;
   dropout?: Maybe<Dropout>;
   employed?: Maybe<Employed>;
+  graduation_term: Scalars["String"];
   id: Scalars["ID"];
   mention: Scalars["String"];
   n_courses_cycles: Array<Scalars["Float"]>;
@@ -960,6 +961,7 @@ export type SearchStudentMutation = {
       | "n_courses_cycles"
       | "n_cycles"
       | "mention"
+      | "graduation_term"
     > & {
       programs: Array<Pick<Program, "id" | "name">>;
       terms: Array<
@@ -2674,6 +2676,7 @@ export const SearchStudentDocument = gql`
       n_courses_cycles
       n_cycles
       mention
+      graduation_term
       terms {
         id
         student_id

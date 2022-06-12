@@ -31,6 +31,7 @@ import {
   StudentViaProgramsDataLoader2,
   StudentStartYearDataLoader,
   GroupedAdmissionDataLoader,
+  StudentGraduationTermDataloader,
 } from "../../dataloaders/student";
 import {
   StudentListCyclesDataLoader,
@@ -290,6 +291,24 @@ export class StudentResolver {
       );
     } else {
       return (await StudentLastProgramDataLoader.load(id))?.start_year ?? 0;
+    }
+  }
+
+  @FieldResolver()
+  async graduation_term(
+    @Root() { id, program_id }: PartialStudent
+  ): Promise<$PropertyType<Student, "graduation_term">> {
+    if (program_id) {
+      return (
+        (
+          await StudentGraduationTermDataloader?.load({
+            student_id: id,
+            program_id,
+          })
+        )?.graduation_term ?? ""
+      );
+    } else {
+      return "";
     }
   }
 
