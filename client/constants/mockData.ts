@@ -13699,6 +13699,7 @@ const data: {
       ],
       curriculums: ["2017"],
       start_year: 2017,
+      graduation_term: "2022-2",
       mention: "",
       terms: [
         {
