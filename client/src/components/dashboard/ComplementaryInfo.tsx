@@ -45,8 +45,6 @@ export const ComplementaryInfo: FC<{
       COMPLEMENTARY_INFORMATION_EMPLOYED_EDUCATIONAL_SYSTEM_TOOLTIP,
       COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION_TOOLTIP,
       COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS_TOOLTIP,
-      YEAR_LABEL,
-      TERM_LABEL,
     } = useContext(ConfigContext);
 
     const [show, setShow] = useState(false);
