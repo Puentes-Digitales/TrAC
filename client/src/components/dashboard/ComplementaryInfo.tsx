@@ -133,13 +133,7 @@ export const ComplementaryInfo: FC<{
                     <Text>
                       {COMPLEMENTARY_INFORMATION_GRADUATION_TERM}{" "}
                       {graduation_term?.length! > 0
-                        ? YEAR_LABEL +
-                          ": " +
-                          graduation_term?.split("-")[0] +
-                          " " +
-                          TERM_LABEL +
-                          ": " +
-                          graduation_term?.split("-")[1]
+                        ? graduation_term
                         : COMPLEMENTARY_INFORMATION_UNGRADUATE}
                     </Text>
                     <IndicatorTooltip
