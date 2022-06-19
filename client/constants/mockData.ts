@@ -35,7 +35,6 @@ const data: {
           curriculum: "2017",
           type_admission: "PACE",
           cohort: "2016",
-          year: 2019,
           term: 1,
           n_students: 29,
           n_total: 8,

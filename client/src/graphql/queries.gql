@@ -108,7 +108,6 @@ mutation searchProgram($id: String, $student_id: String) {
       curriculum
       type_admission
       cohort
-      year
       term
       n_students
       n_total

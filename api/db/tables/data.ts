@@ -387,7 +387,6 @@ export interface IExternalEvaluationGroupedStats {
   curriculum: string;
   type_admission: string;
   cohort: string;
-  year: number;
   term: number;
   n_students: number;
   p_group: number;

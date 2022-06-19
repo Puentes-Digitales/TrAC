@@ -129,7 +129,6 @@ export type ExternalEvaluationGroupedStats = {
   term: Scalars["Float"];
   topic: Scalars["String"];
   type_admission: Scalars["String"];
-  year: Scalars["Float"];
 };
 
 export type FeedbackAnswer = {
@@ -906,7 +905,6 @@ export type SearchProgramMutation = {
         | "curriculum"
         | "type_admission"
         | "cohort"
-        | "year"
         | "term"
         | "n_students"
         | "n_total"
@@ -2561,7 +2559,6 @@ export const SearchProgramDocument = gql`
         curriculum
         type_admission
         cohort
-        year
         term
         n_students
         n_total

@@ -125,7 +125,6 @@ type ExternalEvaluationGroupedStats {
   term: Float!
   topic: String!
   type_admission: String!
-  year: Float!
 }
 
 type FeedbackAnswer {
