@@ -92,6 +92,7 @@ export function Dashboard() {
     | number
     | null
     | undefined; /*this value match # students from complementary info with semesterTaken components*/
+  var nterms: number | null | undefined;
 
   useEffect(() => {
     if (mock && !mockData) {
@@ -1024,7 +1025,7 @@ export function Dashboard() {
             //number of students with registered courses
 
             //n_students_per_semester[maxGrades - 1] = registered;
-            console.log("n students per semester: ", n_students_per_semester);
+
             return (
               arr.reduce((a: number, b: number) => {
                 if (a && b) return a + b;
@@ -1050,6 +1051,7 @@ export function Dashboard() {
             (student) => student.terms.length == filteredMaxTerm
           )[0]?.terms;
           console.log("studentTerms: ", studentTerms);
+          nterms = filteredAvgGrades.filter((item) => item != 0).length;
 
           const takenTerms = studentTerms?.map((i) => {
             return { year: i.year, term: i.term };
@@ -1067,10 +1069,7 @@ export function Dashboard() {
             }
             i++;
           }
-          console.log(
-            "TEST GRADES: ",
-            filteredAvgGrades.filter((item) => item != 0)
-          );
+          console.log("TEST GRADES: ");
           //
           TimeLineComponent = (
             <GroupedTimeLine
@@ -1090,14 +1089,14 @@ export function Dashboard() {
                     .reverse()
                     .map(({ term, year }, key) => {
                       const LineColor = useColorModeValue("black", "white");
-                      var fixVal = 0;
-                      if (data.semesters[0]?.semester.n === 0) {
-                        fixVal = 1;
-                      }
+                      const indexTerm =
+                        data.semesters[0]?.semester.n === 0
+                          ? data.semesters.length - 2
+                          : data.semesters.length - 1;
                       if (n_students_per_semester[key])
                         return (
                           <Flex>
-                            {key == data.semesters.length - fixVal ? (
+                            {key == indexTerm + 1 ? (
                               <Flex
                                 borderLeftWidth={2}
                                 borderStyle={"dotted"}
@@ -1112,19 +1111,13 @@ export function Dashboard() {
                               n_students={n_students_per_semester[key] ?? 0}
                               year={year}
                               comments={
-                                key >= data.semesters.length - fixVal &&
-                                key <=
-                                  data.semesters.length -
-                                    fixVal +
-                                    GROUPED_TIMELY_EXTRA_TERMS
+                                key >= indexTerm + 1 &&
+                                key <= indexTerm + GROUPED_TIMELY_EXTRA_TERMS
                                   ? GROUPED_TIMELY_GRADUATION_LABEL!
                                   : ""
                               }
                             />
-                            {key ==
-                            data.semesters.length -
-                              fixVal +
-                              GROUPED_TIMELY_EXTRA_TERMS ? (
+                            {key == indexTerm + GROUPED_TIMELY_EXTRA_TERMS ? (
                               <Flex
                                 borderLeftWidth={2}
                                 borderStyle={"dotted"}
@@ -1145,6 +1138,11 @@ export function Dashboard() {
           (filteredEmpleabilityData[0] || filteredComplementaryData[0]) &&
           user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO
         ) {
+          const dataLen =
+            data.semesters[0]?.semester.n == 0
+              ? data.semesters.length - 1
+              : data.semesters.length;
+          const showInfo = nterms! - dataLen;
           if (!chosenCohort?.length) {
             if (chosenCurriculum?.length) {
               if (chosenAdmissionType?.length) {
@@ -1185,7 +1183,12 @@ export function Dashboard() {
                 filteredComplementaryData[0]?.average_time_university_degree
               }
               timely_university_degree_rate={
-                filteredComplementaryData[0]?.timely_university_degree_rate
+                nterms
+                  ? showInfo >= GROUPED_TIMELY_EXTRA_TERMS
+                    ? filteredComplementaryData[0]
+                        ?.timely_university_degree_rate
+                    : null
+                  : null
               }
               retention_rate={filteredComplementaryData[0]?.retention_rate}
               current_retention_rate={
