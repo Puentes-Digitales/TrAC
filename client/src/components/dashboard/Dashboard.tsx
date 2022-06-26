@@ -946,7 +946,10 @@ export function Dashboard() {
                 };
               });
           }
-          console.log("FILTERED STUDENTS :", filteredStudents);
+          const groupedTerms = filteredStudents.map((stu) => {
+            return stu.terms;
+          });
+
           const filteredStudentsGrades = filteredStudents.map((stu) =>
             stu.terms
               .map((semester) => {
@@ -980,13 +983,11 @@ export function Dashboard() {
             grades.push(allStudentsGrades.map((v) => v[i] ?? 0));
           }
 
-          console.log("ALL GRADES :", grades);
-
           const filteredGrades = new Array();
           for (let i = 0; i < filteredMaxTerm; i++) {
             filteredGrades.push(filteredStudentsGrades.map((v) => v[i] ?? 0));
           }
-          console.log("FILTERED GRADES :", filteredGrades);
+
           const maxGrades =
             filteredStudentsGrades.length != 0
               ? filteredStudentsGrades
@@ -1050,12 +1051,40 @@ export function Dashboard() {
           const studentTerms = filteredStudents.filter(
             (student) => student.terms.length == filteredMaxTerm
           )[0]?.terms;
+          console.log("FilteredTerms", filteredStudents);
           console.log("studentTerms: ", studentTerms);
           nterms = filteredAvgGrades.filter((item) => item != 0).length;
+          const n_students: number[] = [];
+
+          // Students per semester
+          studentTerms?.map(({ year, term }) => {
+            var count = 0;
+            groupedTerms.forEach((item) => {
+              let c = 0;
+              let founded = false;
+              while (c < item.length && !founded) {
+                if (item[c]?.year! < year) {
+                  founded = true;
+                } else {
+                  if (item[c]?.year == year && item[c]?.term == term) {
+                    count = count + 1;
+                    founded = true;
+                  }
+                }
+                c = c + 1;
+              }
+            });
+            n_students.push(count);
+            console.log("para el año y term" + year, term + ", hay:", count);
+          });
+
+          const n_students_final = n_students.reverse();
+          nStudentsComplementaryInfo = n_students_final[0];
 
           const takenTerms = studentTerms?.map((i) => {
             return { year: i.year, term: i.term };
           });
+
           var cohortLen = filteredAvgGrades.length;
 
           //To do: Refactoring
@@ -1093,7 +1122,7 @@ export function Dashboard() {
                         data.semesters[0]?.semester.n === 0
                           ? data.semesters.length - 2
                           : data.semesters.length - 1;
-                      if (n_students_per_semester[key])
+                      if (n_students_final[key])
                         return (
                           <Flex>
                             {key == indexTerm + 1 ? (
@@ -1108,7 +1137,7 @@ export function Dashboard() {
                             <GroupedTakenSemesterBox
                               key={key}
                               term={term}
-                              n_students={n_students_per_semester[key] ?? 0}
+                              n_students={n_students_final[key] ?? 0}
                               year={year}
                               comments={
                                 key >= indexTerm + 1 &&
