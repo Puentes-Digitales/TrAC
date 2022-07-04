@@ -1066,7 +1066,10 @@ export function Dashboard() {
                 if (item[c]?.year! < year) {
                   founded = true;
                 } else {
-                  if (item[c]?.year == year && item[c]?.term == term) {
+                  if (
+                    item[c]?.year == year &&
+                    (item[c]?.term == term || item[c]?.term == "Anual")
+                  ) {
                     count = count + 1;
                     founded = true;
                   }
@@ -1075,21 +1078,6 @@ export function Dashboard() {
               }
             });
             n_students.push(count);
-          });
-          // term = " Anual" update - To do refactoring
-          var index = 0;
-          studentTerms?.map(({ year, term }) => {
-            if (term == "Anual") {
-              if (studentTerms[index + 1]?.year == year) {
-                n_students[index + 1] =
-                  n_students[index + 1]! + n_students[index]!;
-              }
-              if (studentTerms[index + 2]?.year == year) {
-                n_students[index + 2] =
-                  n_students[index + 2]! + n_students[index]!;
-              }
-            }
-            index = index + 1;
           });
 
           const n_students_final = n_students.reverse();
