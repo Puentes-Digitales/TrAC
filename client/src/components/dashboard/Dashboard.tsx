@@ -1054,7 +1054,7 @@ export function Dashboard() {
           console.log("FilteredTerms", filteredStudents);
           console.log("studentTerms: ", studentTerms);
           nterms = filteredAvgGrades.filter((item) => item != 0).length;
-          const n_students: number[] = [];
+          const n_students: Array<number> = [];
 
           // Students per semester
           studentTerms?.map(({ year, term }) => {
@@ -1075,7 +1075,21 @@ export function Dashboard() {
               }
             });
             n_students.push(count);
-            console.log("para el año y term" + year, term + ", hay:", count);
+          });
+          // term = " Anual" update - To do refactoring
+          var index = 0;
+          studentTerms?.map(({ year, term }) => {
+            if (term == "Anual") {
+              if (studentTerms[index + 1]?.year == year) {
+                n_students[index + 1] =
+                  n_students[index + 1]! + n_students[index]!;
+              }
+              if (studentTerms[index + 2]?.year == year) {
+                n_students[index + 2] =
+                  n_students[index + 2]! + n_students[index]!;
+              }
+            }
+            index = index + 1;
           });
 
           const n_students_final = n_students.reverse();
