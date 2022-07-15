@@ -93,8 +93,8 @@ export const AdminNotifications: FC<{
       def: config.RISK_LOW_PASSING_RATE_COURSES,
     },
     {
-      id: "student_pending_of_graduation",
-      def: config.RISK_STUDENT_PENDING_OF_GRADUATION,
+      id: "student_pending_of_enrollment",
+      def: config.RISK_student_pending_of_enrollment,
     },
     {
       id: "third_attempt",

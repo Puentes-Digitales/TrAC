@@ -106,7 +106,7 @@ export const StudentList: FC<{
   const { data: studentPendingOfGraduation } = useRiskNoticationQuery({
     variables: {
       program_id: program_id || "",
-      risk_type: "student_pending_of_graduation",
+      risk_type: "student_pending_of_enrollment",
     },
   });
   const { data: lowProgressingRate } = useRiskNoticationQuery({
@@ -148,8 +148,8 @@ export const StudentList: FC<{
     RISK_BY_STUDENTS_LABEL,
     RISK_ALL,
     RISK_ALL_TOOLTIP,
-    RISK_STUDENT_PENDING_OF_GRADUATION,
-    RISK_STUDENT_PENDING_OF_GRADUATION_TOOLTIP,
+    RISK_student_pending_of_enrollment,
+    RISK_student_pending_of_enrollment_TOOLTIP,
     RISK_LOW_PASSING_RATE_COURSES,
     RISK_LOW_PASSING_RATE_COURSES_TOOLTIP,
     RISK_LOW_PROGRESSING_RATE,
@@ -200,8 +200,8 @@ export const StudentList: FC<{
             }
           ) ?? []
         );
-      case RISK_STUDENT_PENDING_OF_GRADUATION:
-        setRiskTypeTooltip(RISK_STUDENT_PENDING_OF_GRADUATION_TOOLTIP);
+      case RISK_student_pending_of_enrollment:
+        setRiskTypeTooltip(RISK_student_pending_of_enrollment_TOOLTIP);
         return (
           studentPendingOfGraduation?.riskNotification.map(
             ({ student_id, cohort, risk_type, details }) => {
@@ -641,8 +641,8 @@ export const StudentList: FC<{
                 {courseRisk && (
                   <>
                     <option value={RISK_ALL}>{RISK_ALL}</option>
-                    <option value={RISK_STUDENT_PENDING_OF_GRADUATION}>
-                      {RISK_STUDENT_PENDING_OF_GRADUATION}
+                    <option value={RISK_student_pending_of_enrollment}>
+                      {RISK_student_pending_of_enrollment}
                     </option>
                     <option value={RISK_LOW_PROGRESSING_RATE}>
                       {RISK_LOW_PROGRESSING_RATE}
