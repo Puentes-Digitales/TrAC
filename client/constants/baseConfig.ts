@@ -471,7 +471,7 @@ export const baseConfig = {
     "Todos los alumnos que han inscrito asignaturas en los últimos dos semestres",
   RISK_student_pending_of_enrollment: "Estudiantes sin inscripción",
   RISK_student_pending_of_enrollment_TOOLTIP:
-    "Estudiantes a los que les falta un curso para titularse ",
+    "Estudiantes sin inscripción de asignaturas en el semestre actual",
   RISK_LOW_PROGRESSING_RATE: "Estudiantes con bajo progreso efectivo",
   RISK_LOW_PROGRESSING_RATE_TOOLTIP:
     "Estudiantes con avance menor o igual al 50% esperado",
