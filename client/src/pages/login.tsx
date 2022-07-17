@@ -20,7 +20,6 @@ import isLength from "validator/lib/isLength";
 import {
   Flex,
   FormLabel,
-  Image,
   Switch,
   Text,
   useColorModeValue,
