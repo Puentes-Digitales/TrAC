@@ -94,7 +94,7 @@ export const AdminNotifications: FC<{
     },
     {
       id: "student_pending_of_enrollment",
-      def: config.RISK_student_pending_of_enrollment,
+      def: config.RISK_STUDENT_PENDING_OF_ENROLLMENT,
     },
     {
       id: "third_attempt",

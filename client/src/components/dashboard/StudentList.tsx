@@ -148,8 +148,8 @@ export const StudentList: FC<{
     RISK_BY_STUDENTS_LABEL,
     RISK_ALL,
     RISK_ALL_TOOLTIP,
-    RISK_student_pending_of_enrollment,
-    RISK_student_pending_of_enrollment_TOOLTIP,
+    RISK_STUDENT_PENDING_OF_ENROLLMENT,
+    RISK_STUDENT_PENDING_OF_ENROLLMENT_TOOLTIP,
     RISK_LOW_PASSING_RATE_COURSES,
     RISK_LOW_PASSING_RATE_COURSES_TOOLTIP,
     RISK_LOW_PROGRESSING_RATE,
@@ -200,8 +200,8 @@ export const StudentList: FC<{
             }
           ) ?? []
         );
-      case RISK_student_pending_of_enrollment:
-        setRiskTypeTooltip(RISK_student_pending_of_enrollment_TOOLTIP);
+      case RISK_STUDENT_PENDING_OF_ENROLLMENT:
+        setRiskTypeTooltip(RISK_STUDENT_PENDING_OF_ENROLLMENT_TOOLTIP);
         return (
           studentPendingOfEnrollment?.riskNotification.map(
             ({ student_id, cohort, risk_type, details }) => {
@@ -526,7 +526,7 @@ export const StudentList: FC<{
                 {ENTRY_YEAR_LABEL}
               </Table.HeaderCell>
               {(riskType === RISK_ALL ||
-                riskType === RISK_student_pending_of_enrollment) && (
+                riskType === RISK_STUDENT_PENDING_OF_ENROLLMENT) && (
                 <Table.HeaderCell
                   width={5}
                   sorted={
@@ -642,8 +642,8 @@ export const StudentList: FC<{
                 {courseRisk && (
                   <>
                     <option value={RISK_ALL}>{RISK_ALL}</option>
-                    <option value={RISK_student_pending_of_enrollment}>
-                      {RISK_student_pending_of_enrollment}
+                    <option value={RISK_STUDENT_PENDING_OF_ENROLLMENT}>
+                      {RISK_STUDENT_PENDING_OF_ENROLLMENT}
                     </option>
                     <option value={RISK_LOW_PROGRESSING_RATE}>
                       {RISK_LOW_PROGRESSING_RATE}
@@ -789,7 +789,7 @@ export const StudentList: FC<{
                               </Table.Cell>
                               {(riskType === RISK_ALL ||
                                 riskType ===
-                                  RISK_student_pending_of_enrollment) && (
+                                  RISK_STUDENT_PENDING_OF_ENROLLMENT) && (
                                 <Table.Cell verticalAlign="middle">
                                   <Progress
                                     css={[
