@@ -64,6 +64,7 @@ const Login: FC = () => {
   });
 
   const {
+    LOGIN_HEADER,
     LOGIN_WRONG_INFO_MESSAGE,
     LOGIN_LOCKED_USER_MESSAGE,
     LOGIN_PUT_VALID_EMAIL,
@@ -80,21 +81,20 @@ const Login: FC = () => {
 
   const labelColor = useColorModeValue("black", "white !important");
 
-  const imageBg = useColorModeValue(undefined, "white");
-
   return (
     <Grid centered padded>
       <Grid.Row>
-        <Image
-          padding="10px"
-          borderRadius="10px"
-          bg={imageBg}
-          alt="LALA"
-          src="/lalalink.png"
-          height="20vh"
-          objectFit="contain"
-          objectPosition="center"
-        />
+        <Text
+          fontSize="2.3em"
+          fontFamily="sans-serif"
+          fontWeight="bold"
+          color={labelColor}
+          className="horizontalText"
+          as="label"
+          textShadow="0.5px 0.5px 0px #a1a1a1"
+        >
+          {LOGIN_HEADER}
+        </Text>
       </Grid.Row>
 
       {!loading && (data?.login?.error || errorMutation) && (

@@ -347,6 +347,7 @@ export const baseConfig = {
   HISTORIC_GRADES: "Calificaciones históricas",
   GROUPED_GRADES: "Calificaciones grupo",
   INACTIVE_COURSE_BOX_COLOR: "#A0AEC0",
+  LOGIN_HEADER: "Plataforma de Seguimiento a la Progresión Estudiantil",
   LOGIN_BUTTON: "Ingresar",
   LOGIN_EMAIL_LABEL: "Correo Electrónico",
   LOGIN_EMAIL_PLACEHOLDER: "email@uach.cl",
