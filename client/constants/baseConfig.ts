@@ -348,6 +348,7 @@ export const baseConfig = {
   GROUPED_GRADES: "Calificaciones grupo",
   INACTIVE_COURSE_BOX_COLOR: "#A0AEC0",
   LOGIN_HEADER: "Plataforma de Seguimiento a la Progresión Estudiantil",
+  LOGIN_FOOTER: "Powered by Puentes Digitales, based on TrAC - LALA Project",
   LOGIN_BUTTON: "Ingresar",
   LOGIN_EMAIL_LABEL: "Correo Electrónico",
   LOGIN_EMAIL_PLACEHOLDER: "email@uach.cl",
