@@ -532,6 +532,7 @@ const migration = async () => {
           table.integer("n_courses", 8).notNullable();
           table.integer("n_passed_courses", 4).notNullable();
           table.float("completion", 4).notNullable();
+          table.integer("credits_passed").nullable;
         });
         await StudentProgramTable().insert(
           (await import("./mockData/student_program.json")).default.map(

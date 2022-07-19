@@ -220,6 +220,30 @@ export const StudentGraduationTermDataloader = new DataLoader(
   }
 );
 
+export const StudentCreditsPassedDataloader = new DataLoader(
+  async (
+    keys: readonly {
+      student_id: string;
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ student_id, program_id }) => {
+        return StudentProgramTable()
+          .select("credits_passed")
+          .where({
+            student_id,
+            program_id,
+          })
+          .first();
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
 export const GroupedAdmissionDataLoader = new DataLoader(
   async (
     keys: readonly {

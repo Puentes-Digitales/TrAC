@@ -57,6 +57,9 @@ export class Student {
   @Field()
   admission: Admission;
 
+  @Field(() => Int)
+  credits_passed?: number;
+
   // student_employed
   @Field({ nullable: true })
   employed?: Employed;

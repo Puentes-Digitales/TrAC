@@ -405,6 +405,7 @@ enum StateCourse {
 
 type Student {
   admission: Admission!
+  credits_passed: Int!
   curriculums: [String!]!
   dropout: Dropout
   employed: Employed

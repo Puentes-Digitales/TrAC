@@ -10,6 +10,7 @@
     "n_courses": 101,
     "n_passed_courses": 54,
     "completion": 0.53,
+    "credits_passed": 45,
     "gradation_term": ""
   },
   {
@@ -23,6 +24,7 @@
     "n_courses": 69,
     "n_passed_courses": 50,
     "completion": 0.72,
+    "credits_passed": 45,
     "gradation_term": "2020-2"
   },
   {
@@ -36,6 +38,7 @@
     "n_courses": 62,
     "n_passed_courses": 24,
     "completion": 0.39,
+    "credits_passed": 45,
     "gradation_term": ""
   },
   {
@@ -49,6 +52,7 @@
     "n_courses": 50,
     "n_passed_courses": 14,
     "completion": 0.28,
+    "credits_passed": 45,
     "gradation_term": "2018-2"
   },
   {
@@ -62,6 +66,7 @@
     "n_courses": 50,
     "n_passed_courses": 14,
     "completion": 0.28,
+    "credits_passed": 45,
     "gradation_term": "2020-2"
   },
   {
@@ -75,6 +80,7 @@
     "n_courses": 60,
     "n_passed_courses": 30,
     "completion": 0.5,
+    "credits_passed": 45,
     "gradation_term": ""
   }
 ]

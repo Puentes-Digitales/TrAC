@@ -7,11 +7,13 @@ import { ConfigContext } from "../../context/Config";
 export const ProgressStudent: FC<{
   n_cycles_student: string[];
   n_courses_cycles: number[];
-}> = memo(({ n_cycles_student, n_courses_cycles }) => {
+  n_credits_passed: number;
+}> = memo(({ n_cycles_student, n_courses_cycles, n_credits_passed }) => {
   const {
     PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR,
     PROGRESS_STUDENT_INFORMATION_TEXT,
     PROGRESS_STUDENT_NOTE,
+    CREDITS_PASSED_LABEL,
     COMPLEMENTARY_INFORMATION_PERCENT_MARK,
   } = useContext(ConfigContext);
 
@@ -71,6 +73,16 @@ export const ProgressStudent: FC<{
               </div>
             ))}
             <div>
+              <Text
+                alignSelf={"center"}
+                fontSize="1.2em"
+                ml={2}
+                mb={2}
+                fontFamily="Lato"
+                className="horizontalText"
+              >
+                {CREDITS_PASSED_LABEL + n_credits_passed}
+              </Text>
               <Text
                 alignSelf={"center"}
                 fontSize="0.9em"

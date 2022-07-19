@@ -497,6 +497,7 @@ export enum StateCourse {
 
 export type Student = {
   admission: Admission;
+  credits_passed: Scalars["Int"];
   curriculums: Array<Scalars["String"]>;
   dropout?: Maybe<Dropout>;
   employed?: Maybe<Employed>;
@@ -960,6 +961,7 @@ export type SearchStudentMutation = {
       | "n_cycles"
       | "mention"
       | "graduation_term"
+      | "credits_passed"
     > & {
       programs: Array<Pick<Program, "id" | "name">>;
       terms: Array<
@@ -2740,6 +2742,7 @@ export const SearchStudentDocument = gql`
         educational_system
         months_to_first_job
       }
+      credits_passed
     }
   }
 `;

@@ -193,6 +193,7 @@ export interface IStudentProgram {
   n_courses: number;
   n_passed_courses: number;
   completion: number;
+  credits_passed: number;
   graduation_term: string;
 }
 

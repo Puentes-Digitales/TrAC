@@ -246,6 +246,7 @@ mutation searchStudent($student_id: String, $program_id: String) {
       educational_system
       months_to_first_job
     }
+    credits_passed
   }
 }
 

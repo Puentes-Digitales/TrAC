@@ -557,6 +557,7 @@ export function Dashboard() {
           <ProgressStudent
             n_courses_cycles={studentData.n_courses_cycles}
             n_cycles_student={studentData.n_cycles}
+            n_credits_passed={studentData.credits_passed}
           />
         );
       }

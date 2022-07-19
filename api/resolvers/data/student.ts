@@ -32,6 +32,7 @@ import {
   StudentStartYearDataLoader,
   GroupedAdmissionDataLoader,
   StudentGraduationTermDataloader,
+  StudentCreditsPassedDataloader,
 } from "../../dataloaders/student";
 import {
   StudentListCyclesDataLoader,
@@ -309,6 +310,24 @@ export class StudentResolver {
       );
     } else {
       return "";
+    }
+  }
+
+  @FieldResolver()
+  async credits_passed(
+    @Root() { id, program_id }: PartialStudent
+  ): Promise<$PropertyType<Student, "credits_passed">> {
+    if (program_id) {
+      return (
+        (
+          await StudentCreditsPassedDataloader?.load({
+            student_id: id,
+            program_id,
+          })
+        )?.credits_passed ?? 0
+      );
+    } else {
+      return 0;
     }
   }
 
