@@ -297,6 +297,48 @@ export const ReqCircleComponent: FC<Pick<ICourse, "code">> = memo(
   }
 );
 
+export const ModeComponent: FC<Pick<ICourse, "mode">> = memo(() => {
+  const config = useContext(ConfigContext);
+  const textColor = useColorModeValue("black", "white");
+  return (
+    (
+      <motion.div
+        key="req_circle"
+        initial={{
+          opacity: 0,
+          position: "static",
+        }}
+        animate={{ opacity: 1 }}
+        exit={{
+          opacity: 0,
+          position: "absolute",
+        }}
+      >
+        <Box mt="-15px" pos="absolute" right="40px" top="80px">
+          <svg width={32} height={32}>
+            <circle
+              r={15}
+              cx={16}
+              cy={16}
+              stroke={textColor}
+              fill="transparent"
+            />
+            <text
+              x={3}
+              y={19}
+              fontSize="0.6rem"
+              fontWeight="bold"
+              fill={textColor}
+            >
+              {config.MODE_CIRCLE_LABEL}
+            </text>
+          </svg>
+        </Box>
+      </motion.div>
+    ) || null
+  );
+});
+
 export const currentDistributionLabel = ({
   term,
   year,
@@ -322,6 +364,7 @@ export function GroupedCourseBox({
   requisites,
   agroupedBandColors,
   flow,
+  mode,
 }: IGroupedCourse) {
   const config = useContext(ConfigContext);
 
@@ -367,6 +410,9 @@ export function GroupedCourseBox({
           {!isOpen && <CreditsComponent key="credits" credits={credits} />}
 
           <ReqCircleComponent key="reqCircle" code={code} />
+          {mode === config.COURSE_MODE_ANUAL_VALUE && (
+            <ModeComponent key={"Mode"} mode={mode}></ModeComponent>
+          )}
 
           {isOpen && (
             <HistogramsComponent key="histogramsComponent" code={code}>

@@ -630,10 +630,12 @@ export function Dashboard() {
                     historicalDistribution,
                     bandColors,
                     mention,
+                    mode,
                   }) => {
                     return {
                       code,
                       mention,
+                      mode,
                       name,
                       credits,
                       flow: flow.map(({ code }) => {
@@ -778,6 +780,7 @@ export function Dashboard() {
                     requisites,
                     historicalDistribution,
                     bandColors,
+                    mode,
                   }) => {
                     const filteredData = programData.courseGroupedStats.filter(
                       (value) =>
@@ -817,6 +820,7 @@ export function Dashboard() {
                       name,
                       credits,
                       mention,
+                      mode,
                       flow: flow.map(({ code }) => {
                         return code;
                       }),

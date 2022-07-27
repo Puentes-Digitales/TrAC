@@ -137,6 +137,7 @@ mutation searchProgram($id: String, $student_id: String) {
             value
           }
           mention
+          mode
           flow {
             code
           }
