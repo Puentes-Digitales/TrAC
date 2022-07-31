@@ -163,8 +163,8 @@ export const StudentTermsDataLoader = new DataLoader(
     );
   },
   {
-    cacheKeyFn: (key) => {
-      return key.student_id;
+    cacheKeyFn: ({ student_id, programs }) => {
+      return programs ? student_id + programs[0]?.id : student_id;
     },
     cacheMap: new LRUMap(1000),
   }
