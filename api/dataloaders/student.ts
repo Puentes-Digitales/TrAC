@@ -49,7 +49,6 @@ export const StudentViaProgramsDataLoader2 = new DataLoader(
   ) => {
     return await Promise.all(
       keys.map(({ student_id, program_id }) => {
-        console.log(student_id, program_id);
         return StudentProgramTable()
           .select("program_id", "name", "state", "curriculum", "mention")
           .innerJoin<IStudent>(
