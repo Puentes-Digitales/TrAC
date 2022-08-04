@@ -32,6 +32,10 @@ export class Course {
   @Field()
   mention: string;
 
+  //program_structure => mode
+  @Field()
+  mode: string;
+
   // LOGIC => program_structure => requisites
   @Field(() => [Course])
   flow: Course[];

@@ -31,6 +31,7 @@ export type ICourse = {
   code: string;
   name: string;
   mention: string;
+  mode: string;
   credits: { label: string; value: number }[];
   flow: string[];
   requisites: string[];
@@ -64,6 +65,7 @@ export type IGroupedCourse = {
   credits: { label: string; value: number }[];
   flow: string[];
   mention: string;
+  mode: string;
   requisites: string[];
   historicDistribution: IDistribution[];
   agroupedDistribution: IDistribution[];

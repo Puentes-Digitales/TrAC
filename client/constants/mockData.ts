@@ -35,7 +35,6 @@ const data: {
           curriculum: "2017",
           type_admission: "PACE",
           cohort: "2016",
-          year: 2019,
           term: 1,
           n_students: 29,
           n_total: 8,
@@ -9703,6 +9702,7 @@ const data: {
                 {
                   code: "BAIN065-14",
                   name: "ÁLGEBRA PARA INGENIERÍA",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -9787,6 +9787,7 @@ const data: {
                 {
                   code: "BAIN067-14",
                   name: "GEOMETRÍA PARA INGENIERÍA",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -9868,6 +9869,7 @@ const data: {
                 {
                   code: "BAIN071-14",
                   name: "COMUNICACIÓN IDIOMA ESPAÑOL",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -9946,6 +9948,7 @@ const data: {
                 {
                   code: "INFO073-17",
                   name: "TALLER DE INGENIERÍA: INTRODUCCIÓN A LA PROFESIÓN",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -10024,6 +10027,7 @@ const data: {
                 {
                   code: "INFO063-17",
                   name: "INTRODUCCIÓN A LA PROGRAMACIÓN",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -10113,6 +10117,7 @@ const data: {
               courses: [
                 {
                   code: "BAIN073-14",
+                  mode: "SEMESTRAL",
                   name: "ÁLGEBRA LINEAL PARA INGENIERÍA",
                   credits: [
                     {
@@ -10205,6 +10210,7 @@ const data: {
                 {
                   code: "BAIN079-14",
                   name: "COMUNICACIÓN IDIOMA INGLÉS",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -10283,6 +10289,7 @@ const data: {
                 {
                   code: "INFO081-17",
                   name: "PROGRAMACIÓN",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -10371,6 +10378,7 @@ const data: {
                 {
                   code: "INFO083-17",
                   name: "TALLER DE INGENIERÍA: PROGRAMACIÓN APLICADA",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -10459,6 +10467,7 @@ const data: {
                 {
                   code: "BAIN069-14",
                   name: "QUÍMICA PARA INGENIERÍA",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -10537,6 +10546,7 @@ const data: {
                 {
                   code: "DYRE070-14",
                   name: "EDUCACIÓN FÍSICA Y SALUD",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -10612,6 +10622,7 @@ const data: {
                 {
                   code: "BAIN075-14",
                   name: "CÁLCULO EN UNA VARIABLE",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -10709,6 +10720,7 @@ const data: {
                 {
                   code: "BAIN077-14",
                   name: "FÍSICA: MECÁNICA",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -10794,6 +10806,7 @@ const data: {
                 {
                   code: "ELECT12",
                   name: "OFG 1",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -10823,6 +10836,7 @@ const data: {
                 {
                   code: "BAIN081-14",
                   name: "ECUACIONES DIFERENCIALES PARA INGENIERÍA",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -10908,6 +10922,7 @@ const data: {
                 {
                   code: "BAIN083-14",
                   name: "CÁLCULO EN VARIAS VARIABLES",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -10994,6 +11009,7 @@ const data: {
                   code: "INFO088-17",
                   name:
                     "TALLER DE INGENIERÍA: ESTRUCTURA DE DATOS Y ALGORITMOS",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -11085,6 +11101,7 @@ const data: {
                 {
                   code: "INFO085-17",
                   name: "ESTRUCTURA DE DATOS Y ALGORITMOS",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -11176,6 +11193,7 @@ const data: {
                 {
                   code: "INFO090-17",
                   name: "PROGRAMACIÓN ORIENTADA A OBJETO",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -11258,6 +11276,7 @@ const data: {
                 {
                   code: "BAIN091-14",
                   name: "ESTADÍSTICA Y PROBABILIDADES PARA INGENIERÍA",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -11343,6 +11362,7 @@ const data: {
                 {
                   code: "BAIN085-14",
                   name: "FÍSICA: ONDAS Y ELECTROMAGNETISMO",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -11428,6 +11448,7 @@ const data: {
                 {
                   code: "BAIN087-14",
                   name: "MÉTODOS NUMÉRICOS PARA INGENIERÍA",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -11507,6 +11528,7 @@ const data: {
                 {
                   code: "INFO099-17",
                   name: "ESTRUCTURAS DISCRETAS",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -11592,6 +11614,7 @@ const data: {
                 {
                   code: "INFO104-17",
                   name: "TALLER DE CONSTRUCCIÓN DE SOFTWARE",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -11695,6 +11718,7 @@ const data: {
                 {
                   code: "EICI146-17",
                   name: "PRÁCTICA INICIAL",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -11840,6 +11864,7 @@ const data: {
                 {
                   code: "INFO145-17",
                   name: "DISEÑO Y ANÁLISIS DE ALGORITMOS",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -11925,6 +11950,7 @@ const data: {
                 {
                   code: "ELECT100",
                   name: "OPTATIVO DE ESPECIALIZACIÓN I",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -11951,6 +11977,7 @@ const data: {
                 {
                   code: "INFO128-17",
                   name: "ARQUITECTURA DE COMPUTADORES",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12036,6 +12063,7 @@ const data: {
                 {
                   code: "BAIN140-17",
                   name: "INGLÉS INSTRUMENTAL",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12115,6 +12143,7 @@ const data: {
                 {
                   code: "INFO139-17",
                   name: "TEORÍA DE AUTÓMATAS",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12197,6 +12226,7 @@ const data: {
                 {
                   code: "INFO133-17",
                   name: "BASE DE DATOS",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12282,6 +12312,7 @@ const data: {
                 {
                   code: "INFO229-17",
                   name: "ARQUITECTURA DE SOFTWARE",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12315,6 +12346,7 @@ const data: {
                 {
                   code: "BAIN150-17",
                   name: "INGLÉS FUNCIONAL",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12348,6 +12380,7 @@ const data: {
                 {
                   code: "INFO200-17",
                   name: "INVESTIGACIÓN OPERATIVA",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12387,6 +12420,7 @@ const data: {
                 {
                   code: "INFO208-17",
                   name: "INGENIERÍA DE REQUISITOS",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12423,6 +12457,7 @@ const data: {
                 {
                   code: "INFO188-17",
                   name: "PROGRAMACIÓN EN PARADIGMAS FUNCIONAL Y PARALELO",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12459,6 +12494,7 @@ const data: {
                 {
                   code: "INFO198-17",
                   name: "SISTEMAS OPERATIVOS",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12531,6 +12567,7 @@ const data: {
                 {
                   code: "ELECT101",
                   name: "OPTATIVO DE ESPECIALIZACIÓN II",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12557,6 +12594,7 @@ const data: {
                 {
                   code: "EICI223-17",
                   name: "GESTIÓN ORGANIZACIONAL",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12599,6 +12637,7 @@ const data: {
                 {
                   code: "INFO257-17",
                   name: "INTELIGENCIA ARTIFICIAL",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12632,6 +12671,7 @@ const data: {
                 {
                   code: "INFO248-17",
                   name: "INGENIERÍA DE SOFTWARE",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12674,6 +12714,7 @@ const data: {
                 {
                   code: "INFO245-17",
                   name: "INTERACCIÓN HUMANO-COMPUTADOR",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12710,6 +12751,7 @@ const data: {
                 {
                   code: "INFO239-17",
                   name: "COMUNICACIONES",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12752,6 +12794,7 @@ const data: {
                 {
                   code: "INFO270-17",
                   name: "EVALUACIÓN DE PROYECTOS INFORMÁTICOS",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12837,6 +12880,7 @@ const data: {
                 {
                   code: "ELECT111",
                   name: "OPTATIVO DE ESPECIALIZACIÓN III",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12860,6 +12904,7 @@ const data: {
                 {
                   code: "INFO276-17",
                   name: "REDES",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12890,6 +12935,7 @@ const data: {
                 {
                   code: "INFO278-17",
                   name: "SISTEMAS DE INFORMACIÓN",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12923,6 +12969,7 @@ const data: {
                 {
                   code: "INFO280-17",
                   name: "SEMINARIO DE ÉTICA PROFESIONAL",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12950,6 +12997,7 @@ const data: {
                 {
                   code: "INFO282-17",
                   name: "TALLER DE INGENIERÍA DE SOFTWARE",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -12986,6 +13034,7 @@ const data: {
                 {
                   code: "EICI270-17",
                   name: "TALLER DE EMPRENDIMIENTO",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -13055,6 +13104,7 @@ const data: {
                 {
                   code: "INFO288-17",
                   name: "SISTEMAS DISTRIBUIDOS",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -13078,6 +13128,7 @@ const data: {
                 {
                   code: "ELECT112",
                   name: "OPTATIVO DE PROFUNDIZACIÓN I",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -13098,6 +13149,7 @@ const data: {
                   code: "INFO289-17",
                   name:
                     "TALLER DE INTEGRACIÓN DE TECNOLOGÍA DE LA INFORMACIÓN Y COMUNICACIÓN",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -13128,6 +13180,7 @@ const data: {
                 {
                   code: "INFO290-17",
                   name: "MÉTODOS Y MODELOS DE INGENIERÍA DE SOFTWARE",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -13155,6 +13208,7 @@ const data: {
                 {
                   code: "INFO286-17",
                   name: "SISTEMAS DE GESTIÓN",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -13194,6 +13248,7 @@ const data: {
                 {
                   code: "ELECT116",
                   name: "OPTATIVO DE PROFUNDIZACIÓN II",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -13213,6 +13268,7 @@ const data: {
                 {
                   code: "INFO294-17",
                   name: "REALIDAD TECNOLÓGICA NACIONAL",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -13362,6 +13418,7 @@ const data: {
                 {
                   code: "INFO297-17",
                   name: "TALLER DE TÍTULO",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -13399,6 +13456,7 @@ const data: {
                   code: "INFO293-17",
                   name:
                     "TECNOLOGÍA DE LA INFORMACIÓN PARA LA GESTIÓN ORGANIZACIONAL",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -13431,6 +13489,7 @@ const data: {
                 {
                   code: "INFO299-17",
                   name: "PROYECTO DE TÍTULO: MEMORIA (a)",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -13454,6 +13513,7 @@ const data: {
                 {
                   code: "INFO295-17",
                   name: "PRÁCTICA PROFESIONAL (a) y (b)",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -13615,6 +13675,7 @@ const data: {
                 {
                   code: "INFO298-17",
                   name: "PROYECTO DE TÍTULO: ARTÍCULO DE INVESTIGACIÓN (b)",
+                  mode: "SEMESTRAL",
                   credits: [
                     {
                       label: "Créditos",
@@ -13699,6 +13760,8 @@ const data: {
       ],
       curriculums: ["2017"],
       start_year: 2017,
+      graduation_term: "2022-2",
+      credits_passed: 235,
       mention: "",
       terms: [
         {

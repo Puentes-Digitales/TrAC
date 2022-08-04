@@ -85,6 +85,20 @@ export class CourseResolver {
   }
 
   @FieldResolver()
+  async mode(
+    @Root() { id, code }: PartialCourse
+  ): Promise<$PropertyType<Course, "mode">> {
+    return (
+      (
+        await CourseStructureDataLoader.load({
+          id,
+          code,
+        })
+      )?.programStructureTable?.mode ?? ""
+    );
+  }
+
+  @FieldResolver()
   async flow(@Root() { id, code }: PartialCourse): Promise<PartialCourse[]> {
     return compact(await CourseFlowDataLoader.load({ id, code }));
   }

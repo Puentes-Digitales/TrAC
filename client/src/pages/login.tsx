@@ -20,7 +20,7 @@ import isLength from "validator/lib/isLength";
 import {
   Flex,
   FormLabel,
-  Image,
+  Stack,
   Switch,
   Text,
   useColorModeValue,
@@ -64,6 +64,8 @@ const Login: FC = () => {
   });
 
   const {
+    LOGIN_HEADER,
+    LOGIN_FOOTER,
     LOGIN_WRONG_INFO_MESSAGE,
     LOGIN_LOCKED_USER_MESSAGE,
     LOGIN_PUT_VALID_EMAIL,
@@ -80,164 +82,192 @@ const Login: FC = () => {
 
   const labelColor = useColorModeValue("black", "white !important");
 
-  const imageBg = useColorModeValue(undefined, "white");
-
   return (
-    <Grid centered padded>
-      <Grid.Row>
-        <Image
-          padding="10px"
-          borderRadius="10px"
-          bg={imageBg}
-          alt="LALA"
-          src="/lalalink.png"
-          height="20vh"
-          objectFit="contain"
-          objectPosition="center"
-        />
-      </Grid.Row>
-
-      {!loading && (data?.login?.error || errorMutation) && (
+    <>
+      <Grid centered padded>
         <Grid.Row>
-          <Message negative>
-            <Message.Header>{LOGIN_ERROR_TITLE}</Message.Header>
-            {(() => {
-              switch (data?.login?.error) {
-                case STUDENT_DATA_NOT_FOUND:
-                  return ERROR_STUDENT_ACCOUNT_NO_DATA_MESSAGE;
-                case WRONG_INFO:
-                  return LOGIN_WRONG_INFO_MESSAGE;
-                case LOCKED_USER:
-                  return LOGIN_LOCKED_USER_MESSAGE;
-                default:
-                  if (errorMutation) {
-                    return errorMutation.message;
-                  }
-                  return data?.login.error;
-              }
-            })()}
-          </Message>
+          <Text
+            fontSize="2.3em"
+            fontFamily="sans-serif"
+            fontWeight="bold"
+            color={labelColor}
+            className="horizontalText"
+            as="label"
+            textShadow="0.5px 0.5px 0px #a1a1a1"
+          >
+            {LOGIN_HEADER}
+          </Text>
         </Grid.Row>
-      )}
 
-      <Form
-        onSubmit={async (
-          {
-            email,
-            password,
-          }: {
-            email: string;
-            password: string;
-          },
-          { reset }
-        ) => {
-          const { data } = await login({
-            variables: {
+        {!loading && (data?.login?.error || errorMutation) && (
+          <Grid.Row>
+            <Message negative>
+              <Message.Header>{LOGIN_ERROR_TITLE}</Message.Header>
+              {(() => {
+                switch (data?.login?.error) {
+                  case STUDENT_DATA_NOT_FOUND:
+                    return ERROR_STUDENT_ACCOUNT_NO_DATA_MESSAGE;
+                  case WRONG_INFO:
+                    return LOGIN_WRONG_INFO_MESSAGE;
+                  case LOCKED_USER:
+                    return LOGIN_LOCKED_USER_MESSAGE;
+                  default:
+                    if (errorMutation) {
+                      return errorMutation.message;
+                    }
+                    return data?.login.error;
+                }
+              })()}
+            </Message>
+          </Grid.Row>
+        )}
+
+        <Form
+          onSubmit={async (
+            {
               email,
-              password: sha1(password).toString(),
+              password,
+            }: {
+              email: string;
+              password: string;
             },
-          });
-          if (data?.login.error) {
-            setTimeout(
-              () =>
-                reset({
-                  email,
-                  password: "",
-                }),
-              0
-            );
-          }
-        }}
-        validate={({ email, password }) => {
-          const errors: ValidationErrors = {};
+            { reset }
+          ) => {
+            const { data } = await login({
+              variables: {
+                email,
+                password: sha1(password).toString(),
+              },
+            });
+            if (data?.login.error) {
+              setTimeout(
+                () =>
+                  reset({
+                    email,
+                    password: "",
+                  }),
+                0
+              );
+            }
+          }}
+          validate={({ email, password }) => {
+            const errors: ValidationErrors = {};
 
-          if (!email || !isEmail(email)) {
-            errors.email = LOGIN_PUT_VALID_EMAIL;
-          }
-          if (!password || !isLength(password, { min: 3, max: 100 })) {
-            errors.password = LOGIN_PUT_VALID_PASSWORD_LENGTH;
-          }
-          return errors;
-        }}
-      >
-        {({ handleSubmit, pristine, invalid }) => {
-          return (
-            <FormSemantic size="big" onSubmit={handleSubmit} color={labelColor}>
-              <Segment size="big" basic>
-                <Field name="email" type="email" initialValue="">
-                  {({ input, meta: { touched, error } }) => (
-                    <FormSemantic.Field
-                      error={error && touched}
-                      disabled={loading}
-                    >
-                      <Text color={labelColor} as="label">
-                        {LOGIN_EMAIL_LABEL}
-                      </Text>
-                      <Input {...input} placeholder={LOGIN_EMAIL_PLACEHOLDER} />
-                      <Text color={labelColor} as="label">
-                        {touched && error}
-                      </Text>
-                    </FormSemantic.Field>
-                  )}
-                </Field>
-
-                <Field name="password" initialValue="" type="password">
-                  {({ input, meta: { touched, error } }) => (
-                    <FormSemantic.Field
-                      error={error && touched}
-                      disabled={loading}
-                    >
-                      <Text color={labelColor} as="label">
-                        {LOGIN_PASSWORD_LABEL}
-                      </Text>
-                      <Input
-                        {...input}
-                        placeholder={LOGIN_PASSWORD_PLACEHOLDER}
-                      />
-                      {
+            if (!email || !isEmail(email)) {
+              errors.email = LOGIN_PUT_VALID_EMAIL;
+            }
+            if (!password || !isLength(password, { min: 3, max: 100 })) {
+              errors.password = LOGIN_PUT_VALID_PASSWORD_LENGTH;
+            }
+            return errors;
+          }}
+        >
+          {({ handleSubmit, pristine, invalid }) => {
+            return (
+              <FormSemantic
+                size="big"
+                onSubmit={handleSubmit}
+                color={labelColor}
+              >
+                <Segment size="big" basic>
+                  <Field name="email" type="email" initialValue="">
+                    {({ input, meta: { touched, error } }) => (
+                      <FormSemantic.Field
+                        error={error && touched}
+                        disabled={loading}
+                      >
+                        <Text color={labelColor} as="label">
+                          {LOGIN_EMAIL_LABEL}
+                        </Text>
+                        <Input
+                          {...input}
+                          placeholder={LOGIN_EMAIL_PLACEHOLDER}
+                        />
                         <Text color={labelColor} as="label">
                           {touched && error}
                         </Text>
-                      }
-                    </FormSemantic.Field>
-                  )}
-                </Field>
-              </Segment>
-              <Flex justify="center" align="center">
-                <FormLabel htmlFor="remember">
-                  {LOGIN_REMEMBER_SESSION}
-                </FormLabel>
-                <Switch
-                  id="remember"
-                  isChecked={session}
-                  isDisabled={loading}
-                  onChange={() => setSession((sess) => !sess)}
-                />
-              </Flex>
+                      </FormSemantic.Field>
+                    )}
+                  </Field>
 
-              <Segment basic>
-                <Button
-                  as="button"
-                  type="submit"
-                  size="big"
-                  color="blue"
-                  disabled={pristine || invalid || loading}
-                  icon
-                  labelPosition="left"
-                  loading={loading}
-                >
-                  <Icon name="sign-in" />
-                  {LOGIN_BUTTON}
-                </Button>
-              </Segment>
-            </FormSemantic>
-          );
-        }}
-      </Form>
-      <Grid.Row>
-        <ToggleDarkMode />
-      </Grid.Row>
-    </Grid>
+                  <Field name="password" initialValue="" type="password">
+                    {({ input, meta: { touched, error } }) => (
+                      <FormSemantic.Field
+                        error={error && touched}
+                        disabled={loading}
+                      >
+                        <Text color={labelColor} as="label">
+                          {LOGIN_PASSWORD_LABEL}
+                        </Text>
+                        <Input
+                          {...input}
+                          placeholder={LOGIN_PASSWORD_PLACEHOLDER}
+                        />
+                        {
+                          <Text color={labelColor} as="label">
+                            {touched && error}
+                          </Text>
+                        }
+                      </FormSemantic.Field>
+                    )}
+                  </Field>
+                </Segment>
+                <Flex justify="center" align="center">
+                  <FormLabel htmlFor="remember">
+                    {LOGIN_REMEMBER_SESSION}
+                  </FormLabel>
+                  <Switch
+                    id="remember"
+                    isChecked={session}
+                    isDisabled={loading}
+                    onChange={() => setSession((sess) => !sess)}
+                  />
+                </Flex>
+
+                <Segment basic>
+                  <Button
+                    as="button"
+                    type="submit"
+                    size="big"
+                    color="blue"
+                    disabled={pristine || invalid || loading}
+                    icon
+                    labelPosition="left"
+                    loading={loading}
+                  >
+                    <Icon name="sign-in" />
+                    {LOGIN_BUTTON}
+                  </Button>
+                </Segment>
+              </FormSemantic>
+            );
+          }}
+        </Form>
+        <Grid.Row>
+          <ToggleDarkMode />
+        </Grid.Row>
+        <Grid.Row>
+          <Stack
+            bottom="0em"
+            //borderColor="white"
+            //borderWidth="0.05em"
+            position="fixed"
+            alignItems="center"
+          >
+            <Text
+              fontSize="1.2em"
+              fontFamily="monospace"
+              fontWeight="bold"
+              color={labelColor}
+              //className="horizontalText"
+              as="label"
+            >
+              {LOGIN_FOOTER}
+            </Text>
+          </Stack>
+        </Grid.Row>
+      </Grid>
+    </>
   );
 };
 

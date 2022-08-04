@@ -9,7 +9,9 @@
     "last_term": 20191,
     "n_courses": 101,
     "n_passed_courses": 54,
-    "completion": 0.53
+    "completion": 0.53,
+    "credits_passed": 45,
+    "gradation_term": ""
   },
   {
     "student_id": "6fdb8a7f5bbaf0c68dbca0f5462e866a",
@@ -21,7 +23,9 @@
     "last_term": 20191,
     "n_courses": 69,
     "n_passed_courses": 50,
-    "completion": 0.72
+    "completion": 0.72,
+    "credits_passed": 45,
+    "gradation_term": "2020-2"
   },
   {
     "student_id": "e078c7de4d67798a915801ba7e2539fb",
@@ -33,7 +37,9 @@
     "last_term": 20191,
     "n_courses": 62,
     "n_passed_courses": 24,
-    "completion": 0.39
+    "completion": 0.39,
+    "credits_passed": 45,
+    "gradation_term": ""
   },
   {
     "student_id": "c381c9bba3e870e0698d9dfa51619c1f",
@@ -45,7 +51,9 @@
     "last_term": 20191,
     "n_courses": 50,
     "n_passed_courses": 14,
-    "completion": 0.28
+    "completion": 0.28,
+    "credits_passed": 45,
+    "gradation_term": "2018-2"
   },
   {
     "student_id": "d8e9b1f97ec3bc542b7d018b5f9e4224",
@@ -57,7 +65,9 @@
     "last_term": 20191,
     "n_courses": 50,
     "n_passed_courses": 14,
-    "completion": 0.28
+    "completion": 0.28,
+    "credits_passed": 45,
+    "gradation_term": "2020-2"
   },
   {
     "student_id": "993567bb136c986c3e18669a748e26b1",
@@ -69,6 +79,8 @@
     "last_term": 20191,
     "n_courses": 60,
     "n_passed_courses": 30,
-    "completion": 0.5
+    "completion": 0.5,
+    "credits_passed": 45,
+    "gradation_term": ""
   }
 ]

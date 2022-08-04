@@ -526,11 +526,13 @@ const migration = async () => {
           table.primary(["student_id", "program_id", "curriculum"]);
           table.integer("start_year", 4).notNullable();
           table.text("type_admission").notNullable();
+          table.text("graduation_term").notNullable();
           table.text("mention").notNullable();
           table.integer("last_term", 4).notNullable();
           table.integer("n_courses", 8).notNullable();
           table.integer("n_passed_courses", 4).notNullable();
           table.float("completion", 4).notNullable();
+          table.integer("credits_passed").nullable;
         });
         await StudentProgramTable().insert(
           (await import("./mockData/student_program.json")).default.map(
@@ -671,7 +673,6 @@ const migration = async () => {
             table.text("curriculum").notNullable();
             table.text("type_admission").notNullable();
             table.text("cohort").notNullable();
-            table.integer("year", 4).notNullable();
             table.integer("term", 4).notNullable();
             table.integer("n_students").notNullable();
             table.integer("n_total", 8).notNullable();

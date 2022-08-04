@@ -103,10 +103,10 @@ export const StudentList: FC<{
     skip: !program_id,
   });
 
-  const { data: studentPendingOfGraduation } = useRiskNoticationQuery({
+  const { data: studentPendingOfEnrollment } = useRiskNoticationQuery({
     variables: {
       program_id: program_id || "",
-      risk_type: "student_pending_of_graduation",
+      risk_type: "student_pending_of_enrollment",
     },
   });
   const { data: lowProgressingRate } = useRiskNoticationQuery({
@@ -148,8 +148,8 @@ export const StudentList: FC<{
     RISK_BY_STUDENTS_LABEL,
     RISK_ALL,
     RISK_ALL_TOOLTIP,
-    RISK_STUDENT_PENDING_OF_GRADUATION,
-    RISK_STUDENT_PENDING_OF_GRADUATION_TOOLTIP,
+    RISK_STUDENT_PENDING_OF_ENROLLMENT,
+    RISK_STUDENT_PENDING_OF_ENROLLMENT_TOOLTIP,
     RISK_LOW_PASSING_RATE_COURSES,
     RISK_LOW_PASSING_RATE_COURSES_TOOLTIP,
     RISK_LOW_PROGRESSING_RATE,
@@ -200,10 +200,10 @@ export const StudentList: FC<{
             }
           ) ?? []
         );
-      case RISK_STUDENT_PENDING_OF_GRADUATION:
-        setRiskTypeTooltip(RISK_STUDENT_PENDING_OF_GRADUATION_TOOLTIP);
+      case RISK_STUDENT_PENDING_OF_ENROLLMENT:
+        setRiskTypeTooltip(RISK_STUDENT_PENDING_OF_ENROLLMENT_TOOLTIP);
         return (
-          studentPendingOfGraduation?.riskNotification.map(
+          studentPendingOfEnrollment?.riskNotification.map(
             ({ student_id, cohort, risk_type, details }) => {
               let cDetails = details ? JSON.parse(details) : {};
               let rut: string = details.length > 0 ? cDetails.rut : ""; //warning with risk data
@@ -211,7 +211,7 @@ export const StudentList: FC<{
                 student_id: student_id,
                 student_rut: rut,
                 dropout_probability: -1,
-                progress: -1,
+                progress: parseInt(cDetails.progress),
                 start_year: parseInt(cohort),
                 explanation: risk_type,
                 course_id: "",
@@ -330,7 +330,7 @@ export const StudentList: FC<{
     }
   }, [
     dataStudentList,
-    studentPendingOfGraduation,
+    studentPendingOfEnrollment,
     mockData,
     riskType,
     program_id,
@@ -525,7 +525,8 @@ export const StudentList: FC<{
               >
                 {ENTRY_YEAR_LABEL}
               </Table.HeaderCell>
-              {riskType === RISK_ALL && (
+              {(riskType === RISK_ALL ||
+                riskType === RISK_STUDENT_PENDING_OF_ENROLLMENT) && (
                 <Table.HeaderCell
                   width={5}
                   sorted={
@@ -641,8 +642,8 @@ export const StudentList: FC<{
                 {courseRisk && (
                   <>
                     <option value={RISK_ALL}>{RISK_ALL}</option>
-                    <option value={RISK_STUDENT_PENDING_OF_GRADUATION}>
-                      {RISK_STUDENT_PENDING_OF_GRADUATION}
+                    <option value={RISK_STUDENT_PENDING_OF_ENROLLMENT}>
+                      {RISK_STUDENT_PENDING_OF_ENROLLMENT}
                     </option>
                     <option value={RISK_LOW_PROGRESSING_RATE}>
                       {RISK_LOW_PROGRESSING_RATE}
@@ -786,7 +787,9 @@ export const StudentList: FC<{
                               <Table.Cell>
                                 <Text>{start_year}</Text>
                               </Table.Cell>
-                              {riskType === RISK_ALL && (
+                              {(riskType === RISK_ALL ||
+                                riskType ===
+                                  RISK_STUDENT_PENDING_OF_ENROLLMENT) && (
                                 <Table.Cell verticalAlign="middle">
                                   <Progress
                                     css={[

@@ -16,6 +16,8 @@ export const baseConfig = {
     "Información del indicador 3",
   COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS_TOOLTIP:
     "Información del indicador 4",
+  COMPLEMENTARY_INFORMATION_GRADUATION_TERM_TOOLTIP:
+    "Información del indicador 5",
 
   GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS_TOOLTIP: "IA1",
   GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE_TOOLTIP:
@@ -58,6 +60,7 @@ export const baseConfig = {
   COURSE_BOX_BORDER_WIDTH_ACTIVE: "2px",
   COURSE_BOX_BORDER_WIDTH_INACTIVE: "1px",
   COURSE_BOX_TEXT_COLOR: "black",
+  COURSE_MODE_ANUAL_VALUE: "ANUAL",
   CREDITS_LABEL: "Créditos",
   CUMULATED_GRADE_COLOR: "rgb(173,66,244)",
   CUMULATED_GRADE_LABEL: "PGA",
@@ -111,6 +114,8 @@ export const baseConfig = {
     "Evaluación nacional diagnóstica: ",
   COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION: "Nombre de institución:",
   COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS: "Meses hasta encontrar trabajo:",
+  COMPLEMENTARY_INFORMATION_GRADUATION_TERM: "Fecha de titulación:",
+  COMPLEMENTARY_INFORMATION_UNGRADUATE: "No titulado",
   COMPLEMENTARY_INFORMATION_TEXT_COLOR: "black",
   DOWNLOAD_WORD: "Descargar Informe",
   DOWNLOAD_WORD_STUDENT_COMPLEMENTARY_INFO_TEXT:
@@ -168,6 +173,8 @@ export const baseConfig = {
   ],
   PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR: "rgb(252,249,165)",
   PROGRESS_STUDENT_INFORMATION_TEXT: "Avance en",
+  PROGRESS_STUDENT_NOTE: "*Avance en malla curricular propuesta",
+  CREDITS_PASSED_LABEL: "Créditos cursados: ",
   ENTRY_YEAR_LABEL: "Ingreso",
   ERROR_PROGRAM_NOT_FOUND: "Programa especificado no pudo ser encontrado.",
   ERROR_PROGRAM_UNAUTHORIZED_MESSAGE:
@@ -338,10 +345,12 @@ export const baseConfig = {
   GROUPED_HISTOGRAM_BAR: "rgb(173,66,244)",
   GROUPED_TIMELY_GRADUATION_BACKGROUND: "rgb( 250, 62, 6 )",
   GROUPED_TIMELY_GRADUATION_LABEL_COLOR: "rgb(255, 255, 255)",
-  GROUPED_TIMELY_EXTRA_TERMS: 2,
+  GROUPED_TIMELY_EXTRA_TERMS: 1,
   HISTORIC_GRADES: "Calificaciones históricas",
   GROUPED_GRADES: "Calificaciones grupo",
   INACTIVE_COURSE_BOX_COLOR: "#A0AEC0",
+  LOGIN_HEADER: "Plataforma de Seguimiento a la Progresión Estudiantil",
+  LOGIN_FOOTER: "Powered by Puentes Digitales, based on TrAC - LALA Project",
   LOGIN_BUTTON: "Ingresar",
   LOGIN_EMAIL_LABEL: "Correo Electrónico",
   LOGIN_EMAIL_PLACEHOLDER: "email@uach.cl",
@@ -384,6 +393,7 @@ export const baseConfig = {
   REQUISITE_COURSE_BOX_COLOR: "#4299E1",
   REQ_CIRCLE_COLOR: "rgb(66,153,225)",
   REQ_CIRCLE_LABEL: "Req",
+  MODE_CIRCLE_LABEL: "ANUAL",
   RISK_HIGH_COLOR: "rgb(255,0,0)",
   RISK_HIGH_THRESHOLD: 80,
   RISK_LABEL: "Percentil riesgo",
@@ -464,9 +474,9 @@ export const baseConfig = {
   RISK_ALL: "Todos",
   RISK_ALL_TOOLTIP:
     "Todos los alumnos que han inscrito asignaturas en los últimos dos semestres",
-  RISK_STUDENT_PENDING_OF_GRADUATION: "Estudiantes no titulados",
-  RISK_STUDENT_PENDING_OF_GRADUATION_TOOLTIP:
-    "Estudiantes a los que le falta un curso para titularse",
+  RISK_STUDENT_PENDING_OF_ENROLLMENT: "Estudiantes sin inscripción",
+  RISK_STUDENT_PENDING_OF_ENROLLMENT_TOOLTIP:
+    "Estudiantes sin inscripción de asignaturas en el semestre actual",
   RISK_LOW_PROGRESSING_RATE: "Estudiantes con bajo progreso efectivo",
   RISK_LOW_PROGRESSING_RATE_TOOLTIP:
     "Estudiantes con avance menor o igual al 50% esperado",

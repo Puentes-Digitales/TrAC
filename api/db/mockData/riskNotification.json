@@ -5,7 +5,7 @@
     "program_id": "1708",
     "curriculum": "2015",
     "cohort": "2017",
-    "risk_type": "student_pending_of_graduation",
+    "risk_type": "student_pending_of_enrollment",
     "details": null,
     "notified": null
   },
@@ -15,7 +15,7 @@
     "program_id": "1708",
     "curriculum": "2015",
     "cohort": "2017",
-    "risk_type": "student_pending_of_graduation",
+    "risk_type": "student_pending_of_enrollment",
     "details": null,
     "notified": null
   },
@@ -25,7 +25,7 @@
     "program_id": "1708",
     "curriculum": "2015",
     "cohort": "2016",
-    "risk_type": "student_pending_of_graduation",
+    "risk_type": "student_pending_of_enrollment",
     "details": null,
     "notified": null
   },
@@ -35,7 +35,7 @@
     "program_id": "1708",
     "curriculum": "2015",
     "cohort": "2017",
-    "risk_type": "student_pending_of_graduation",
+    "risk_type": "student_pending_of_enrollment",
     "details": null,
     "notified": null
   },
@@ -45,7 +45,7 @@
     "program_id": "1708",
     "curriculum": "2015",
     "cohort": "2015",
-    "risk_type": "student_pending_of_graduation",
+    "risk_type": "student_pending_of_enrollment",
     "details": null,
     "notified": null
   },
