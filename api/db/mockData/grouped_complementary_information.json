@@ -8,6 +8,7 @@
     "total_students": 28,
     "university_degree_rate": 68,
     "retention_rate": 55,
+    "current_retention_rate": 55,
     "average_time_university_degree": 57,
     "timely_university_degree_rate": 55,
     "inactive_time_rate": 58
@@ -22,6 +23,7 @@
     "total_students": 20,
     "university_degree_rate": 66,
     "retention_rate": 64,
+    "current_retention_rate": 55,
     "average_time_university_degree": 51,
     "timely_university_degree_rate": 61,
     "inactive_time_rate": 58
@@ -36,6 +38,7 @@
     "total_students": 17,
     "university_degree_rate": 50,
     "retention_rate": 46,
+    "current_retention_rate": 55,
     "average_time_university_degree": 68,
     "timely_university_degree_rate": 52,
     "inactive_time_rate": 58
@@ -50,6 +53,7 @@
     "total_students": 14,
     "university_degree_rate": 48,
     "retention_rate": 49,
+    "current_retention_rate": 55,
     "average_time_university_degree": 48,
     "timely_university_degree_rate": 47,
     "inactive_time_rate": 58
@@ -64,6 +68,7 @@
     "total_students": 28,
     "university_degree_rate": 67,
     "retention_rate": 46,
+    "current_retention_rate": 55,
     "average_time_university_degree": 47,
     "timely_university_degree_rate": 50,
     "inactive_time_rate": 58
@@ -78,6 +83,7 @@
     "total_students": 15,
     "university_degree_rate": 68,
     "retention_rate": 48,
+    "current_retention_rate": 55,
     "average_time_university_degree": 49,
     "timely_university_degree_rate": 63,
     "inactive_time_rate": 58
@@ -92,6 +98,7 @@
     "total_students": 14,
     "university_degree_rate": 48,
     "retention_rate": 65,
+    "current_retention_rate": 55,
     "average_time_university_degree": 51,
     "timely_university_degree_rate": 65,
     "inactive_time_rate": 58
@@ -106,6 +113,7 @@
     "total_students": 16,
     "university_degree_rate": 61,
     "retention_rate": 66,
+    "current_retention_rate": 55,
     "average_time_university_degree": 59,
     "timely_university_degree_rate": 55,
     "inactive_time_rate": 58
@@ -120,6 +128,7 @@
     "total_students": 22,
     "university_degree_rate": 50,
     "retention_rate": 55,
+    "current_retention_rate": 55,
     "average_time_university_degree": 58,
     "timely_university_degree_rate": 51,
     "inactive_time_rate": 58
@@ -134,6 +143,7 @@
     "total_students": 21,
     "university_degree_rate": 55,
     "retention_rate": 55,
+    "current_retention_rate": 55,
     "average_time_university_degree": 64,
     "timely_university_degree_rate": 67,
     "inactive_time_rate": 58
@@ -148,6 +158,7 @@
     "total_students": 19,
     "university_degree_rate": 59,
     "retention_rate": 49,
+    "current_retention_rate": 55,
     "average_time_university_degree": 55,
     "timely_university_degree_rate": 69,
     "inactive_time_rate": 58
@@ -162,6 +173,7 @@
     "total_students": 27,
     "university_degree_rate": 69,
     "retention_rate": 58,
+    "current_retention_rate": 55,
     "average_time_university_degree": 57,
     "timely_university_degree_rate": 67,
     "inactive_time_rate": 58
@@ -176,6 +188,7 @@
     "total_students": 28,
     "university_degree_rate": 63,
     "retention_rate": 62,
+    "current_retention_rate": 55,
     "average_time_university_degree": 57,
     "timely_university_degree_rate": 66,
     "inactive_time_rate": 58
@@ -190,6 +203,7 @@
     "total_students": 20,
     "university_degree_rate": 56,
     "retention_rate": 58,
+    "current_retention_rate": 55,
     "average_time_university_degree": 57,
     "timely_university_degree_rate": 62,
     "inactive_time_rate": 58
@@ -204,6 +218,7 @@
     "total_students": 16,
     "university_degree_rate": 48,
     "retention_rate": 57,
+    "current_retention_rate": 55,
     "average_time_university_degree": 50,
     "timely_university_degree_rate": 52,
     "inactive_time_rate": 58
@@ -218,6 +233,7 @@
     "total_students": 25,
     "university_degree_rate": 50,
     "retention_rate": 55,
+    "current_retention_rate": 55,
     "average_time_university_degree": 55,
     "timely_university_degree_rate": 67,
     "inactive_time_rate": 58
@@ -232,6 +248,7 @@
     "total_students": 20,
     "university_degree_rate": 58,
     "retention_rate": 65,
+    "current_retention_rate": 55,
     "average_time_university_degree": 68,
     "timely_university_degree_rate": 54,
     "inactive_time_rate": 58
@@ -246,6 +263,7 @@
     "total_students": 12,
     "university_degree_rate": 59,
     "retention_rate": 46,
+    "current_retention_rate": 55,
     "average_time_university_degree": 62,
     "timely_university_degree_rate": 60,
     "inactive_time_rate": 58
@@ -260,6 +278,7 @@
     "total_students": 22,
     "university_degree_rate": 53,
     "retention_rate": 51,
+    "current_retention_rate": 55,
     "average_time_university_degree": 48,
     "timely_university_degree_rate": 68,
     "inactive_time_rate": 58
@@ -274,6 +293,7 @@
     "total_students": 11,
     "university_degree_rate": 52,
     "retention_rate": 57,
+    "current_retention_rate": 55,
     "average_time_university_degree": 63,
     "timely_university_degree_rate": 52,
     "inactive_time_rate": 58
@@ -288,6 +308,7 @@
     "total_students": 22,
     "university_degree_rate": 65,
     "retention_rate": 66,
+    "current_retention_rate": 55,
     "average_time_university_degree": 65,
     "timely_university_degree_rate": 48,
     "inactive_time_rate": 58
@@ -302,6 +323,7 @@
     "total_students": 27,
     "university_degree_rate": 63,
     "retention_rate": 68,
+    "current_retention_rate": 55,
     "average_time_university_degree": 64,
     "timely_university_degree_rate": 58,
     "inactive_time_rate": 58
@@ -316,6 +338,7 @@
     "total_students": 23,
     "university_degree_rate": 46,
     "retention_rate": 50,
+    "current_retention_rate": 55,
     "average_time_university_degree": 60,
     "timely_university_degree_rate": 59,
     "inactive_time_rate": 58
@@ -330,6 +353,7 @@
     "total_students": 18,
     "university_degree_rate": 54,
     "retention_rate": 46,
+    "current_retention_rate": 55,
     "average_time_university_degree": 64,
     "timely_university_degree_rate": 60,
     "inactive_time_rate": 58
@@ -344,6 +368,7 @@
     "total_students": 24,
     "university_degree_rate": 61,
     "retention_rate": 62,
+    "current_retention_rate": 55,
     "average_time_university_degree": 46,
     "timely_university_degree_rate": 58,
     "inactive_time_rate": 58
@@ -358,6 +383,7 @@
     "total_students": 21,
     "university_degree_rate": 60,
     "retention_rate": 69,
+    "current_retention_rate": 55,
     "average_time_university_degree": 52,
     "timely_university_degree_rate": 53,
     "inactive_time_rate": 58
@@ -372,6 +398,7 @@
     "total_students": 28,
     "university_degree_rate": 55,
     "retention_rate": 60,
+    "current_retention_rate": 55,
     "average_time_university_degree": 62,
     "timely_university_degree_rate": 57,
     "inactive_time_rate": 58
@@ -386,6 +413,7 @@
     "total_students": 25,
     "university_degree_rate": 68,
     "retention_rate": 49,
+    "current_retention_rate": 55,
     "average_time_university_degree": 64,
     "timely_university_degree_rate": 59,
     "inactive_time_rate": 58
@@ -400,6 +428,7 @@
     "total_students": 28,
     "university_degree_rate": 64,
     "retention_rate": 55,
+    "current_retention_rate": 55,
     "average_time_university_degree": 60,
     "timely_university_degree_rate": 47,
     "inactive_time_rate": 58
@@ -414,6 +443,7 @@
     "total_students": 20,
     "university_degree_rate": 47,
     "retention_rate": 60,
+    "current_retention_rate": 55,
     "average_time_university_degree": 66,
     "timely_university_degree_rate": 54,
     "inactive_time_rate": 58
@@ -428,6 +458,7 @@
     "total_students": 10,
     "university_degree_rate": 66,
     "retention_rate": 50,
+    "current_retention_rate": 55,
     "average_time_university_degree": 49,
     "timely_university_degree_rate": 46,
     "inactive_time_rate": 58
@@ -442,6 +473,7 @@
     "total_students": 25,
     "university_degree_rate": 64,
     "retention_rate": 51,
+    "current_retention_rate": 55,
     "average_time_university_degree": 50,
     "timely_university_degree_rate": 62,
     "inactive_time_rate": 58
@@ -456,6 +488,7 @@
     "total_students": 19,
     "university_degree_rate": 68,
     "retention_rate": 67,
+    "current_retention_rate": 55,
     "average_time_university_degree": 65,
     "timely_university_degree_rate": 59,
     "inactive_time_rate": 58
@@ -470,6 +503,7 @@
     "total_students": 26,
     "university_degree_rate": 66,
     "retention_rate": 61,
+    "current_retention_rate": 55,
     "average_time_university_degree": 54,
     "timely_university_degree_rate": 56,
     "inactive_time_rate": 58
@@ -484,6 +518,7 @@
     "total_students": 24,
     "university_degree_rate": 68,
     "retention_rate": 53,
+    "current_retention_rate": 55,
     "average_time_university_degree": 68,
     "timely_university_degree_rate": 56,
     "inactive_time_rate": 58
@@ -498,6 +533,7 @@
     "total_students": 16,
     "university_degree_rate": 49,
     "retention_rate": 50,
+    "current_retention_rate": 55,
     "average_time_university_degree": 61,
     "timely_university_degree_rate": 54,
     "inactive_time_rate": 58
@@ -512,6 +548,7 @@
     "total_students": 26,
     "university_degree_rate": 47,
     "retention_rate": 45,
+    "current_retention_rate": 55,
     "average_time_university_degree": 68,
     "timely_university_degree_rate": 68,
     "inactive_time_rate": 58
@@ -526,6 +563,7 @@
     "total_students": 28,
     "university_degree_rate": 67,
     "retention_rate": 69,
+    "current_retention_rate": 55,
     "average_time_university_degree": 58,
     "timely_university_degree_rate": 63,
     "inactive_time_rate": 58
@@ -540,6 +578,7 @@
     "total_students": 25,
     "university_degree_rate": 58,
     "retention_rate": 55,
+    "current_retention_rate": 55,
     "average_time_university_degree": 52,
     "timely_university_degree_rate": 47,
     "inactive_time_rate": 58
@@ -554,6 +593,7 @@
     "total_students": 16,
     "university_degree_rate": 50,
     "retention_rate": 50,
+    "current_retention_rate": 55,
     "average_time_university_degree": 56,
     "timely_university_degree_rate": 60,
     "inactive_time_rate": 58
@@ -568,6 +608,7 @@
     "total_students": 15,
     "university_degree_rate": 53,
     "retention_rate": 65,
+    "current_retention_rate": 55,
     "average_time_university_degree": 62,
     "timely_university_degree_rate": 69,
     "inactive_time_rate": 58
@@ -582,6 +623,7 @@
     "total_students": 10,
     "university_degree_rate": 60,
     "retention_rate": 45,
+    "current_retention_rate": 55,
     "average_time_university_degree": 46,
     "timely_university_degree_rate": 58,
     "inactive_time_rate": 58
@@ -596,6 +638,7 @@
     "total_students": 22,
     "university_degree_rate": 50,
     "retention_rate": 46,
+    "current_retention_rate": 55,
     "average_time_university_degree": 45,
     "timely_university_degree_rate": 48,
     "inactive_time_rate": 58
@@ -610,6 +653,7 @@
     "total_students": 20,
     "university_degree_rate": 57,
     "retention_rate": 58,
+    "current_retention_rate": 55,
     "average_time_university_degree": 47,
     "timely_university_degree_rate": 47,
     "inactive_time_rate": 58
@@ -624,6 +668,7 @@
     "total_students": 15,
     "university_degree_rate": 62,
     "retention_rate": 62,
+    "current_retention_rate": 55,
     "average_time_university_degree": 62,
     "timely_university_degree_rate": 48,
     "inactive_time_rate": 58
@@ -638,6 +683,7 @@
     "total_students": 18,
     "university_degree_rate": 56,
     "retention_rate": 45,
+    "current_retention_rate": 55,
     "average_time_university_degree": 55,
     "timely_university_degree_rate": 68,
     "inactive_time_rate": 58
@@ -652,6 +698,7 @@
     "total_students": 18,
     "university_degree_rate": 46,
     "retention_rate": 54,
+    "current_retention_rate": 55,
     "average_time_university_degree": 67,
     "timely_university_degree_rate": 55,
     "inactive_time_rate": 58
@@ -666,6 +713,7 @@
     "total_students": 12,
     "university_degree_rate": 57,
     "retention_rate": 49,
+    "current_retention_rate": 55,
     "average_time_university_degree": 63,
     "timely_university_degree_rate": 45,
     "inactive_time_rate": 58
@@ -680,6 +728,7 @@
     "total_students": 16,
     "university_degree_rate": 62,
     "retention_rate": 69,
+    "current_retention_rate": 55,
     "average_time_university_degree": 59,
     "timely_university_degree_rate": 45,
     "inactive_time_rate": 58
@@ -694,6 +743,7 @@
     "total_students": 23,
     "university_degree_rate": 65,
     "retention_rate": 69,
+    "current_retention_rate": 55,
     "average_time_university_degree": 57,
     "timely_university_degree_rate": 51,
     "inactive_time_rate": 58
@@ -708,6 +758,7 @@
     "total_students": 25,
     "university_degree_rate": 61,
     "retention_rate": 51,
+    "current_retention_rate": 55,
     "average_time_university_degree": 47,
     "timely_university_degree_rate": 53,
     "inactive_time_rate": 58
@@ -722,6 +773,7 @@
     "total_students": 28,
     "university_degree_rate": 52,
     "retention_rate": 63,
+    "current_retention_rate": 65,
     "average_time_university_degree": 45,
     "timely_university_degree_rate": 63,
     "inactive_time_rate": 58
@@ -736,6 +788,7 @@
     "total_students": 15,
     "university_degree_rate": 68,
     "retention_rate": 50,
+    "current_retention_rate": 65,
     "average_time_university_degree": 62,
     "timely_university_degree_rate": 60,
     "inactive_time_rate": 58
@@ -750,6 +803,7 @@
     "total_students": 20,
     "university_degree_rate": 58,
     "retention_rate": 62,
+    "current_retention_rate": 65,
     "average_time_university_degree": 59,
     "timely_university_degree_rate": 55,
     "inactive_time_rate": 58
@@ -764,6 +818,7 @@
     "total_students": 21,
     "university_degree_rate": 54,
     "retention_rate": 58,
+    "current_retention_rate": 65,
     "average_time_university_degree": 54,
     "timely_university_degree_rate": 49,
     "inactive_time_rate": 58
@@ -778,6 +833,7 @@
     "total_students": 13,
     "university_degree_rate": 61,
     "retention_rate": 55,
+    "current_retention_rate": 62,
     "average_time_university_degree": 69,
     "timely_university_degree_rate": 52,
     "inactive_time_rate": 58
@@ -792,6 +848,7 @@
     "total_students": 20,
     "university_degree_rate": 52,
     "retention_rate": 66,
+    "current_retention_rate": 62,
     "average_time_university_degree": 62,
     "timely_university_degree_rate": 67,
     "inactive_time_rate": 58
@@ -806,6 +863,7 @@
     "total_students": 22,
     "university_degree_rate": 50,
     "retention_rate": 53,
+    "current_retention_rate": 62,
     "average_time_university_degree": 61,
     "timely_university_degree_rate": 62,
     "inactive_time_rate": 58
@@ -820,6 +878,7 @@
     "total_students": 18,
     "university_degree_rate": 59,
     "retention_rate": 60,
+    "current_retention_rate": 62,
     "average_time_university_degree": 68,
     "timely_university_degree_rate": 65,
     "inactive_time_rate": 58
@@ -834,6 +893,7 @@
     "total_students": 13,
     "university_degree_rate": 50,
     "retention_rate": 53,
+    "current_retention_rate": 62,
     "average_time_university_degree": 46,
     "timely_university_degree_rate": 47,
     "inactive_time_rate": 58
@@ -848,6 +908,7 @@
     "total_students": 14,
     "university_degree_rate": 46,
     "retention_rate": 46,
+    "current_retention_rate": 62,
     "average_time_university_degree": 59,
     "timely_university_degree_rate": 60,
     "inactive_time_rate": 58
@@ -862,6 +923,7 @@
     "total_students": 10,
     "university_degree_rate": 69,
     "retention_rate": 47,
+    "current_retention_rate": 62,
     "average_time_university_degree": 58,
     "timely_university_degree_rate": 66,
     "inactive_time_rate": 58
@@ -876,6 +938,7 @@
     "total_students": 21,
     "university_degree_rate": 52,
     "retention_rate": 47,
+    "current_retention_rate": 62,
     "average_time_university_degree": 62,
     "timely_university_degree_rate": 62,
     "inactive_time_rate": 58
@@ -890,6 +953,7 @@
     "total_students": 15,
     "university_degree_rate": 65,
     "retention_rate": 45,
+    "current_retention_rate": 58,
     "average_time_university_degree": 59,
     "timely_university_degree_rate": 61,
     "inactive_time_rate": 58
@@ -904,6 +968,7 @@
     "total_students": 25,
     "university_degree_rate": 57,
     "retention_rate": 56,
+    "current_retention_rate": 58,
     "average_time_university_degree": 46,
     "timely_university_degree_rate": 60,
     "inactive_time_rate": 58
@@ -918,6 +983,7 @@
     "total_students": 20,
     "university_degree_rate": 67,
     "retention_rate": 54,
+    "current_retention_rate": 58,
     "average_time_university_degree": 53,
     "timely_university_degree_rate": 52,
     "inactive_time_rate": 58
@@ -932,6 +998,7 @@
     "total_students": 25,
     "university_degree_rate": 56,
     "retention_rate": 45,
+    "current_retention_rate": 58,
     "average_time_university_degree": 51,
     "timely_university_degree_rate": 49,
     "inactive_time_rate": 58
@@ -946,6 +1013,7 @@
     "total_students": 23,
     "university_degree_rate": 54,
     "retention_rate": 53,
+    "current_retention_rate": 58,
     "average_time_university_degree": 47,
     "timely_university_degree_rate": 58,
     "inactive_time_rate": 58
@@ -960,6 +1028,7 @@
     "total_students": 17,
     "university_degree_rate": 62,
     "retention_rate": 57,
+    "current_retention_rate": 58,
     "average_time_university_degree": 63,
     "timely_university_degree_rate": 57,
     "inactive_time_rate": 58
@@ -974,6 +1043,7 @@
     "total_students": 12,
     "university_degree_rate": 48,
     "retention_rate": 55,
+    "current_retention_rate": 58,
     "average_time_university_degree": 51,
     "timely_university_degree_rate": 68,
     "inactive_time_rate": 58
@@ -988,6 +1058,7 @@
     "total_students": 13,
     "university_degree_rate": 69,
     "retention_rate": 69,
+    "current_retention_rate": 58,
     "average_time_university_degree": 45,
     "timely_university_degree_rate": 63,
     "inactive_time_rate": 58
@@ -1002,6 +1073,7 @@
     "total_students": 14,
     "university_degree_rate": 63,
     "retention_rate": 64,
+    "current_retention_rate": 58,
     "average_time_university_degree": 45,
     "timely_university_degree_rate": 53,
     "inactive_time_rate": 58
@@ -1016,6 +1088,7 @@
     "total_students": 29,
     "university_degree_rate": 46,
     "retention_rate": 50,
+    "current_retention_rate": 58,
     "average_time_university_degree": 54,
     "timely_university_degree_rate": 60,
     "inactive_time_rate": 58
@@ -1030,6 +1103,7 @@
     "total_students": 16,
     "university_degree_rate": 46,
     "retention_rate": 57,
+    "current_retention_rate": 58,
     "average_time_university_degree": 69,
     "timely_university_degree_rate": 51,
     "inactive_time_rate": 58
@@ -1044,6 +1118,7 @@
     "total_students": 21,
     "university_degree_rate": 61,
     "retention_rate": 59,
+    "current_retention_rate": 58,
     "average_time_university_degree": 49,
     "timely_university_degree_rate": 48,
     "inactive_time_rate": 58
@@ -1058,6 +1133,7 @@
     "total_students": 16,
     "university_degree_rate": 47,
     "retention_rate": 69,
+    "current_retention_rate": 58,
     "average_time_university_degree": 47,
     "timely_university_degree_rate": 65,
     "inactive_time_rate": 58
@@ -1072,6 +1148,7 @@
     "total_students": 15,
     "university_degree_rate": 62,
     "retention_rate": 54,
+    "current_retention_rate": 58,
     "average_time_university_degree": 62,
     "timely_university_degree_rate": 63,
     "inactive_time_rate": 58
@@ -1086,6 +1163,7 @@
     "total_students": 16,
     "university_degree_rate": 48,
     "retention_rate": 62,
+    "current_retention_rate": 58,
     "average_time_university_degree": 45,
     "timely_university_degree_rate": 54,
     "inactive_time_rate": 58
@@ -1114,6 +1192,7 @@
     "total_students": 23,
     "university_degree_rate": 69,
     "retention_rate": 62,
+    "current_retention_rate": 58,
     "average_time_university_degree": 48,
     "timely_university_degree_rate": 65,
     "inactive_time_rate": 58
@@ -1128,6 +1207,7 @@
     "total_students": 22,
     "university_degree_rate": 49,
     "retention_rate": 48,
+    "current_retention_rate": 58,
     "average_time_university_degree": 62,
     "timely_university_degree_rate": 56,
     "inactive_time_rate": 58
@@ -1142,6 +1222,7 @@
     "total_students": 25,
     "university_degree_rate": 59,
     "retention_rate": 57,
+    "current_retention_rate": 58,
     "average_time_university_degree": 49,
     "timely_university_degree_rate": 48,
     "inactive_time_rate": 58
@@ -1156,6 +1237,7 @@
     "total_students": 22,
     "university_degree_rate": 52,
     "retention_rate": 48,
+    "current_retention_rate": 58,
     "average_time_university_degree": 65,
     "timely_university_degree_rate": 55,
     "inactive_time_rate": 58
@@ -1170,6 +1252,7 @@
     "total_students": 17,
     "university_degree_rate": 62,
     "retention_rate": 59,
+    "current_retention_rate": 58,
     "average_time_university_degree": 49,
     "timely_university_degree_rate": 66,
     "inactive_time_rate": 58
@@ -1184,6 +1267,7 @@
     "total_students": 19,
     "university_degree_rate": 54,
     "retention_rate": 47,
+    "current_retention_rate": 58,
     "average_time_university_degree": 64,
     "timely_university_degree_rate": 57,
     "inactive_time_rate": 58
@@ -1198,6 +1282,7 @@
     "total_students": 13,
     "university_degree_rate": 45,
     "retention_rate": 51,
+    "current_retention_rate": 58,
     "average_time_university_degree": 49,
     "timely_university_degree_rate": 53,
     "inactive_time_rate": 58
@@ -1212,6 +1297,7 @@
     "total_students": 15,
     "university_degree_rate": 60,
     "retention_rate": 57,
+    "current_retention_rate": 58,
     "average_time_university_degree": 63,
     "timely_university_degree_rate": 45,
     "inactive_time_rate": 58
@@ -1226,6 +1312,7 @@
     "total_students": 21,
     "university_degree_rate": 49,
     "retention_rate": 52,
+    "current_retention_rate": 58,
     "average_time_university_degree": 54,
     "timely_university_degree_rate": 48,
     "inactive_time_rate": 58
@@ -1240,6 +1327,7 @@
     "total_students": 20,
     "university_degree_rate": 53,
     "retention_rate": 69,
+    "current_retention_rate": 58,
     "average_time_university_degree": 59,
     "timely_university_degree_rate": 62,
     "inactive_time_rate": 58
@@ -1254,6 +1342,7 @@
     "total_students": 10,
     "university_degree_rate": 61,
     "retention_rate": 67,
+    "current_retention_rate": 58,
     "average_time_university_degree": 53,
     "timely_university_degree_rate": 51,
     "inactive_time_rate": 58

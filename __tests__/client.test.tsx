@@ -195,6 +195,7 @@ describe("Test <AdmissionDropout />", () => {
           educational_system={true}
           institution="Escuela"
           months_to_first_job={6}
+          graduation_term="2020-2"
         />
       );
 
@@ -212,6 +213,7 @@ test("test props en <AdmissionDropout />", async () => {
   const educational_system = true;
   const institution = "Escuela";
   const months_to_first_job = 6;
+  const graduation_term = "2022-2";
 
   await act(async () => {
     const { getByText, getByTestId } = render(
@@ -221,6 +223,7 @@ test("test props en <AdmissionDropout />", async () => {
         educational_system={educational_system}
         institution={institution}
         months_to_first_job={months_to_first_job}
+        graduation_term={graduation_term}
       />
     );
     await waitForExpect(() => {
@@ -237,6 +240,7 @@ test("test null props complementary component", async () => {
   const educational_system = true;
   const institution = null;
   const months_to_first_job = null;
+  const graduation_term = null;
 
   await act(async () => {
     const { getByTestId, queryAllByText } = render(
@@ -246,6 +250,7 @@ test("test null props complementary component", async () => {
         educational_system={educational_system}
         institution={institution}
         months_to_first_job={months_to_first_job}
+        graduation_term={graduation_term}
       ></ComplementaryInfo>
     );
     await waitForExpect(() => {

@@ -49,7 +49,6 @@ export const StudentViaProgramsDataLoader2 = new DataLoader(
   ) => {
     return await Promise.all(
       keys.map(({ student_id, program_id }) => {
-        console.log(student_id, program_id);
         return StudentProgramTable()
           .select("program_id", "name", "state", "curriculum", "mention")
           .innerJoin<IStudent>(
@@ -163,8 +162,8 @@ export const StudentTermsDataLoader = new DataLoader(
     );
   },
   {
-    cacheKeyFn: (key) => {
-      return key.student_id;
+    cacheKeyFn: ({ student_id, programs }) => {
+      return programs ? student_id + programs[0]?.id : student_id;
     },
     cacheMap: new LRUMap(1000),
   }
@@ -183,6 +182,54 @@ export const StudentStartYearDataLoader = new DataLoader(
         return StudentProgramTable()
           .select("*")
           .orderBy("last_term", "desc")
+          .where({
+            student_id,
+            program_id,
+          })
+          .first();
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentGraduationTermDataloader = new DataLoader(
+  async (
+    keys: readonly {
+      student_id: string;
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ student_id, program_id }) => {
+        return StudentProgramTable()
+          .select("graduation_term")
+          .where({
+            student_id,
+            program_id,
+          })
+          .first();
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentCreditsPassedDataloader = new DataLoader(
+  async (
+    keys: readonly {
+      student_id: string;
+      program_id: string;
+    }[]
+  ) => {
+    return await Promise.all(
+      keys.map(({ student_id, program_id }) => {
+        return StudentProgramTable()
+          .select("credits_passed")
           .where({
             student_id,
             program_id,

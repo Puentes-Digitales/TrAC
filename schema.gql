@@ -31,6 +31,7 @@ type Course {
   """
   id: Int!
   mention: String!
+  mode: String!
   name: String!
   requisites: [Course!]!
 }
@@ -125,7 +126,6 @@ type ExternalEvaluationGroupedStats {
   term: Float!
   topic: String!
   type_admission: String!
-  year: Float!
 }
 
 type FeedbackAnswer {
@@ -187,6 +187,7 @@ type FeedbackResult {
 type GroupedComplementary {
   average_time_university_degree: Float
   cohort: String!
+  current_retention_rate: Float!
   curriculum: String!
   inactive_time_rate: Float
   program_id: String!
@@ -405,9 +406,11 @@ enum StateCourse {
 
 type Student {
   admission: Admission!
+  credits_passed: Int!
   curriculums: [String!]!
   dropout: Dropout
   employed: Employed
+  graduation_term: String!
   id: ID!
   mention: String!
   n_courses_cycles: [Float!]!

@@ -103,10 +103,10 @@ export const StudentList: FC<{
     skip: !program_id,
   });
 
-  const { data: studentPendingOfGraduation } = useRiskNoticationQuery({
+  const { data: studentPendingOfEnrollment } = useRiskNoticationQuery({
     variables: {
       program_id: program_id || "",
-      risk_type: "student_pending_of_graduation",
+      risk_type: "student_pending_of_enrollment",
     },
   });
   const { data: lowProgressingRate } = useRiskNoticationQuery({
@@ -142,13 +142,22 @@ export const StudentList: FC<{
     RISK_MEDIUM_THRESHOLD,
     RISK_LOW_COLOR,
     CHECK_STUDENT_FROM_LIST_LABEL,
+    COURSE_FROM_LIST_LABEL,
     NO_INFORMATION_TO_DEPLOY,
+    RISK_BY_COURSES_LABEL,
+    RISK_BY_STUDENTS_LABEL,
     RISK_ALL,
-    RISK_STUDENT_PENDING_OF_GRADUATION,
+    RISK_ALL_TOOLTIP,
+    RISK_STUDENT_PENDING_OF_ENROLLMENT,
+    RISK_STUDENT_PENDING_OF_ENROLLMENT_TOOLTIP,
     RISK_LOW_PASSING_RATE_COURSES,
+    RISK_LOW_PASSING_RATE_COURSES_TOOLTIP,
     RISK_LOW_PROGRESSING_RATE,
+    RISK_LOW_PROGRESSING_RATE_TOOLTIP,
     RISK_THIRD_ATTEMPT,
+    RISK_THIRD_ATTEMPT_TOOLTIP,
     RISK_HIGH_DROP_RATE,
+    RISK_HIGH_DROP_RATE_TOOTLTIP,
     COURSE_LABEL,
     YEAR_LABEL,
     TERM_LABEL,
@@ -160,6 +169,11 @@ export const StudentList: FC<{
     RISK_ALL
   );
 
+  var [riskTypeTooltip, setRiskTypeTooltip] = useRememberState(
+    "risk_tooltip_selected",
+    RISK_ALL_TOOLTIP
+  );
+
   var [courseRisk, setCourseRisk] = useRememberState(
     "course_risk_selected",
     false
@@ -167,6 +181,7 @@ export const StudentList: FC<{
   const studentListData = useMemo(() => {
     switch (riskType) {
       case RISK_ALL:
+        setRiskTypeTooltip(RISK_ALL_TOOLTIP);
         return (
           dataStudentList?.students.map(
             ({ id, start_year, progress, dropout, name }) => {
@@ -185,17 +200,18 @@ export const StudentList: FC<{
             }
           ) ?? []
         );
-      case RISK_STUDENT_PENDING_OF_GRADUATION:
+      case RISK_STUDENT_PENDING_OF_ENROLLMENT:
+        setRiskTypeTooltip(RISK_STUDENT_PENDING_OF_ENROLLMENT_TOOLTIP);
         return (
-          studentPendingOfGraduation?.riskNotification.map(
+          studentPendingOfEnrollment?.riskNotification.map(
             ({ student_id, cohort, risk_type, details }) => {
               let cDetails = details ? JSON.parse(details) : {};
-              let rut: string = details.length > 0 ? cDetails.rut : ""; //warnning with risk data
+              let rut: string = details.length > 0 ? cDetails.rut : ""; //warning with risk data
               return {
                 student_id: student_id,
                 student_rut: rut,
                 dropout_probability: -1,
-                progress: -1,
+                progress: parseInt(cDetails.progress),
                 start_year: parseInt(cohort),
                 explanation: risk_type,
                 course_id: "",
@@ -207,6 +223,7 @@ export const StudentList: FC<{
           ) ?? []
         );
       case RISK_LOW_PROGRESSING_RATE:
+        setRiskTypeTooltip(RISK_LOW_PROGRESSING_RATE_TOOLTIP);
         return (
           lowProgressingRate?.riskNotification.map(
             ({ student_id, cohort, risk_type, details }) => {
@@ -229,6 +246,7 @@ export const StudentList: FC<{
         );
 
       case RISK_THIRD_ATTEMPT:
+        setRiskTypeTooltip(RISK_THIRD_ATTEMPT_TOOLTIP);
         return (
           thirdAttempt?.riskNotification.map(
             ({ student_id, course_id, cohort, risk_type, details }) => {
@@ -253,16 +271,20 @@ export const StudentList: FC<{
         );
 
       case RISK_LOW_PASSING_RATE_COURSES:
+        setRiskTypeTooltip(RISK_LOW_PASSING_RATE_COURSES_TOOLTIP);
         return (
           lowPassingRateCourses?.riskNotification.map(
             ({ course_id, cohort, risk_type, details }) => {
               let cDetails = details ? JSON.parse(details) : {};
+              let courseName = cDetails?.course_name
+                ? cDetails.course_name
+                : "";
               let yearTerm = cDetails?.semester ? cDetails.semester : "";
               let year = yearTerm.length ? yearTerm.substring(0, 4) : "";
               let term = yearTerm.length ? yearTerm.substring(4, 5) : "";
               return {
-                student_id: "-1",
-                student_rut: "",
+                student_id: courseName,
+                student_rut: "risk_low_passing_rate_courses",
                 dropout_probability: -1,
                 progress: -1,
                 start_year: parseInt(cohort),
@@ -276,16 +298,20 @@ export const StudentList: FC<{
           ) ?? []
         );
       case RISK_HIGH_DROP_RATE:
+        setRiskTypeTooltip(RISK_HIGH_DROP_RATE_TOOTLTIP);
         return (
           highDropRate?.riskNotification.map(
             ({ course_id, cohort, risk_type, details }) => {
               let cDetails = details ? JSON.parse(details) : {};
               let yearTerm = cDetails?.semester ? cDetails.semester : "";
+              let courseName = cDetails?.course_name
+                ? cDetails.course_name
+                : "";
               let year = yearTerm.length ? yearTerm.substring(0, 4) : "";
               let term = yearTerm.length ? yearTerm.substring(4, 5) : "";
               return {
-                student_id: "-1",
-                student_rut: "",
+                student_id: courseName,
+                student_rut: "risk_high_drop_rate",
                 dropout_probability: -1,
                 progress: -1,
                 start_year: parseInt(cohort),
@@ -304,7 +330,7 @@ export const StudentList: FC<{
     }
   }, [
     dataStudentList,
-    studentPendingOfGraduation,
+    studentPendingOfEnrollment,
     mockData,
     riskType,
     program_id,
@@ -424,12 +450,12 @@ export const StudentList: FC<{
 
   const panes = [
     {
-      menuItem: "Riegos por estudiantes",
+      menuItem: RISK_BY_STUDENTS_LABEL,
       render: () => <></>,
       tabIndex: 0,
     },
     {
-      menuItem: "Riesgos por cursos",
+      menuItem: RISK_BY_COURSES_LABEL,
       render: () => <></>,
       tabIndex: 1,
     },
@@ -499,7 +525,8 @@ export const StudentList: FC<{
               >
                 {ENTRY_YEAR_LABEL}
               </Table.HeaderCell>
-              {riskType === RISK_ALL && (
+              {(riskType === RISK_ALL ||
+                riskType === RISK_STUDENT_PENDING_OF_ENROLLMENT) && (
                 <Table.HeaderCell
                   width={5}
                   sorted={
@@ -600,42 +627,45 @@ export const StudentList: FC<{
 
           <br />
           <Box>
-            <Select
-              value={riskType}
-              onChange={(e) => setRiskType(e.currentTarget.value)}
-              pl={6}
-              height="2.5rem"
-              width="25%"
-              position="absolute"
-              size="lg"
-              color="Black"
-              bg="white"
-            >
-              {courseRisk && (
-                <>
-                  <option value={RISK_ALL}>{RISK_ALL}</option>
-                  <option value={RISK_STUDENT_PENDING_OF_GRADUATION}>
-                    {RISK_STUDENT_PENDING_OF_GRADUATION}
-                  </option>
-                  <option value={RISK_LOW_PROGRESSING_RATE}>
-                    {RISK_LOW_PROGRESSING_RATE}
-                  </option>
-                  <option value={RISK_THIRD_ATTEMPT}>
-                    {RISK_THIRD_ATTEMPT}
-                  </option>
-                </>
-              )}
-              {!courseRisk && (
-                <>
-                  <option value={RISK_LOW_PASSING_RATE_COURSES}>
-                    {RISK_LOW_PASSING_RATE_COURSES}
-                  </option>
-                  <option value={RISK_HIGH_DROP_RATE}>
-                    {RISK_HIGH_DROP_RATE}
-                  </option>
-                </>
-              )}
-            </Select>
+            <Tooltip hasArrow label={riskTypeTooltip}>
+              <Select
+                value={riskType}
+                onChange={(e) => setRiskType(e.currentTarget.value)}
+                pl={6}
+                height="2.5rem"
+                width="25%"
+                position="absolute"
+                size="lg"
+                color="Black"
+                bg="white"
+              >
+                {courseRisk && (
+                  <>
+                    <option value={RISK_ALL}>{RISK_ALL}</option>
+                    <option value={RISK_STUDENT_PENDING_OF_ENROLLMENT}>
+                      {RISK_STUDENT_PENDING_OF_ENROLLMENT}
+                    </option>
+                    <option value={RISK_LOW_PROGRESSING_RATE}>
+                      {RISK_LOW_PROGRESSING_RATE}
+                    </option>
+                    <option value={RISK_THIRD_ATTEMPT}>
+                      {RISK_THIRD_ATTEMPT}
+                    </option>
+                  </>
+                )}
+                {!courseRisk && (
+                  <>
+                    <option value={RISK_LOW_PASSING_RATE_COURSES}>
+                      {RISK_LOW_PASSING_RATE_COURSES}
+                    </option>
+                    <option value={RISK_HIGH_DROP_RATE}>
+                      {RISK_HIGH_DROP_RATE}
+                    </option>
+                  </>
+                )}
+              </Select>
+            </Tooltip>
+
             <Center>
               <Pagination
                 css={[textAlignCenter, { alignSelf: "center" }]}
@@ -708,6 +738,7 @@ export const StudentList: FC<{
                       const integerProgress = toInteger(progress);
                       const integerRate = toInteger(rate);
                       const checkStudentLabel = `${CHECK_STUDENT_FROM_LIST_LABEL} ${student_id}`;
+                      const checkCourseLabel = `${COURSE_FROM_LIST_LABEL} ${student_id}`;
                       return (
                         <Table.Row key={key} verticalAlign="middle">
                           <TableCell textAlign="center">
@@ -718,7 +749,17 @@ export const StudentList: FC<{
                               <Table.Cell
                                 className="cursorPointer"
                                 onClick={() => {
-                                  searchStudent(student_id);
+                                  let student_ = truncate(
+                                    student_rut
+                                      ? student_rut.slice(0, -1) +
+                                          "-" +
+                                          student_rut.slice(-1)
+                                      : false || student_id,
+                                    {
+                                      length: 35,
+                                    }
+                                  );
+                                  searchStudent(student_);
                                   onClose();
                                 }}
                               >
@@ -730,16 +771,25 @@ export const StudentList: FC<{
                                   textAlign="center"
                                 >
                                   <Text>
-                                    {truncate(student_rut || student_id, {
-                                      length: 35,
-                                    })}
+                                    {truncate(
+                                      student_rut
+                                        ? student_rut.slice(0, -1) +
+                                            "-" +
+                                            student_rut.slice(-1)
+                                        : false || student_id,
+                                      {
+                                        length: 35,
+                                      }
+                                    )}
                                   </Text>
                                 </Tooltip>
                               </Table.Cell>
                               <Table.Cell>
                                 <Text>{start_year}</Text>
                               </Table.Cell>
-                              {riskType === RISK_ALL && (
+                              {(riskType === RISK_ALL ||
+                                riskType ===
+                                  RISK_STUDENT_PENDING_OF_ENROLLMENT) && (
                                 <Table.Cell verticalAlign="middle">
                                   <Progress
                                     css={[
@@ -811,6 +861,8 @@ export const StudentList: FC<{
                             <>
                               <Table.Cell verticalAlign="middle">
                                 <Tooltip
+                                  aria-label={checkCourseLabel}
+                                  label={checkCourseLabel}
                                   zIndex={10000}
                                   placement="top"
                                   textAlign="center"
@@ -831,6 +883,8 @@ export const StudentList: FC<{
                               </Table.Cell>
                               <Table.Cell verticalAlign="middle">
                                 <Tooltip
+                                  aria-label={checkCourseLabel}
+                                  label={checkCourseLabel}
                                   zIndex={10000}
                                   placement="top"
                                   textAlign="center"

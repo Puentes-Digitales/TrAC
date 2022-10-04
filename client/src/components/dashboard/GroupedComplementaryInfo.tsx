@@ -12,6 +12,7 @@ export const GroupedComplementaryInfo: FC<{
   timely_university_degree_rate?: number | null;
   university_degree_rate?: number | null;
   retention_rate?: number | null;
+  current_retention_rate?: number | null;
   average_time_university_degree?: number | null;
   empleability_rate?: number | null;
   average_time_finding_job?: number | null;
@@ -24,6 +25,7 @@ export const GroupedComplementaryInfo: FC<{
     average_time_university_degree,
     timely_university_degree_rate,
     retention_rate,
+    current_retention_rate,
     empleability_rate,
     average_time_finding_job,
     empleability_rate_educational_system,
@@ -41,6 +43,7 @@ export const GroupedComplementaryInfo: FC<{
       GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE,
       GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE,
       GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE,
+      GROUPED_COMPLEMENTARY_INFORMATION_CURRENT_RETENTION_RATE,
       GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE,
       GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_AVERAGE_TIME_FINDING_JOB,
       GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM,
@@ -55,6 +58,7 @@ export const GroupedComplementaryInfo: FC<{
       GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE_EDUCATIONAL_SYSTEM_TOOLTIP,
       GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE_TOOLTIP,
       GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE_TOOLTIP,
+      GROUPED_COMPLEMENTARY_INFORMATION_CURRENT_RETENTION_RATE_TOOLTIP,
     } = useContext(ConfigContext);
 
     const [show, setShow] = useState(false);
@@ -218,7 +222,22 @@ export const GroupedComplementaryInfo: FC<{
                       ></IndicatorTooltip>
                     </Flex>
                   )}
-
+                  {typeof current_retention_rate === "number" && (
+                    <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
+                      <Text>
+                        {
+                          GROUPED_COMPLEMENTARY_INFORMATION_CURRENT_RETENTION_RATE
+                        }{" "}
+                        {current_retention_rate}
+                        {COMPLEMENTARY_INFORMATION_PERCENT_MARK}
+                      </Text>
+                      <IndicatorTooltip
+                        tooltipShow={
+                          GROUPED_COMPLEMENTARY_INFORMATION_CURRENT_RETENTION_RATE_TOOLTIP
+                        }
+                      ></IndicatorTooltip>
+                    </Flex>
+                  )}
                   {typeof empleability_rate === "number" && (
                     <Flex minWidth="max-content" pr={5} pl={5} pt={1} pb={1}>
                       <Text>

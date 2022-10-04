@@ -24,10 +24,6 @@ export const DownloadWord: FC<{
   student_id?: string | null;
 }> = memo(({ student_id }) => {
   const config = useContext(ConfigContext);
-  console.log(
-    "CONFIG DOWNLOAD: ",
-    config.DOWNLOAD_WORD_GROUPED_PLAN_SECOND_TEXT
-  );
   const [show, setShow] = useState(false);
   const groupedActive = useGroupedActive();
   const { colorMode } = useColorMode();
@@ -78,6 +74,11 @@ export const DownloadWord: FC<{
     {
       id: config.GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE,
       value: config.GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE_TOOLTIP,
+    },
+    {
+      id: config.GROUPED_COMPLEMENTARY_INFORMATION_CURRENT_RETENTION_RATE,
+      value:
+        config.GROUPED_COMPLEMENTARY_INFORMATION_CURRENT_RETENTION_RATE_TOOLTIP,
     },
     {
       id: config.GROUPED_COMPLEMENTARY_INFORMATION_EMPLEABILITY_RATE,
@@ -135,7 +136,6 @@ export const DownloadWord: FC<{
     condition: boolean | undefined,
     ifTrue: HTMLElement
   ) => (condition === false ? ifTrue.click() : null);
-
   const doClick = async () => {
     if (colorMode === "dark") {
       let toggle = document.getElementById("toggleTheme");
@@ -150,6 +150,26 @@ export const DownloadWord: FC<{
             break;
           case "complementary_information":
             input_click(state.showingStudentComplementaryInformation, input);
+            break;
+        }
+      }
+    });
+    await new Promise((r) => setTimeout(r, 1000));
+  };
+
+  const doGroupedClick = async () => {
+    if (colorMode === "dark") {
+      let toggle = document.getElementById("toggleTheme");
+      toggle!.click();
+    }
+    idClicks.map(async (id) => {
+      let input = document.getElementById(id);
+      if (typeof input !== "undefined" && input !== null) {
+        switch (id) {
+          case "danger_percentile":
+            input_click(state.showingPrediction, input);
+            break;
+          case "complementary_information":
             input_click(state.showingGroupedComplementaryInfo, input);
             break;
         }
@@ -213,7 +233,7 @@ export const DownloadWord: FC<{
     return lista;
   };
   const domImageGrouped = async () => {
-    await doClick();
+    await doGroupedClick();
     await Promise.all(
       ids.map(async (id) => {
         let input = document.getElementById(id);

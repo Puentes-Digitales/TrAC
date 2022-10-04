@@ -31,7 +31,7 @@ export function HistogramEvaluation({
           key="now"
           label={topic}
           distribution={currentDistribution}
-          grade={grade ? grade : undefined}
+          grade={grade}
           bandColors={bandColors ? bandColors : []}
         />
       )

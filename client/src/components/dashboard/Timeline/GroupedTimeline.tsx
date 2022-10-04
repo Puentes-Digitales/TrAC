@@ -128,15 +128,17 @@ export const GroupedTimeLine: FC<{
         programGrades.map((FILTERED_GRADE, key) => {
           return (
             <g key={key}>
-              <TimeLineTooltip grade={FILTERED_GRADE}>
-                <circle
-                  cy={GradeScale(FILTERED_GRADE)}
-                  cx={key * xTranslateMultiplier + xTranslateAdded}
-                  r={5}
-                  fill={config.PROGRAM_GRADE_COLOR}
-                  css={transitionCSS}
-                />
-              </TimeLineTooltip>
+              {FILTERED_GRADE && (
+                <TimeLineTooltip grade={FILTERED_GRADE}>
+                  <circle
+                    cy={GradeScale(FILTERED_GRADE)}
+                    cx={key * xTranslateMultiplier + xTranslateAdded}
+                    r={5}
+                    fill={config.PROGRAM_GRADE_COLOR}
+                    css={transitionCSS}
+                  />
+                </TimeLineTooltip>
+              )}
               {filteredGrades[key] && (
                 <TimeLineTooltip grade={filteredGrades[key] ?? 0}>
                   <circle

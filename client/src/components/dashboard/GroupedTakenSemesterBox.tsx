@@ -79,35 +79,17 @@ export const GroupedTakenSemesterBox: FC<{
   const badgeProps = useMemo<BadgeProps>(() => {
     if (!comments) {
       return {};
+    } else {
+      return {
+        backgroundColor: config.GROUPED_TIMELY_GRADUATION_BACKGROUND,
+        color: config.GROUPED_TIMELY_GRADUATION_LABEL_COLOR,
+      };
     }
-    switch (comments.toUpperCase()) {
-      case "ELIM-REINC":
-      case "REINCORP":
-        return {
-          colorScheme: "orange",
-        };
-      case "ELIMINADO":
-        return {
-          colorScheme: "red",
-        };
-      case "EGRESADO": {
-        return {
-          colorScheme: "blue",
-        };
-      }
-      case "PENDIENTE":
-        return {
-          colorScheme: "purple",
-        };
-    }
-    return {
-      backgroundColor: "black",
-      color: "white",
-    };
   }, [comments]);
 
   const badgeBgColor = useColorModeValue(undefined, "#202020");
-  return (
+  const Labels = comments ? comments.split(" ") : [""];
+  return termTypeToNumber(term) < 3 ? (
     <Stack ml={config.TAKEN_SEMESTER_BOX_MARGIN_SIDES}>
       <svg width={80} height={80}>
         <svg x={20} y={10}>
@@ -149,24 +131,23 @@ export const GroupedTakenSemesterBox: FC<{
       >
         {comments ? (
           <Stack spacing={0}>
-            <Box>
-              <b>{`${termTypeToNumber(term)}S ${year}`}</b>
-            </Box>
-            <Box>
-              <Badge
-                bg={badgeBgColor}
-                borderRadius="4px"
-                fontSize="0.5em"
-                {...badgeProps}
-              >
-                {comments}
-              </Badge>
-            </Box>
+            <b>{`${termTypeToNumber(term)}S ${year}`}</b>
+            <Badge
+              bg={badgeBgColor}
+              fontStyle="bold"
+              borderRadius="4px"
+              fontSize={Labels.length >= 2 ? "0.4em" : "0.5em"}
+              {...badgeProps}
+            >
+              {Labels.map((item) => {
+                return <p>{item}</p>;
+              })}
+            </Badge>
           </Stack>
         ) : (
           <b>{`${termTypeToNumber(term)}S ${year}`}</b>
         )}
       </Box>
     </Stack>
-  );
+  ) : null;
 });

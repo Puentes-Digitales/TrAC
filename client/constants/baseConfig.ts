@@ -16,6 +16,8 @@ export const baseConfig = {
     "Información del indicador 3",
   COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS_TOOLTIP:
     "Información del indicador 4",
+  COMPLEMENTARY_INFORMATION_GRADUATION_TERM_TOOLTIP:
+    "Información del indicador 5",
 
   GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS_TOOLTIP: "IA1",
   GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE_TOOLTIP:
@@ -31,6 +33,7 @@ export const baseConfig = {
     "IA7",
   GROUPED_COMPLEMENTARY_INFORMATION_INACTIVE_TIME_RATE_TOOLTIP: "IA 8",
   GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE_TOOLTIP: "IA9",
+  GROUPED_COMPLEMENTARY_INFORMATION_CURRENT_RETENTION_RATE_TOOLTIP: "IA11",
 
   ACTIVE_EXTERNAL_EVALUATION_BOX_COLOR: "#718096",
   INACTIVE_EXTERNAL_EVALUATION_BOX_COLOR: "#F8690C",
@@ -51,11 +54,13 @@ export const baseConfig = {
   ACTIVE_COURSE_BOX_COLOR: "#718096",
   CANCELED_HISTORIC_TOOLTIP_LABEL: "Anulada",
   CHECK_STUDENT_FROM_LIST_LABEL: "Ver estudiante",
+  COURSE_FROM_LIST_LABEL: "Curso",
   COURSE_BOX_ALL_TRANSITION_DURATION: "all 0.5s",
   COURSE_BOX_BACKGROUND_COLOR: "rgb(245,245,245)",
   COURSE_BOX_BORDER_WIDTH_ACTIVE: "2px",
   COURSE_BOX_BORDER_WIDTH_INACTIVE: "1px",
   COURSE_BOX_TEXT_COLOR: "black",
+  COURSE_MODE_ANUAL_VALUE: "ANUAL",
   CREDITS_LABEL: "Créditos",
   CUMULATED_GRADE_COLOR: "rgb(173,66,244)",
   CUMULATED_GRADE_LABEL: "PGA",
@@ -85,7 +90,10 @@ export const baseConfig = {
   GROUPED_COMPLEMENTARY_INFORMATION_TOTAL_STUDENTS: "Cantidad de estudiantes:",
   GROUPED_COMPLEMENTARY_INFORMATION_UNIVERSITY_DEGREE_RATE:
     "Tasa de titulación por año de ingreso:",
-  GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE: "Tasa de retención:",
+  GROUPED_COMPLEMENTARY_INFORMATION_RETENTION_RATE:
+    "Tasa de retención año cerrado:",
+  GROUPED_COMPLEMENTARY_INFORMATION_CURRENT_RETENTION_RATE:
+    "Tasa de retención actual:",
   GROUPED_COMPLEMENTARY_INFORMATION_TIMELY_UNIVERSITY_DEGREE_RATE:
     "Tasa de titulación oportuna:",
   GROUPED_COMPLEMENTARY_INFORMATION_AVERAGE_TIME_UNIVERSITY_DEGREE:
@@ -106,6 +114,8 @@ export const baseConfig = {
     "Evaluación nacional diagnóstica: ",
   COMPLEMENTARY_INFORMATION_EMPLOYED_INSTITUTION: "Nombre de institución:",
   COMPLEMENTARY_INFORMATION_EMPLOYED_MONTHS: "Meses hasta encontrar trabajo:",
+  COMPLEMENTARY_INFORMATION_GRADUATION_TERM: "Fecha de titulación:",
+  COMPLEMENTARY_INFORMATION_UNGRADUATE: "No titulado",
   COMPLEMENTARY_INFORMATION_TEXT_COLOR: "black",
   DOWNLOAD_WORD: "Descargar Informe",
   DOWNLOAD_WORD_STUDENT_COMPLEMENTARY_INFO_TEXT:
@@ -163,6 +173,8 @@ export const baseConfig = {
   ],
   PROGRESS_STUDENT_INFORMATION_BACKGROUND_COLOR: "rgb(252,249,165)",
   PROGRESS_STUDENT_INFORMATION_TEXT: "Avance en",
+  PROGRESS_STUDENT_NOTE: "*Avance en malla curricular propuesta",
+  CREDITS_PASSED_LABEL: "Créditos cursados: ",
   ENTRY_YEAR_LABEL: "Ingreso",
   ERROR_PROGRAM_NOT_FOUND: "Programa especificado no pudo ser encontrado.",
   ERROR_PROGRAM_UNAUTHORIZED_MESSAGE:
@@ -330,10 +342,16 @@ export const baseConfig = {
   HELP_DESK: "Mesa de ayuda",
   HISTOGRAM_BAR_ACTIVE: "rgb(122,122,122)",
   HISTOGRAM_BAR_INACTIVE: "rgb(191,191,191)",
+  GROUPED_TIMELY_GRADUATION_LABEL: "Titulación Oportuna",
   GROUPED_HISTOGRAM_BAR: "rgb(173,66,244)",
+  GROUPED_TIMELY_GRADUATION_BACKGROUND: "rgb( 250, 62, 6 )",
+  GROUPED_TIMELY_GRADUATION_LABEL_COLOR: "rgb(255, 255, 255)",
+  GROUPED_TIMELY_EXTRA_TERMS: 1,
   HISTORIC_GRADES: "Calificaciones históricas",
   GROUPED_GRADES: "Calificaciones grupo",
   INACTIVE_COURSE_BOX_COLOR: "#A0AEC0",
+  LOGIN_HEADER: "Plataforma de Seguimiento a la Progresión Estudiantil",
+  LOGIN_FOOTER: "Powered by Puentes Digitales, based on TrAC - LALA Project",
   LOGIN_BUTTON: "Ingresar",
   LOGIN_EMAIL_LABEL: "Correo Electrónico",
   LOGIN_EMAIL_PLACEHOLDER: "email@uach.cl",
@@ -376,6 +394,7 @@ export const baseConfig = {
   REQUISITE_COURSE_BOX_COLOR: "#4299E1",
   REQ_CIRCLE_COLOR: "rgb(66,153,225)",
   REQ_CIRCLE_LABEL: "Req",
+  MODE_CIRCLE_LABEL: "ANUAL",
   RISK_HIGH_COLOR: "rgb(255,0,0)",
   RISK_HIGH_THRESHOLD: 80,
   RISK_LABEL: "Percentil riesgo",
@@ -451,16 +470,26 @@ export const baseConfig = {
   MESSAGE_SUBJECT: "Novedades en TrAC-FID",
   DEFAULT_MESSAGE: "Se ha actualizado la base de datos de TrAC-FID",
   NO_INFORMATION_TO_DEPLOY: "No hay información para mostrar",
+  RISK_BY_STUDENTS_LABEL: "Riesgos por estudiantes",
+  RISK_BY_COURSES_LABEL: "Riesgos por cursos",
   RISK_ALL: "Todos",
-  RISK_STUDENT_PENDING_OF_GRADUATION: "Pendientes de Titulación ",
+  RISK_ALL_TOOLTIP:
+    "Todos los alumnos que han inscrito asignaturas en los últimos dos semestres",
+  RISK_STUDENT_PENDING_OF_ENROLLMENT: "Estudiantes sin inscripción",
+  RISK_STUDENT_PENDING_OF_ENROLLMENT_TOOLTIP:
+    "Estudiantes sin inscripción de asignaturas en el semestre actual",
+  RISK_LOW_PROGRESSING_RATE: "Estudiantes con bajo progreso efectivo",
+  RISK_LOW_PROGRESSING_RATE_TOOLTIP:
+    "Estudiantes con avance menor o igual al 50% esperado",
+  RISK_THIRD_ATTEMPT: "Estudiantes cursando asignaturas por tercera vez",
+  RISK_THIRD_ATTEMPT_TOOLTIP:
+    "Estudiantes que este semestre cursan por tecera vez una asignatura",
   RISK_HIGH_DROP_RATE: "Cursos con alto tasa de anulacion",
-  RISK_LOW_PROGRESSING_RATE: "Avance menor al umbral (50%)",
-  MESSAGE_RISK_HEADER: "Situaciones de riesgo",
-  MESSAGE_RISK_BODY: "Se han encontrado las siguientes situaciones de riesgo: ",
-  MESSAGE_RISK_GIF: "Cómo visualizar situaciones de riesgo en TrAC-FID : ",
-  MESSAGE_RISK_FOOTER: "Para mayor información visite : ",
-  RISK_THIRD_ATTEMPT: "Asignaturas por tercera vez",
-  RISK_LOW_PASSING_RATE_COURSES: "Cursos con bajo nivel de aprobación",
+  RISK_HIGH_DROP_RATE_TOOTLTIP:
+    "Cursos con tasa de anulación mayor o igual al 30% ",
+  RISK_LOW_PASSING_RATE_COURSES: "Cursos con alta tasa de reprobación",
+  RISK_LOW_PASSING_RATE_COURSES_TOOLTIP:
+    "Cursos con tasa de reprobación mayor o igual al 20%",
   GROUPED_DATA: "Datos agrupados",
   EMPLOYABILITY_DATA: "Datos empleabilidad",
   ACADEMIC_DATA: "Datos académicos",
@@ -473,6 +502,10 @@ export const baseConfig = {
   TERM_LABEL: "Semestre",
   RATE_LABEL: "Tasa",
   HELP_DESK_LABEL: "Mesa de ayuda",
+  MESSAGE_RISK_HEADER: "Situaciones de riesgo",
+  MESSAGE_RISK_BODY: "Se han encontrado las siguientes situaciones de riesgo: ",
+  MESSAGE_RISK_GIF: "Cómo visualizar situaciones de riesgo en TrAC-FID : ",
+  MESSAGE_RISK_FOOTER: "Para mayor información visite : ",
 };
 
 export const baseConfigAdmin: typeof baseConfig &

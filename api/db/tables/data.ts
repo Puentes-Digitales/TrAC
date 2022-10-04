@@ -193,6 +193,8 @@ export interface IStudentProgram {
   n_courses: number;
   n_passed_courses: number;
   completion: number;
+  credits_passed: number;
+  graduation_term: string;
 }
 
 export const STUDENT_PROGRAM_TABLE = "student_program";
@@ -258,6 +260,7 @@ export interface IGroupedComplementaryInformation {
   total_students: number;
   university_degree_rate: number;
   retention_rate: number;
+  current_retention_rate: number;
   average_time_university_degree: number;
   timely_university_degree_rate: number;
   inactive_time_rate: number;
@@ -385,7 +388,6 @@ export interface IExternalEvaluationGroupedStats {
   curriculum: string;
   type_admission: string;
   cohort: string;
-  year: number;
   term: number;
   n_students: number;
   p_group: number;

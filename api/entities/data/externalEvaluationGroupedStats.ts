@@ -25,9 +25,6 @@ export class ExternalEvaluationGroupedStats {
   cohort: string;
 
   @Field()
-  year: number;
-
-  @Field()
   term: number;
 
   @Field()

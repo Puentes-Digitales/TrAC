@@ -127,9 +127,6 @@ export class TakenCourseResolver {
       term: dataTakenCourse.term,
       p_group: dataTakenCourse.p_group,
     });
-    if (code === "ILLI066-98") {
-      console.log("ILLI066-98:", histogramData);
-    }
 
     if (histogramData === undefined) {
       return [];

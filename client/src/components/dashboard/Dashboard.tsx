@@ -9,6 +9,7 @@ import React, {
 import ScrollContainer from "react-indiana-drag-scroll";
 import { useUpdateEffect } from "react-use";
 import { Box, Flex, Stack } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
 
 import { ITakenCourse, ITakenExternalEvaluation } from "../../../../interfaces";
 import {
@@ -91,6 +92,7 @@ export function Dashboard() {
     | number
     | null
     | undefined; /*this value match # students from complementary info with semesterTaken components*/
+  var nterms: number | null | undefined;
 
   useEffect(() => {
     if (mock && !mockData) {
@@ -422,6 +424,8 @@ export function Dashboard() {
     mock,
   ]);
 
+  const LineColor = useColorModeValue("black", "white");
+
   const {
     TimeLineComponent,
     TakenSemestersComponent,
@@ -454,14 +458,6 @@ export function Dashboard() {
     const studentListData = mock
       ? mockData?.default.searchStudentListData
       : dataStudentFilterList;
-    console.log(
-      "COHORTE ",
-      chosenCohort,
-      "CURRICULUM",
-      chosenCurriculum,
-      "TIPO DE ADMI",
-      chosenAdmissionType
-    );
 
     if (studentData && !grouped) {
       const {
@@ -544,6 +540,11 @@ export function Dashboard() {
             educational_system={studentData.employed?.educational_system}
             institution={studentData.employed?.institution}
             months_to_first_job={studentData.employed?.months_to_first_job}
+            graduation_term={
+              studentData.graduation_term.length > 0
+                ? studentData.graduation_term
+                : null
+            }
           />
         );
       }
@@ -556,6 +557,7 @@ export function Dashboard() {
           <ProgressStudent
             n_courses_cycles={studentData.n_courses_cycles}
             n_cycles_student={studentData.n_cycles}
+            n_credits_passed={studentData.credits_passed}
           />
         );
       }
@@ -628,10 +630,12 @@ export function Dashboard() {
                     historicalDistribution,
                     bandColors,
                     mention,
+                    mode,
                   }) => {
                     return {
                       code,
                       mention,
+                      mode,
                       name,
                       credits,
                       flow: flow.map(({ code }) => {
@@ -708,6 +712,10 @@ export function Dashboard() {
 
     if (programData && grouped) {
       ///////////////////////////////////////////////////////////////////////////////////////// <------------
+      const {
+        GROUPED_TIMELY_GRADUATION_LABEL,
+        GROUPED_TIMELY_EXTRA_TERMS,
+      } = useContext(ConfigContext);
       const curriculums =
         programData?.curriculums
           .filter(({ id }) => {
@@ -772,6 +780,7 @@ export function Dashboard() {
                     requisites,
                     historicalDistribution,
                     bandColors,
+                    mode,
                   }) => {
                     const filteredData = programData.courseGroupedStats.filter(
                       (value) =>
@@ -811,6 +820,7 @@ export function Dashboard() {
                       name,
                       credits,
                       mention,
+                      mode,
                       flow: flow.map(({ code }) => {
                         return code;
                       }),
@@ -941,7 +951,10 @@ export function Dashboard() {
                 };
               });
           }
-          console.log("FILTERED STUDENTS :", filteredStudents);
+          const groupedTerms = filteredStudents.map((stu) => {
+            return stu.terms;
+          });
+
           const filteredStudentsGrades = filteredStudents.map((stu) =>
             stu.terms
               .map((semester) => {
@@ -975,13 +988,11 @@ export function Dashboard() {
             grades.push(allStudentsGrades.map((v) => v[i] ?? 0));
           }
 
-          console.log("ALL GRADES :", grades);
-
           const filteredGrades = new Array();
           for (let i = 0; i < filteredMaxTerm; i++) {
             filteredGrades.push(filteredStudentsGrades.map((v) => v[i] ?? 0));
           }
-          console.log("FILTERED GRADES :", filteredGrades);
+
           const maxGrades =
             filteredStudentsGrades.length != 0
               ? filteredStudentsGrades
@@ -1020,7 +1031,7 @@ export function Dashboard() {
             //number of students with registered courses
 
             //n_students_per_semester[maxGrades - 1] = registered;
-            console.log("n students per semester: ", n_students_per_semester);
+
             return (
               arr.reduce((a: number, b: number) => {
                 if (a && b) return a + b;
@@ -1029,6 +1040,7 @@ export function Dashboard() {
               }, 0) / (arr.filter((ele: number) => ele).length || 1)
             );
           });
+
           let registered = 0;
           filteredStudentsGrades.map((item) => {
             if (item.length === maxGrades) {
@@ -1044,11 +1056,42 @@ export function Dashboard() {
           const studentTerms = filteredStudents.filter(
             (student) => student.terms.length == filteredMaxTerm
           )[0]?.terms;
+          console.log("FilteredTerms", filteredStudents);
           console.log("studentTerms: ", studentTerms);
+          nterms = filteredAvgGrades.filter((item) => item != 0).length;
+          const n_students: Array<number> = [];
+
+          // Students per semester
+          studentTerms?.map(({ year, term }) => {
+            var count = 0;
+            groupedTerms.forEach((item) => {
+              let c = 0;
+              let founded = false;
+              while (c < item.length && !founded) {
+                if (item[c]?.year! < year) {
+                  founded = true;
+                } else {
+                  if (
+                    item[c]?.year == year &&
+                    (item[c]?.term == term || item[c]?.term == "Anual")
+                  ) {
+                    count = count + 1;
+                    founded = true;
+                  }
+                }
+                c = c + 1;
+              }
+            });
+            n_students.push(count);
+          });
+
+          const n_students_final = n_students.reverse();
+          nStudentsComplementaryInfo = n_students_final[0];
 
           const takenTerms = studentTerms?.map((i) => {
             return { year: i.year, term: i.term };
           });
+
           var cohortLen = filteredAvgGrades.length;
 
           //To do: Refactoring
@@ -1062,11 +1105,14 @@ export function Dashboard() {
             }
             i++;
           }
+          console.log("TEST GRADES: ");
           //
           TimeLineComponent = (
             <GroupedTimeLine
-              programGrades={avgGrades.slice(0, cohortLen)}
-              filteredGrades={filteredAvgGrades}
+              programGrades={avgGrades
+                .slice(0, cohortLen)
+                .filter((item) => item != 0)}
+              filteredGrades={filteredAvgGrades.filter((item) => item != 0)}
               takenSemesters={takenTerms?.slice().reverse() ?? []}
             />
           );
@@ -1078,15 +1124,45 @@ export function Dashboard() {
                     .slice()
                     .reverse()
                     .map(({ term, year }, key) => {
-                      if (n_students_per_semester[key])
+                      const LineColor = useColorModeValue("black", "white");
+                      const indexTerm =
+                        data.semesters[0]?.semester.n === 0
+                          ? data.semesters.length - 2
+                          : data.semesters.length - 1;
+                      if (n_students_final[key])
                         return (
-                          <GroupedTakenSemesterBox
-                            key={key}
-                            term={term}
-                            n_students={n_students_per_semester[key] ?? 0}
-                            year={year}
-                            comments={""}
-                          />
+                          <Flex>
+                            {key == indexTerm + 1 ? (
+                              <Flex
+                                borderLeftWidth={2}
+                                borderStyle={"dotted"}
+                                borderLeftColor={LineColor}
+                              >
+                                <p> </p>
+                              </Flex>
+                            ) : null}
+                            <GroupedTakenSemesterBox
+                              key={key}
+                              term={term}
+                              n_students={n_students_final[key] ?? 0}
+                              year={year}
+                              comments={
+                                key >= indexTerm + 1 &&
+                                key <= indexTerm + GROUPED_TIMELY_EXTRA_TERMS
+                                  ? GROUPED_TIMELY_GRADUATION_LABEL!
+                                  : ""
+                              }
+                            />
+                            {key == indexTerm + GROUPED_TIMELY_EXTRA_TERMS ? (
+                              <Flex
+                                borderLeftWidth={2}
+                                borderStyle={"dotted"}
+                                borderLeftColor={LineColor}
+                              >
+                                <p> </p>
+                              </Flex>
+                            ) : null}
+                          </Flex>
                         );
                     })}
                 </Flex>
@@ -1098,6 +1174,11 @@ export function Dashboard() {
           (filteredEmpleabilityData[0] || filteredComplementaryData[0]) &&
           user?.config?.SHOW_GROUPED_COMPLEMENTARY_INFO
         ) {
+          const dataLen =
+            data.semesters[0]?.semester.n == 0
+              ? data.semesters.length - 1
+              : data.semesters.length;
+          const showInfo = nterms! - dataLen;
           if (!chosenCohort?.length) {
             if (chosenCurriculum?.length) {
               if (chosenAdmissionType?.length) {
@@ -1138,9 +1219,17 @@ export function Dashboard() {
                 filteredComplementaryData[0]?.average_time_university_degree
               }
               timely_university_degree_rate={
-                filteredComplementaryData[0]?.timely_university_degree_rate
+                nterms
+                  ? showInfo >= GROUPED_TIMELY_EXTRA_TERMS
+                    ? filteredComplementaryData[0]
+                        ?.timely_university_degree_rate
+                    : null
+                  : null
               }
               retention_rate={filteredComplementaryData[0]?.retention_rate}
+              current_retention_rate={
+                filteredComplementaryData[0]?.current_retention_rate
+              }
               empleability_rate={filteredEmpleabilityData[0]?.employed_rate}
               average_time_finding_job={
                 filteredEmpleabilityData[0]?.average_time_job_finding
@@ -1178,6 +1267,7 @@ export function Dashboard() {
     mock,
     grouped,
     mockData,
+    LineColor,
   ]);
 
   const {

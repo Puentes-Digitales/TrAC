@@ -26,6 +26,9 @@ export class Student {
   @Field(() => [Program])
   programs: Program[];
 
+  @Field()
+  graduation_term: string;
+
   // student_term => distinct(curriculum)
   @Field(() => [String])
   curriculums: string[];
@@ -53,6 +56,9 @@ export class Student {
   // student_admission
   @Field()
   admission: Admission;
+
+  @Field(() => Int)
+  credits_passed?: number;
 
   // student_employed
   @Field({ nullable: true })
