@@ -55,6 +55,7 @@ import { Help } from "../Help";
 import { Parameter } from "../dashboard/Parameter";
 
 import type { $ElementType } from "utility-types";
+import { loginHelpdesk } from "../../../../api/services/helpdesk";
 const StudentList = dynamic(() => import("./StudentList"));
 
 const MockingMode: FC = memo(() => {
@@ -176,18 +177,6 @@ export const SearchBar: FC<{
     setMock(false);
   }, []);
   const { user } = useUser();
-  const handleHelpDeskClick = () => {
-    //push (user, localhost:8080)
-    //var receiver = window.open("http://localhost:8080/")
-    //receiver?.postMessage('Hola','http://localhost:8080/')
-    console.log("handlingHelpdeskClick");
-    //data.created_at = '2022-02-29 20:04:11-06';
-    fetch("http://localhost:3001/login/test", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user),
-    });
-  };
 
   const isDirector = user?.type === UserType.Director;
 
@@ -362,7 +351,9 @@ export const SearchBar: FC<{
             size="medium"
             icon
             labelPosition="left"
-            onClick={handleHelpDeskClick}
+            onClick={() => {
+              loginHelpdesk();
+            }}
           >
             <Icon name="help circle" />
             {HELP_DESK_LABEL}
