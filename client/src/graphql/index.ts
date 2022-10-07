@@ -41,7 +41,7 @@ export type Course = {
   credits: Array<Credit>;
   flow: Array<Course>;
   historicalDistribution: Array<DistributionValue>;
-  /** Course-Semester-Curriculum-Program ID */
+  /** Course-Semester-Curriculum-Program ID  */
   id: Scalars['Int'];
   mention: Scalars['String'];
   mode: Scalars['String'];
@@ -104,7 +104,7 @@ export type ExternalEvaluation = {
   bandColors: Array<BandColor>;
   code: Scalars['String'];
   historicalDistribution: Array<DistributionValue>;
-  /** ExternalEvaluation-Semester-Curriculum-Program ID */
+  /** ExternalEvaluation-Semester-Curriculum-Program ID  */
   id: Scalars['Int'];
   mention: Scalars['String'];
   name: Scalars['String'];
@@ -243,6 +243,7 @@ export type Mutation = {
   ReNotificateUsers: Array<Scalars['JSONObject']>;
   resetDataLoadersCache: Scalars['Int'];
   resetPersistence: Scalars['Int'];
+  sendCredentials: Scalars['Boolean'];
   setPersistenceValue: Persistence;
   student?: Maybe<Student>;
   track: Scalars['Boolean'];
@@ -336,6 +337,13 @@ export type MutationReNotificateUsersArgs = {
 
 export type MutationResetPersistenceArgs = {
   user: Scalars['String'];
+};
+
+
+export type MutationSendCredentialsArgs = {
+  email: Scalars['String'];
+  LastName: Scalars['String'];
+  Name: Scalars['String'];
 };
 
 
@@ -789,6 +797,15 @@ export type TrackInfoQueryVariables = Exact<{
 
 
 export type TrackInfoQuery = { trackInfo: Array<Pick<Track, 'id' | 'user_id' | 'data' | 'app_id' | 'datetime'>> };
+
+export type SendCredentialMutationVariables = Exact<{
+  email: Scalars['String'];
+  Name: Scalars['String'];
+  LastName: Scalars['String'];
+}>;
+
+
+export type SendCredentialMutation = Pick<Mutation, 'sendCredentials'>;
 
 export type UserInfoFragment = Pick<User, 'email' | 'name' | 'admin' | 'type' | 'config' | 'student_id'>;
 
@@ -1686,6 +1703,38 @@ export function useTrackInfoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type TrackInfoQueryHookResult = ReturnType<typeof useTrackInfoQuery>;
 export type TrackInfoLazyQueryHookResult = ReturnType<typeof useTrackInfoLazyQuery>;
 export type TrackInfoQueryResult = Apollo.QueryResult<TrackInfoQuery, TrackInfoQueryVariables>;
+export const SendCredentialDocument = gql`
+    mutation sendCredential($email: String!, $Name: String!, $LastName: String!) {
+  sendCredentials(email: $email, Name: $Name, LastName: $LastName)
+}
+    `;
+export type SendCredentialMutationFn = Apollo.MutationFunction<SendCredentialMutation, SendCredentialMutationVariables>;
+
+/**
+ * __useSendCredentialMutation__
+ *
+ * To run a mutation, you first call `useSendCredentialMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSendCredentialMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [sendCredentialMutation, { data, loading, error }] = useSendCredentialMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      Name: // value for 'Name'
+ *      LastName: // value for 'LastName'
+ *   },
+ * });
+ */
+export function useSendCredentialMutation(baseOptions?: Apollo.MutationHookOptions<SendCredentialMutation, SendCredentialMutationVariables>) {
+        return Apollo.useMutation<SendCredentialMutation, SendCredentialMutationVariables>(SendCredentialDocument, baseOptions);
+      }
+export type SendCredentialMutationHookResult = ReturnType<typeof useSendCredentialMutation>;
+export type SendCredentialMutationResult = Apollo.MutationResult<SendCredentialMutation>;
+export type SendCredentialMutationOptions = Apollo.BaseMutationOptions<SendCredentialMutation, SendCredentialMutationVariables>;
 export const LoginDocument = gql`
     mutation login($email: EmailAddress!, $password: String!) {
   login(email: $email, password: $password) {

@@ -54,6 +54,7 @@ import { Help } from "../Help";
 
 import { Parameter } from "../dashboard/Parameter";
 
+import {useSendCredentialMutation} from "../../graphql"
 import type { $ElementType } from "utility-types";
 import { loginHelpdesk } from "../../../../api/services/helpdesk";
 const StudentList = dynamic(() => import("./StudentList"));
@@ -94,6 +95,15 @@ export const SearchBar: FC<{
   const groupedActive = useGroupedActive();
   const chosenAdmissionType = useChosenAdmissionType();
   const chosenCohort = useChosenCohort();
+
+  const [
+    sendCredentials,
+    {
+      data: dataSendCredentials,
+      error: errorSendCredentials,
+      loading: loadingSendCredentials,
+    },
+  ] = useSendCredentialMutation();
 
   const GrupedMode: FC = memo(() => {
     const groupedActive = useGroupedActive();
@@ -352,7 +362,18 @@ export const SearchBar: FC<{
             icon
             labelPosition="left"
             onClick={() => {
-              loginHelpdesk();
+              console.log("USER DATA:",user?.email)
+              var userEmail = user?.email ? user.email : "";
+              var userName = user?.name ? user.name : "";
+              sendCredentials({
+              variables:{
+                email:userEmail,
+                Name:userName,
+                LastName:"Tester",
+              }
+            })
+              //loginHelpdesk()
+              console.log(dataSendCredentials, loadingSendCredentials,errorSendCredentials)
             }}
           >
             <Icon name="help circle" />

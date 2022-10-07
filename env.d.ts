@@ -8,5 +8,8 @@ declare namespace NodeJS {
     EMAIL_ADDRESS_REPLY_TO: string;
     PORT: string;
     SELECTED_PROGRAMS: string;
+    HELPDESK_VERIFYCUSTOMER_URL: string;
+    HELPDESK_CUSTOMER_CODE: string;
+    HELPDESK_LOGIN_URL: string;
   }
 }

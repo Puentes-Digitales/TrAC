@@ -1143,6 +1143,9 @@ POSTGRES_HOST=localhost
 # This environment variable is only required for the production deployment in UACh, keep it commented or remove otherwise
 # ANONYMOUS_ID_SERVICE=http://anonymous-id-service.com/example
 # INFO_SESSION_ID_RESULT=http://info-session-id-result.com/example
+#HELPDESK_VERIFYCUSTOMER_URL=
+#HELPDESK_LOGIN_URL=
+#HELPDESK_CUSTOMER_CODE=
 `,
         {
           encoding: "utf-8",
