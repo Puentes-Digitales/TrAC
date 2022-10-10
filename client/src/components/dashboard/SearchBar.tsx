@@ -54,8 +54,9 @@ import { Help } from "../Help";
 
 import { Parameter } from "../dashboard/Parameter";
 
-import {useSendCredentialMutation} from "../../graphql"
+import { useSendCredentialMutation } from "../../graphql";
 import type { $ElementType } from "utility-types";
+
 //import { loginHelpdesk } from "../../../../api/services/helpdesk";
 const StudentList = dynamic(() => import("./StudentList"));
 
@@ -362,18 +363,22 @@ export const SearchBar: FC<{
             icon
             labelPosition="left"
             onClick={() => {
-              console.log("USER DATA:",user?.email)
               var userEmail = user?.email ? user.email : "";
               var userName = user?.name ? user.name : "";
-              sendCredentials({
-              variables:{
-                email:userEmail,
-                Name:userName,
-                LastName:"Tester",
-              }
-            })
+              var url = sendCredentials({
+                variables: {
+                  email: userEmail,
+                  Name: userName,
+                  LastName: "Tester",
+                },
+              });
               //loginHelpdesk()
-              console.log(dataSendCredentials, loadingSendCredentials,errorSendCredentials)
+              console.log(
+                dataSendCredentials,
+                loadingSendCredentials,
+                errorSendCredentials,
+                url
+              );
             }}
           >
             <Icon name="help circle" />

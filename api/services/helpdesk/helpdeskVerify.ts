@@ -43,10 +43,10 @@ export async function verifyCustomer(
       }
     )
     .then((data) => {
-      return JSON.stringify(data);
+      console.log(JSON.stringify(data));
     })
     .catch((err) => {
-      return JSON.stringify(err);
+      console.log(JSON.stringify(err));
     });
-  return aux;
+  return url;
 }
