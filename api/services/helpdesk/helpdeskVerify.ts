@@ -1,9 +1,13 @@
+import "dotenv/config";
+import axios from "axios";
+
 export async function verifyCustomer(
   email: string,
   name: string,
   lastName: string
 ) {
   const url = process.env.HELPDESK_VERIFYCUSTOMER_URL + "/verifyCustomer";
+  /*
   var querystring = require("querystring");
   fetch(url, {
     method: "POST",
@@ -17,9 +21,32 @@ export async function verifyCustomer(
     }),
   })
     .then((data) => {
-      console.log("Success:");
+      return JSON.stringify(data);
     })
     .catch((err) => {
-      console.log("Error:", err);
+      return JSON.stringify(err);
+    });*/
+
+  var querystring = require("querystring");
+  let aux = await axios
+    .post(
+      url,
+      querystring.stringify({
+        email: email,
+        name: name,
+        lastName: lastName,
+      }),
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    )
+    .then((data) => {
+      return JSON.stringify(data);
+    })
+    .catch((err) => {
+      return JSON.stringify(err);
     });
+  return aux;
 }

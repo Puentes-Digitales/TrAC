@@ -5,18 +5,14 @@ import { verifyCustomer } from "../../services/helpdesk/helpdeskVerify";
 @Resolver(() => String)
 export class HelpdeskResolver {
   @Authorized()
-  @Mutation(() => Boolean)
+  @Mutation(() => String)
   async sendCredentials(
     @Arg("email") email: string,
     @Arg("Name") Name: string,
     @Arg("LastName") LastName: string
   ) {
     console.log("se llama la funcion sendCredentials");
-    try {
-      verifyCustomer(email, Name, LastName);
-    } catch (err) {
-      console.log("error:", err);
-    }
-    return true;
+    const url = verifyCustomer(email, Name, LastName);
+    return url;
   }
 }
