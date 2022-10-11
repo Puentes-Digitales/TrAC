@@ -243,7 +243,7 @@ export type Mutation = {
   ReNotificateUsers: Array<Scalars['JSONObject']>;
   resetDataLoadersCache: Scalars['Int'];
   resetPersistence: Scalars['Int'];
-  sendCredentials: Scalars['Boolean'];
+  sendCredentials: Scalars['String'];
   setPersistenceValue: Persistence;
   student?: Maybe<Student>;
   track: Scalars['Boolean'];
