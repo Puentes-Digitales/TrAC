@@ -48,5 +48,5 @@ export async function verifyCustomer(
     .catch((err) => {
       console.log(JSON.stringify(err));
     });
-  return url;
+  return aux;
 }

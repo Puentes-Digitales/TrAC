@@ -58,6 +58,7 @@ import { useSendCredentialMutation } from "../../graphql";
 import type { $ElementType } from "utility-types";
 
 //import { loginHelpdesk } from "../../../../api/services/helpdesk";
+import { loginHelpdesk } from "../../utils/helpdeskForm";
 const StudentList = dynamic(() => import("./StudentList"));
 
 const MockingMode: FC = memo(() => {
@@ -362,22 +363,26 @@ export const SearchBar: FC<{
             size="medium"
             icon
             labelPosition="left"
-            onClick={() => {
+            onClick={async () => {
               var userEmail = user?.email ? user.email : "";
               var userName = user?.name ? user.name : "";
-              var url = sendCredentials({
+              await sendCredentials({
                 variables: {
                   email: userEmail,
                   Name: userName,
                   LastName: "Tester",
                 },
               });
-              //loginHelpdesk()
+              loginHelpdesk(
+                userEmail,
+                dataSendCredentials?.sendCredentials.length
+                  ? dataSendCredentials.sendCredentials
+                  : ""
+              );
               console.log(
                 dataSendCredentials,
                 loadingSendCredentials,
-                errorSendCredentials,
-                url
+                errorSendCredentials
               );
             }}
           >
