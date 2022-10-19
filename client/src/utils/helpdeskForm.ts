@@ -1,6 +1,6 @@
 export async function loginHelpdesk(email: string, urlLogin: string) {
   console.log("urlclave:", urlLogin);
-  const dataHelpdesk = urlLogin.slice(1, -1).split(",");
+  const dataHelpdesk = urlLogin.slice(3, -1).split(",");
   console.log("url:", dataHelpdesk[0]);
   console.log("pass:", dataHelpdesk[1]);
 

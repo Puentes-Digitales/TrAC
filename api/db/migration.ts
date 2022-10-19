@@ -183,6 +183,7 @@ const migration = async () => {
           config: {
             ...baseUserConfig,
             SHOW_GROUPED_VIEW: true,
+            SHOW_HELPDESK: true,
             SHOW_STUDENT_COMPLEMENTARY_INFORMATION: true,
             SHOW_GROUPED_COMPLEMENTARY_INFO: true,
             SHOW_DROPOUT: true,
@@ -1144,7 +1145,8 @@ POSTGRES_HOST=localhost
 # ANONYMOUS_ID_SERVICE=http://anonymous-id-service.com/example
 # INFO_SESSION_ID_RESULT=http://info-session-id-result.com/example
 #HELPDESK_VERIFYCUSTOMER_URL=
-#HELPDESK_LOGIN_URL=
+#HELPDESK_CUSTOMER_LOGIN_URL=
+#HELPDESK_ADMIN_LOGIN_URL=
 #HELPDESK_CUSTOMER_CODE=
 `,
         {

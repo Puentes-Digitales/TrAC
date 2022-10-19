@@ -56,8 +56,6 @@ import { Parameter } from "../dashboard/Parameter";
 
 import { useSendCredentialMutation } from "../../graphql";
 import type { $ElementType } from "utility-types";
-
-//import { loginHelpdesk } from "../../../../api/services/helpdesk";
 import { loginHelpdesk } from "../../utils/helpdeskForm";
 const StudentList = dynamic(() => import("./StudentList"));
 
@@ -97,16 +95,33 @@ export const SearchBar: FC<{
   const groupedActive = useGroupedActive();
   const chosenAdmissionType = useChosenAdmissionType();
   const chosenCohort = useChosenCohort();
+  const { user } = useUser();
 
   const [
     sendCredentials,
-    {
-      data: dataSendCredentials,
-      error: errorSendCredentials,
-      loading: loadingSendCredentials,
-    },
+    { loading: loadingSendCredentials },
   ] = useSendCredentialMutation();
 
+  const callLoginHelpdesk = async () => {
+    {
+      var userEmail = user?.email ? user.email : "";
+      var userName = user?.name ? user.name : "";
+      var admin = user?.admin ? user.admin : false;
+      console.log("se presiona el botón");
+      const datahd = await sendCredentials({
+        variables: {
+          email: userEmail,
+          Name: userName,
+          LastName: "Tester",
+          type: admin,
+        },
+      });
+      loginHelpdesk(
+        user?.email ? user.email : "",
+        JSON.stringify(datahd.data?.sendCredentials)
+      );
+    }
+  };
   const GrupedMode: FC = memo(() => {
     const groupedActive = useGroupedActive();
     return (
@@ -130,6 +145,20 @@ export const SearchBar: FC<{
       </Button2>
     );
   });
+
+  const SendCredentialsToHelpdesk: FC = () => {
+    return (
+      <Button
+        size="medium"
+        icon
+        loading={loadingSendCredentials}
+        disable={loadingSendCredentials}
+        onClick={() => callLoginHelpdesk()}
+      >
+        {HELP_DESK_LABEL}
+      </Button>
+    );
+  };
 
   useEffect(() => {
     DashboardInputActions.setChosenCurriculum("");
@@ -188,7 +217,6 @@ export const SearchBar: FC<{
     setGroupedActive(false);
     setMock(false);
   }, []);
-  const { user } = useUser();
 
   const isDirector = user?.type === UserType.Director;
 
@@ -293,16 +321,14 @@ export const SearchBar: FC<{
         className="stack"
       >
         {isDirector && user?.config?.SHOW_GROUPED_VIEW && <GrupedMode />}
+        {user?.config?.SHOW_HELPDESK && <SendCredentialsToHelpdesk />}
 
         {user?.admin && <MockingMode />}
-
         {(student_id || (groupedActive && showGroupedDownloadBotton)) &&
           user?.config?.SHOW_DOWNLOAD && <DownloadWord />}
-
         {/*groupedActive &&
           showGroupedDownloadBotton &&
           user?.config?.SHOW_DOWNLOAD && <DownloadWord />*/}
-
         {isDirector && !groupedActive && user?.config?.SHOW_STUDENT_LIST && (
           <StudentList
             program_id={program?.value}
@@ -356,40 +382,7 @@ export const SearchBar: FC<{
             }}
           />
         )}
-
         {HELP_ENABLED && <Help />}
-        {
-          <Button
-            size="medium"
-            icon
-            labelPosition="left"
-            onClick={async () => {
-              var userEmail = user?.email ? user.email : "";
-              var userName = user?.name ? user.name : "";
-              await sendCredentials({
-                variables: {
-                  email: userEmail,
-                  Name: userName,
-                  LastName: "Tester",
-                },
-              });
-              loginHelpdesk(
-                userEmail,
-                dataSendCredentials?.sendCredentials.length
-                  ? dataSendCredentials.sendCredentials
-                  : ""
-              );
-              console.log(
-                dataSendCredentials,
-                loadingSendCredentials,
-                errorSendCredentials
-              );
-            }}
-          >
-            <Icon name="help circle" />
-            {HELP_DESK_LABEL}
-          </Button>
-        }
         {isDirector && SHOW_PARAMETER && <Parameter mockIsActive={mock} />}
         <Button
           css={marginLeft5px}

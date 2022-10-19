@@ -10,6 +10,7 @@ declare namespace NodeJS {
     SELECTED_PROGRAMS: string;
     HELPDESK_VERIFYCUSTOMER_URL: string;
     HELPDESK_CUSTOMER_CODE: string;
-    HELPDESK_LOGIN_URL: string;
+    HELPDESK_CUSTOMER_LOGIN_URL: string;
+    HELPDESK_ADMIN_LOGIN_URL: string;
   }
 }

@@ -241,7 +241,7 @@ type Mutation {
   ReNotificateUsers(content: String!, counter: Float!, email: String!, id: Float!, parameters: String!, risks: String, risksJSON: String!): [JSONObject!]!
   resetDataLoadersCache: Int!
   resetPersistence(user: String!): Int!
-  sendCredentials(email: String!, LastName: String!, Name: String!): Boolean!
+  sendCredentials(email: String!, LastName: String!, Name: String!, type: Boolean!): String!
   setPersistenceValue(data: JSONObject!, key: String!): Persistence!
   student(program_id: String, student_id: String): Student
   track(data: String!, datetime_client: DateTime!): Boolean!

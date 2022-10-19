@@ -173,6 +173,11 @@ query trackInfo($minDate: DateTime!, $maxDate: DateTime!) {
   }
 }
 
-mutation sendCredential($email: String!, $Name: String!, $LastName: String!) {
-  sendCredentials(email: $email, Name: $Name, LastName: $LastName)
+mutation sendCredential(
+  $email: String!
+  $Name: String!
+  $LastName: String!
+  $type: Boolean!
+) {
+  sendCredentials(email: $email, Name: $Name, LastName: $LastName, type: $type)
 }

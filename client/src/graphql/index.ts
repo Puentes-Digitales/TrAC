@@ -344,6 +344,7 @@ export type MutationSendCredentialsArgs = {
   email: Scalars['String'];
   LastName: Scalars['String'];
   Name: Scalars['String'];
+  type: Scalars['Boolean'];
 };
 
 
@@ -802,6 +803,7 @@ export type SendCredentialMutationVariables = Exact<{
   email: Scalars['String'];
   Name: Scalars['String'];
   LastName: Scalars['String'];
+  type: Scalars['Boolean'];
 }>;
 
 
@@ -1704,8 +1706,8 @@ export type TrackInfoQueryHookResult = ReturnType<typeof useTrackInfoQuery>;
 export type TrackInfoLazyQueryHookResult = ReturnType<typeof useTrackInfoLazyQuery>;
 export type TrackInfoQueryResult = Apollo.QueryResult<TrackInfoQuery, TrackInfoQueryVariables>;
 export const SendCredentialDocument = gql`
-    mutation sendCredential($email: String!, $Name: String!, $LastName: String!) {
-  sendCredentials(email: $email, Name: $Name, LastName: $LastName)
+    mutation sendCredential($email: String!, $Name: String!, $LastName: String!, $type: Boolean!) {
+  sendCredentials(email: $email, Name: $Name, LastName: $LastName, type: $type)
 }
     `;
 export type SendCredentialMutationFn = Apollo.MutationFunction<SendCredentialMutation, SendCredentialMutationVariables>;
@@ -1726,6 +1728,7 @@ export type SendCredentialMutationFn = Apollo.MutationFunction<SendCredentialMut
  *      email: // value for 'email'
  *      Name: // value for 'Name'
  *      LastName: // value for 'LastName'
+ *      type: // value for 'type'
  *   },
  * });
  */
