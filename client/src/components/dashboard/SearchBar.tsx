@@ -149,12 +149,16 @@ export const SearchBar: FC<{
   const SendCredentialsToHelpdesk: FC = () => {
     return (
       <Button
+        color="purple"
         size="medium"
+        //css={marginLeft5px}
         icon
         loading={loadingSendCredentials}
         disable={loadingSendCredentials}
+        labelPosition="left"
         onClick={() => callLoginHelpdesk()}
       >
+        <Icon name="help circle" />
         {HELP_DESK_LABEL}
       </Button>
     );
@@ -321,7 +325,6 @@ export const SearchBar: FC<{
         className="stack"
       >
         {isDirector && user?.config?.SHOW_GROUPED_VIEW && <GrupedMode />}
-        {user?.config?.SHOW_HELPDESK && <SendCredentialsToHelpdesk />}
 
         {user?.admin && <MockingMode />}
         {(student_id || (groupedActive && showGroupedDownloadBotton)) &&
@@ -384,6 +387,7 @@ export const SearchBar: FC<{
         )}
         {HELP_ENABLED && <Help />}
         {isDirector && SHOW_PARAMETER && <Parameter mockIsActive={mock} />}
+        {user?.config?.SHOW_HELPDESK && <SendCredentialsToHelpdesk />}
         <Button
           css={marginLeft5px}
           negative
