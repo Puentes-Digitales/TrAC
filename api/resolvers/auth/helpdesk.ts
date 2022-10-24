@@ -1,5 +1,8 @@
 import { Mutation, Resolver, Authorized, Arg } from "type-graphql";
-import { verifyCustomer } from "../../services/helpdesk/helpdeskVerify";
+import {
+  readHelpdeskAnonUrl,
+  verifyCustomer,
+} from "../../services/helpdesk/helpdeskVerify";
 import "dotenv/config";
 //import { loginHelpdesk } from "../../services/helpdesk/helpdeskLogin";
 
@@ -15,13 +18,22 @@ export class HelpdeskResolver {
   ) {
     var url = "";
     if (type) {
-      url = process.env.HELPDESK_ADMIN_LOGIN_URL;
+      url = process.env.HELPDESK_ADMIN_LOGIN_URL
+        ? process.env.HELPDESK_ADMIN_LOGIN_URL
+        : "";
     } else {
-      url = process.env.HELPDESK_CUSTOMER_LOGIN_URL;
+      url = process.env.HELPDESK_CUSTOMER_LOGIN_URL
+        ? process.env.HELPDESK_CUSTOMER_LOGIN_URL
+        : "";
     }
     const customerCode = process.env.HELPDESK_CUSTOMER_CODE || "";
     console.log("se llama la funcion sendCredentials");
     verifyCustomer(email, Name, LastName);
     return JSON.stringify(url + "," + customerCode);
+  }
+
+  @Mutation(() => String)
+  async readAnonUrl() {
+    return readHelpdeskAnonUrl();
   }
 }

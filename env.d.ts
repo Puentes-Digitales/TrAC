@@ -12,5 +12,6 @@ declare namespace NodeJS {
     HELPDESK_CUSTOMER_CODE: string;
     HELPDESK_CUSTOMER_LOGIN_URL: string;
     HELPDESK_ADMIN_LOGIN_URL: string;
+    HELPDESK_ANON_TICKET_CREATION_URL: string;
   }
 }

@@ -240,6 +240,7 @@ export type Mutation = {
   NotificateUsers: Array<Scalars['JSONObject']>;
   performanceLoadAdvices: Array<PerformanceByLoad>;
   program: Program;
+  readAnonUrl: Scalars['String'];
   ReNotificateUsers: Array<Scalars['JSONObject']>;
   resetDataLoadersCache: Scalars['Int'];
   resetPersistence: Scalars['Int'];
@@ -1018,6 +1019,11 @@ export type RiskNoticationQueryVariables = Exact<{
 
 
 export type RiskNoticationQuery = { riskNotification: Array<Pick<RiskNotification, 'student_id' | 'course_id' | 'program_id' | 'curriculum' | 'cohort' | 'risk_type' | 'details'>> };
+
+export type AnonHelpdeskUrlMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AnonHelpdeskUrlMutation = Pick<Mutation, 'readAnonUrl'>;
 
 export type LoginTestMutationVariables = Exact<{
   email: Scalars['EmailAddress'];
@@ -2716,6 +2722,35 @@ export function useRiskNoticationLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type RiskNoticationQueryHookResult = ReturnType<typeof useRiskNoticationQuery>;
 export type RiskNoticationLazyQueryHookResult = ReturnType<typeof useRiskNoticationLazyQuery>;
 export type RiskNoticationQueryResult = Apollo.QueryResult<RiskNoticationQuery, RiskNoticationQueryVariables>;
+export const AnonHelpdeskUrlDocument = gql`
+    mutation anonHelpdeskUrl {
+  readAnonUrl
+}
+    `;
+export type AnonHelpdeskUrlMutationFn = Apollo.MutationFunction<AnonHelpdeskUrlMutation, AnonHelpdeskUrlMutationVariables>;
+
+/**
+ * __useAnonHelpdeskUrlMutation__
+ *
+ * To run a mutation, you first call `useAnonHelpdeskUrlMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAnonHelpdeskUrlMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [anonHelpdeskUrlMutation, { data, loading, error }] = useAnonHelpdeskUrlMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAnonHelpdeskUrlMutation(baseOptions?: Apollo.MutationHookOptions<AnonHelpdeskUrlMutation, AnonHelpdeskUrlMutationVariables>) {
+        return Apollo.useMutation<AnonHelpdeskUrlMutation, AnonHelpdeskUrlMutationVariables>(AnonHelpdeskUrlDocument, baseOptions);
+      }
+export type AnonHelpdeskUrlMutationHookResult = ReturnType<typeof useAnonHelpdeskUrlMutation>;
+export type AnonHelpdeskUrlMutationResult = Apollo.MutationResult<AnonHelpdeskUrlMutation>;
+export type AnonHelpdeskUrlMutationOptions = Apollo.BaseMutationOptions<AnonHelpdeskUrlMutation, AnonHelpdeskUrlMutationVariables>;
 export const LoginTestDocument = gql`
     mutation LoginTest($email: EmailAddress!, $password: String!) {
   login(email: $email, password: $password) {

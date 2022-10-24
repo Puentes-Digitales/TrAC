@@ -238,6 +238,7 @@ type Mutation {
   NotificateUsers(body: String!, closing: String!, farewell: String!, footer: String!, header: String!, riskBody: String!, riskFooter: String!, riskGif: String!, riskJSON: String!, riskTitle: String!, subject: String!): [JSONObject!]!
   performanceLoadAdvices(program_id: String, student_id: String): [PerformanceByLoad!]!
   program(id: String, student_id: String): Program!
+  readAnonUrl: String!
   ReNotificateUsers(content: String!, counter: Float!, email: String!, id: Float!, parameters: String!, risks: String, risksJSON: String!): [JSONObject!]!
   resetDataLoadersCache: Int!
   resetPersistence(user: String!): Int!

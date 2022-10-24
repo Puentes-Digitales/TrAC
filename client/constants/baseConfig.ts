@@ -365,6 +365,8 @@ export const baseConfig = {
   LOGIN_REMEMBER_SESSION: "Mantenerse conectado",
   LOGIN_WRONG_INFO_MESSAGE:
     "Información ingresada erronea. Verificar datos o su cuenta puede ser bloqueda por seguridad.",
+  LOGIN_HELP_TO_LOGIN_MESSAGE: "¿Necesitas ayuda para iniciar sesión?",
+  LOGIN_SHOW_HELP_TO_LOGIN_MESSAGE: false,
   LOGOUT_BUTTON_LABEL: "Salir",
   LOGOUT_CONFIRMATION_LABEL: "¿Está seguro que desea cerrar sesión?",
   MAX_FAIL_SCALE_COLOR: "#ff8282",
