@@ -261,7 +261,6 @@ const Login: FC = () => {
                 {LOGIN_SHOW_HELP_TO_LOGIN_MESSAGE && (
                   <Segment basic>
                     <Button
-                      color="purple"
                       size="medium"
                       loading={anonHelpdeskUrloading}
                       disable={anonHelpdeskUrloading}
@@ -270,7 +269,9 @@ const Login: FC = () => {
                         callHelpdeskUrl();
                       }}
                     >
-                      {LOGIN_HELP_TO_LOGIN_MESSAGE}
+                      <Text color={labelColor}>
+                        {LOGIN_HELP_TO_LOGIN_MESSAGE}
+                      </Text>
                     </Button>
                   </Segment>
                 )}
