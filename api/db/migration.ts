@@ -183,7 +183,6 @@ const migration = async () => {
           config: {
             ...baseUserConfig,
             SHOW_GROUPED_VIEW: true,
-            //SHOW_HELPDESK: true,
             SHOW_STUDENT_COMPLEMENTARY_INFORMATION: true,
             SHOW_GROUPED_COMPLEMENTARY_INFO: true,
             SHOW_DROPOUT: true,
