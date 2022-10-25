@@ -213,14 +213,7 @@ export const Users: FC<{
                 >
                   show_grouped_view
                 </Table.HeaderCell>
-                <Table.HeaderCell
-                  sorted={
-                    column === "config.SHOW_HELPDESK" ? direction : undefined
-                  }
-                  onClick={handleSort("config.SHOW_HELPDESK")}
-                >
-                  show_helpdesk
-                </Table.HeaderCell>
+
                 <Table.HeaderCell
                   sorted={
                     column === "config.SHOW_STUDENT_COMPLEMENTARY_INFORMATION"
@@ -369,16 +362,7 @@ export const Users: FC<{
                                 }
                               />
                             </Table.Cell>
-                            <Table.Cell onClick={configOnClick} width={1}>
-                              <Icon
-                                circular
-                                name={
-                                  configObj?.SHOW_HELPDESK
-                                    ? "check circle outline"
-                                    : "times circle outline"
-                                }
-                              />
-                            </Table.Cell>
+
                             <Table.Cell onClick={configOnClick} width={1}>
                               <Icon
                                 circular

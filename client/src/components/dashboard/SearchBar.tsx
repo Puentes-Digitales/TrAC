@@ -241,6 +241,7 @@ export const SearchBar: FC<{
     GROUPED_OFF,
     SHOW_PARAMETER,
     HELP_DESK_LABEL,
+    HELPDESK_BUTTON_ENABLED,
   } = useContext(ConfigContext);
 
   const {
@@ -387,7 +388,7 @@ export const SearchBar: FC<{
         )}
         {HELP_ENABLED && <Help />}
         {isDirector && SHOW_PARAMETER && <Parameter mockIsActive={mock} />}
-        {user?.config?.SHOW_HELPDESK && <SendCredentialsToHelpdesk />}
+        {HELPDESK_BUTTON_ENABLED && <SendCredentialsToHelpdesk />}
         <Button
           css={marginLeft5px}
           negative
