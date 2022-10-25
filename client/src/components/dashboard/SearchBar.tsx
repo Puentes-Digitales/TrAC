@@ -105,15 +105,24 @@ export const SearchBar: FC<{
   const callLoginHelpdesk = async () => {
     {
       var userEmail = user?.email ? user.email : "";
-      var userName = user?.name ? user.name : "";
+      var userFullName = user?.name ? user.name : "";
+      var name: string = "";
+      var lastName: string = "";
+      var userFullNameArray = [""];
+      if (userFullName.includes(" ")) {
+        userFullNameArray = userFullName.split(" ");
+        name = userFullNameArray[0] ? userFullNameArray[0] : "";
+        lastName = userFullNameArray[1] ? userFullNameArray[1] : "";
+      } else {
+        name = user?.name ? user.name : "";
+      }
       var admin = user?.admin ? user.admin : false;
-      console.log("se presiona el botón");
 
       const datahd = await sendCredentials({
         variables: {
           email: userEmail,
-          Name: userName,
-          LastName: "Tester",
+          Name: name,
+          LastName: lastName,
           type: admin,
         },
       });
