@@ -3,7 +3,6 @@ export const baseUserConfig = {
   SHOW_DROPOUT: false,
   SHOW_DOWNLOAD: false,
   SHOW_GROUPED_VIEW: false,
-  SHOW_HELPDESK: false,
   SHOW_STUDENT_COMPLEMENTARY_INFORMATION: false,
   SHOW_GROUPED_COMPLEMENTARY_INFO: false,
   SHOW_STUDENT_LIST: false,

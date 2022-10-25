@@ -21,15 +21,18 @@ export class HelpdeskResolver {
       url = process.env.HELPDESK_ADMIN_LOGIN_URL
         ? process.env.HELPDESK_ADMIN_LOGIN_URL
         : "";
+      const adminEmail = process.env.HELPDESK_ADMIN_EMAIL_ADDRESS || "";
+      const adminCode = process.env.HELPDESK_ADMIN_CODE || "";
+      return JSON.stringify(url + "," + adminEmail + "/" + adminCode);
     } else {
       url = process.env.HELPDESK_CUSTOMER_LOGIN_URL
         ? process.env.HELPDESK_CUSTOMER_LOGIN_URL
         : "";
+      const customerCode = process.env.HELPDESK_CUSTOMER_CODE || "";
+
+      verifyCustomer(email, Name, LastName);
+      return JSON.stringify(url + "," + customerCode);
     }
-    const customerCode = process.env.HELPDESK_CUSTOMER_CODE || "";
-    console.log("se llama la funcion sendCredentials");
-    verifyCustomer(email, Name, LastName);
-    return JSON.stringify(url + "," + customerCode);
   }
 
   @Mutation(() => String)

@@ -108,6 +108,7 @@ export const SearchBar: FC<{
       var userName = user?.name ? user.name : "";
       var admin = user?.admin ? user.admin : false;
       console.log("se presiona el botón");
+
       const datahd = await sendCredentials({
         variables: {
           email: userEmail,
@@ -118,7 +119,8 @@ export const SearchBar: FC<{
       });
       loginHelpdesk(
         user?.email ? user.email : "",
-        JSON.stringify(datahd.data?.sendCredentials)
+        JSON.stringify(datahd.data?.sendCredentials),
+        admin
       );
     }
   };
