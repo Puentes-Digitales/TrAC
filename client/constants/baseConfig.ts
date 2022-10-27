@@ -339,6 +339,8 @@ export const baseConfig = {
   GRADES_LABEL: "Calificaciones",
   GRADES_SCALES: "Escala de notas",
   HELP_ENABLED: false,
+  HELPDESK_BUTTON_ENABLED: true,
+  HELP_DESK: "Mesa de ayuda",
   HISTOGRAM_BAR_ACTIVE: "rgb(122,122,122)",
   HISTOGRAM_BAR_INACTIVE: "rgb(191,191,191)",
   GROUPED_TIMELY_GRADUATION_LABEL: "Titulación Oportuna",
@@ -364,6 +366,8 @@ export const baseConfig = {
   LOGIN_REMEMBER_SESSION: "Mantenerse conectado",
   LOGIN_WRONG_INFO_MESSAGE:
     "Información ingresada erronea. Verificar datos o su cuenta puede ser bloqueda por seguridad.",
+  LOGIN_HELP_TO_LOGIN_MESSAGE: "¿Necesitas ayuda para iniciar sesión?",
+  LOGIN_SHOW_HELP_TO_LOGIN_MESSAGE: false,
   LOGOUT_BUTTON_LABEL: "Salir",
   LOGOUT_CONFIRMATION_LABEL: "¿Está seguro que desea cerrar sesión?",
   MAX_FAIL_SCALE_COLOR: "#ff8282",

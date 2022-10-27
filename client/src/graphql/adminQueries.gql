@@ -172,3 +172,12 @@ query trackInfo($minDate: DateTime!, $maxDate: DateTime!) {
     datetime
   }
 }
+
+mutation sendCredential(
+  $email: String!
+  $Name: String!
+  $LastName: String!
+  $type: Boolean!
+) {
+  sendCredentials(email: $email, Name: $Name, LastName: $LastName, type: $type)
+}

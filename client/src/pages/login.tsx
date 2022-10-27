@@ -34,13 +34,29 @@ import {
 import { ToggleDarkMode } from "../components/DarkMode";
 import { LoadingPage } from "../components/Loading";
 import { ConfigContext } from "../context/Config";
-import { CurrentUserDocument, useLoginMutation } from "../graphql";
+import {
+  CurrentUserDocument,
+  useLoginMutation,
+  useAnonHelpdeskUrlMutation,
+} from "../graphql";
 import { useUser } from "../utils/useUser";
-
 const Login: FC = () => {
   const [session, setSession] = useState(() =>
     Cookies.get("remember") ? true : false
   );
+
+  const [
+    anonHelpdeskUrl,
+    { loading: anonHelpdeskUrloading },
+  ] = useAnonHelpdeskUrlMutation();
+
+  const callHelpdeskUrl = async () => {
+    const datahd = await anonHelpdeskUrl();
+    console.log("data:", datahd?.data?.readAnonUrl);
+    if (datahd?.data?.readAnonUrl) {
+      window.open(datahd?.data?.readAnonUrl);
+    }
+  };
 
   useUpdateEffect(() => {
     if (session) {
@@ -76,8 +92,10 @@ const Login: FC = () => {
     LOGIN_PASSWORD_PLACEHOLDER,
     LOGIN_REMEMBER_SESSION,
     LOGIN_BUTTON,
+    LOGIN_HELP_TO_LOGIN_MESSAGE,
     LOGIN_ERROR_TITLE,
     ERROR_STUDENT_ACCOUNT_NO_DATA_MESSAGE,
+    LOGIN_SHOW_HELP_TO_LOGIN_MESSAGE,
   } = useContext(ConfigContext);
 
   const labelColor = useColorModeValue("black", "white !important");
@@ -239,6 +257,24 @@ const Login: FC = () => {
                     {LOGIN_BUTTON}
                   </Button>
                 </Segment>
+
+                {LOGIN_SHOW_HELP_TO_LOGIN_MESSAGE && (
+                  <Segment basic>
+                    <Button
+                      size="medium"
+                      loading={anonHelpdeskUrloading}
+                      disable={anonHelpdeskUrloading}
+                      labelPosition="left"
+                      onClick={() => {
+                        callHelpdeskUrl();
+                      }}
+                    >
+                      <Text color={labelColor}>
+                        {LOGIN_HELP_TO_LOGIN_MESSAGE}
+                      </Text>
+                    </Button>
+                  </Segment>
+                )}
               </FormSemantic>
             );
           }}
