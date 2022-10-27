@@ -54,7 +54,9 @@ import { Help } from "../Help";
 
 import { Parameter } from "../dashboard/Parameter";
 
+import { useSendCredentialMutation } from "../../graphql";
 import type { $ElementType } from "utility-types";
+import { loginHelpdesk } from "../../utils/helpdeskForm";
 const StudentList = dynamic(() => import("./StudentList"));
 
 const MockingMode: FC = memo(() => {
@@ -93,7 +95,44 @@ export const SearchBar: FC<{
   const groupedActive = useGroupedActive();
   const chosenAdmissionType = useChosenAdmissionType();
   const chosenCohort = useChosenCohort();
+  const { user } = useUser();
 
+  const [
+    sendCredentials,
+    { loading: loadingSendCredentials },
+  ] = useSendCredentialMutation();
+
+  const callLoginHelpdesk = async () => {
+    {
+      var userEmail = user?.email ? user.email : "";
+      var userFullName = user?.name ? user.name : "";
+      var name: string = "";
+      var lastName: string = "";
+      var userFullNameArray = [""];
+      if (userFullName.includes(" ")) {
+        userFullNameArray = userFullName.split(" ");
+        name = userFullNameArray[0] ? userFullNameArray[0] : "";
+        lastName = userFullNameArray[1] ? userFullNameArray[1] : "";
+      } else {
+        name = user?.name ? user.name : "";
+      }
+      var admin = user?.admin ? user.admin : false;
+
+      const datahd = await sendCredentials({
+        variables: {
+          email: userEmail,
+          Name: name,
+          LastName: lastName,
+          type: admin,
+        },
+      });
+      loginHelpdesk(
+        user?.email ? user.email : "",
+        JSON.stringify(datahd.data?.sendCredentials),
+        admin
+      );
+    }
+  };
   const GrupedMode: FC = memo(() => {
     const groupedActive = useGroupedActive();
     return (
@@ -117,6 +156,24 @@ export const SearchBar: FC<{
       </Button2>
     );
   });
+
+  const SendCredentialsToHelpdesk: FC = () => {
+    return (
+      <Button
+        color="purple"
+        size="medium"
+        //css={marginLeft5px}
+        icon
+        loading={loadingSendCredentials}
+        disable={loadingSendCredentials}
+        labelPosition="left"
+        onClick={() => callLoginHelpdesk()}
+      >
+        <Icon name="help circle" />
+        {HELP_DESK_LABEL}
+      </Button>
+    );
+  };
 
   useEffect(() => {
     DashboardInputActions.setChosenCurriculum("");
@@ -176,8 +233,6 @@ export const SearchBar: FC<{
     setMock(false);
   }, []);
 
-  const { user } = useUser();
-
   const isDirector = user?.type === UserType.Director;
 
   const {
@@ -196,6 +251,8 @@ export const SearchBar: FC<{
     GROUPED_ON,
     GROUPED_OFF,
     SHOW_PARAMETER,
+    HELP_DESK_LABEL,
+    HELPDESK_BUTTON_ENABLED,
   } = useContext(ConfigContext);
 
   const {
@@ -282,14 +339,11 @@ export const SearchBar: FC<{
         {isDirector && user?.config?.SHOW_GROUPED_VIEW && <GrupedMode />}
 
         {user?.admin && <MockingMode />}
-
         {(student_id || (groupedActive && showGroupedDownloadBotton)) &&
           user?.config?.SHOW_DOWNLOAD && <DownloadWord />}
-
         {/*groupedActive &&
           showGroupedDownloadBotton &&
           user?.config?.SHOW_DOWNLOAD && <DownloadWord />*/}
-
         {isDirector && !groupedActive && user?.config?.SHOW_STUDENT_LIST && (
           <StudentList
             program_id={program?.value}
@@ -343,9 +397,9 @@ export const SearchBar: FC<{
             }}
           />
         )}
-
         {HELP_ENABLED && <Help />}
         {isDirector && SHOW_PARAMETER && <Parameter mockIsActive={mock} />}
+        {HELPDESK_BUTTON_ENABLED && <SendCredentialsToHelpdesk />}
         <Button
           css={marginLeft5px}
           negative
