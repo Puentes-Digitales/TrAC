@@ -26,7 +26,7 @@ export const app = Fastify({
 app.register(helmet, {
   contentSecurityPolicy: {
     directives: {
-      "default-src": "'self' http://localhost:3001/login",
+      "default-src": "'self'",
       "style-src":
         "'self' https://cdn.jsdelivr.net https://fonts.googleapis.com 'unsafe-inline'",
       "script-src": IS_DEVELOPMENT
@@ -36,7 +36,7 @@ app.register(helmet, {
         "'self' https://fonts.gstatic.com https://cdn.jsdelivr.net data:",
       "img-src": `'self' data:`,
       "connect-src":
-        "'self' https://cdn.jsdelivr.net https://fonts.googleapis.com http://localhost:3001/login http://localhost:3001/login/test",
+        "'self' https://cdn.jsdelivr.net https://fonts.googleapis.com ",
       "worker-src": "'self' blob:",
       "object-src": "'self' data:",
     },
